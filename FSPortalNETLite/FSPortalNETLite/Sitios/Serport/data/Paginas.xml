@@ -1,0 +1,2600 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Paginas>
+    <idPagina>14</idPagina>
+    <Titulo>Página principal</Titulo>
+    <Enlace>default.aspx</Enlace>
+    <Contenido>&lt;div class="container"&gt;
+	&lt;div class="row"&gt;
+		&lt;div class="col-lg-12 text-center"&gt;
+			&lt;h2 class="section-heading"&gt;
+				Intranet de clientes y transportistas&lt;/h2&gt;
+			&lt;h3 class="section-subheading text-muted"&gt;
+&lt;!-- intranet de clientes --&gt;			&lt;/h3&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="container"&gt;
+	&lt;div class="row"&gt;
+		&lt;div class="col-lg-12"&gt;
+			&lt;div class="timeline-panel"&gt;
+				&lt;div class="timeline-body"&gt;
+					&lt;p class="text-muted"&gt;
+						Los clientes de {nombreWeb} disponen de un acceso personal a la intranet para poder controlar, en tiempo real, el estado de sus pedidos de transporte.&lt;br /&gt;
+						El sistema de gestión de {nombreWeb} está directamente enlazado con el sistema de publicación de datos de la intranet de clientes, de tal modo, que en el momento que en aquel se registra una incidencia sobre el viaje, está visible a través de la intranet para el cliente. &lt;a href="pagina.aspx?id=311&amp;tipo=cliente&amp;wFechaHasta={frmReemplaza({fecha},/20,/)}&amp;wFechaDesde={frmReemplaza({fecha},/20,/)}"&gt;&lt;br /&gt;
+						&lt;h2 class="section-heading"&gt;
+						Clientes
+						&lt;/h2&gt;
+						&lt;/a&gt;&lt;br /&gt;
+						Los transportistas de {nombreWeb} también disponen de su propia intranet para el acceso on line a sus servicios.&lt;a href="pagina.aspx?id=318&amp;tipo=proveedor&amp;wFechaHasta={frmReemplaza({fecha},/20,/)}&amp;wFechaDesde={frmReemplaza({fechauno},/20,/)}"&gt;&lt;br /&gt;
+						&lt;h2 class="section-heading"&gt;
+						Transportistas
+						&lt;/h2&gt;
+						&lt;/a&gt;&lt;/p&gt;
+						&lt;br /&gt;
+				&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>1</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>15</idPagina>
+    <Titulo>{idioma(77)}</Titulo>
+    <Enlace>pagina.aspx</Enlace>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>1</Padre>
+  </Paginas>
+  <Paginas>
+    <idPagina>19</idPagina>
+    <Titulo>{idioma(19)}</Titulo>
+    <Enlace>servicios/conectar.aspx</Enlace>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>1</Padre>
+  </Paginas>
+  <Paginas>
+    <idPagina>311</idPagina>
+    <Titulo>Servicios Cliente</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmMaxRegistrosPagina(50)}
+--&gt;
+&lt;h2&gt;
+	Consulta de servicios&lt;/h2&gt;
+&lt;div id="buscador"&gt;
+	&lt;form action="" method="post"&gt;
+		&lt;table class="table table-custom table-fixed" data-responsive="true"&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;th width=150&gt;
+						&lt;label&gt;N° Contenedor: &lt;/label&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;input name="{frmCampo(wNumContenedor,20,t)}" style="width: 150px;" type="text" value="{frmRequest(wNumContenedor)}" /&gt;&lt;/th&gt;
+					&lt;th width=150&gt;
+						&lt;label&gt;Booking: &lt;/label&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;input name="{frmCampo(wBooking,20,t)}" style="width: 150px;" type="text" value="{frmRequest(wBooking)}" /&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;
+						&lt;label&gt;Fecha desde: &lt;/label&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;input name="{frmCampo(wFechaDesde,10,f,1)}" style="width: 150px;" type="text" value="{frmSii({frmRequest(wFechaDesde)},,{fecha},{frmRequest(wFechaDesde)})}" /&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;label&gt;Fecha hasta: &lt;/label&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;input name="{frmCampo(wFechaHasta,10,f,1)}" style="width: 150px;" type="text" value="{frmSii({frmRequest(wFechaHasta)},,{fecha},{frmRequest(wFechaHasta)})}" /&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;
+						&lt;label&gt;Destino: &lt;/label&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;input name="{frmCampo(wDestino,30,t)}" style="width: 150px;" type="text" value="{frmRequest(wDestino)}" /&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;label&gt;Tipo viaje: &lt;/label&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;select name="wTipoImp" style="width: 150px;" class="none" &gt;
+							&lt;option value="">&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wTipoImp)},I,selected,)} value="I">Importación&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wTipoImp)},E,selected,)} value="E">Exportación&lt;/option&gt;
+						&lt;/select&gt;
+						
+						&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th&gt;
+						&lt;label&gt;Estado: &lt;/label&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;select name="wEstado" style="width: 150px;" class="none" &gt;
+							&lt;option value="">&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wEstado)},Pendiente,selected,)} value="Pendiente">Pendiente&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wEstado)},En tránsito,selected,)} value="En tránsito">En tránsito&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wEstado)},Contenedor recogido,selected,)} value="Contenedor recogido">Contenedor recogido&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wEstado)},En destino,selected,)} value="En destino">En destino&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wEstado)},Salida destino,selected,)} value="Salida destino">Salida destino&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wEstado)},Cola de la terminal,selected,)} value="Cola de la terminal">Cola de la terminal&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wEstado)},Ventanilla de la terminal,selected,)} value="Ventanilla de la terminal">Ventanilla de la terminal&lt;/option&gt;
+							&lt;option {frmSii({frmRequest(wEstado)},Fin de trabajo,selected,)} value="Fin de trabajo">Fin de trabajo&lt;/option&gt;
+						&lt;/select&gt;
+					&lt;/th&gt;
+					&lt;th&gt;
+						
+					&lt;/th&gt;
+					&lt;th&gt;
+						&lt;button type="submit"&gt;Realizar búsqueda!&lt;/button&gt;
+					&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+
+&lt;br /&gt;
+
+&lt;!--
+{frmSelect(SELECT * FROM BDGT.V_BDGT_SERVICIOS WHERE CODIGOCLIENTE 
+IN(SELECT CODIGOCLIENTECONSULTAR FROM BDGT.V_BDGT_CLIENTESINTRANET WHERE CODIGOCLIENTE={frmUsuario(campo1)}) 
+{frmSii({frmRequest(wDestino)},,,AND lower(DESTINO) LIKE lower({cs}%{frmRequest(wDestino)}%{cs}))} 
+{frmSii({frmRequest(wBooking)},,,AND lower(BOOKING) LIKE lower({cs}%{frmRequest(wBooking)}%{cs}))} 
+{frmSii({frmRequest(wTipoImp)},,,AND tipodeviaje = {cs}{frmRequest(wTipoImp)}{cs})} 
+{frmSii({frmRequest(wEstado)},,,AND estado = {cs}{frmRequest(wEstado)}{cs})} 
+{frmSii({frmRequest(wNumContenedor)},,,AND lower(NUMEROCONTENEDOR) LIKE lower({cs}%{frmRequest(wNumContenedor)}%{cs}))} 
+{frmSii({frmRequestFecha(wFechaHasta)},,AND to_date(FECHACARGA{coma}{cs}dd/mm/yyyy HH24:MI{cs}) &lt;=to_date({cs}{fecha} 23:59{cs}{coma}{cs}dd/mm/yyyy HH24:MI{cs}),AND to_date(FECHACARGA{coma}{cs}dd/mm/yyyy HH24:MI{cs}) &lt;=to_date({cs}{frmRequestFecha(wFechaHasta)} 23:59{cs}{coma}{cs}dd/mm/yyyy HH24:MI{cs}))} 
+{frmSii({frmRequestFecha(wFechaDesde)},,AND to_date(FECHACARGA{coma}{cs}dd/mm/yyyy HH24:MI{cs}) &gt;=to_date({cs}{fecha} 00:00{cs}{coma}{cs}dd/mm/yyyy HH24:MI{cs}),AND to_date(FECHACARGA{coma}{cs}dd/mm/yyyy HH24:MI{cs}) &gt;=to_date({cs}{frmRequestFecha(wFechaDesde)} 00:00{cs}{coma}{cs}dd/mm/yyyy HH24:MI{cs}))} 
+{frmSii({frmRequest(wSort)},,ORDER BY FECHACARGA DESC,ORDER BY {frmRequest(wSort)} {frmRequest(wSortAD)})})}
+{frmGuardaSelect()}
+--&gt;&lt;div class="pdfdata"&gt;
+	&lt;table class="table table-custom table-fixed" data-responsive="true"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;th style="width: 25px;"&gt;
+					&lt;!--*--&gt;&lt;/th&gt;
+				&lt;th style="width: 75px;"&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Codigo&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Código&lt;/a&gt;&lt;/th&gt;
+				&lt;th style="width: 100px;"&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=FechaCarga&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Fecha&lt;/a&gt;&lt;/th&gt;
+				&lt;th&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Booking&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Booking&lt;/a&gt;&lt;/th&gt;
+				&lt;th&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=NumeroContenedor&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;N.Contenedor&lt;/a&gt;&lt;/th&gt;
+				&lt;th&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=PedidoMercancia&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Pdo.Mercancia&lt;/a&gt;&lt;/th&gt;
+				&lt;th&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Empresa&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Empresa&lt;/a&gt;&lt;/th&gt;
+				&lt;th&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Contenedor&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Contenedor&lt;/a&gt;&lt;/th&gt;
+				&lt;th&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Destino&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Destino&lt;/a&gt;&lt;/th&gt;
+				&lt;th style="width: 25px;"&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=TipoDeViaje&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;T&lt;/a&gt;&lt;/th&gt;
+				&lt;th&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=carga&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Carga
+					&lt;/a&gt;&lt;/th&gt;
+				&lt;th&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=estado&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Estado&lt;/a&gt;&lt;/th&gt;
+			&lt;/tr&gt;
+&lt;!--{frmRepetir()}--&gt;			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;!--{frmValor(ASTERISCO)}--&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;a href="pagina.aspx?id=314&amp;codigo={frmValor(CODIGO)}&amp;{frmRequestDel(id)}"&gt;{frmValor(CODIGO)}&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;
+					{frmReemplaza({frmValor(FECHACARGA)},/20,/)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(BOOKING)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmReemplaza({frmValor(NUMEROCONTENEDOR)},{coma},&lt;br /&gt;)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(PEDIDOMERCANCIA)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmReemplaza({frmValor(EMPRESA)},{coma},&lt;br /&gt;)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(CONTENEDOR)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(DESTINO)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(TIPODEVIAJE)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(CARGA)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(ESTADO)}&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!--{frmFinRepetir()}--&gt;		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;
+	&lt;a href="{frmLinkPrimero()}"&gt;&lt;img src="{directorioPortal}imagenes/primero.png" /&gt;&lt;/a&gt; &lt;a href="{frmLinkAnterior()}"&gt;&lt;img src="{directorioPortal}imagenes/anterior.png" /&gt;&lt;/a&gt; &lt;a href="{frmLinkSiguiente()}"&gt;&lt;img src="{directorioPortal}imagenes/siguiente.png" /&gt;&lt;/a&gt; &lt;a href="{frmLinkUltimo()}"&gt;&lt;img src="{directorioPortal}imagenes/ultimo.png" /&gt;&lt;/a&gt;&lt;/p&gt;
+{frmPaginaActual()} / {frmPaginas()} {frmLinkToolbar(&lt;a href="$1"&gt;$2&lt;/a&gt; )}
+&lt;!--&lt;p&gt;
+	&lt;a href="p_servicios pdf.aspx?{frmRequest()}&amp;view=pdf" target="_blank"&gt;&lt;img src="{directorioPortal}imagenes/pdf.png" /&gt;&lt;/a&gt;&lt;br /&gt;
+	&lt;br /&gt;
+	Descargar en formato PDF.&lt;/p&gt;--&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>109</idPagina>
+    <Titulo>{idioma(153)}</Titulo>
+    <Enlace>servicios/desconectar.aspx</Enlace>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>1</Padre>
+  </Paginas>
+  <Paginas>
+    <idPagina>141</idPagina>
+    <Titulo>{idioma(177)}</Titulo>
+    <Enlace>errorPages/error500.aspx</Enlace>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>1</Padre>
+  </Paginas>
+  <Paginas>
+    <idPagina>290</idPagina>
+    <Titulo>Enviar formulario</Titulo>
+    <Enlace>formularios/enviarformulario.aspx</Enlace>
+    <Contenido />
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+  </Paginas>
+  <Paginas>
+    <idPagina>294</idPagina>
+    <Titulo>Conectar</Titulo>
+    <Enlace />
+    <Contenido>{frmLogin()} &lt;!-- login form--&gt;&lt;section&gt;
+&lt;div class="shell text-sm-left"&gt;
+	&lt;div class="range range-xs-center range-sm-left"&gt;
+		&lt;div class="cell-xs-10 cell-lg-4"&gt;
+			&lt;h2&gt;
+				Formulario de acceso&lt;/h2&gt;
+			&lt;hr class="divider divider-lg bg-primary hr-sm-left-0" /&gt;
+			&lt;div class="offset-top-50"&gt;
+				&lt;form action="{directorioPortal}formularios/enviarFormulario.aspx?{frmRequest()}&amp;modo=login" class="frmLogin" id="frmLogin" method="post"&gt;
+					&lt;div class="form-group"&gt;
+						&lt;input class="form-control form-validation-inside" data-constraints="@Required" name="txtUsuario" placeholder="Usuario *" type="text" /&gt;&lt;/div&gt;
+					&lt;div class="form-group"&gt;
+						&lt;input class="form-control form-validation-inside" data-constraints="@Required" name="txtClave" placeholder="Clave *" type="password" /&gt;&lt;/div&gt;
+					&lt;div class="text-center text-sm-left"&gt;
+						&lt;button class="btn btn-sm btn-primary" type="submit"&gt;Enviar&lt;/button&gt;&lt;/div&gt;
+				&lt;/form&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+&lt;/section&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>303</idPagina>
+    <Titulo>Contactar</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;
+	CONTACTO&lt;/h1&gt;
+&lt;h2&gt;
+	Puedes utilizar el siguiente formulario para ponerte en contacto con nosotros.&lt;/h2&gt;
+&lt;form action="{directorioPortal}formularios/enviarFormulario.aspx" class="frmForm" id="frmContactar" method="post"&gt;
+	&lt;p&gt;
+		Nombre&lt;/p&gt;
+	&lt;input maxlength="100" name="{frmCampo(Nombre,50,t,1)}" size="55" type="text" /&gt;
+	&lt;p&gt;
+		&lt;br /&gt;
+		E-mail&lt;/p&gt;
+	&lt;input maxlength="100" name="{frmCampo(Email,100,e,1)}" size="21" type="text" /&gt;
+	&lt;p&gt;
+		&lt;br /&gt;
+		Teléfono&lt;/p&gt;
+	&lt;input maxlength="9" name="Telefono" size="15" type="text" /&gt;
+	&lt;p&gt;
+		&lt;br /&gt;
+		Asunto&lt;/p&gt;
+	&lt;textarea cols="29" name="txtAsunto" style="height: 44px; margin-left: 0px; margin-right: 0px; width: 302px; "&gt;&lt;/textarea&gt;&lt;input class="miBoton" name="cmdEnviar" type="submit" value="Enviar" /&gt;&lt;br /&gt;
+	 &lt;/form&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>308</idPagina>
+    <Titulo>Aviso Legal</Titulo>
+    <Contenido>&lt;h1&gt;Aviso legal&lt;/h1&gt;
+			&lt;p&gt;&lt;img width="230" height="117" class="situacion" alt="" src="{directorioWeb}recursos/images/c1.jpg" /&gt;&lt;img width="230" height="117" class="situacion" alt="" src="{directorioWeb}recursos/images/c2.jpg" /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Serport&lt;/strong&gt;, sociedad titular del presente sitio web sólo obtiene y conserva la siguiente información acerca de los visitantes de nuestro  web: &lt;/p&gt;
+
+&lt;p&gt; El nombre de dominio del proveedor (PSI) y/o dirección IP que les da acceso a la red. De esta manera podemos elaborar estadísticas sobre los servidores que visitan con más frecuencia nuestro web. &lt;/p&gt;
+&lt;p&gt;El número de visitantes diarios de cada sección. Ello nos permite conocer las áreas de más éxito y aumentar y mejorar su contenido, con el fin de que los usuarios obtengan un resultado más satisfactorio. &lt;/p&gt;
+&lt;p&gt;Los datos Nombre de aquellos visitantes que voluntariamente envíen sus formularios de solicitud de información. El único fin de este registro de información es poder tramitar, dentro de nuestra organización, la solicitud recibida para remitirles la información por ustedes solicitada. &lt;/p&gt;
+&lt;p&gt;La información obtenidad es totalmente anónima, y en ningún caso puede ser asociada a un usuario concreto e identificado.&lt;/p&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+  </Paginas>
+  <Paginas>
+    <idPagina>309</idPagina>
+    <Titulo>Contacta</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;
+	Contacta&lt;/h1&gt;
+&lt;p&gt;
+	Si desean contactar con nosotros cumplimenten el siguiente formulario:&lt;/p&gt;
+&lt;form action="{directorioPortal}formularios/enviarFormulario.aspx?modo=email" class="frmForm" enctype="multipart/form-data" method="post"&gt;
+	&lt;div class="campos"&gt;
+		&lt;label for="nombre"&gt;&lt;strong&gt;*&lt;/strong&gt; Nombre:&lt;/label&gt; &lt;input id="nombre" name="Nombre" type="text" /&gt;&lt;/div&gt;
+	&lt;div class="campos"&gt;
+		&lt;label for="email"&gt;&lt;strong&gt;*&lt;/strong&gt; E-Mail:&lt;/label&gt; &lt;input id="email" name="Email" type="text" /&gt;&lt;/div&gt;
+	&lt;div class="campos"&gt;
+		&lt;label for="mensaje"&gt;&lt;strong&gt;*&lt;/strong&gt; Mensaje&lt;/label&gt;&lt;textarea cols="60" id="mensaje" name="Comentarios" rows="4"&gt;&lt;/textarea&gt;&lt;/div&gt;
+	&lt;div id="botones"&gt;
+		&lt;button name="cmdSend" type="submit"&gt;Enviar&lt;/button&gt;&lt;button type="reset"&gt;Borrar&lt;/button&gt;&lt;/div&gt;
+&lt;/form&gt;
+&lt;hr /&gt;
+&lt;p&gt;
+	&lt;strong&gt;* Los campos marcados con * son obligatorios&lt;/strong&gt;&lt;/p&gt;
+&lt;div id="submenu"&gt;
+	&lt;p class="direccion"&gt;
+		&lt;strong&gt;{nombreWeb}&lt;/strong&gt;&lt;br /&gt;
+		Zona ZAL, muelle AZ3, Edif. Cargor, piso 2º&lt;br /&gt;
+		Zierbana 48508&lt;br /&gt;
+		(Vizcaya)&lt;br /&gt;
+		Teléfonos: 944 622 355 - 944 625 413&lt;br /&gt;
+		Fax: 944 836 025&lt;br /&gt;
+		E-mail: &lt;a href="mailto:administracion@Serport.com" title="administracion@Serport.com"&gt;administracion@Serport.com&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>314</idPagina>
+    <Titulo>Detalle Servicio</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}--&gt;
+
+&lt;h2&gt;Detalle del servicio
+	 &lt;/h2&gt;
+	 
+	 &lt;p&gt;
+		&lt;a href="{directorioPortal}pagina.aspx?id=311&amp;tipo=cliente&amp;{frmRequestDel(id,codigo)}"&gt;&lt;br /&gt;
+		Volver a la consulta de servicios&lt;/a&gt;&lt;/p&gt;
+	 
+&lt;!-- {frmSelect(select * from BDGT.V_BDGT_CONTENEDORES_SERVICIO where codigoservicio={frmRequestEntero(codigo)})} --&gt;
+&lt;!--&lt;h3&gt;
+		Contenedores&lt;/h3&gt;--&gt;
+
+	&lt;table class="table table-custom table-primary table-fixed" data-responsive="true"&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Número&lt;/th&gt;
+				&lt;th&gt;
+					Precinto 1&lt;/th&gt;
+				&lt;th&gt;
+					Precinto 2&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+
+			&lt;tr&gt;
+				&lt;td&gt;
+					{frmValor(NumeroContenedor)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(Precinto1)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(Precinto2)}&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!-- {frmFinRepetir()} --&gt;		&lt;/tbody&gt;
+		&lt;tbody&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+
+&lt;!--&lt;h3&gt;
+		Servicio&lt;/h3&gt;--&gt;
+
+&lt;!--
+{frmSelect(SELECT * FROM BDGT.V_BDGT_SERVICIOS_I WHERE CODIGOSERVICIO = {frmRequestEntero(codigo)} AND CODIGOCLIENTE IN(SELECT CODIGOCLIENTECONSULTAR FROM BDGT.V_BDGT_CLIENTESINTRANET WHERE CODIGOCLIENTE={frmUsuario(campo1)}))}
+
+{_frmendsi({_frmtotalregistros},0)}
+{frmsinohaydatos()}
+--&gt;
+
+&lt;!--&lt;a href="p_detalle servicio pdf.aspx?{frmRequest()}&amp;view=pdf" target="_blank"&gt;&lt;img src="{directorioPortal}imagenes/pdf.png" /&gt;&lt;/a&gt;--&gt;&lt;form action="" name="formulario"&gt;
+	&lt;table class="table table-custom table-primary table-fixed" data-responsive="true"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;th width=250&gt;
+					CODIGO&lt;/th&gt;
+				&lt;td&gt;
+				&lt;a href=&quot;?id=314&amp;codigo={frmValorTempPrev(CODIGO)}&amp;{frmRequestDel(id,codigo)}&quot;&gt;&lt;img width=16 height=16 src="{directorioWeb}images/flecha_izq.png" /&gt;&lt;/a&gt;
+					{frmValor(Codigo)}
+				&lt;a href=&quot;?id=314&amp;codigo={frmValorTempNext(CODIGO)}&amp;{frmRequestDel(id,codigo)}&quot;&gt;&lt;img width=16 height=16 src="{directorioWeb}images/flecha_der.png" /&gt;&lt;/a&gt;	
+					&lt;/td&gt;
+				&lt;th width=250&gt;
+					Referencia&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(REFERENCIA)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Tipo viaje&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(Tipo)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Fecha de carga&lt;/th&gt;
+				&lt;td&gt;
+					{frmReemplaza({frmValor(FECHACARGA)},/20,/)}&lt;/td&gt;
+				&lt;th&gt;
+					Empresa&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(empresa)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Destino&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(poblacion)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					País&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(pais)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Pedido mercancía&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(pedidomercancia)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Terminal de carga&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(carga)}&lt;/td&gt;
+				&lt;th&gt;
+					Booking&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(booking)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Barco&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(barco)}&lt;/td&gt;
+				&lt;th&gt;
+					Número barco&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(numerobarco)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Puerto&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(puerto)}&lt;/td&gt;
+				&lt;th&gt;
+					Fecha salida&lt;/th&gt;
+				&lt;td&gt;
+					{frmReemplaza({frmValor(fechasalida)},/20,/)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Terminal de descarga&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(descarga)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Número albarán&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(numeroalbaran)}&lt;/td&gt;
+				&lt;!-- &lt;th&gt;
+					Número puerto&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(NumeroSocioPuertoContenedor)}&lt;/td&gt; --&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Matrícula&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(matriculaservicio)}&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!--&lt;tr&gt;
+				&lt;th&gt;
+					Estado&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(estado)}&lt;/td&gt;
+				&lt;th&gt;
+					Recogida&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(recogido)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Entrada&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(entrada)}&lt;/td&gt;
+				&lt;th&gt;
+					Salida&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(salida)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Fin de trabajo&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(fintrabajo)}&lt;/td&gt;
+			&lt;/tr&gt;--&gt;			&lt;tr&gt;
+				&lt;th&gt;
+					Estado&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="codigo" type="text" value="{frmValor(estado)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(pendiente)},,,{frmsii({frmValor(pendientepos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(pendientepos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Servicio creado
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="pendiente" type="text" value="{frmReemplaza({frmValor(pendiente)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(pendienteacuse)},,,{frmsii({frmValor(pendienteacusepos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(pendienteacusepos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Servicio asignado
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="pendienteacuse" type="text" value="{frmReemplaza({frmValor(pendienteacuse)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(transito)},,,{frmsii({frmValor(transitopos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(transitopos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}En terminal
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="transito" type="text" value="{frmReemplaza({frmValor(transito)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(recogido)},,,{frmsii({frmValor(recogidopos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(recogidopos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Contenedor recogido
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="recogido" type="text" value="{frmReemplaza({frmValor(recogido)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(entrada)},,,{frmsii({frmValor(entradapos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(entradapos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}En destino
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="entrada" type="text" value="{frmReemplaza({frmValor(entrada)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(salida)},,,{frmsii({frmValor(salidapos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(salidapos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Salida destino
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="salida" type="text" value="{frmReemplaza({frmValor(salida)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(colaterminal)},,,{frmsii({frmValor(colaterminalpos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(colaterminalpos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Cola terminal
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="colaterminal" type="text" value="{frmReemplaza({frmValor(colaterminal)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(fintrabajo)},,,{frmsii({frmValor(fintrabajopos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(fintrabajopos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Fin de trabajo
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="fintrabajo" type="text" value="{frmReemplaza({frmValor(fintrabajo)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	
+	
+	
+	&lt;!-- &lt;h3 style="text-align: left;"&gt;
+		&lt;br /&gt;
+		Albaranes&lt;/h3&gt; --&gt;
+	&lt;!--Servicio: {frmValor(codigoservicio)}--&gt;
+	&lt;table class="table table-custom table-primary table-fixed" data-responsive="true"&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Albarán&lt;br /&gt;Fecha&lt;/th&gt;
+				&lt;th&gt;
+					Fichero&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+&lt;!-- {frmSelect(select * from BDGT.DOCUMENTOS d inner join bdgt.documentosgrupos dg on d.codigodocumentogrupo = dg.codigodocumentogrupo  where d.NOMBREFICHERO like '{frmValor(codigoservicio)}_%')} --&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					{frmValor(fechaactualizacion)}&lt;/td&gt;
+				&lt;td&gt;
+					&lt;a href='https://www.serport.biz/albaranes/{frmValor(nombrefichero)}' target="_blank" class="magnify" &gt;{frmValor(nombrefichero)}&lt;/a&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!-- {frmFinRepetir()} --&gt;		&lt;/tbody&gt;
+		&lt;tbody&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	
+	&lt;p&gt;
+		&lt;a href="{directorioPortal}pagina.aspx?id=311&amp;tipo=cliente&amp;{frmRequestDel(id,codigo)}"&gt;&lt;br /&gt;
+		Volver a la consulta de servicios&lt;/a&gt;&lt;/p&gt;
+&lt;/form&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>LIMPIA</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>318</idPagina>
+    <Titulo>Albaranes Proveedores</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmMaxRegistrosPagina(50)}
+--&gt;
+&lt;h1&gt;
+	Consulta de albaranes&lt;/h1&gt;
+&lt;!--&lt;h2&gt;
+	Realizar búsqueda&lt;/h2&gt;--&gt;&lt;div id=&quot;buscador&quot;&gt;
+	&lt;form action=&quot;&quot; method=&quot;post&quot;&gt;
+		&lt;table&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;th style=&quot;width: 155px;&quot;&gt;
+						&lt;label&gt;Alias chófer&lt;/label&gt;&lt;/th&gt;
+					&lt;th style=&quot;width: 155px;&quot;&gt;
+						&lt;input style=&quot;width:100px&quot; class=&quot;texto&quot; name=&quot;{frmCampo(wAlias,20,t,1)}&quot; type=&quot;text&quot; value=&quot;{frmSii({frmRequest(wAlias)},,,{frmRequest(wAlias)})}&quot; /&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th style=&quot;width: 155px;&quot;&gt;
+					&lt;br /&gt;
+					&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th style=&quot;width: 155px;&quot;&gt;
+						&lt;label&gt;Fecha desde&lt;/label&gt;&lt;/th&gt;
+					&lt;th style=&quot;width: 155px;&quot;&gt;
+						&lt;input style=&quot;width:100px&quot; class=&quot;texto&quot; name=&quot;{frmCampo(wFechaDesde,10,f,1)}&quot; type=&quot;text&quot; value=&quot;{frmSii({frmRequestFecha(wFechaDesde)},,{frmReemplaza({fechauno},/20,/)},{frmReemplaza({frmRequestFecha(wFechaDesde)},/20,/)})}&quot; /&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th style=&quot;width: 155px;&quot;&gt;
+					&lt;br /&gt;
+					&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;th style=&quot;width: 155px;&quot;&gt;
+						&lt;label&gt;Fecha hasta&lt;/label&gt;&lt;/th&gt;
+					&lt;th style=&quot;width: 255px;&quot;&gt;
+						&lt;input style=&quot;width:100px&quot; class=&quot;texto&quot; name=&quot;{frmCampo(wFechaHasta,10,f,1)}&quot; type=&quot;text&quot; value=&quot;{frmSii({frmRequestFecha(wFechaHasta)},,{frmReemplaza({fecha},/20,/)},{frmReemplaza({frmRequestFecha(wFechaHasta)},/20,/)})}&quot; /&gt;
+						 &lt;button type=&quot;submit&quot;&gt;&lt;span&gt;Realizar búsqueda&lt;/span&gt;&lt;/button&gt;
+						&lt;/th&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+&lt;th&gt; &lt;/th&gt;
+					&lt;th&gt;
+						&lt;br /&gt;&lt;br /&gt;
+						&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/form&gt;
+&lt;!--&lt;p&gt;
+	&lt;a class=&quot;pdf&quot; href=&quot;p_albaranes pdf.aspx?{frmRequest()}&amp;view=pdf&quot; target=&quot;_blank&quot;&gt;Descargar PDF del listado&lt;/a&gt;&lt;/p&gt;--&gt;&lt;!--&lt;p&gt;
+	Para ver todos los datos de un albarán pulse sobre su código&lt;/p&gt;--&gt;&lt;!--
+{frmSelect(SELECT * FROM BDGT.V_BDGT_ALBARANES_O WHERE CODIGOCHOFER IN (SELECT CODIGOCHOFER FROM BDGT.V_BDGT_CHOFERES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(campo2)}) 
+{frmSii({frmRequest(wAlias)},,,AND lower(ALIASCHOFER) LIKE lower({cs}%{frmRequest(wAlias)}%{cs}))} 
+{frmSii({frmRequest(wEstado)},,,AND lower(ESTADO) LIKE lower({cs}%{frmRequest(wEstado)}%{cs}))} 
+{frmSii({frmRequestFecha(wFechaHasta)},,AND to_date(FECHA{coma}{cs}dd/mm/yyyy{cs}) &lt;=to_date({cs}{fecha}{cs}{coma}{cs}dd/mm/yyyy{cs}),AND to_date(FECHA{coma}{cs}dd/mm/yyyy{cs}) &lt;=to_date({cs}{frmRequestFecha(wFechaHasta)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} 
+{frmSii({frmRequestFecha(wFechaDesde)},,AND to_date(FECHA{coma}{cs}dd/mm/yyyy{cs}) &gt;=to_date({cs}{fechauno}{cs}{coma}{cs}dd/mm/yyyy{cs}),AND to_date(FECHA{coma}{cs}dd/mm/yyyy{cs}) &gt;=to_date({cs}{frmRequestFecha(wFechaDesde)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} 
+{frmSii({frmRequest(wSort)},,ORDER BY FECHA DESC,ORDER BY {frmRequest(wSort)} {frmRequest(wSortAD)})})}
+{frmGuardaSelect()}
+--&gt;	&lt;div class=&quot;pdfdata&quot;&gt;
+		&lt;table class=&quot;table table-custom table-fixed&quot; data-responsive=&quot;true&quot;&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th style=&quot;width: 85px;&quot;&gt;
+						&lt;/th&gt;
+					&lt;th style=&quot;width:95px&quot;&gt;
+						&lt;a href=&quot;?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Albaran&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}&quot;&gt;Albaran&lt;/a&gt;&lt;/th&gt;
+					&lt;th style=&quot;width: 125px;&quot;&gt;
+						&lt;a href=&quot;?{frmRequestDel(wSort,wSortAD)}&amp;wSort=AliasChofer&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}&quot;&gt;Chófer&lt;/a&gt;&lt;/th&gt;
+					&lt;th style=&quot;width: 95px;&quot;&gt;
+						&lt;a href=&quot;?{frmRequestDel(wSort,wSortAD)}&amp;wSort=FECHA&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}&quot;&gt;Fecha&lt;/a&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;a href=&quot;?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Origen&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}&quot;&gt;Origen&lt;/a&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;a href=&quot;?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Destino&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}&quot;&gt;Destino&lt;/a&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;a href=&quot;?{frmRequestDel(wSort,wSortAD)}&amp;wSort=NumeroContenedor&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}&quot;&gt;N.Contenedor&lt;/a&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;a href=&quot;?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Contenedor&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}&quot;&gt;Contenedor&lt;/a&gt;&lt;/th&gt;
+					&lt;th&gt;
+						&lt;a href=&quot;?{frmRequestDel(wSort,wSortAD)}&amp;wSort=Cliente&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}&quot;&gt;Cliente&lt;/a&gt;&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+&lt;!--{frmRepetir()}--&gt;				&lt;tr class=&quot;oscuro&quot;&gt;
+					&lt;td&gt;
+						&lt;a href=&quot;pagina.aspx?id=332&amp;codigo={frmValor(CODIGO)}&amp;{frmRequestDel(id)}&quot;&gt;{frmValor(CODIGO)}&lt;/a&gt;&lt;/td&gt;
+					&lt;td&gt;
+						{frmValor(ALBARAN)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmValor(ALIASCHOFER)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmReemplaza({frmValor(FECHA)},/20,/)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmValor(ORIGEN)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmValor(DESTINO)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmReemplaza({frmValor(NUMEROCONTENEDOR)},{coma},&lt;br /&gt;
+						)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmValor(CONTENEDOR)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmValor(CLIENTE)}&lt;/td&gt;
+				&lt;/tr&gt;
+&lt;!--{frmFinRepetir()}--&gt;			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+	&lt;p&gt;
+		&lt;a href=&quot;{frmLinkPrimero()}&quot;&gt;&lt;img src=&quot;{directorioPortal}imagenes/primero.png&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;{frmLinkAnterior()}&quot;&gt;&lt;img src=&quot;{directorioPortal}imagenes/anterior.png&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;{frmLinkSiguiente()}&quot;&gt;&lt;img src=&quot;{directorioPortal}imagenes/siguiente.png&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;{frmLinkUltimo()}&quot;&gt;&lt;img src=&quot;{directorioPortal}imagenes/ultimo.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+	{frmPaginaActual()} / {frmPaginas()} {frmLinkToolbar(&lt;a href=&quot;$1&quot;&gt;$2&lt;/a&gt; )}&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>332</idPagina>
+    <Titulo>Detalle Albaran</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)} 
+{frmSelect(SELECT * FROM BDGT.V_BDGT_ALBARANES_I WHERE CODIGO = {cs}{frmRequestEntero(codigo)}{cs} AND CODIGOCHOFER IN(SELECT CODIGOCHOFER FROM BDGT.V_BDGT_CHOFERES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(campo2)}))}
+{frmSelect()}
+{frmsinohaydatos()}
+--&gt;
+&lt;h2&gt;
+	Detalle del albaran&lt;/h2&gt;
+	
+	&lt;p&gt;
+		&lt;a href="{directorioPortal}pagina.aspx?id=318&amp;tipo=proveedor&amp;{frmRequestDel(id,codigo)}"&gt;&lt;br /&gt;
+		Volver a la consulta de albaranes&lt;/a&gt;&lt;/p&gt;
+	
+&lt;!--&lt;p&gt;
+			&lt;a class="pdf" href="p_detalle albaran pdf.aspx?{frmRequest()}&amp;view=pdf" target="_blank"&gt;Descargar PDF del albaran&lt;/a&gt;&lt;/p&gt;--&gt;&lt;form action="" name="formulario"&gt;
+	&lt;table class="table table-custom table-primary table-fixed" data-responsive="true"&gt;
+		&lt;tbody&gt;
+			&lt;tr class="linea"&gt;
+				&lt;th&gt;
+					CODIGO&lt;/th&gt;
+				&lt;td&gt;
+				
+					&lt;a href=&quot;?id=332&amp;codigo={frmValorTempPrev(CODIGO)}&amp;{frmRequestDel(id,codigo)}&quot;&gt;&lt;img width=16 height=16 src="{directorioWeb}images/flecha_izq.png" /&gt;&lt;/a&gt;
+					{frmValor(Codigo)}
+				&lt;a href=&quot;?id=332&amp;codigo={frmValorTempNext(CODIGO)}&amp;{frmRequestDel(id,codigo)}&quot;&gt;&lt;img width=16 height=16 src="{directorioWeb}images/flecha_der.png" /&gt;&lt;/a&gt;
+				
+				&lt;/td&gt;
+				&lt;th&gt;
+					Tipo viaje&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(TIPODEVIAJE)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Fecha de carga&lt;/th&gt;
+				&lt;td&gt;
+					{frmReemplaza({frmValor(FECHA)},/20,/)}&lt;/td&gt;
+				&lt;th&gt;
+					Destino&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(DESTINO)}&lt;/td&gt;
+				&lt;th width="125"&gt;
+					País&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(PAIS)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Pedido mercancía&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(PEDIDOMERCANCIA)}&lt;/td&gt;
+				&lt;th&gt;
+					Cliente&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(CLIENTE)}&lt;/td&gt;
+				&lt;th&gt;
+					Empresa&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(EMPRESA)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Terminal de carga&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(CARGA)}&lt;/td&gt;
+				&lt;th&gt;
+					Booking&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(BOOKING)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Barco&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(BARCO)}&lt;/td&gt;
+				&lt;th&gt;
+					Puerto&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(PUERTO)}&lt;/td&gt;
+				&lt;th&gt;
+					Terminal de descarga&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(DESCARGA)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Número barco&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(NUMEROBARCO)}&lt;/td&gt;
+				&lt;th&gt;
+					Fecha salida&lt;/th&gt;
+				&lt;td&gt;
+					{frmReemplaza({frmValor(FECHASALIDA)},/20,/)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Número albarán&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(NUMEROALBARAN)}&lt;/td&gt;
+				&lt;th&gt;
+					Matrícula&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(MATRICULASERVICIO)}&lt;/td&gt;
+				&lt;th&gt;
+					Fecha albarán&lt;/th&gt;
+				&lt;td&gt;
+					{frmReemplaza({frmValor(FECHAALBARAN)},/20,/)}&lt;/td&gt;
+				
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Contenedor&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(CONTENEDOR)}&lt;/td&gt;
+					
+				&lt;th&gt;
+					Alias chofer&lt;/th&gt;
+				&lt;td&gt;
+					{frmValor(ALIASCHOFER)}&lt;/td&gt;
+			&lt;/tr&gt;
+			
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(pendiente)},,,{frmsii({frmValor(pendientepos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(pendientepos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Servicio creado
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="pendiente" type="text" value="{frmReemplaza({frmValor(pendiente)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(pendienteacuse)},,,{frmsii({frmValor(pendienteacusepos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(pendienteacusepos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Servicio asignado
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="pendienteacuse" type="text" value="{frmReemplaza({frmValor(pendienteacuse)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(transito)},,,{frmsii({frmValor(transitopos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(transitopos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}En terminal
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="transito" type="text" value="{frmReemplaza({frmValor(transito)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(recogido)},,,{frmsii({frmValor(recogidopos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(recogidopos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Contenedor recogido
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="recogido" type="text" value="{frmReemplaza({frmValor(recogido)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(entrada)},,,{frmsii({frmValor(entradapos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(entradapos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}En destino
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="entrada" type="text" value="{frmReemplaza({frmValor(entrada)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(salida)},,,{frmsii({frmValor(salidapos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(salidapos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Salida destino
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="salida" type="text" value="{frmReemplaza({frmValor(salida)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(colaterminal)},,,{frmsii({frmValor(colaterminalpos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(colaterminalpos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Cola terminal
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="colaterminal" type="text" value="{frmReemplaza({frmValor(colaterminal)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					{frmsii({frmValor(fintrabajo)},,,{frmsii({frmValor(fintrabajopos)},0{coma}0,,&lt;a target=_blank href="https://maps.google.com/maps?q=loc:{frmValor(fintrabajopos)}"&gt;&lt;img alt="" src="sitios/serport/images/mapa.png" width="32" height="32" /&gt; - &lt;/a&gt;)})}Fin de trabajo
+					&lt;/th&gt;
+				&lt;td&gt;
+					&lt;input class="texto" disabled="disabled" name="fintrabajo" type="text" value="{frmReemplaza({frmValor(fintrabajo)},/20,/)}" /&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+			
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;!-- {frmSelect(select * from BDGT.V_BDGT_CONTENEDORES_SERVICIO where codigoservicio={frmRequestEntero(codigo)})} --&gt;
+&lt;!--&lt;h3&gt;
+		Contenedores&lt;/h3&gt;--&gt;
+
+	&lt;table class="table table-custom table-primary table-fixed" data-responsive="true"&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Número&lt;/th&gt;
+				&lt;th&gt;
+					Precinto 1&lt;/th&gt;
+				&lt;th&gt;
+					Precinto 2&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+
+			&lt;tr&gt;
+				&lt;td&gt;
+					{frmValor(NumeroContenedor)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(Precinto1)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(Precinto2)}&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!-- {frmFinRepetir()} --&gt;		&lt;/tbody&gt;
+		&lt;tbody&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	
+	&lt;!-- &lt;h3 style="text-align: left;"&gt;
+		&lt;br /&gt;
+		Albaranes&lt;/h3&gt;--&gt;
+	&lt;!--Servicio: {frmValor(codigoservicio)}--&gt;
+	&lt;table class="table table-custom table-primary table-fixed" data-responsive="true"&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Albarán&lt;br /&gt;Fecha&lt;/th&gt;
+				&lt;th&gt;
+					Fichero&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+&lt;!-- {frmSelect(select * from BDGT.DOCUMENTOS d inner join bdgt.documentosgrupos dg on d.codigodocumentogrupo = dg.codigodocumentogrupo  where d.NOMBREFICHERO like '{frmValor(codigoservicio)}_%')} --&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					{frmValor(fechaactualizacion)}&lt;/td&gt;
+				&lt;td&gt;
+					&lt;a href='https://www.serport.biz/albaranes/{frmValor(nombrefichero)}' target="_blank" class="magnify" &gt;{frmValor(nombrefichero)}&lt;/a&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!-- {frmFinRepetir()} --&gt;		&lt;/tbody&gt;
+		&lt;tbody&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+
+	&lt;p&gt;
+		&lt;a href="{directorioPortal}pagina.aspx?id=318&amp;tipo=proveedor&amp;{frmRequestDel(id,codigo)}"&gt;&lt;br /&gt;
+		Volver a la consulta de albaranes&lt;/a&gt;&lt;/p&gt;
+&lt;/form&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>LIMPIA</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>363</idPagina>
+    <Titulo>las asociaciones</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Asociaciones de transporte&lt;/h1&gt;
+	&lt;table rules=&quot;none&quot; frame=&quot;void&quot; cellspacing=&quot;1&quot; cellpadding=&quot;1&quot; border=&quot;0&quot; style=&quot;border-style: none; width: 100%; float: none; background-image: none;&quot;&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;ASTIC&lt;/strong&gt; - Asociación del transporte internacional por carretera.&lt;/td&gt;&lt;td&gt; &lt;a href=&quot;http://www.astic.net&quot; target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;AEUTRANSMER&lt;/strong&gt; - Asociación Española de cargadores y usuarios del transporte de mercancías.&lt;/td&gt;&lt;td&gt; &lt;a href=&quot;http://www.aeutransmer.com&quot; target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;ASTAC&lt;/strong&gt; - Asociación para el profesional del transporte.&lt;/td&gt;&lt;td&gt; &lt;a href=&quot;http://www.astac.info&quot; target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;FENADISMER&lt;/strong&gt; - Las federaciones de cooperativas de transporte de toda España.&lt;/td&gt;&lt;td&gt; &lt;a href=&quot;http://www.fenadismer.es&quot; target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;ACTE&lt;/strong&gt; – Asociación de Centros de Transporte España.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a href=&quot;http://www.acte.es&quot; target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;AECAF&lt;/strong&gt; - Asociación de Agencias de Carga Fraccionada.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a href=&quot;http://www.aecaf.com&quot; target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;FEDAT&lt;/strong&gt; - Federación Española de Agencias de Transporte.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a href=&quot;http://www.cetm.es/pagina1/asociaciones/nacionales/FEDAT.asp&quot; target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;CETM&lt;/strong&gt; - Confederación Española del transporte de mercancias.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.cetm.es&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;UNIATRAMC &lt;/strong&gt;- Unión de Pequeños Autónomos del Transporte, las Comunicaciones y el Mar. &lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.uniatramc.org&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;FETEIA&lt;/strong&gt; - Federación Española de Transportistas, Expeditores Internacionales y Asimilados. &lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.feteia.org&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;ASETRA&lt;/strong&gt; - Asociación de empresarios del transporte y aparcamiento de Asturias. &lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.asetra.es&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;Asociación provincial de empresarios de transporte de Pontevedra.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.asetranspo.org&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;GUITRANS&lt;/strong&gt; - Asociación Empresarial Guipuzcoana de Transporte de Mercancías por Carretera.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.guitrans.com&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;APETAM &lt;/strong&gt;- Asociación Provincial de Empresarios Transportistas y Agencias de Málaga. &lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.apetam.org&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;TRADISNA&lt;/strong&gt; - Asociación Transportistas Autonomos de Navarra. &lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.tradisna.com&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;CEOE&lt;/strong&gt; - Confederación Española de Organizaciones Empresariales.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.ceoe.es&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;ATA&lt;/strong&gt; - Federación de autónomos.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://www.autonomos-ata.es&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;CONETRANS&lt;/strong&gt; - Confederación Española de Organizaciones Empresariales de Transporte por Carretera.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;http://conetrans.cetm.es&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt;&lt;strong&gt;CEFTRAL&lt;/strong&gt; - Confederación Española de Formación del Transporte y la Logística.&lt;br /&gt;&lt;/td&gt;&lt;td style=&quot;vertical-align: top;&quot;&gt; &lt;a href=&quot;http://www.ceftral.es&quot; target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;br /&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>334</idPagina>
+    <Titulo>Consulta Facturas</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmMaxRegistrosPagina(50)}
+--&gt;
+&lt;h1&gt;
+	Consulta de facturas&lt;/h1&gt;
+&lt;h2&gt;
+	Realizar búsqueda&lt;/h2&gt;
+&lt;div id="buscador"&gt;
+	&lt;form action="" method="post"&gt;
+		&lt;div class="hasta"&gt;
+			&lt;label style="width:65px;margin:0 0 0 30px;padding:0 0 0 0;"&gt;Fecha hasta&lt;/label&gt;&lt;input class="texto" name="{frmCampo(wFechaHasta,10,f)}" style="width:65px;" type="text" value="{frmSii({frmRequest(wFechaHasta)},,{fecha},{frmRequest(wFechaHasta)})}" /&gt;&lt;/div&gt;
+		&lt;div class="desde"&gt;
+			&lt;label style="width:65px;margin:0 0 0 30px;padding:0 0 0 0;"&gt;Fecha desde&lt;/label&gt;&lt;input class="texto" name="{frmCampo(wFechaDesde,10,f)}" style="width:65px;" type="text" value="{frmSii({frmRequest(wFechaDesde)},,{fecha},{frmRequest(wFechaDesde)})}" /&gt;&lt;/div&gt;
+&lt;!--&lt;div class="estado"&gt;
+			&lt;label style="width:95px;margin:0 0 0 15px;padding:0 0 0 0;"&gt;Estado&lt;/label&gt;&lt;input class="texto" name="{frmCampo(wEstado,20,t)}" style="width:65px;" type="text" value="{frmRequest(wEstado)}" /&gt;&lt;/div&gt;--&gt;		&lt;button type="submit"&gt;&lt;span&gt;buscar&lt;/span&gt;&lt;/button&gt;&lt;/form&gt;
+&lt;/div&gt;
+&lt;p&gt;
+	&lt;a class="pdf" href="p_facturas pdf.aspx?{frmRequest()}&amp;view=pdf" target="_blank"&gt;Descargar PDF del listado&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;
+	Para ver todos los datos de una factura pulse sobre su código&lt;/p&gt;
+&lt;!--
+{frmSelect(SELECT * FROM BDGT.V_BDGT_FACTURAS_O WHERE CODIGOPROVEEDOR IN(SELECT CODIGOPROVEEDOR FROM BDGT.V_BDGT_PROVEEDORES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(campo1)}) 
+{frmSii({frmRequestFecha(wFechaHasta)},,AND to_date(FECHAFACTURA{coma}{cs}dd/mm/yyyy{cs}) &lt;=to_date({cs}{fecha}{cs}{coma}{cs}dd/mm/yyyy{cs}),AND to_date(FECHAFACTURA{coma}{cs}dd/mm/yyyy{cs}) &lt;=to_date({cs}{frmRequestFecha(wFechaHasta)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} 
+{frmSii({frmRequestFecha(wFechaDesde)},,AND to_date(FECHAFACTURA{coma}{cs}dd/mm/yyyy{cs}) &gt;=to_date({cs}{fecha}{cs}{coma}{cs}dd/mm/yyyy{cs}),AND to_date(FECHAFACTURA{coma}{cs}dd/mm/yyyy{cs}) &gt;=to_date({cs}{frmRequestFecha(wFechaDesde)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} 
+{frmSii({frmRequest(wSort)},,,ORDER BY {frmRequest(wSort)} DESC)})}
+{frmSelect()}
+--&gt;&lt;div class="pdfdata"&gt;
+	&lt;table cellpadding="0" cellspacing="0" class="tablaMensajes" style="width:900px"&gt;
+		&lt;thead&gt;
+			&lt;tr class="cabeceraTabla"&gt;
+				&lt;th class="thInicio" style="width:20px"&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=CodigoFacturaCompra&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Nº Factura&lt;/a&gt;&lt;/th&gt;
+				&lt;th style="width:65px"&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=to_date(FechaFactura{coma}{cs}dd/mm/yyyy{cs})&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Fecha&lt;/a&gt;&lt;/th&gt;
+				&lt;th style="width:65px"&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=BaseImponible&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Base imponible&lt;/a&gt;&lt;/th&gt;
+				&lt;th style="width:65px"&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=ImporteIva&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Importe IVA&lt;/a&gt;&lt;/th&gt;
+				&lt;th class="thCierre" style="width:60px"&gt;
+					&lt;a href="?{frmRequestDel(wSort,wSortAD)}&amp;wSort=ImporteNeto&amp;wSortAD={frmSii({frmRequest(wSortAD)},DESC,ASC,DESC)}"&gt;Total neto&lt;/a&gt;&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+&lt;!--{frmRepetir()}--&gt;			&lt;tr class="oscuro"&gt;
+				&lt;td&gt;
+					&lt;a href="pagina.aspx?id=352&amp;codigo={frmValor(CodigoFacturaCompra)}"&gt;{frmValor(CodigoFacturaCompra)}&lt;/a&gt;&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(Fechafactura)}&lt;/td&gt;
+				&lt;td style="text-align: right;"&gt;
+					{frmValor(baseimponible)}&lt;/td&gt;
+				&lt;td style="text-align: right;"&gt;
+					{frmValor(importeiva)}&lt;/td&gt;
+				&lt;td style="text-align: right;"&gt;
+					{frmValor(totalneto)}&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!--{frmFinRepetir()}--&gt;		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+&lt;a href="{frmLinkPrimero()}"&gt;Primero&lt;/a&gt; &lt;a href="{frmLinkAnterior()}"&gt;Anterior&lt;/a&gt; {frmPaginaActual()} / {frmPaginas()} {frmLinkToolbar(&lt;a href="$1"&gt;$2&lt;/a&gt; )} &lt;a href="{frmLinkSiguiente()}"&gt;Siguiente&lt;/a&gt; &lt;a href="{frmLinkUltimo()}"&gt;Último&lt;/a&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>337</idPagina>
+    <Titulo>Albaranes PDF</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmMaxRegistrosPagina(50)}
+{frmRotatePdf()}
+--&gt;&lt;!--
+{frmSelect(SELECT * FROM BDGT.V_BDGT_ALBARANES_O WHERE CODIGOCHOFER IN(SELECT CODIGOCHOFER FROM BDGT.V_BDGT_CHOFERES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(campo1)}) {frmSii({frmRequest(wEstado)},,,AND lower(ESTADO) LIKE lower({cs}%{frmRequest(wEstado)}%{cs}))} {frmSii({frmRequest(wFechaHasta)},,,AND to_date(FECHA{coma}{cs}dd/mm/yyyy{cs}) &lt;=to_date({cs}{frmRequest(wFechaHasta)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} {frmSii({frmRequest(wFechaDesde)},,,AND to_date(FECHA{coma}{cs}dd/mm/yyyy{cs}) &gt;=to_date({cs}{frmRequest(wFechaDesde)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} {frmSii({frmRequest(wSort)},,,ORDER BY {frmRequest(wSort)} DESC)})}
+--&gt;
+&lt;div class=&quot;pdfdata&quot;&gt;
+	&lt;h2&gt;
+		Consulta de albaranes&lt;/h2&gt;
+	&lt;table border=&quot;1&quot; width=&quot;100%&quot;&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;
+					Albaran&lt;/th&gt;
+				&lt;th&gt;
+					Chofer&lt;/th&gt;
+				&lt;th&gt;
+					Fecha&lt;/th&gt;
+				&lt;th&gt;
+					Origen&lt;/th&gt;
+				&lt;th&gt;
+					Destino&lt;/th&gt;
+				&lt;th&gt;
+					N.Contenedor&lt;/th&gt;
+				&lt;th&gt;
+					Contenedor&lt;/th&gt;
+				&lt;th&gt;
+					Cliente&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+		&lt;tbody&gt;
+&lt;!--{frmRepetir()}--&gt;			&lt;tr&gt;
+				&lt;td&gt;
+					{frmValor(ALBARAN)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(ALIASCHOFER)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(FECHA)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(ORIGEN)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(DESTINO)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(NUMEROCONTENEDOR)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(CONTENEDOR)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(CLIENTE)}&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!--{frmFinRepetir()}--&gt;		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>Intranet PDF</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>352</idPagina>
+    <Titulo>Detalle Factura</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)} 
+{frmSelect(SELECT * FROM BDGT.V_BDGT_FACTURAS_O WHERE CODIGOFACTURACOMPRA = {frmRequest(codigo)} AND CODIGOPROVEEDOR IN(SELECT CODIGOPROVEEDOR FROM BDGT.V_BDGT_CHOFERES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(campo1)}))}
+--&gt;
+&lt;form action="" name="formulario"&gt;
+	&lt;fieldset class="linea"&gt;
+		&lt;h2&gt;
+			Detalle de la factura&lt;/h2&gt;
+		&lt;p&gt;
+			&lt;a class="pdf" href="p_detalle factura pdf.aspx?{frmRequest()}&amp;view=pdf" target="_blank"&gt;Descargar PDF de la factura&lt;/a&gt;&lt;/p&gt;
+		&lt;fieldset class="linea"&gt;
+			&lt;legend&gt;Detalle de la factura&lt;/legend&gt;
+			&lt;div style="width:48%;float:left;"&gt;
+				&lt;label for="codigo"&gt;Número factura&lt;/label&gt; &lt;input disabled="disabled" name="codigo" type="text" value="{frmValor(numerofactura)}" /&gt; &lt;label for="codigo"&gt;Fecha factura&lt;/label&gt; &lt;input disabled="disabled" name="codigo" type="text" value="{frmValor(Fechafactura)}" /&gt;&lt;/div&gt;
+			&lt;div style="width:48%;float:right"&gt;
+				&lt;label for="codigo"&gt;Base imponible&lt;/label&gt; &lt;input class="importes" disabled="disabled" name="codigo" type="text" value="{frmValor(baseimponible)} €" /&gt; &lt;label for="codigo"&gt;Importe IVA&lt;/label&gt; &lt;input class="importes" disabled="disabled" name="codigo" type="text" value="{frmValor(importeiva)} €" /&gt; &lt;label for="codigo"&gt;Total neto&lt;/label&gt; &lt;input class="importes" disabled="disabled" name="codigo" type="text" value="{frmValor(totalneto)} €" /&gt;&lt;/div&gt;
+		&lt;/fieldset&gt;
+		&lt;fieldset class="linea"&gt;
+			&lt;legend&gt;Lista de albaranes&lt;/legend&gt;
+			&lt;table cellpadding="0px" cellspacing="0" class="tablaMensajes" style="width:99%"&gt;
+				&lt;thead&gt;
+					&lt;tr class="cabeceraTabla"&gt;
+						&lt;th class="thInicio"&gt;
+							Código&lt;/th&gt;
+						&lt;th&gt;
+							NºAlbarán&lt;/th&gt;
+&lt;!--4dif TransEsProveedor--&gt;						&lt;th&gt;
+							Chofer&lt;/th&gt;
+&lt;!--4delse--&gt;&lt;!--4dendif--&gt;						&lt;th&gt;
+							Fecha&lt;/th&gt;
+						&lt;th&gt;
+							Origen&lt;/th&gt;
+						&lt;th&gt;
+							Destino&lt;/th&gt;
+						&lt;th&gt;
+							NºContenedor&lt;/th&gt;
+						&lt;th&gt;
+							Contenedor&lt;/th&gt;
+						&lt;th class="thCierre"&gt;
+							Cliente&lt;/th&gt;
+					&lt;/tr&gt;
+				&lt;/thead&gt;
+				&lt;tbody&gt;
+&lt;!-- {frmSelect(select * from bdgt.v_bdgt_albaranes_FACTURA where CODIGOFACTURACOMPRA={frmRequest(codigo)})} --&gt;&lt;!-- {frmRepetir()} --&gt;					&lt;tr&gt;
+						&lt;td class="avatar"&gt;
+							&lt;a href="pagina.aspx?id=332&amp;codigo={frmValor(CODIGO)}"&gt;{frmValor(CODIGO)}&lt;/a&gt;&lt;/td&gt;
+						&lt;td&gt;
+							{frmValor(Albaran)}&lt;/td&gt;
+						&lt;td&gt;
+							{frmValor(aliaschofer)}&lt;/td&gt;
+						&lt;td&gt;
+							{frmValor(fecha)}&lt;/td&gt;
+						&lt;td&gt;
+							{frmValor(origen)}&lt;/td&gt;
+						&lt;td&gt;
+							{frmValor(destino)}&lt;/td&gt;
+						&lt;td&gt;
+							{frmValor(NUMEROCONTENEDOR)}&lt;/td&gt;
+						&lt;td&gt;
+							{frmValor(CONTENEDOR)}&lt;/td&gt;
+						&lt;td&gt;
+							{frmValor(Cliente)}&lt;/td&gt;
+					&lt;/tr&gt;
+&lt;!-- {frmFinRepetir()} --&gt;				&lt;/tbody&gt;
+				&lt;tbody&gt;
+				&lt;/tbody&gt;
+			&lt;/table&gt;
+		&lt;/fieldset&gt;
+		&lt;div class="boton"&gt;
+			&lt;p&gt;
+				&lt;a href="javascript:history.go(-1);"&gt;Volver a la consulta de facturas&lt;/a&gt;&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/fieldset&gt;
+&lt;/form&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>359</idPagina>
+    <Titulo>Vencimientos ISO</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmMaxRegistrosPagina(50)}
+--&gt;
+&lt;h1&gt;
+	Consulta de vencimientos ISO&lt;/h1&gt;
+&lt;!--&lt;div id="buscador"&gt;
+	&lt;h2&gt;
+		Realizar búsqueda&lt;/h2&gt;
+	&lt;form action="" method="post"&gt;
+		&lt;div class="hasta"&gt;
+			&lt;label style="width:65px;margin:0 0 0 30px;padding:0 0 0 0;"&gt;Fecha hasta&lt;/label&gt;&lt;input class="texto" name="{frmCampo(wFechaHasta,10,f,1)}" style="width:65px;" type="text" value="{frmSii({frmRequest(wFechaHasta)},,{fecha},{frmRequest(wFechaHasta)})}" /&gt;&lt;/div&gt;
+		&lt;div class="desde"&gt;
+			&lt;label style="width:65px;margin:0 0 0 30px;padding:0 0 0 0;"&gt;Fecha desde&lt;/label&gt;&lt;input class="texto" name="{frmCampo(wFechaDesde,10,f,1)}" style="width:65px;" type="text" value="{frmSii({frmRequest(wFechaDesde)},,{fecha},{frmRequest(wFechaDesde)})}" /&gt;&lt;/div&gt;
+		&lt;button type="submit"&gt;&lt;span&gt;buscar&lt;/span&gt;&lt;/button&gt;&lt;/form&gt;
+&lt;/div&gt;--&gt;&lt;!--
+{frmSelect(SELECT * FROM BDGT.V_BDGT_VENCIMIENTOS_ISO WHERE CODIGOCHOFER IN(SELECT CODIGOCHOFER FROM BDGT.V_BDGT_CHOFERES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(campo1)}) {frmSii({frmRequest(wFechaHasta)},,,AND FECHA &lt;=to_date({cs}{frmRequest(wFechaHasta)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} {frmSii({frmRequest(wFechaDesde)},,,AND FECHA &gt;=to_date({cs}{frmRequest(wFechaDesde)}{cs}{coma}{cs}dd/mm/yyyy{cs}))}
+)}
+--&gt;&lt;table cellpadding="0px" cellspacing="0" class="tablaTelefonos" style="width:95%"&gt;
+	&lt;thead&gt;
+		&lt;tr class="cabeceraTabla"&gt;
+			&lt;th class="thInicio"&gt;
+				Tipo de control&lt;/th&gt;
+			&lt;th&gt;
+				Fecha vencimiento&lt;/th&gt;
+			&lt;th&gt;
+				Chofer&lt;/th&gt;
+			&lt;th&gt;
+				Camión&lt;/th&gt;
+			&lt;th&gt;
+				Remolque&lt;/th&gt;
+			&lt;th class="thCierre"&gt;
+				Observaciones&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+&lt;!--{frmRepetir()}--&gt;		&lt;tr class="oscuro"&gt;
+			&lt;td class="avatar"&gt;
+				{frmValor(TIPOCONTROLISO)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(FECHAVENCIMIENTO)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(CHOFER)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(CAMION)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(REMOLQUE)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(OBSERVACIONES)} &lt;/td&gt;
+		&lt;/tr&gt;
+&lt;!--{frmFinRepetir()}--&gt;	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;a href="{frmLinkPrimero()}"&gt;Primero&lt;/a&gt; &lt;a href="{frmLinkAnterior()}"&gt;Anterior&lt;/a&gt; {frmPaginaActual()} / {frmPaginas()} {frmLinkToolbar(&lt;a href="$1"&gt;$2&lt;/a&gt; )} &lt;a href="{frmLinkSiguiente()}"&gt;Siguiente&lt;/a&gt; &lt;a href="{frmLinkUltimo()}"&gt;Último&lt;/a&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>360</idPagina>
+    <Titulo>Fabricas</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmMaxRegistrosPagina(50)}
+--&gt;
+&lt;h1&gt;
+	Consulta de fábricas&lt;/h1&gt;
+&lt;div id="buscador"&gt;
+	&lt;h2&gt;
+		Realizar búsqueda&lt;/h2&gt;
+	&lt;form action="" method="post" name="buscar"&gt;
+		&lt;div class="hasta"&gt;
+			&lt;label&gt;Fábrica&lt;/label&gt;&lt;input class="texto" name="wFabrica" type="text" value="{frmRequest(wFabrica)}" /&gt;&lt;/div&gt;
+		&lt;button type="submit"&gt;&lt;span&gt;buscar&lt;/span&gt;&lt;/button&gt;&lt;/form&gt;
+&lt;/div&gt;
+&lt;!--
+{frmSelect(SELECT * FROM BDGT.V_BDGT_EMPRESAS {frmSii({frmRequest(wFabrica)},,,WHERE lower(RAZONSOCIAL) LIKE lower({cs}%{frmRequest(wFabrica)}%{cs}))})}
+--&gt;&lt;table cellpadding="0px" cellspacing="0" class="tablaTelefonos" style="width:95%"&gt;
+	&lt;tbody&gt;
+		&lt;tr class="cabeceraTabla"&gt;
+			&lt;th class="thInicio"&gt;
+				Razón social&lt;/th&gt;
+			&lt;th&gt;
+				Población&lt;/th&gt;
+			&lt;th&gt;
+				Dirección&lt;/th&gt;
+			&lt;th class="thCierre"&gt;
+				Teléfonos&lt;/th&gt;
+		&lt;/tr&gt;
+&lt;!--{frmRepetir()}--&gt;		&lt;tr class="oscuro"&gt;
+			&lt;td class="avatar"&gt;
+				{frmValor(razonsocial)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(poblacion)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(direccion)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(telefonos)} &lt;/td&gt;
+		&lt;/tr&gt;
+&lt;!--{frmFinRepetir()}--&gt;	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;a href="{frmLinkPrimero()}"&gt;Primero&lt;/a&gt; &lt;a href="{frmLinkAnterior()}"&gt;Anterior&lt;/a&gt; {frmPaginaActual()} / {frmPaginas()} {frmLinkToolbar(&lt;a href="$1"&gt;$2&lt;/a&gt; )} &lt;a href="{frmLinkSiguiente()}"&gt;Siguiente&lt;/a&gt; &lt;a href="{frmLinkUltimo()}"&gt;Último&lt;/a&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>361</idPagina>
+    <Titulo>Telefonos</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmMaxRegistrosPagina(50)}
+--&gt;
+&lt;h1&gt;
+	Consulta de teléfonos&lt;/h1&gt;
+&lt;div id="buscador"&gt;
+	&lt;h2&gt;
+		Realizar búsqueda&lt;/h2&gt;
+	&lt;form action="?{frmRequest()}" method="post" name="buscar"&gt;
+		&lt;div class="hasta"&gt;
+			&lt;label&gt;Apellido&lt;/label&gt;&lt;input class="texto" name="wApellido" type="text" value="{frmRequest(wApellido)}" /&gt;&lt;/div&gt;
+		&lt;button type="submit"&gt;&lt;span&gt;buscar&lt;/span&gt;&lt;/button&gt;&lt;/form&gt;
+&lt;/div&gt;
+&lt;!--
+{frmSelect(SELECT * FROM BDGT.V_BDGT_CHOFERES WHERE APELLIDOS not like {cs}%*%{cs} AND TELEFONO is not null {frmSii({frmRequest(wApellido)},,,AND lower(APELLIDOS) LIKE lower({cs}%{frmRequest(wApellido)}%{cs}))} ORDER BY APELLIDOS)}
+--&gt;&lt;table cellpadding="0px" cellspacing="0" class="tablaTelefonos" style="width:50%"&gt;
+	&lt;thead&gt;
+		&lt;tr class="cabeceraTabla"&gt;
+			&lt;th class="thInicio"&gt;
+				Nombre&lt;/th&gt;
+			&lt;th&gt;
+				Apellidos&lt;/th&gt;
+			&lt;th class="thCierre"&gt;
+				Teléfono&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+&lt;!--{frmRepetir()}--&gt;		&lt;tr class="oscuro"&gt;
+			&lt;td class="avatar"&gt;
+				{frmValor(nombre)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(apellidos)} &lt;/td&gt;
+			&lt;td&gt;
+				{frmValor(telefono)} &lt;/td&gt;
+		&lt;/tr&gt;
+&lt;!--{frmFinRepetir()}--&gt;	&lt;/tbody&gt;
+	&lt;tbody&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;a href="{frmLinkPrimero()}"&gt;Primero&lt;/a&gt; &lt;a href="{frmLinkAnterior()}"&gt;Anterior&lt;/a&gt; {frmPaginaActual()} / {frmPaginas()} {frmLinkToolbar(&lt;a href="$1"&gt;$2&lt;/a&gt; )} &lt;a href="{frmLinkSiguiente()}"&gt;Siguiente&lt;/a&gt; &lt;a href="{frmLinkUltimo()}"&gt;Último&lt;/a&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>364</idPagina>
+    <Titulo>marco</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Marco jurídico&lt;/h1&gt;
+	&lt;h2&gt;Referencias normativas en materia de transportes terrestres&lt;/h2&gt;&lt;p&gt;El
+artículo 10.32 del Estatuto de Autonomía establece que la Comunidad
+Autónoma del País Vasco tiene competencia exclusiva en materia de
+ferrocarriles y transportes terrestres, sin perjuicio de lo dispuesto
+en el artículo 149.1.20 de la Constitución.
+
+&lt;/p&gt;&lt;p&gt;Para materializar el traspaso de bienes y servicios
+correspondientes a la citada materia se dictó el Real Decreto 2488/78,
+de 25 de agosto, de transferencia de competencias de la Administración
+del Estado al Consejo General del País Vasco (&lt;a href="http://www.boe.es/g/es/bases_datos/doc.php?coleccion=iberlex&amp;id=1978/26687" target="_blank"&gt;BOE nº 256, de 26 de octubre de 1978&lt;/a&gt;), y el Real Decreto 1446/81, de 19 de junio, de traspaso de servicios del Estado en materia de transportes terrestres &lt;a target="_blank" href="http://www.boe.es/g/es/bases_datos/doc.php?coleccion=iberlex&amp;id=1981/16141"&gt;(&lt;/a&gt;&lt;a href="http://www.boe.es/g/es/bases_datos/doc.php?coleccion=iberlex&amp;id=1981/16141" target="_blank"&gt;BOE nº171, de 18 de julio de 1981&lt;/a&gt;&lt;a target="_blank" href="http://www.boe.es/g/es/bases_datos/doc.php?coleccion=iberlex&amp;id=1981/16141"&gt;).&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;De acuerdo con el sistema de distribución
+competencial descrito, la normativa estatal es de aplicación directa a
+los transportes terrestres que transcurran por el territorio de más de
+una Comunidad Autónoma, y se aplica supletoriamente respecto de
+aquellos transportes terrestres que, siendo de la competencia exclusiva
+de la Comunidad Autónoma del País Vasco, no han sido objeto de
+regulación autonómica, todo ello en virtud de lo dispuesto en el
+artículo 21 del Estatuto de Autonomía, que prescribe que el derecho
+emanado del País Vasco en las materias de su competencia exclusiva es
+el aplicable con preferencia a cualquier otro y solo en su DEFECTO será
+de aplicación supletoria el derecho del Estado:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.fomento.es/MFOM/LANG%5FCASTELLANO/DIRECCIONES%5FGENERALES/TRANSPORTE%5FPOR%5FCARRETERA/%5FINFORMACION/NORMATIVA/" target="_blank"&gt;Normativa estatal y regulación europea en materia de transporte por carretera&lt;/a&gt;&lt;br /&gt;
+&lt;a href="http://www.fomento.es/MFOM/LANG%5FCASTELLANO/DIRECCIONES%5FGENERALES/FERROCARRILES/%5FINFORMACION/NORMATIVA/" target="_blank"&gt;Normativa estatal en materia de ferrocarriles&lt;/a&gt;&lt;a target="_blank" href="http://www.fomento.es/MFOM/LANG%5FCASTELLANO/DIRECCIONES%5FGENERALES/FERROCARRILES/%5FINFORMACION/NORMATIVA/"&gt;:&lt;/a&gt;&lt;br /&gt;
+&lt;br /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Por lo que respecta a la legislación sectorial
+autonómica en esta materia, se ha regulado hasta el momento el
+transporte público de viajeros por carretera tanto en vehículos de
+turismo como en autobús, y asimismo se ha creado la Autoridad del
+Transporte de Euskadi, el Observatorio del Transporte de Euskadi y el
+Ente Público Red Ferroviaria Vasca- Euskal Trenbide Sarea:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.euskadi.net/cgi-bin_k54/bopv_20?c&amp;F=20000801&amp;S=2000146" target="_blank"&gt;Ley 2/2000, de 29 de junio, de Transporte Público urbano e Interurbano de Viajeros en Automóviles de Turismo&lt;/a&gt; (BOPV nº 146, de 1 de agosto de 2000)  &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.euskadi.net/cgi-bin_k54/bopv_20?c&amp;F=20000801&amp;S=2000146" target="_blank"&gt;Decreto
+243/2003, de 15 de octubre, por el que se aprueba el Reglamento de la
+Ley de Transporte Público Urbano e Interurbano de Viajeros en
+Automóviles de Turismo&lt;/a&gt; (BOPV, nº 233, de 5 de diciembre de 2002) &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.euskadi.net/cgi-bin_k54/bopv_20?c&amp;F=20000801&amp;S=2000146" target="_blank"&gt;Ley 5/2003, de 15 de diciembre, de la Autoridad del Transporte de Euskadi&lt;/a&gt; (BOPV nº 251, de 24 de diciembre de 2003)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.euskadi.net/cgi-bin_k54/bopv_20?c&amp;F=20040329&amp;S=2004060" target="_blank"&gt;Ley 4/2004, de 18 de marzo, de Transporte de Viajeros por Carretera&lt;/a&gt; (BOPV nº 60, de 29 de marzo de 2004)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.euskadi.net/cgi-bin_k54/bopv_20?c&amp;F=20040602&amp;S=2004103" target="_blank"&gt;Ley 6/2004, de 21 de mayo, de Red Ferroviaria vasca-Euskal Trenbide Sarea&lt;/a&gt; (BOPV nº 103, de 2 de junio dee 2004)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.euskadi.net/cgi-bin_k54/bopv_20?c&amp;F=20040211&amp;S=2004028" target="_blank"&gt;Decreto 11/2004, de 20 de enero, por el que se crea el Observatorio del Transporte de Euskadi&lt;/a&gt; (BOPV nº28, de 11 de febrero de 2004)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.euskadi.net/cgi-bin_k54/bopv_20?c&amp;F=20040712&amp;S=2004131" target="_blank"&gt;Reglamento
+de Organización y Funcionamiento de la Autoridad del Transporte de
+Euskadi, aprobado por Acuerdo de pleno de 1 de junio de 2004&lt;/a&gt; (BOPV nº 131, de 12 de julio de 2004) &lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.euskadi.net/bopv2/datos/2005/03/0501035a.pdf" target="_blank"&gt;Orden de 11 de febrero de 2005&lt;/a&gt;,
+del Consejero de Transportes y Obras Públicas, por la que se establece
+el número máximo de autorizaciones de transporte público interurbano de
+viajeros en automóviles de turismo en la Comunidad Autónoma  de Euskadi
+(BOPV Nº 44 - viernes, 4 de marzo de 2005)&lt;/p&gt;
+
+&lt;p&gt;&lt;a href="http://www.garraioak.ejgv.euskadi.net/bopv2/datos/2007/02/0700852a.pdf"&gt;Decreto 12/2007, de 30 de enero&lt;/a&gt;, 
+de modificación del Reglamento de la Ley de Transporte Público Urbano e
+Interurbano de Viajeros en automóviles de turismo (BOPV nº 29, de 9 de
+febrero de 2007)&lt;/p&gt;&lt;p&gt;Fuente de información: &lt;a href="http://www.garraioak.ejgv.euskadi.net/r41-430/es/contenidos/normativa/normativa_transportes/es_7581/normativa_transporte.html"&gt;euskadi.net &lt;/a&gt;&lt;/p&gt;&lt;br /&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>365</idPagina>
+    <Titulo>enlaces interes</Titulo>
+    <Enlace />
+    <Contenido>
+&lt;h1&gt;Enlaces de interés&lt;/h1&gt;
+&lt;center&gt;
+	&lt;table&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;h2&gt;Instituciones Públicas&lt;/h2&gt;
+				&lt;/td&gt;
+				&lt;td&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Dirección General de Tráfico &lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;http://www.dgt.es&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Departamento de Transporte y Obras Públicas de Euskadi&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;http://www.garraioak.ejgv.euskadi.net/r41-429/es/&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Gobierno Vasco: Dirección de Tráfico y Parque Móvil&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;https://www.trafikoa.eus/wps/portal/trafico&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Estado de la Red Navarra&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;http://www.navarra.es/home_es/Temas/Territorio/Transportes/&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Dirección General de protección civil y emergencias&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;http://www.proteccioncivil.org&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Fomento - Transportes por Carretera&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;http://www.fomento.es/MFOM/LANG_CASTELLANO/DIRECCIONES_GENERALES/TRANSPORTE_POR_CARRETERA/%20&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Servei Català de Trànsit&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;http://www.gencat.net/transit/&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Tráfico en Andorra (Agence de Mobilité)&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;https://www.mobilitat.ad/&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Tráfico en Francia (Bison Futé)&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;http://www.bison-fute.equipement.gouv.fr/diri/Accueil.do&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Tráfico en Portugal (Estradas de Portugal)&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;http://www.estradasdeportugal.pt/site/v3/&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Comisión Europea de Transportes&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;https://ec.europa.eu/transport/&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; CERET - Centro Español de respuestas ante emergencias durante el transporte&lt;/td&gt;
+				&lt;td&gt; &lt;a href=&quot;http://www.proteccioncivil.org/ceret/ceret.htm&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; Carnet por puntos&lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; &lt;a href=&quot;https://sede.dgt.gob.es/es/permisos-de-conducir/permiso-por-puntos/index.shtml&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;h2&gt; Guias de carreteras&lt;/h2&gt;
+				&lt;/td&gt;
+				&lt;td&gt; &lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Guia Michelín&lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;http://www.viamichelin.es&quot;&gt;WEB &lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Guia Campsa&lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;https://www.guiarepsol.com/es/descubrir/&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Sistema de Autonavegadores&lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;http://www.TomTom.com&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Mapas &lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;http://maps.google.es&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;h2&gt; Educación Vial&lt;/h2&gt;
+				&lt;/td&gt;
+				&lt;td&gt; &lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Seguridad de tráfico educación vial&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;http://www.stopaccidentes.org&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td rowspan=&quot;1&quot;&gt;
+					&lt;h2&gt; Bolsas de Carga&lt;/h2&gt;
+				&lt;/td&gt;
+				&lt;td rowspan=&quot;1&quot;&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; Asociación Española de la carretera.&lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; &lt;a href=&quot;http://www.aecarretera.com&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; Teleroute&lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; &lt;a href=&quot;http://www.teleroute.es&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; Timo&lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; &lt;a href=&quot;http://www.truck-cargo.com/sec/900130/index.cfm/DYN/umenuaction,505311135210006/&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; Wtransnet&lt;br/&gt;
+				&lt;/td&gt;
+				&lt;td rowspan=&quot;1&quot;&gt; &lt;a href=&quot;http://www.wtransnet.com&quot;
+ 						target=&quot;_blank&quot;&gt;WEB&lt;/a&gt;
+					&lt;br/&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;h2&gt; Otros&lt;/h2&gt;
+				&lt;/td&gt;
+				&lt;td&gt; &lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Asociación Técnica de Carreteras&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;http://www.atc-piarc.com&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Interbiak&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;https://interbiak.bizkaia.eus/&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Web de Fomento Sede Electrónica&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;https://sede.fomento.gob.es/SEDE_ELECTRONICA/LANG_CASTELLANO/OFICINAS_SECTORIALES/TTE_CTRA/&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Trafico Gobierno Vasco&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;https://www.trafikoa.eus/wps/portal/trafico&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt; Diputacion Foral de Bizkaia Transportes&lt;/td&gt;
+				&lt;td&gt; &lt;a target=&quot;_blank&quot;
+ 						href=&quot;https://www.euskadi.eus/gobierno-vasco/transportes/&quot;&gt;WEB&lt;/a&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;&lt;/br&gt;&lt;/td&gt;
+				&lt;td&gt;&lt;/br&gt;&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/center&gt;
+	</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>366</idPagina>
+    <Titulo>noticias sector</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Noticias del sector&lt;/h1&gt;
+	&lt;table cellspacing="1" cellpadding="1" border="0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;h2&gt;Desconvocada la huelga en los puertos.&lt;/h2&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;img vspace="5" hspace="5" align="left" src="/Documentos/_DOCUMENTOS/238/Noticia1T.jpg" /&gt;El organismo público se ha comprometido a que el nuevo Gobierno presente en el Parlamento una propuesta de reforma de la Ley 48/2003 (Ley de Puertos), "sobre la base de garantizar la gestión pública de las sociedades de estiba, así como la titularidad pública del servicio de carga, descarga, estiba, desestiba y trasbordo de mercancías, lo que supondría la modificación de las iniciativas privatizadoras materializadas en las Asociaciones Portuarias de Interés Económico".&lt;br /&gt;&lt;br /&gt;Además, se ha acordado crear un foro, a iniciativa de UGT y CC.OO., "en el que participen todos los agentes económicos y sociales del sector portuario con el fin de fomentar un clima de entendimientoque permita adaptar el modelo de gestión portuaria a los retos futuros".&lt;br /&gt;&lt;br /&gt;Por último, y en relación con la aplicación de los coeficientes reductores a la edad de jubilación, los sindicatos subrayan que han conseguido que Puertos del Estado se comprometa a hacer llegar a la Secretaría de Estado de la Seguridad Social "una interpretación favorable sobre la aplicación del RD 1311/2007, por el que se establecen nuevos criterios para determinar la pensión de jubilación del Régimen Especial de la Seguridad Social de los trabajadores del mar, claramente positiva para los intereses de los trabajadores portuarios".&lt;br /&gt;&lt;br /&gt;UGT y CC.OO. mantuvieron, a lo largo de la tarde de ayer, una reunión de mediación con Puertos del Estado "de cara a lograr compromisos que fructificaran en la desconvocatoria de la huelga" en todas las sociedades de estiba y desestiba de los puertos marítimos españoles de interés general. La nota subraya que los acuerdos alcanzados entre las partes "han sido importantes y determinan la decisión de proceder a la desconvocatoria". &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h2&gt;Dieciséis localidades refuerzan la seguridad del transporte peligroso.&lt;/h2&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;img vspace="5" hspace="5" align="left" src="/Documentos/_DOCUMENTOS/242/Noticia3P.jpg" /&gt;Dieciséis localidades estratégicas de Castilla y León formarán la red que permita una adecuada intervención en el caso de accidentes con mercancías peligrosas, según recoge el Plan de Protección Civil que en esta materia ha aprobado el Consejo de Gobierno en su sesión de ayer.. Componen la red estratégica la capital abulense y Arévalo, en la provincia de Ávila; la capital burgalesa, Aranda de Duero y Miranda de Ebro, en Burgos; y Ponferrada y la capital leonesa en León; la capital palentina y Aguilar de Campoo, en Palencia; Ciudad Rodrigo y la capital salmantina, en Salamanca; Segovia; Soria, Valladolid, y Benavente y la capital zamorana en Zamora.&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h2&gt;El elevado precio del gasóleo hunde las rentas de agricultores y transportistas.&lt;/h2&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;img vspace="5" hspace="5" align="left" src="/Documentos/_DOCUMENTOS/241/Noticia7P.jpg" /&gt;El coste del combustible que usan los labradores ha aumentado en un 33% en el último año, mientras que la otra variedad ha subido un 22% La viabilidad de sectores fundamentales en la economía provincial está en mínimos por la influencia directa que tiene este tipo de combustible.&lt;br /&gt;&lt;br /&gt;Los transportistas, quienes se dedican al traslado de mercancías o al reparto de paquetería de un punto a otro del país son los más perjudicados. España vivió hace tres años una huelga general de este sector que paralizó España. La situación podría repetirse de nuevo, pues la asfixia económica y los problemas que padecen cada vez hacen más precaria su situación. «Nuestros compañeros no llegan a fin de mes, pues la factura del gasóleo absorbe por sí sola el 50% de los costes de explotación de un camión, cuando no debería pasar en ningún caso del 30%», explica Juan Ordóñez, presidente de la Asociación General de Transportistas (AGT) de Granada.&lt;br /&gt;&lt;br /&gt;Y es que un camión de gran tonelaje consume cantidades ingentes de gasóleo A. Del orden de unos 40 litros por cada 100 kilómetro, por lo que recorrer esta distancia le supone a su titular hoy día unos 46 euros de coste. La proporción baja en relación al tamaño del vehículo y al peso de la carga que transporta, pero los márgenes y costes van en la misma dirección. &lt;br /&gt;&lt;br /&gt;Pero como los males nunca llegan solos, los camioneros granadinos -como sus colegas del resto del país- siguen padeciendo situaciones de "dumping" (cobrar los servicios que prestan por debajo del coste real de los mismos) pese a su expresa prohibición en la Ley de Ordenación de los Transportes Terrestres. (La ley no se aplica en muchos casos, lo que impide a muchos profesionales el repercutir en sus tarifas los sucesivos incrementos en el precio del gasóleo, pues carecen de un mecanismo que garantice su aplicación), añade Ordóñez. Así, si un camionero debe percibir una tarifa de 1,20 euros por kilómetro recorrido, en realidad cobra 0,95 e incluso llega a aceptar la carga por 0,60. Si se tiene en cuenta que el umbral medio de rentabilidad está por encima de los 0,75 euros igualmente por kilómetro, resulta evidente que no hay negocio por ningún lado.&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;h2&gt;Los transportistas planean paros técnicos en protesta por el encarecimiento del gasóleo.&lt;/h2&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;La subida del precio del gasóleo de automoción en España -que ha llegado a máximos históricos y ha superado el precio de la gasolina- podría llevar a las empresas de transporte a realizar "paros técnicos" al convertir en "inviable" su actividad, según apuntó ayer la Confederación Española de Transporte de Mercancías (CETM).&lt;br /&gt;&lt;br /&gt;En declaraciones a Europa Press, el presidente de la asociación, Ovidio de la Roza, reconoció que se "están cumpliendo los augurios más pesimistas", pues el petróleo ha superado la barrera de los cien dólares y continúa alcanzando niveles históricos.&lt;br /&gt;&lt;br /&gt;Si bien la fortaleza del euro frente al dólar permite mitigar la escalada del precio del crudo, Oviedo sostiene que no es suficiente. Por ello, De la Roza pidió que las administraciones, a nivel europeo y español, tomen "medidas" como la bajada de los impuestos de hidrocarburos, el control de la especulación del precio del petróleo y la actuación sobre los oligopolios de las petroleras.&lt;br /&gt;&lt;br /&gt;Estas cuestiones estuvieron encima de la mesa en la reunión que mantuvieron la patronal del transporte con el Ministerio de Fomento y las asociaciones de cargadores. Julio Villaescusa, presidente de la Federación Nacional de Asociaciones de Transporte de España, salió de la reunión "completamente defraudado". "La receptividad ha sido nula", declaró a CincoDías. Fenadismer acudía a esta reunión con demandas parecidas a las otras asociaciones. Por un lado solicitaban al Gobierno una rebaja temporal del impuesto de hidrocarburos. Los camioneros piden que se inste a las comunidades autónomas a la exención total del denominado "céntimo sanitario", -el impuesto con el que algunas comunidades gravan el carburante para contribuir a financiar la sanidad. Además, exigen que el Gobierno ponga fin a las prácticas de dumping -vender por debajo del precio de coste- que se producen en el sector.&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>367</idPagina>
+    <Titulo>directorio sector</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Directorio del sector&lt;/h1&gt;
+	&lt;div align="justify"&gt;&lt;h2&gt;Productos&lt;/h2&gt;&lt;h3 align="left"&gt;Estaciones de servicio  &lt;/h3&gt;&lt;p&gt;Desde hace ya varios años, una parte de las estaciones de servicio TOTAL están dotadas de lugares específicos para los profesionales del transporte por carretera y sus vehículos. Tanto en lo referente al espacio físico como en la comodidad del conductor con baños específicos para ellos, servicio de hostelería.  (&lt;i&gt;Visita&lt;/i&gt;  &lt;a target="_blank" href="http://www.es.club-transport.com/"&gt;Club del Transportista&lt;/a&gt;)    &lt;/p&gt;&lt;h3&gt;Lubricantes &lt;/h3&gt;Petroline cuida de tu vehículo, cuida de ti. El mejor combustible para la mecánica de tu camión, al precio más económico. (&lt;i&gt;Visita&lt;/i&gt; &lt;a target="_blank" href="http://www.petroline.es/default.htm"&gt;Petroline&lt;/a&gt;)    &lt;br /&gt;&lt;br /&gt;Ese combustible es Shell Diesel Extra. El que te ofrece más sin ningún coste extra. Reposta Shell Diesel Extra y conseguirás una total y eficaz protección de tu motor. Verás como mejora su rendimiento, lo mantiene limpio y reducirá tus gastos de mantenimiento. (&lt;i&gt;Visita&lt;/i&gt; &lt;a target="_blank" href="http://www.shell-lubricantes.com/%20%20"&gt;Shell Lubricantes&lt;/a&gt;)        &lt;br /&gt;&lt;br /&gt;&lt;h2&gt;Proveedores de transporte&lt;/h2&gt;&lt;h3&gt;Transporte   &lt;/h3&gt;&lt;div align="left"&gt;&lt;p&gt;En más de 5,750 m2, Tendremos una exhibición completa de camiones, tractocamiones, autobuses, remolques, semiremolques, motores, refacciones de equipo original, llantas, lubricantes, entre otros. &lt;br /&gt;(&lt;i&gt;Visita&lt;/i&gt; &lt;a target="_blank" href="http://www.expoproveedores.com.mx/%20%20%20"&gt;Expo del Transporte&lt;/a&gt;)     &lt;br /&gt;&lt;/p&gt;&lt;/div&gt;
+&lt;/div&gt;	</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>368</idPagina>
+    <Titulo>servicios</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Servicios para el transportista&lt;/h1&gt;
+	&lt;table width="482" cellspacing="5" border="0"&gt;
+
+  &lt;tbody&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="472" colspan="2" class="v10ptgrisbold"&gt;&lt;h2&gt;Organismos Oficiales&lt;/h2&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.europa.eu.int/pol/trans/index_es.htm" class="v10ptgrislinkfino"&gt;Actividades de la Unión Europea&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.aseta.es" class="v10ptgrislinkfino"&gt;Asociación 
+      de Sociedades Españolas oncesionarias de Autopistas&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.aecarretera.com/" class="v10ptgrislinkfino"&gt;Asociación Española de 
+      Carretera&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.boe.es/" class="v10ptgrislinkfino"&gt;Boletín Oficial del Estado B.O.E.&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.mir.es/" class="v10ptgrislinkfino"&gt;Dirección General de Tráfico DGT&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.guardiacivil.org/" class="v10ptgrislinkfino"&gt;Guardia Civil&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.mfom.es/" class="v10ptgrislinkfino"&gt;Ministerio de Fomento&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+
+  &lt;tr&gt;
+    
+    &lt;td width="472" colspan="2" class="v10ptgrisbold"&gt;&lt;h2&gt;Organizaciones por 
+    Comunidades&lt;/h2&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.jccm.es/" class="v10ptgrislinkfino"&gt;Castilla La Mancha. D.G Transportes&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.larioja.org/npRioja/default/defaultpage.jsp?idtab=465323" class="v10ptgrislinkfino"&gt;Comunidad Autónoma de la Rioja. D.G Transportes&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.madrid.org/" class="v10ptgrislinkfino"&gt;Comunidad de Madrid. Consejería de Obras Públicas, Urbanismo 
+      y Transporte&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.gencat.net/" class="v10ptgrislinkfino"&gt;Generalitat de Catalunya. Direcció General de Ports y 
+      Transports&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.cit.gva.es/val/areasactividad/transportes/" class="v10ptgrislinkfino"&gt;Generalitat 
+      Valenciana. Consellería de transportes&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.jcyl.es/" class="v10ptgrislinkfino"&gt;Junta de Castilla y León. D.G Transportes&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;
+
+    
+    &lt;td width="10" rowspan="1"&gt;&lt;br /&gt;&lt;/td&gt;
+    &lt;td width="462" rowspan="1"&gt;&lt;a href="http://www.asturias.es/portal/site/Asturias/template.PAGE/menuitem.de03128f7de72babf18e90dbbb30a0a0/?javax.portlet.tpst=3ff737bcb86abb559cadba10100000f7&amp;javax.portlet.prp_3ff737bcb86abb559cadba10100000f7__forwardPath=%2Fjsp%2Fintermedia1.jsp&amp;javax.portlet.prp_3ff737bcb86abb559cadba10100000f7_action=agrupacionesTema&amp;javax.portlet.prp_3ff737bcb86abb559cadba10100000f7__forwardMode=view&amp;javax.portlet.prp_3ff737bcb86abb559cadba10100000f7__forwardContent=text%2Fhtml&amp;javax.portlet.prp_3ff737bcb86abb559cadba10100000f7_tema=Transportes&amp;javax.portlet.prp_3ff737bcb86abb559cadba10100000f7__forwardState=&amp;javax.portlet.prp_3ff737bcb86abb559cadba10100000f7_idOrgPadre=21&amp;javax.portlet.prp_3ff737bcb86abb559cadba10100000f7__forwardName=successModoAgrupaciones&amp;javax.portlet.begCacheTok=com.vignette.cachetoken&amp;javax.portlet.endCacheTok=com.vignette.cachetoken" target="_blank"&gt;Principado de Asturias. D.G Transportes&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.cfnavarra.es/transportes" class="v10ptgrislinkfino"&gt;Navarra. D.G. 
+      Transportes&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.carm.es/" class="v10ptgrislinkfino"&gt;Región de Murcia. D.G Transportes&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+
+    
+    &lt;td width="472" colspan="2" class="v10ptgrisbold"&gt;&lt;h2&gt;Otras Enlaces de Interés&lt;/h2&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.camerdata.es/" class="v10ptgrislinkfino"&gt;Camerdata - Cámaras de Comercio&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.elportaldelcamionero.com/" class="v10ptgrislinkfino"&gt;El portal del 
+      camionero&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.mercedes-benz.es/" class="v10ptgrislinkfino"&gt;MERCEDES&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.renault-vi.com/" class="v10ptgrislinkfino"&gt;RENAULT Trucks&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.todocamion.com/" class="v10ptgrislinkfino"&gt;Todocamion&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;tr&gt;
+    
+
+    &lt;td width="10"&gt; &lt;/td&gt;
+    &lt;td width="462"&gt;&lt;a target="_blank" href="http://www.volvotrucks.volvo.es/" class="v10ptgrislinkfino"&gt;VOLVO 
+  Trucks&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;br /&gt;</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>369</idPagina>
+    <Titulo>callejero ciudades</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Callejero de ciudades&lt;/h1&gt;
+	Seleccione la ciudad para acceder al callejero de Google Maps.&lt;p&gt;&lt;br /&gt;&lt;/p&gt;&lt;p&gt;&lt;table rules="none" frame="void" cellspacing="1" cellpadding="1" border="0" style="border-style: none; width: 100%; float: none; background-image: none;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=A+Coru%C3%B1a&amp;hl=es" target="_blank"&gt;A Coruña&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=C%C3%B3rdoba&amp;hl=es" target="_blank"&gt;Córdoba&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Madrid&amp;hl=es" target="_blank"&gt;Madrid&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Santiago+de+Compostela&amp;hl=es" target="_blank"&gt;Santiago de Compostela &lt;/a&gt;  &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Albacete&amp;hl=es"&gt;Albacete&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Cuenca&amp;hl=es" target="_blank"&gt;Cuenca&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?q=malaga,+Spain&amp;sa=X&amp;oi=map&amp;ct=title"&gt;Málaga&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Segovia&amp;hl=es" target="_blank"&gt;Segovia&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Alicante&amp;hl=es"&gt;Alicante&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Gerona&amp;hl=es" target="_blank"&gt;Gerona&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?q=Melilla,+Spain&amp;sa=X&amp;oi=map&amp;ct=title"&gt;Melilla&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?q=Sevilla,+Spain&amp;sa=X&amp;oi=map&amp;ct=title" target="_blank"&gt;Sevilla&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Almer%C3%ADa&amp;hl=es"&gt;Almería&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Gij%C3%B3n&amp;hl=es" target="_blank"&gt;Gijón&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Murcia&amp;hl=es"&gt;Murcia&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Tarragona&amp;hl=es" target="_blank"&gt;Tarragona&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Avila&amp;hl=es"&gt;Ávila&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Granada&amp;hl=es" target="_blank"&gt;Granada&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Orense&amp;hl=es"&gt;Orense&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Teruel&amp;hl=es" target="_blank"&gt;Teruel &lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Badajoz&amp;hl=es"&gt;Badajoz&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Guadalajara&amp;hl=es" target="_blank"&gt;Guadalajara&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Oviedo&amp;hl=es"&gt;Oviedo&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Toledo&amp;hl=es" target="_blank"&gt;Toledo&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Barcelona&amp;hl=es"&gt;Barcelona&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Huelva&amp;hl=es" target="_blank"&gt;Huelva&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Palencia&amp;hl=es"&gt;Palencia&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Valencia&amp;hl=es" target="_blank"&gt;Valencia &lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Bilbao&amp;hl=es" target="_blank"&gt;Bilbao&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Huesca&amp;hl=es" target="_blank"&gt;Huesca&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Palma+de+Mallorca&amp;hl=es"&gt;Palma de Mallorca&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Valladolid&amp;hl=es" target="_blank"&gt;Valladolid&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Burgos&amp;hl=es" target="_blank"&gt;Burgos&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Ja%C3%A9n&amp;hl=es" target="_blank"&gt;Jaén&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a target="_blank" href="http://maps.google.es/maps?oi=eu_map&amp;q=Pamplona&amp;hl=es"&gt;Pamplona&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Vitoria-Gasteiz&amp;hl=es" target="_blank"&gt;Vitoria-Gasteiz&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=C%C3%A1ceres&amp;hl=es" target="_blank"&gt;Cáceres&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?q=Las+Palmas+de+Gran+Canaria,+Spain&amp;sa=X&amp;oi=map&amp;ct=title" target="_blank"&gt;Las Palmas de Gran Canaria&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Pontevedra&amp;hl=es" target="_blank"&gt;Pontevedra&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Zamora&amp;hl=es" target="_blank"&gt;Zamora&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?q=cadiz,+Spain&amp;sa=X&amp;oi=map&amp;ct=title" target="_blank"&gt;Cádiz&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?hl=es&amp;q=leon&amp;um=1&amp;ie=UTF-8&amp;sa=N&amp;tab=wl" target="_blank"&gt;León&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Salamanca&amp;hl=es" target="_blank"&gt;Salamanca&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Zaragoza&amp;hl=es" target="_blank"&gt;Zaragoza&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Castell%C3%B3n+de+la+Plana&amp;hl=es" target="_blank"&gt;Castellón de la Plana&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=L%C3%A9rida&amp;hl=es" target="_blank"&gt;Lérida&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?q=san+sebastian,+Spain&amp;sa=X&amp;oi=map&amp;ct=title" target="_blank"&gt;San Sebastián&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?q=Ceuta,+Spain&amp;sa=X&amp;oi=map&amp;ct=title" target="_blank"&gt;Ceuta&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Logro%C3%B1o&amp;hl=es" target="_blank"&gt;Logroño&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Santa+Cruz+de+Tenerife&amp;hl=es" target="_blank"&gt;Santa Cruz de Tenerife&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Ciudad+Real&amp;hl=es" target="_blank"&gt;Ciudad Real&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?oi=eu_map&amp;q=Lugo&amp;hl=es" target="_blank"&gt;Lugo&lt;/a&gt;&lt;/td&gt;&lt;td&gt;&lt;a href="http://maps.google.es/maps?hl=es&amp;q=Santander&amp;um=1&amp;ie=UTF-8&amp;sa=N&amp;tab=wl" target="_blank"&gt;Santander&lt;/a&gt;&lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/p&gt;&lt;p&gt;&lt;br /&gt; &lt;/p&gt;&lt;p&gt; &lt;/p&gt;&lt;p&gt;&lt;br /&gt; &lt;/p&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>370</idPagina>
+    <Titulo>estado carreteras</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Estado de las carreteras&lt;/h1&gt;
+	&lt;h2&gt;Últimas incidencias de circulación&lt;/h2&gt;&lt;p&gt;&lt;table cellspacing="1" cellpadding="1" border="1" style="width: 100%;"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td align="center" style="width: 10%;"&gt; &lt;img src="/Documentos/_DOCUMENTOS/233/INCIDtablCON.gif" /&gt;&lt;br /&gt;&lt;/td&gt;&lt;td style="width: 10%;"&gt; Conos&lt;/td&gt;&lt;td align="center" style="width: 10%;"&gt;&lt;img src="/Documentos/_DOCUMENTOS/234/INCIDtablMET.gif" /&gt; &lt;/td&gt;&lt;td style="width: 10%;"&gt; Meteorológicas&lt;/td&gt;&lt;td align="center" style="width: 10%;"&gt; &lt;img src="/Documentos/_DOCUMENTOS/236/INCIDtablMONT.gif" /&gt;&lt;/td&gt;&lt;td style="width: 10%;"&gt; Puertos&lt;/td&gt;&lt;td align="center" style="width: 10%;"&gt; &lt;img src="/Documentos/_DOCUMENTOS/237/INCIDtablOBR.gif" /&gt;&lt;/td&gt;&lt;td style="width: 10%;"&gt; Obras&lt;/td&gt;&lt;td align="center" style="width: 10%;"&gt;&lt;img src="/Documentos/_DOCUMENTOS/232/INCIDtablRETE.gif" /&gt; &lt;/td&gt;&lt;td style="width: 10%;"&gt; Retencion&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/p&gt;&lt;p&gt;  &lt;br /&gt; 
+
+&lt;table cellspacing="1" cellpadding="1" border="1" style="width: 100%;"&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;th&gt;Fecha&lt;/th&gt;&lt;th&gt;Tipo &lt;br /&gt;&lt;/th&gt;&lt;th&gt;Causas &lt;br /&gt;&lt;/th&gt;&lt;th&gt;Carretera&lt;br /&gt;&lt;/th&gt;&lt;th&gt;Localidad &lt;br /&gt;&lt;/th&gt;&lt;th&gt;Km &lt;br /&gt;&lt;/th&gt;&lt;th&gt;Sentido &lt;br /&gt;&lt;/th&gt;&lt;/tr&gt;
+&lt;tr&gt;&lt;td&gt;07:24&lt;/td&gt;&lt;td&gt; &lt;img src="/Documentos/_DOCUMENTOS/233/INCIDtablCON.gif" /&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;Carril incorporación conos&lt;br /&gt;&lt;/td&gt;&lt;td&gt;A-4 &lt;br /&gt;&lt;/td&gt;&lt;td&gt;Sevilla (Sevilla)&lt;br /&gt;&lt;/td&gt;&lt;td&gt;545-546 &lt;br /&gt;&lt;/td&gt;&lt;td&gt;Decreciente de la kilometrica&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;08:30 &lt;br /&gt;&lt;/td&gt;&lt;td&gt; &lt;img src="/Documentos/_DOCUMENTOS/235/INCIDtablRETE.gif" /&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;Accidente&lt;/td&gt;&lt;td&gt;A-6 &lt;br /&gt;&lt;/td&gt;&lt;td&gt;Begonte (Lugo)&lt;br /&gt;&lt;/td&gt;&lt;td&gt;520.4-520.4&lt;/td&gt;&lt;td&gt;Creciente de la kilometrica&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;09:18&lt;/td&gt;&lt;td&gt; &lt;img src="/Documentos/_DOCUMENTOS/231/INCIDtablOBR.gif" /&gt;&lt;/td&gt;&lt;td&gt;Grandes Obras&lt;br /&gt;&lt;/td&gt;&lt;td&gt;CV-788&lt;br /&gt;&lt;/td&gt;&lt;td&gt;Benilloba (Alicante)&lt;br /&gt;&lt;/td&gt;&lt;td&gt;0.0-2.0&lt;br /&gt;&lt;/td&gt;&lt;td&gt;Ambos sentidos&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;10:35&lt;/td&gt;&lt;td&gt; &lt;img src="/Documentos/_DOCUMENTOS/234/INCIDtablMET.gif" /&gt;&lt;/td&gt;&lt;td&gt;Viento &lt;/td&gt;&lt;td&gt;N-340 &lt;br /&gt;&lt;/td&gt;&lt;td&gt;Tarifa (Cadiz) &lt;br /&gt;&lt;/td&gt;&lt;td&gt;595.0-596.0&lt;br /&gt;&lt;/td&gt;&lt;td&gt;Decreciente de la kilometrica&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td valign="top"&gt;12:16&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;&lt;img src="/Documentos/_DOCUMENTOS/230/INCIDtablMONT.gif" /&gt;&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;Cadenas Portalet&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;A-136&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;Sallent de Gallego (Huesca)&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;36.0-102.5&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;Ambos sentidos&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align: top;"&gt;12:48&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;&lt;img src="/Documentos/_DOCUMENTOS/232/INCIDtablRETE.gif" /&gt;&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;Accidente&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;N-232&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;Alfaro (La Rioja)&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;336.8-336.8&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;Ambos sentidos&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/p&gt;&lt;p&gt; &lt;/p&gt;
+
+&lt;h2&gt;Restricciones a la circulación de vehículos pesados&lt;/h2&gt;
+
+&lt;p&gt;Vehículos de transporte de mercancías en general de más de 7.500 Kg de M.M.A  y a los conjuntos de vehículos de cualquier masa máxima autorizada.&lt;br /&gt; &lt;/p&gt;&lt;h2&gt;Días Laborales &lt;/h2&gt;
+&lt;table rules="none" frame="void" cellspacing="1" cellpadding="1" border="0" style="border-style: none; width: 100%; float: none; background-image: none;"&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;th&gt;Carretera&lt;/th&gt;&lt;th&gt;Origen &lt;br /&gt;&lt;/th&gt;&lt;th&gt;Destino &lt;br /&gt;&lt;/th&gt;&lt;th&gt;Hora &lt;br /&gt;&lt;/th&gt;&lt;th&gt;Km&lt;/th&gt;&lt;th&gt;Sentido &lt;br /&gt;&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt; SE-30&lt;/td&gt;&lt;td&gt;San Juan de Aznalfarache (puente Reina Sofia) &lt;br /&gt;&lt;/td&gt;&lt;td&gt;San Juan de Aznalfarache &lt;/td&gt;&lt;td&gt; 14:00-15:00&lt;/td&gt;&lt;td&gt;14.2-15.3 &lt;br /&gt;&lt;/td&gt;&lt;td&gt;Creciente &lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;br /&gt;&lt;p&gt; &lt;/p&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>371</idPagina>
+    <Titulo>revision tiempo</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Previsón del tiempo&lt;/h1&gt;
+	&lt;h2&gt;Pronóstico&lt;/h2&gt;El tiempo en España hoy será generalmente cielo despejado durante todo el día. En cuanto al tanto por ciento de posibilidades de lluvia hoy estamos rondando el 0 por ciento. &lt;br /&gt;&lt;br /&gt;En el norte de la península el cielo estará poco nuboso durante todo el día. con temperaturas que variarán entre la mínima de 2 grados de Barruelo de Santullan en Palencia y la máxima de 24 grados de Ourense en Orense. Tendremos un 1 por ciento de posibilidad de precipitación en esta zona. &lt;br /&gt;&lt;br /&gt;En la zona centro de la península tendremos tiempo poco nuboso por la mañana y cielo despejado por la tarde. La temperatura mínima en esta zona ser registrará en Espinar en Segovia con 4 grados y la temperatura máxima será de 27 grados de Andujar en Jaén. Tendremos un 0 por ciento de posibilidad de precipitación en esta zona. &lt;br /&gt;&lt;br /&gt;En el sur de la península, ceuta y melilla tendremos tiempo cielo despejado durante todo el día con temperaturas que variarán entre los 13 grados de Tarifa en Cádiz y los 24 grados de Jerez de la Frontera en Cádiz. Tendremos un 0 por ciento de posibilidad de precipitación en esta zona. &lt;br /&gt;&lt;br /&gt;En Canarias tendremos tiempo cielo despejado durante todo el día con temperaturas que variarán entre los 9 grados de Rosario en Tenerife y los 27 grados de Las Palmas de Gran Canaria en Las Palmas. Tendremos un 0 por ciento de posibilidad de precipitación en esta zona. &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Máximas y mínimas previstas para hoy:&lt;/strong&gt; &lt;br /&gt;Temperatura máxima: 28 grados en Córdoba (Córdoba). &lt;br /&gt;Temperatura mínima: 2 grados en Barruelo de Santullan (Palencia). &lt;br /&gt;&lt;br /&gt;&lt;strong&gt;Temperaturas medias previstas para hoy: &lt;/strong&gt;&lt;br /&gt;Temperatura máxima media: 20 grados. &lt;br /&gt;Temperatura mínima media: 8 grados. &lt;br /&gt;Temperatura media: 14 grados. &lt;h2&gt;Información de avisos meteorológicos observados&lt;/h2&gt;&lt;p&gt;Debido a reparaciones y mejoras en la red océano-meteorológica gran parte de las estaciones costeras están temporalmente fuera de servicio hasta nuevo aviso.&lt;br /&gt;&lt;br /&gt;En Cadiz el tiempo es peligroso. Se han pronosticado fenómenos meteorológicos inusuales. Es probable que se produzcan daños materiales o accidentes. Este atento y manténgase informado regularmente de las condiciones meteorológicas previstas, así como de los riesgos que pudieran ser inevitables. Siga los consejos dados por las autoridades. &lt;/p&gt;&lt;p&gt;Las rachas de viento del oeste-noroeste pueden superar los 100 km/h en zonas expuestas. &lt;/p&gt;&lt;h2&gt;Enlaces de interés &lt;/h2&gt;&lt;ul&gt;&lt;li&gt;&lt;a target="_blank" href="http://www.meteosat.com"&gt;Meteosat&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a target="_blank" href="http://www.meteosat.com"&gt;&lt;/a&gt;&lt;a target="_blank" href="http://www.eltiempo.es"&gt;El Tiempo&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a target="_blank" href="http://www.eltiempo.es"&gt;&lt;/a&gt;&lt;a target="_blank" href="http://tiempo.meteored.com"&gt;MeteoRed&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a target="_blank" href="http://tiempo.meteored.com"&gt;&lt;/a&gt;&lt;a target="_blank" href="http://www.quetiempo.es"&gt;Qué Tiempo&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>372</idPagina>
+    <Titulo>donde comer</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Dónde comer&lt;/h1&gt;
+	&lt;table rules="none" frame="void" cellspacing="1" cellpadding="1" border="1"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th&gt;Restaurante&lt;br /&gt;&lt;/th&gt;&lt;th&gt;Localización &lt;br /&gt;&lt;/th&gt;&lt;th&gt;Tipo Comida &lt;/th&gt;&lt;th&gt;&lt;br /&gt;&lt;/th&gt;&lt;/tr&gt;
+
+&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Autogrill&lt;/strong&gt;&lt;/td&gt;&lt;td&gt; Estaciones de servicio Cepsa&lt;/td&gt;&lt;td&gt; Comida Rapida&lt;/td&gt;&lt;td&gt; &lt;a target="_blank" href="http://www.autogrill.es"&gt;WEB&lt;/a&gt; &lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Monumento Al Pastor &lt;br /&gt;&lt;/strong&gt;&lt;/td&gt;&lt;td&gt; Carretera Madrid-irun KM 308 09219 Ameyugo&lt;/td&gt;&lt;td&gt; Comida Casera&lt;/td&gt;&lt;td&gt; &lt;a target="_blank" href="http://www.monumentoalpastor.com"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Cafestore Valdaliga&lt;/strong&gt;&lt;/td&gt;&lt;td&gt; Autovia A-8 KM 256 39593 Valdaliga&lt;/td&gt;&lt;td&gt; Comida Rapida&lt;/td&gt;&lt;td&gt; &lt;a href="http://www.cafestore.es" target="_blank"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Restaurante Pontiñas&lt;/strong&gt;&lt;/td&gt;&lt;td&gt; Rua Da Ponte 82 36500 -&lt;br /&gt;Lalin (Pontevedra) Tel: 986 787 147&lt;br /&gt;&lt;/td&gt;&lt;td&gt; Comida Casera&lt;/td&gt;&lt;td&gt; &lt;a href="http://hotelpontinas.com" target="_blank"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Virgen De Zocueca&lt;/strong&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;Autovia De Andalucía KM 303 23710 Bailen &lt;/td&gt;&lt;td&gt; Menús&lt;/td&gt;&lt;td&gt; &lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Restaurante Saga&lt;/strong&gt;&lt;/td&gt;&lt;td&gt; Carretera Madrid KM 171 13200 Manzanares (Ciudad Real)&lt;/td&gt;&lt;td&gt; Comida Casera&lt;/td&gt;&lt;td&gt; &lt;a target="_blank" href="http://www.hotelsaga.com"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;La Cuba&lt;/strong&gt;&lt;/td&gt;&lt;td&gt; Ctra. de Villalba a Navacerrada,Km 7,5. M-601&lt;/td&gt;&lt;td&gt; Menús &lt;br /&gt;&lt;/td&gt;&lt;td&gt; &lt;a href="http://www.restaurantelacuba.com" target="_blank"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>373</idPagina>
+    <Titulo>donde dormir</Titulo>
+    <Enlace />
+    <Contenido>&lt;h1&gt;Dónde dormir&lt;/h1&gt;
+	&lt;table width="604" rules="none" height="203" frame="void" cellspacing="1" cellpadding="1" border="0"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt; Hotel  &lt;br /&gt;&lt;/th&gt;&lt;th&gt; Localilzación&lt;/th&gt;&lt;th&gt;Tarifas&lt;br /&gt;&lt;/th&gt;&lt;th&gt;&lt;br /&gt;&lt;/th&gt; &lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tucanda - Aranda&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Ctra. Madrid - Irún, km 153 - A1&lt;br /&gt;(Entrada en ambas direcciones, salida km 152,800) - Aranda de Duero &lt;br /&gt;&lt;/td&gt;&lt;td&gt; 46 euros&lt;/td&gt;&lt;td&gt; &lt;a target="_blank" href="http://www.hotelestudanca.com/tudancariberadelduero"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tucanda - Miranda&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Ctra.N-I Km.318 - Miranda de Ebro&lt;/td&gt;&lt;td&gt; 46 euros&lt;/td&gt;&lt;td&gt; &lt;a href="http://www.hoteltudanca.com" target="_blank"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Tucanda - Benavente &lt;/strong&gt;&lt;br /&gt;&lt;/td&gt;&lt;td&gt;Ctra. N-VI, Km. 268 A-6  Madrid - A Coruña Sal. 266 Villabrázaro  Benavente (Zamora)&lt;/td&gt;&lt;td&gt; 38 euros&lt;/td&gt;&lt;td&gt; &lt;a href="http://www.tudancabenavente.com" target="_blank"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Hotel Asador&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Carretera De Logroño S/n Salida: Castañares (Burgos)&lt;/td&gt;&lt;td&gt; 46 euros&lt;br /&gt;&lt;/td&gt;&lt;td&gt; &lt;a href="http://www.ultrahoteles.es/burgos/burgos/SG90ZWwgQXNhZG9yIEgubS4gVmVyc3Vz,b_92779.html" target="_blank"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Hotel Rey Arturo&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;C. N. 620, Km 6,6 (Burgos) &lt;/td&gt;&lt;td&gt; 54 euros&lt;/td&gt;&lt;td&gt; &lt;a href="http://www.ultrahoteles.es/burgos/burgos/UmV5IEFydHVybw%3D%3D,v_26155.html" target="_blank"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Hotel Lintzirin&lt;/strong&gt;&lt;/td&gt;&lt;td&gt; Lintzirin Poligonoa 7 20180 Oiartzun&lt;/td&gt;&lt;td&gt; 51 euros&lt;br /&gt;&lt;/td&gt;&lt;td&gt; &lt;a href="http://www.hotellintzirin.com" target="_blank"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;&lt;strong&gt;Hotel Suave&lt;/strong&gt;&lt;/td&gt;&lt;td&gt;Carretera Infiesto S/N 33320 Colunga Teléfono: 985 856 266&lt;/td&gt;&lt;td&gt; &lt;/td&gt;&lt;td&gt; &lt;a href="http://www.icolunga.com/hotelelsueve" target="_blank"&gt;WEB&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td valign="top"&gt;&lt;strong&gt;Hotel Pontiñas&lt;/strong&gt;&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;Rua Da Ponte 82 36500 Lalin. Teléfono: 986 787 147&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt; 25 euros&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt; &lt;a href="http://hotelpontinas.com" target="_blank"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td valign="top"&gt;&lt;strong&gt;Hotel Saga&lt;/strong&gt;&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;Carretera Madrid KM 171 - 13200 Manzanares (Ciudad Real)&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt; 50 euros&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt; &lt;a target="_blank" href="http://www.hotelsaga.com"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align: top;"&gt;&lt;strong&gt;as hotel Lleida&lt;/strong&gt;&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;Situado en la Autopista AP-2 Km 142 Área de Lleida - Alfes (Lleida)&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt; 50 euros&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt; &lt;a target="_blank" href="http://www.ashoteles.es"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align: top;"&gt;&lt;strong&gt;Pretur Puerta de España&lt;/strong&gt;&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;Cra. N-II, km 781 (17700) La Jonquera, Gerona&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt; 45 euros&lt;/td&gt;&lt;td style="vertical-align: top;"&gt; &lt;a target="_blank" href="http://www.pretur.com/hotel_puerta_espana.php"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td style="vertical-align: top;"&gt;&lt;strong&gt;Capitulaciones&lt;/strong&gt;&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt;Carretera Málaga KM 443,000 18320 Santa Fe&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt; 40 euros&lt;br /&gt;&lt;/td&gt;&lt;td style="vertical-align: top;"&gt; &lt;a href="http://www.hotelcapitulaciones.com" target="_blank"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td valign="top"&gt;&lt;strong&gt;Motel los Olivos&lt;/strong&gt;&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt;Carretera Andalucia, 12 Cerro de los Ángeles (Madrid) - 916 956 700&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt; 45 euros&lt;br /&gt;&lt;/td&gt;&lt;td valign="top"&gt; &lt;a href="http://www.motellosolivos.com" target="_blank"&gt;WEB&lt;/a&gt;&lt;br /&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;p&gt;&lt;br /&gt;
+&lt;/p&gt;&lt;p&gt;&lt;strong&gt;* Tarifas: Precio mínimo por noche.&lt;/strong&gt; &lt;/p&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>374</idPagina>
+    <Titulo>Detalle Albaran pdf</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)} 
+{frmSelect(SELECT * FROM BDGT.V_BDGT_ALBARANES_I WHERE CODIGO = {cs}{frmRequest(codigo)}{cs} AND CODIGOCHOFER IN(SELECT CODIGOCHOFER FROM BDGT.V_BDGT_CHOFERES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(campo1)}))}
+--&gt;
+&lt;div class="pdfdata"&gt;
+	&lt;h2&gt;
+		Detalle del albaran&lt;/h2&gt;
+	&lt;table border="1" width="100%"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					CODIGO: {frmValor(CODIGO)}&lt;/td&gt;
+				&lt;td&gt;
+					Tipo viaje: {frmValor(TIPODEVIAJE)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					Fecha de carga: {frmValor(FECHA)}&lt;/td&gt;
+				&lt;td&gt;
+					Destino: {frmValor(DESTINO)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					País: {frmValor(PAIS)}&lt;/td&gt;
+				&lt;td&gt;
+					Pedido mercancía: {frmValor(PEDIDOMERCANCIA)}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;table border="1" width="100%"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;br /&gt;
+					Cliente: {frmValor(CLIENTE)}&lt;/td&gt;
+				&lt;td&gt;
+					Empresa: {frmValor(EMPRESA)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					Terminal de carga: {frmValor(CARGA)}&lt;/td&gt;
+				&lt;td&gt;
+					Booking: {frmValor(BOOKING)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					Barco: {frmValor(BARCO)}&lt;/td&gt;
+				&lt;td&gt;
+					Puerto: {frmValor(PUERTO)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					Terminal de descarga: {frmValor(DESCARGA)}&lt;/td&gt;
+				&lt;td&gt;
+					Número barco: {frmValor(NUMEROBARCO)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					Fecha salida: {frmValor(FECHASALIDA)}&lt;/td&gt;
+				&lt;td&gt;
+					Número albarán: {frmValor(NUMEROALBARAN)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					Matrícula: {frmValor(MATRICULASERVICIO)}&lt;/td&gt;
+				&lt;td&gt;
+					Fecha albarán: {frmValor(FECHAALBARAN)}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;h2&gt;
+		&lt;br /&gt;
+		Lista de contenedores&lt;/h2&gt;
+	&lt;br /&gt;
+	Contenedor: {frmValor(CONTENEDOR)}
+	&lt;table border="1" width="100%"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					Número&lt;/td&gt;
+				&lt;td&gt;
+					Precinto 1&lt;/td&gt;
+				&lt;td&gt;
+					Precinto 2&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>Intranet PDF</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>375</idPagina>
+    <Titulo>detalle factura pdf</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)} 
+{frmSelect(SELECT * FROM BDGT.V_BDGT_FACTURAS_O WHERE CODIGOFACTURACOMPRA = {frmRequest(codigo)} AND CODIGOPROVEEDOR IN(SELECT CODIGOPROVEEDOR FROM BDGT.V_BDGT_CHOFERES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(Campo2)}))}
+--&gt;
+&lt;div class="pdfdata"&gt;
+	&lt;table border="1" width="100%"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td align="left"&gt;
+					&lt;h3&gt;
+						Transportes: {frmValor(RAZONSOCIALPROVEEDOR)}&lt;/h3&gt;
+					&lt;br /&gt;
+					C.I.F.: {frmValor(NIFPROVEEDOR)}&lt;br /&gt;
+					Dirección: {frmValor(DIRECCIONPROVEEDOR)}&lt;br /&gt;
+					Población: {frmValor(POBLACIONPROVEEDOR)}&lt;br /&gt;
+					Matrícula: {frmValor(MATRICULACAMION)}&lt;br /&gt;
+					Número factura: {frmValor(numerofactura)}&lt;br /&gt;
+					Fecha factura: {frmValor(Fechafactura)}&lt;br /&gt;
+					&lt;!--
+{frmVariable(0, {frmValor(baseimponible)})} 
+{frmVariable(1, {frmValor(PORCENTAJEIVA)})} 
+{frmVariable(2, {frmValor(importeiva)})} 
+{frmVariable(3, {frmValor(totalneto)})}
+--&gt;&lt;/td&gt;
+				&lt;td&gt;
+					&lt;img src="sitios{directorioPortal}serport{directorioPortal}img{directorioPortal}logo.png" /&gt;&lt;br /&gt;
+					Dirección: Zona ZAL, muelle AZ3, Edif. Cargor, 2º Drcha.&lt;br /&gt;
+					Teléfonos: 946 355 562&lt;br /&gt;
+					Fax: 946 355 541&lt;br /&gt;
+					48508 - Zierbana (Bizkaia)&lt;br /&gt;
+					CIF: F95788832&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;p&gt;
+		 &lt;/p&gt;
+	&lt;table border="1" cellpadding="0" cellspacing="0" width="100%"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td width="15%"&gt;
+					&lt;h3&gt;
+						Fecha&lt;/h3&gt;
+				&lt;/td&gt;
+				&lt;td width="15%"&gt;
+					&lt;h3&gt;
+						NºAlbarán&lt;/h3&gt;
+				&lt;/td&gt;
+				&lt;td width="15%"&gt;
+					&lt;h3&gt;
+						Origen&lt;/h3&gt;
+				&lt;/td&gt;
+				&lt;td width="15%"&gt;
+					&lt;h3&gt;
+						Destino&lt;/h3&gt;
+				&lt;/td&gt;
+				&lt;td width="25%"&gt;
+					&lt;h3&gt;
+						Contenedor&lt;/h3&gt;
+				&lt;/td&gt;
+				&lt;td align="right" width="15%"&gt;
+					&lt;h3&gt;
+						Importe&lt;/h3&gt;
+				&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!-- {frmSelect(select * from bdgt.v_bdgt_albaranes_FACTURA where CODIGOFACTURACOMPRA={frmRequest(codigo)})} --&gt;&lt;!-- {frmRepetir()} --&gt;			&lt;tr&gt;
+				&lt;td width="15%"&gt;
+					{frmValor(fecha)}&lt;/td&gt;
+				&lt;td width="15%"&gt;
+					{frmValor(Albaran)}&lt;/td&gt;
+				&lt;td width="15%"&gt;
+					{frmValor(origen)}&lt;/td&gt;
+				&lt;td width="15%"&gt;
+					{frmValor(destino)}&lt;/td&gt;
+				&lt;td width="25%"&gt;
+					{frmValor(NUMEROCONTENEDOR)}&lt;/td&gt;
+				&lt;td align="right" width="15%"&gt;
+					{frmValor(IMPORTE)} €&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!-- {frmFinRepetir()} --&gt;		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;p&gt;
+		 &lt;/p&gt;
+	&lt;table border="0" width="100%"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td align="right"&gt;
+					Base imponible:&lt;/td&gt;
+				&lt;td align="right"&gt;
+					{frmVariable(0)} €&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td align="right"&gt;
+					Importe IVA ({frmVariable(1)}%):&lt;/td&gt;
+				&lt;td align="right"&gt;
+					{frmVariable(2)} €&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td align="right"&gt;
+					Total neto:&lt;/td&gt;
+				&lt;td align="right"&gt;
+					{frmVariable(3)} €&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>Intranet PDF</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>376</idPagina>
+    <Titulo>facturas pdf</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmMaxRegistrosPagina(50)}
+--&gt;&lt;!--
+{frmSelect(SELECT * FROM BDGT.v_bdgt_FACTURAS_o WHERE CODIGOPROVEEDOR IN(SELECT CODIGOPROVEEDOR FROM BDGT.V_BDGT_CHOFERES_PROVEEDOR WHERE CODIGOPROVEEDORINTRANETID={frmUsuario(campo1)}) {frmSii({frmRequest(wFechaHasta)},,,AND to_date(FECHAFACTURA{coma}{cs}dd/mm/yyyy{cs}) &lt;=to_date({cs}{frmRequest(wFechaHasta)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} {frmSii({frmRequest(wFechaDesde)},,,AND to_date(FECHAFACTURA{coma}{cs}dd/mm/yyyy{cs}) &gt;=to_date({cs}{frmRequest(wFechaDesde)}{cs}{coma}{cs}dd/mm/yyyy{cs}))} {frmSii({frmRequest(wSort)},,,ORDER BY {frmRequest(wSort)} DESC)})}
+--&gt;
+&lt;div class="pdfdata"&gt;
+	&lt;h2&gt;
+		Consulta de facturas&lt;/h2&gt;
+	&lt;table border="1" width="100%"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					Código&lt;/td&gt;
+				&lt;td&gt;
+					Fecha&lt;/td&gt;
+				&lt;td&gt;
+					Base&lt;/td&gt;
+				&lt;td&gt;
+					Iva&lt;/td&gt;
+				&lt;td&gt;
+					Importe&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!--{frmRepetir()}--&gt;			&lt;tr&gt;
+				&lt;td&gt;
+					&lt;br /&gt;
+					{frmValor(CodigoFacturaCompra)}&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(Fechafactura)}&lt;/td&gt;
+				&lt;td align="right"&gt;
+					{frmValor(baseimponible)}&lt;/td&gt;
+				&lt;td align="right"&gt;
+					{frmValor(importeiva)}&lt;/td&gt;
+				&lt;td align="right"&gt;
+					{frmValor(totalneto)}&lt;/td&gt;
+			&lt;/tr&gt;
+&lt;!--{frmFinRepetir()}--&gt;		&lt;/tbody&gt;
+	&lt;/table&gt;
+&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>Intranet PDF</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>378</idPagina>
+    <Titulo>detalle servicio pdf</Titulo>
+    <Enlace />
+    <Contenido>&lt;!--
+{frmConn(OracleConnection)}
+{frmSelect(SELECT * FROM BDGT.V_BDGT_SERVICIOS_I WHERE CODIGOSERVICIO = {frmRequest(codigo)} AND CODIGOCLIENTE IN(SELECT CODIGOCLIENTECONSULTAR FROM BDGT.V_BDGT_CLIENTESINTRANET WHERE CODIGOCLIENTE={frmUsuario(campo1)}))}
+--&gt;
+&lt;div class="pdfdata"&gt;
+	&lt;h2&gt;
+		Detalle del servicio&lt;/h2&gt;
+	&lt;table border="1"&gt;
+		&lt;tbody&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						CODIGO
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(Codigo)}&lt;/td&gt;
+				&lt;td&gt;
+					
+						Referencia
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(REFERENCIA)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Tipo viaje
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(Tipo)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Fecha de carga
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(fechacarga)}&lt;/td&gt;
+				&lt;td&gt;
+					
+						Empresa
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(empresa)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Destino
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(poblacion)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						País
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(pais)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Pedido mercancía
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(pedidomercancia)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Terminal de carga
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(carga)}&lt;/td&gt;
+				&lt;td&gt;
+					
+						Booking
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(booking)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Barco
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(barco)}&lt;/td&gt;
+				&lt;td&gt;
+					
+						Número barco
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(numerobarco)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Puerto
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(puerto)}&lt;/td&gt;
+				&lt;td&gt;
+					
+						Fecha salida
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(fechasalida)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Terminal de descarga
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(descarga)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Número albarán
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(numeroalbaran)}&lt;/td&gt;
+				&lt;td&gt;
+					
+						Número puerto
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(NumeroSocioPuertoContenedor)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Matrícula
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(matriculaservicio)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Estado
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(estado)}&lt;/td&gt;
+				&lt;td&gt;
+					
+						Recogida
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(recogido)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Entrada
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(entrada)}&lt;/td&gt;
+				&lt;td&gt;
+					
+						Salida
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(salida)}&lt;/td&gt;
+			&lt;/tr&gt;
+			&lt;tr&gt;
+				&lt;td&gt;
+					
+						Fin de trabajo
+				&lt;/td&gt;
+				&lt;td&gt;
+					{frmValor(fintrabajo)}&lt;/td&gt;
+			&lt;/tr&gt;
+		&lt;/tbody&gt;
+	&lt;/table&gt;
+	&lt;h2&gt;
+		Lista de contenedores&lt;/h2&gt;
+	&lt;div style="width:48%;float:left;"&gt;
+		Contenedor: {frmValor(contenedor)}
+		&lt;table border="1"&gt;
+			&lt;thead&gt;
+				&lt;tr class="cabeceraTabla"&gt;
+					&lt;th class="thInicio"&gt;
+						Número&lt;/th&gt;
+					&lt;th&gt;
+						Precinto 1&lt;/th&gt;
+					&lt;th class="thCierre"&gt;
+						Precinto 2&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+&lt;!-- {frmSelect(select * from BDGT.V_BDGT_CONTENEDORES_SERVICIO where codigoservicio={frmValor(codigoservicio)})} --&gt;&lt;!-- {frmRepetir()} --&gt;				&lt;tr&gt;
+					&lt;td&gt;
+						{frmValor(NumeroContenedor)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmValor(Precinto1)}&lt;/td&gt;
+					&lt;td&gt;
+						{frmValor(Precinto2)}&lt;/td&gt;
+				&lt;/tr&gt;
+&lt;!-- {frmFinRepetir()} --&gt;			&lt;/tbody&gt;
+			&lt;tbody&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>Intranet PDF</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>385</idPagina>
+    <Titulo>Limpiar</Titulo>
+    <Enlace>limpiar.aspx</Enlace>
+    <Contenido />
+    <soloAdmin>true</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>ADMIN</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>390</idPagina>
+    <Titulo>Desconectar</Titulo>
+    <Enlace>desconectar.aspx</Enlace>
+    <Contenido />
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>ADMIN</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>392</idPagina>
+    <Titulo>avisolegal</Titulo>
+    <Enlace />
+    <Contenido>AVISO LEGAL y POLÍTICA DE PRIVACIDAD&lt;br /&gt;
+&lt;br /&gt;
+1. DATOS IDENTIFICATIVOS: En cumplimiento con el deber de información recogido en el artículo 10 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y del Comercio Electrónico (en adelante LSSI-CE), a continuación se reflejan los siguientes datos:
+&lt;div id="cke_pastebin"&gt;
+	- Página Web: serport.biz&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- Razón Social: SERPORT GESTION S.COOP.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- NIF: F95788832&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- Domicilio: ZONA ZAL MUELLE AZ3 EDIF. CARGOR 2º, 48508 ZIERBENA&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	(BIZKAIA)&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- Datos del Registro Mercantil: &lt;span style="font-family: arial, sans-serif; font-size: 12.8px;"&gt;Inscripción en el Reg. de Cooperativas de Euskadi, asiento 1, folio2552&lt;/span&gt;&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- Correo electrónico: administracion@serport.biz&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	2. USUARIOS: El acceso y/o uso de este portal de SERPORT GESTION S.COOP. atribuye la condición de USUARIOS, que acepta, desde dicho acceso y/o uso, las Condiciones Generales de Uso aquí reflejadas. Las citadas Condiciones serán de aplicación independientemente de las Condiciones Generales de Contratación que en su caso resulten de obligado cumplimiento.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	 &lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	3. USO DEL PORTAL: serport.biz proporciona el acceso a multitud de informaciones, servicios, programas o datos (en adelante, “los contenidos”) en Internet pertenecientes a SERPORT GESTION S.COOP. o a licenciantes a los que el USUARIO pueda tener acceso. El USUARIO asume la responsabilidad del uso del portal. Dicha responsabilidad se extiende al registro que fuese necesario para acceder a determinados servicios o contenidos. En dicho registro el USUARIO será responsable de aportar información veraz y lícita. Como consecuencia de este registro, al USUARIO se le puede proporcionar una contraseña de la que será responsable, comprometiéndose a hacer un uso diligente y confidencial de la misma. El USUARIO&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	se compromete a hacer un uso adecuado de los contenidos y servicios que SERPORT GESTION S.COOP. ofrece a través de su portal y con carácter enunciativo pero no limitativo, a no emplearlos para:&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- Incurrir en actividades ilícitas, ilegales o contrarias a la buena fe y al orden público.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- Difundir contenidos o propaganda de carácter racista, xenófobo, pornográfico-ilegal, de apología del terrorismo o atentatorio contra los derechos humanos.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- Provocar daños en los sistemas físicos y lógicos de SERPORT GESTION S.COOP., de sus proveedores o de terceras personas, introducir o difundir en la red virus informáticos o cualesquiera otros sistemas físicos o lógicos que sean susceptibles de provocar los daños anteriormente mencionados.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- Intentar acceder y, en su caso, utilizar las cuentas de correo electrónico de otros usuarios y modificar o manipular sus mensajes.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	- SERPORT GESTION S.COOP. se reserva el derecho a retirar todos aquellos comentarios y aportaciones que vulneren el respeto a la dignidad de la persona, que sean discriminatorios, xenófobos, racistas, pornográficos, que atenten contra la&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	juventud o la infancia, el orden o la seguridad pública o que, a su juicio, no resultaran adecuados para su publicación. En cualquier caso, SERPORT GESTION S.COOP. no será responsable de las opiniones vertidas por los usuarios a través de los foros, chats, u otras herramientas de participación.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	 &lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	4. PROTECCIÓN DE DATOS: SERPORT GESTION S.COOP. cumple con las directrices de la Ley Orgánica 15/1999, de 13 de diciembre, de Protección de Datos de Carácter Personal (en adelante LOPD), el Real Decreto 1720/2007, de 21 de diciembre, por el que se aprueba el Reglamento de desarrollo de la Ley Orgánica (en adelante RDLOPD) y demás normativa vigente en cada momento, y vela por garantizar un correcto uso y tratamiento de los datos personales del usuario. Para ello, junto a cada formulario de recogida de datos de carácter personal en los servicios que el usuario pueda solicitar a SERPORT GESTION S.COOP., hará saber al usuario de la existencia y aceptación de las condiciones particulares del tratamiento de sus datos en cada caso, informándole de la responsabilidad del fichero creado, la dirección del responsable, la posibilidad de ejercer sus derechos de acceso, rectificación, cancelación u oposición, la&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	finalidad del tratamiento y las comunicaciones de datos a terceros en su caso. Asimismo, SERPORT GESTION S.COOP. informa que cumple con la LSSI-CE y le solicitará su consentimiento para el tratamiento de su correo electrónico con fines comerciales en cada momento.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	 &lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	5. PROPIEDAD INTELECTUAL E INDUSTRIAL: SERPORT GESTION S.COOP. por sí o como cesionaria, es titular de todos los derechos de propiedad intelectual e industrial de su página web, así como de los elementos contenidos en la misma (a título enunciativo, imágenes, sonido, audio, video, software o textos; marcas o logotipos, combinaciones de colores, estructura y diseño, selección de materiales usados, programas de ordenador necesarios para su funcionamiento, acceso y uso, etc.), titularidad de SERPORT GESTION S.COOP. o bien de sus licenciantes. En virtud de lo dispuesto en los artículos 8 y 32.1, párrafo segundo, de la Ley Propiedad Intelectual, quedan expresamente prohibidas la reproducción, la distribución y la comunicación pública, incluida su modalidad de puesta a disposición, de la totalidad o parte de los contenidos de esta página web, con fines comerciales, en cualquier soporte y por cualquier medio técnico, sin la autorización de SERPORT GESTION S.COOP. El USUARIO se compromete a respetar los derecho de Propiedad Intelectual e Industrial titularidad de SERPORT GESTION S.COOP. Podrá visualizar los elementos del portal e incluso imprimirlos, copiarlos y almacenarlos en el disco duro de su ordenador o en cualquier otro soporte físico siempre y cuando sea, única y exclusivamente, para su uso personal y privado. El USUARIO deberá abstenerse de suprimir, alterar, eludir o manipular cualquier dispositivo de protección o sistema de seguridad que estuviera instalado en las páginas de SERPORT GESTION S.COOP.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	&lt;br /&gt;
+	6. EXCLUSIÓN DE GARANTÍAS Y RESPONSABILIDAD: SERPORT GESTION S.COOP., no se hace responsable, en ningún caso, de los daños y perjuicios de cualquier naturaleza que pudieran ocasionar, a título enunciativo: errores y omisiones en los contenidos, falta de disponibilidad del portal o la transmisión de virus o programas maliciosos o lesivos en los contenidos, a pesar de haber adoptado todas las medidas tecnológicas necesarias para evitarlo.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	&lt;br /&gt;
+	7. MODIFICACIONES: SERPORT GESTION S.COOP. se reserva el derecho a efectuar sin previo aviso las modificaciones que considere oportunas en su portal, pudiendo cambiar, suprimir o añadir tanto los contenidos y servicios que se presten a través de la misma como la forma en la que éstos aparezcan presentados o localizados en su portal.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	&lt;br /&gt;
+	8. ENLACES: En el caso de que en serport.biz se dispusiesen enlaces o hipervínculos hacia otros sitios de Internet, SERPORT GESTION S.COOP. no ejercerá ningún tipo de control sobre dichos sitios y contenidos. En ningún caso SERPORT GESTION S.COOP. asumirá responsabilidad alguna por los contenidos de algún enlace perteneciente a un sitio web ajeno, ni garantizará la disponibilidad técnica, calidad,&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	fiabilidad, exactitud, amplitud, veracidad, validez y constitucionalidad de cualquier material o información contenida en ninguno de dichos hipervínculos u otros sitios de Internet. Igualmente la inclusión de estas conexiones externas no implicará ningún tipo de asociación, fusión o participación con las entidades conectadas.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	&lt;br /&gt;
+	9. DERECHO DE EXCLUSIÓN: SERPORT GESTION S.COOP. se reserva el derecho a denegar a retirar el acceso a portal y/o los servicios ofrecidos sin necesidad de preaviso, a instancia propia o de un tercero, a aquellos usuarios que incumplan las presentes Condiciones Generales de Uso.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	&lt;br /&gt;
+	10. GENERALIDADES: SERPORT GESTION S.COOP. perseguirá el incumplimiento de las presentes condiciones así como cualquier utilización indebida de su portal ejerciendo todas las acciones civiles y penales que le puedan corresponder en&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	derecho.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	&lt;br /&gt;
+	11. MODIFICACIÓN DE LAS PRESENTES CONDICIONES Y DURACIÓN: SERPORT GESTION S.COOP. podrá modificar en cualquier momento las condiciones aquí determinadas, siendo debidamente publicadas como aquí aparecen. La vigencia de las citadas condiciones irá en función de su exposición y estarán vigentes hasta que sean modificadas por otras debidamente publicadas.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	&lt;br /&gt;
+	12. LEGISLACIÓN APLICABLE Y JURISDICCIÓN: SERPORT GESTION S.COOP. se reserva la facultad de presentar las acciones civiles o penales que considere oportunas por la utilización indebida de su sitio web o por el incumplimiento de las presentes condiciones.&lt;/div&gt;
+&lt;div id="cke_pastebin"&gt;
+	La relación entre el usuario y el prestador se regirá por la normativa vigente y de aplicación en el territorio español. De surgir cualquier controversia las partes podrán someter sus conflictos cumpliendo con las normas sobre jurisdicción y competencia al respecto. SERPORT GESTION S.COOP. tiene su domicilio en BIZKAIA, España.&lt;/div&gt;
+</Contenido>
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>false</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>396</idPagina>
+    <Titulo>Documentación Transportistas</Titulo>
+    <Enlace>sitios/serport/code/documentacion.aspx</Enlace>
+    <Contenido />
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+  <Paginas>
+    <idPagina>398</idPagina>
+    <Titulo>Documentación Choferés</Titulo>
+    <Enlace>sitios/serport/code/choferes.aspx</Enlace>
+    <Contenido />
+    <soloAdmin>false</soloAdmin>
+    <requiereLogin>true</requiereLogin>
+    <Padre>0</Padre>
+    <idCategoria>0</idCategoria>
+    <plantilla>DEFECTO</plantilla>
+  </Paginas>
+</DocumentElement>

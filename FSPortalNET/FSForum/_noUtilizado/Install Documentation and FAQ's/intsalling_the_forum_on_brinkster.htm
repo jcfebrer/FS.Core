@@ -1,0 +1,110 @@
+<html>
+<head>
+<title>Web Wiz Forum's Installing the Forum</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.text {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; color: #000000}
+.heading {  font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-weight: bold; color: #000000}
+.title {  font-family: Arial, Helvetica, sans-serif; font-size: 33px; font-style: normal; font-weight: bold; color: #000000}
+a {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #0000CC; text-decoration: underline}
+a:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #FF0000; text-decoration: underline; font-style: normal}
+a:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; color: #0000FF; text-decoration: underline}
+a:visited:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #FF0000; text-decoration: underline; font-style: normal}
+.smtitle {  font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-style: normal; font-weight: bold; color: #000000}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+ <tr>
+  <td align="center" class="title">Web Wiz Forums Documentation<span class="smtitle"><br />
+   Installing Web Wiz Forums on Brinkster (free accounts)<br />
+   <a href="menu.htm" target="_self">Return to the main menu</a></span></td>
+ </tr>
+</table>
+<br />
+<table width="96%" border="0" cellspacing="0" cellpadding="2" align="center">
+ <tr> 
+  <td class="text"> <ol>
+    <li>Unzip the Forum zip file onto your hard drive keeping the files in their original directories. </li>
+    <li>Edit the two files called common.aspx with a text editor like notepad. One common.aspx file is with the main files and the other should be in a directory called admin. 
+     <ol>
+      <li>In both these files you should find the following line: -<br />
+       <br />
+       <font color="#FF0000">'</font>strDbPathAndName = Server.MapPath(&amp;quot;/<font color="#FF0000">usuario</font>/db/wwForum.mdb&amp;quot;)<br />
+       <br />
+      </li>
+      <li>Remove the single quote mark ' shown in red above from the beginning of this line.</li>
+      <li>Place your Brinkster usuario in the place, usuario, marked above in red.<br />
+      </li>
+     </ol>
+    </li>
+    <li>Edit the common.aspx file found in the main forum folder and change the following variable: -
+     <blockquote>
+      <p>blnUseApplicationVariables = true</p>
+     </blockquote>
+     <p>To: -</p>
+     <blockquote>
+      <p>blnUseApplicationVariables = <font color="#FF0000">false</font> </p>
+     </blockquote>
+    </li>
+    <li>Save the amended files.</li>
+    <li>Upload the database called wwForum.mdb found in the admin/database directory of the forum to the directory called, <b>db</b>, on your Brinkster web space.</li>
+    <li>Create a new folder on your Brinkster web space called <b>forum</b>.</li>
+    <li>Create the following directories in the forum directory you have just created. 
+     <ol>
+      <li>admin 
+       <ol>
+        <li>database</li>
+        <li>functions</li>
+        <li>images</li>
+        <li>includes</li>
+        <li>security_images</li>
+       </ol>
+      </li>
+      <li>avatars</li>
+      <li>forum_images</li>
+      <li>functions</li>
+      <li>includes</li>
+      <li>language_files</li>
+      <li>security_images</li>
+      <li>smileys</li>
+      <li></li>
+     </ol>
+    uploads</li>
+    <li>Now upload all the Web Wiz Forums files and images to there respective folders you have created on your Brinkster web space.</li>
+    <li>Once all the files are uploaded type the web address (URL) in your web browser to the location on your Brinkster web space where you uploaded the forum to so you can view the forum in your browser.</li>
+    <li>If you have any problems trying to run the forum check that you have carried out all the above steps and edited both common.aspx files correctly.</li>
+    <li>If the forum still isn't running try signing up to Brinkster again as it is not unheard of for Brinkster accounts to not be set up correctly.</li>
+    <li>To login into the forum the default admin usuario and clave is: - 
+     <ul>
+      <li><b>usuario: - </b>Administrator</li>
+      <li><b>clave: -</b> letmein</li>
+     </ul>
+    </li>
+    </ol>  
+   <p><strong>Important Note For Free Hosting Accounts:- </strong><br />
+    <br />
+Due to the way free web hosts setup sites some features of Web Wiz Forums can not be used and will need to be disabled from the admin area once Web Wiz Forums is setup including:- </p>
+   <ol>
+    <li> Make sure you have followed the instructions above and have disabled the 'blnUseApplicationVariables', found in the common.aspx file otherwise your forum will NOT run!!! </li>
+    <li>WYSIWYG (RTE) Post Editor - The adds that free web hosts inject into pages prevent this feature from running </li>
+    <li> All email features - Free web hosts don't generally have email components installed and/or disabled with their free accounts </li>
+    <li>Active Users List - Your site will be sharing server resources with other sites this prevents this feature from running correctly </li>
+    <li>If you are using a free account from 1asphost, domaindlx, or Brinkster then the buttons for the post editor will not work as their add '100mb webspace etc.', is injected into a JavaScript file
+     making the JavaScript within the file fail to run. </li>
+   </ol></td>
+ </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10" align="center">
+ <tr> 
+  <td align="center" class="text" height="17"><a href="http://www.webwizguide.info" target="_blank"><img src="web_wiz_guide.gif" width="116" height="38" border="0" alt="Web Wiz Guide!"></a><br />
+   <br />
+   Copyright 2000-2004 Bruce Corkhill<br />
+   Web Wiz Guide, PO Box 4982, Bournemouth, BH8 8XP, United Kingdom</td>
+ </tr>
+</table>
+</body>
+</html>

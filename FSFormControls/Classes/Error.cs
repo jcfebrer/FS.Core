@@ -1,0 +1,227 @@
+#region
+
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Reflection;
+using System.Windows.Forms;
+using FSLibrary;
+using DateTimeUtil = FSLibrary.DateTimeUtil;
+
+#endregion
+
+namespace FSFormControls
+{
+    public class Error
+    {
+        public void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon,
+            Exception ex, bool Silent)
+        {
+            if (FSException.ExceptionUtil.IsCritical(ex)) throw ex;
+
+            try
+            {
+                string mess = null;
+                var frmE = new frmError();
+                var senderName = "Nothing";
+                var ver = "";
+                try
+                {
+                    ver = "Versión: " +
+                          FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileMajorPart + "." +
+                          FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileMinorPart;
+                }
+                catch
+                {
+                    ver = "Null";
+                }
+
+
+                Cursor.Current = Cursors.Default;
+
+                try
+                {
+                    if (sender != null && sender is Control)
+                        senderName = ((Control) sender).Name;
+                }
+                catch
+                {
+                    senderName = "Nothing";
+                }
+
+                mess = "InstallDir: " + Environment.CurrentDirectory + "\r\n";
+                mess = mess + "Machine: " + Environment.MachineName + "\r\n";
+                mess = mess + "OSVersion: " + Environment.OSVersion + "\r\n";
+                try
+                {
+                    mess = mess + "User Domain: " + Environment.UserDomainName + "\r\n";
+                }
+                catch
+                {
+                    mess = mess + "User Domain: Null" + "\r\n";
+                }
+
+                mess = mess + "User Name: " + Environment.UserName + "\r\n";
+                mess = mess + "Version: " + Environment.Version;
+                mess = mess + "\r\n" + ver + "\r\n";
+                mess = mess + "Sender: [" + senderName + "]" + "\r\n";
+
+                if (sender is DBControl) mess = mess + "SQL: " + ((DBControl) sender).Selection + "\r\n";
+
+                if (frm != null) mess = mess + "Form: " + frm.Name + "\r\n";
+
+                if (ex == null)
+                {
+                    if (message == "")
+                        message =
+                            "Error no controlado de la aplicación. Pulse en 'Desplegar', para una información mas ampliada del error.";
+                }
+                else
+                {
+                    if (message == "") message = ex.Message;
+                    mess = mess + "\r\n" + ex.Message + "\r\n" + ex.Source + "\r\n" + ex.StackTrace + "\r\n";
+                    if (ex.InnerException != null)
+                        mess = mess + "\r\n[InnerException]\r\n" + ex.InnerException + "\r\n";
+                }
+
+                if (title == "") title = "Gestor de Errores";
+                mess = mess + message;
+
+                if (Global.SaveErrorsOnFile) WriteEvent(mess);
+                if (Global.SaveErrorsOnEventLog) WriteEventLog(mess);
+
+                if (!Global.SilentError)
+                    if (!Silent)
+                        frmE.ShowDialog(message, mess, title);
+
+                if (ex == null)
+                    Global.Errors.Add(new Exception(mess + "\r\n" + message));
+                else
+                    Global.Errors.Add(ex);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Imposible gestionar error. Función: ErrorMessage. Error: " + e, "Febrer Software");
+            }
+        }
+
+        public void ErrorMessage(Form frm, object sender, string message)
+        {
+            ErrorMessage(frm, sender, message);
+        }
+
+        public void ErrorMessage(Form frm, object sender, string message, string title)
+        {
+            ErrorMessage(frm, sender, message, title, MessageBoxIcon.Error);
+        }
+
+        public void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon)
+        {
+            ErrorMessage(frm, sender, message, title, icon, null);
+        }
+
+        public void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon,
+            Exception ex)
+        {
+            ErrorMessage(frm, sender, message, title, icon, ex, false);
+        }
+
+
+        public void ErrorMessage(Exception e)
+        {
+            ErrorMessage(null, null, "", "", MessageBoxIcon.Error, e, false);
+        }
+
+
+        public void ErrorMessage(Form frm, Exception e)
+        {
+            ErrorMessage(frm, null, "", "", MessageBoxIcon.Error, e, false);
+        }
+
+
+        public void ErrorMessage(Form frm, Exception e, string message)
+        {
+            ErrorMessage(frm, null, message, "", MessageBoxIcon.Error, e, false);
+        }
+
+
+        public void ErrorMessage(Form frm, string message)
+        {
+            ErrorMessage(frm, null, message, "", MessageBoxIcon.Error, null, false);
+        }
+
+
+        public void ErrorMessage(string message)
+        {
+            ErrorMessage(null, null, message, "", MessageBoxIcon.Error, null, false);
+        }
+
+
+        public void ErrorMessage(Exception e, string message)
+        {
+            ErrorMessage(null, null, message, "", MessageBoxIcon.Error, e, false);
+        }
+
+
+        public void ErrorMessage(Form frm, object sender, Exception e)
+        {
+            ErrorMessage(frm, sender, "", "", MessageBoxIcon.Error, e, false);
+        }
+
+
+        public void ErrorMessage(Form frm, Exception e, bool silent)
+        {
+            ErrorMessage(frm, null, "", "", MessageBoxIcon.Error, e, silent);
+        }
+
+
+        public void ErrorMessage(Form frm, string message, bool silent)
+        {
+            ErrorMessage(frm, null, message, "", MessageBoxIcon.Error, null, silent);
+        }
+
+
+        public void ErrorMessage(Form frm, object sender, Exception e, bool silent)
+        {
+            ErrorMessage(frm, sender, "", "", MessageBoxIcon.Error, e, silent);
+        }
+
+
+        public void WriteEvent(string message)
+        {
+            try
+            {
+                var SW = new StreamWriter("FSLog.txt", true);
+
+                SW.WriteLine(DateTimeUtil.ShortDate(System.DateTime.Now) + " - " + DateTimeUtil.ShortDate(System.DateTime.Now));
+
+                SW.WriteLine(message);
+                SW.WriteLine("\r\n");
+                SW.Flush();
+                SW.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Imposible guardar log de errores. Error: " + ex.Message, "Febrer Software",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        public void WriteEventLog(string message)
+        {
+            try
+            {
+                var log = new EventLog();
+
+                log.Source = "Application";
+                log.WriteEntry(message, EventLogEntryType.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Imposible guardar log de errores. Error: " + ex.Message, "Febrer Software",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+    }
+}

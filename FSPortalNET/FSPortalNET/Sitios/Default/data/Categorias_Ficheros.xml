@@ -1,0 +1,23 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Categorias_Ficheros>
+    <idCategoria>1</idCategoria>
+    <Descripcion>General</Descripcion>
+  </Categorias_Ficheros>
+  <Categorias_Ficheros>
+    <idCategoria>2</idCategoria>
+    <Descripcion>Documentación</Descripcion>
+  </Categorias_Ficheros>
+  <Categorias_Ficheros>
+    <idCategoria>3</idCategoria>
+    <Descripcion>Word</Descripcion>
+  </Categorias_Ficheros>
+  <Categorias_Ficheros>
+    <idCategoria>4</idCategoria>
+    <Descripcion>Excel</Descripcion>
+  </Categorias_Ficheros>
+  <Categorias_Ficheros>
+    <idCategoria>5</idCategoria>
+    <Descripcion>Power Point</Descripcion>
+  </Categorias_Ficheros>
+</DocumentElement>

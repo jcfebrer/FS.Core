@@ -1,0 +1,152 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="FSPortalWPF.editor"
+	x:Name="UserControl"
+	Width="640" Height="480">
+
+  <Grid>
+    <!-- Set the styles for the tool bar. -->
+    <Grid.Resources>
+      <Style TargetType="{x:Type Button}" x:Key="TextStyleRes">
+        <Setter Property="FontFamily" Value="Times New Roman"></Setter>
+        <Setter Property="Width" Value="32"></Setter>
+        <Setter Property="FontSize" Value ="12"></Setter>
+        <Setter Property="CommandTarget" Value="{Binding ElementName=mainRichTextBox}"></Setter>
+      </Style>
+
+      <Style TargetType="{x:Type Button}" x:Key="PicRes">
+        <Setter Property="Width" Value="32"></Setter>
+        <Setter Property="CommandTarget" Value="{Binding ElementName=mainRichTextBox}"></Setter>
+      </Style>
+    </Grid.Resources>
+
+
+    <DockPanel>
+      <StackPanel Name="mainPanel" DockPanel.Dock="Top" >
+
+        <Menu  Name="mainMenuBar" >
+          <MenuItem>
+            <MenuItem.Header>_Fichero</MenuItem.Header>
+            <MenuItem Click="Clear">
+              <MenuItem.Header>_Nuevo</MenuItem.Header>
+            </MenuItem>
+            <Separator />
+            <MenuItem Click="LoadFile">
+              <MenuItem.Header>_Abrir</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Click="SaveFile">
+              <MenuItem.Header>Guardar _Como...</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Click="SaveOpenXML">
+              <MenuItem.Header>_Guardar como OpenXML...</MenuItem.Header>
+            </MenuItem>
+            <Separator />
+            <MenuItem Click="PrintContent">
+              <MenuItem.Header>_Imprimir...</MenuItem.Header>
+            </MenuItem>
+          </MenuItem>
+          <MenuItem>
+            <MenuItem.Header>_Editar</MenuItem.Header>
+            <MenuItem Click="DoUndo" InputGestureText="Ctrl+Z">
+              <MenuItem.Header>_Deshacer</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Click="DoRedo" InputGestureText="Ctrl+Y">
+              <MenuItem.Header>_Reahacer</MenuItem.Header>
+            </MenuItem>
+            <Separator/>
+
+            <MenuItem Click="DoCut" InputGestureText="Ctrl+X">
+              <MenuItem.Header>Cor_tar</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Click="DoCopy" InputGestureText="Ctrl+C">
+              <MenuItem.Header>_Copiar</MenuItem.Header>
+            </MenuItem>
+            <MenuItem Click="DoPaste" InputGestureText="Ctrl+V">
+              <MenuItem.Header>_Pegar</MenuItem.Header>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Click="DoSelectAll">
+              <MenuItem.Header>Seleccionar T_odo</MenuItem.Header>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Click="ToggleSpellCheck" Name="SpellCheckMenuItem">
+              <MenuItem.Header>Ortografía</MenuItem.Header>
+            </MenuItem>
+
+          </MenuItem>
+          </Menu>
+
+
+        <!-- Toolbar -->
+        <ToolBar Name="mainToolBar" Height="30">
+          <ComboBox Name="cb" Width="150" Text="Arial"   SelectionChanged="FontChanged" >
+          </ComboBox>
+          <ComboBox Name="cbsize" Width="50" Text="Arial"   SelectionChanged="FontSizeChanged" >
+          </ComboBox>
+          <ComboBox Name="cbcolor" Width="50" Text="Arial"   SelectionChanged="FontColorChanged" >
+          </ComboBox>
+          <Button Style="{StaticResource TextStyleRes}" Command="EditingCommands.ToggleBold" ToolTip="Negrita">
+            <TextBlock FontWeight="Bold">B</TextBlock>
+          </Button>
+          <Button Style="{StaticResource TextStyleRes}" Command="EditingCommands.ToggleItalic" ToolTip="Italica">
+            <TextBlock FontStyle="Italic" FontWeight="Bold">I</TextBlock>
+          </Button>
+          <Button Style="{StaticResource TextStyleRes}" Command="EditingCommands.ToggleUnderline" ToolTip="Subrayado">
+            <TextBlock TextDecorations="Underline" FontWeight="Bold">U</TextBlock>
+          </Button>
+          
+          <Separator/>
+          <Button Style="{StaticResource TextStyleRes}" Click="InsertImage" ToolTip="Insertar imagen">
+            <Image Source="Images\Image.png"></Image>
+          </Button>
+
+
+          <Separator/>
+          <Button Style="{StaticResource PicRes}" Command="EditingCommands.AlignLeft" ToolTip="Alinear Izquierda">
+            <Image Source="Images\ParagraphLeftJustify.png"></Image>
+          </Button>
+          <Button Style="{StaticResource PicRes}" Command="EditingCommands.AlignCenter" ToolTip="Alinear Centro">
+            <Image Source="Images\ParagraphCenterJustify.png"></Image>
+          </Button>
+          <Button Style="{StaticResource PicRes}" Command="EditingCommands.AlignRight" ToolTip="Alinear Derecha">
+            <Image Source="Images\ParagraphRightJustify.png"></Image>
+          </Button>
+          <Button Style="{StaticResource PicRes}" Command="EditingCommands.AlignJustify" ToolTip="Alinear Justificado">
+            <Image Source="Images\ParagraphFullJustify.png"></Image>
+          </Button>
+
+          <Separator/>
+          <Button Style="{StaticResource PicRes}" Command="EditingCommands.ToggleBullets" ToolTip="Marcas">
+            <Image Source="Images\ListBullets.png"></Image>
+          </Button>
+          <Button Style="{StaticResource PicRes}" Command="EditingCommands.ToggleNumbering" ToolTip="Numerar">
+            <Image Source="Images/ListNumbering.png"></Image>
+          </Button>
+
+          <Separator/>
+          <Button Style="{StaticResource PicRes}" Command="EditingCommands.IncreaseIndentation" ToolTip="Incrementar Indentación">
+            <Image Source="Images\ParagraphIncreaseIndentation.png"></Image>
+          </Button>
+          <Button Style="{StaticResource PicRes}" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrementar Indentación">
+            <Image Source="Images\ParagraphDecreaseIndentation.png"></Image>
+          </Button>
+
+
+        </ToolBar>
+      </StackPanel>
+
+      <!-- Main Rich Text Box -->
+      <RichTextBox Name="mainRichTextBox"
+                   AcceptsTab="True"
+                   VerticalScrollBarVisibility="Auto"
+                   Background="White"
+                   TabIndex="0"
+                   SelectionChanged="TextSelectionChanged"
+                   SpellCheck.IsEnabled="False"
+                   >
+      </RichTextBox>
+    </DockPanel>
+  </Grid>
+  
+</UserControl>

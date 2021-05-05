@@ -1,0 +1,119 @@
+* {
+    color: #182a3b;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", sans-serif;
+    font-size: 100%;
+    font-weight: normal;
+}
+
+a img { border: none; }
+
+/***************************************************************************************** sticky footer ***********************************************************************************************************/
+
+html, body {
+    background-color: #e1e7ec;
+    font-size: 100%;
+    height: 100%;
+    margin: 0px;
+}
+
+div#container {
+    background-image: url(../images/body_background.jpg);
+    background-position: top center;
+    background-repeat: repeat-y;
+    font-size: 0.7em;
+    margin: 0 auto;
+    min-height: 100%;
+    padding: 0px;
+    width: 864px;
+}
+
+* html div#container {
+    font-size: 0.7em;
+    height: 100%;
+}
+
+.cierre {
+    clear: both;
+    display: block;
+    height: 95px;
+    margin: 0 0 0 0;
+    visibility: hidden;
+}
+
+div#header {
+    background-image: url(../images/head.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    clear: both;
+    height: 275px;
+    margin: 0 auto;
+    position: relative;
+    width: 864px;
+}
+
+div#footer {
+    background-image: url(../images/footer.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
+    height: 93px;
+    margin: -93px auto 0px auto;
+    padding: 0px 0 0 0;
+    position: relative;
+    width: 864px;
+}
+
+div#logo {
+    height: 109px;
+    position: absolute;
+    right: 105px;
+    top: 125px;
+    width: 182px;
+}
+
+/*****************************************************************************************************************************************************************************/
+
+/*																																  																																		*/
+
+/*																										clases propias web																																	*/
+
+/*																																																																		*/
+
+/*****************************************************************************************************************************************************************************/
+
+div#contenidos {
+    margin: 0 auto;
+    width: 686px;
+}
+
+div#submenu {
+    float: right;
+    margin: 0 1px 0 0;
+    padding: 0 0px 0 0;
+    width: 189px;
+}
+
+* html div#submenu {
+    float: right;
+    margin: 0 0px 0 0;
+    padding: 0 1px 0 0;
+    width: 189px;
+}
+
+div#datos {
+    float: left;
+    margin: 0 0 0 10px;
+    position: relative;
+    width: 465px;
+}
+
+* html div#datos {
+    float: left;
+    margin: 0 0 0 7px;
+    position: relative;
+    width: 465px;
+}
+
+.segundonivel {
+    margin: 0px 0 0 20px !important;
+    padding: 0 0 0 20px;
+}

@@ -1,0 +1,32 @@
+
+
+Instalación de un nuevo Portal.
+
+1.- Copiamos la carpeta "/sitios/Default" a "/sitios/NuevoPortal"
+2.- Borramos los ficheros no necesarios
+3.- Cambiamos la configuración del fichero web.config.
+4.- Modificamos la plantilla DEFECTO y ADMIN
+5.- Damos permisos de escritura en la carpeta /sitios/NuevoPortal/data
+6.- El servidor IIS debe tener instalado los componentes de acceso a datos (en el caso de access):
+    https://www.microsoft.com/es-es/download/confirmation.aspx?id=13255
+7.- Instalar URL Rewrite (https://www.iis.net/downloads/microsoft/url-rewrite)
+
+
+Si la aplicación en el servidor IIS (que por defecto esta definida como 64bits), todos los controladores de acceso a datos, Oracle, SQL Server, Access, tienen que estar tambien en 64 bits.
+-------------------------------------------------------------------------
+
+
+Instalación:
+
+- Copiar en servidor IIS en la carpeta iisstart
+- Crear una aplicación standard para alojar FSPortal
+
+
+Errores típicos:
+
+Error: System.Web.HttpUnhandledException: Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.Exception: System.Data.OleDb.OleDbException: Disk or network error. - Acceso a al fichero de datos erroneo. Verifique el path del fichero de datos (mdb).
+
+Error: System.Web.HttpUnhandledException: Exception of type 'System.Web.HttpUnhandledException' was thrown. ---> System.Data.OleDb.OleDbException: Operation must use an updateable query. - Permisos incorrectos para acceder al fichero. La carpeta debe tener permisos de escritura.
+
+Error: No se encuentra o no se puede cargar el proveedor de datos de .Net Framework registrado.
+Comprobar que esta instalado el controlador de datos. Oracle.NET, SqlClient, Access, etc.

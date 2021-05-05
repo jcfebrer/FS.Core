@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C63FE788-9113-47AF-ACB5-680C945CD372}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>FSCustomPlugin</AssemblyName>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>FSCustomPlugin</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\FSPortalNET\Bin\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <FileAlignment>4096</FileAlignment>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="ModTwitter.cs" />
+    <Compile Include="ModFileManager.cs" />
+    <Compile Include="ModGaleria.cs" />
+    <Compile Include="ModEventosDeportivosRecientes.cs" />
+    <Compile Include="ModEncuesta.cs" />
+    <Compile Include="ModTitulares.cs" />
+    <Compile Include="ModTablonAnuncios.cs" />
+    <Compile Include="ModNoticias.cs" />
+    <Compile Include="ModOfertasTrabajo.cs" />
+    <Compile Include="ModTopDescargas.cs" />
+    <Compile Include="ModUltimasDescargas.cs" />
+    <Compile Include="ModFicherosRecomendados.cs" />
+    <Compile Include="ModCategoriasFicheros.cs" />
+    <Compile Include="ModProximosEventosDeportivos.cs" />
+    <Compile Include="ModEventosRecientes.cs" />
+    <Compile Include="ModProximosEventos.cs" />
+    <Compile Include="ModCalendario.cs" />
+    <Compile Include="ModMasVendidosFoto.cs" />
+    <Compile Include="ModMasVendidos.cs" />
+    <Compile Include="ModTareas.cs" />
+    <Compile Include="ModRadio.cs" />
+    <Compile Include="ModInmobiliaria.cs" />
+    <Compile Include="ModRSS.cs" />
+    <Compile Include="ModChat.cs" />
+    <Compile Include="ModPublicidad.cs" />
+    <Compile Include="ModFrases.cs" />
+    <Compile Include="ModCorreo.cs" />
+    <Compile Include="ModCategorias.cs" />
+    <Compile Include="ModFabricantes.cs" />
+    <Compile Include="ModFavoritos.cs" />
+    <Compile Include="ModExpertos.cs" />
+    <Compile Include="ModTemas.cs" />
+    <Compile Include="ModComentarios.cs" />
+    <Compile Include="ModTienda.cs" />
+    <Compile Include="ModBannerHorizontal.cs" />
+    <Compile Include="ModBannerVertical.cs" />
+    <Compile Include="ModBanner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\FSDatabase\FSDatabase.csproj">
+      <Project>{31743F95-0D43-4AB1-BD23-45D8A88F2635}</Project>
+      <Name>FSDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FSLibrary\FSLibrary.csproj">
+      <Project>{7E0ADEF9-BCB8-48CD-99B6-68BF862F7083}</Project>
+      <Name>FSLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\FSNetwork\FSNetwork.csproj">
+      <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>
+      <Name>FSNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSPlugin\FSPlugin.csproj">
+      <Project>{A9702F29-163E-46B8-82D1-2FFEC948A57A}</Project>
+      <Name>FSPlugin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSPortal\FSPortal.csproj">
+      <Project>{1F44A9E2-F53B-4FBF-A99F-994922A20B3D}</Project>
+      <Name>FSPortal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSPaginas\FSPaginas.csproj">
+      <Project>{42977236-44BD-4753-AC1A-1C56526CD2F8}</Project>
+      <Name>FSPaginas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+</Project>

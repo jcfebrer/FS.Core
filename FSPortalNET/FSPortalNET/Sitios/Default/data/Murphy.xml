@@ -1,0 +1,179 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Murphy>
+    <idLey>201</idLey>
+    <Texto>Si algo puede fallar, fallará. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>203</idLey>
+    <Texto>Nada es tan fácil como parece serlo. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>205</idLey>
+    <Texto>Todo tiene necesidad de más tiempo del que usted piensa. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>207</idLey>
+    <Texto>Si existe la posibilidad de que varias cosas puedan salir mal, saldrá mal aquella que cause el mayor daño. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>209</idLey>
+    <Texto>Si usted descubre que existen cuatro maneras posibles en que un procedimiento pueda fracasar, y logra solucionarlas, entonces surgirá inevitable y rápidamente una quinta posibilidad de fallo. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>211</idLey>
+    <Texto>Si se dejan al azar las cosas, tenderán a ir de mal en peor. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>213</idLey>
+    <Texto>Siempre que se disponga a hacer algo, habrá antes algo más importante que hacer. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>215</idLey>
+    <Texto>Cada solución genera nuevos problemas. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>217</idLey>
+    <Texto>Es imposible hacer algo a prueba de tontos, porque éstos son muy ingeniosos. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>219</idLey>
+    <Texto>La naturaleza siempre se pone de parte del fallo escondido. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>221</idLey>
+    <Texto>La madre naturaleza es una malvada. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>225</idLey>
+    <Texto>Leyes para programar una computadora: Cualquier programa dado, al ejecutarlo se vuelve obsoleto.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>227</idLey>
+    <Texto>Leyes para programar una computadora: La realización de cualquier programa dado cuesta más y lleva más tiempo.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>229</idLey>
+    <Texto>Leyes para programar una computadora: Si un programa es útil, por algún motivo deberá cambiarlo.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>231</idLey>
+    <Texto>Leyes para programar una computadora: Si un programa es inútil, deberá ser documentado.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>233</idLey>
+    <Texto>Leyes para programar una computadora: Cualquier programa dado se expandirá para llenar toda la memoria disponible en la computadora.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>235</idLey>
+    <Texto>Leyes para programar una computadora: El valor de un programa es proporcional al peso de su información de salida.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>237</idLey>
+    <Texto>Leyes para programar una computadora: La complejidad del programa aumenta hasta que excede la capacidad del programador que debe llevarlo a cabo.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>241</idLey>
+    <Texto>Algunos postulados de Troutman sobre programación: Si un editor de entrada ha sido diseñado para rechazar las malas entradas, algún idiota ingenioso descubrirá la forma de que éstas pasen.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>243</idLey>
+    <Texto>Algunos postulados de Troutman sobre programación: La maldición es el lenguaje que mejor conocen todos los programadores.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>245</idLey>
+    <Texto>Axioma informático de Leo Beiser: Cuando archive algo en la memoria, acuérdese de dónde lo guardó.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>249</idLey>
+    <Texto>Axiomas informáticos de McCristy: Los archivos de apoyo nunca estarán completos</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>251</idLey>
+    <Texto>Axiomas informáticos de McCristy: Los fallos del software se pueden corregir sólo cuando la industria considera que se ha quedado obsoleto.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>253</idLey>
+    <Texto>Ley de Lubarsky sobre la entomología cibernética: Siempre queda algún virus.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>255</idLey>
+    <Texto>Regla de Sutin: De todas las cosas que se pueden hacer con un ordenador, las más inútiles son las más divertidas.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>257</idLey>
+    <Texto>Ley de Smith sobre reparación de ordenadores:  Los orificios de acceso tendrán medio milímetro menos de diámetro.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>259</idLey>
+    <Texto>Ley de los SIMMs de Protel: Si se deja un ordenador abierto sobre una mesa, los SIMMs de memoria tenderán a desaparecer espontáneamente.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>263</idLey>
+    <Texto>Leyes de Gilb acerca de la falta de fiabilidad: No se puede confiar en las computadoras, pero menos aún en los seres humanos.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>265</idLey>
+    <Texto>Leyes de Gilb acerca de la falta de fiabilidad: Cualquier sistema que dependa de la confianza en seres humanos, es poco fiable.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>267</idLey>
+    <Texto>Leyes de Gilb acerca de la falta de fiabilidad: Los errores imposibles de descubrir son infinitos en su variedad, en contraste con los detectables que por definición son limitados.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>269</idLey>
+    <Texto>Leyes de Gilb acerca de la falta de fiabilidad: Las inversiones para asegurar fiabilidad aumentarán hasta que excedan el coste probable de los errores que puedan presentarse o hasta que alguien insista en hacer algún trabajo útil.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>271</idLey>
+    <Texto>Ley de la falta de fiabilidad:  Errar es humano, pero, para liar las cosas de verdad, hace falta un ordenador.   </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>273</idLey>
+    <Texto>La ultima versión de SCSI es la Wide Ultra2 SCSI, que usa un bus de 16 bits, un ancho de banda de 80MB/s y trabaja con cables planos de 68 hilos.  </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>275</idLey>
+    <Texto>Norma de Steinbach para los sistemas de programación:  No trate nunca de verificar una condición de error que no sepa manejar. </Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>277</idLey>
+    <Texto>Principio de Pollyanna sobre la IBM: Las máquinas deben funcionar y las personas, pensar.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>279</idLey>
+    <Texto>Ley de Brook: Asignar fuerza de trabajo adicional a un proyecto retrasado lo demorará aún más.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>283</idLey>
+    <Texto>Leyes de computación de acuerdo con Golub: Los objetivos de un proyecto, definidos en forma confusa, se utilizan para evitar la molestia de hacer la correspondiente estimación de costos.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>285</idLey>
+    <Texto>Leyes de computación de acuerdo con Golub: Un proyecto mal planeado se lleva tres veces el tiempo estimado para terminarse, uno bien planeado tomará solamente el doble.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>287</idLey>
+    <Texto>Leyes de computación de acuerdo con Golub: El esfuerzo requerido para corregir el rumbo aumenta geométricamente con el tiempo.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>289</idLey>
+    <Texto>Leyes de computación de acuerdo con Golub: Los equipos de trabajo detestan los informes semanales de avance porque en éstos se demuestra en forma evidente la falta de progreso.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>291</idLey>
+    <Texto>Principio de Shaw: Diseñe un sistema que hasta un tonto pueda utilizar, y solamente un tonto lo querrá emplear.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>295</idLey>
+    <Texto>Leyes de Manubay para los programadores: Si funciona la modificación de un programador a un programa ya existente, es probable que no sea lo que quieren los usuarios.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>297</idLey>
+    <Texto>Leyes de Manubay para los programadores: Los usuarios no saben realmente lo que quieren, pero saben con certeza lo que no quieren.</Texto>
+  </Murphy>
+  <Murphy>
+    <idLey>299</idLey>
+    <Texto>Ley de Greer: Un programa de ordenador hace lo que usted le ordena que haga, no lo que usted quiere que haga.</Texto>
+  </Murphy>
+</DocumentElement>

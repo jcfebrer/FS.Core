@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<ArrayOfNodeMapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <NodeMapping>
+    <Key>/DatosServicios[1]/Servicios[1]/CodigoEmpresa[1]</Key>
+    <Value>/CARGAS[1]/CABECERA_AGRUPACION[1]/CABECERA_ENTREGA[1]/ENTREGA[1]</Value>
+    <Loop>false</Loop>
+  </NodeMapping>
+  <NodeMapping>
+    <Key>/DatosServicios[1]/Servicios[1]/NombreEmpresa[1]</Key>
+    <Value>/CARGAS[1]/CABECERA_AGRUPACION[1]/CABECERA_ENTREGA[2]/ENTREGA[1]</Value>
+    <Formula>{mid(#,1,3)}</Formula>
+    <Loop>false</Loop>
+  </NodeMapping>
+  <NodeMapping>
+    <Key>/DatosServicios[1]/Servicios[1]/CodigoServicio[1]</Key>
+    <Value>.</Value>
+    <Formula />
+    <Loop>false</Loop>
+  </NodeMapping>
+  <NodeMapping>
+    <Key>SourceXMLFile</Key>
+    <Value>C:\Datos\FS\XML2XML\files\ORDEN REPSOL.xml</Value>
+    <Loop>false</Loop>
+  </NodeMapping>
+  <NodeMapping>
+    <Key>TargetXMLFile</Key>
+    <Value>C:\Datos\FS\XML2XML\files\ORDEN GT.Xml</Value>
+    <Loop>false</Loop>
+  </NodeMapping>
+</ArrayOfNodeMapping>

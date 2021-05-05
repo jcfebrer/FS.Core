@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<configuration xmlns="http://schemas.microsoft.com/.NetConfiguration/v2.0">
+	<configSections>
+		<section name="plugins" type="FSPortal.Plugin.PluginSectionHandler"/>
+		<section name="urlrewrites" type="FSPortal.URLRewriter"/>
+	</configSections>
+	<appSettings>
+		<add key="FS.portal" value="http://localhost/FSPortalNET/xml/portal.asmx"/>
+		<!-- 
+    ConnString para SQLServer oledb: "Provider=SQLOLEDB;Data Source=febrer1\sqlexpress;Network=DBMSSOCN;Initial Catalog=portalnet;User Id=sa;Password=r2;"
+    para SQLServer Native: "Driver={SQL Native Client};Server=febrer1\sqlexpress;Database=portalnet;Uid=sa;Pwd=r2;"
+    para SQLServer sqlclient: "Data Source=febrer1\sqlexpress;Initial Catalog=portalnet;User Id=sa;Password=r2;"
+    para access oledb: "Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;Data Source=k:\wwwroot\data\bizkaidenda\portalnet.mdb"
+	para access odbc: "Driver={Microsoft Access Driver (*.mdb)};DBQ=k:\wwwroot\data\bizkaidenda\portalnet.mdb;"
+    para MySql: "server=localhost;user id=root; password=kk; database=portalnet; pooling=false"
+    
+    Para SQLExpress en App_Data = "Data Source=.\SQLEXPRESS;AttachDbFilename=k:\wwwroot\data\bizkaidenda\portalnet.mdf;Integrated Security=True;User Instance=True"
+    
+    En Sync, el directorio de datos es: c:\domains\nombredominio.com\db
+    
+		<add key="ConnectionString" value="Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;Data Source=d:\datos\fsportalnet\fsportalnet\sitios\{portal}\data\portalnet.mdb"/>
+    <add key="ConnectionString" value="Data Source=febrer1\sqlexpress;Initial Catalog=GesTraveldat;User Id=sa;Password=kk;"/>
+    <add key="ConnectionString" value="Data Source=.\SQLEXPRESS;AttachDbFilename=K:\datos\FSPortalNET\FSPortalNET\App_Data\portalnet.mdf;Integrated Security=True;User Instance=True"/>
+    Warner: Data Source=localhost;Initial Catalog=GesTraveldat;User Id=sa;Password=2x5y1z0a;
+    Bysportfutbol7: Data Source=217.76.131.16;Initial Catalog=qao529;User Id=qao529;Password=suances;
+     -->
+		<add key="ConnectionString" value="Provider=Microsoft.Jet.OLEDB.4.0;Persist Security Info=False;Data Source=c:\domains\febrersoftware.com\db\{portal}\portalnet.mdb"/>
+		<!--
+    ProviderName para Access: System.Data.OleDb
+    para SQL Server: System.Data.SqlClient
+    para MySQL: MySql.Data.MySqlClient
+	para ODBC: System.Data.Odbc
+    -->
+		<add key="ProviderName" value="System.Data.OleDb"/>
+		<add key="defaultPortal" value="febrersoftware"/>
+		<!-- mensaje inferior de copyright -->
+		<!-- 
+    Febrer Software:
+    <add key="copyright" value="Ocfur9YqrOf+7jJDDDK+5WoaATWcbjaUDUEP24wq88zDE4JsIKuRFXQl8x+WO77OdxBAJyhNLJW8m1gg49P7MfQZ/Vlg5nr8zHshQB26IxwV8oH8FcTOSmQAg5psqKZ1tpJD+4y9vRCMoaqhBNpod8zUe01uie2K"/>
+    
+    FebrerSoftware con comentarios:
+    <add key="copyright" value="OdIzoY9DXVNs0I2mPip6bEXRsvN489S3TEDBj2K7isIpedXYnQlnA42/1+gA2H7CBsS0Pu9eWtdjtCKix9vipDqquoYvpuI3"
+    Mc3net:
+    <add key="copyright" value="Ocfur9YqrOdUlQckk9OLyr/D18yI334Jyavha55yWl2CoQS3xQuMHJ/31qx/7yjypWNYwk+2VpEFPcl9BfF7Qv1Ph2qqJ2IOGZrqFaWhGtTgOZPb+X+/tWuxNGsiBqtG"/>
+    
+    end blanco pone FebrerSoftware. Cualquier otro valor casca.
+    -->
+		<add key="copyright" value=""/>
+		<!-- directorio de instalación en el servidor -->
+		<add key="directorioPortal" value="/"/>
+		<!-- versión del código -->
+		<add key="version" value="2.7"/>
+		<!-- configuración de correo para envio de errores desde Global.asax -->
+		<add key="DebugFromEmail" value="info@febrersoftware.com"/>
+		<add key="DebugToEmail" value="juancarlos@febrersoftware.com"/>
+		<add key="DebugServer" value="10.0.0.161"/>
+		<add key="DebugUser" value="info@febrersoftware.com"/>
+		<add key="DebugPassword" value="rerbef2000"/>
+		<!-- prefijo para utilizar en el nombre de las tablas -->
+		<add key="prefijoTablas" value=""/>
+		<!-- activar la compresión de páginas -->
+		<add key="EnableHttpCompression" value="true"/>
+		<!--
+    variables para FileManager:
+    <add key="ImagePath" value="images/" />
+    <add key="HideFolderPattern" value="^bin|test" />
+    <add key="HideFilePattern" value="scc$" />
+    <add key="AllowedPathPattern" value="/MyWeb/Uploads/.*" />
+    <add key="DefaultPath" value="~/MyWeb/Uploads />
+    -->
+		<!-- formato de fechas -->
+		<add key="dateFormat" value="mmddyyyy"/>
+	</appSettings>
+	<plugins>
+		<plugin type="FSCustomPlugin.ModBanner, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModBannerHorizontal, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModBannerVertical, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModTienda, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModTemas, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModExpertos, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModFavoritos, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModFabricantes, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModCategorias, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModCorreo, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModFrases, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModPublicidad, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModChat, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModComentarios, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModRSS, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModInmobiliaria, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModRadio, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModTareas, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModMasVendidos, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModMasVendidosFoto, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModCalendario, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModProximosEventos, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModEventosRecientes, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModProximosEventosDeportivos, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModEventosDeportivosRecientes, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModEncuesta, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModTitulares2, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModTitulares, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModTablonAnuncios, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModNoticias, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModOfertasTrabajo, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModTopDescargas, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModUltimasDescargas, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModFicherosRecomendados, FSCustomPlugin"/>
+		<plugin type="FSCustomPlugin.ModCategoriasFicheros, FSCustomPlugin"/>
+	</plugins>
+	<urlrewrites>
+		<!--<rule>
+				<url>(.*)\.aspx</url>
+				<rewrite>/fsportalnet/muestra.aspx?pag=$1</rewrite>
+			</rule>
+			<rule>
+				<url>/fsportalnet/show\.asp</url>
+				<rewrite>/fsportalnet/show.aspx</rewrite>
+			</rule>
+			<rule>
+				<url>wohs\.asp</url>
+				<rewrite>/fsportalnet/show.aspx</rewrite>
+			</rule>
+			<rule>
+				<url>show(.*)\.asp</url>
+				<rewrite>/fsportalnet/show.aspx?$1</rewrite>
+			</rule>
+			<rule>
+				<url>(.*)show\.html</url>
+				<rewrite>/fsportalnet/show.aspx?id=$1&amp;cat=2</rewrite>
+			</rule>
+			<rule>
+				<url>s/h/o/w/(.*)\.html</url>
+				<rewrite>/fsportalnet/show.aspx?id=$1</rewrite>
+			</rule>-->
+		<rule>
+			<url>contacto/(.*)\.aspx</url>
+			<rewrite>/contactos/verContacto.aspx?nombre=$1</rewrite>
+		</rule>
+		<rule>
+			<url>id_(.*)\.aspx</url>
+			<rewrite>/contactos/verContacto.aspx?nombre=$1</rewrite>
+		</rule>
+		<rule>
+			<url>clubs/(.*)\.aspx</url>
+			<rewrite>/contactos/verClub.aspx?nombre=$1</rewrite>
+		</rule>
+		<rule>
+			<url>clubs/(.*)</url>
+			<rewrite>/contactos/verClub.aspx?nombre=$1</rewrite>
+		</rule>
+		<rule>
+			<url>c_(.*)\.aspx</url>
+			<rewrite>/contactos/verClub.aspx?nombre=$1</rewrite>
+		</rule>
+		<rule>
+			<url>page(.*)\.aspx</url>
+			<rewrite>pagina.aspx?id=$1</rewrite>
+		</rule>
+		<rule>
+			<url>p_(.*)\.aspx</url>
+			<rewrite>pagina.aspx?p=$1</rewrite>
+		</rule>
+		<rule>
+			<url>paginas/(.*)\.aspx</url>
+			<rewrite>pagina.aspx?p=$1</rewrite>
+		</rule>
+	</urlrewrites>
+	<connectionStrings/>
+	<system.web>
+		<sessionState mode="InProc" cookieless="false" timeout="20"/>
+		<trace enabled="false" localOnly="true" pageOutput="false"/>
+		<compilation debug="false" strict="true" explicit="true">
+			<assemblies>
+				<add assembly="System.Security, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/>
+				<add assembly="System.Design, Version=2.0.0.0, Culture=neutral, PublicKeyToken=B03F5F7F11D50A3A"/></assemblies></compilation>
+		<pages enableViewState="false"/>
+		<!--
+            The <authentication> section enables configuration 
+            of the security authentication mode used by 
+            ASP.NET to identify an incoming user. 
+    -->
+		<authentication mode="Windows"/>
+		<!--
+            The <customErrors> section enables configuration 
+            of what to do if/when an unhandled error occurs 
+            during the execution of a request. Specifically, 
+            it enables developers to configure html error pages 
+            to be displayed in place of a error stack trace.
+
+        <customErrors mode="RemoteOnly" defaultRedirect="GenericErrorPage.htm">
+            <error statusCode="403" redirect="NoAccess.htm" />
+            <error statusCode="404" redirect="FileNotFound.htm" />
+        </customErrors>
+        -->
+		<customErrors mode="RemoteOnly" defaultRedirect="errorPages/error500.aspx"/>
+		<httpHandlers>
+			<add verb="GET" path="CaptchaImage.aspx" type="FSUserControl.CaptchaImageHandler, FSUserControl"/>
+		</httpHandlers>
+		<httpModules>
+			<add name="FluorineGateway" type="com.TheSilentGroup.Fluorine.FluorineGateway, com.TheSilentGroup.Fluorine"/>
+			<add name="HttpCompressionModule" type="FSPortal.HttpCompressionModule"/>
+			<!--<add name="HtmlUrlRewriter" type="FSPortal.HtmlUrlRewriter"/>-->
+			<!--eliminamos modules que no necesitamos -->
+			<remove name="PassportAuthentication"/>
+			<remove name="Profile"/>
+			<remove name="AnonymousIdentification"/>
+		</httpModules>
+		<httpRuntime executionTimeout="90" maxRequestLength="8192" useFullyQualifiedRedirectUrl="false" minFreeThreads="8" minLocalRequestFreeThreads="4" appRequestQueueLimit="100"/>
+	</system.web>
+</configuration>

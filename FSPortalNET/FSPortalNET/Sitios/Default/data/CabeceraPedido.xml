@@ -1,0 +1,2326 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <CabeceraPedido>
+    <idCabeceraPedido>64</idCabeceraPedido>
+    <fecha>2004-10-30T00:00:00+02:00</fecha>
+    <idCliente>2</idCliente>
+    <dto>5</dto>
+    <estado>0</estado>
+    <portes>0.0000</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946760188</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>011</pais>
+    <portal>10</portal>
+    <piso>1A</piso>
+    <dni />
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <formaEnvio>CONTRAREEMBOLSO</formaEnvio>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>24</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>65</idCabeceraPedido>
+    <fecha>2004-10-30T00:00:00+02:00</fecha>
+    <idCliente>3</idCliente>
+    <dto>5</dto>
+    <estado>0</estado>
+    <portes>0.0000</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2 />
+    <codigopostal>48766</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>976876876</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-01-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>M</sexo>
+    <poblacion>kjhgkjh</poblacion>
+    <domicilio />
+    <pais>011</pais>
+    <portal>08</portal>
+    <piso />
+    <dni />
+    <provincia>jhgkjhg</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <formaEnvio>CONTRAREEMBOLSO</formaEnvio>
+    <descripcion>mi cesta de pruebas.</descripcion>
+    <idCesta>22</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>66</idCabeceraPedido>
+    <fecha>2005-02-04T00:00:00+01:00</fecha>
+    <idCliente>2</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>19.836</total>
+    <estado>0</estado>
+    <portes>0.0000</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>35565</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>945646563</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>004</pais>
+    <portal>10</portal>
+    <piso>1A</piso>
+    <dni>23455</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>25</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>67</idCabeceraPedido>
+    <fecha>2005-02-04T00:00:00+01:00</fecha>
+    <idCliente>2</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>19.836</total>
+    <estado>0</estado>
+    <portes>0.0000</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>35565</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>945646563</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>004</pais>
+    <portal>10</portal>
+    <piso>1A</piso>
+    <dni>23455</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name>hgjhg</card_name>
+    <card_type>AMEX</card_type>
+    <card_no>7687676876876876</card_no>
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>25</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>68</idCabeceraPedido>
+    <fecha>2005-02-04T00:00:00+01:00</fecha>
+    <idCliente>2</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>8798</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>0098098989</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>043</pais>
+    <portal>10</portal>
+    <piso>1A</piso>
+    <dni>98798798</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>27</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>69</idCabeceraPedido>
+    <fecha>2005-02-11T00:00:00+01:00</fecha>
+    <idCliente>2</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>76768</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>986897688</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>fj</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>1598798787</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>28</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>70</idCabeceraPedido>
+    <fecha>2005-04-10T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>100.1718</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>947657656</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>7657657</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Pedido para ,i sobrino</descripcion>
+    <idCesta>13</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>71</idCabeceraPedido>
+    <fecha>2005-04-10T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>100.1718</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>947657656</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>7657657</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Pedido para ,i sobrino</descripcion>
+    <idCesta>13</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>72</idCabeceraPedido>
+    <fecha>2005-04-10T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>100.1718</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>947657656</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>7657657</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Pedido para ,i sobrino</descripcion>
+    <idCesta>13</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>73</idCabeceraPedido>
+    <fecha>2005-04-10T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>46.835</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48765</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>976876876</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>87687687</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>15</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>74</idCabeceraPedido>
+    <fecha>2005-04-10T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>46.835</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48765</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>976876876</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>87687687</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>15</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>75</idCabeceraPedido>
+    <fecha>2005-04-10T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>36.6966</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48546</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>975765655</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>63654654</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>30</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>76</idCabeceraPedido>
+    <fecha>2005-06-19T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>22.4808</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48555</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>987687687</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name>987987</card_name>
+    <card_type>Visa</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>31</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>77</idCabeceraPedido>
+    <fecha>2005-06-19T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48999</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni />
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>32</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>78</idCabeceraPedido>
+    <fecha>2005-06-19T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>30.0846</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>33</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>79</idCabeceraPedido>
+    <fecha>2005-06-19T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48123</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>127272777</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>34</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>80</idCabeceraPedido>
+    <fecha>2005-06-19T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48222</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>91272987</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>35</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>81</idCabeceraPedido>
+    <fecha>2005-06-19T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48123</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>117117777</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>36</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>82</idCabeceraPedido>
+    <fecha>2005-06-20T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>INGRESO</formapago>
+    <dto>5</dto>
+    <total>22.4808</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48611</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>87878</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>37</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>83</idCabeceraPedido>
+    <fecha>2005-06-20T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48000</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>76876</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>38</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>84</idCabeceraPedido>
+    <fecha>2005-06-20T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48656</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>78687678</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>39</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>85</idCabeceraPedido>
+    <fecha>2005-06-20T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>INGRESO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>40</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>86</idCabeceraPedido>
+    <fecha>2005-06-20T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>41</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>87</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>42</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>88</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>43</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>89</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>44</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>90</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>5</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>45</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>91</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>46</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>92</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>47</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>93</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>48</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>94</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>49</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>95</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>1</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>50</idCesta>
+    <pasarelaPago>txn_type&amp;#061;web_accept
+payment_date&amp;#061;10%3A38%3A40+Jun+21%2C+2005+PDT
+last_name&amp;#061;Febrer+Vegueria
+receipt_id&amp;#061;1240-4413-0201-3267
+item_name&amp;#061;BizkaiDenda+-+Pedido%3A+95
+payment_gross&amp;#061;
+mc_currency&amp;#061;EUR
+business&amp;#061;juancarlos%40febrersoftware.com
+payment_type&amp;#061;instant
+payer_status&amp;#061;unverified
+verify_sign&amp;#061;AF2wYER3ebJul2mTlOmnAHv-SlrOAKCNZ6Wwahj.GkU747wjy9ZMCOnq
+test_ipn&amp;#061;1
+payer_email&amp;#061;popo%40febrersoftware.com
+tax&amp;#061;0.00
+txn_id&amp;#061;06U564869Y130563S
+receiver_email&amp;#061;juancarlos%40febrersoftware.com
+quantity&amp;#061;1
+first_name&amp;#061;Juan+Carlos
+payer_id&amp;#061;FRM3SGUB9WPFJ
+receiver_id&amp;#061;ZNAX6BBB7LSYC
+item_number&amp;#061;95
+payment_status&amp;#061;Completed
+payment_fee&amp;#061;
+mc_fee&amp;#061;1.01
+shipping&amp;#061;6.00
+mc_gross&amp;#061;19.55
+custom&amp;#061;
+charset&amp;#061;windows-1252
+notify_version&amp;#061;1.7</pasarelaPago>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>96</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>13.5546</total>
+    <estado>1</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>51</idCesta>
+    <pasarelaPago>txn_type&amp;#061;web_accept
+payment_date&amp;#061;11%3A17%3A02+Jun+21%2C+2005+PDT
+last_name&amp;#061;Febrer+Vegueria
+receipt_id&amp;#061;1240-7565-8925-0351
+item_name&amp;#061;BizkaiDenda+-+Pedido%3A+96
+payment_gross&amp;#061;
+mc_currency&amp;#061;EUR
+business&amp;#061;juancarlos%40febrersoftware.com
+payment_type&amp;#061;instant
+payer_status&amp;#061;unverified
+verify_sign&amp;#061;AnUY8ZmyWeF.4i2losVdFxX.uc1lA4GBfoYeLKysmNuORui1eD5ncTMQ
+test_ipn&amp;#061;1
+payer_email&amp;#061;popoo%40febrersoftware.com
+tax&amp;#061;0.00
+txn_id&amp;#061;1J635390284516343
+quantity&amp;#061;1
+first_name&amp;#061;Juan+Carlos
+receiver_email&amp;#061;juancarlos%40febrersoftware.com
+payer_id&amp;#061;FRM3SGUB9WPFJ
+receiver_id&amp;#061;ZNAX6BBB7LSYC
+memo&amp;#061;mis+notas.
+item_number&amp;#061;96
+payment_status&amp;#061;Completed
+payment_fee&amp;#061;
+mc_fee&amp;#061;1.01
+shipping&amp;#061;6.00
+mc_gross&amp;#061;19.55
+custom&amp;#061;
+charset&amp;#061;windows-1252
+notify_version&amp;#061;1.7</pasarelaPago>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>97</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>22.4808</total>
+    <estado>1</estado>
+    <portes>3</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <card_name />
+    <card_type>AMEX</card_type>
+    <card_no />
+    <card_exp />
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>52</idCesta>
+    <pasarelaPago>txn_type&amp;#061;web_accept
+
+payment_date&amp;#061;11%3A45%3A40+Jun+21%2C+2005+PDT
+
+last_name&amp;#061;Febrer+Vegueria
+
+receipt_id&amp;#061;1240-1674-9978-3855
+
+item_name&amp;#061;BizkaiDenda+-+Pedido%3A+97
+
+payment_gross&amp;#061;
+
+mc_currency&amp;#061;EUR
+
+business&amp;#061;juancarlos%40febrersoftware.com
+
+payment_type&amp;#061;instant
+
+payer_status&amp;#061;unverified
+
+verify_sign&amp;#061;Akn83K2h4HxAh9CW39oPjJXVf3BVA-qGg71DI4d.BFS0Ij5G-3Ju9vqq
+
+test_ipn&amp;#061;1
+
+payer_email&amp;#061;jkj%40febrersoftware.com
+
+tax&amp;#061;0.00
+
+txn_id&amp;#061;9PP07269SN105944J
+
+quantity&amp;#061;1
+
+first_name&amp;#061;Juan+Carlos
+
+receiver_email&amp;#061;juancarlos%40febrersoftware.com
+
+payer_id&amp;#061;FRM3SGUB9WPFJ
+
+receiver_id&amp;#061;ZNAX6BBB7LSYC
+
+memo&amp;#061;mensaje+de+pruebas.
+
+item_number&amp;#061;97
+
+payment_status&amp;#061;Completed
+
+payment_fee&amp;#061;
+
+mc_fee&amp;#061;1.22
+
+shipping&amp;#061;3.00
+
+mc_gross&amp;#061;25.48
+
+custom&amp;#061;
+
+charset&amp;#061;windows-1252
+
+notify_version&amp;#061;1.7</pasarelaPago>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>98</idCabeceraPedido>
+    <fecha>2005-06-21T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>22.4808</total>
+    <estado>1</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>53</idCesta>
+    <pasarelaPago>txn_type&amp;#061;web_accept
+payment_date&amp;#061;12%3A00%3A16+Jun+21%2C+2005+PDT
+last_name&amp;#061;Febrer+Vegueria
+receipt_id&amp;#061;1240-1778-7103-5774
+item_name&amp;#061;BizkaiDenda+-+Pedido%3A+98
+payment_gross&amp;#061;
+mc_currency&amp;#061;EUR
+business&amp;#061;juancarlos%40febrersoftware.com
+payment_type&amp;#061;instant
+payer_status&amp;#061;unverified
+verify_sign&amp;#061;Atg5KnjASGLOX7u7M68RA3XGk7iBA5YYa1JV-jkFYAItr3Pqb.eO.uaC
+test_ipn&amp;#061;1
+payer_email&amp;#061;juaj%40febrersoftware.com
+tax&amp;#061;0.00
+txn_id&amp;#061;6C883148131489306
+quantity&amp;#061;1
+first_name&amp;#061;Juan+Carlos
+receiver_email&amp;#061;juancarlos%40febrersoftware.com
+payer_id&amp;#061;FRM3SGUB9WPFJ
+receiver_id&amp;#061;ZNAX6BBB7LSYC
+memo&amp;#061;kkkkk
+item_number&amp;#061;98
+payment_status&amp;#061;Completed
+payment_fee&amp;#061;
+mc_fee&amp;#061;1.32
+shipping&amp;#061;6.00
+mc_gross&amp;#061;28.48
+custom&amp;#061;
+charset&amp;#061;windows-1252
+notify_version&amp;#061;1.7</pasarelaPago>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>99</idCabeceraPedido>
+    <fecha>2005-06-22T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>16.53</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>54</idCesta>
+    <pasarelaPago />
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>100</idCabeceraPedido>
+    <fecha>2005-10-29T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>73.544</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Probando</descripcion>
+    <idCesta>55</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>101</idCabeceraPedido>
+    <fecha>2005-10-29T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>73.544</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Probando</descripcion>
+    <idCesta>55</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>102</idCabeceraPedido>
+    <fecha>2005-10-29T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>33.408</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>57</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>103</idCabeceraPedido>
+    <fecha>2005-10-29T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>33.408</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>57</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>104</idCabeceraPedido>
+    <fecha>2005-10-29T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>33.408</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>57</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>105</idCabeceraPedido>
+    <fecha>2005-10-29T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>33.408</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>57</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>106</idCabeceraPedido>
+    <fecha>2005-10-29T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>23.664</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>58</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>107</idCabeceraPedido>
+    <fecha>2005-10-29T00:00:00+02:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>23.664</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>59</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>108</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>74.472</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>60</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>109</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>28.536</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>61</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>110</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>17.4</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>62</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>111</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>14.268</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>63</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>112</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>14.268</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>64</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>113</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>14.268</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>65</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>114</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>17.4</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>66</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>115</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>23.664</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>67</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>116</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>17.4</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>68</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>117</idCabeceraPedido>
+    <fecha>2005-11-24T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>TARJETA</formapago>
+    <dto>5</dto>
+    <total>29.928</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>69</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>118</idCabeceraPedido>
+    <fecha>2005-11-29T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>36.0354</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>70</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>119</idCabeceraPedido>
+    <fecha>2005-11-29T00:00:00+01:00</fecha>
+    <idCliente>41</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>4</dto>
+    <total>31.0694</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>demostración</nombre>
+    <apellido1>Demo1</apellido1>
+    <apellido2>Demo2</apellido2>
+    <codigopostal>48444</codigopostal>
+    <email>demo@febrersoftware.com</email>
+    <telefono1>887777744</telefono1>
+    <telefono2 />
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-03-02T00:00:00+01:00</fechaNacimiento>
+    <sexo>M</sexo>
+    <poblacion>hghgghgh</poblacion>
+    <domicilio />
+    <pais>es</pais>
+    <portal>4</portal>
+    <piso />
+    <dni>6666</dni>
+    <provincia>gghhgg</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>71</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>120</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta2</descripcion>
+    <idCesta>73</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>121</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta2</descripcion>
+    <idCesta>73</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>122</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta2</descripcion>
+    <idCesta>73</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>123</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta2</descripcion>
+    <idCesta>73</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>124</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta2</descripcion>
+    <idCesta>73</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>125</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta2</descripcion>
+    <idCesta>73</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>126</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta2</descripcion>
+    <idCesta>73</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>127</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta2</descripcion>
+    <idCesta>73</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>128</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>99.18</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>74</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>129</idCabeceraPedido>
+    <fecha>2005-12-13T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>19.836</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>Bº Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1ºA</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>75</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <fecha>2006-02-06T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com size=</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>B Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1A</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>76</idCesta>
+  </CabeceraPedido>
+  <CabeceraPedido>
+    <idCabeceraPedido>131</idCabeceraPedido>
+    <fecha>2006-02-06T00:00:00+01:00</fecha>
+    <idCliente>1</idCliente>
+    <formapago>CONTRAREEMBOLSO</formapago>
+    <dto>5</dto>
+    <total>198.36</total>
+    <estado>0</estado>
+    <portes>6</portes>
+    <codigoi>0</codigoi>
+    <nombre>Juan Carlos</nombre>
+    <apellido1>Febrer</apellido1>
+    <apellido2>Vegueria</apellido2>
+    <codigopostal>48610</codigopostal>
+    <email>juancarlos@febrersoftware.com size=</email>
+    <telefono1>946764972</telefono1>
+    <telefono2>629237109</telefono2>
+    <tipoDomicilio>AV</tipoDomicilio>
+    <fechaNacimiento>1971-11-15T00:00:00+01:00</fechaNacimiento>
+    <sexo>H</sexo>
+    <poblacion>Urduliz</poblacion>
+    <domicilio>B Marusas</domicilio>
+    <pais>es</pais>
+    <portal>10</portal>
+    <piso>1A</piso>
+    <dni>16055459x</dni>
+    <provincia>Vizcaya</provincia>
+    <descripcion>Mi cesta</descripcion>
+    <idCesta>76</idCesta>
+  </CabeceraPedido>
+</DocumentElement>

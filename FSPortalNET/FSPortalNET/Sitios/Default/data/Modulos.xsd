@@ -1,0 +1,44 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="Modulos" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Modulos">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idModulo" msdata:AutoIncrement="true" type="xs:int" />
+              <xs:element name="Nombre" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Posicion" type="xs:int" minOccurs="0" />
+              <xs:element name="Orden" type="xs:int" minOccurs="0" />
+              <xs:element name="Titulo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Activo" type="xs:boolean" minOccurs="0" />
+              <xs:element name="mostrarRecuadro" type="xs:boolean" minOccurs="0" />
+              <xs:element name="scroll" type="xs:boolean" minOccurs="0" />
+              <xs:element name="altoModulo" type="xs:int" minOccurs="0" />
+              <xs:element name="fechaModificacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fechaCreacion" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="usuarioModificacion" type="xs:int" minOccurs="0" />
+              <xs:element name="usuarioCreacion" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//Modulos" />
+      <xs:field xpath="idModulo" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

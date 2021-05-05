@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProjectGuid>{38971E3B-3D40-430A-B252-229563E12E05}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>febrer.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>FSGestion</AssemblyName>
+    <AssemblyOriginatorKeyMode>None</AssemblyOriginatorKeyMode>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>WinExe</OutputType>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>Off</OptionStrict>
+    <RootNamespace>FSGestion</RootNamespace>
+    <StartupObject>FSGestion.Global</StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>FSGestion.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <DebugSymbols>true</DebugSymbols>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <WarningLevel>1</WarningLevel>
+    <NOWARN>1591,660,661</NOWARN>
+    <DebugType>full</DebugType>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>FSGestion.xml</DocumentationFile>
+    <BaseAddress>285212672</BaseAddress>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <WarningLevel>1</WarningLevel>
+    <NOWARN>1591,660,661</NOWARN>
+    <DebugType>none</DebugType>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>FSGestion.xml</DocumentationFile>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>1591,660,661</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <DocumentationFile>FSGestion.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <WarningLevel>1</WarningLevel>
+    <NoWarn>1591,660,661</NoWarn>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Management">
+      <Name>System.Management</Name>
+    </Reference>
+    <Reference Include="System.Web">
+      <Name>System.Web</Name>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Name>System.Web.Services</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="frmGoogleFirebase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoogleFirebase.Designer.cs">
+      <DependentUpon>frmGoogleFirebase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmGoogleMaps.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoogleMaps.Designer.cs">
+      <DependentUpon>frmGoogleMaps.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAsistente.Designer.cs">
+      <DependentUpon>frmAsistente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAsistente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDemoWebBrowser.Designer.cs">
+      <DependentUpon>frmDemoWebBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDemoWebBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExtraeEmail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAyuntamientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGoogle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPaginasAmarillas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPotenciales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCrypto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmShapes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmActualizar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmClientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCommDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCommSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetalleArticulos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetalleCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetalleContrato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEmpresas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEnvioSMS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFacturacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGenerarFacturasServicios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHtmlParser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmImpFactura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPeliculas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPreferencias.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSnapShot.Designer.cs">
+      <DependentUpon>frmSnapShot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSnapShot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSpash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmViewForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="mdiPrincipal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Global.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Content Include="Data\fsgestion.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="febrer.ico" />
+    <EmbeddedResource Include="frmGoogleFirebase.resx">
+      <DependentUpon>frmGoogleFirebase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGoogleMaps.resx">
+      <DependentUpon>frmGoogleMaps.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAsistente.resx">
+      <DependentUpon>frmAsistente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDemoWebBrowser.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>frmDemoWebBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmExtraeEmail.resx">
+      <DependentUpon>frmExtraeEmail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAyuntamientos.resx">
+      <DependentUpon>frmAyuntamientos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGoogle.resx">
+      <DependentUpon>frmGoogle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPaginasAmarillas.resx">
+      <DependentUpon>frmPaginasAmarillas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPotenciales.resx">
+      <DependentUpon>frmPotenciales.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCrypto.resx">
+      <DependentUpon>frmCrypto.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmShapes.resx">
+      <DependentUpon>frmShapes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmActualizar.resx">
+      <DependentUpon>frmActualizar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmArticulos.resx">
+      <DependentUpon>frmArticulos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmClientes.resx">
+      <DependentUpon>frmClientes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCommDialog.resx">
+      <DependentUpon>frmCommDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCommSetup.resx">
+      <DependentUpon>frmCommSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetalleArticulos.resx">
+      <DependentUpon>frmDetalleArticulos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetalleCliente.resx">
+      <DependentUpon>frmDetalleCliente.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetalleContrato.resx">
+      <DependentUpon>frmDetalleContrato.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEmpresas.resx">
+      <DependentUpon>frmEmpresas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEnvioSMS.resx">
+      <DependentUpon>frmEnvioSMS.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFactura.resx">
+      <DependentUpon>frmFactura.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFacturacion.resx">
+      <DependentUpon>frmFacturacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFolder.resx">
+      <DependentUpon>frmFolder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGenerarFacturasServicios.resx">
+      <DependentUpon>frmGenerarFacturasServicios.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHtmlParser.resx">
+      <DependentUpon>frmHtmlParser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmImpFactura.resx">
+      <DependentUpon>frmImpFactura.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPeliculas.resx">
+      <DependentUpon>frmPeliculas.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPreferencias.resx">
+      <DependentUpon>frmPreferencias.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSnapShot.resx">
+      <DependentUpon>frmSnapShot.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSpash.resx">
+      <DependentUpon>frmSpash.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuarios.resx">
+      <DependentUpon>frmUsuarios.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmViewForm.resx">
+      <DependentUpon>frmViewForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mdiPrincipal.resx">
+      <DependentUpon>mdiPrincipal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)/Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSCrypto\FSCrypto.csproj">
+      <Project>{5DDE5624-1823-435D-8C88-46EB601106A4}</Project>
+      <Name>FSCrypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSDatabase\FSDatabase.csproj">
+      <Project>{31743F95-0D43-4AB1-BD23-45D8A88F2635}</Project>
+      <Name>FSDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSException\FSException.csproj">
+      <Project>{2a366b72-70b3-4700-b962-5920a0eee074}</Project>
+      <Name>FSException</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSGoogleFirebase\FSGoogleFirebase.csproj">
+      <Project>{ca256066-94bd-4b78-804b-49cfbaa9443f}</Project>
+      <Name>FSGoogleFirebase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSGoogleMaps\FSGoogleMaps.csproj">
+      <Project>{59dc72a5-3482-4e6f-8cd0-b37a75ab5e02}</Project>
+      <Name>FSGoogleMaps</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
+      <Project>{7E0ADEF9-BCB8-48CD-99B6-68BF862F7083}</Project>
+      <Name>FSLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMail\FSMail.csproj">
+      <Project>{890916d9-1b2a-4c31-a2cd-f9cc8a80bd87}</Project>
+      <Name>FSMail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj">
+      <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>
+      <Name>FSNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSTrace\FSTrace.csproj">
+      <Project>{2ea3b2cc-791c-430c-8135-79d270be20b4}</Project>
+      <Name>FSTrace</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSWebBrowser\FSWebBrowser.csproj">
+      <Project>{7FCC8F9D-A108-4DBD-A43A-C347B33B6BC4}</Project>
+      <Name>FSWebBrowser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSReport\FSReport.csproj">
+      <Project>{0B220323-2EE8-455A-B247-B118FE8C3488}</Project>
+      <Name>FSReport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSFormControls\FSFormControls.csproj">
+      <Project>{8EF3EA53-F7EB-4A64-A2F0-9911AFD757D0}</Project>
+      <Name>FSFormControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

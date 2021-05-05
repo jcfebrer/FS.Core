@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Grupos>
+    <GrupoId>1</GrupoId>
+    <Nombre>Grupo Administradores</Nombre>
+    <editarContenido>true</editarContenido>
+    <guardarContenido>true</guardarContenido>
+    <borrarContenido>true</borrarContenido>
+    <administrar>true</administrar>
+  </Grupos>
+  <Grupos>
+    <GrupoId>2</GrupoId>
+    <Nombre>Invitado</Nombre>
+    <editarContenido>false</editarContenido>
+    <guardarContenido>false</guardarContenido>
+    <borrarContenido>false</borrarContenido>
+    <administrar>false</administrar>
+  </Grupos>
+</DocumentElement>

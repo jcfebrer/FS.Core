@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{40AD564B-B070-4AFE-99F4-50BB865E8E4E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FSInternet</RootNamespace>
+    <AssemblyName>FSInternet</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ftp.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Http.cs" />
+    <Compile Include="Impersionation.cs" />
+    <Compile Include="ImpersonateInteractiveUser.cs" />
+    <Compile Include="NetworkConnection.cs" />
+    <Compile Include="UPnP2.cs" />
+    <Compile Include="Net.cs" />
+    <Compile Include="OAuth.cs" />
+    <Compile Include="Ping.cs" />
+    <Compile Include="PingAsync.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Twitter.cs" />
+    <Compile Include="Upload.cs" />
+    <Compile Include="UPnP.cs" />
+    <Compile Include="UPnP3.cs" />
+    <Compile Include="UPnP4.cs" />
+    <Compile Include="Web.cs" />
+    <Compile Include="WebDownload.cs" />
+    <Compile Include="Whois.cs" />
+    <Compile Include="Wininet.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSCrypto\FSCrypto.csproj">
+      <Project>{5DDE5624-1823-435D-8C88-46EB601106A4}</Project>
+      <Name>FSCrypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSException\FSException.csproj">
+      <Project>{2a366b72-70b3-4700-b962-5920a0eee074}</Project>
+      <Name>FSException</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSFile\FSFile.csproj">
+      <Project>{b9b3d9b8-8c7b-49a7-bbab-8321f04cc02c}</Project>
+      <Name>FSFile</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
+      <Project>{7e0adef9-bcb8-48cd-99b6-68bf862f7083}</Project>
+      <Name>FSLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSTrace\FSTrace.csproj">
+      <Project>{2ea3b2cc-791c-430c-8135-79d270be20b4}</Project>
+      <Name>FSTrace</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="NATUPNPLib">
+      <Guid>{1C565858-F302-471E-B409-F180AA4ABEC6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

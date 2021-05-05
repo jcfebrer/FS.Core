@@ -1,0 +1,157 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <LineasPedido>
+    <codigo>98</codigo>
+    <descripcion />
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla>XL</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>124</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>99</codigo>
+    <descripcion />
+    <unidades>9</unidades>
+    <precio>18</precio>
+    <talla>L</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>124</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>100</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>5</unidades>
+    <precio>18</precio>
+    <talla>M</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>128</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>101</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla>L</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>129</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>102</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla />
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>103</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla>XL</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>104</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla>S</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>105</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>3</unidades>
+    <precio>18</precio>
+    <talla>L</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>106</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla>S</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>107</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla>S</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>108</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla>S</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+  <LineasPedido>
+    <codigo>109</codigo>
+    <descripcion>Moscu GREY BLU/ROJO
+</descripcion>
+    <unidades>1</unidades>
+    <precio>18</precio>
+    <talla>S</talla>
+    <precioCompra>0</precioCompra>
+    <dto>5</dto>
+    <idArticulo>2282</idArticulo>
+    <idCabeceraPedido>130</idCabeceraPedido>
+    <codigoi>0</codigoi>
+  </LineasPedido>
+</DocumentElement>

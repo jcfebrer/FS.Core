@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <IVA>
+    <idIVA>1</idIVA>
+    <valor>16</valor>
+  </IVA>
+  <IVA>
+    <idIVA>2</idIVA>
+    <valor>10</valor>
+  </IVA>
+  <IVA>
+    <idIVA>3</idIVA>
+    <valor>7</valor>
+  </IVA>
+</DocumentElement>

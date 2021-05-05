@@ -1,0 +1,55 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Modulos>
+    <idModulo>8</idModulo>
+    <Nombre>modAcceso</Nombre>
+    <Posicion>0</Posicion>
+    <Orden>4</Orden>
+    <Titulo>{idioma(61)}</Titulo>
+    <Activo>true</Activo>
+    <mostrarRecuadro>true</mostrarRecuadro>
+    <scroll>false</scroll>
+    <altoModulo>0</altoModulo>
+  </Modulos>
+  <Modulos>
+    <idModulo>15</idModulo>
+    <Nombre>modBuscar</Nombre>
+    <Posicion>1</Posicion>
+    <Orden>3</Orden>
+    <Titulo>{idioma(58)}</Titulo>
+    <Activo>false</Activo>
+    <mostrarRecuadro>true</mostrarRecuadro>
+    <scroll>false</scroll>
+  </Modulos>
+  <Modulos>
+    <idModulo>28</idModulo>
+    <Nombre>modNoticias</Nombre>
+    <Posicion>2</Posicion>
+    <Orden>27</Orden>
+    <Titulo>{idioma(83)}</Titulo>
+    <Activo>true</Activo>
+    <mostrarRecuadro>true</mostrarRecuadro>
+    <scroll>false</scroll>
+  </Modulos>
+  <Modulos>
+    <idModulo>34</idModulo>
+    <Nombre>modIdioma</Nombre>
+    <Posicion>1</Posicion>
+    <Orden>0</Orden>
+    <Titulo>{idioma(57)}</Titulo>
+    <Activo>false</Activo>
+    <mostrarRecuadro>true</mostrarRecuadro>
+    <scroll>false</scroll>
+  </Modulos>
+  <Modulos>
+    <idModulo>42</idModulo>
+    <Nombre>modContactar</Nombre>
+    <Posicion>1</Posicion>
+    <Orden>35</Orden>
+    <Titulo>Mas Información</Titulo>
+    <Activo>true</Activo>
+    <mostrarRecuadro>true</mostrarRecuadro>
+    <scroll>false</scroll>
+    <altoModulo>0</altoModulo>
+  </Modulos>
+</DocumentElement>

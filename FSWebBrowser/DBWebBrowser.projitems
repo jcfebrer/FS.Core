@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>{62164534-2831-4976-AA64-90993847365B}</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>DBWebBrowser</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)CrossFrameIE.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DBWebBrowser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DBWebBrowser.designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)DBWebBrowser.cs.bak" />
+    <None Include="$(MSBuildThisFileDirectory)DBWebBrowser.resources" />
+    <None Include="$(MSBuildThisFileDirectory)DBWebBrowser.resx" />
+  </ItemGroup>
+</Project>

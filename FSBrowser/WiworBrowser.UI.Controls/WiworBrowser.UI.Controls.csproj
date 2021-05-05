@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C721634D-8CB5-4951-89B0-4359F25D4834}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WiworBrowser.UI.Controls</RootNamespace>
+    <AssemblyName>WiworBrowser.UI.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddFavorites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFavorites.Designer.cs">
+      <DependentUpon>AddFavorites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AutoUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AutoUpdate.Designer.cs">
+      <DependentUpon>AutoUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Close.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Close.Designer.cs">
+      <DependentUpon>Close.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="NewGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewGroup.Designer.cs">
+      <DependentUpon>NewGroup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Password.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Password.Designer.cs">
+      <DependentUpon>Password.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteBrowsingHistory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeleteBrowsingHistory.Designer.cs">
+      <DependentUpon>DeleteBrowsingHistory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InternetOption.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InternetOption.Designer.cs">
+      <DependentUpon>InternetOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Open.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Open.Designer.cs">
+      <DependentUpon>Open.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrganizeFavorites.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrganizeFavorites.Designer.cs">
+      <DependentUpon>OrganizeFavorites.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="RenameLink.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RenameLink.Designer.cs">
+      <DependentUpon>RenameLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubmitUrl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubmitUrl.Designer.cs">
+      <DependentUpon>SubmitUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TreeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TreeControl.Designer.cs">
+      <DependentUpon>TreeControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Service Include="{94E38DFF-614B-4cbd-B67C-F211BB35CE8B}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddFavorites.resx">
+      <DependentUpon>AddFavorites.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AutoUpdate.resx">
+      <DependentUpon>AutoUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Close.resx">
+      <DependentUpon>Close.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewGroup.resx">
+      <DependentUpon>NewGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Password.resx">
+      <DependentUpon>Password.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeleteBrowsingHistory.resx">
+      <DependentUpon>DeleteBrowsingHistory.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InternetOption.resx">
+      <DependentUpon>InternetOption.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Open.resx">
+      <DependentUpon>Open.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrganizeFavorites.resx">
+      <DependentUpon>OrganizeFavorites.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RenameLink.resx">
+      <DependentUpon>RenameLink.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubmitUrl.resx">
+      <DependentUpon>SubmitUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TreeControl.resx">
+      <DependentUpon>TreeControl.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WiworBrowser.Common\WiworBrowser.Common.csproj">
+      <Project>{BFC1F4E2-A04B-4E15-9955-7E4B0B441E5F}</Project>
+      <Name>WiworBrowser.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WiworBrowser.Controls\WiworBrowser.Controls.csproj">
+      <Project>{C7D2E70B-8065-4D00-B5D8-21C80BDA5E99}</Project>
+      <Name>WiworBrowser.Controls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WiworBrowser.Objects\WiworBrowser.Objects.csproj">
+      <Project>{0B07D69B-6351-4F8E-A904-63A18F9FDF19}</Project>
+      <Name>WiworBrowser.Objects</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,39 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2006" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	xmlns:FSPortalWPF="clr-namespace:FSPortalWPF"
+	x:Class="FSPortalWPF.Window1"
+	x:Name="Window"
+	Title="Window1"
+	Width="640" Height="557">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.166*"/>
+			<ColumnDefinition Width="0.674*"/>
+			<ColumnDefinition Width="0.16*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.147*"/>
+			<RowDefinition Height="0.713*"/>
+			<RowDefinition Height="0.14*"/>
+		</Grid.RowDefinitions>
+		<Expander Margin="8,1,5.577,0" Header="Acceso" VerticalAlignment="Top" IsExpanded="True" d:LayoutOverrides="VerticalAlignment" Grid.Row="1">
+			<FSPortalWPF:modAcceso Width="Auto" Height="Auto"/>
+		</Expander>
+		<GridSplitter HorizontalAlignment="Left" Margin="0,0,0,-1.5" Width="3" Grid.Column="1" Grid.Row="1"/>
+		<GridSplitter HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Width="Auto" Height="3" Grid.ColumnSpan="3"/>
+		<FSPortalWPF:modCabecera Margin="0,0,0,8" VerticalAlignment="Stretch" Width="Auto" Height="Auto" Grid.ColumnSpan="3"/>
+		<FSPortalWPF:modPie HorizontalAlignment="Stretch" Margin="0,5.5,0,0" Width="Auto" Height="Auto" Grid.ColumnSpan="3" Grid.Row="2"/>
+		<GridSplitter HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Bottom" Height="3" Grid.ColumnSpan="3" Grid.Row="1"/>
+		<GridSplitter d:LayoutOverrides="GridBox" Margin="0,0,-1.76,0" Width="3" Grid.Column="1" Grid.Row="1"/>
+		<Expander Margin="8,4,0,5.5" Grid.Column="2" Grid.Row="1" IsExpanded="True" Header="Expander">
+			<Button Width="97" Height="25" Content="Button"/>
+		</Expander>
+		<FSPortalWPF:modContenido Margin="3,4,1.24,3" Width="Auto" Height="Auto" Grid.Column="1" Grid.Row="1"/>
+		<Expander Margin="8,152.277,8,8" Grid.Row="1" Header="Paginas">
+			<FSPortalWPF:modPaginas Width="Auto" Height="Auto"/>
+		</Expander>
+	</Grid>
+</Window>

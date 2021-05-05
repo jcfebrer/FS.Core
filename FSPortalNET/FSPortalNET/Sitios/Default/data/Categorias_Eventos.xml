@@ -1,0 +1,18 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Categorias_Eventos>
+    <idCategoria>1</idCategoria>
+    <descripcion>Fiestas Nacionales</descripcion>
+    <color>1</color>
+  </Categorias_Eventos>
+  <Categorias_Eventos>
+    <idCategoria>2</idCategoria>
+    <descripcion>Santoral</descripcion>
+    <color>2</color>
+  </Categorias_Eventos>
+  <Categorias_Eventos>
+    <idCategoria>3</idCategoria>
+    <descripcion>General</descripcion>
+    <color>3</color>
+  </Categorias_Eventos>
+</DocumentElement>

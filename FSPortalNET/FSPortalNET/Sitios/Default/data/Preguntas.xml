@@ -1,0 +1,39 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Preguntas>
+    <PreguntaID>2</PreguntaID>
+    <Titulo>Esto es una pregunta.</Titulo>
+    <TemaID>1</TemaID>
+    <Descripcion>Como? comiendo?</Descripcion>
+    <PreguntadoPor>1</PreguntadoPor>
+    <FechaPregunta>2004-06-09T12:58:16+02:00</FechaPregunta>
+    <Notificar>true</Notificar>
+  </Preguntas>
+  <Preguntas>
+    <PreguntaID>4</PreguntaID>
+    <Titulo>Prueba de votación</Titulo>
+    <TemaID>1</TemaID>
+    <Descripcion>jjjj</Descripcion>
+    <PreguntadoPor>1</PreguntadoPor>
+    <FechaPregunta>2004-06-11T11:01:22+02:00</FechaPregunta>
+    <Notificar>false</Notificar>
+  </Preguntas>
+  <Preguntas>
+    <PreguntaID>6</PreguntaID>
+    <Titulo>esta es mi pregunta</Titulo>
+    <TemaID>1</TemaID>
+    <Descripcion>PRueba de pregunta.</Descripcion>
+    <PreguntadoPor>2</PreguntadoPor>
+    <FechaPregunta>2004-06-22T07:42:56+02:00</FechaPregunta>
+    <Notificar>true</Notificar>
+  </Preguntas>
+  <Preguntas>
+    <PreguntaID>7</PreguntaID>
+    <Titulo>esta es mi pregunta</Titulo>
+    <TemaID>1</TemaID>
+    <Descripcion>PRueba de pregunta.</Descripcion>
+    <PreguntadoPor>2</PreguntadoPor>
+    <FechaPregunta>2004-06-22T07:45:40+02:00</FechaPregunta>
+    <Notificar>true</Notificar>
+  </Preguntas>
+</DocumentElement>

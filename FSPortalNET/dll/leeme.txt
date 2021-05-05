@@ -1,0 +1,12 @@
+Descripción de las DLL's:
+
+ajax*.dll -> AJAX.NET
+Microsoft.Web.Extensions*.dll -> AJAX.NET
+FredCK*   -> Editor online HTML
+*fluorine* -> Fluorine Gateway Flash
+log4net    -> Fluorine Gateway Flash
+GACUtil.exe -> Fluorine Gateway Flash
+Interop.ADODB.dll -> Para compactar y reparar, función: CompactJetDatabase.
+Interop.JRO.dll -> Para compactar y reparar, función: CompactJetDatabase.
+ICSharpCode.SharpZipLib.dll -> Compresor/decompresor de ficheros ZIP
+iTextSharp -> Generador de ficheros PDF

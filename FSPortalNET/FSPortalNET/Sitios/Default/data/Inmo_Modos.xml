@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Inmo_Modos>
+    <idModo>0</idModo>
+    <modo>Venta</modo>
+  </Inmo_Modos>
+  <Inmo_Modos>
+    <idModo>1</idModo>
+    <modo>Alquiler</modo>
+  </Inmo_Modos>
+  <Inmo_Modos>
+    <idModo>2</idModo>
+    <modo>Traspaso</modo>
+  </Inmo_Modos>
+</DocumentElement>

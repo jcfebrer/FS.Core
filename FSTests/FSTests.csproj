@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7BB01981-D219-4388-823A-A3740C9EF517}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FSTests</RootNamespace>
+    <AssemblyName>FSTests</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="FSDatabase\UtilsTests.cs" />
+    <Compile Include="FSCryptoTests.cs" />
+    <Compile Include="FSLibrary\MultimediaTests.cs" />
+    <Compile Include="FSLibrary\NumberUtilsTests.cs" />
+    <Compile Include="FSLibrary\SerializerTests.cs" />
+    <Compile Include="FSLibrary\TextUtilTests.cs" />
+    <Compile Include="FSLibrary\TicketBAI_CRCTests.cs" />
+    <Compile Include="FSMail\ImapTests.cs" />
+    <Compile Include="FSMail\MimeTests.cs" />
+    <Compile Include="FSMail\Pop3Tests.cs" />
+    <Compile Include="FSParserTests.cs" />
+    <Compile Include="FSNetworkTests.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FSFuzzyStrings\SoundExTests.cs" />
+    <Compile Include="FSFuzzyStrings\StringExtensionsTests.cs" />
+    <Compile Include="Varios.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSCrypto\FSCrypto.csproj">
+      <Project>{5DDE5624-1823-435D-8C88-46EB601106A4}</Project>
+      <Name>FSCrypto</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSDatabase\FSDatabase.csproj">
+      <Project>{31743f95-0d43-4ab1-bd23-45d8a88f2635}</Project>
+      <Name>FSDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSFuzzyStrings\FSFuzzyStrings.csproj">
+      <Project>{29385A2D-EAC1-4777-BC01-C060C2002307}</Project>
+      <Name>FSFuzzyStrings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
+      <Project>{7E0ADEF9-BCB8-48CD-99B6-68BF862F7083}</Project>
+      <Name>FSLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMail\FSMail.csproj">
+      <Project>{890916d9-1b2a-4c31-a2cd-f9cc8a80bd87}</Project>
+      <Name>FSMail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj">
+      <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>
+      <Name>FSNetwork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSParser\FSParser.csproj">
+      <Project>{7c38ee9f-9765-44bb-9477-7e59e3122aac}</Project>
+      <Name>FSParser</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSPortalNET\FSPaginas\FSPaginas.csproj">
+      <Project>{42977236-44BD-4753-AC1A-1C56526CD2F8}</Project>
+      <Name>FSPaginas</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.CodedUITestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITest.Extension, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+        <Reference Include="Microsoft.VisualStudio.TestTools.UITesting, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

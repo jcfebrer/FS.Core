@@ -1,0 +1,23 @@
+Procedimiento para modificar una página HTML de un fichero XML.
+OJO: Hacer copia de seguridad del fichero XML antes de modificarlo.
+
+
+1.- Accederemos a la web codebeautify.org, sección HTML TOOLS:
+https://codebeautify.org/html-tools
+Otras páginas:
+https://emn178.github.io/online-tools/
+https://www.web2generators.com/html-based-tools/online-html-entities-encoder-and-decoder
+
+2.- Selecconamos "HTML Decode" (para decodificar el texto a HTML)
+
+3.- Abrimos el fichero XML que queremos editar.
+Copiamos el texto que esta entre las secciones <contenido> y </contenido> y lo pegamos en la herramienta.
+Pulsamos DECODE.
+Copiamos el texto decodificado y lo modificamos a nuestro gusto.
+
+4.- Para volver a ponerlo en el fichero XML:
+Utilizamos la herramienta "HTML Encode".
+Pegamos el código HTML sin codificar.
+Pulsamos ENCODE.
+Copiamos el texto codificado en el fichero XML entre las etiquetas <contenido> y </contenido>
+

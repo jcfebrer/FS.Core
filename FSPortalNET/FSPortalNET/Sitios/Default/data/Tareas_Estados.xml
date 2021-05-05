@@ -1,0 +1,19 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Tareas_Estados>
+    <idEstado>1</idEstado>
+    <estado>Abierta</estado>
+  </Tareas_Estados>
+  <Tareas_Estados>
+    <idEstado>2</idEstado>
+    <estado>Bloqueada</estado>
+  </Tareas_Estados>
+  <Tareas_Estados>
+    <idEstado>3</idEstado>
+    <estado>Cerrada</estado>
+  </Tareas_Estados>
+  <Tareas_Estados>
+    <idEstado>4</idEstado>
+    <estado>En progreso</estado>
+  </Tareas_Estados>
+</DocumentElement>

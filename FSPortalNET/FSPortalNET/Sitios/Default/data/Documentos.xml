@@ -1,0 +1,43 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Documentos>
+    <DocumentoID>5</DocumentoID>
+    <TemaID>1</TemaID>
+    <Nombre>Mission Statement</Nombre>
+    <Cuerpo>2eNetWorX&lt;strong&gt;/dev&lt;/strong&gt; site aims to provide an OpenSource Project development base for developers.&lt;br&gt;&lt;br&gt;
+The site itself is the primary project to be developed and served to the developer community. Currently it focuses on ASP and VB. Compared to the common OpenSource development environments, such as C, C++, Php, Perl and so on, there is a contradiction within. As long as the code runs on commercial products (primarily Microsoft Windows), the long-term life of the code developed will be limited to the life of the Operating System. But, we, the developers, are the ones who develop those systems as well. Some day, an OpenSource Windows port might be developed by us. So, why wait? Get your fingers ready for coding ;)</Cuerpo>
+    <PaginasVistas>11</PaginasVistas>
+  </Documentos>
+  <Documentos>
+    <DocumentoID>9</DocumentoID>
+    <TemaID>1</TemaID>
+    <Nombre>Initial Discussion</Nombre>
+    <Cuerpo>&lt;p class="smallertext"&gt;
+
+This very first development attempt to create a platform for OpenSource development requires
+a lot of work to do. Going step by step, resolving the easier problems first, we will overcome
+the difficulties together.
+&lt;br&gt;&lt;br&gt;
+
+One of the primary problems is the lack of our own dedicated server for now. 
+When we find the financial support, we will move to our own server. 
+&lt;br&gt;&lt;br&gt;
+The second primary problem is the technical inavailability of a parallel development tool. 
+Using the web as a platform, it shouldn't be so hard to achieve for developers to edit a common 
+codebase online. Unix developers have CVS, Windows developers have VSS, what about ASP developers?
+We must have an application for parallel development and be able to work on projects simultanously
+and transparently. &lt;a href="/dev/projects/recommend.asp?pid=1"&gt;Any suggestions?&lt;/a&gt; Comments are welcome about architecture, design 
+specs or technical expertise. As for now, the projects are developed in a semi-parallel manner 
+using email attachments.
+&lt;br&gt;&lt;br&gt;
+Also, we need a forum here for discussions about the issues some of which are listed here already.
+&lt;br&gt;&lt;br&gt;
+Here is the quick list of ideas to be implemented:&lt;br&gt;&lt;br&gt;
+» Public profile pages where the other developers may take a look at your profile, skills and so on.&lt;br&gt;
+» Documentations should have versioning support. &lt;br&gt;
+» Way to accept the applications for becoming a developer/contributor.&lt;br&gt;
+&lt;/p&gt;
+</Cuerpo>
+    <PaginasVistas>6</PaginasVistas>
+  </Documentos>
+</DocumentElement>

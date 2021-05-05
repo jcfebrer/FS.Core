@@ -1,0 +1,11 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Sexo>
+    <idSexo>0</idSexo>
+    <sexo>Femenino</sexo>
+  </Sexo>
+  <Sexo>
+    <idSexo>1</idSexo>
+    <sexo>Masculino</sexo>
+  </Sexo>
+</DocumentElement>

@@ -1,0 +1,48 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Enlaces>
+    <EnlaceID>1</EnlaceID>
+    <TemaID>1</TemaID>
+    <Titulo>Sitio de pruebas</Titulo>
+    <URL>http://www.google.com</URL>
+    <Descripcion>Sitio de pruebas.</Descripcion>
+    <EnviadoPor>2</EnviadoPor>
+    <FechaEnvio>2004-06-12T18:06:29+02:00</FechaEnvio>
+  </Enlaces>
+  <Enlaces>
+    <EnlaceID>2</EnlaceID>
+    <TemaID>1</TemaID>
+    <Titulo>Sitio de pruebas</Titulo>
+    <URL>http://www.google.com</URL>
+    <Descripcion>Sitio de pruebas.</Descripcion>
+    <EnviadoPor>2</EnviadoPor>
+    <FechaEnvio>2004-06-12T18:07:34+02:00</FechaEnvio>
+  </Enlaces>
+  <Enlaces>
+    <EnlaceID>3</EnlaceID>
+    <TemaID>1</TemaID>
+    <Titulo>Prueba de enlace</Titulo>
+    <URL>http://www.google.com</URL>
+    <Descripcion>Enlace de prueba.</Descripcion>
+    <EnviadoPor>2</EnviadoPor>
+    <FechaEnvio>2004-06-22T07:38:58+02:00</FechaEnvio>
+  </Enlaces>
+  <Enlaces>
+    <EnlaceID>4</EnlaceID>
+    <TemaID>1</TemaID>
+    <Titulo>Prueba de enlace</Titulo>
+    <URL>http://www.google.com</URL>
+    <Descripcion>Enlace de prueba.</Descripcion>
+    <EnviadoPor>2</EnviadoPor>
+    <FechaEnvio>2004-06-22T07:39:54+02:00</FechaEnvio>
+  </Enlaces>
+  <Enlaces>
+    <EnlaceID>5</EnlaceID>
+    <TemaID>1</TemaID>
+    <Titulo>Enlace p1</Titulo>
+    <URL>http://p1.com</URL>
+    <Descripcion>Mi enlace.</Descripcion>
+    <EnviadoPor>2</EnviadoPor>
+    <FechaEnvio>2005-09-01T00:00:00+02:00</FechaEnvio>
+  </Enlaces>
+</DocumentElement>

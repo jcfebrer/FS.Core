@@ -1,0 +1,2 @@
+Why not, we may insert an iframe in the author comments space:
+<iframe src="http://www.yahoo.com" height="50"></iframe>

@@ -1,0 +1,208 @@
+<html>
+<head>
+<title>Troubleshooting and Common Errors</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.text {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; color: #000000}
+.heading {  font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-weight: bold; color: #000000}
+.title {  font-family: Arial, Helvetica, sans-serif; font-size: 33px; font-style: normal; font-weight: bold; color: #000000}
+a {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #0000CC; text-decoration: underline}
+a:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #FF0000; text-decoration: underline; font-style: normal}
+a:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; color: #0000FF; text-decoration: underline}
+a:visited:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #FF0000; text-decoration: underline; font-style: normal}
+.smtitle {  font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-style: normal; font-weight: bold; color: #000000}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+ <tr>
+  <td align="center" class="title">Web Wiz Forums Documentation<span class="smtitle"><br />
+   Troubleshooting and Common Errors<br />
+   <a href="menu.htm" target="_self">Return to the main menu</a></span></td>
+ </tr>
+</table>
+<br />
+<table width="96%" border="0" cellspacing="0" cellpadding="2" align="center">
+ <tr> 
+  <td class="text"> <p>Installing Web Wiz Forums should be relative straight forward, but due to a wide variations of web servers and configurations problems may occur.</p>
+   <p>This page tries to answer many of the questions that are asked almost everyday on Web Wiz Guide.</p>
+   <ul>
+    <li><a href="FAQ20">Some forum files are giving errors</a> - most common problem</li>
+    <li><a href="#FAQ1" target="_self">ASP Scripts won't run!</a> </li>
+    <li><a href="#FAQ2" target="_self">How can I tell if my web space supports ASP?</a></li>
+    <li><a href="#FAQ3">The page cannot be displayed. HTTP500 error</a> - often confused with 404 page not found</li>
+    <li><a href="#FAQ4" target="_self">Cannot update. Database or object is read-only</a></li>
+    <li><a href="#FAQ5" target="_self">Operation must use an updateable query</a></li>
+    <li><a href="#FAQ6">The search key was not found in any record</a></li>
+    <li><a href="#FAQ7">CDate error</a></li>
+   </ul>
+   <p>For other common FAQ's see the following articles on Web Wiz Guide; <a href="http://www.webwizguide.info/asp/faq/default.aspx" target="_blank">ASP Frequently Asked Questions</a>, or for database errors 
+    see <a href="http://www.webwizguide.info/asp/faq/access_database_faq.aspx" target="_blank">Database Errors FAQ's</a>.</p>
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000" align="center">
+    <tr> 
+     <td> <table width="100%" border="0" cellspacing="1" cellpadding="2" align="center">
+       <tr> 
+        <td valign="bottom" bgcolor="#CCCCCC"><span class="heading">Some forum files are giving errors</span> <span class="text">- most common problem</span> <span class="text"><a name="FAQ20" id="FAQ20"></a></span></td>
+       </tr>
+       <tr valign="top"> 
+        <td class="text" bgcolor="#FFFFFF"><p>Everyday people report what they think are problems or errors in Web Wiz Forums once they have uploaded it to their web space. It seems that all to often the 
+          error has been coursed by a file or files getting corrupted in the upload process.</p>
+         <p>If you find that Web Wiz Forums is giving errors then before reporting an error try re-uploading the files to your web server again and see if that corrects the problem.</p>
+                     </td>
+       </tr>
+      </table></td>
+    </tr>
+   </table>
+   <br />
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000" align="center">
+    <tr> 
+     <td> <table width="100%" border="0" cellspacing="1" cellpadding="2" align="center">
+       <tr> 
+        <td valign="bottom" bgcolor="#CCCCCC"><span class="heading">ASP Scripts won't run!</span><span class="text"> - most common problem<a name="FAQ1"></a></span></td>
+       </tr>
+       <tr valign="top"> 
+        <td class="text" bgcolor="#FFFFFF">This seems to be the most common problem that people have. <br /> <br />
+         ASP need's to be run through a web server, hence the name Active Server Pages, no Server, no Active Pages. If you are not familiar with ASP please read through the article on Web Wiz Guide on, 
+         <a href="http://www.webwizguide.info/asp/tutorials/what_is_asp.aspx" target="_blank">What is Active Server Pages (ASP)?</a><br /> <br />
+         If you are finding that you can't get an ASP script to run on your web space provided by your web space provider then check with them that they fully support ASP.<br /> <br />
+         ASP is completely different to CGI and Pearl, so having support for CGI does not mean that you have support on your web space for ASP.</td>
+       </tr>
+      </table></td>
+    </tr>
+   </table>
+   <br /> <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000" align="center">
+    <tr> 
+     <td> <table width="100%" border="0" cellspacing="1" cellpadding="2" align="center">
+       <tr> 
+        <td valign="bottom" bgcolor="#CCCCCC" class="heading">How can I tell if my web space supports ASP?<span class="text"><a name="FAQ2"></a></span></td>
+       </tr>
+       <tr valign="top"> 
+        <td class="text" bgcolor="#FFFFFF" height="33">To be able to tell if your web space provider supports ASP, the easiest way is to look at any FAQ or support pages that the provider may have, or contact 
+         them by e-mail or phone and ask them.</td>
+       </tr>
+      </table></td>
+    </tr>
+   </table>
+   <br />
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000" align="center">
+    <tr> 
+     <td> <table width="100%" border="0" cellspacing="1" cellpadding="2" align="center">
+       <tr> 
+        <td valign="bottom" bgcolor="#CCCCCC" class="heading">The page cannot be displayed. HTTP 500 - Internal server error<span class="text"> (often confused with 404 page not found)<a name="FAQ3" id="FAQ3"></a></span></td>
+       </tr>
+       <tr valign="top"> 
+        <td class="text" bgcolor="#FFFFFF" height="33">This is a very general error. Many people often say, <em>when I click on a link in the forum I get a page can not be found error</em>, 99.99% of the 
+         time this is actually incorrect, if you look closer at the error message it will be a 500 Internal server error.<br />
+         <br />
+         If you receive this error when trying to run an ASP script with no error message or line number then you need to turn off Friendly HTTP Error Massages in Internet Explorer so you can get details 
+         on what is coursing the error.<br /> <br />
+         If you are not sure how then read article on Web Wiz Guide on how to <a href="http://www.webwizguide.info/asp/faq/friendly_HTTP_error_messages.aspx" target="_blank">Turn Off Friendly HTTP Error 
+         Messages in IE</a>.</td>
+       </tr>
+      </table></td>
+    </tr>
+   </table>
+         
+   <br />
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000" align="center">
+    <tr> 
+     <td> <table width="100%" border="0" cellspacing="1" cellpadding="2" align="center">
+       <tr> 
+        <td valign="bottom" bgcolor="#E4E4E4"><span class="heading">Cannot update. Database or object is read-only.</span><span class="text"><a name="FAQ4" id="FAQ4"></a><br />
+         Microsoft OLE DB Provider for ODBC Drivers error '80004005' <br />
+         [Microsoft][ODBC Microsoft Access Driver] Cannot update. Database or object is read-only.</span> </td>
+       </tr>
+       <tr valign="top"> 
+        <td class="text" bgcolor="#FFFFFF">This is the most common error that I'm asked about. This error usually happens when you try to insert data into or update data in an Access database. It means 
+         that you don't have sufficient permissions to write to the database. <br /> <br />
+         If you are running the web server yourself then read the article on Web Wiz Guide, <a href="http://www.webwizguide.info/asp/faq/server_permissions.aspx" target="_blank">Checking and Setting up the 
+         Correct Permissions on the Server</a>.<br /> <br />
+         If you are not running the server yourself you will need to contact your web space provider and ask them how to sort the problem out. You may need to use a special folder or they may have to setup 
+         a system DSN for you or change the permissions on the directory containing the database.</td>
+       </tr>
+      </table></td>
+    </tr>
+   </table>
+   <br /> 
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000" align="center">
+    <tr> 
+     <td> <table width="100%" border="0" cellspacing="1" cellpadding="2" align="center">
+       <tr> 
+        <td valign="bottom" bgcolor="#E4E4E4"><span class="heading">Operation must use an updateable query</span><span class="text"><a name="FAQ5" id="FAQ5"></a><br />
+         Microsoft OLE DB Provider for ODBC Drivers error '80004005' <br />
+         [Microsoft][ODBC Microsoft Access Driver] Operation must use an updateable query. </span></td>
+       </tr>
+       <tr valign="top"> 
+        <td class="text" bgcolor="#FFFFFF">This error usually happens when you try to insert data into or update data in an Access database. It means that you don't have sufficient permissions to write 
+         to the database. <br /> <br />
+         If you are running the web server yourself then read the article on Web Wiz Guide, <a href="http://www.webwizguide.info/asp/faq/server_permissions.aspx" target="_blank">Checking and Setting up the 
+         Correct Permissions on the Server</a>.<br /> <br />
+         If you are not running the server yourself you will need to contact your web space provider and ask them how to sort the problem out. You may need to use a special folder or they may have to setup 
+         a system DSN for you or change the permissions on the directory containing the database.</td>
+       </tr>
+      </table></td>
+    </tr>
+   </table>
+   
+   <br />
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000" align="center">
+    <tr> 
+     <td> <table width="100%" border="0" cellspacing="1" cellpadding="2" align="center">
+       <tr> 
+        <td valign="bottom" bgcolor="#E4E4E4"><span class="heading">The search key was not found in any record.</span><span class="text"><a name="FAQ6" id="FAQ6"></a><br />
+         Microsoft JET Database Engine (0x80004005)<br />
+         The search key was not found in any record.</span></td>
+       </tr>
+       <tr valign="top"> 
+        <td class="text" bgcolor="#FFFFFF">This error often means that the database has become corrupted.<br />
+         <br />
+         To correct the error the database needs to be repaired. If the database is on a remote server download the database and follow the instructions below to repair the database.<br />
+         <br />
+         Open the database in Microsoft Access, click on the 'Tools' menu and select 'Database Utilities -&gt; Compact and Repair Database'.</td>
+       </tr>
+      </table></td>
+    </tr>
+   </table>
+   <br />
+   <table width="98%" border="0" cellspacing="0" cellpadding="0" bgcolor="#000000" align="center">
+    <tr> 
+     <td> <table width="100%" border="0" cellspacing="1" cellpadding="2" align="center">
+       <tr> 
+        <td valign="bottom" bgcolor="#CCCCCC" class="heading">CDate Error<span class="text"> <a name="FAQ7" id="FAQ7"></a></span></td>
+       </tr>
+       <tr valign="top"> 
+        <td class="text" bgcolor="#FFFFFF" height="33"><p>This error happens when the locale settings on the web server you are using are incorrectly set up or another ASP application on the server has 
+          changed the locale settings. You can over come this problem by following the instructions below: -</p>
+         <ol>
+          <li>Open the file common.aspx and find the line near the top that reads: -<br />
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 'Session.LCID = 1033</li>
+          <li>Remove the single ' quote mark from in front of this line.</li>
+          <li>Then replace the number 1033 with your local ID number a full list can be found at: -<br />
+           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="http://www.webwizguide.info/asp/faq/date_time_settings.aspx" target="_blank">Changing Date, Time, and Currency Format</a> </li>
+          <li>Clean out your cookie cache on your web browser.</li>
+         </ol>
+         </td>
+       </tr>
+      </table></td>
+    </tr>
+   </table> </td>
+ </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10" align="center">
+ <tr> 
+  <td align="center" class="text" height="17">For other common FAQ's see the following articles on Web Wiz Guide: -<br />
+   <a href="http://www.webwizguide.info/asp/faq/default.aspx" target="_blank">ASP Frequently Asked Questions</a>, or for database errors see <a href="http://www.webwizguide.info/asp/faq/access_database_faq.aspx" target="_blank">Database 
+   Errors FAQ's</a>.<br />
+   <br />
+   <a href="http://www.webwizguide.info" target="_blank"><br />
+   <img src="web_wiz_guide.gif" width="116" height="38" border="0" alt="Web Wiz Guide!"></a><br />
+   <br />
+   Copyright 2000-2004 Bruce Corkhill<br />
+   Web Wiz Guide, PO Box 4982, Bournemouth, BH8 8XP, United Kingdom</td>
+ </tr>
+</table>
+</body>
+</html>

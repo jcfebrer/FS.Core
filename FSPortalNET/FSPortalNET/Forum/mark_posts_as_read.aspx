@@ -1,0 +1,1 @@
+<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" Inherits="FSForum.mark_post_as_read" %>

@@ -1,0 +1,131 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Categorias>
+    <idCategoria>1</idCategoria>
+    <titulo>Raiz</titulo>
+    <idCategoriaPadre>0</idCategoriaPadre>
+    <activo>false</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>2</idCategoria>
+    <titulo>Conjuntos</titulo>
+    <idCategoriaPadre>1</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>3</idCategoria>
+    <titulo>Conjuntos portero</titulo>
+    <idCategoriaPadre>1</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>4</idCategoria>
+    <titulo>Complementos</titulo>
+    <idCategoriaPadre>1</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>5</idCategoria>
+    <titulo>Moscu</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <descripcion>
+&lt;P&gt;&lt;TABLE cellSpacing=0 cellPadding=0 border=1&gt;
+&lt;TR&gt;
+&lt;TD class="Estilo1 tx_c_n_bold" width=215 
+bgColor=#cccccc&gt;&lt;STRONG&gt;Conjuntos&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD class="tecn Estilo1"&gt;
+&lt;P&gt;CAMISA &lt;BR&gt;Poliester 100% | Interlock &lt;/P&gt;
+&lt;P&gt;PANTALÓN (Con slip y cordón) &lt;BR&gt;Poliester 100% | Interlock &lt;/P&gt;
+&lt;P&gt;MEDIAS &lt;BR&gt;Poliamida 100% &lt;/P&gt;&lt;BR&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD class="Estilo1 tx_c_n_bold" bgColor=#cccccc&gt;&lt;STRONG&gt;REFERENCIAS 
+&lt;/STRONG&gt;&lt;/TD&gt;&lt;/TR&gt;
+&lt;TR&gt;
+&lt;TD class="tecn Estilo1"&gt;&lt;STRONG&gt;001727&lt;/STRONG&gt; &lt;BR&gt;Senior Manga Corta 
+&lt;BR&gt;M,L..XXL &lt;BR&gt;&lt;STRONG&gt;001728&lt;/STRONG&gt; &lt;BR&gt;Junior Manga Corta &lt;BR&gt;6,8,12,16 
+&lt;/TD&gt;&lt;/TR&gt;&lt;/TABLE&gt;&lt;/P&gt;</descripcion>
+    <imagen>catMoscu.jpg</imagen>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>6</idCategoria>
+    <titulo>Munich</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>7</idCategoria>
+    <titulo>Pisa</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>8</idCategoria>
+    <titulo>Dycam</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>9</idCategoria>
+    <titulo>Crus</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>10</idCategoria>
+    <titulo>New Roma 03</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>11</idCategoria>
+    <titulo>Escudetto</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>12</idCategoria>
+    <titulo>Xelium</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>13</idCategoria>
+    <titulo>Londres</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>14</idCategoria>
+    <titulo>Basilea</titulo>
+    <idCategoriaPadre>2</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>89</idCategoria>
+    <titulo>Khan</titulo>
+    <idCategoriaPadre>3</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>90</idCategoria>
+    <titulo>Zamora 03</titulo>
+    <idCategoriaPadre>3</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>91</idCategoria>
+    <titulo>Zapatilleros</titulo>
+    <idCategoriaPadre>4</idCategoriaPadre>
+    <descripcion />
+    <imagen />
+    <activo>true</activo>
+  </Categorias>
+  <Categorias>
+    <idCategoria>92</idCategoria>
+    <titulo>Mochilas</titulo>
+    <idCategoriaPadre>4</idCategoriaPadre>
+    <activo>true</activo>
+  </Categorias>
+</DocumentElement>

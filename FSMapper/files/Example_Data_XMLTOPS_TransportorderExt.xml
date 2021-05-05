@@ -1,0 +1,1005 @@
+<?xml version="1.0"?>
+<Consignments xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="C:\DOCUME~1\rtmsidz\Bureaublad\XMLEDI~1\OOC\STANDA~1\XMLTOPS_TransportorderExt_0008_XSD_v0008.xsd">
+	<ActionDateTime>2009-05-04T14:45:19</ActionDateTime>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123361-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128356-123361-200</InterfaceReference>
+			<CustomerReference>9051905036-01</CustomerReference>
+			<JobType>EXP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY DOLPHIN</VoyageVessel>
+			<VoyageNumber>TESTVOYAGE</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>false</RoundTrip>
+			<DriverInstructions> INSTRUCTIONS WILL BE PLACED HERE LINE 01
+ INSTRUCTIONS WILL BE PLACED HERE LINE 02
+ INSTRUCTIONS WILL BE PLACED HERE LINE 03
+ INSTRUCTIONS WILL BE PLACED HERE LINE 04
+ INSTRUCTIONS WILL BE PLACED HERE LINE 05
+ INSTRUCTIONS WILL BE PLACED HERE LINE 0</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>40GE</ContainerType>
+			<ContainerNumber>TEST0001001</ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> CONTAINER SAID TO CONTAIN *** TEST FILE FOR TOPS *** *** NORMAL FCL *** NO HAZARDOUS DETAILS *** NO TEMP SETTINGS *** NO MULTISTOP *** NO CUSTOMS CLEARANCE</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="25000" units="KG"/>
+			<NetWeight value="25000" units="KG"/>
+			<Comments> INSTRUCTIONS WILL BE PLACED HERE LINE 01 INSTRUCTIONS WILL BE PLACED HERE LINE 02 INSTRUCTIONS WILL BE PLACED HERE LINE 03 INSTRUCTIONS WILL BE PLACED HERE LINE 04 INSTRUCTIONS WILL BE PLACED HERE LINE 05 INSTRUCTIONS WILL BE PLACED HERE LINE 06 INSTRUCTIONS WILL BE PLACED HERE LINE 07 INSTRUCTIONS WILL BE PLACED HERE LINE 08 INSTRUCTIONS WILL BE PLACED HERE LINE 09 INSTRUCTIONS WILL BE PLACED HERE LINE 10
+</Comments>
+			<LineBLNumber>                    </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>8</Mileage>
+			<TransportReference>1710-0071-905.01101+TEST0001001</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>OUTREF 123</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode/>
+				<LocationName>TBA</LocationName>
+				<Address1/>
+				<Address2/>
+				<Address3/>
+				<Town>TBA</Town>
+				<PostCode>        </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint/>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>12:00:00</Time>
+				<Reference/>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST SHIPPER</LocationName>
+				<Address1>BLADIBLA 123</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>1234 XX </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>IN REF 456</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode>DDE   </PortCode>
+				<LocationName>DDE TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD</Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+		</Job>
+	</Consignment>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123362-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128360-123362-200</InterfaceReference>
+			<CustomerReference>9051905037-01</CustomerReference>
+			<JobType>EXP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY DOLPHIN</VoyageVessel>
+			<VoyageNumber>TESTVOYAGE</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>false</RoundTrip>
+			<DriverInstructions> TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP
+ TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP
+ TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP
+ TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP
+ TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP
+ TEST JOB FOR TOPS CUSTOMS STOP/MULTISTO</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>40GE</ContainerType>
+			<ContainerNumber>TEST0003003</ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> CONTAINER SAID TO CONTAIN *** TEST FILE FOR TOPS *** *** NORMAL FCL *** NO HAZARDOUS DETAILS *** NO TEMP SETTINGS *** MULTISTOP *** CUSTOMS CLEARANCE</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="25000" units="KG"/>
+			<NetWeight value="25000" units="KG"/>
+			<Comments> TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP TEST JOB FOR TOPS CUSTOMS STOP/MULTISTOP
+</Comments>
+			<LineBLNumber>                    </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>8</Mileage>
+			<TransportReference>1710-0071-905.01201+TEST0003003</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>OUTREF 1</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode/>
+				<LocationName>TBA</LocationName>
+				<Address1/>
+				<Address2/>
+				<Address3/>
+				<Town>TBA</Town>
+				<PostCode>        </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint/>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>10:00:00</Time>
+				<Reference/>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST SHIPPER</LocationName>
+				<Address1>BLADIBLA 123</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>1234 XX </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>11:00:00</Time>
+				<Reference/>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST CONSIGNEE</LocationName>
+				<Address1>ADDRESS LINE CONSIGNEE</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>9999 AA </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>IN REF 1</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode>DDN   </PortCode>
+				<LocationName>DDN TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD </Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+		</Job>
+	</Consignment>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123363-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128364-123363-200</InterfaceReference>
+			<CustomerReference>9051905038-01</CustomerReference>
+			<JobType>EXP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY DOLPHIN</VoyageVessel>
+			<VoyageNumber>TESTVOYAGE</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>false</RoundTrip>
+			<DriverInstructions>
+</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>40GE</ContainerType>
+			<ContainerNumber>           </ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> CONTAINER SAID TO CONTAIN *** TEST FILE FOR TOPS *** *** NORMAL FCL *** HAZARDOUS DETAILS *** NO TEMP SETTINGS *** NO MULTISTOP *** NO CUSTOMS CLEARANCE</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="25000" units="KG"/>
+			<NetWeight value="25000" units="KG"/>
+			<Comments>
+</Comments>
+			<LineBLNumber>                    </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>8</Mileage>
+			<TransportReference>1710-0071-905.01301+9051905038-01</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>OUT 1</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode/>
+				<LocationName>TBA</LocationName>
+				<Address1/>
+				<Address2/>
+				<Address3/>
+				<Town>TBA</Town>
+				<PostCode>        </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint/>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>10:00:00</Time>
+				<Reference/>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST SHIPPER</LocationName>
+				<Address1>BLADIBLA 123</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>1234 XX </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>IN 1</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode>DDN   </PortCode>
+				<LocationName>DDN TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD </Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Hazard>
+				<UNNumber>2353</UNNumber>
+				<IMCOClass>3</IMCOClass>
+				<Description>BUTYRYL CHLORIDE</Description>
+				<FlashPoint>C 027</FlashPoint>
+			</Hazard>
+		</Job>
+	</Consignment>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123364-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128358-123364-200</InterfaceReference>
+			<CustomerReference>9071905012-01</CustomerReference>
+			<JobType>IMP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY BEE</VoyageVessel>
+			<VoyageNumber>4454</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>true</RoundTrip>
+			<DriverInstructions> INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOP</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>40HC</ContainerType>
+			<ContainerNumber>TEST9999999</ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> TEST FOR TOPS</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="12000" units="KG"/>
+			<NetWeight value="12000" units="KG"/>
+			<Comments> INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+</Comments>
+			<LineBLNumber>                    </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>133</Mileage>
+			<TransportReference>1710-4071-905.01200+TEST9999999</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>TURN OUT REFERENC</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode>DDN   </PortCode>
+				<LocationName>DDN TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD </Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>10:00:00</Time>
+				<Reference>DEL REF 1</Reference>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST SHIPPER</LocationName>
+				<Address1>BLADIBLA 123</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>1234 XX </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>11:00:00</Time>
+				<Reference>DEL REF 2</Reference>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST CONSIGNEE</LocationName>
+				<Address1>ADDRESS LINE CONSIGNEE</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>9999 AA </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>12:00:00</Time>
+				<Reference>DEL REF 3</Reference>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST NAAM</LocationName>
+				<Address1>TEST ADRES 112233</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>TESTTEST</Town>
+				<PostCode>1119 MB </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint/>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>TURN IN REFERENCE</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode>DDE   </DepotCode>
+				<LocationName>DDE TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD</Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+		</Job>
+	</Consignment>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123365-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128361-123365-200</InterfaceReference>
+			<CustomerReference>9071905014-01</CustomerReference>
+			<JobType>IMP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY BEE</VoyageVessel>
+			<VoyageNumber>4454</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>true</RoundTrip>
+			<DriverInstructions> INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+ INSTRUCTIONS WILL BE ENTERED HERE - TOP</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>40HC</ContainerType>
+			<ContainerNumber>TEST9999999</ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> TEST FOR TOPS</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="12000" units="KG"/>
+			<NetWeight value="12000" units="KG"/>
+			<Comments> INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS INSTRUCTIONS WILL BE ENTERED HERE - TOPS
+</Comments>
+			<LineBLNumber>                    </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>133</Mileage>
+			<TransportReference>1710-4071-905.01200+TEST9999999</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>TURN OUT REFERENC</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode>DDN   </PortCode>
+				<LocationName>DDN TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD </Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>10:00:00</Time>
+				<Reference>DEL REF 1</Reference>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST SHIPPER</LocationName>
+				<Address1>BLADIBLA 123</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>1234 XX </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>11:00:00</Time>
+				<Reference>DEL REF 2</Reference>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST CONSIGNEE</LocationName>
+				<Address1>ADDRESS LINE CONSIGNEE</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>9999 AA </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-05</Date>
+				<Time>12:00:00</Time>
+				<Reference>DEL REF 3</Reference>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST NAAM</LocationName>
+				<Address1>TEST ADRES 112233</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>TESTTEST</Town>
+				<PostCode>1119 MB </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint/>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-05</Date>
+				<Reference>TURN IN REFERENCE</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode>DDE   </DepotCode>
+				<LocationName>DDE TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD</Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+		</Job>
+	</Consignment>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123366-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128357-123366-200</InterfaceReference>
+			<CustomerReference>9071905011-01</CustomerReference>
+			<JobType>IMP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY BEE</VoyageVessel>
+			<VoyageNumber>4454</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>true</RoundTrip>
+			<DriverInstructions> TEST INSTRUCTIONS TOPS ORDER TEST 123123
+ TEST INSTRUCTIONS TOPS ORDER TEST 123123
+ TEST INSTRUCTIONS TOPS ORDER TEST 123123
+ TEST INSTRUCTIONS TOPS ORDER TEST 123123
+ TEST INSTRUCTIONS TOPS ORDER TEST 123123
+ TEST INSTRUCTIONS TOPS ORDER TEST 12312</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>40GE</ContainerType>
+			<ContainerNumber>TEST1231234</ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> TEST FOR TOPS</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="15000" units="KG"/>
+			<NetWeight value="15000" units="KG"/>
+			<Comments> TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123 TEST INSTRUCTIONS TOPS ORDER TEST 123123
+</Comments>
+			<LineBLNumber>2233                </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>17</Mileage>
+			<TransportReference>1710-4071-905.01100+TEST1231234</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-04</Date>
+				<Reference>OUT REF</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode>DDN   </PortCode>
+				<LocationName>DDN TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD </Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-04</Date>
+				<Time>12:00:00</Time>
+				<Reference>DEL REF</Reference>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST SHIPPER</LocationName>
+				<Address1>BLADIBLA 123</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>1234 XX </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-04</Date>
+				<Reference>IN REF</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode>DDN   </DepotCode>
+				<LocationName>DDN TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD </Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+		</Job>
+	</Consignment>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123367-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128359-123367-200</InterfaceReference>
+			<CustomerReference>9071905013-01</CustomerReference>
+			<JobType>IMP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY BEE</VoyageVessel>
+			<VoyageNumber>4454</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>false</RoundTrip>
+			<DriverInstructions> OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+
+</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>20RE</ContainerType>
+			<ContainerNumber>TEST8888888</ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> TEST FOR TOPS</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="12000" units="KG"/>
+			<NetWeight value="12000" units="KG"/>
+			<Comments> OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS
+</Comments>
+			<LineBLNumber>                    </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>48</Mileage>
+			<TransportReference>1710-9317-905.01100+TEST8888888</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-04</Date>
+				<Reference>OFF DOCK OUT</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode>DDE   </PortCode>
+				<LocationName>DDE TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD</Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-04</Date>
+				<Time>00:00:00</Time>
+				<Reference/>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>OFF DOCK</LocationName>
+				<Address1/>
+				<Address2/>
+				<Address3/>
+				<Town/>
+				<PostCode>        </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>OFFDOCK</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-04</Date>
+				<Reference>OFFDOCK IN</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode>TERMOE</DepotCode>
+				<LocationName>MOERDIJK</LocationName>
+				<Address1>HAVEN</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>MOERDIJK</Town>
+				<PostCode>4782  SL</PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>WAALHAVEN</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+		</Job>
+	</Consignment>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123368-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="0">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128363-123368-200</InterfaceReference>
+			<CustomerReference>9071905016-01</CustomerReference>
+			<JobType>IMP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY BEE</VoyageVessel>
+			<VoyageNumber>4454</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>false</RoundTrip>
+			<DriverInstructions>&lt;PreSet&gt; = -20.0
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TEST FOR TOPS
+ OFF DOCK TE</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>20RE</ContainerType>
+			<ContainerNumber>TEST8888888</ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> TEST FOR TOPS</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="12000" units="KG"/>
+			<NetWeight value="12000" units="KG"/>
+			<MaxTemp>-20</MaxTemp>
+			<MinTemp>-20</MinTemp>
+			<Comments>&lt;PreSet&gt; = -20.0
+ OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS OFF DOCK TEST FOR TOPS
+</Comments>
+			<LineBLNumber>                    </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>48</Mileage>
+			<TransportReference>1710-9317-905.01100+TEST8888888</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-04</Date>
+				<Reference>OFF DOCK OUT</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode>DDE   </PortCode>
+				<LocationName>DDE TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD</Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-04</Date>
+				<Time>00:00:00</Time>
+				<Reference/>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>OFF DOCK</LocationName>
+				<Address1/>
+				<Address2/>
+				<Address3/>
+				<Town/>
+				<PostCode>        </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>OFFDOCK</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-04</Date>
+				<Reference>OFFDOCK IN</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode>TERMOE</DepotCode>
+				<LocationName>MOERDIJK</LocationName>
+				<Address1>HAVEN</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>MOERDIJK</Town>
+				<PostCode>4782  SL</PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>WAALHAVEN</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+		</Job>
+	</Consignment>
+	<Consignment>
+		<Action>UPDATE</Action>
+		<InterfaceReference>123369-200</InterfaceReference>
+		<HaulageType>CON</HaulageType>
+		<Provisional>false</Provisional>
+		<Customer/>
+		<CustomerReference/>
+		<CustomerContact/>
+		<Branch>DMT2</Branch>
+		<Job TempMeasure="0">
+			<Action>UPDATE</Action>
+			<InterfaceReference>128362-123369-200</InterfaceReference>
+			<CustomerReference>9071905015-01</CustomerReference>
+			<JobType>IMP</JobType>
+			<MovementMode>FUL</MovementMode>
+			<JobCategory>STD</JobCategory>
+			<VoyageVessel>HAPPY BEE</VoyageVessel>
+			<VoyageNumber>4454</VoyageNumber>
+			<VoyageReference/>
+			<FinalDestinationPort/>
+			<RoundTrip>false</RoundTrip>
+			<DriverInstructions>&lt;PreSet&gt; = -20.0
+ PERISHABLES TEST FOR TOPS  - COMMENTS
+ PERISHABLES TEST FOR TOPS  - COMMENTS
+ PERISHABLES TEST FOR TOPS  - COMMENTS
+ PERISHABLES TEST FOR TOPS  - COMMENTS
+ PERISHABLES TEST FOR TOPS  - COMMENTS
+ PERISHABLES TEST FOR TOPS  - COMMENT</DriverInstructions>
+			<OutOfGauge>false</OutOfGauge>
+			<OutOfGaugeComments/>
+			<ContainerType>20RE</ContainerType>
+			<ContainerNumber>TEST8888888</ContainerNumber>
+			<GenSet>false</GenSet>
+			<CargoDescription> TEST FOR TOPS</CargoDescription>
+			<PackageSealNumbers/>
+			<GrossWeight value="12000" units="KG"/>
+			<NetWeight value="12000" units="KG"/>
+			<MaxTemp>-20</MaxTemp>
+			<MinTemp>-20</MinTemp>
+			<Comments>&lt;PreSet&gt; = -20.0
+ PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS PERISHABLES TEST FOR TOPS  - COMMENTS
+</Comments>
+			<LineBLNumber>                    </LineBLNumber>
+			<FinalDestination/>
+			<SCACCode>HLCU</SCACCode>
+			<Mileage>8</Mileage>
+			<TransportReference>1710-9317-905.01100+TEST8888888</TransportReference>
+			<Waypoint>
+				<Activity>LOA</Activity>
+				<Date>2009-05-07</Date>
+				<Reference>OUT REF</Reference>
+				<OnOffHire>false</OnOffHire>
+				<PortCode/>
+				<LocationName>TBA</LocationName>
+				<Address1/>
+				<Address2/>
+				<Address3/>
+				<Town>TBA</Town>
+				<PostCode>        </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint/>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>C/D</Activity>
+				<Date>2009-05-07</Date>
+				<Time>10:00:00</Time>
+				<Reference>DEL REF</Reference>
+				<OnOffHire>false</OnOffHire>
+				<LocationName>TEST SHIPPER</LocationName>
+				<Address1>BLADIBLA 123</Address1>
+				<Address2/>
+				<Address3/>
+				<Town>ROTTERDAM</Town>
+				<PostCode>1234 XX </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+			<Waypoint>
+				<Activity>UNL</Activity>
+				<Date>2009-05-07</Date>
+				<Reference>IN REF</Reference>
+				<OnOffHire>false</OnOffHire>
+				<DepotCode>DDN   </DepotCode>
+				<LocationName>DDN TERMINAL</LocationName>
+				<Address1>XXEUROPAWEG 875</Address1>
+				<Address2/>
+				<Address3>XX3199 LD </Address3>
+				<Town>ROTTERDAM</Town>
+				<PostCode>3088    </PostCode>
+				<County/>
+				<CountryCode>NLD</CountryCode>
+				<TariffPoint>ROTTERDAM</TariffPoint>
+				<GridRefX>      </GridRefX>
+				<GridRefY>      </GridRefY>
+			</Waypoint>
+		</Job>
+	</Consignment>
+</Consignments>

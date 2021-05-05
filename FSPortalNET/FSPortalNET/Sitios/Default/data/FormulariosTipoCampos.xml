@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <FormulariosTipoCampos>
+    <idTipoCampo>1</idTipoCampo>
+    <descripcion>Texto</descripcion>
+  </FormulariosTipoCampos>
+  <FormulariosTipoCampos>
+    <idTipoCampo>2</idTipoCampo>
+    <descripcion>Numero</descripcion>
+  </FormulariosTipoCampos>
+  <FormulariosTipoCampos>
+    <idTipoCampo>3</idTipoCampo>
+    <descripcion>Memo</descripcion>
+  </FormulariosTipoCampos>
+  <FormulariosTipoCampos>
+    <idTipoCampo>4</idTipoCampo>
+    <descripcion>Fecha</descripcion>
+  </FormulariosTipoCampos>
+  <FormulariosTipoCampos>
+    <idTipoCampo>5</idTipoCampo>
+    <descripcion>Clave</descripcion>
+  </FormulariosTipoCampos>
+  <FormulariosTipoCampos>
+    <idTipoCampo>6</idTipoCampo>
+    <descripcion>DNI</descripcion>
+  </FormulariosTipoCampos>
+  <FormulariosTipoCampos>
+    <idTipoCampo>7</idTipoCampo>
+    <descripcion>Código postal</descripcion>
+  </FormulariosTipoCampos>
+  <FormulariosTipoCampos>
+    <idTipoCampo>8</idTipoCampo>
+    <descripcion>E-Mail</descripcion>
+  </FormulariosTipoCampos>
+</DocumentElement>

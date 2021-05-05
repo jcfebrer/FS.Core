@@ -1,0 +1,94 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Articulos>
+    <idArticulo>2279</idArticulo>
+    <titulo>Moscu AZUL-BCO</titulo>
+    <descripcion />
+    <Fabricante />
+    <precioAnterior>0.0000</precioAnterior>
+    <precioa>18</precioa>
+    <unidadVenta>0</unidadVenta>
+    <HTML>PABQAD4AawBrAGsAawBrADwALwBQAD4A</HTML>
+    <Publicable>PABQAD4AawBrAGsAPAAvAFAAPgA=</Publicable>
+    <Comentario />
+    <Imagen1>0010.jpg</Imagen1>
+    <Imagen2>MOSCU_0010.jpg</Imagen2>
+    <Imagen3 />
+    <tipodeIVA>1</tipodeIVA>
+    <codigoalternativo />
+    <mostrarHome>true</mostrarHome>
+    <popularidad>10</popularidad>
+    <idProveedor>1</idProveedor>
+    <fechaAlta>2005-07-12T00:00:00+02:00</fechaAlta>
+  </Articulos>
+  <Articulos>
+    <idArticulo>2280</idArticulo>
+    <titulo>Moscu AMARILLO-AZUL</titulo>
+    <precioAnterior>0.0000</precioAnterior>
+    <precioa>18</precioa>
+    <unidadVenta>0</unidadVenta>
+    <Imagen1>0031.jpg</Imagen1>
+    <Imagen2>MOSCU_0031.jpg</Imagen2>
+    <mostrarHome>false</mostrarHome>
+    <popularidad>1</popularidad>
+    <idProveedor>1</idProveedor>
+    <fechaAlta>2005-12-07T00:00:00+01:00</fechaAlta>
+  </Articulos>
+  <Articulos>
+    <idArticulo>2281</idArticulo>
+    <titulo>Moscu BLANCO-MARINO</titulo>
+    <precioAnterior>0.0000</precioAnterior>
+    <precioa>18</precioa>
+    <unidadVenta>0</unidadVenta>
+    <Imagen1>0203.jpg</Imagen1>
+    <Imagen2>MOSCU_0203.jpg</Imagen2>
+    <mostrarHome>false</mostrarHome>
+    <popularidad>4</popularidad>
+    <idProveedor>1</idProveedor>
+    <fechaAlta>2005-12-07T00:00:00+01:00</fechaAlta>
+  </Articulos>
+  <Articulos>
+    <idArticulo>2282</idArticulo>
+    <titulo>Moscu GREY BLU/ROJO</titulo>
+    <descripcion />
+    <Fabricante />
+    <precioAnterior>0.0000</precioAnterior>
+    <precioa>18</precioa>
+    <unidadVenta>0</unidadVenta>
+    <Comentario />
+    <Imagen1>1457.jpg</Imagen1>
+    <Imagen2>MOSCU_1457.jpg</Imagen2>
+    <Imagen3 />
+    <codigoalternativo />
+    <mostrarHome>false</mostrarHome>
+    <popularidad>30</popularidad>
+    <idProveedor>1</idProveedor>
+    <fechaAlta>2005-12-07T00:00:00+01:00</fechaAlta>
+  </Articulos>
+  <Articulos>
+    <idArticulo>2283</idArticulo>
+    <titulo>Moscu BURDEOS BLANCO</titulo>
+    <precioAnterior>0.0000</precioAnterior>
+    <precioa>18</precioa>
+    <unidadVenta>0</unidadVenta>
+    <Imagen1>1458.jpg</Imagen1>
+    <Imagen2>MOSCU_1458.jpg</Imagen2>
+    <mostrarHome>false</mostrarHome>
+    <popularidad>3</popularidad>
+    <idProveedor>1</idProveedor>
+    <fechaAlta>2005-12-07T00:00:00+01:00</fechaAlta>
+  </Articulos>
+  <Articulos>
+    <idArticulo>2284</idArticulo>
+    <titulo>Moscu GRIS/NARANJA</titulo>
+    <precioAnterior>0.0000</precioAnterior>
+    <precioa>18</precioa>
+    <unidadVenta>0</unidadVenta>
+    <Imagen1>1459.jpg</Imagen1>
+    <Imagen2>MOSCU_1459.jpg</Imagen2>
+    <mostrarHome>false</mostrarHome>
+    <popularidad>2</popularidad>
+    <idProveedor>1</idProveedor>
+    <fechaAlta>2005-12-07T00:00:00+01:00</fechaAlta>
+  </Articulos>
+</DocumentElement>

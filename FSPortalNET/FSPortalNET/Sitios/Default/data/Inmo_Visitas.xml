@@ -1,0 +1,5666 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Inmo_Visitas>
+    <id>185</id>
+    <id_casa>232</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>64</visitas>
+    <fecha_ultima>2006-05-26T19:46:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>186</id>
+    <id_casa>234</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>285</visitas>
+    <fecha_ultima>2006-05-24T20:35:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>187</id>
+    <id_casa>178</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>56</visitas>
+    <fecha_ultima>2006-04-24T17:32:38+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>188</id>
+    <id_casa>642</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-04-14T19:10:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>189</id>
+    <id_casa>526</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-02-21T00:04:14+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>190</id>
+    <id_casa>428</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-02-17T14:40:39+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>191</id>
+    <id_casa>193</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>257</visitas>
+    <fecha_ultima>2006-05-28T11:55:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>192</id>
+    <id_casa>237</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>250</visitas>
+    <fecha_ultima>2006-04-19T22:20:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>193</id>
+    <id_casa>246</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>220</visitas>
+    <fecha_ultima>2006-05-27T17:14:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>194</id>
+    <id_casa>247</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>204</visitas>
+    <fecha_ultima>2006-05-25T20:32:38+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>195</id>
+    <id_casa>266</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>139</visitas>
+    <fecha_ultima>2006-05-17T20:34:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>196</id>
+    <id_casa>151</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>103</visitas>
+    <fecha_ultima>2006-05-26T16:33:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>197</id>
+    <id_casa>154</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>99</visitas>
+    <fecha_ultima>2006-05-28T10:47:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>198</id>
+    <id_casa>162</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>131</visitas>
+    <fecha_ultima>2006-04-18T17:13:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>199</id>
+    <id_casa>157</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>61</visitas>
+    <fecha_ultima>2006-03-27T17:42:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>200</id>
+    <id_casa>156</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>131</visitas>
+    <fecha_ultima>2006-05-26T20:13:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>201</id>
+    <id_casa>149</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>182</visitas>
+    <fecha_ultima>2006-05-25T20:20:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>202</id>
+    <id_casa>200</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>396</visitas>
+    <fecha_ultima>2006-05-10T19:30:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>203</id>
+    <id_casa>204</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>206</visitas>
+    <fecha_ultima>2006-05-27T16:49:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>204</id>
+    <id_casa>610</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-02-15T13:52:24+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>205</id>
+    <id_casa>293</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>96</visitas>
+    <fecha_ultima>2006-05-29T08:48:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>206</id>
+    <id_casa>169</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>97</visitas>
+    <fecha_ultima>2006-05-22T19:34:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>207</id>
+    <id_casa>161</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>232</visitas>
+    <fecha_ultima>2006-05-23T21:05:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>208</id>
+    <id_casa>418</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>127</visitas>
+    <fecha_ultima>2006-05-29T08:52:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>209</id>
+    <id_casa>70</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>171</visitas>
+    <fecha_ultima>2006-05-29T08:37:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>210</id>
+    <id_casa>152</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>95</visitas>
+    <fecha_ultima>2006-05-23T16:16:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>211</id>
+    <id_casa>170</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-02-27T20:17:32+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>212</id>
+    <id_casa>609</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>145</visitas>
+    <fecha_ultima>2006-05-23T13:11:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>213</id>
+    <id_casa>239</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-02-08T10:12:16+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>214</id>
+    <id_casa>431</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>53</visitas>
+    <fecha_ultima>2006-05-21T23:09:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>215</id>
+    <id_casa>496</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>75</visitas>
+    <fecha_ultima>2006-05-16T09:46:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>216</id>
+    <id_casa>180</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>103</visitas>
+    <fecha_ultima>2006-05-22T19:39:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>217</id>
+    <id_casa>168</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>145</visitas>
+    <fecha_ultima>2006-05-23T16:48:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>218</id>
+    <id_casa>268</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>44</visitas>
+    <fecha_ultima>2006-02-14T17:21:47+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>219</id>
+    <id_casa>173</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>92</visitas>
+    <fecha_ultima>2006-04-04T23:49:19+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>220</id>
+    <id_casa>519</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>40</visitas>
+    <fecha_ultima>2006-03-06T17:53:10+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>221</id>
+    <id_casa>235</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-05-02T17:16:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>222</id>
+    <id_casa>230</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-02-04T23:48:12+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>223</id>
+    <id_casa>427</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-04-18T23:32:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>224</id>
+    <id_casa>419</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-02-05T23:15:32+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>225</id>
+    <id_casa>202</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-16T21:18:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>226</id>
+    <id_casa>498</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>21</visitas>
+    <fecha_ultima>2006-05-22T00:59:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>227</id>
+    <id_casa>54</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>457</visitas>
+    <fecha_ultima>2006-05-27T20:33:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>228</id>
+    <id_casa>207</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>50</visitas>
+    <fecha_ultima>2006-05-28T17:09:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>229</id>
+    <id_casa>171</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>292</visitas>
+    <fecha_ultima>2006-05-27T13:39:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>230</id>
+    <id_casa>174</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>74</visitas>
+    <fecha_ultima>2006-05-23T16:49:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>231</id>
+    <id_casa>175</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>110</visitas>
+    <fecha_ultima>2006-05-18T11:51:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>232</id>
+    <id_casa>406</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-02-15T17:19:26+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>233</id>
+    <id_casa>439</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>288</visitas>
+    <fecha_ultima>2006-04-19T13:10:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>234</id>
+    <id_casa>437</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>276</visitas>
+    <fecha_ultima>2006-04-18T17:11:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>235</id>
+    <id_casa>217</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>285</visitas>
+    <fecha_ultima>2006-05-29T15:18:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>236</id>
+    <id_casa>643</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>14</visitas>
+    <fecha_ultima>2006-05-13T18:18:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>237</id>
+    <id_casa>182</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>98</visitas>
+    <fecha_ultima>2006-05-26T20:14:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>238</id>
+    <id_casa>634</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-05-24T21:12:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>239</id>
+    <id_casa>207</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-04-17T21:09:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>240</id>
+    <id_casa>80</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>110</visitas>
+    <fecha_ultima>2006-05-29T08:35:19+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>241</id>
+    <id_casa>25</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-05-29T15:55:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>242</id>
+    <id_casa>399</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>144</visitas>
+    <fecha_ultima>2006-04-22T10:49:19+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>243</id>
+    <id_casa>596</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>23</visitas>
+    <fecha_ultima>2006-02-21T19:26:34+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>244</id>
+    <id_casa>63</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-05-14T23:23:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>245</id>
+    <id_casa>69</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>97</visitas>
+    <fecha_ultima>2006-04-19T10:02:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>246</id>
+    <id_casa>81</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>180</visitas>
+    <fecha_ultima>2006-05-29T08:34:19+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>247</id>
+    <id_casa>251</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>44</visitas>
+    <fecha_ultima>2006-05-27T16:44:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>248</id>
+    <id_casa>78</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-05-19T00:25:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>249</id>
+    <id_casa>209</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-05-18T21:06:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>250</id>
+    <id_casa>440</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>569</visitas>
+    <fecha_ultima>2006-04-19T16:40:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>251</id>
+    <id_casa>438</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>48</visitas>
+    <fecha_ultima>2006-04-18T22:36:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>252</id>
+    <id_casa>236</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>136</visitas>
+    <fecha_ultima>2006-05-29T17:17:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>253</id>
+    <id_casa>58</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-05-04T19:24:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>254</id>
+    <id_casa>239</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-07T00:24:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>255</id>
+    <id_casa>226</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>72</visitas>
+    <fecha_ultima>2006-04-04T02:13:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>256</id>
+    <id_casa>73</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>7</visitas>
+    <fecha_ultima>2006-05-29T17:29:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>257</id>
+    <id_casa>269</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>118</visitas>
+    <fecha_ultima>2006-05-25T10:34:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>258</id>
+    <id_casa>241</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-04-28T13:33:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>259</id>
+    <id_casa>245</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>55</visitas>
+    <fecha_ultima>2006-05-03T20:20:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>260</id>
+    <id_casa>189</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>240</visitas>
+    <fecha_ultima>2006-05-26T21:24:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>261</id>
+    <id_casa>90</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>83</visitas>
+    <fecha_ultima>2006-03-27T12:58:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>262</id>
+    <id_casa>88</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>337</visitas>
+    <fecha_ultima>2006-05-29T10:19:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>263</id>
+    <id_casa>265</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>297</visitas>
+    <fecha_ultima>2006-05-28T13:06:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>264</id>
+    <id_casa>248</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-05-19T12:09:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>265</id>
+    <id_casa>247</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>160</visitas>
+    <fecha_ultima>2006-05-27T16:59:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>266</id>
+    <id_casa>271</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>143</visitas>
+    <fecha_ultima>2006-05-09T20:01:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>267</id>
+    <id_casa>653</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>133</visitas>
+    <fecha_ultima>2006-05-03T18:11:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>268</id>
+    <id_casa>654</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>62</visitas>
+    <fecha_ultima>2006-05-10T15:42:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>269</id>
+    <id_casa>89</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>83</visitas>
+    <fecha_ultima>2006-05-24T17:03:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>270</id>
+    <id_casa>71</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-04-12T10:53:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>271</id>
+    <id_casa>184</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>33</visitas>
+    <fecha_ultima>2006-02-23T18:56:35+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>272</id>
+    <id_casa>244</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>99</visitas>
+    <fecha_ultima>2006-05-04T21:44:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>273</id>
+    <id_casa>87</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>118</visitas>
+    <fecha_ultima>2006-05-22T14:41:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>274</id>
+    <id_casa>194</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>140</visitas>
+    <fecha_ultima>2006-05-24T10:58:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>275</id>
+    <id_casa>172</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>23</visitas>
+    <fecha_ultima>2006-05-18T11:51:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>276</id>
+    <id_casa>441</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>116</visitas>
+    <fecha_ultima>2006-05-26T16:48:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>1</id>
+    <id_casa>60</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>968</visitas>
+    <fecha_ultima>2006-05-29T15:51:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>2</id>
+    <id_casa>623</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>365</visitas>
+    <fecha_ultima>2006-03-13T22:15:20+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>3</id>
+    <id_casa>203</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>145</visitas>
+    <fecha_ultima>2006-02-24T21:32:45+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>4</id>
+    <id_casa>636</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>211</visitas>
+    <fecha_ultima>2006-05-26T21:20:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>5</id>
+    <id_casa>24</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>66</visitas>
+    <fecha_ultima>2006-03-17T13:28:47+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>6</id>
+    <id_casa>42</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>408</visitas>
+    <fecha_ultima>2006-05-17T18:27:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>7</id>
+    <id_casa>413</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>82</visitas>
+    <fecha_ultima>2006-02-09T13:27:58+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>8</id>
+    <id_casa>408</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-01-30T11:21:50+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>9</id>
+    <id_casa>423</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>294</visitas>
+    <fecha_ultima>2006-05-29T00:13:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>10</id>
+    <id_casa>33</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>347</visitas>
+    <fecha_ultima>2006-05-29T10:24:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>11</id>
+    <id_casa>432</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>126</visitas>
+    <fecha_ultima>2006-04-19T13:24:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>12</id>
+    <id_casa>51</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>672</visitas>
+    <fecha_ultima>2006-05-29T15:49:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>13</id>
+    <id_casa>236</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>287</visitas>
+    <fecha_ultima>2006-05-28T13:08:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>14</id>
+    <id_casa>204</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>996</visitas>
+    <fecha_ultima>2006-05-29T18:25:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>15</id>
+    <id_casa>238</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>350</visitas>
+    <fecha_ultima>2006-05-28T13:09:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>16</id>
+    <id_casa>219</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-01-31T12:21:53+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>17</id>
+    <id_casa>210</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>750</visitas>
+    <fecha_ultima>2006-05-27T15:43:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>18</id>
+    <id_casa>261</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>420</visitas>
+    <fecha_ultima>2006-05-29T15:54:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>19</id>
+    <id_casa>607</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>182</visitas>
+    <fecha_ultima>2006-05-29T18:25:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>20</id>
+    <id_casa>20</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>160</visitas>
+    <fecha_ultima>2006-03-16T13:03:20+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>21</id>
+    <id_casa>417</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>85</visitas>
+    <fecha_ultima>2006-03-21T13:29:50+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>22</id>
+    <id_casa>258</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>299</visitas>
+    <fecha_ultima>2006-04-04T13:08:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>23</id>
+    <id_casa>255</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>694</visitas>
+    <fecha_ultima>2006-05-29T12:54:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>24</id>
+    <id_casa>74</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>117</visitas>
+    <fecha_ultima>2006-05-26T16:38:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>25</id>
+    <id_casa>435</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>20</visitas>
+    <fecha_ultima>2006-02-08T23:55:28+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>26</id>
+    <id_casa>40</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>93</visitas>
+    <fecha_ultima>2006-03-24T08:57:02+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>27</id>
+    <id_casa>224</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-02-09T09:16:16+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>28</id>
+    <id_casa>240</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>173</visitas>
+    <fecha_ultima>2006-05-28T13:09:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>29</id>
+    <id_casa>242</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>314</visitas>
+    <fecha_ultima>2006-05-29T14:29:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>30</id>
+    <id_casa>243</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>252</visitas>
+    <fecha_ultima>2006-05-11T17:16:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>31</id>
+    <id_casa>28</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>709</visitas>
+    <fecha_ultima>2006-05-28T21:47:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>32</id>
+    <id_casa>545</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>119</visitas>
+    <fecha_ultima>2006-05-28T21:24:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>33</id>
+    <id_casa>22</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>376</visitas>
+    <fecha_ultima>2006-05-26T16:54:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>34</id>
+    <id_casa>226</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>450</visitas>
+    <fecha_ultima>2006-05-09T15:29:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>35</id>
+    <id_casa>259</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-01-30T13:45:53+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>36</id>
+    <id_casa>230</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-01-31T13:29:28+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>37</id>
+    <id_casa>223</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>621</visitas>
+    <fecha_ultima>2006-05-29T16:29:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>38</id>
+    <id_casa>37</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>812</visitas>
+    <fecha_ultima>2006-05-29T20:33:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>39</id>
+    <id_casa>621</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>100</visitas>
+    <fecha_ultima>2006-02-13T12:08:50+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>40</id>
+    <id_casa>222</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>102</visitas>
+    <fecha_ultima>2006-04-15T20:31:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>41</id>
+    <id_casa>57</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-02-06T09:17:48+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>42</id>
+    <id_casa>214</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>274</visitas>
+    <fecha_ultima>2006-03-01T09:57:27+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>43</id>
+    <id_casa>617</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>476</visitas>
+    <fecha_ultima>2006-05-26T21:17:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>44</id>
+    <id_casa>633</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>202</visitas>
+    <fecha_ultima>2006-05-27T16:37:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>45</id>
+    <id_casa>205</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>174</visitas>
+    <fecha_ultima>2006-03-11T21:27:17+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>46</id>
+    <id_casa>220</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>111</visitas>
+    <fecha_ultima>2006-02-23T12:45:32+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>47</id>
+    <id_casa>632</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>272</visitas>
+    <fecha_ultima>2006-05-29T08:47:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>48</id>
+    <id_casa>627</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>111</visitas>
+    <fecha_ultima>2006-05-16T13:58:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>49</id>
+    <id_casa>628</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>125</visitas>
+    <fecha_ultima>2006-05-26T21:22:42+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>50</id>
+    <id_casa>629</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>305</visitas>
+    <fecha_ultima>2006-05-25T17:20:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>51</id>
+    <id_casa>201</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-01-30T15:03:45+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>52</id>
+    <id_casa>209</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>664</visitas>
+    <fecha_ultima>2006-05-29T16:30:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>53</id>
+    <id_casa>211</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>180</visitas>
+    <fecha_ultima>2006-05-23T15:58:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>54</id>
+    <id_casa>44</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>494</visitas>
+    <fecha_ultima>2006-05-11T11:41:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>55</id>
+    <id_casa>221</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>283</visitas>
+    <fecha_ultima>2006-05-28T13:06:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>56</id>
+    <id_casa>212</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>339</visitas>
+    <fecha_ultima>2006-03-27T11:58:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>57</id>
+    <id_casa>227</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>202</visitas>
+    <fecha_ultima>2006-03-22T09:05:54+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>58</id>
+    <id_casa>231</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>228</visitas>
+    <fecha_ultima>2006-04-20T09:49:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>59</id>
+    <id_casa>232</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>103</visitas>
+    <fecha_ultima>2006-03-08T17:16:35+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>60</id>
+    <id_casa>228</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>134</visitas>
+    <fecha_ultima>2006-05-19T22:30:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>61</id>
+    <id_casa>562</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>69</visitas>
+    <fecha_ultima>2006-02-24T11:00:29+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>62</id>
+    <id_casa>213</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>776</visitas>
+    <fecha_ultima>2006-05-10T19:12:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>63</id>
+    <id_casa>218</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>162</visitas>
+    <fecha_ultima>2006-02-26T17:22:06+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>64</id>
+    <id_casa>605</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>161</visitas>
+    <fecha_ultima>2006-05-27T16:43:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>65</id>
+    <id_casa>158</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>92</visitas>
+    <fecha_ultima>2006-04-13T10:50:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>66</id>
+    <id_casa>637</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>186</visitas>
+    <fecha_ultima>2006-05-25T19:26:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>67</id>
+    <id_casa>233</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>212</visitas>
+    <fecha_ultima>2006-04-25T20:59:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>68</id>
+    <id_casa>428</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>162</visitas>
+    <fecha_ultima>2006-05-05T16:44:49+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>69</id>
+    <id_casa>192</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>47</visitas>
+    <fecha_ultima>2006-02-10T18:44:39+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>70</id>
+    <id_casa>206</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>189</visitas>
+    <fecha_ultima>2006-05-28T21:15:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>71</id>
+    <id_casa>93</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>120</visitas>
+    <fecha_ultima>2006-02-17T13:14:32+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>72</id>
+    <id_casa>225</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>227</visitas>
+    <fecha_ultima>2006-05-24T23:04:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>73</id>
+    <id_casa>622</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>81</visitas>
+    <fecha_ultima>2006-02-13T14:04:26+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>74</id>
+    <id_casa>522</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>112</visitas>
+    <fecha_ultima>2006-03-11T12:11:28+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>75</id>
+    <id_casa>538</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>101</visitas>
+    <fecha_ultima>2006-02-25T16:43:45+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>76</id>
+    <id_casa>213</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>208</visitas>
+    <fecha_ultima>2006-04-16T14:53:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>77</id>
+    <id_casa>53</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>316</visitas>
+    <fecha_ultima>2006-05-29T15:50:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>78</id>
+    <id_casa>26</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>135</visitas>
+    <fecha_ultima>2006-04-08T00:50:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>79</id>
+    <id_casa>45</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>351</visitas>
+    <fecha_ultima>2006-05-29T15:52:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>80</id>
+    <id_casa>35</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>389</visitas>
+    <fecha_ultima>2006-04-26T00:19:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>81</id>
+    <id_casa>76</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-04-12T17:32:19+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>82</id>
+    <id_casa>72</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>165</visitas>
+    <fecha_ultima>2006-05-28T21:38:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>83</id>
+    <id_casa>38</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>115</visitas>
+    <fecha_ultima>2006-03-06T16:02:57+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>84</id>
+    <id_casa>434</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>102</visitas>
+    <fecha_ultima>2006-05-24T12:56:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>85</id>
+    <id_casa>410</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>102</visitas>
+    <fecha_ultima>2006-05-11T14:17:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>86</id>
+    <id_casa>47</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>154</visitas>
+    <fecha_ultima>2006-05-29T10:25:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>87</id>
+    <id_casa>34</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>580</visitas>
+    <fecha_ultima>2006-05-19T15:32:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>88</id>
+    <id_casa>235</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>232</visitas>
+    <fecha_ultima>2006-05-25T20:29:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>89</id>
+    <id_casa>36</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>441</visitas>
+    <fecha_ultima>2006-04-08T11:22:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>90</id>
+    <id_casa>39</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>205</visitas>
+    <fecha_ultima>2006-05-29T10:16:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>91</id>
+    <id_casa>620</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>205</visitas>
+    <fecha_ultima>2006-04-08T22:34:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>92</id>
+    <id_casa>619</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>229</visitas>
+    <fecha_ultima>2006-05-22T14:45:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>93</id>
+    <id_casa>615</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>294</visitas>
+    <fecha_ultima>2006-05-26T13:29:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>94</id>
+    <id_casa>208</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>421</visitas>
+    <fecha_ultima>2006-05-28T17:12:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>95</id>
+    <id_casa>27</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>390</visitas>
+    <fecha_ultima>2006-05-29T08:42:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>96</id>
+    <id_casa>618</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>7</visitas>
+    <fecha_ultima>2006-05-23T13:08:19+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>97</id>
+    <id_casa>606</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-01T17:04:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>98</id>
+    <id_casa>412</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>346</visitas>
+    <fecha_ultima>2006-05-08T22:30:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>99</id>
+    <id_casa>411</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>110</visitas>
+    <fecha_ultima>2006-02-27T23:02:58+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>100</id>
+    <id_casa>50</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>31</visitas>
+    <fecha_ultima>2006-02-07T13:13:06+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>101</id>
+    <id_casa>66</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>71</visitas>
+    <fecha_ultima>2006-05-29T15:40:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>102</id>
+    <id_casa>416</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>90</visitas>
+    <fecha_ultima>2006-05-08T22:36:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>103</id>
+    <id_casa>262</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>142</visitas>
+    <fecha_ultima>2006-03-16T19:56:52+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>104</id>
+    <id_casa>249</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>128</visitas>
+    <fecha_ultima>2006-03-03T13:51:00+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>105</id>
+    <id_casa>241</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>41</visitas>
+    <fecha_ultima>2006-05-23T10:07:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>106</id>
+    <id_casa>257</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>413</visitas>
+    <fecha_ultima>2006-05-28T13:05:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>107</id>
+    <id_casa>635</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>169</visitas>
+    <fecha_ultima>2006-05-18T22:44:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>108</id>
+    <id_casa>612</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>126</visitas>
+    <fecha_ultima>2006-05-24T20:09:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>109</id>
+    <id_casa>626</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>65</visitas>
+    <fecha_ultima>2006-02-25T16:28:38+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>110</id>
+    <id_casa>205</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>323</visitas>
+    <fecha_ultima>2006-05-29T08:45:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>111</id>
+    <id_casa>153</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>86</visitas>
+    <fecha_ultima>2006-02-23T18:17:19+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>112</id>
+    <id_casa>625</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>164</visitas>
+    <fecha_ultima>2006-05-11T00:21:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>113</id>
+    <id_casa>602</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>390</visitas>
+    <fecha_ultima>2006-05-26T21:23:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>114</id>
+    <id_casa>491</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>299</visitas>
+    <fecha_ultima>2006-05-25T20:48:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>115</id>
+    <id_casa>570</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>20</visitas>
+    <fecha_ultima>2006-05-22T00:59:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>116</id>
+    <id_casa>503</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>33</visitas>
+    <fecha_ultima>2006-02-23T16:44:46+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>117</id>
+    <id_casa>29</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>388</visitas>
+    <fecha_ultima>2006-05-25T20:43:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>118</id>
+    <id_casa>56</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>249</visitas>
+    <fecha_ultima>2006-05-29T10:18:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>119</id>
+    <id_casa>30</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>404</visitas>
+    <fecha_ultima>2006-05-28T21:46:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>120</id>
+    <id_casa>415</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>61</visitas>
+    <fecha_ultima>2006-02-15T14:01:34+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>121</id>
+    <id_casa>229</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>156</visitas>
+    <fecha_ultima>2006-03-16T19:56:29+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>122</id>
+    <id_casa>234</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>384</visitas>
+    <fecha_ultima>2006-05-15T20:43:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>123</id>
+    <id_casa>260</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>126</visitas>
+    <fecha_ultima>2006-04-26T16:24:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>124</id>
+    <id_casa>614</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>262</visitas>
+    <fecha_ultima>2006-05-29T08:47:23+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>125</id>
+    <id_casa>601</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>167</visitas>
+    <fecha_ultima>2006-05-28T11:57:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>126</id>
+    <id_casa>517</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>235</visitas>
+    <fecha_ultima>2006-05-26T21:29:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>127</id>
+    <id_casa>638</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>149</visitas>
+    <fecha_ultima>2006-05-29T08:50:45+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>128</id>
+    <id_casa>571</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>164</visitas>
+    <fecha_ultima>2006-05-29T08:52:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>129</id>
+    <id_casa>449</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>89</visitas>
+    <fecha_ultima>2006-03-14T20:05:19+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>130</id>
+    <id_casa>547</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-02-06T13:51:19+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>131</id>
+    <id_casa>510</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-02-28T15:59:14+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>132</id>
+    <id_casa>211</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>225</visitas>
+    <fecha_ultima>2006-05-26T16:57:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>133</id>
+    <id_casa>43</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>154</visitas>
+    <fecha_ultima>2006-03-13T22:18:26+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>134</id>
+    <id_casa>46</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>128</visitas>
+    <fecha_ultima>2006-05-22T13:33:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>135</id>
+    <id_casa>21</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>72</visitas>
+    <fecha_ultima>2006-02-16T10:24:17+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>136</id>
+    <id_casa>256</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>263</visitas>
+    <fecha_ultima>2006-03-29T11:04:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>137</id>
+    <id_casa>250</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>157</visitas>
+    <fecha_ultima>2006-05-23T13:00:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>138</id>
+    <id_casa>336</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>63</visitas>
+    <fecha_ultima>2006-02-23T12:26:33+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>139</id>
+    <id_casa>527</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>79</visitas>
+    <fecha_ultima>2006-05-29T08:50:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>140</id>
+    <id_casa>432</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-05-17T15:09:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>141</id>
+    <id_casa>593</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>168</visitas>
+    <fecha_ultima>2006-05-22T14:49:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>142</id>
+    <id_casa>608</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>228</visitas>
+    <fecha_ultima>2006-05-29T08:48:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>143</id>
+    <id_casa>86</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-05-10T14:21:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>144</id>
+    <id_casa>516</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>113</visitas>
+    <fecha_ultima>2006-04-21T13:47:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>145</id>
+    <id_casa>588</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>127</visitas>
+    <fecha_ultima>2006-04-30T12:56:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>146</id>
+    <id_casa>253</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>141</visitas>
+    <fecha_ultima>2006-03-24T13:09:26+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>147</id>
+    <id_casa>422</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>112</visitas>
+    <fecha_ultima>2006-05-26T16:05:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>148</id>
+    <id_casa>41</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>87</visitas>
+    <fecha_ultima>2006-03-11T13:20:14+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>149</id>
+    <id_casa>258</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-05-05T11:58:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>150</id>
+    <id_casa>176</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>149</visitas>
+    <fecha_ultima>2006-05-25T21:30:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>151</id>
+    <id_casa>167</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>204</visitas>
+    <fecha_ultima>2006-04-30T23:39:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>152</id>
+    <id_casa>166</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>81</visitas>
+    <fecha_ultima>2006-05-22T19:38:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>153</id>
+    <id_casa>212</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>35</visitas>
+    <fecha_ultima>2006-05-25T21:44:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>154</id>
+    <id_casa>216</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-04-12T18:36:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>155</id>
+    <id_casa>218</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>23</visitas>
+    <fecha_ultima>2006-05-23T09:55:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>156</id>
+    <id_casa>264</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>61</visitas>
+    <fecha_ultima>2006-02-08T18:16:08+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>157</id>
+    <id_casa>263</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>14</visitas>
+    <fecha_ultima>2006-02-16T13:09:02+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>158</id>
+    <id_casa>49</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-02-06T19:09:21+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>159</id>
+    <id_casa>563</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>113</visitas>
+    <fecha_ultima>2006-03-06T17:47:48+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>160</id>
+    <id_casa>501</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>464</visitas>
+    <fecha_ultima>2006-05-29T15:38:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>161</id>
+    <id_casa>436</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>150</visitas>
+    <fecha_ultima>2006-05-29T15:51:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>162</id>
+    <id_casa>231</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>287</visitas>
+    <fecha_ultima>2006-05-27T16:52:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>163</id>
+    <id_casa>492</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-28T11:56:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>164</id>
+    <id_casa>210</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>127</visitas>
+    <fecha_ultima>2006-05-27T16:55:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>165</id>
+    <id_casa>245</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>161</visitas>
+    <fecha_ultima>2006-05-25T20:29:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>166</id>
+    <id_casa>616</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-05-18T11:46:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>167</id>
+    <id_casa>624</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>86</visitas>
+    <fecha_ultima>2006-04-05T17:51:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>168</id>
+    <id_casa>67</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>20</visitas>
+    <fecha_ultima>2006-05-28T21:26:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>169</id>
+    <id_casa>464</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-02-23T16:42:57+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>170</id>
+    <id_casa>220</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>126</visitas>
+    <fecha_ultima>2006-04-17T19:05:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>171</id>
+    <id_casa>433</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>60</visitas>
+    <fecha_ultima>2006-04-11T21:41:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>172</id>
+    <id_casa>512</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>134</visitas>
+    <fecha_ultima>2006-05-24T16:01:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>173</id>
+    <id_casa>155</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>201</visitas>
+    <fecha_ultima>2006-05-14T20:54:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>174</id>
+    <id_casa>604</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>382</visitas>
+    <fecha_ultima>2006-05-28T21:15:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>175</id>
+    <id_casa>426</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>47</visitas>
+    <fecha_ultima>2006-03-21T13:24:16+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>176</id>
+    <id_casa>559</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-25T13:31:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>177</id>
+    <id_casa>233</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>243</visitas>
+    <fecha_ultima>2006-05-28T11:58:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>178</id>
+    <id_casa>164</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>86</visitas>
+    <fecha_ultima>2006-04-19T01:29:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>179</id>
+    <id_casa>267</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>254</visitas>
+    <fecha_ultima>2006-03-12T20:33:05+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>180</id>
+    <id_casa>68</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>14</visitas>
+    <fecha_ultima>2006-03-26T19:20:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>181</id>
+    <id_casa>215</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>86</visitas>
+    <fecha_ultima>2006-04-18T11:51:42+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>182</id>
+    <id_casa>223</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>71</visitas>
+    <fecha_ultima>2006-04-16T14:58:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>183</id>
+    <id_casa>227</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>44</visitas>
+    <fecha_ultima>2006-04-04T02:13:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>184</id>
+    <id_casa>229</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>40</visitas>
+    <fecha_ultima>2006-02-13T09:53:35+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>277</id>
+    <id_casa>646</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>123</visitas>
+    <fecha_ultima>2006-05-29T08:49:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>278</id>
+    <id_casa>548</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-05-13T16:48:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>279</id>
+    <id_casa>238</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>47</visitas>
+    <fecha_ultima>2006-03-09T16:46:08+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>280</id>
+    <id_casa>251</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>340</visitas>
+    <fecha_ultima>2006-05-26T21:00:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>281</id>
+    <id_casa>29</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>253</visitas>
+    <fecha_ultima>2006-05-29T08:43:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>282</id>
+    <id_casa>253</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>79</visitas>
+    <fecha_ultima>2006-05-04T13:07:41+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>283</id>
+    <id_casa>250</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>485</visitas>
+    <fecha_ultima>2006-05-29T19:42:19+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>284</id>
+    <id_casa>270</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>39</visitas>
+    <fecha_ultima>2006-05-05T13:29:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>285</id>
+    <id_casa>543</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>135</visitas>
+    <fecha_ultima>2006-05-24T20:10:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>286</id>
+    <id_casa>550</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-02-18T23:31:57+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>287</id>
+    <id_casa>568</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-05-28T21:16:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>288</id>
+    <id_casa>252</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>140</visitas>
+    <fecha_ultima>2006-05-05T22:37:28+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>289</id>
+    <id_casa>65</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-03-14T18:24:02+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>290</id>
+    <id_casa>191</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>122</visitas>
+    <fecha_ultima>2006-05-28T10:45:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>291</id>
+    <id_casa>195</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>74</visitas>
+    <fecha_ultima>2006-05-26T16:29:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>292</id>
+    <id_casa>160</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>273</visitas>
+    <fecha_ultima>2006-05-26T00:13:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>293</id>
+    <id_casa>177</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-02-27T20:14:26+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>294</id>
+    <id_casa>196</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>68</visitas>
+    <fecha_ultima>2006-05-22T19:30:42+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>295</id>
+    <id_casa>159</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>149</visitas>
+    <fecha_ultima>2006-05-10T18:09:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>296</id>
+    <id_casa>165</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-05-26T16:34:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>297</id>
+    <id_casa>186</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>55</visitas>
+    <fecha_ultima>2006-05-28T10:48:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>298</id>
+    <id_casa>198</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>50</visitas>
+    <fecha_ultima>2006-05-26T16:38:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>299</id>
+    <id_casa>254</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>199</visitas>
+    <fecha_ultima>2006-04-18T23:46:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>300</id>
+    <id_casa>150</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>40</visitas>
+    <fecha_ultima>2006-05-26T16:39:41+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>301</id>
+    <id_casa>256</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>92</visitas>
+    <fecha_ultima>2006-05-28T12:03:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>302</id>
+    <id_casa>249</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>58</visitas>
+    <fecha_ultima>2006-05-05T22:37:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>303</id>
+    <id_casa>91</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>115</visitas>
+    <fecha_ultima>2006-05-28T11:34:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>304</id>
+    <id_casa>93</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>115</visitas>
+    <fecha_ultima>2006-05-26T13:32:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>305</id>
+    <id_casa>444</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>42</visitas>
+    <fecha_ultima>2006-02-18T20:01:21+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>306</id>
+    <id_casa>442</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>151</visitas>
+    <fecha_ultima>2006-05-25T22:56:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>307</id>
+    <id_casa>274</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>94</visitas>
+    <fecha_ultima>2006-05-25T21:46:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>308</id>
+    <id_casa>258</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-08T18:23:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>309</id>
+    <id_casa>242</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-05-03T19:34:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>310</id>
+    <id_casa>260</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>124</visitas>
+    <fecha_ultima>2006-05-05T22:41:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>311</id>
+    <id_casa>94</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>81</visitas>
+    <fecha_ultima>2006-05-26T13:32:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>312</id>
+    <id_casa>659</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>82</visitas>
+    <fecha_ultima>2006-05-29T09:03:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>313</id>
+    <id_casa>202</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>22</visitas>
+    <fecha_ultima>2006-03-06T09:48:18+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>314</id>
+    <id_casa>240</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>73</visitas>
+    <fecha_ultima>2006-05-25T21:47:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>315</id>
+    <id_casa>101</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>201</visitas>
+    <fecha_ultima>2006-05-28T11:35:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>316</id>
+    <id_casa>264</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>251</visitas>
+    <fecha_ultima>2006-05-24T23:05:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>317</id>
+    <id_casa>262</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>101</visitas>
+    <fecha_ultima>2006-05-04T09:44:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>318</id>
+    <id_casa>504</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>69</visitas>
+    <fecha_ultima>2006-05-26T21:31:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>319</id>
+    <id_casa>450</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>22</visitas>
+    <fecha_ultima>2006-05-29T00:06:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>320</id>
+    <id_casa>98</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>16</visitas>
+    <fecha_ultima>2006-05-18T11:59:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>321</id>
+    <id_casa>265</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>47</visitas>
+    <fecha_ultima>2006-05-04T22:17:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>322</id>
+    <id_casa>272</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>38</visitas>
+    <fecha_ultima>2006-04-26T17:22:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>323</id>
+    <id_casa>449</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-05-22T00:57:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>324</id>
+    <id_casa>660</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>125</visitas>
+    <fecha_ultima>2006-05-29T08:53:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>325</id>
+    <id_casa>276</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>15</visitas>
+    <fecha_ultima>2006-04-06T17:09:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>326</id>
+    <id_casa>448</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>41</visitas>
+    <fecha_ultima>2006-05-04T12:43:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>327</id>
+    <id_casa>451</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-05-10T11:56:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>328</id>
+    <id_casa>452</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-02-22T18:34:21+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>329</id>
+    <id_casa>263</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>52</visitas>
+    <fecha_ultima>2006-05-05T19:32:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>330</id>
+    <id_casa>269</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>199</visitas>
+    <fecha_ultima>2006-05-24T20:39:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>331</id>
+    <id_casa>85</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>28</visitas>
+    <fecha_ultima>2006-05-29T15:53:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>332</id>
+    <id_casa>656</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-24T20:11:38+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>333</id>
+    <id_casa>647</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>124</visitas>
+    <fecha_ultima>2006-05-24T21:15:28+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>334</id>
+    <id_casa>199</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>100</visitas>
+    <fecha_ultima>2006-05-20T10:48:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>335</id>
+    <id_casa>268</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>110</visitas>
+    <fecha_ultima>2006-05-05T19:33:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>336</id>
+    <id_casa>557</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-04-25T19:30:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>337</id>
+    <id_casa>204</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>135</visitas>
+    <fecha_ultima>2006-05-27T13:41:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>338</id>
+    <id_casa>185</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>85</visitas>
+    <fecha_ultima>2006-05-19T17:00:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>339</id>
+    <id_casa>279</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>88</visitas>
+    <fecha_ultima>2006-05-24T23:07:28+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>340</id>
+    <id_casa>279</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>565</visitas>
+    <fecha_ultima>2006-05-20T18:48:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>341</id>
+    <id_casa>401</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>52</visitas>
+    <fecha_ultima>2006-05-03T18:15:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>342</id>
+    <id_casa>283</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>73</visitas>
+    <fecha_ultima>2006-05-27T17:01:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>343</id>
+    <id_casa>280</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>535</visitas>
+    <fecha_ultima>2006-05-11T16:11:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>344</id>
+    <id_casa>281</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>47</visitas>
+    <fecha_ultima>2006-03-06T08:48:01+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>345</id>
+    <id_casa>266</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>116</visitas>
+    <fecha_ultima>2006-05-05T19:33:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>346</id>
+    <id_casa>208</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>96</visitas>
+    <fecha_ultima>2006-05-28T10:52:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>347</id>
+    <id_casa>556</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-04-26T14:24:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>348</id>
+    <id_casa>661</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>163</visitas>
+    <fecha_ultima>2006-05-23T18:12:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>349</id>
+    <id_casa>455</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-02-21T20:10:19+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>350</id>
+    <id_casa>82</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>200</visitas>
+    <fecha_ultima>2006-05-14T14:10:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>351</id>
+    <id_casa>209</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-05-28T10:54:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>352</id>
+    <id_casa>275</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-03-31T16:10:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>353</id>
+    <id_casa>210</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>58</visitas>
+    <fecha_ultima>2006-05-28T10:55:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>354</id>
+    <id_casa>290</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-03-31T22:04:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>355</id>
+    <id_casa>286</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>57</visitas>
+    <fecha_ultima>2006-05-28T12:03:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>356</id>
+    <id_casa>288</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>115</visitas>
+    <fecha_ultima>2006-05-28T12:04:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>357</id>
+    <id_casa>292</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>134</visitas>
+    <fecha_ultima>2006-05-11T16:52:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>358</id>
+    <id_casa>257</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>95</visitas>
+    <fecha_ultima>2006-05-04T13:20:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>359</id>
+    <id_casa>282</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>40</visitas>
+    <fecha_ultima>2006-05-28T12:37:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>360</id>
+    <id_casa>289</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>232</visitas>
+    <fecha_ultima>2006-05-05T10:32:41+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>361</id>
+    <id_casa>278</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>800</visitas>
+    <fecha_ultima>2006-05-24T18:53:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>362</id>
+    <id_casa>271</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-05-24T23:06:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>363</id>
+    <id_casa>291</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-02-23T14:59:29+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>364</id>
+    <id_casa>274</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>87</visitas>
+    <fecha_ultima>2006-05-28T21:18:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>365</id>
+    <id_casa>102</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>15</visitas>
+    <fecha_ultima>2006-05-27T20:51:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>366</id>
+    <id_casa>181</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>95</visitas>
+    <fecha_ultima>2006-04-27T23:52:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>367</id>
+    <id_casa>215</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>43</visitas>
+    <fecha_ultima>2006-05-25T16:55:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>368</id>
+    <id_casa>207</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>40</visitas>
+    <fecha_ultima>2006-04-01T02:01:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>369</id>
+    <id_casa>219</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>28</visitas>
+    <fecha_ultima>2006-05-04T13:29:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>370</id>
+    <id_casa>222</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>105</visitas>
+    <fecha_ultima>2006-05-22T19:25:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>371</id>
+    <id_casa>283</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>68</visitas>
+    <fecha_ultima>2006-05-06T15:26:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>372</id>
+    <id_casa>287</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>142</visitas>
+    <fecha_ultima>2006-05-28T23:56:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>373</id>
+    <id_casa>288</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>23</visitas>
+    <fecha_ultima>2006-05-23T21:11:45+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>374</id>
+    <id_casa>289</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-03-05T20:14:13+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>375</id>
+    <id_casa>205</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>105</visitas>
+    <fecha_ultima>2006-05-26T16:40:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>376</id>
+    <id_casa>211</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-03-29T23:58:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>377</id>
+    <id_casa>221</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>75</visitas>
+    <fecha_ultima>2006-05-25T20:20:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>378</id>
+    <id_casa>220</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>32</visitas>
+    <fecha_ultima>2006-05-25T16:57:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>379</id>
+    <id_casa>658</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-24T18:35:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>380</id>
+    <id_casa>285</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>214</visitas>
+    <fecha_ultima>2006-05-25T10:38:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>381</id>
+    <id_casa>214</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>54</visitas>
+    <fecha_ultima>2006-04-27T23:51:28+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>382</id>
+    <id_casa>223</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>36</visitas>
+    <fecha_ultima>2006-04-26T23:31:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>383</id>
+    <id_casa>293</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>88</visitas>
+    <fecha_ultima>2006-05-28T12:04:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>384</id>
+    <id_casa>296</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>76</visitas>
+    <fecha_ultima>2006-05-28T12:06:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>385</id>
+    <id_casa>95</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-10T22:49:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>386</id>
+    <id_casa>576</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-05-28T21:17:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>387</id>
+    <id_casa>100</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-28T21:20:42+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>388</id>
+    <id_casa>104</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>72</visitas>
+    <fecha_ultima>2006-05-22T21:17:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>389</id>
+    <id_casa>582</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-03-06T17:58:57+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>390</id>
+    <id_casa>291</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>195</visitas>
+    <fecha_ultima>2006-04-10T00:40:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>391</id>
+    <id_casa>285</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>14</visitas>
+    <fecha_ultima>2006-05-10T11:21:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>392</id>
+    <id_casa>295</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-09T18:23:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>393</id>
+    <id_casa>246</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>44</visitas>
+    <fecha_ultima>2006-05-14T10:16:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>394</id>
+    <id_casa>270</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>16</visitas>
+    <fecha_ultima>2006-05-28T12:00:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>395</id>
+    <id_casa>294</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>53</visitas>
+    <fecha_ultima>2006-05-28T12:05:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>396</id>
+    <id_casa>216</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>48</visitas>
+    <fecha_ultima>2006-05-18T11:59:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>397</id>
+    <id_casa>225</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>106</visitas>
+    <fecha_ultima>2006-05-25T20:21:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>398</id>
+    <id_casa>584</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-02T11:56:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>399</id>
+    <id_casa>554</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>21</visitas>
+    <fecha_ultima>2006-05-05T13:06:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>400</id>
+    <id_casa>454</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>205</visitas>
+    <fecha_ultima>2006-04-17T09:50:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>401</id>
+    <id_casa>292</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>69</visitas>
+    <fecha_ultima>2006-05-29T09:04:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>402</id>
+    <id_casa>293</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>182</visitas>
+    <fecha_ultima>2006-05-28T12:11:28+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>403</id>
+    <id_casa>218</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>74</visitas>
+    <fecha_ultima>2006-05-26T16:27:38+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>404</id>
+    <id_casa>579</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>55</visitas>
+    <fecha_ultima>2006-05-05T12:41:19+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>405</id>
+    <id_casa>572</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-01T18:01:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>406</id>
+    <id_casa>585</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>14</visitas>
+    <fecha_ultima>2006-05-05T13:42:41+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>407</id>
+    <id_casa>284</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>31</visitas>
+    <fecha_ultima>2006-05-28T12:01:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>408</id>
+    <id_casa>297</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>55</visitas>
+    <fecha_ultima>2006-05-27T17:06:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>409</id>
+    <id_casa>105</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>81</visitas>
+    <fecha_ultima>2006-05-02T23:07:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>410</id>
+    <id_casa>296</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>425</visitas>
+    <fecha_ultima>2006-05-27T15:45:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>411</id>
+    <id_casa>473</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-02-28T15:55:12+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>412</id>
+    <id_casa>657</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-26T17:56:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>413</id>
+    <id_casa>295</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>277</visitas>
+    <fecha_ultima>2006-05-29T16:32:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>414</id>
+    <id_casa>666</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-03-06T17:48:59+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>415</id>
+    <id_casa>586</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>7</visitas>
+    <fecha_ultima>2006-03-25T11:39:43+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>416</id>
+    <id_casa>217</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>96</visitas>
+    <fecha_ultima>2006-05-25T19:48:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>417</id>
+    <id_casa>298</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>87</visitas>
+    <fecha_ultima>2006-05-27T17:06:41+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>418</id>
+    <id_casa>583</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>49</visitas>
+    <fecha_ultima>2006-05-04T13:01:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>419</id>
+    <id_casa>467</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-22T00:56:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>420</id>
+    <id_casa>465</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>7</visitas>
+    <fecha_ultima>2006-05-28T23:48:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>421</id>
+    <id_casa>224</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>37</visitas>
+    <fecha_ultima>2006-05-26T16:45:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>422</id>
+    <id_casa>107</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>226</visitas>
+    <fecha_ultima>2006-05-29T08:40:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>423</id>
+    <id_casa>648</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-17T15:10:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>424</id>
+    <id_casa>532</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-05-16T13:59:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>425</id>
+    <id_casa>569</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>85</visitas>
+    <fecha_ultima>2006-05-20T16:07:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>426</id>
+    <id_casa>573</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-10T18:49:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>427</id>
+    <id_casa>663</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>95</visitas>
+    <fecha_ultima>2006-05-29T09:05:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>428</id>
+    <id_casa>267</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-05-15T17:58:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>429</id>
+    <id_casa>459</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>21</visitas>
+    <fecha_ultima>2006-03-20T17:09:32+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>430</id>
+    <id_casa>300</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>101</visitas>
+    <fecha_ultima>2006-05-04T20:21:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>431</id>
+    <id_casa>228</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>45</visitas>
+    <fecha_ultima>2006-05-21T16:54:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>432</id>
+    <id_casa>290</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>112</visitas>
+    <fecha_ultima>2006-03-29T20:49:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>433</id>
+    <id_casa>462</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-03-02T17:21:06+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>434</id>
+    <id_casa>470</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-18T17:57:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>435</id>
+    <id_casa>96</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-05-16T08:41:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>436</id>
+    <id_casa>108</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>150</visitas>
+    <fecha_ultima>2006-05-28T11:36:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>437</id>
+    <id_casa>456</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>287</visitas>
+    <fecha_ultima>2006-05-27T16:15:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>438</id>
+    <id_casa>664</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>68</visitas>
+    <fecha_ultima>2006-03-31T18:53:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>439</id>
+    <id_casa>662</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>75</visitas>
+    <fecha_ultima>2006-05-03T18:06:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>440</id>
+    <id_casa>639</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-03-29T16:57:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>441</id>
+    <id_casa>110</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>77</visitas>
+    <fecha_ultima>2006-05-25T17:21:41+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>442</id>
+    <id_casa>667</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>133</visitas>
+    <fecha_ultima>2006-05-25T13:35:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>443</id>
+    <id_casa>640</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>15</visitas>
+    <fecha_ultima>2006-04-27T18:09:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>444</id>
+    <id_casa>674</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>67</visitas>
+    <fecha_ultima>2006-05-24T16:57:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>445</id>
+    <id_casa>201</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>51</visitas>
+    <fecha_ultima>2006-05-22T21:19:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>446</id>
+    <id_casa>230</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>92</visitas>
+    <fecha_ultima>2006-05-22T12:43:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>447</id>
+    <id_casa>303</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>80</visitas>
+    <fecha_ultima>2006-04-28T18:19:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>448</id>
+    <id_casa>304</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>57</visitas>
+    <fecha_ultima>2006-04-28T18:25:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>449</id>
+    <id_casa>299</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-03-07T02:47:57+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>450</id>
+    <id_casa>111</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>66</visitas>
+    <fecha_ultima>2006-05-29T17:32:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>451</id>
+    <id_casa>489</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>22</visitas>
+    <fecha_ultima>2006-05-23T21:12:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>452</id>
+    <id_casa>487</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-04-19T13:32:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>453</id>
+    <id_casa>301</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>64</visitas>
+    <fecha_ultima>2006-05-28T11:57:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>454</id>
+    <id_casa>302</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>49</visitas>
+    <fecha_ultima>2006-05-28T12:01:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>455</id>
+    <id_casa>301</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-05-20T23:44:45+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>456</id>
+    <id_casa>303</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>238</visitas>
+    <fecha_ultima>2006-05-26T15:46:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>457</id>
+    <id_casa>480</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>255</visitas>
+    <fecha_ultima>2006-05-29T19:23:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>458</id>
+    <id_casa>673</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>121</visitas>
+    <fecha_ultima>2006-05-28T22:24:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>459</id>
+    <id_casa>304</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>227</visitas>
+    <fecha_ultima>2006-05-29T18:15:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>460</id>
+    <id_casa>277</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-05-25T20:14:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>461</id>
+    <id_casa>116</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>197</visitas>
+    <fecha_ultima>2006-05-29T10:20:38+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>462</id>
+    <id_casa>59</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-29T15:54:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>463</id>
+    <id_casa>109</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-03-08T15:34:47+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>464</id>
+    <id_casa>613</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-04-17T10:50:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>465</id>
+    <id_casa>302</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-05-22T21:20:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>466</id>
+    <id_casa>300</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>61</visitas>
+    <fecha_ultima>2006-05-28T21:21:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>467</id>
+    <id_casa>446</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-03-17T10:04:33+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>468</id>
+    <id_casa>476</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>233</visitas>
+    <fecha_ultima>2006-05-29T19:24:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>469</id>
+    <id_casa>493</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>83</visitas>
+    <fecha_ultima>2006-05-02T23:49:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>470</id>
+    <id_casa>492</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>118</visitas>
+    <fecha_ultima>2006-05-27T16:19:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>471</id>
+    <id_casa>580</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-04-28T14:16:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>472</id>
+    <id_casa>233</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>54</visitas>
+    <fecha_ultima>2006-05-24T10:35:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>473</id>
+    <id_casa>675</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>190</visitas>
+    <fecha_ultima>2006-05-22T23:45:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>474</id>
+    <id_casa>672</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>95</visitas>
+    <fecha_ultima>2006-05-20T16:09:38+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>475</id>
+    <id_casa>122</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>55</visitas>
+    <fecha_ultima>2006-05-23T12:34:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>476</id>
+    <id_casa>121</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>51</visitas>
+    <fecha_ultima>2006-05-25T16:39:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>477</id>
+    <id_casa>478</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>54</visitas>
+    <fecha_ultima>2006-05-28T23:34:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>478</id>
+    <id_casa>308</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-05-20T23:45:28+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>479</id>
+    <id_casa>671</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>35</visitas>
+    <fecha_ultima>2006-05-26T00:10:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>480</id>
+    <id_casa>458</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-04-19T11:15:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>481</id>
+    <id_casa>453</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>51</visitas>
+    <fecha_ultima>2006-05-27T16:17:49+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>482</id>
+    <id_casa>676</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>35</visitas>
+    <fecha_ultima>2006-05-03T11:49:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>483</id>
+    <id_casa>282</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-28T12:05:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>484</id>
+    <id_casa>113</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>41</visitas>
+    <fecha_ultima>2006-05-17T18:57:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>485</id>
+    <id_casa>119</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>38</visitas>
+    <fecha_ultima>2006-05-08T10:23:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>486</id>
+    <id_casa>190</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>49</visitas>
+    <fecha_ultima>2006-05-18T11:58:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>487</id>
+    <id_casa>677</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>67</visitas>
+    <fecha_ultima>2006-05-26T17:58:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>488</id>
+    <id_casa>306</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>102</visitas>
+    <fecha_ultima>2006-05-04T22:22:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>489</id>
+    <id_casa>495</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-05-27T19:06:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>490</id>
+    <id_casa>496</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>52</visitas>
+    <fecha_ultima>2006-05-05T13:48:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>491</id>
+    <id_casa>307</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>15</visitas>
+    <fecha_ultima>2006-05-10T12:08:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>492</id>
+    <id_casa>203</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>21</visitas>
+    <fecha_ultima>2006-05-18T11:56:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>493</id>
+    <id_casa>298</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>37</visitas>
+    <fecha_ultima>2006-05-27T16:42:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>494</id>
+    <id_casa>183</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-04T09:29:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>495</id>
+    <id_casa>240</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>177</visitas>
+    <fecha_ultima>2006-05-22T12:42:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>496</id>
+    <id_casa>445</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-05-24T12:57:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>497</id>
+    <id_casa>486</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>62</visitas>
+    <fecha_ultima>2006-05-28T11:43:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>498</id>
+    <id_casa>502</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>68</visitas>
+    <fecha_ultima>2006-05-03T18:43:45+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>499</id>
+    <id_casa>239</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>98</visitas>
+    <fecha_ultima>2006-05-28T11:33:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>500</id>
+    <id_casa>507</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>332</visitas>
+    <fecha_ultima>2006-05-19T15:34:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>501</id>
+    <id_casa>99</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-04-06T00:04:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>502</id>
+    <id_casa>310</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>85</visitas>
+    <fecha_ultima>2006-05-24T16:24:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>503</id>
+    <id_casa>281</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>20</visitas>
+    <fecha_ultima>2006-05-24T18:42:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>504</id>
+    <id_casa>678</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>50</visitas>
+    <fecha_ultima>2006-05-29T09:05:45+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>505</id>
+    <id_casa>644</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-05-26T18:00:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>506</id>
+    <id_casa>503</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>122</visitas>
+    <fecha_ultima>2006-05-28T11:46:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>507</id>
+    <id_casa>508</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-05-26T16:50:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>508</id>
+    <id_casa>83</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>65</visitas>
+    <fecha_ultima>2006-05-29T08:38:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>509</id>
+    <id_casa>305</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>93</visitas>
+    <fecha_ultima>2006-05-26T19:00:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>510</id>
+    <id_casa>129</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-23T10:04:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>511</id>
+    <id_casa>106</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>210</visitas>
+    <fecha_ultima>2006-05-29T08:38:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>512</id>
+    <id_casa>682</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>38</visitas>
+    <fecha_ultima>2006-05-22T01:00:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>513</id>
+    <id_casa>479</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>106</visitas>
+    <fecha_ultima>2006-05-23T23:01:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>514</id>
+    <id_casa>312</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>416</visitas>
+    <fecha_ultima>2006-05-29T16:31:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>515</id>
+    <id_casa>499</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>100</visitas>
+    <fecha_ultima>2006-05-25T22:52:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>516</id>
+    <id_casa>77</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-16T15:44:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>517</id>
+    <id_casa>112</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>41</visitas>
+    <fecha_ultima>2006-05-29T17:31:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>518</id>
+    <id_casa>120</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-05-29T17:34:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>519</id>
+    <id_casa>567</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-26T21:30:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>520</id>
+    <id_casa>525</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-16T09:45:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>521</id>
+    <id_casa>420</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-03-23T14:40:22+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>522</id>
+    <id_casa>313</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>501</visitas>
+    <fecha_ultima>2006-05-29T12:55:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>523</id>
+    <id_casa>311</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>75</visitas>
+    <fecha_ultima>2006-05-28T21:25:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>524</id>
+    <id_casa>117</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-05-29T08:33:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>525</id>
+    <id_casa>86</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-18T12:00:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>526</id>
+    <id_casa>97</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>36</visitas>
+    <fecha_ultima>2006-05-15T23:28:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>527</id>
+    <id_casa>133</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-03-24T11:16:25+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>528</id>
+    <id_casa>123</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-25T17:01:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>529</id>
+    <id_casa>514</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>72</visitas>
+    <fecha_ultima>2006-05-27T16:17:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>530</id>
+    <id_casa>680</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-22T00:48:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>531</id>
+    <id_casa>132</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-05-25T22:01:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>532</id>
+    <id_casa>79</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-03-25T03:44:08+01:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>533</id>
+    <id_casa>84</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-29T17:35:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>534</id>
+    <id_casa>564</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>56</visitas>
+    <fecha_ultima>2006-05-28T21:23:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>535</id>
+    <id_casa>689</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-05-17T15:09:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>536</id>
+    <id_casa>518</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>70</visitas>
+    <fecha_ultima>2006-05-08T20:41:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>537</id>
+    <id_casa>509</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-04-19T01:03:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>538</id>
+    <id_casa>512</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>152</visitas>
+    <fecha_ultima>2006-05-25T22:52:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>539</id>
+    <id_casa>515</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>108</visitas>
+    <fecha_ultima>2006-05-28T23:31:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>540</id>
+    <id_casa>248</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-06T17:09:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>541</id>
+    <id_casa>516</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-05-05T16:44:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>542</id>
+    <id_casa>226</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>38</visitas>
+    <fecha_ultima>2006-05-18T12:03:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>543</id>
+    <id_casa>249</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>51</visitas>
+    <fecha_ultima>2006-05-21T16:56:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>544</id>
+    <id_casa>255</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>113</visitas>
+    <fecha_ultima>2006-05-27T13:43:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>545</id>
+    <id_casa>248</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-22T14:10:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>546</id>
+    <id_casa>490</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>50</visitas>
+    <fecha_ultima>2006-04-19T14:28:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>547</id>
+    <id_casa>497</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>49</visitas>
+    <fecha_ultima>2006-05-26T00:36:23+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>548</id>
+    <id_casa>429</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>61</visitas>
+    <fecha_ultima>2006-05-25T22:54:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>549</id>
+    <id_casa>520</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>102</visitas>
+    <fecha_ultima>2006-05-25T22:49:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>550</id>
+    <id_casa>144</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>136</visitas>
+    <fecha_ultima>2006-05-29T15:53:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>551</id>
+    <id_casa>137</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>26</visitas>
+    <fecha_ultima>2006-04-06T19:43:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>552</id>
+    <id_casa>92</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-05-10T12:00:49+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>553</id>
+    <id_casa>316</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>22</visitas>
+    <fecha_ultima>2006-05-24T16:12:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>554</id>
+    <id_casa>315</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>295</visitas>
+    <fecha_ultima>2006-05-29T12:54:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>555</id>
+    <id_casa>237</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>75</visitas>
+    <fecha_ultima>2006-05-28T10:57:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>556</id>
+    <id_casa>247</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>75</visitas>
+    <fecha_ultima>2006-05-28T10:58:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>557</id>
+    <id_casa>253</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>15</visitas>
+    <fecha_ultima>2006-05-03T13:27:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>558</id>
+    <id_casa>138</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>16</visitas>
+    <fecha_ultima>2006-05-29T16:00:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>559</id>
+    <id_casa>670</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-17T20:05:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>560</id>
+    <id_casa>679</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-04-24T16:53:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>561</id>
+    <id_casa>326</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>75</visitas>
+    <fecha_ultima>2006-05-22T18:39:42+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>562</id>
+    <id_casa>684</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-05-24T16:01:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>563</id>
+    <id_casa>685</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>128</visitas>
+    <fecha_ultima>2006-05-24T20:13:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>564</id>
+    <id_casa>213</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-28T10:55:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>565</id>
+    <id_casa>258</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>33</visitas>
+    <fecha_ultima>2006-05-04T19:50:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>566</id>
+    <id_casa>136</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>211</visitas>
+    <fecha_ultima>2006-05-28T21:44:45+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>567</id>
+    <id_casa>457</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-05-17T19:45:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>568</id>
+    <id_casa>139</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>82</visitas>
+    <fecha_ultima>2006-05-24T21:27:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>569</id>
+    <id_casa>699</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>123</visitas>
+    <fecha_ultima>2006-05-14T17:45:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>570</id>
+    <id_casa>143</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>113</visitas>
+    <fecha_ultima>2006-05-29T08:39:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>571</id>
+    <id_casa>688</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>105</visitas>
+    <fecha_ultima>2006-05-24T20:14:23+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>572</id>
+    <id_casa>665</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-18T20:20:38+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>573</id>
+    <id_casa>700</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-05-08T00:24:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>574</id>
+    <id_casa>278</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-28T21:20:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>575</id>
+    <id_casa>318</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>69</visitas>
+    <fecha_ultima>2006-05-28T12:02:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>576</id>
+    <id_casa>115</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-05-17T15:50:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>577</id>
+    <id_casa>320</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>94</visitas>
+    <fecha_ultima>2006-05-29T12:56:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>578</id>
+    <id_casa>691</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>100</visitas>
+    <fecha_ultima>2006-05-25T18:16:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>579</id>
+    <id_casa>526</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>60</visitas>
+    <fecha_ultima>2006-05-26T16:51:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>580</id>
+    <id_casa>329</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>76</visitas>
+    <fecha_ultima>2006-05-24T20:44:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>581</id>
+    <id_casa>510</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-04-04T13:25:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>582</id>
+    <id_casa>319</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>200</visitas>
+    <fecha_ultima>2006-05-29T15:55:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>583</id>
+    <id_casa>330</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-05-28T12:06:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>584</id>
+    <id_casa>146</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-05-22T14:05:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>585</id>
+    <id_casa>319</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>53</visitas>
+    <fecha_ultima>2006-05-26T19:48:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>586</id>
+    <id_casa>307</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>86</visitas>
+    <fecha_ultima>2006-05-27T16:40:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>587</id>
+    <id_casa>145</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-24T16:24:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>588</id>
+    <id_casa>578</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>7</visitas>
+    <fecha_ultima>2006-05-25T21:18:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>589</id>
+    <id_casa>321</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>432</visitas>
+    <fecha_ultima>2006-05-29T15:55:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>590</id>
+    <id_casa>328</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>36</visitas>
+    <fecha_ultima>2006-05-26T19:49:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>591</id>
+    <id_casa>527</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>128</visitas>
+    <fecha_ultima>2006-05-29T15:35:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>592</id>
+    <id_casa>536</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>32</visitas>
+    <fecha_ultima>2006-05-29T08:46:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>593</id>
+    <id_casa>153</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>7</visitas>
+    <fecha_ultima>2006-05-04T17:10:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>594</id>
+    <id_casa>341</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-04-26T22:25:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>595</id>
+    <id_casa>313</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>47</visitas>
+    <fecha_ultima>2006-05-24T19:29:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>596</id>
+    <id_casa>525</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>128</visitas>
+    <fecha_ultima>2006-05-29T19:24:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>597</id>
+    <id_casa>337</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-04-23T21:31:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>598</id>
+    <id_casa>336</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-04-15T20:45:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>599</id>
+    <id_casa>332</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>170</visitas>
+    <fecha_ultima>2006-05-27T00:22:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>600</id>
+    <id_casa>147</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-04-19T00:18:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>601</id>
+    <id_casa>534</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>186</visitas>
+    <fecha_ultima>2006-05-27T19:14:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>602</id>
+    <id_casa>103</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-14T23:30:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>603</id>
+    <id_casa>257</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>54</visitas>
+    <fecha_ultima>2006-05-25T14:20:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>604</id>
+    <id_casa>149</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-17T19:02:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>605</id>
+    <id_casa>142</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-17T18:59:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>606</id>
+    <id_casa>537</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>86</visitas>
+    <fecha_ultima>2006-05-29T08:44:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>607</id>
+    <id_casa>335</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>37</visitas>
+    <fecha_ultima>2006-05-27T16:37:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>608</id>
+    <id_casa>343</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>99</visitas>
+    <fecha_ultima>2006-05-28T21:26:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>609</id>
+    <id_casa>131</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-04-10T19:51:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>610</id>
+    <id_casa>141</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-29T15:53:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>611</id>
+    <id_casa>127</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-04-10T23:16:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>612</id>
+    <id_casa>538</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>97</visitas>
+    <fecha_ultima>2006-05-28T23:49:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>613</id>
+    <id_casa>702</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>60</visitas>
+    <fecha_ultima>2006-05-29T09:06:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>614</id>
+    <id_casa>151</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-04-30T20:33:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>615</id>
+    <id_casa>266</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>222</visitas>
+    <fecha_ultima>2006-05-26T19:27:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>616</id>
+    <id_casa>314</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>202</visitas>
+    <fecha_ultima>2006-05-29T18:24:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>617</id>
+    <id_casa>322</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>437</visitas>
+    <fecha_ultima>2006-05-29T15:58:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>618</id>
+    <id_casa>345</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-22T15:26:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>619</id>
+    <id_casa>348</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>23</visitas>
+    <fecha_ultima>2006-04-28T18:15:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>620</id>
+    <id_casa>125</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-04-29T17:28:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>621</id>
+    <id_casa>524</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>29</visitas>
+    <fecha_ultima>2006-05-22T15:52:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>622</id>
+    <id_casa>346</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>128</visitas>
+    <fecha_ultima>2006-05-26T21:07:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>623</id>
+    <id_casa>135</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-04-22T10:13:49+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>624</id>
+    <id_casa>324</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>192</visitas>
+    <fecha_ultima>2006-05-29T15:54:23+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>625</id>
+    <id_casa>705</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-05-22T14:52:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>626</id>
+    <id_casa>327</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>48</visitas>
+    <fecha_ultima>2006-05-19T21:25:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>627</id>
+    <id_casa>706</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>84</visitas>
+    <fecha_ultima>2006-05-24T21:13:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>628</id>
+    <id_casa>701</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-05-29T08:54:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>629</id>
+    <id_casa>150</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-05-29T17:36:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>630</id>
+    <id_casa>75</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-04-28T14:14:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>631</id>
+    <id_casa>488</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>20</visitas>
+    <fecha_ultima>2006-05-28T22:16:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>632</id>
+    <id_casa>325</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>228</visitas>
+    <fecha_ultima>2006-05-27T16:13:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>633</id>
+    <id_casa>287</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-12T20:30:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>634</id>
+    <id_casa>317</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-24T12:36:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>635</id>
+    <id_casa>347</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-05-09T18:26:35+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>636</id>
+    <id_casa>331</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>64</visitas>
+    <fecha_ultima>2006-05-29T15:52:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>637</id>
+    <id_casa>330</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>48</visitas>
+    <fecha_ultima>2006-05-29T08:49:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>638</id>
+    <id_casa>709</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>135</visitas>
+    <fecha_ultima>2006-05-27T19:12:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>639</id>
+    <id_casa>161</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>106</visitas>
+    <fecha_ultima>2006-05-29T17:26:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>640</id>
+    <id_casa>159</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-05-29T08:31:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>641</id>
+    <id_casa>336</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>101</visitas>
+    <fecha_ultima>2006-05-29T16:31:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>642</id>
+    <id_casa>708</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>50</visitas>
+    <fecha_ultima>2006-05-29T09:03:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>643</id>
+    <id_casa>339</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>73</visitas>
+    <fecha_ultima>2006-05-28T11:37:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>644</id>
+    <id_casa>160</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>56</visitas>
+    <fecha_ultima>2006-05-25T17:16:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>645</id>
+    <id_casa>566</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-04-22T12:18:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>646</id>
+    <id_casa>543</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-04-22T12:18:43+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>647</id>
+    <id_casa>158</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>38</visitas>
+    <fecha_ultima>2006-05-25T17:00:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>648</id>
+    <id_casa>349</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>56</visitas>
+    <fecha_ultima>2006-05-28T22:13:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>649</id>
+    <id_casa>162</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>66</visitas>
+    <fecha_ultima>2006-05-24T11:06:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>650</id>
+    <id_casa>350</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>15</visitas>
+    <fecha_ultima>2006-05-22T18:13:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>651</id>
+    <id_casa>334</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>26</visitas>
+    <fecha_ultima>2006-05-27T16:41:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>652</id>
+    <id_casa>539</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>133</visitas>
+    <fecha_ultima>2006-05-29T19:25:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>653</id>
+    <id_casa>710</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-29T09:08:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>654</id>
+    <id_casa>163</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>104</visitas>
+    <fecha_ultima>2006-05-29T08:41:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>655</id>
+    <id_casa>545</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-04-25T10:23:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>656</id>
+    <id_casa>351</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>60</visitas>
+    <fecha_ultima>2006-05-26T21:04:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>657</id>
+    <id_casa>164</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>64</visitas>
+    <fecha_ultima>2006-05-29T08:41:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>658</id>
+    <id_casa>340</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>156</visitas>
+    <fecha_ultima>2006-05-29T15:55:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>659</id>
+    <id_casa>124</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-25T13:57:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>660</id>
+    <id_casa>547</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>32</visitas>
+    <fecha_ultima>2006-05-27T16:34:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>661</id>
+    <id_casa>341</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>227</visitas>
+    <fecha_ultima>2006-05-29T15:56:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>662</id>
+    <id_casa>357</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>62</visitas>
+    <fecha_ultima>2006-05-27T16:50:45+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>663</id>
+    <id_casa>342</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>102</visitas>
+    <fecha_ultima>2006-05-28T13:11:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>664</id>
+    <id_casa>358</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>42</visitas>
+    <fecha_ultima>2006-05-25T10:48:23+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>665</id>
+    <id_casa>519</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>110</visitas>
+    <fecha_ultima>2006-05-29T00:14:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>666</id>
+    <id_casa>484</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>45</visitas>
+    <fecha_ultima>2006-05-29T19:25:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>667</id>
+    <id_casa>482</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>62</visitas>
+    <fecha_ultima>2006-05-29T17:22:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>668</id>
+    <id_casa>268</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>82</visitas>
+    <fecha_ultima>2006-05-22T19:16:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>669</id>
+    <id_casa>270</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-20T10:46:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>670</id>
+    <id_casa>271</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>47</visitas>
+    <fecha_ultima>2006-05-21T17:00:41+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>671</id>
+    <id_casa>548</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-04-29T07:54:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>672</id>
+    <id_casa>650</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-04-29T07:55:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>673</id>
+    <id_casa>652</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-04-29T07:56:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>674</id>
+    <id_casa>365</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>21</visitas>
+    <fecha_ultima>2006-05-25T10:48:39+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>675</id>
+    <id_casa>354</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>105</visitas>
+    <fecha_ultima>2006-05-28T12:39:52+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>676</id>
+    <id_casa>549</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-05-29T00:02:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>677</id>
+    <id_casa>152</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-02T18:45:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>678</id>
+    <id_casa>360</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>56</visitas>
+    <fecha_ultima>2006-05-27T12:52:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>679</id>
+    <id_casa>363</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>83</visitas>
+    <fecha_ultima>2006-05-27T17:03:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>680</id>
+    <id_casa>273</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>36</visitas>
+    <fecha_ultima>2006-05-23T20:28:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>681</id>
+    <id_casa>374</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-05-15T20:09:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>682</id>
+    <id_casa>165</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>100</visitas>
+    <fecha_ultima>2006-05-28T20:11:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>683</id>
+    <id_casa>377</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>20</visitas>
+    <fecha_ultima>2006-05-15T18:14:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>684</id>
+    <id_casa>167</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>28</visitas>
+    <fecha_ultima>2006-05-04T12:42:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>685</id>
+    <id_casa>361</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>44</visitas>
+    <fecha_ultima>2006-05-27T19:16:20+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>686</id>
+    <id_casa>366</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-05-28T21:28:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>687</id>
+    <id_casa>375</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-03T20:33:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>688</id>
+    <id_casa>318</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>39</visitas>
+    <fecha_ultima>2006-05-29T15:22:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>689</id>
+    <id_casa>278</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-05-26T16:55:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>690</id>
+    <id_casa>277</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-05-26T16:52:06+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>691</id>
+    <id_casa>275</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-05-26T16:49:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>692</id>
+    <id_casa>276</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-26T19:30:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>693</id>
+    <id_casa>372</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-21T23:37:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>694</id>
+    <id_casa>364</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>22</visitas>
+    <fecha_ultima>2006-05-24T20:47:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>695</id>
+    <id_casa>371</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>26</visitas>
+    <fecha_ultima>2006-05-22T18:51:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>696</id>
+    <id_casa>379</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>14</visitas>
+    <fecha_ultima>2006-05-22T15:19:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>697</id>
+    <id_casa>475</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>116</visitas>
+    <fecha_ultima>2006-05-29T19:26:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>698</id>
+    <id_casa>312</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>37</visitas>
+    <fecha_ultima>2006-05-23T13:18:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>699</id>
+    <id_casa>387</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>166</visitas>
+    <fecha_ultima>2006-05-28T12:08:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>700</id>
+    <id_casa>388</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>64</visitas>
+    <fecha_ultima>2006-05-24T15:53:47+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>701</id>
+    <id_casa>333</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-05T22:17:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>702</id>
+    <id_casa>168</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>46</visitas>
+    <fecha_ultima>2006-05-29T08:37:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>703</id>
+    <id_casa>353</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-05-23T17:17:40+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>704</id>
+    <id_casa>345</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-05-25T10:35:50+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>705</id>
+    <id_casa>155</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-16T13:31:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>706</id>
+    <id_casa>532</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-08T18:46:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>707</id>
+    <id_casa>551</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-28T23:47:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>708</id>
+    <id_casa>381</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>21</visitas>
+    <fecha_ultima>2006-05-24T20:48:31+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>709</id>
+    <id_casa>389</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>55</visitas>
+    <fecha_ultima>2006-05-28T11:58:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>710</id>
+    <id_casa>354</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>29</visitas>
+    <fecha_ultima>2006-05-29T15:36:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>711</id>
+    <id_casa>383</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-05-15T20:08:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>712</id>
+    <id_casa>362</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>7</visitas>
+    <fecha_ultima>2006-05-26T19:50:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>713</id>
+    <id_casa>368</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-05-20T23:51:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>714</id>
+    <id_casa>355</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>121</visitas>
+    <fecha_ultima>2006-05-29T12:57:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>715</id>
+    <id_casa>170</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>26</visitas>
+    <fecha_ultima>2006-05-24T16:56:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>716</id>
+    <id_casa>504</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-19T15:39:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>717</id>
+    <id_casa>542</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-26T22:47:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>718</id>
+    <id_casa>531</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>21</visitas>
+    <fecha_ultima>2006-05-29T17:49:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>719</id>
+    <id_casa>472</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-10T10:37:23+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>720</id>
+    <id_casa>528</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-05-27T19:13:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>721</id>
+    <id_casa>491</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-10T16:50:38+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>722</id>
+    <id_casa>553</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-22T00:56:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>723</id>
+    <id_casa>556</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-26T16:53:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>724</id>
+    <id_casa>523</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-26T19:23:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>725</id>
+    <id_casa>367</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-05-23T17:59:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>726</id>
+    <id_casa>384</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-05-28T12:06:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>727</id>
+    <id_casa>373</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-29T15:24:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>728</id>
+    <id_casa>554</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>59</visitas>
+    <fecha_ultima>2006-05-29T19:23:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>729</id>
+    <id_casa>544</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-11T16:37:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>730</id>
+    <id_casa>546</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-12T11:26:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>731</id>
+    <id_casa>397</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>23</visitas>
+    <fecha_ultima>2006-05-26T18:58:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>732</id>
+    <id_casa>352</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>143</visitas>
+    <fecha_ultima>2006-05-29T16:27:11+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>733</id>
+    <id_casa>391</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>38</visitas>
+    <fecha_ultima>2006-05-24T22:59:29+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>734</id>
+    <id_casa>395</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>40</visitas>
+    <fecha_ultima>2006-05-27T16:47:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>735</id>
+    <id_casa>279</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-05-21T17:03:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>736</id>
+    <id_casa>390</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-05-27T16:48:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>737</id>
+    <id_casa>469</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-15T19:58:56+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>738</id>
+    <id_casa>393</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-27T17:04:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>739</id>
+    <id_casa>169</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-23T18:55:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>740</id>
+    <id_casa>235</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-05-22T14:11:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>741</id>
+    <id_casa>522</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-21T23:10:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>742</id>
+    <id_casa>557</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-29T18:26:16+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>743</id>
+    <id_casa>398</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-28T21:19:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>744</id>
+    <id_casa>380</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-20T11:41:21+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>745</id>
+    <id_casa>173</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>65</visitas>
+    <fecha_ultima>2006-05-29T17:25:24+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>746</id>
+    <id_casa>402</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>22</visitas>
+    <fecha_ultima>2006-05-26T19:51:46+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>747</id>
+    <id_casa>403</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>22</visitas>
+    <fecha_ultima>2006-05-28T21:29:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>748</id>
+    <id_casa>649</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-18T20:20:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>749</id>
+    <id_casa>394</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-24T23:08:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>750</id>
+    <id_casa>400</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-05-24T20:42:05+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>751</id>
+    <id_casa>401</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-05-16T19:35:23+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>752</id>
+    <id_casa>382</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-05-29T17:37:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>753</id>
+    <id_casa>713</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-29T09:06:09+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>754</id>
+    <id_casa>376</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-16T16:24:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>755</id>
+    <id_casa>555</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>20</visitas>
+    <fecha_ultima>2006-05-27T16:22:14+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>756</id>
+    <id_casa>541</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-05-22T23:22:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>757</id>
+    <id_casa>530</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-16T16:59:15+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>758</id>
+    <id_casa>392</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>26</visitas>
+    <fecha_ultima>2006-05-28T12:08:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>759</id>
+    <id_casa>174</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-05-24T17:02:33+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>760</id>
+    <id_casa>540</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>3</visitas>
+    <fecha_ultima>2006-05-26T00:33:18+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>761</id>
+    <id_casa>566</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>31</visitas>
+    <fecha_ultima>2006-05-28T11:49:28+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>762</id>
+    <id_casa>406</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>30</visitas>
+    <fecha_ultima>2006-05-28T21:36:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>763</id>
+    <id_casa>396</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>4</visitas>
+    <fecha_ultima>2006-05-20T23:57:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>764</id>
+    <id_casa>714</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-29T08:51:36+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>765</id>
+    <id_casa>280</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-28T12:00:17+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>766</id>
+    <id_casa>283</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>20</visitas>
+    <fecha_ultima>2006-05-22T19:35:13+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>767</id>
+    <id_casa>571</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>132</visitas>
+    <fecha_ultima>2006-05-29T19:26:49+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>768</id>
+    <id_casa>409</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>25</visitas>
+    <fecha_ultima>2006-05-25T21:07:48+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>769</id>
+    <id_casa>544</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-18T20:19:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>770</id>
+    <id_casa>655</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-18T20:19:58+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>771</id>
+    <id_casa>723</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>29</visitas>
+    <fecha_ultima>2006-05-29T09:08:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>772</id>
+    <id_casa>412</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>14</visitas>
+    <fecha_ultima>2006-05-29T08:44:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>773</id>
+    <id_casa>721</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>27</visitas>
+    <fecha_ultima>2006-05-29T09:09:03+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>774</id>
+    <id_casa>171</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>23</visitas>
+    <fecha_ultima>2006-05-25T17:24:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>775</id>
+    <id_casa>286</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-05-22T23:08:07+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>776</id>
+    <id_casa>360</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-25T10:36:12+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>777</id>
+    <id_casa>410</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>17</visitas>
+    <fecha_ultima>2006-05-27T16:19:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>778</id>
+    <id_casa>407</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>52</visitas>
+    <fecha_ultima>2006-05-28T21:49:10+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>779</id>
+    <id_casa>413</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-25T21:08:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>780</id>
+    <id_casa>282</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-26T16:56:08+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>781</id>
+    <id_casa>517</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-28T19:31:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>782</id>
+    <id_casa>720</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-05-27T16:42:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>783</id>
+    <id_casa>734</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-23T11:53:23+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>784</id>
+    <id_casa>724</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>11</visitas>
+    <fecha_ultima>2006-05-29T09:09:22+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>785</id>
+    <id_casa>404</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>37</visitas>
+    <fecha_ultima>2006-05-28T21:38:01+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>786</id>
+    <id_casa>733</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-28T21:25:54+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>787</id>
+    <id_casa>416</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>26</visitas>
+    <fecha_ultima>2006-05-28T21:35:28+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>788</id>
+    <id_casa>641</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>2</visitas>
+    <fecha_ultima>2006-05-23T18:11:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>789</id>
+    <id_casa>366</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>19</visitas>
+    <fecha_ultima>2006-05-29T16:00:32+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>790</id>
+    <id_casa>722</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>18</visitas>
+    <fecha_ultima>2006-05-29T20:35:04+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>791</id>
+    <id_casa>730</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>24</visitas>
+    <fecha_ultima>2006-05-26T21:27:37+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>792</id>
+    <id_casa>405</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-24T20:49:02+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>793</id>
+    <id_casa>411</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-25T21:52:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>794</id>
+    <id_casa>420</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>5</visitas>
+    <fecha_ultima>2006-05-25T17:33:27+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>795</id>
+    <id_casa>367</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-25T10:36:45+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>796</id>
+    <id_casa>361</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>16</visitas>
+    <fecha_ultima>2006-05-28T13:10:55+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>797</id>
+    <id_casa>576</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>12</visitas>
+    <fecha_ultima>2006-05-29T19:27:53+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>798</id>
+    <id_casa>421</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>34</visitas>
+    <fecha_ultima>2006-05-29T19:28:49+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>799</id>
+    <id_casa>423</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-27T17:07:30+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>800</id>
+    <id_casa>737</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-05-29T09:10:25+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>801</id>
+    <id_casa>372</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>13</visitas>
+    <fecha_ultima>2006-05-29T20:33:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>802</id>
+    <id_casa>422</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>8</visitas>
+    <fecha_ultima>2006-05-26T18:56:34+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>803</id>
+    <id_casa>287</id_casa>
+    <oficina>966 698 888</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-26T16:56:57+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>804</id>
+    <id_casa>572</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>10</visitas>
+    <fecha_ultima>2006-05-27T19:09:59+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>805</id>
+    <id_casa>414</id_casa>
+    <oficina>961 566 656</oficina>
+    <visitas>9</visitas>
+    <fecha_ultima>2006-05-28T11:50:42+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>806</id>
+    <id_casa>550</id_casa>
+    <oficina>961 519 118</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-28T19:30:44+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>807</id>
+    <id_casa>738</id_casa>
+    <oficina>961 273 515</oficina>
+    <visitas>7</visitas>
+    <fecha_ultima>2006-05-29T09:10:00+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>808</id>
+    <id_casa>55</id_casa>
+    <oficina>961 242 323</oficina>
+    <visitas>1</visitas>
+    <fecha_ultima>2006-05-29T17:28:51+02:00</fecha_ultima>
+  </Inmo_Visitas>
+  <Inmo_Visitas>
+    <id>809</id>
+    <id_casa>373</id_casa>
+    <oficina>963 972 255</oficina>
+    <visitas>6</visitas>
+    <fecha_ultima>2006-05-29T20:34:26+02:00</fecha_ultima>
+  </Inmo_Visitas>
+</DocumentElement>

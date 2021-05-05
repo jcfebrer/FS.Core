@@ -1,0 +1,61 @@
+<html>
+<head>
+<title>Moving and/or Renaming the Forum Database</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.text {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; color: #000000}
+.heading {  font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-weight: bold; color: #000000}
+.title {  font-family: Arial, Helvetica, sans-serif; font-size: 33px; font-style: normal; font-weight: bold; color: #000000}
+a {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #0000CC; text-decoration: underline}
+a:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #FF0000; text-decoration: underline; font-style: normal}
+a:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; color: #0000FF; text-decoration: underline}
+a:visited:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #FF0000; text-decoration: underline; font-style: normal}
+.smtitle {  font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-style: normal; font-weight: bold; color: #000000}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+ <tr>
+  <td align="center" class="title">Web Wiz Forums Documentation<span class="smtitle"><br />
+   Moving and Renaming the Forum Database<br />
+   <a href="menu.htm" target="_self">Return to the main menu</a></span></td>
+ </tr>
+</table>
+<br />
+<table width="96%" border="0" cellspacing="0" cellpadding="2" align="center">
+ <tr> 
+  <td class="text"> <p><strong>Don't let your forum be hacked! Follow the instructions below to secure your database now!!!</strong><br />
+    <br />
+    For higher security it is highly recommended that you at the very least rename the forum database and if possible move the location of the database to a folder above the root directory of your web site 
+    where it can not be accessed using a web browser, good web hosts will have a directory set up for this usually called private. (If you don't you leave yourself wide open to hackers!!)</p>
+   <ol>
+    <li>Locate the file wwForum.mdb found in the database directory in the admin directory (this is the forums access database).</li>
+    <li>Rename and/or move the location of this file on your web space.</li>
+    <li>Edit the two files called common.aspx with a text editor like notepad. One common.aspx file is with the main files and the other should be in a directory called admin.</li>
+    <li>In these two files you will find the following line of code: -<br />
+     <br />
+     strDbPathAndName = Server.MapPath(&amp;quot;<font color="#0000CC">admin/database/</font><font color="#FF0000">wwForum.mdb</font>&amp;quot;)<br />
+     <br />
+    </li>
+    <li>Change the part marked in blue (<font color="#0000CC">admin/database/</font>), to the new path to the database relative to the common.aspx file you are editing, if you are editing the common.aspx file from 
+     the admin section you won't have, <font color="#0000CC">admin/database/</font> written in front of the database name, don't worry, just enter the path to the database infront of the database name shown above 
+     in red.</li>
+    <li>Change the part marked in red (<font color="#FF0000">wwForum.mdb</font>), to the new name of the Forum's Access database.</li>
+    <li>Save the amended files.</li>
+   </ol>
+  </td>
+ </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10" align="center">
+ <tr> 
+  <td align="center" class="text" height="17"><a href="http://www.webwizguide.info" target="_blank"><img src="web_wiz_guide.gif" width="116" height="38" border="0" alt="Web Wiz Guide!"></a><br />
+   <br />
+   Copyright 2000-2004 Bruce Corkhill<br />
+   Web Wiz Guide, PO Box 4982, Bournemouth, BH8 8XP, United Kingdom</td>
+ </tr>
+</table>
+</body>
+</html>

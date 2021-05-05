@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Proveedores>
+    <idProveedor>1</idProveedor>
+    <nombre>Luanvi</nombre>
+    <email />
+    <direccion />
+    <codigoPostal />
+    <ciudad />
+    <telefono />
+  </Proveedores>
+</DocumentElement>

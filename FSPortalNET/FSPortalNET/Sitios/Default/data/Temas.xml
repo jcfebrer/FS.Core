@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Temas>
+    <TemaID>1</TemaID>
+    <Nombre>Bizkaidenda</Nombre>
+    <Descripcion>&lt;P&gt;Este tema, recogera información sobre la web Bizkaidenda.&lt;/P&gt;</Descripcion>
+    <Version>1.0</Version>
+    <Plataforma>Tienda</Plataforma>
+    <NombreFichero />
+    <Descargas>33</Descargas>
+    <PaginasVistas>375</PaginasVistas>
+    <FechaPublicacion>2004-10-17T00:00:00+02:00</FechaPublicacion>
+    <UltimaActualizacion>2004-10-17T00:00:00+02:00</UltimaActualizacion>
+    <Texto>&lt;P&gt;Texto de página.&lt;BR&gt;&lt;/P&gt;</Texto>
+    <Experto>jfebrer</Experto>
+  </Temas>
+</DocumentElement>

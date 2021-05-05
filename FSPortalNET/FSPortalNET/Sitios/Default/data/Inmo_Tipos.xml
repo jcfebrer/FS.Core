@@ -1,0 +1,47 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Inmo_Tipos>
+    <idTipo>0</idTipo>
+    <tipo>Piso</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>1</idTipo>
+    <tipo>Apartamento</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>2</idTipo>
+    <tipo>Chalet</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>3</idTipo>
+    <tipo>Ático Dúplex</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>4</idTipo>
+    <tipo>Despacho</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>5</idTipo>
+    <tipo>Ático</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>6</idTipo>
+    <tipo>Casa de Campo</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>7</idTipo>
+    <tipo>Nave Industrial</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>8</idTipo>
+    <tipo>Duplex</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>9</idTipo>
+    <tipo>Bajo Vivienda</tipo>
+  </Inmo_Tipos>
+  <Inmo_Tipos>
+    <idTipo>10</idTipo>
+    <tipo>Bungalow</tipo>
+  </Inmo_Tipos>
+</DocumentElement>

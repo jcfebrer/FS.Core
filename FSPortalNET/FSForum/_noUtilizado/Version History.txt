@@ -1,0 +1,1772 @@
+Web Wiz Forums Version History Changes
+===========================================================================================
+
+
+Changes from 5.21 to 5.22
+-------------------------
+1. date_time_functions.inc - fix db session("conn")ection closing bug
+2. display_forum_topics.aspx - fix db session("conn")ection closing bug and reply anchor
+3. forum_membem_rs.aspx - replace the ADO filter with a SQL query
+4. search.aspx - moved creating rsTopic recordset
+5. post_message.aspx  - added the ability to send e-mail notification so users can be notified of any replies to there replies
+6. message_form.inc - same as above
+7. IE_message_form.inc - same as above
+8. registration_rules.aspx - Fixed bug where the page to return in the forum after registering is not remembered.
+
+
+
+
+Changes from 5.22 to 6 beta 1
+-----------------------------
+The entire admin section has been re-written from the ground up and you will need to delete the old admin directory and replace it with the new one.
+
+Nearly all files in the entire forum changed to support the new skin file
+
+1. default.aspx - decresed server load by less opening and closing objects
+2. common.aspx - change some of the db session("conn")ections and added script timeout and added ability to get the moderator for an individual forum
+3. delete_topic.aspx - removed script timeout
+4. amend_forum_details.aspx - fixed bug when entering a clave for a forum
+5. admin_menu.aspx - reformated the page so it is simpler to use
+6. SQL_server_setup.aspx - all new database configuartion details added
+7. login_user.aspx - added auto login at login page
+8. pofile_edit.aspx - removed the db reference to the login_cookie field
+9. register_new_user.aspx - removed the db reference to the login_cookie field
+10. change_admin_usuario.aspx - same as above
+12. display_forum_topics.aspx - changed to add ability to lock topics
+13. display_forum_topics.aspx - same as above
+14. lock_topic.aspx - added page to lock and un-lock topics
+15. post_message.aspx - altered to get moderators for each individual forum
+16. default.aspx - changed to allow forum categories
+17. display_forum_topics.aspx - changed to allow categories
+18. search.aspx - changed to allow categoires
+19. search_form.aspx changed to allow categories
+20. forum_jump.inc - file added to move the forum jump code to one location
+21. profile.inc - file added to move the profile code to one location
+22. pop_up_profile.aspx - changed to allow admin and moderators to change the status of members
+23. profile.aspx - same as above
+24. profile_edit.aspx - more security added
+25. display_topic_threads.aspx - changed to use the new forum jump include
+26. New star images added
+27. New no entry icon image added
+28. New un-lock pad lock image added
+29. default.aspx - page altered to add link to forum lock and un-lock page for admin
+30. lock_forum.aspx - page added to allow the forums to be locked and un-locked from main page
+31. display_topic_threads.aspx - changed layout of threads
+32. register_form.aspx - changed to allow e-mail activation of forum membership
+33. register_new_user.aspx - same as above
+34. actvation.aspx - added to allow users to activate there accounts via e-mail
+35. register_mail_confirm.aspx - added to notify user they are being sent an e-mail to activate membership
+36. select_countries_list.inc - added to move the drop down list of countires used in the regiter_form.aspx page and the profile_edit.aspx pages to this file for simpler translation to other langauges
+37. login_user.aspx - changed to allow the user to set auto login when logging in
+39. register_new_user.aspx - changed to allow better use of ADO objects
+40. display_topic_threads.aspx - changed to add icons for topics eg. hot topic
+41. search.aspx - changed to add icons for topics eg. hot topic
+42. added new post icons
+43. common.aspx - changed to support the icons for the topics
+44. post_message.aspx - improved performance, mail preview of post, set priority of post
+45. message_form.aspx - changed to add more formating options and for post priority
+46. IE_message_form.aspx - same as above
+47. edit_post.aspx - changed so you can now edit the topic title
+48. format_post.inc - changed the way forum codes are formatted into HTML
+49. edit_post.inc - changed the way HTML is formatted back into HTML
+50. post_message.aspx - changed the way IE posts are formatted
+51. display_printer_threads.aspx - changed the way threads are converted into printable text versions
+52. display_topic_threads.aspx - changed so you edit topic details when editing first post
+53. IE_textbox.aspx - changed to support changing the topic details
+54. convert_post_to_text.inc - file added to convert post back to text so that it can be used on multiple pages
+55. send_mail_functions.inc - changed to send mail in HTML format as well as text
+56. e-mail_topic.aspx - changed to support change above
+57. forum_clave_form.aspx - same as above
+58. register_new_user.aspx - same as above
+59. forum_codes.aspx - new page added to display the forum codes
+60. delete_topic.aspx - improved performance
+61. delete_member.aspx - added to delete a member from the forum
+
+
+The following pages are added or changed for the private messenger
+1. pm_inbox.aspx - added to show private message inbox
+2. pm_show_message.aspx - added to show a private message
+3. pm_new_message_form.aspx - added to be able to write a private message
+4. IE_message_form.inc - file changed to add support for private messages
+5. message_form.inc - same as above
+6. IE_textbox.aspx - changed to support private message
+7. post_message_form.aspx - changed to add new veriables
+8. edit_post.aspx - same as above
+9. pm_post_message.aspx - added to check and send private message
+10. pm_buddy_list.aspx - added to hold the users buddy list
+11. pm_delete_buddy.aspx - added to delete buddy from buddy list
+12. pm_add_buddy.aspx - added to add a new buddy to the buddy list
+13. pm_welcome.aspx - added to welcome and explain the private message system to users
+14. pm_delete_message.aspx - added to delete private message
+15. pm_check.inc - file added to check for new private msg
+16. display_forum_topics.aspx - changed to link to private messenger
+17. display_forum_threads.aspx - same as above
+18. default.aspx - same as above
+
+
+The following pages are changed for the new layout
+1. New buttons and images added or swapped over
+2. default.aspx
+3. display_topic_threads.aspx
+4. display_forum_topics.aspx
+5. search.aspx
+6. skin_file.inc - added for the new skin
+
+
+The following pages and images have been added to allow avatars
+1. avatars folder created containing avatar images
+2. register_form.aspx - changed to allow user to select avatar
+3. register_new_user.aspx - changed to save new avatar to database
+4. profile_edit.aspx - changed to allow user to change avatar and save new avatar to db
+5. select_avatar.inc - file added containing a selction list of avatam_rs(placed in 1 file so it's easier for someone to change if they would like to use different avatars)
+
+
+The following changes and pages have been changed to allow Guests to post in the forum
+
+1. common.aspx - added login for guest account identification
+2. forum_membem_rs.aspx - changed to not accidently modify guest account
+3. delete_forum_membem_rs.aspx - changed to not accidently delete guest account
+4. default.aspx - changed so can't change the profile for the guest account
+5. display_forum_topics.aspx - same as above
+6. display_topic_threads.aspx - same as above
+7. edit_post.aspx - stop guest account being able to edit post
+8. delete_post.aspx - stop guest account deleting posts
+
+
+The following changes and pages have been added to allow different user levels within the forum
+
+1. common.aspx - gets the member level of the user from the database
+2. forum_permissions.inc - added file to get what permissions the user has on the forum
+3. insufficient_pemission.aspx - added page to display if the user doesn't have permission level to use the forum they are trying to enter
+4. default.aspx - displays the forum as locked or no entry sign if user can't use forum
+5. display_forum_topics.aspx - locks forum if the user only has read permissions
+6. display_topic_threads.aspx - same as above
+7. edit_post.aspx - same as above
+8. delete_post.aspx - same as above
+9. search_form.aspx - remove choice to search forums that the user can't use
+10. saerch.aspx - changed so the member only searches forums they have access to
+11. forum_membem_rs.aspx - changed to show member status in the forum
+12. display_topic_threads.aspx - changed to show member status
+13. default.aspx - letest forum posts only show those forums the user can use
+
+
+The following pages and files have been changed and added to allow threads to be split over multiple pages
+1. display_topic_threads.aspx - changed to support thread pages
+2. delete_post.aspx - same as above
+3. forum_membem_rs.aspx - same as above
+4. edit_post.aspx - same as above
+5. post_message_form.aspx - same as above
+6. serach_form.aspx - same as above
+7. log_off_user.aspx - same as above
+8. login_user.aspx - same as above
+9. edit_profile.aspx - same as above
+10. profile.aspx - same as above
+11. register_form.aspx - same as above
+12. register_new_user.aspx - same as above
+13. IE_message_form.inc - same as above
+14. message_form.inc - same as above
+15. post_message.aspx - same as above
+16. display_topic_threads.aspx - same as above
+17. defualt.aspx - same as above
+
+
+The following files have been changed to fix a bug in the date_time_functions.inc where by the access driver reports the following error - Too many client tasks.
+
+1. date_time_functions.inc
+2. default.aspx
+3. display_forum_topics.aspx
+4. display_topic_threads.aspx
+5. post_preview.aspx
+6. forum_membem_rs.aspx
+7. profile.aspx
+8. pop_up_profile.aspx
+9. search.aspx
+10. display_printer_threads.aspx
+11. IE_textbox.aspx
+12. post_message_form.aspx
+
+Changes to the database
+1. tblConfiguration - added Guest_post, true/false datatype
+2. tblUsuarios at position 2 has had a Guest account created
+3. tblModrators - New table added to the database
+4. tblUsuarios - removed moderator field
+5. tblUsuarios - removed login_cookie field
+6. tblTopic - added Locked field, true/false datatype
+7. tblUsuarios - added Status field, interger datatype, default value 1
+8. tblForum - added Guest field, integer datatype, default value 1
+9. tblForum - added Standard field, integer datatype, default value 1
+10. tblForum - added Super field, integer datatype, default value 1
+11. tblForum - added Power field, integer datatype, default value 1
+12. tblCategory - added table to the database
+13. tblForum - added Cat_ID field, inetger, foreign key to tblCategory primary key
+14. tblUsuarios - added a text field called Avatar
+15. tblConfiguration - added Avatar, true/false datatype
+16. tblConfiguration - added Email_activate, true/false datatype
+17. tblTopic - added Priority field, integer datatype, default value 0
+18. tblConfiguration - added Hot_replies field, inetger datatype
+19. tblConfiguration - added Hot_replies field, integer datatype
+20. tblConfiguration - added Email_post field, true/false datatype
+21. tblPMMessage - table added to hold private messages
+22. tblBuddyList - table added to hold address book for private messages
+
+
+
+
+Changes from version 6 beta 1 to version 6 beta 2
+-------------------------------------------------
+1. forum_details.aspx - fixed bug with setting permissions for Gold members
+
+
+
+
+Changes from version 6 beta 2 to version 6 beta 3
+-------------------------------------------------
+1. activate.aspx - fixed bug that stoped the page from being displayed.
+2. delete_forum.aspx - fixed to make compatible with the cheap nasty accounts you get on Brinkster
+3. delete_category.aspx - same as above
+4. pm_delete_message.aspx - changed to fix bug with the delete button on the page you read private messages on.
+5. skin_file.inc - add way to change colour of IE Text box
+6. IE_textbox.aspx - changed to support above skin modification
+7. defualt.aspx - fixed out of place dot when new visitors comes to the site.
+8. pm_welcome.aspx - fixed the forum jump bug
+9. default.aspx - improved the security gropus so that guests still have optiunity to login
+10. display_topic_threads.aspx - same as above
+11. display_forum_topics.aspx - same as above
+12. edit_post.aspx - same as above
+13. post_message_form.aspx - same as above
+14. login_user.aspx - table background was displaying the wrong colour
+15. forum_codes.aspx - fixed error with displaying blue as blue
+16. display_topic_threads.aspx - fixed bug that shown other members as forum moderators in topics where the forum modrator had posted a msg
+17. search_form.aspx - fixed bug of forums not being in correct order
+
+
+The following pages have been changed to allow the setting of a moderator on all forums
+1. default.aspx
+2. common.aspx
+3. profile.inc
+4. display_topic_threads.aspx
+5. forum_membem_rs.aspx
+6. member_profile.aspx
+
+
+The following pages have been cahnged and added to add a side bar, header, and footer, include files so that you can integrate the forum into you own site easier.
+
+1. All pages in the main forum changed
+2. side_bar.inc - page added to hold whatever you want displayed in the side of the forum like navigation for the rest of your site.
+3. footer.inc - page added to hold anything that you want displayed at the bottom of the forum
+
+
+
+The following pages have been added or changed to allow toipcs to be moved to another forum
+
+1. display_topic_threads.aspx - link to move topic page added
+2. move_topic_form.aspx - page added to display a drop down list of forums to move topic to
+3. move_topic.aspx - page added to move the topic
+4. langauge_file.inc
+
+
+
+Changes from version 6 beta 3 to version 6 beta 4
+-------------------------------------------------
+1. profile.inc - changed so that the Admin and Guest accounts can't be shown as unactive in the profile
+2. member_profile.aspx - changed so you can't make the Adin and Guest accounts look like they are un active
+3. member_profile.aspx - fixed javascript bug and case sesitive field name bug
+4. forum_details.aspx - fixed case sesitive field name bug
+5. member_profile.aspx - same as above
+6. pm_inbox.aspx - fixed javascript error when there are no pm's to delete
+7. common.aspx - fixed CDate bug on some servers and made the time of last visit more accurate
+8. default.aspx - decreased the number of recordset to increae the performance
+9. langauge_file.inc - changed to add the words used in the new pages
+
+
+The following files and pages have been changed so that the original private message can be seeen when you reply to a private message
+1. pm_show_message.aspx
+2. pm_new_message_form.aspx
+3. IE_textbox.aspx
+4. langauge_file.inc
+
+
+The following pages hae been changed or added for the active users counter and a database table added
+1. tblAvtiveUser - Table added to the database
+2. active_usem_rs.inc - file added to caluclate the active users on the forum
+3. default.aspx - page added to display the active users on the forum
+4. active_usem_rs.aspx - page added to show active users and some statistics on them
+5. register_new_user.aspx - changed so that a user can be annoymous in the active usres list
+6. register_form.aspx - same as above
+6. login_user.aspx - same as above
+
+
+
+Changes from version 6 beta 4 to version 6 beta 5
+-------------------------------------------------
+1. e-mail_topic.aspx - changed the size of the e-mail fields
+2. register_new_user.aspx - sorted bug when entering a link in a signature
+3. post_message.aspx - corrected problem where by a moderaor of all forums wasn't geting notified of a new post.
+4. pm_post_message.aspx - fixed bug where a msg is replied to that contains an image
+5. move_topic_form.aspx - fixed whereby moderators couldn't move the topic
+6. move_topic.aspx - same as above
+7. not_posted.aspx - page to display if a post is not posted
+8. post_message.aspx - changed to stop people from spamming the forum with 100's of posts
+9. search.aspx - changed to fix bug when posting a new topic when searching all forums
+10. langauge_file.inc - changed to add the words of the new pages
+11. default.aspx - changed to link to pages to delete cookies and mark posts as read
+12. mark_posts_as_read.aspx - new file that marks all posts as read
+13. remove_cookies.aspx - new file to delete cookies set by the forum
+14. spam_configure.aspx - page added to set up anti-spam settings
+15. admin_menu.aspx - page updated to link to the new anti-spam settings page
+16. date_time_configure.aspx - changed to allow more flexibility of time changes
+17. pm_inbox.aspx - fixed error were it doesn't go to the previous page if you delete all the pm's on a page higher than page 1
+18. active_usem_rs.inc - changed to better support access which can be a little slow in updating and to check the user isn't listed twice if they return within 10 minutes with a new IP address
+19. Spam_seconds and Spam_minutes - fields have been added to the tblConfiguration table in the database
+20. Smilies moved to smileys folder
+
+The database name has now been changed for extra security
+1. database name has changed from froum.mdb to wwForum.mdb
+2. common.aspx - both files have been altered to make changing the path to the forum database and the name of the database itself simpler.
+
+
+The following pages have been changed for the active topics page
+1. active_topics.aspx - pages added to display active topics
+2. defualt.aspx - changed to link to this new page
+3. display_topic_threads.aspx - changed to link back to the active topics page
+
+Updated Skins
+The skins have been redone and as such almost every page in the main forum is changed to support the new functions in the skin_file.inc
+
+
+Changes from version 6 beta 5 to version 6 beta 6
+-------------------------------------------------
+1. pm_check.inc - improved perfomance of the file
+2. search.aspx - removed so small bugs in the HTML
+3. active_topics.aspx - fixed the missing space around the word on when displaying the last visit date
+4. pm_welcome.aspx - improved performance
+5. register_new_user.aspx - fixed bug whereby a user could enter a blank usuario
+6. post_preview.aspx - prevent browser from caching this page
+7. message_form.inc - same as above
+8. post_message_form.aspx - changed to display post reply when quoting a post
+9. actice_topics.aspx - fixed bug with moving between pages and the order of the topics
+10. langauge_file.inc - added some missed out text to the langauge file
+11. active_topics.aspx - changed to fix bug with some foriegn langauge servers
+12. register_new_user.aspx - changed so that when e-mail activation is on you can only use an e-mail address once to register (stops a user having multiple accounts)
+13. login_user.aspx - changed 'Don't add me to active users list' to 'Add me to active users list'
+14. register_forum.aspx - same as above
+15. register_new_user.aspx - same as above
+16. acive_usem_rs.inc - fixed bug where by it wasn't removing all un active usem_rs.
+17. post_message.aspx - fixed bug where you could enter a post thet could be got to that had blank spaces as the subject heading
+18. not_posted.aspx - changed to support the bug above
+19. IE_message.form.inc - fixed formatting bug when emoticons are turned off
+20. forum_clave_form.aspx - fixed auto login bug
+
+
+The following pages have been changed to add Stored Procedures for SQL Server
+1. SQL_server_setup.aspx
+2. common.aspx - in main directory
+3. display_forum_topics.aspx
+4. defualt.aspx
+5. active_usem_rs.inc
+6. search.aspx
+7. pm_check.aspx
+9. date_time_functions.inc
+10. active_topics.aspx
+11. display_topic_threads.aspx
+12. forum_jump.inc
+13. forum_permissions.inc
+14. active_usem_rs.aspx
+15. forum_membem_rs.aspx
+
+
+Changes from version 6 beta 6 to version 6 full
+-----------------------------------------------
+1. IE_message_form.inc - fixed bug where the admin and moderators can't choose to receive e-mail notification reply to posts when the admin e-mail notification is off
+2. message_form.inc - same as above
+3. post_message.aspx - same as above
+4. common.aspx - changed to support SQL views
+5. default.aspx -same as above
+6. active_uesm_rs.aspx - same as above
+7. SQL_server_setup.aspx - same as above
+8. display_topic_threads.aspx - fixed bug where the link back to the search page wasn't working when moving between multiple pages of a topic
+
+The following pages are chaned to log the users IP address when they post a message
+1. langauge_file.inc
+2. post_message.aspx
+3. display_message_thread.aspx
+4. IP_addr - database field added to the table tblThread with a datatype of text 28
+
+The following pages are changed to add the page numbers for topics with more than one page
+1. display_forum_topics.aspx
+2. search.aspx
+3. active_topics.aspx
+
+The following files have been changed to prevent malicous code in links
+1. post_message.aspx
+2. pm_post_message.aspx
+5. display_topic_threads.aspx
+6. pm_show_message.aspx
+7. profile_edit.aspx
+8. code_check.aspx - page added
+
+
+Changes from version 6.0 to version 6.10
+----------------------------------------
+1. code_check.aspx - changed so that links that have & in them work.
+2. IE_message_form.inc - fixed bug where by admin and moderators can't select receive e-mail notification if the admin e-mail notification is turned off
+3. message_form.inc - same as above
+4. display_forum_topics.aspx - fixed bug where priority topics where not displayed at the top of the page after the show topics date had expired.
+5. SQL_server_setup.aspx - same as above (SQL Server version only)
+6. IE_message_form.inc - fixed bug where Norton Internet Security's add blocker was placing an empty image  tag in posts if users had this running on there machines.
+7. IE_textbox.aspx - same as above
+8. common.aspx - fixed last date bug on some servers
+9. mark_posts_as_read.aspx - same as above
+10. pm_show_messsage.aspx - changed some code that was not on the language file
+11. display_topic_threads.aspx - changed to allow forum admin to post in locked and closed topics
+12. post_message_form.aspx - same as above
+13. edit_post.aspx - same as above
+14. search.aspx - changed so that any words seached for are highlighted in the results
+15. display_topic_threads.aspx - same as above
+16. active_topics.aspx - fixed bug where active topics forums where shown in the wrong order
+
+The following pages have had added security added to them
+1. forum_membem_rs.aspx
+2. seacrh.aspx
+3. pm_add_buddy.aspx
+4. check_code.aspx
+5. post_message.aspx
+6. pm_post_message.sp
+7. format_post.inc
+8. edit_post.inc
+9. convert_post_to_text.inc
+10. post_preview.aspx
+11. register_new_user.aspx
+12. profile_edit.aspx
+13. login_user.aspx
+14. forum_clave_form.aspx
+15. seacrh_form.aspx
+
+Changes from version 6.10 to version 6.11
+-----------------------------------------
+1. register_new_user.aspx - fixed bug when registering with an avatar
+
+
+Changes from version 6.11 to version 6.12
+-----------------------------------------
+1. insufficient_permissions.aspx - changed to add login and register buttons to this page
+2. pm_show_message.aspx - fixed bug where the profile edit button linked to the wrong page
+3. forum_membem_rs.aspx - fixed bug where when you clicked on a character it didn't show members strating with that character.
+4. display_printer_threads.aspx - fixed langauge file bugs
+5. forum_membem_rs.aspx - same as above
+6. langauge_file.inc - same as above
+
+Fixed bug where e-mails are not correctly sent to some e-mail addresses
+1. code_check.aspx
+2. register_new_user.aspx
+3. post_message.aspx
+4. pm_show_message.aspx
+5. forgotten_clave.aspx
+
+
+Changes from version 6.12 to version 6.20
+-----------------------------------------
+1. common.aspx - fixed date bug on foriegn language servers where the CDate function would return an error
+2. mark_posts_as_read.aspx - same as above
+3. register_new_user.aspx - fixed bug where signature wasn't going through the bad word filter
+4. profile_eidt.aspx - same as above
+5. code_check.aspx - improved the filters
+6. register_mail_confirm.aspx - made the text telling the user they need to activate there account via an e-mail larger so they don't miss it
+7. language_file.inc - changed to add new forum text
+8. profile_edit.aspx - changed so that members have to reactivate there accounts if they change there e-mail address when e-mail activation is enabled
+9. register_new_user.aspx - fixed so that a welcome message is now displayed to new users
+10. profile.inc - same as above
+11. display_topic_threads.aspx - added add buddy link
+12. move_post_form.aspx - page added to allow posts to be moved to another forum or topic
+13. move_post_form_to.aspx - same as above
+14. move_post.aspx - page to do the actual moving of the topic
+15. pm_add_buddy.aspx - fixed bug where you couldn't add administrator to the buddy list
+16. pm_post_message.aspx - add more security
+17. display_topic_threads.aspx - changed the layout and look
+18. member_profile.aspx - the forum admin can now change a users clave for them
+
+
+Changes from version 6.20 to version 6.21
+-----------------------------------------
+1. IE_message_form.inc - changed to set the focus on the text box when clicking on a formatting button
+2. IE_emoticons_smilies.aspx - changed to set the focus on the text box when clciking on an emoticon and to close the pop up window once the emoticon has been selected.
+
+
+Changes from version 6.21 to version 6.22
+-----------------------------------------
+1. common.aspx - both are changed to set the LCID to US so there is some capatibilty with dates between different servem_rs.
+2. display_topic_threads.aspx - fixed bug where if the page position was above 1 when linking back and there where no page above 1 it now autmactically drops back to page 1
+3. change_admin_usuario.aspx - fixed bug where when changing to a usuario containing the word admin it reported the uesrname as being taken.
+4. common.aspx - put a time limit on how long a member has to edit or delete there posts
+5. display_topic_threads.aspx - same as above
+6. pm_post_message.aspx - changed so that someone can't use a cached copy of the PM post form to try and send a PM when they are logged out.
+7. profile.inc - changed so that it shows super moderators as moderators when not inside a forum
+8. forum_membem_rs.aspx - changed the look and improved perfomance
+9. SQL_server_setup.aspx - removed a stored procedure that is longer used in the forum
+10. IE_message_form.inc - changed so that the buddy drop down list is in alphabetical order
+11. message_form.inc - same as above
+
+
+Changes from version 6.22 to version 6.23
+-----------------------------------------
+1. format_post.inc - changed to more acuratly covert [IMG] images tags to images
+2. edit_post.inc - changed to stop a crash with missformed links and images
+3. code_check.aspx - fixed bug that corsed post formating errors if someone tried posting an image that didn't have an extenstion to it.
+4. pm_post_message.aspx - changed so that if JavaScript is disabled the user cannot send a pm with no subject and/or message body.
+
+
+Changes from version 6.23 to version 6.24
+-----------------------------------------
+1. Search.aspx - fixed bug where clicking on the last post icon didn't work
+2. format_post.inc - improved the formatting code
+3. code_check.aspx - improved the security filters
+4. edit_post.inc - improved post editing filters
+5. format_post.inc - improved post editing filters and removed bug where incorrect quots would course problems.
+6. post_preveiw.aspx - changed to improve the way the tables are formatted.
+7. forum_membem_rs.aspx - changed so that the add buddy button is not shown if the PM system is turned off
+
+Changes from version 6.24 to version 6.25
+-----------------------------------------
+1. post_message.aspx - changed so that the guest account doesn't come under the anti-spam settings.
+2. format_post.inc - fixed bug when quoting messages
+3. edit_post.inc - same as above
+4. signature_preview.aspx - page added to preview a new signature enetred by a user
+5. pm_post_message.aspx - changed to allow the user to edit there post if they give an invalid subject or message
+6. active_topics.aspx - fixed SQL error on case sensitive SQL Server installations.
+7. search.aspx - changed the way Usuarioss and searched to give more accurate results.
+8. activate.aspx - fixed SQL query bug
+9. register_new_user.aspx - now encodes the usercode stored in cookie for better forum security
+10. profile_edit.aspx - same as above
+11. common.aspx - both thses fiels are changed to encode the cookie when read from the users machine to unsure there is no malicious code in it.
+12. code_check.aspx - refined SQL encoder
+
+
+Changes from version 6.25 to version 6.26
+-----------------------------------------
+1. code_check.aspx - inproved the filters
+2. common.aspx - admin area file added more security and changed the size of allowed cookies
+3. date_time_function.aspx - same as above
+4. remove_link_buttons.aspx - same as above
+5. activate.aspx - changed so that suspeneded users can't use the code in their cookies to try and reactivate their account
+6. profile.inc - same as above
+7. register_new_user.aspx - same as above
+9. change_admin_usuario.aspx - same as above
+10. profile.inc - changed to profile_inc.aspx
+11. profile.aspx - updated to reflect the change in name of the profile.inc file
+12. pop_up_profile.aspx same as above
+13. coomon.aspx - fixed last date cookie bug that ment the cookie refreshed on every page
+14. every page is changed for better integration with the header and footer include files
+
+
+
+Changes from version 6.26 to version 6.27
+-----------------------------------------
+1. common.aspx - fixed bug that occurs when delet all cookies link is clicked
+2. code_check.aspx - better detection of web images and fixed resize image bug
+3. send_mail_functions.aspx - fixed Metadata regsitery bug for servers that don't have CDOSYS installed
+4. signature_preview.aspx - file added to preview signatures with
+5. register_form.aspx - added link to signature preview
+6. profile_edit.aspx - added link to signature preview
+7. langauge_file.inc - file updated to support signature preview window
+
+
+Changes from version 6.27 to version 6.28
+-----------------------------------------
+1. register_form.aspx - fixed JavaScript bug
+2. login_user.aspx - changed so claves are not case sensitive
+3. forum_clave_form.aspx - changed so that claves are not case sensitive
+4. profile_inc.aspx - fixed bug where the accountr with ID 3 could not be changed.
+
+
+
+Changes from version 6.28 to version 6.29
+-----------------------------------------
+1. code_check.aspx - fixed bug where images with the extension in capital letters were not displayed correctly
+2. mark_posts_as_read.aspx - fixed variable bug when not logged in
+3. remove_cookies.aspx - same as above
+4. format_post.inc - fixed message formating bug when editing a quoted message with a non IE web browser
+5. edit_post.in - same as above
+6. post_message_form.aspx - same as above
+7. IE_textbox.aspx - same as above
+8. common.aspx - better use of coding
+9. forum_clave_form.aspx - fixed table colour bug
+10. display_topic_threads.aspx - fixed return page bug when clicking to search for an Usuarios
+11. post_message_form.aspx - fixed bug for ferign languages displaying the wrong text when quoting
+12. send_mail_functions.inc - improved performance and fixed a few bugs
+13. post_message.aspx - fixed email notification bug that effects some systems running the Access version that are using older MDAC drivers
+14. login_user.aspx - fixed recordset closing bug
+15. log_off_user.aspx - same as above
+16. forgotten_clave.aspx - same as above
+17. forum_clave_forum.aspx - same as above
+18. IE_textbox.aspx - same as above
+19. remove_cookies.aspx - same as above
+20. registration rules.aspx - same as above
+21. search_form.aspx - same as above
+22. signature_preview.aspx - same as above
+23. register_new_user.aspx - re-written to improve performance
+
+
+Changes from version 6.29 to version 6.30
+-----------------------------------------
+1. SQL_server_Setup.aspx - changed the stored procedure wwfSpThreadDetails to include tblTopic.Forum_ID
+2. display_topic_threads.aspx - changed to fix security bug where you can see topics in restrcited forums.
+
+
+
+Changes from version 6.30 to version 6.32
+-----------------------------------------
+1. code_check.aspx - security update fix
+
+
+Changes from version 6.32 to version 6.33
+-----------------------------------------
+1. edit_post.aspx - security fix
+2. post_message.aspx - updated to support fix above for SQL server version
+3. post_message.aspx - upadted to add code to remove code the Zone Alarms add blocker injects into posts
+
+
+Changes from version 6.33 to version 6.34
+-----------------------------------------
+1. post_message.aspx - security fix
+
+
+
+Changes from version 6.34 to version 7 beta 1
+---------------------------------------------
+1. lanaguage_file.inc - renamed to language_file_inc.aspx
+2. common.aspx - language file is now called from this file
+3. active_user.inc - reneamed to active_users_inc.aspx
+4. code_check.aspx - renamed to functions_filtem_rs.aspx
+5. active_users_inc.aspx - improved performance
+6. functions_common.aspx - new file to hold functions that are used across the forum
+7. send_mail_functions.inc - renamed to functions_send_mail.aspx
+8. common.aspx - nows holds the version number of the forum - most pages in teh forum changed to support using a global search and replace
+11. common.aspx - removed the edit/delet time limit
+12. disply_topic_threads - changed so you can edit or delete posts till a reply has been posted
+13. disply_forum_threads.aspx - reneamed to forum_posts.aspx for shorter URL and to stop blocking by add blockes and search engine add blockes
+14. display_forum_topics.aspx - renamed to forum_topics.aspx for some of the same reasons as above
+15. display_printer_threads.aspx - renamed to printer_friendly_posts.aspx
+16. Global search and replace to change all forumID URL links to FID for shorter URL's
+17. Global search and replace to change all topicID URL links to TID for shorter URL's
+18. Global search and replace to change all PagePosition URL links to PN for shorter URL's
+19. Global search and replace to change all ReturnPage URL links to RP for shorter URL's
+20. Global search and replace to change all SearchReturnPage URL links to SRP for shorter URL's
+20. Global search and replace to change all ThreadPage URL links to TPN for shorter URL's and for errors coursed by add blocking software seeing ad part of thread as add for addvert
+21. edit_post.inc - renamed to functions_edit_post.aspx and converted to a function
+22. edit_post.aspx - changed to support new function above
+23. post_message_form.aspx - same as above
+24. pm_new_message_form.aspx - same as above
+25. post_message_form.aspx - same as above
+26. profile_edit.aspx - same as above
+27. functions_common.aspx - new windows IE 5 testing function added
+28. forum_posts.aspx - improved performance by calling new function created above and links to changed to link .aspx include files instead of .inc
+29. edit_post.aspx - same as above
+30. post_message_form.aspx - same as above
+31. pm_new_message_form.aspx - same as above
+32. post_message_form.aspx - same as above
+33. profile_edit.aspx - same as above
+34. IE_message_form.inc - renamed to IE_message_form.aspx
+35. message_form.inc - renamed to message_form.aspx
+36. format_post.inc - renamed functions_format_post.aspx and converted to be a function also added new function to it to convert WYSIWYG posts
+37. post_message.aspx - changed to support new functions above
+38. pm_post_message.aspx - same as above
+39. post_preview.aspx - same as above
+40. profile_edit.aspx - same as above
+41. register_new_user.aspx - same as above
+42. signature_preview.aspx - same as above
+43. post_priview.aspx - improved non caching
+44. signature_preview.aspx - same as above
+45. forum_jump.in - renamed forum_jump_inc.aspx, global search and replace used to update the rest of the fiels to point to this renamed file
+46. functions_common.aspx - updated browser detection to detect Netscape7/Mozilla 1
+47. active_topics.aspx - changed to store the view selection in a cookie
+48. skin_file.aspx - changed to link to an extrenal style sheet
+49. defualt_style.css - new cascading style sheet for forum
+50. default.aspx - improved performance
+51. SQL_server_setup.aspx - changed wwfSpLastForumPostEntry stored procedure to increase performance
+52. tblForum - table changed in database to add two interger fields, No_of_topics and No_of_posts
+53. SQL_server_setup.aspx - changed to support new fields above
+54. functions_common.aspx - added new function to update the post and topic count in the tblForum table
+55. post_message.aspx - calls the new function created above when a new post is added to the forum
+56. delete_post.aspx - same as above but when a post is deleted from teh forum
+57. delete_topic.aspx - same as above but when a topic is deleted from the forum
+58. search.aspx - improved performance when searching the forum
+59. active_topics.aspx - more time choices to show active topics within
+60. language_file_inc.aspx - added text to support new functions in active_topics.aspx
+61. forum_posts.aspx - improved performance in SQL queries and shortened URL to page
+62. forum_topics.aspx - support shorter URL's for above page
+63. active_topics.aspx - same as above
+64. search.aspx - same as above
+63. forum_posts.aspx - improved performance
+64. forum_posts.aspx - fixed bug in search word highlighter where HTML tags where also highlighted
+66. forum_posts.aspx - added new stored procedure to update post viewed count
+67. SQL_server_setup.aspx - added new stored procedure wwfSpUpdateViewPostCount
+68. moved include files to an include folder and used global search and replace to update all the files
+69. moved functions files to functions folder and used global search and replace to update all the files
+70. header.inc - renamed to header.aspx, global search and replace used to update all files
+71. footer.inc - renemaed to footer.aspx, global search and replace used to update all files
+72. select_countries_list.inc - renamed to select_countries_list.aspx and moved to include folder
+73. navigation_buttons_inc.aspx - new file to hold the forums top navigation buttons
+74. edit_profile.aspx - page updated for new look
+75. forum_topics.aspx - page updated for new look
+76. search.aspx - page updated for new look
+77. search_form.aspx - same as above
+78. forum_membem_rs.aspx - changed look, imporved perfomance, shortened URL's
+79. delete_topic.aspx - removed session variable
+80. search.aspx - support above
+81. forum_topics.aspx - same as above
+82. delete_posts.aspx - improved perfoamance, fixed bug of not updating posts when deleting a whole topic
+83. forum_topics.aspx and forum_posts.aspx changed so that if the prioriy post the Forum ID is passed over so that it doesn't jump forums when displaying the posts.
+84. common.aspx - changed to support new forum groups and access levels
+85. active_users_inc.aspx - improved performance and changed to work with new users groups
+86. default.aspx - updated for new forum groups and moderators
+87. SQL_server_setup.aspx - new stored procdure, wwfSpModeratorGroup, to get the moderator group
+89. forum_members - changed to support new moderator groups also displays member groups
+90. edit_post.aspx - improved security where by a non topic starter could change the topic subject
+91. delete_post.aspx - changed to support the improved security in the edit_posts.aspx page
+92. activate.aspx - updated for new navigation system
+93. active_usem_rs.aspx - same as above
+94. not_posted.aspx - same as above
+95. printer_firendly_posts.aspx - updated for new URL's
+96. register_new_user.aspx - updated look and navigation
+97. SQL_server_setup.aspx - changed wwfSpThreadDetails stored procedure to support new groups
+98. forum_posts.aspx changed to support new groups and permissions
+99. message_form.js - new javascript file holding the JavaScript for the message form, should help load times as this file should be cached by the browser
+100. message_form_inc.aspx - updated to support new js file above, also new method of posting to teh post preview page
+101. IE_message_form.js - new JavaScript file to hold the JavaScript for the IE_message_form_inc.aspx file
+102. IE_message_form_inc.aspx - updated to support new file above
+103. emoticons_inc.aspx - new include file that holds the emoticons used in the forum
+104. IE_emoticons_smilies.aspx - updated to support new emoticons include file
+105. emotions_smilies.aspx - same as aboveS
+106. post_message.aspx - same as above
+107. functions_format_post.aspx - same as above
+108. functions_edit_post.aspx - same as above
+109. functions_post_to_text.aspx - same as above
+110. edit_post.aspx
+111. pm_welcome.aspx - updated for new naviagtion system and permissions
+112. pm_inbox.aspx - same as above
+113. pm_new_message.aspx - same as above
+114. pm_post_message_form.aspx - same as above and improved performance and server resources
+115. pm_show_message.aspx - same as above and improved performance, and updated for new groups
+116. pm_add_buddy.aspx same as above and improved performance and server resources
+117. pm_delete_biddy.aspx same as above
+118. pm_delete_message.aspx - same as above
+119. pm_outbox.aspx - new file to display out going private messages
+120. forum_membem_rs.aspx - updated to show forum groups and renamed to membem_rs.aspx
+121. show_forum_permissions_inc.aspx - new file to show the persons permissions within the forum
+122. forum_topics.aspx - updated to show the forum permissions at the bottom of the page
+123. forum_posts.aspx - same as above 
+124. edit_profile.aspx - added new options for the user to fill in
+125. functions_date_time_format.aspx - updated to support user choosing their own time off set
+126. date_time_configure.aspx - removed server time off-set as user can now select themselves
+127. profile.aspx - file deleted
+128. register_mail_confirm.aspx - page deleted
+129. register_confirm.aspx - new page to inform the user of registration to the forum
+130. edit_profile.aspx - page deleted
+131. register_new_user.aspx - page deleted
+132. register_form.aspx - page deleted
+133. register.aspx - new file to combine edit_profile.aspx, register_Form.aspx, and regesiter_new_user.aspx
+all in the same file, also added many new parts to the user profile
+134. post_message.aspx - reformated for simpler modification and improved performance
+135. skin_file.aspx - updated for new look
+136. registration_rules.aspx - updated for new forum look
+137. active_usem_rs.aspx - upddated for new forum look
+138. post_message.aspx - improved the spam settings work if you turn off the settings
+139. email_topic.aspx - added the name of the person the email is from to the end of the email
+140. common.aspx - updated so that the last visit date for the user is now stored in the database
+141. profile_inc.aspx - file deleted
+142. pop_up_profile.aspx - file updated to show new user profile
+143. email_messenger.aspx - new file added to allow poeple to send emails via the forum
+144. delete_post.aspx - improved perfomance and better security
+145. edit_post.aspx - improved security
+146. delete_topic.aspx - improved security and performance
+147. lock_topic.aspx - improved security and performance
+148. move_post_form.aspx - improved security
+149. move_post_form_to.aspx - improved security
+150. move_post.aspx - improved security and fixed bug in Access where old topic subject remained if there was no posts left in it
+151. pm_language_file_inc.aspx - new language file for the PM system so less server resources are used
+152. forum_posts.aspx - changed so that read posts are marked as unread
+153. forum_topics.aspx - same as above
+154. active_topics.aspx - same as above
+155. get_topic.aspx - new file to get the next and previous topic when click next previous topic links
+156. defualt.aspx - changed so that forums you can't have access to can be hidden
+157. forum_topics.aspx - changed so that the forum admin can set the defualt for when to show topic to for each forum
+158. forum_clave_form.aspx - changed to support encrypted clave for forums
+159. delete_member.aspx - imporved security, performance, and changed where the file redirects to
+160. acive_usem_rs.aspx - fixed recordset closing bug and now doesn't display if active users is off
+161. post_message.aspx - changed to allow the thw showing of the time and who edit a post
+162. edit_post.aspx - changed to remove the edited by text from a post to edit
+163. IE_text_box.aspx - same as above
+164. pm_post_message.aspx - changed so that an email is sent if the user has asked to be notified by email of new PM's
+165. forum_closed.aspx - file added to display a message if the forum is closed
+166. pm_check_inc.aspx - improved performance and removed session variables
+167. common.aspx - changed the way to session("conn")ect to the database and doubled the performance of the forum
+168. lock_topic.aspx - file deleted
+
+Poll cast vote
+
+
+The following pages are changed to add the new forum permissions
+1. forum_jump_inc.aspx 
+2. delete_topic.aspx 
+3. default.aspx
+4. forum_topics.aspx
+5. search.aspx
+6. search_form.aspx
+7. active_topics.aspx - also added in new stored procedure wwfSpActiveToipcs
+8. forum_posts.aspx
+9. lock_topic.aspx
+10. forum_clave_forum.aspx
+11. post_message_form.aspx
+12. edit_post.aspx
+13. delete_post.aspx
+14. IE_message_form.aspx
+15. message_form.aspx
+16. delete_member.aspx
+17. email_topic.aspx
+18. lock_forum.aspx
+19. move_post.aspx
+20. move_post_form.aspx
+21. move_post_form_to.aspx
+22. move_topic.aspx
+23. move_topic_form.aspx
+24. profile_inc.aspx
+25. forum_posts.aspx
+
+
+The following files have been changed to improve post and signature preview and to add to other pages
+1. defualt_javascript.js
+2. message_form_inc.aspx
+3. IE_message_form_inc.aspx
+4. profile_edit.aspx
+5. register_form.aspx
+6. forum_posts.aspx
+7. post_preview.aspx
+8. signature_preview.aspx
+9. edit_posts.aspx
+10. post_message_form.aspx
+
+
+The follwoing fields have been added or changed to add support for searching for members  in the private messaging system
+1. pop_up_member_search.aspx - new page added to help search for members for private messaging
+2. IE_message_form_inc.aspx
+3. message_form_inc.aspx
+5. pm_buddy_list.aspx
+
+
+The following files are changed or added for the Poll feature
+1. create_poll_form.aspx - new page to create forum poll with
+2. poll_form_inc.aspx - new file to add poll form to the message form
+3. IE_message_form_inc.aspx - updated to support forum polls
+4. message_form_inc.aspx - updated to support forum polls
+5. post_message.aspx - updated to support forum polls
+6. language_file_inc.aspx - added new poll text
+7. forum_topics.aspx - updated to support polls
+8. poll_disply_inc.aspx - new file to display the poll in the post page
+9. poll_cast_vote.aspx - new file to allow polls to be cast
+10. forum_topics.aspx - added link to create a new poll
+11. delete_topic.aspx - changed to allow the deleting of polls if a topic contains a poll
+
+
+
+The following files have been changed or added to Encrypt claves in the database
+1. functions_hash1way.aspx - file added to create one way 160 bit encypted claves - written by Mark Jager
+2. register.aspx - changed to support encypted claves
+3. login_user.aspx - same as above
+4. forgotten_clave.aspx - changed so it generates a new clave for the user as one way encypted claves can not be un-encrypted to be able to send to the user
+
+
+
+The following pages have been changed or added for nw email notification
+1. post_message.aspx - updated to add or remove reply notification and also for sending notification
+2. delete_member.aspx - updated to delete the members email post notifications
+4. functions_send_mail.aspx - updated for sending email notification format
+5. forum_posts.aspx - updated to add link to watch for replies and un-watch for replies
+6. forum_topics.aspx - updated to add link to watch and un-watch for for new posts
+7. email_notify.aspx - page added for updating db with email notification
+8. post_message.aspx - changed to add link in email notification for unsubscribing
+9. login_user.aspx - updated so that if user clicks on the unsubscribe link in the email notification and they are not logged in they have to login first before the unsubscribe link works
+
+
+The following pages have been changed to add IP blocking
+1. functions_common.aspx - added IP checking function
+2. insufficinet_permissions.aspx - updated to tell the user if their IP is blocked
+3. language_file.aspx - updated with new text
+4. post_message.aspx - checks if IP is blocked
+5. edit_post.aspx - same as above
+6. post_message_form.aspx - same as above
+7. poll_cast_vote - same as above
+8. poll_create_form - same as above
+9. post_message_form - same as above
+10. pm_post_message - same as above
+11. pm_new_message_form - same as above
+12. forum_posts.aspx - same as above
+13. delete_post.aspx - same as above
+14. pm_buddy_list.aspx - same as above
+15. pop_up_profile.aspx - same as above
+
+
+The following files are changed or added to support image and file uploading
+1. functions_upload.aspx - file added to allow the upload of images and files
+2. IE_message_form_inc.aspx - file updated to add upload buttons
+3. message_form_inc.aspx - same as above
+
+
+The following files are changed or added for the new pop-up admin pages in the main forum
+1. pop_up_topic_admin.aspx - new file to update or delete a topic by forum admins or moderators
+2. forum_topics.aspx - altered to link to new admin file
+3. forum_posts.aspx - same as above
+4. search.aspx - same as above
+5. move_topic.aspx - file deleted
+6. move_topic_form.aspx - file deleted
+7. delete_topic.aspx - changed to work with pop_up_topic_admin.aspx
+8. pop_up_IP_blocking.aspx - page added to block IP addresses or ranges
+9. delete_poll.aspx - page added to delete polls
+
+
+
+The following files are changed or added in the admin section of the forum
+1. common.aspx - changed the way people log in and added more security
+2. defualt.aspx - changed the login procedure
+3. functions_common.aspx - file added in the functions folder to hold common functions
+4. functions_hash1way.aspx - added to 160bit encryption of claves
+5. frame_set.aspx - file added to add frames for naivigation system on admin area
+6. navigation_menu.aspx - file added for frames side bar navigation of the admin area
+7. admin_menu.aspx - file changed to link to new admin functions
+8. default_style.css - file added for cascading style sheet for the admin area
+9. date_time.inc - file deleted
+10. date_time_configure.aspx - imporved performance and changed for the new date and time configuartaion
+11. email_notify_configure.aspx - changed for new email functions
+12. spam_configure.aspx - improved performance
+13. bad_word_filter_configure.aspx - updated
+14. forum_configure.aspx - changed to add new forum configuration options
+15. change_admin_usuario.aspx - changed to encrypt clave and better performance
+16. archive_topics_form.aspx - updated
+17. archive_topics.aspx - updated
+18. batch_delete_posts_form.aspx - file updated
+19. batch_delete_posts.aspx - updated to delete posts with polls in them
+20. resync_forum_post_count.aspx - new file to re-sync topic and post count for the forums
+21. view_forums.aspx - file updated, now also includes forum lock down option
+22. delete_forum.aspx - updated to allow polls and forum permissions to be deleted
+23. delete_category.aspx - updated to allow polls and forum permissions to be deleted, improved performance
+24. category_details.aspx - updated file for new look and improved performance
+25. forum_details.aspx - updated to support new forum permissions, encrypt forum claves, and improved performance
+26. update_forum_order.aspx - improved performance
+27. select_membem_rs.aspx - updated for the new member details
+28. member_profile.aspx - file deleted
+29. view_groups.aspx - file added to view forum groups from where they can be edited, deleted, or create new groups
+30. view_groups.aspx - new file to change the details and add new groups
+31. delete_group.aspx - new file to delete user groups
+32. upload_configure.aspx - new file to setup and configure image and file uploading
+33. close_forums.aspx - new file to lock and close all forums for mentainence etc.
+34. ip_blocking.aspx - new file to allow the blocking of IP addresses on the forum
+35. email_domain_blocking.aspx - new file to allow the blocking of email addresses
+36. batch_delete_pm_form.aspx - new file for batch deleting old private messages
+47. batch_delete_pm.aspx - new file same as above
+48. statistics.aspx - new file to show forum statistics
+49. forum_group_permissions.aspx - added to be able to setup individual group permissions on forums
+50. group_perm_forum.aspx - same as above	
+51. create_group_permissions.aspx - same as above
+52. edit_group_permissions.aspx - same as above
+53. remove_permissions.aspx - same as above
+
+
+
+Datbase Changes
+1. In SQL server delete all stored procedures and re-run the SQL_setup_file.aspx to build new and cahnged
+stored procedures
+2. tblForum - table changed in database to add two long interger fields, No_of_topics and No_of_posts
+4. tblModerators - table removed
+5. tblGroups - table added
+6. tblPermissions - table added
+7. tblEmailNotify - table added
+8. tblThread - Email_notify, field removed
+9. tblForum - added the following fields with true/false (bit) datatype: -
+	Read
+	Post
+	Reply_posts
+	Edit_posts
+	Delete_posts
+	Priority_posts
+	Poll_create
+	Vote
+	Attachments
+	Image_upload
+	Moderator
+	Hide - true/false
+	Show_topics - interger
+10. tblUsuarios - added the following fields
+	Salt - text 30
+	Group_ID - interger datatype
+	MSN - text 75
+	Yahoo - text 75
+	ICQ - text 20
+	AIM - text 75
+	Occupation - text 60
+	Interests - text 160
+	DOB - Date
+	Attach_signature - True/false (bit)
+	UltimaConexion - date datatype - default Now() (GetDate() - sql server)
+	Time_offset - text 1
+	Time_offset_hours - interger
+	Date_format - text 10
+	Rich_editor - True/false (bit)
+	Reply_notify - True/false (bit)
+	PM_notify - True/false (bit)
+11. tblTopic - added Poll_ID field - long interger datatype - default value 0
+12. tblPolls - added new table to hold the poll details
+13. tblPollChoice - added new table to hold the choices and vote count for a poll
+14. tblThread - remove email notify field
+15. tblBanList - table added for banning members
+16. tblConfiguration - add the following fileds
+	Vote_choices - interger datatype - value assigned - 7
+	Email_sys - True/false (bit)
+	Upload_img_path - Text 50 - value assigned - upload_images
+	Upload_img_types - Text 50 - value assigned - jpg;jpeg;gif;png
+	Upload_img_size	- integer - value set at 35
+	Upload_files_path - text 50 - value assigned - upload_files
+	Upload_files_type - Text 50 - value assigned - zip;rar
+	Upload_files_size - integer - value set at 500
+	Upload_component - text 10
+	Active_users - True/false (bit)
+	Forums_closed - True/false (bit)
+	Show_edit - True/false (bit)
+	Process_time - True/false (bit)
+17. Access database renamed to WebWizForum.mdb
+
+
+
+
+Changes from version 7 beta 1 to version 7 beta 2
+-------------------------------------------------
+1. active_topics.aspx - fixed object required bug
+2. IE_message_form_inc.aspx - fixed table layout problem for pm's
+3. message_form_inc.aspx - same as above
+4. upload_configure.aspx - fixed some spelling and grammer errors
+5. delete_post.aspx - fixed recordset closing bug
+6. register.aspx - changed so that the admin and guest accounts can be edited, but not deleted or change groups
+7. header.aspx - fixed background colour and image bug
+8. forum_topics.aspx - fixed bug where if the user can vote in polls was incorrectly shown
+9. forum_topics.aspx - tidyed up code and improved performance
+10. upload_files.aspx - now displays a msg that the file is being uploaded
+11. upload_images.aspx - same as above
+12. langauge_file_inc.aspx - support for new upload msg's
+13. pm_check_inc.aspx - tidied up code
+14. defualt.aspx - cleaned up table formatting
+15. poll_form_inc.aspx - fixed poll question bug
+16. post_message.aspx - same as above
+17. poll_create_form.aspx - same as above
+18. default_style.css - added more CSS styles
+19. forum_posts.aspx - changed to support new CSS styles
+20. functions_upload.aspx - changed to be compatible with aspUpload version 2.1
+21. membem_rs.aspx - fixed bug where if you tried to register after doing a search the forum would crash
+22. forum_configure.aspx - added the ability to select the number of poll choices in forum polls
+23. forum_posts.aspx - changed so that users can edit there posts any time if they have permission to do so, deleting a post still requires that a reply has not been posted.
+24. register.aspx - fixed bug where the usuario in the activation email always said the usuario is Guests
+25. moved access database to it's own folder called database
+26. functions_upload.aspx - fixed file size checking bug
+27. select_membem_rs.aspx - fixed overflow error if the user has made more than 32,000 posts
+28. membem_rs.aspx - fixed overflow error if the user has made more than 32,000 posts
+29. pop_up_forum_admin.aspx - new page to edit and control forums
+30. default.aspx - changed to link to the new pop up forum admin page
+31. forum_posts.aspx - cleaned up code
+32. forum_posts.aspx - fixed bug where you can still reply to a poll only topic if you hit quote
+33. poll_vast_vote.aspx - fixed bug where if the user doesn't select a poll choice they can still vote
+34. IE_emoticon_smilies.aspx - fixed font formatting bug
+35. emoticon_smilies.aspx - fixed font formatting bug
+36. forum_topics.aspx - now displays links to the last two pages in multiple page topics
+37. search.aspx - same as above
+38. active_topics.aspx - same as above
+39. active_topics.aspx - displays if the active topic is a poll or not
+40. email_messager.aspx - fixed table formatting bug in Netscape 4.7
+41. forum_configure.aspx - changed to add path to users homepage
+42. common.aspx - changed to support homepage link
+43. navigation_buttons_inc.aspx - same as above
+44. functions_format_post.aspx - fixed quote formatting bug
+45. member_mailier.aspx - new file to allow the sending of mass email to forum members
+46. member_mailier_send.aspx - new file to allow the sending of mass email to forum members
+47. admin_menu.aspx - changed to link to the new mass mail page
+48. navigation_menu.aspx - same as above
+
+
+
+The following files are changed to add support for Flash files
+1. functions_format_post.aspx - added function to format flash files from forum codes
+2. forum_posts.aspx - now calls new flash function
+3. post_preveiw.aspx - same as above
+4. signature_preview.aspx - same as above
+5. forum_configure.aspx - changed to allow the enabling of Flash file support in the forum
+6. forum_codes.aspx - changed to show how to add flash files to your posts
+7. common.aspx - changed to add support for flash files.
+
+
+The following files are changed for new improved security filters
+1. functions_filter.aspx
+2. functions_format_post.aspx
+3. functions_edit_post.aspx
+4. register.aspx
+5. post_preview.aspx
+6. signature_preview.aspx
+7. post_message.aspx
+8. pm_post_message.aspx
+9. search.aspx
+10. forum_posts.aspx
+11. pop_up_profile.aspx
+
+Datbase Changes
+1. tblConfiguration - add the following fileds
+	website_path - text filed size 70
+	Mass_mailier - true/false datatype
+
+
+
+Changes from version 7 beta 2 to version 7 beta 3
+-------------------------------------------------
+1. SQL_server_session("conn")ection.aspx - updated for new db session("conn")ection 
+2. forum_details.aspx - fixed link to new category page bug
+3. forum_configure.aspx - fixed javascript bug
+4. functions_format_post.aspx - fixed quote formatting bug
+5. functions_edit_post.aspx - edited for backward compatiblity
+6. functions_filtem_rs.aspx - improved filters
+7. upload_files.aspx - fixed file link formatting bug that effects a few versions of IE
+8. poll_display_inc.aspx - changed the CCS style on the table header
+9. functions_upload.aspx - changed to replace spaces in file names with underscores
+10. group_perm_forum.aspx - now places the forums in a better order
+11. create_group_permissions.aspx - fixed bug where images and file upload enabling was around the wrong way
+12. edit_group_permissions.aspx - same as above
+13. email_notify.aspx - fixed bug where person wasn't unsubscribed from a forum when clicking on the unsubscribe link in an email notification.
+14. default_dtyle.css - changed so it correctly displayes ordered lists.
+15. resync_post_count.aspx - updates post counts in the forum
+16. pop_up_forum_admin.aspx - updated to add link to the post count update page
+17. admin_language_file_inc.aspx - updated to add new wording
+18. pop_up_topic_admin.aspx - now updates post and topic count for forum when moving a topic to a new forum
+19. functions_common.aspx - fixed bug where you could upload images if file upload was enabled for some user groups
+20. upload_files.aspx - fixed bug whereby you couldn't upload files unless the user also had permission to upload images
+
+The folowing files are updated for compatibility with SQL server
+1. active_topics.aspx
+2. view_forums.aspx
+3. view_groups.aspx
+4. delete_group.aspx
+5. register.aspx
+6. email_notify.aspx
+
+The folowing files are updated for option to show moderators on main page
+1. common.aspx
+2. default.aspx
+3. forum_configure.aspx
+
+
+Datbase Changes
+1. tblConfiguration - add the following fileds
+	Show_mod - true/false datatype
+
+
+
+
+Changes from version 7 beta 3 to version 7 beta 4
+-------------------------------------------------
+1. forum_codes.aspx - fixed javascript bug on smilies
+2. register.aspx - improved security to prevent hackers from sending multiple signups from remote sites
+3. registration_rules.aspx - improved security - same as above
+4. language_file_inc.aspx - changed to include session ID auth error message
+5. functions_common.aspx - new function added to check session ID
+6. post_message.aspx - improved security
+7. IE_message_form_inc.aspx - same as above
+8. message_form_inc.aspx - same as above
+9. email_messenger.aspx - same as above
+10. email_topic.aspx - same as above
+11. login_user.aspx - same as above
+12. message_form_inc.aspx - fixed post preview bug that effects Opera 7
+13. register.aspx - fixed signature preview bug that effects Opera 7
+14. pop_up_topic_admin.aspx - fixed bug where the page would crash if you selected a category as the forum to move the topic to
+15. move_post.aspx - fixed bug when moving a post to a new topic
+16. forum_posts.aspx - changed the cookie settings as IE was having problems handling to many cookies
+17. forum_topics.aspx - same as above
+18. search.aspx - same as above
+19. active_topics.aspx - same as above
+20. default.aspx - moved the wording Moderators to the language file
+21. language_file_inc.aspx - placed the wroding from above in the language file.
+22. functions_upload.aspx - changed to make it compatible with SA FileUp version 3
+23. forgotten_clave.aspx - changed to also ask for an email address comparison for extra security
+24. login_user.aspx - changed the size of the forgotten clave pop up form
+25. batch_delete_membem_rs.aspx - new file to batch delete members
+26. batch_delete_members_form.aspx - same as above
+27. admin_menu.aspx - changed to link to the new batch delete members page
+28. navigation_menu.aspx - changed to link to the new batch delete members page
+29. functions_filtem_rs.aspx - fixed bug where by images would show if they have capitals in the extension
+30. emoticons_inc.aspx - added new emoticons
+31. forum_posts.aspx - new link added to report dodgy posts to moderators and forum admin
+32. forum_posts.aspx - fixed bug where the return page was wrong if quoting on a page higher than page 1
+33. skin_file_inc.aspx - changed to add more colours
+34. forum_posts.aspx - changed to supprt new colours above
+35. pm_show_message.aspx - same as above
+36. register.aspx - now supports member title
+37. forum_posts.aspx - same as above
+38. pop_up_profile.aspx - same as above
+39. report_post.aspx - new file to allow users to report bad posts to the forum admin and moderators
+40. active_usem_rs.aspx - changed file so it doesn't cache the page
+41. pm_outbox.aspx - fixed bug that was showing the wrong profile when clicking on members name
+42. poll_display_inc.aspx - changed to include the last Usuarios ID
+43. poll_cast_vote.aspx - same as above
+44. functions_upload.aspx - added support for AspSimpleUpload and changed AspUpload to use virtual save method for hosts that disable the memory save and save properties
+45. upload_configure.aspx - changed to support AspSimpleUpload
+46. search.aspx - fixed search bug on usuarios that have an underscore in them
+47. register_confirm.aspx - fixed bug with text display
+48. pop_up_profile.aspx - fixed bug where it can show an incorrect Date of Birth
+
+The following files are changed to allow guests to enter there name in posts if guest posting is enabled
+1. message_form_inc.aspx
+2. IE_message_form_inc.aspx
+3. post_message.aspx
+4. post_message_form.aspx
+5. IE_textbox.aspx
+6. delete_post.aspx
+7. delete_topic.aspx
+8. batch_delete_posts.aspx
+
+The following files are changed to allow emoticons to be displayed next to the post text box
+1. message_form_inc.aspx
+2. IE_message_form_inc.aspx
+3. edit_post.aspx
+4. post_message_form.aspx 
+5. pm_new_message_form.aspx
+6. poll_create_form.aspx
+7. IE_message_form_js.aspx
+8. message_form_js.aspx
+
+The following files are changed to allow the user to enter there real name in their profile
+1. register.aspx
+2. langauge_file_inc.aspx
+3. pop_up_profile.aspx
+
+The following files are changed to allow custom stars/image link for forum group
+1. group_details.aspx - changed to allow the user to type in a link to their custom stars/image
+2. view_groups.aspx - changed to enable viewing of the custom stars/image
+3. forum_posts.aspx - same as above
+4. pop_up_profile.aspx - same as above
+
+The following files are changed to allow avatars to be uploaded by users
+1. upload_configure.aspx 
+2. admin_menu.aspx
+3. register.aspx
+4. common.aspx
+5. upload_avatam_rs.aspx - file added
+6. language_file_inc.aspx
+
+The following files are changed or added to allow new registrations to the forum being suspened
+1. suspend_registration.aspx
+2. admin_menu.aspx
+3. common.aspx
+4. registration_rules.aspx
+5. registration_suspended.aspx
+6. language_file_inc.aspx
+
+The following files are changed to show that a topic has been moved to another forum
+1. forum_topics.aspx
+2. pop_up_topic_admin.aspx
+
+Everypage is changed so that table and stored procedure prefixes are held in constents, this makes it simpler to setup multiple forums if they share one database.
+
+Datbase Changes
+1. tblGuestName - new table to hold the names of guest posters if guest posting is enabled
+2. tblUsuarios - added the following fields
+	Real_name - text datatype 40 char
+	Avatar_title - text datatype 50 char
+3. tblGroup - new table - Custom_stars - text datatype 80 chars
+4. wwfSpThreadDetails - changed strored procedure in SQL server version
+5. tblPoll - new field - UsuarioID - interger datatype
+6. tblConfiguaration - added the following tables
+	Upload_avatar - true/false datatype
+	Upload_avatar_path - text datatype 50 char
+	Upload_avatar_types - text datatype 50 char
+	Upload_avatar_size - interger datatype
+	Reg_closed  - true/false datatype
+7. tblForum new field - Moved_ID - interger datatype - default value 0
+8. stored procedure tblTopicDetialsAll changed
+9. stored procedure tblTopicDetialsInTheLastXX changed
+
+
+
+
+
+Changes from version 7 beta 4 to version 7 RC1
+----------------------------------------------
+1. upload_configure.aspx - changed some text for better understanding
+2. emoticons_inc.aspx - fixed bug where some emoticons wouldn't show up when not using the WYSIWYG Editor
+3. printer_friendly_posts.aspx - fixed bug where users could view the posts of forums they are not permitted in#
+4. configure.aspx - fixed bug for not showing correctly if moderators are shown on main page of forum
+5. membem_rs.aspx - updated to show custom stars image
+6. pm_show_message.aspx - upadted to show custom stars and member title
+7. register.aspx - fixed a few bugs
+8. forum_post.aspx - changed so that someone can't report thier own post to the forum admin
+9. functions_common.aspx - updated to show Windows 2003 server in the active users list OS
+10. post_message.aspx - changed to include the topic subject in the subject of email notification
+11. active_topics.aspx - fixed database error bug that effects the forum on some servers
+12. email_topic.aspx - made it more secure so spammers using this facility can be traced and banned from the board
+13. register.aspx - changed to display the present server time for setting the time off set
+14. langauge_file_inc.aspx - updated to support above new feature
+15. forum_posts.aspx - changed to also ask for the users name if posting as a guest
+16. post_message_form.aspx - same as above
+17. language_file_inc.aspx - changed to support the wording for the above change
+18. printer_friendly_posts.aspx - changed to display the name of a guest poster
+19. forum_topics.aspx - changed to show moved and poll icons next to posts
+20. active_topics.aspx - changed to show poll icon next to post
+21. search.aspx - same as above
+22. IE_message_form_inc.aspx - chaned so you can drag and drop emoticons
+23. IE_emoticons_smilies.aspx - same as above
+24. emoticons_inc.aspx - change the code for Broken Heart as it is the same as for underline forum code
+25. upload files changed to so that the server timeout is set at 1000 for slow session("conn")ections
+26. functions_format_post.aspx - fixed cursor hand bug
+27. register.aspx - fixed bug where modertors were shown the delete member checkbox when editing others profiles
+28. batch_move_topics_form.aspx - new file to move topics between forums
+29. batch_move_topics.aspx - same as above
+
+
+The following files have been changed or added to allow individual permissions for members
+1. functions_common.aspx - file changed
+2. delete_member.aspx - file changed
+3. forum_group_permissions.aspx - file changed
+4. forum_user_permissions.aspx - new file
+5. edit_user_permissions.aspx - new file
+6. create_user_permissions.aspx - new file
+7. user_perm_forum.aspx - new file
+8. admin_menu.aspx - file changed
+9. remove_permssions.aspx - file changed
+10. batch_delete_membem_rs.aspx - file changed
+11. find_user.aspx - new file
+12. default.aspx - file changed
+13. msSQL_server_Setup.aspx - file changed
+
+Datbase Changes
+1. tblPermissions - UsuarioID field added, datatype interger - default value 0
+2. wwfspForumPermisions - stored procedure changed to also grab individual user permissions for forums
+3. wwfspMederators - new stored procedure to get the moderators for forums
+
+
+
+
+Changes from version 7 RC1 to version 7.0 (full version)
+---------------------------------------------------------
+1. post_message_form.aspx - fixed disabled button bug when WYSIWYG editor is turn off
+2. forum_posts.aspx - same as above
+3. edit_posts.aspx - same as above
+4. pop_up_profile.aspx - fixed bug where the link to the email messenger is shown even when it is not enabled
+5. functions_common.aspx - fixed individual permisisons bug that effects access version of the forum
+
+
+
+
+Changes from version 7.0 to version 7.01
+----------------------------------------
+1. email_notify.aspx - fixed bug when unsubscribing that allowed members to still get email notification
+2. emoticons_inc.aspx - fixed bug when clicking on crying emoticon
+3. post_message.aspx - fixed bug so that when selecting email notify the person is only entered in db once
+4. changes to payment system
+
+
+
+
+Changes from version 7.01 to version 7.5 beta1
+----------------------------------------------
+1. batch_delete_membem_rs.aspx - fixed bug whereby the admin and guest accounts could also be deleted by mistake
+2. functions_filtem_rs.aspx - fixed bug with incorrectly displaying characters in email post notification
+3. post_message.aspx - changed so that a moved topic is not shown as moved once a reply has been posted
+4. actiavte.aspx - fixed text displaying bug
+5. language_file_inc.aspx - changed to support above change
+6. active_users_inc.aspx - improved tracking on users so that those who mask IP addresses arn't shown multiple times
+7. functions_common.aspx - improved browser and os detection
+8. batch_move_topics_form.aspx - changed to include topic priority
+9. batch_move_topics.aspx - same as above
+10. batch_delete_members_form.aspx - changed so that un-activated accounts only can be deleted
+11. batch_delete_membem_rs.aspx - same as above
+12. login_user.aspx - changed to redirect to the login user test page to test that cookies are enabled on the users browser
+13. login_user_test.aspx - new file to test if the user has cookies enabled
+14. language_file_inc.aspx - updated to add new text for new page above
+15. pm_inbox.aspx - changed so that the check all delete box is only displayed if more than one pm
+16. pm_buddy_list.aspx - changed so that buddies are grouped by if they can pm the person or not
+17. pm_inbox.aspx - now includes a bar graph of the percentage it is full by
+18. pm_language_file_inc.aspx - changed language file to support text for the new bar graph in the page above
+19. functions_upload.aspx - file names are now run through the security filters before saving so that the links are not changed to them at a later stage
+20. sql_server_db_stats.aspx new file to display stats about SQL Server db for the forum.
+21. msSQL_server_Setup.aspx - changed to include a new stored procedure for the sql server stats page
+22. functions_filtem_rs.aspx - added new filter function that removes non-alphanumeric characters
+23. functions_upload.aspx - chaged so that uploads are placed in a folder named after the user
+24. upload_files.aspx - changed to support adding files to folders named after the users usuario
+25. upload_images.aspx - changed to support adding files to folders named after the users usuario
+26. upload_avatam_rs.aspx - changed to support adding files to folders named after the users usuario
+27. email_notify_subscriptions.aspx - new file to display forums and topics a user is subscribed to
+28. email_notify.aspx - updated to support new page above, and also improved security to make sure the user is allowed to read posts in the forum
+29. forum_posts.aspx - changed to also pass the forum ID to the email_notify.aspx file for the added security to work
+30. post_message_form.aspx - changed so that a user can't get round a locked topic by quoting a previous poster
+31. register.aspx - changed for extra security so only registered users can upload avatars by editing their profile once their account is live
+32. email_notify_remove.aspx - new file to remove email notification subscriptions
+33. register.aspx - changed to add a link to the email subscriptions page
+34. forum_posts.aspx - fixed bug where by flash files wouldn't appear in signatures
+35. compact_access_db.aspx - new file to compact and repair Access database online.
+36. message_form.aspx - changed to allow smileys to be placed in the cursor location in IE
+37. message_form_js.aspx same as above, also changed to remove all alert boxes when in basic mode
+38. batch_delete_posts_form.aspx - changed so you can select the priority of posts you want deleted
+39. batch_delete_posts.aspx - same as above
+40. default.aspx - changed so you can click a category and only view those forums in that category
+41. default_style.css - chagned to add new style for the category links
+42. default.aspx - new file that redirects to default.aspx for those on web servers that have the default document for a directory set to default.aspx
+43. forum_topics.aspx - changed so that important topics are displayed under an important topic bar
+44. langauge_file_inc.aspx - changed to add text to support new feature above
+45. default.aspx - added a quick login form at the top for non-logged in users
+46. forum_topics.aspx - changed to now do a preview of the first post when moving the mouse over the forum subject, also says the date of the first post when you place the mouse over the topic starters name
+47. active_topics.aspx - gives the date of when the topic was started when moving the mouse over the subject
+48. search.aspx - same as above
+49. functions_filtem_rs.aspx - new function added to strip HTML from a text input
+50. msSQL_server_setup.aspx - changed the LastAndFirstThreadUsuarios stored procedure to also get the message from the database
+51. pm_email_pm.aspx - new file to allow private messages to be sent to the users email address
+52. pm_show_message.aspx - changed to add link to send private message to the users email address
+53. pm_language_file_inc.aspx - updated to add text for emailing private message to user
+54. pop_up_topic_admin.aspx - changed file so the admin can decide if they want to have the moved icon appear for moved topics in the old forum
+55. admin_language_file_inc.aspx - added new text to support new function above
+56. resend_email_activation.aspx - new file to resend the activation email to unactivated account users
+57. langauge_file_inc.aspx - updated to add new text for new file above
+58. forum_posts.aspx - changed so it now has a link to resend activation email if account is not activated
+59. post_message_form.aspx - same as above
+60. poll_create_form.aspx - same as above
+61. membem_rs.aspx - now can list forum members by the number of stars
+62. archive_topics_form.aspx - changed so you can also open closed topics for those who accidently close the wrong topics
+63. archive_topics.aspx - same as above
+64. post_message.aspx changed so that when saving the users IP that it is not their ISP's IP address.
+65. activate.aspx - changed to add a return to forum link
+66. functions_filtem_rs.aspx - changed so that links with img in are not run through the image filter
+67. functions_common.aspx - new function to get the users IP address, also checks if they are using a proxy server and gets their browsers IP address, or next nearest proxy
+68. post_message.aspx - changed to support function above
+69. ative_usem_rs.aspx - same as above
+70. user_perm_forum.aspx - file deleted
+71. pm_post_message.aspx - now takes the start time from the web server, incase the SQL server is in a different time zone
+72. functions_format_post.aspx - new function to enable quoting without Usuarios name
+73. forum_posts.aspx - changed to support new function above
+74. post_preview.aspx - same as above
+75. pm_show_message.aspx - changed to now support Flash files in pm's if flash support is enabled in the admin area
+76. pm_buddy_list.aspx - now shows if a buddy is active in the forum at that time (online)
+77. functions_format_post.aspx - fixed bug where by if the edited xml is not correct the parse functio could crash
+78. functions_edit_post.aspx - same as above
+79. message_form_inc.aspx - fixed bug where if logged in as guest when editing first post in a topic the text box for the persons name as shown
+80. IE_message_form_inc.aspx - same as above
+81. pm_post_message.aspx - fixed bug in Access version where members who are blocked from sending you pm's still can
+82. forum_posts.aspx - fixed bug where delete post button wouldn't appear on posts on topics with multiple pages
+83. functions_format_post.aspx - changed to prevent javascript injection from Norton Personal Firewall 2003 add pop up blocking software's latest update as or 10/6/03
+84. member_mailier.aspx - changed so you can now select the format of the mail when sending mass emails
+85. member_mailier_send.aspx - same as above
+86. functions_filtem_rs.aspx - changed so that the filters don't strip out the extension of an image if it is a none web image extension that has been configured as an allowed in the image upload configuration page
+87. common.aspx - changed to support change above
+88. delete_post.aspx - fixed bug to delete topics with polls if there are no posts left in the topic
+89. pm_show_message.aspx - changed the seach button so it automactically selects usuario form the drop down list on the search page
+90. edit_post.aspx - fixed bug where by you could remove the subject line to a topic
+91. post_message.aspx - same as above
+92. active_topics.aspx - changed so that the forum headings are now links to that forum and admin button is available for the admin
+93. pm_inbox.aspx - changed to have a delete all buton for PM's
+94. pm_delete_message.aspx - updated to support new button above
+95. forum_posts.aspx - fixed bug so if the user has selected to watch the topic then the watch topic for replies box is checked
+96. active_usem_rs.aspx - swapped OS and browser around as it makes more sense having OS then browser in the table
+97. functions_common.aspx - new function to strip long text strings from messages
+98. post_message.aspx - changed to call above function
+99. post_preview.aspx - same as above
+100. register.aspx - same as above
+101. signature_preview.aspx - same as above
+102. pm_post_message.aspx - same as above
+103. forum_details.aspx - fixed bug where if updating forum details on a clave protected forum the clave can be removed
+104. active_usem_rs.aspx - changed file to add text to let people know it's data from the last 10 minutes
+105. functions_filtem_rs.aspx - moved disallowed HTML tags out to their own include for simpler editing for those wanting to mod their forum
+106. disallowed_HTML_tags_inc.aspx - new file to support the above mentioned move in functions_filtem_rs.aspx
+107. Complete new look admin section - all files changed in admin section.
+108. skin_file.aspx - changed the look and colours of the forum
+109. pm_post_message.aspx - changed so that you are shown a message saying you are blocked from sending pm's to the guest account, instead of redirecting to an insufficient permisisons page
+110. printer_firendly_posts.aspx - changed look, format, and cleaned up output
+111. skin_file.aspx - changed for new looking skin and also to support new assignment in printer_friendly_posts.aspx file
+112. poll_form_inc.aspx - increased the size of the poll question and choices input boxes to allow more characters
+113. post_message.aspx - changed to support the longer character boxes above
+114. delete_forum.aspx - fixed bug whereby you couldn't delete a forum where a guest had posted
+115. delete_category.aspx - fixed bug whereby you couldn't delete a category where a guest had posted
+116. webwizforums_license.aspx - new page with the forum license agreement
+117. License.txt - required file in the admin directory to support page above
+118. pm_check.aspx - changed to take the user straight to the inbox and not the pm welcome page
+119. common.aspx - changed both so that claves need not be encrypted
+120. register.aspx - shortened signup form for new registrations
+121. activate.aspx - removed un-needed javascript from header
+123. security_image.aspx - new file to build a security image for antispam-bots
+124. register.aspx - changed to include a security image
+125. security_images - new folder conatining images for the security image
+126. lnaguage_file_inc.aspx - changed to add new wording for the security image
+127. help_language_file_inc.aspx - updated text for new version
+128. login_user.aspx - added the same security confimiation images as in the register.aspx form
+
+The following files have been changed to add a WYSIWYG Editor (RTE) for Mozilla 1.3b and above
+1. functions_common.aspx - chanhged to add new function to text if browser is Rich Text Enabled
+2. RTE_emoticons_smilies.aspx - new file to replace the old IE_emoticons_smilies.aspx file
+3. RTE_textbox.aspx - new file to replace the old IE_textbox.aspx file
+4. RTE_message_form_js.aspx - new file storing the JavaScript for the Rich Text Editor (RTE) also available as a standalone from www.richtexteditor.org
+5. upload_images.aspx - changed to support the Gecko engine and new look
+6. upload_files.aspx - same as above
+7. forum_posts.aspx - changed to support new Rich Text Editor (RTE)
+8. post_message_form.aspx - same as above
+9. edit_post.aspx - same as above
+10. pm_new_message_form.aspx - same as above
+11. poll_create_form.aspx - same as above
+12. post_preview.aspx - changed to detect if nothing has been placed in a meesage with the RTE on Gecko engine
+13. RTE_colour_palette.aspx - new file for floating colour pallete
+14. RTE_setup.aspx - new file to change features availbale on the RTE editor
+15. RTE_toolbar_1.aspx - new file for the first toolbar on the RTE
+16. RTE_toolbar_2.aspx - new file for the second toolbar on the RTE
+17. RTE_table_window.aspx - new file for placing tables in posts if enabled for the RTE (IE only)
+18. RTE_about.aspx - new file with info about Web Wiz Rich Text Editor
+19. upload_avatam_rs.aspx - changed to fit in with the other upload pages
+
+The following files have been chaged or added for new forum codes
+1. message_form_inc.aspx
+2. message_form_js.aspx
+3. functions_format_post.aspx
+4. functions_edit_post.aspx
+5. forum_codes.aspx
+
+
+The following files have been changed to tighten up security
+1. pm_buddy_list.aspx 
+2. saerch.aspx
+3. search_form.aspx
+4. forum_posts.aspx
+5. email_topic.aspx
+6. login_user.aspx
+7. membem_rs.aspx
+8. IE_message_form_inc.aspx
+9. message_form_inc.aspx
+10. register.aspx
+
+The following files have been changed to change the way group and user permissions are set
+1. forum_group_permissions.aspx
+2. remove_permissions.aspx
+3. create_group_permissions.aspx
+4. edit_group_permissions.aspx
+5. find_user.aspx
+6. forum_user_permissions.aspx
+7. create_user_permissions.aspx
+8. edit_user_permissions.aspx
+
+The following pages have been changed to add next and prev links if they use multiple pages to help search engines index the forum and aid in navigation
+1. membem_rs.aspx
+2. active_topics.aspx
+3. forum_posts.aspx
+4. forum_topics.aspx
+5. search.aspx
+6. pm_outbox.aspx
+7. pm_inbox.aspx
+
+The following files have been changed to tell a user if there account is suspended or not yet activated and place a link to resend activation email
+1. language_file.aspx
+2. forum_posts.aspx
+3. login_user_test.aspx
+4. post_message_form.aspx
+5. poll_create_form.aspx
+6. membem_rs.aspx
+7. insufficient_permisisons.aspx
+8. register.aspx
+9. pop_up_profile.aspx
+
+The following files have been changed or added for the new settings menu (more user friendly then before)
+1. member_control_panel.aspx
+2. settings_language_file_inc.aspx
+3. language_file_inc.aspx
+4. navigation_buttons_inc.aspx
+5. register.aspx
+6. register_confirm.aspx
+7. activate.aspx
+
+A global search and replace was used on all the files so that the main forum cookie name is now stored in a constent in the common.aspx files, this allows more than one instence of Web Wiz Forums to be installed on a site without cookies interfering with each other.
+
+
+Changes from version 7.5 beta 1 to version 7.5
+----------------------------------------
+1. email_notify_remove.aspx - fixed bug where you couldn't remove email subscriptions
+2. email_notify_configure.aspx - fixed bug where wehn setting the CDOSYS mail component it would still show CDONTS as being selected in the drop down list
+3. login_user.aspx - changed so you can turn off the security image when logging in
+4. common.aspx - new boolean added to support turning off the above security setting
+5. register.aspx - fixed bug whereby account needs to be reactivated if changing forum prefernces or profile details if email activation is enabled
+6. default.aspx - admin area login changed to also add security code images to login
+7. common.aspx - admin area changed to support above
+8. security_image.aspx - new file in admin area to show security images
+9. active_users_inc.aspx - fixed SQL query bug for updating Access database
+10. email_notify_subscriptions.aspx - fixed SQL query bug for Access version
+11. functions_upload.aspx - changed file so that uploaded file names are run through the link security filter
+12. forum_details.aspx - changed so that claves are not case sesitive
+13. post_preview.aspx - fixed bug where quotes where not shown in the correct colour boxes
+14. functions_filtem_rs.aspx - changed so that forum codes are stripped as well as HTML before long strings are split
+15. language_file_inc.aspx - added new varaible for cookie info
+16. login_user.aspx - changed so that the user is informed that cookies must be enabled to view security image
+17. register.aspx - same as above
+18. active_users_inc.aspx - fixed bug that annoymous browsing users where still shown in the active users list
+
+
+Changes from version 7.5 to version 7.51
+----------------------------------------
+1. default.aspx - file in admin directory chenged to inform the user cookies must be enabled to view security images
+2. functions_filetm_rs.aspx - improved SQL query filter
+3. login_user.aspx - fixed javascript bug if the security code is disabled for the page
+4. email_subscriptions.aspx - fixed hardcoded langauge text
+5. language_file_inc.aspx - changed to support new text above
+6. RTE_image_windows.aspx - file updated
+7. functions_common.aspx - fixed bug where some versions of Netscape 6 where detected as RTE enabled
+8. functions_common.aspx - fixed bug where servers not using a priod '.' in decimal numbers would crash when detecting browser version.
+9. post_message_form.aspx fixed so that it shows email activation link if email activation is enabled
+10. forum_posts.aspx - same as above
+11. insufficient_permission.aspx - same as above
+12. login_user_test.aspx - same as above
+13. membem_rs.aspx - same as above
+14. poll_create_form.aspx - same as above
+15. active_topics.aspx - changed to now support permisisons for forums when displaying toipc titles
+16. spWwfActiveTopics - new stored procedure to support page above
+17. forum_clave_form.aspx - changed loook of page to bring it in line with other login pages in forum.
+18. functions_filtem_rs.aspx - changed so that Flash input is not destroyed by the line split function
+19. default.aspx - changed so that if security code login is disabled the quick login is a quick login, if enabled shows login instead
+20. login_user.aspx - changed so that the quick login logs the user in straight away
+21. common.aspx - changed so that security code login is off by default and session ID's are checked instead
+22. default.aspx - file in admin section changed to fix bug that prevented people logging in using this file
+23. function_common.aspx - better browser and OS detection
+24. archive_topics.aspx - fixed bug where Access version couldn't archive (lock) old topics
+25. pm_show_message.aspx - fixed bug where by if email notifcation that a PM is read is enabled on a PM the sender would get this email if they looked at the PM in their outbox
+26. functions_format_post.aspx - new shorter BB code for URL's added
+27. forum_codees.aspx - changed to show an example of the shorter forum codes for URL's
+28. functions_filtem_rs.aspx - fixed bug whereby quotes (") would not show correctly when editing posts
+
+The following pages have been changed to fix a bug whereby posts could be read in a private forum
+1. post_message.aspx
+2. edit_post.aspx
+3. forum_posts.aspx
+4. RTE_message_form.aspx
+5. message_form.aspx
+6. forum_topics.aspx
+
+
+Changes from version 7.51 to version 7.51a
+------------------------------------------
+1. poll_create_form.aspx - fixed bug whereby new polls could not be created
+2. email_messager.aspx - fixed by wherby if you selected to have a copy sent to yourself they both went to the Recipient
+3. forum_clave_form.aspx - fixed javascript focus bug
+4. printer_friendly_posts.aspx - fixed replace null bug if signature is null value
+
+
+Changes from version 7.51a to version 7.6
+------------------------------------------
+1. group_details.aspx - fixed javascript bug on page
+2. member_control_panel.aspx - hyperlink closing tag mising
+3. register.aspx - same as above
+4. email_notify_subscriptions.aspx - same as above
+5. printer_friendly_posts.aspx - changed so that each post is displayed in it's own table so that formatting is not carried over.
+6. emoticons_inc.aspx - added new emoticons to this file and new images in the smileys folder
+
+The following files are changed for the new non-database active users tracking
+1. active_users_inc.aspx
+2. default.aspx
+3. active_usem_rs.aspx
+4. functions_common.aspx - in both the main forum and admin section
+5. statistics.aspx
+
+
+
+Changes from version 7.6 to version 7.7
+------------------------------------------
+1. common.aspx - both common.aspx files changed to improve performance
+2. default.aspx - fixed bug where annoymous users where listed as browsing the board
+3. functions_date_time_format.aspx - the date and time formatting data is now feed into an array to cut down on database calls
+4. date_time_configure.aspx - updated to support new application level variable above
+5. tblActiveUsers - table removed from the database as it is no-longer used
+6. msSQL_server_setup.aspx - removed the creating of the tblActiveUsers table and the stored procedures:-
+	wwfSPActiveUsersWhereIPis
+	wwfSPAddNewActiveUser
+	wwfSPUpdateActiveUser
+	wwfSPDeleteActiveUser
+	wwfSPDeleteActiveUserDoubleEntry
+	wwfSPCountOfActiveUsers
+	wwfSPCountOfActiveGuests
+7. common.aspx - improved performance
+8. forum_configure.aspx - change to support above
+9. close_forums.aspx - same as above
+10. email_notify_configure.aspx - same as above
+11. upload_configure.aspx - same as above
+12. spam_configure.aspx - same as above
+13. forum_closed.aspx - changed so it now redirects to the main forum page if the forum is open
+14. RTE_message_form.aspx - changed for extra security
+15. RTE_textbox.aspx - changed for extra security
+16. pm_new_message_form.aspx - improved security and fixed formatting bug when replying using non RTE editor
+17. pop_up_profile.aspx - now shows the members online status
+18. pm_buddy_list.aspx - fixed bug where users where incorrectly shown as online/offline
+19. functions_common.aspx - fixed XSS security hole
+20. functions_filtem_rs.aspx - increased security
+21. functions_format_post.aspx - better detection of JS that norton pop up blocker injects
+22. foregotten_clave.aspx - fixed bug where some email addresses where not being sent email to
+23. register.aspx - fixed same bug as above
+24. functions_format_post.aspx - changed to filter out new Norton Firewall add blocker injected code that can appear in posts
+25. functions_filem_rs.aspx - improved security for removing scripting
+26. image_upload.aspx - fixed bug that effects MAC Safari users
+27. file_upload.aspx - same as above
+28. avatar_upload.aspx - same as above
+29. remove_links_button.aspx - updated for link removal key to work correctly in this version
+30. common.aspx - changed to use application level variables
+31. functions_send_mail.aspx - change the name of the outgoing mail server variable
+32. search.aspx - fixed bug when searching for posts by usuario
+33. RTE_message_form_inc.aspx - fixed compliation error that occured on some win2k3 servers
+34. add_member.aspx - new page to add a new member from the admin section
+35. functions_format_post.aspx - new file in admin section to support above
+36. functions_filetm_rs.aspx - updated to support above
+37. admin_menu.aspx - upadted to link to add member page
+38. added_member.aspx - new file to tell the user the new member has been added
+39. functions_send_mail.aspx - changed outputted text for emails
+40. default.aspx - updated some incorrect HTML
+41. language_file_inc.aspx - added new text to tell if the user is online
+
+
+Changes from version 7.7 to version 7.7a
+------------------------------------------
+1. admin/suspend_registration.aspx - fixed bug where the application level variables where not updated
+2. forum_posts.aspx - fixed bug that coursed the forum to crash if active users is turned off
+3. RTE_message_form_js.aspx - changed so that when people translate the forum this file is less likly to throw up an error if ' is used in the translation
+4. admin/email_notify_configure.aspx - fixed bug where the application level variables where not updated 
+5. forum_configure.aspx - fixed bug where the application level variables where not updated 
+6. common.aspx - fixed bug where if using a email component that required an SMTP server the SMTP server address failed to load when using application level veriables
+7. functions/functions_date_time_format.aspx - fixed date formatting bug
+8. register.aspx - same as above
+9. admin/add_member.aspx - fixed bug for signature preview and forum codes window
+10. functions/functions_upload.aspx - changed to append the date and time to uploads
+11. functions/functions_date_time_format.aspx - new function added to calculate date/time serial numbers
+12. upload_files.aspx - changed to support new date/time being appended to uploads
+13. upload_images.aspx - same as above
+14. upload_avatam_rs.aspx - same as above
+15. functions/disllowed_HTML_tags_inc.aspx - changed to remove more HTML tags and tables
+16. functions/functions_filtem_rs.aspx - fixed bug when linking to case sensitive images and URL's
+17. functions_function_upload.aspx - fixed bug with aspSimpleUpload where if file was of the wrong type it wasn't deleted
+18. admin/find_user.aspx - fixed to let the user know if the usuario is not found
+19. admin/change_usuario.aspx - new page to allow admin to change usuario
+20. admin/admin_menu.aspx - file changed to add link to new page to change usuarios
+21. search_form.aspx - changed the default search to be in the message body not the topic
+22. pop_up_profile.aspx - fixed bug where by if a user had a ' in there usuario the PM button wouldn't work
+23. admin/remove_link_buttons.aspx - changed link removal keys and the way link removal keys are entered
+24. admin/functions/functions_common.aspx - new function added
+25. admin/admin_menu.aspx - changed so there is now a link to be able to easily check for updates to the web wiz forums application
+26. common.aspx - changed version number
+27. admin/common.aspx - changed version number
+
+
+
+
+Changes from version 7.7a to version 7.8
+------------------------------------------
+
+1. pop_up_IP_blocking.aspx - security bug fix
+2. pop_up_topic_admin.aspx - security bug fix
+3. pop_up_forum_admin.aspx - security bug fix
+4. login_user.aspx - extra security to change usercodes
+5. forgotten_clave.aspx - extra security to change usercodes
+6. register.aspx - extra security to confirm old clave when updating the users clave
+7. language_files/language_file_inc.aspx - updated to support new wording for above changes
+
+
+Changes from version 7.8 to version 7.9
+------------------------------------------
+1. registration_rules.aspx - fixed XSS bug
+
+
+===========================================================================================

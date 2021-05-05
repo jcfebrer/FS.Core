@@ -1,0 +1,14 @@
+ren bar_graph_image.gif imagenbarra.gif
+ren bg1.gif fondo.gif
+ren bg.gif fondo.gif
+ren bg.jpg fondo.gif
+ren bottom-bg.gif inf_fondo.gif
+ren bottom-left.gif inf_izq.gif
+ren bottom-right.gif inf_der.gif
+ren left-side-table-bg.gif izq_fondo.gif
+ren right-side-table-bg.gif der_fondo.gif
+ren spacer.gif blanco.gif
+ren table_bg_image.gif fondo_tabla_sup.gif
+ren top-bg.gif arr_fondo.gif
+ren top-left.gif arr_izq.gif
+ren top-right.gif arr_der.gif

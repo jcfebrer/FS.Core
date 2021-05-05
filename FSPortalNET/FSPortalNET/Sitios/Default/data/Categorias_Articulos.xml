@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Categorias_Articulos>
+    <idArticulo>2279</idArticulo>
+    <idCategoria>5</idCategoria>
+  </Categorias_Articulos>
+  <Categorias_Articulos>
+    <idArticulo>2280</idArticulo>
+    <idCategoria>5</idCategoria>
+  </Categorias_Articulos>
+  <Categorias_Articulos>
+    <idArticulo>2281</idArticulo>
+    <idCategoria>5</idCategoria>
+  </Categorias_Articulos>
+  <Categorias_Articulos>
+    <idArticulo>2282</idArticulo>
+    <idCategoria>5</idCategoria>
+  </Categorias_Articulos>
+  <Categorias_Articulos>
+    <idArticulo>2283</idArticulo>
+    <idCategoria>5</idCategoria>
+  </Categorias_Articulos>
+  <Categorias_Articulos>
+    <idArticulo>2284</idArticulo>
+    <idCategoria>5</idCategoria>
+  </Categorias_Articulos>
+</DocumentElement>

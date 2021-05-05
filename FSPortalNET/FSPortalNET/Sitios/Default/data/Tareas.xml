@@ -1,0 +1,48 @@
+<?xml version="1.0" standalone="yes"?>
+<DocumentElement>
+  <Tareas>
+    <idTarea>1</idTarea>
+    <idProyecto>4</idProyecto>
+    <idPrioridad>2</idPrioridad>
+    <idEstado>1</idEstado>
+    <nombreTarea>Tarea 1</nombreTarea>
+    <descTarea>Descripción tarea 1</descTarea>
+    <asignadoPor>1</asignadoPor>
+    <asignadoA>3</asignadoA>
+    <fechaAsignacion>2000-12-02T00:00:00+01:00</fechaAsignacion>
+  </Tareas>
+  <Tareas>
+    <idTarea>2</idTarea>
+    <idProyecto>1</idProyecto>
+    <idPrioridad>1</idPrioridad>
+    <idEstado>1</idEstado>
+    <nombreTarea>Tarea 2</nombreTarea>
+    <descTarea>Descripción tarea 2</descTarea>
+    <asignadoPor>1</asignadoPor>
+    <asignadoA>2</asignadoA>
+    <fechaAsignacion>2000-12-02T00:00:00+01:00</fechaAsignacion>
+  </Tareas>
+  <Tareas>
+    <idTarea>28</idTarea>
+    <idProyecto>1</idProyecto>
+    <idPrioridad>1</idPrioridad>
+    <idEstado>1</idEstado>
+    <nombreTarea>aaa</nombreTarea>
+    <descTarea>aaa </descTarea>
+    <resolucion />
+    <asignadoPor>1</asignadoPor>
+    <asignadoA>1</asignadoA>
+    <duracion>10</duracion>
+  </Tareas>
+  <Tareas>
+    <idTarea>33</idTarea>
+    <idProyecto>4</idProyecto>
+    <idPrioridad>3</idPrioridad>
+    <idEstado>2</idEstado>
+    <nombreTarea>bbb</nombreTarea>
+    <descTarea>bb</descTarea>
+    <resolucion />
+    <asignadoPor>1</asignadoPor>
+    <asignadoA>3</asignadoA>
+  </Tareas>
+</DocumentElement>

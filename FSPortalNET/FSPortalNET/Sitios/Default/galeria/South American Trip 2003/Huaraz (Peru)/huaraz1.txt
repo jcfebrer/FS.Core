@@ -1,0 +1,2 @@
+This is a comment text file located in the same folder as the target picture and with the same name.
+The extension must be ".txt"

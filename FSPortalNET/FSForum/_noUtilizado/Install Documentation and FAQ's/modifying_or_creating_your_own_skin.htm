@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>Modifying or Creating Your Own Skin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<style type="text/css">
+<!--
+.text {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; color: #000000}
+.heading {  font-family: Arial, Helvetica, sans-serif; font-size: 14px; font-style: normal; font-weight: bold; color: #000000}
+.title {  font-family: Arial, Helvetica, sans-serif; font-size: 33px; font-style: normal; font-weight: bold; color: #000000}
+a {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #0000CC; text-decoration: underline}
+a:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #FF0000; text-decoration: underline; font-style: normal}
+a:visited {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-style: normal; font-weight: normal; color: #0000FF; text-decoration: underline}
+a:visited:hover {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; font-weight: normal; color: #FF0000; text-decoration: underline; font-style: normal}
+.smtitle {  font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-style: normal; font-weight: bold; color: #000000}
+-->
+</style>
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center">
+ <tr>
+  <td align="center" class="title">Web Wiz Forums Documentation<span class="smtitle"><br />
+   Modifying or Creating Your Own Skin<br />
+   <a href="menu.htm" target="_self">Return to the main menu</a></span></td>
+ </tr>
+</table>
+<br />
+<table width="96%" border="0" cellspacing="0" cellpadding="2" align="center">
+ <tr> 
+  <td class="text"> 
+   <p>If you don't find a skin available on Web Wiz Guide that gives the forum the look and feel you want, you can easily make your own skin to change the 
+    colours, look and feel of the forum to create your own unique looking forum. To do this simply follow the instructions below: -</p>
+   <ol>
+    <li>Make a back-up of the files skin_file.aspx and the default_style.css found in the includes directory.</li>
+    <li>Open the file skin_file.aspx in a text editor like Notepad.</li>
+    <li>In this file you will see lots of lines that look like the line below.<br />
+     <br />
+     Const strBgColour = &amp;quot;<font color="#FF0000">#FFFFFF</font>&amp;quot;<br />
+     <br />
+    </li>
+    <li>Change the parts shown above in red between the quotation marks to the colours and images that you wish to use in your forum.</li>
+    <li>The default_style.css contains the Cascading Style Sheet (CSS) which controls the fonts for the text and links, the CSS part looks like the following.<br />
+     <br />
+     .text {<br />
+     font-family: <font color="#FF0000">Verdana, Arial, Helvetica, sans-serif</font>; <br />
+     font-size: <font color="#FF0000">12</font>px; color: <font color="#FF0000">#000000</font>;<br />
+     }<br />
+     <br />
+    </li>
+    <li> Changing the parts shown in red will alter the font, sizes, colours, and font types used in your forum.</li>
+    <li>Once you have finished altering the skin file and the CSS file save the amended versions and test your forum to see if it looks like it should. If not go back to the skin file and change it again 
+     to you get the look you want.</li>
+    <li>You can also change the buttons, images, and icons used in the forum by overwriting the images and buttons found in the forum_images directory with your own.<br />
+    </li>
+   </ol>
+  </td>
+ </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="10" align="center">
+ <tr> 
+  <td align="center" class="text" height="17"><a href="http://www.webwizguide.info" target="_blank"><img src="web_wiz_guide.gif" width="116" height="38" border="0" alt="Web Wiz Guide!"></a><br />
+   <br />
+   Copyright 2000-2004 Bruce Corkhill<br />
+   Web Wiz Guide, PO Box 4982, Bournemouth, BH8 8XP, United Kingdom</td>
+ </tr>
+</table>
+</body>
+</html>

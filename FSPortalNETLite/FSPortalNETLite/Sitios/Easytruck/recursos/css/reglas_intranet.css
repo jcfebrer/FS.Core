@@ -1,0 +1,638 @@
+.importes { text-align: right; }
+
+p.copy {
+    color: yellow;
+    left: 150px;
+    position: absolute;
+    top: 20px;	
+}
+
+.pdf {
+    background-image: url(../images/pdf.png);
+    background-repeat: no-repeat;
+    padding: 0 0 0 20px;
+}
+
+
+
+h1 {
+    border-bottom: 1px solid #2E73B8;
+    color: #2E73B8;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 10px 10px;
+    text-align: justify;
+    text-transform: uppercase;
+}
+
+h2 {
+    color: #2E73B8;
+    font-size: 16px;
+    margin: 0 0 10px 10px;
+    text-align: justify;	
+}
+
+h3 {
+    color: #2E73B8;
+    font-size: 14px;
+    margin: 0 0 10px 10px;
+    text-align: justify;
+}
+
+h4 {
+    color: #2E73B8;
+    font-size: 12px;
+    margin: 0 0 10px 10px;
+    text-align: justify;
+}
+
+h5 {
+    color: #000000;
+    font-size: 12px;
+    margin: 0 0 10px 10px;
+    text-align: justify;
+}
+
+p {
+    color: #5C5C5C;
+    margin: 0 0 10px 10px;
+    text-align: justify;
+}
+
+div#contenido ul {
+    list-style-type: none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;	
+}
+
+div#contenido ul li {
+    background-image: url(../images/icolistas.gif);
+    background-position: left;
+    background-repeat: no-repeat;
+    color: #5C5C5C;
+    margin: 0 0 10px 10px;
+    padding: 0 0 0 0;
+    padding: 0 0 0 20px;
+    text-align: justify;
+}
+
+div#contenido ul li a { color: #2E73B8; }
+
+div#contenido ul li a:hover { color: #ffffff; }
+
+li.tituloMenu span {
+    background-color: #2E73B8;
+    color: #FFFFFF;
+    display: block;
+    line-height: 25px;
+    padding: 0 0 0 10px;
+    text-decoration: none;
+    width: 188px;	
+}
+
+li ul li a { background: transparent !important; }
+
+div.ley p { font-size: 10px !important; }
+
+div.ley li { font-size: 10px !important; }
+
+dl.lista_tabla, dl {
+	
+    margin: 0 0 0 10px;
+    padding: 0 0 0 0;
+    width: 700px;
+}
+
+dl.lista_tabla dt {
+    background-color: #ECECEC;
+    color: #727272;
+    display: block;
+    float: left;
+    height: 27px;
+    margin: 1px 1px 0 0px;
+    padding: 5px 0 1px 10px;
+    text-transform: capitalize;
+    width: 210px;
+}
+
+dl.lista_tabla dd {
+    border-bottom: 1px solid #d9d9d9;
+    float: right;
+    height: 27px;
+    margin: 1px 1px 0 0px;
+    padding: 4px 0 1px 10px;
+    width: 465px;
+}
+
+dt {
+    color: #ffffff;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+
+dd {
+    color: #727272;
+    margin: 0 0 0 15px;
+    padding: 0 0 0 0;
+}
+
+dd a { color: #2E73B8; }
+
+dd a:hover { color: #2E73B8; }
+
+/*****************************************************************************************************************************************************************************/
+
+/*																																  																																		*/
+
+/*																										buscador			  																																		*/
+
+/*																																																																		*/
+
+/*****************************************************************************************************************************************************************************/
+
+div#buscador h2 {
+    color: #000;
+    font-size: 11px;
+    font-weight: normal;
+    left: 10px;
+    position: absolute;
+    text-transform: uppercase;
+    top: 18px;
+}
+
+div#buscador div { position: relative; }
+
+div#buscador div input {
+    background-color: #fff;
+    float: none;
+    left: 100px;
+    position: absolute;
+    width: 80px;
+}
+
+div#buscador div select {
+    background-color: #fff;
+    float: none;
+    left: 80px;
+    position: absolute;
+    width: 120px;
+}
+
+div#buscador div.estado {
+    left: 170px;
+    position: absolute;
+    top: 15px;
+}
+
+/********quitar width******/
+
+div#buscador div.desde {
+    left: 470px;
+    position: absolute;
+    top: 20px;
+}
+
+/********quitar width******/
+
+div#buscador div.hasta {
+    left: 620px;
+    position: absolute;
+    top: 20px;
+}
+
+/********nuevo******/
+
+div#buscador div.contenedor {
+    left: 320px;
+    position: absolute;
+    top: 20px;
+}
+
+/*********nuevo*****/
+
+div#buscador div.booking {
+    left: 145px;
+    position: absolute;
+    top: 20px;
+}
+
+/******nuevo********/
+
+div#buscador div.destino {
+    left: 0px;
+    position: absolute;
+    top: 20px;
+}
+
+div#buscador button {
+    background-image: url(../images/buscar.png);
+    background-repeat: no-repeat;
+    border: none;
+    height: 38px;
+    height: 38px;
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    width: 111px;
+    width: 111px;
+}
+
+div#buscador button span { visibility: hidden; }
+
+div#buscador div label {
+    display: block;
+    width: 100px;
+}
+
+/*******nuevo*******/
+
+div#buscador div label {
+    display: block;
+    width: 65px;
+}
+
+/*****************************************************************************************************************************************************************************/
+
+/*																																  																																		*/
+
+/*																										acceso intranet  																																		*/
+
+/*																																																																		*/
+
+/*****************************************************************************************************************************************************************************/
+
+div#acceso ul {
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+    position: absolute;
+    top: 313px;
+}
+
+div#acceso form {
+    left: 24px;
+    position: absolute;
+    top: 260px;
+    width: 350px;
+}
+
+div#acceso form div {
+    margin: 0 0 0 10px;
+    position: relative;
+    width: 350px;
+}
+
+div#acceso label {
+    color: #fff;
+    margin: 0 0 0 0;
+    text-transform: uppercase;
+    width: 80px;
+}
+
+div#acceso button {
+    background-color: transparent;
+    background-image: url(../images/entrar.png);
+    border: none;
+    height: 33px;
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    width: 107px;
+}
+
+div#acceso button span { visibility: hidden; }
+
+div#acceso input {
+    background-color: #415A72;
+    border: 1px solid #8b8b8b;
+    color: #fff;
+}
+
+div#acceso h1 {
+    color: #fff;
+    display: block;
+    font-size: 11px;
+    font-weight: normal;
+    line-height: 30px;
+    margin: 0 0 0 15px;
+    padding: 0 0 0 10px;
+    width: 377px;
+}
+
+div#acceso h1.clientes { background-color: #415A72; }
+
+div#acceso h1.transpotistas { background-color: #244f82; }
+
+div#acceso h2 {
+    color: yellow;
+    font-size: 12px;
+    font-weight: normal;
+    left: 25px;
+    position: absolute;
+    top: 235px;
+    width: 350px;
+}
+
+div#acceso ul li {
+    background-image: none !important;
+    list-style-type: none;
+    margin: 0 0 3px 0;
+    padding: 0 0 0 0;	
+}
+
+div#acceso ul li a {
+    color: #fff;
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    margin: 0 0 0 15px;
+    padding: 0 0 0 10px;
+    text-decoration: none;
+    width: 377px;
+}
+
+div#acceso ul li a#transportistas { background-color: #244f82; }
+
+div#acceso ul li a#transportistas:hover { background-color: #000; }
+
+div#acceso ul li a#clientes { background-color: #323232; }
+
+div#acceso ul li a#clientes:hover { background-color: #000; }
+
+/*************************************************formularios*****************************/
+
+fieldset.linea {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin: 0 0 10px 0;
+}
+
+fieldset {
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin: 0 0 10px 0;
+}
+
+fieldset div {
+    margin: 0 0 8px 0;
+    padding: 0px 0 0 0;
+}
+
+legend {
+    color: #414141;
+    font-size: 11px;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+label {
+    clear: both;
+    color: #7a7a7a;
+    display: block;
+    font-size: 10px;
+    /*width:70px;*/
+    margin: 0 0 0 15px;
+    padding: 4px 5px 0 3px;
+    text-transform: uppercase;
+}
+
+label span {
+    color: #b10002;
+    font-size: 13px;
+}
+
+input.texto {
+    background-color: #f7f7f7;
+    border: 1px solid #d8d8d8;
+    color: #000000;
+    float: right;
+    margin: -18px 0 10px 0;
+    width: 230px;
+}
+
+select {
+    background-color: #f7f7f7;
+    border: 1px solid #d8d8d8;
+    color: #000000;
+    float: right;
+    margin: -18px 0 10px 0;
+    width: 230px;
+}
+
+.check {
+   
+    background-color: #FFFFFF;
+    border: none;
+    float: left;
+    margin: 5px 0 15px 15px;
+    padding: 4px 5px 0 3px;
+    width: 20px;   
+}
+
+* html .check {
+    clear: both;
+    display: block;
+    margin: 15px 0 0 7px;
+}
+
+.derecha {
+	
+    color: #7a7a7a;
+    float: right;
+    font-size: 10px;
+    margin: 0 0 0 0;
+    padding: 4px 5px 0 3px;
+    text-transform: uppercase;
+    width: 285px;		
+}
+
+* html .derecha {
+    margin: 0 0 16px 0;
+    padding: 4px 5px 0 3px;
+}
+
+textarea {
+    background-color: #f7f7f7;
+    border: 1px solid #d8d8d8;
+    color: #000000;
+    float: right;
+    margin: -18px 0 10px 0;
+    width: 230px;
+}
+
+/***********************************************botones***********************************************/
+
+div.boton {
+    height: 30px;
+    position: relative;
+    width: 910px;
+}
+
+button {
+    background-color: #415A72;
+    border: none;
+    border: 1px solid #CCCCCC;
+    color: #FFFFFF;
+    cursor: pointer;
+    padding: 1px 5px 0 5px;
+    position: absolute;
+    right: 390px;
+}
+
+/*********************************TABLAS***********************************************/
+
+table.tablaMensajes {
+    border-bottom: 1px solid #d3d3d3;
+    margin: 0 0 0 13px;	
+}
+
+table.tablaMensajes th {
+    border: none;
+    color: #fff !important;
+    font-size: 10px;
+    height: 25px;
+    padding: 0 0 0 4px !important;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+table.tablaMensajes th a {
+    border: none;
+    color: #fff !important;
+    font-size: 10px;
+    height: 25px;
+    padding: 0 0 0 4px !important;
+    text-align: left;
+    text-decoration: none;
+}
+
+table.tablaMensajes td {
+    border-right: 1px solid #d3d3d3;
+    font-size: 10px;
+    padding: 0 5px 0 4px !important;
+}
+
+table.tablaMensajes td a { color: #2E73B8; }
+
+table.tablaMensajes td a:hover { color: #2E73B8; }
+
+table.tablaTelefonos {
+    border-bottom: 1px solid #d3d3d3;
+    margin: 0 auto 0 auto;
+    width: 50%;
+}
+
+table.tablaTelefonos th {
+    border: none;
+    color: #fff !important;
+    font-size: 10px;
+    height: 25px;
+    padding: 0 0 0 4px !important;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+table.tablaTelefonos th a {
+    border: none;
+    color: #fff !important;
+    height: 25px;
+    padding: 0 0 0 4px !important;
+    text-align: left;
+}
+
+tr.cabeceraTabla {
+    background-image: url(../images/fondoTR.png);
+    background-position: top left;
+    background-repeat: repeat-x;	
+}
+
+td.avatar {
+    border-left: 1px solid #d3d3d3;
+    color: #000 !important;
+    margin: 0 0 0 50px;
+    padding: 0 10px 0 50px !important;
+    text-align: left !important;
+}
+
+th.thInicio {
+    background-image: url(../images/thIzda.png);
+    background-position: top left;
+    background-repeat: no-repeat;
+    border: none !important;
+}
+
+th.thCierre {
+    background-image: url(../images/thDcha.png);
+    background-position: top right;
+    background-repeat: no-repeat;
+    border: none !important;
+}
+
+table.tablaTelefonos td {
+    border-right: 1px solid #d3d3d3;
+    padding: 0 10px 0 4px !important;
+}
+
+table.tablaTelefonos td a { color: #2E73B8; }
+
+table.tablaTelefonos td a:hover { color: #2E73B8; }
+
+tr.oscuro { background-color: #f3f3f3; }
+
+/****************************botones edicion****************************************************/
+
+div .botonesEdicion {
+    position: relative;
+    width: 50px;
+}
+
+div.editar {
+    background-image: url(../images/editar.gif);
+    background-position: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: left;
+    height: 20px;
+    margin: 2px 0px 2px 0px;
+    padding: 0 0 0 0;
+    width: 20px;
+}
+
+div.editarGris { background-image: url(../images/editarGris.gif); }
+
+div .borrar {
+    background-image: url(../images/borrar.gif);
+    background-position: left;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    float: right;
+    height: 20px;
+    margin: 2px 0px 2px 0px;
+    padding: 0 0 0 0;
+    width: 20px;
+}
+
+div .borrarGris { background-image: url(../images/borrarGris.gif); }
+
+/**************************** flechas de ordenación de columnas****************************************************/
+
+span.flechaArriba {
+    background-image: url(../images/flechaArriba.gif);
+    background-position: 3px 11px;
+    background-repeat: no-repeat;
+    height: 6px;
+    padding: 5px 0 0 16px;
+    width: 5px;	
+}
+
+span.flechaAbajo {
+    background-image: url(../images/flechaAbajo.gif);
+    background-position: 3px 11px;
+    background-repeat: no-repeat;
+    height: 6px;
+    padding: 5px 0 0 16px;
+    width: 5px;	
+}
