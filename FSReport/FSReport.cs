@@ -10,12 +10,13 @@ using CrystalDecisions.Shared;
 using CrystalDecisions.Windows.Forms;
 using FSLibrary;
 using FSException;
+using FSFormControls;
 
 #endregion
 
-namespace FSFormControls
+namespace FSReport
 {
-	public class FSReport : DBUserControlBase
+	public class Report : DBUserControlBase
     {
         #region '" Código generado por el Diseñador de Windows Forms "' 
 
@@ -23,7 +24,7 @@ namespace FSFormControls
 
         internal CrystalReportViewer CrystalReportViewer1;
 
-        public FSReport()
+        public Report()
         {
             InitializeComponent();
         }
@@ -60,7 +61,7 @@ namespace FSFormControls
             // DBReport
             // 
             this.Controls.Add(this.CrystalReportViewer1);
-            this.Name = "DBReport";
+            this.Name = "FSReport";
             this.Size = new System.Drawing.Size(574, 456);
             this.ResumeLayout(false);
 

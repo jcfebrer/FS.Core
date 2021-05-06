@@ -1,11 +1,13 @@
+using FSFormControls;
 using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-namespace FSFormControls
+
+namespace FSWebBrowser
 {
-    partial class FSWebBrowser : FSFormControls.DBUserControlBase 
+    partial class Browser : DBUserControlBase 
     { 
         
         [ System.Diagnostics.DebuggerNonUserCode() ]

@@ -1,2 +1,0 @@
-Simplemente buscar "en.call(window,qo);" el los ficheros: \ckfinder\core\js\*.*, y borrarlo.
-Funciona con la versión 1.4.2

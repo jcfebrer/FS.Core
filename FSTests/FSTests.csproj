@@ -98,10 +98,6 @@
       <Project>{7c38ee9f-9765-44bb-9477-7e59e3122aac}</Project>
       <Name>FSParser</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FSPortalNET\FSPaginas\FSPaginas.csproj">
-      <Project>{42977236-44BD-4753-AC1A-1C56526CD2F8}</Project>
-      <Name>FSPaginas</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -7,8 +7,8 @@
     <ProjectGuid>{40AD564B-B070-4AFE-99F4-50BB865E8E4E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FSInternet</RootNamespace>
-    <AssemblyName>FSInternet</AssemblyName>
+    <RootNamespace>FSNetwork</RootNamespace>
+    <AssemblyName>FSNetwork</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

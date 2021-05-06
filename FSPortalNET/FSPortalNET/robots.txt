@@ -1,8 +1,0 @@
-User-agent: *
-Disallow: /errorPages/error500.aspx
-Disallow: /buscar.aspx
-Disallow: /login.htm
-Disallow: /WebResource.axd
-
-#Elimina el carácter # y cambia la dirección url por la de tu portal.
-#sitemap: http://www.tudominio.com/sitemap.axd 

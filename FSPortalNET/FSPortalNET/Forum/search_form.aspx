@@ -1,1 +1,0 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="FSForum.search_form" %>

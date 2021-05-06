@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7FCC8F9D-A108-4DBD-A43A-C347B33B6BC4}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>DBWebBrowser</RootNamespace>
-    <AssemblyName>DBWebBrowser</AssemblyName>
+    <RootNamespace>FSWebBrowser</RootNamespace>
+    <AssemblyName>FSWebBrowser</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>

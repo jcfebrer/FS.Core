@@ -1,9 +1,0 @@
-﻿Para añadir una nueva libreria (.js), hay que hacer:
-
-Incluir el fichero al proyecto.
-
-Modificar AssemblyInfo.cs y añadir una nueva linea con el nombre del fichero añadido.
-
-Cambiar en propiedades del fichero la propiedad "Build Action" a "Embedded Resource".
-
-Añadir en FSBasePage.cs con "func.AddEmbeddedJavaScript" el nuevo fichero.

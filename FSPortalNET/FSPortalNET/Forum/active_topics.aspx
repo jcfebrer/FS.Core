@@ -1,1 +1,0 @@
-<%@ Page Language="C#" AutoEventWireup="true" Inherits="FSForum.active_topics" %>

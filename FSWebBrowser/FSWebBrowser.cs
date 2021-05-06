@@ -19,9 +19,9 @@ using FSDns;
 
 #endregion
 
-namespace FSFormControls
+namespace FSWebBrowser
 {
-    public partial class FSWebBrowser
+    public partial class Browser
     {
         #region Delegates
 
@@ -46,7 +46,7 @@ namespace FSFormControls
         private readonly List<string> NotValidPages = new List<string>();
         private readonly List<string> ValidPages = new List<string>();
 
-        public FSWebBrowser()
+        public Browser()
         {
             BlackList = null;
             AllowNewWindow = true;

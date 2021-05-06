@@ -1,1 +1,0 @@
-<%@ Page Language="C#" AutoEventWireup="true" ValidateRequest="false" Inherits="FSPaginas.Admin.Editor.ShowRecord" %>

@@ -1,1 +1,0 @@
-Yes, an author comments file may have <strong>HTML tags</strong>

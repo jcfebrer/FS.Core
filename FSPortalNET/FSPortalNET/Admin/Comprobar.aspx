@@ -1,1 +1,0 @@
-<%@ Page Language="C#" aspcompat="true" AutoEventWireup="true" Inherits="FSPaginas.Admin.Comprobar" %>

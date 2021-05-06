@@ -1,1 +1,0 @@
-<%@ Application Inherits="FSPortal.Global" Language="C#" %>

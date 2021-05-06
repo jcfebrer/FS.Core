@@ -8,7 +8,7 @@ using WebBrowser = System.Windows.Forms.WebBrowser;
 
 #endregion
 
-namespace FSFormControls
+namespace FSWebBrowser
 {
     public class CrossFrameIE
     {
