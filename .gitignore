@@ -246,6 +246,9 @@ ModelManifest.xml
 # Service account JSON key, used in Travis
 client-secret.json
 
+# Service account JSON key, used in Firebase
+google-services.json
+
 # Built application files
 /*/build/
 
