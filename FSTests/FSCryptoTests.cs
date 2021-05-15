@@ -14,12 +14,9 @@ namespace FSTests
         [TestMethod()]
         public void Md5()
         {
-            Crypto crypto = new Crypto();
-
-            string c = crypto.Md5("16055459");
+            string c = FSCrypto.Md5.Calc("16055459");
 
             Assert.AreEqual("C758647C2A8CBC92E55A6765525E7D2B", c, "Cálculo de MD5 incorrecto: " + c);
-
         }
 
         [TestMethod()]
@@ -39,7 +36,7 @@ namespace FSTests
         [TestMethod()]
         public void Encode64()
         {
-            string base64 = FSCrypto.Utils.EncodeBase64("81354", true);
+            string base64 = FSCrypto.Base64.Encode("81354", true);
 
             Assert.AreEqual("ODEzNTQ=", base64, "Encode error");
         }
@@ -47,7 +44,7 @@ namespace FSTests
         [TestMethod()]
         public void Decode64()
         {
-            string base64 = FSCrypto.Utils.DecodeBase64("ODEzNTQ=", true);
+            string base64 = FSCrypto.Base64.Decode("ODEzNTQ=", true);
 
             Assert.AreEqual("81354", base64, "Decode error");
         }

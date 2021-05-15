@@ -68,6 +68,10 @@ namespace FSQueryBuilder.Helpers
                 {
                     formattedValue = ((SqlLiteral) value).Value;
                 }
+                else if (value is Decimal || value is Int32 || value is float || value is Double || value is long || value is int)
+                {
+                    formattedValue = value.ToString().Replace(",",".");
+                }
                 else
                 {
                     formattedValue = value.ToString();

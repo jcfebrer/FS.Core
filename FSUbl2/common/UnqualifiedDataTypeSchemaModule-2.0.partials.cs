@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FS.Ubl2.Udt
+namespace FSUbl.Udt
 {
     public partial class AmountType
     {

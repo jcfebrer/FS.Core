@@ -4,7 +4,7 @@ using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 
-namespace Gt
+namespace FSUbl
 {
 	public class ComunicacionTradeShift
 	{

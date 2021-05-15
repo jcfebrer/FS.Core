@@ -9,9 +9,9 @@
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace FS.Ubl2
+namespace FSUbl
 {
-    using FS.Ubl2.Cac;
+    using FSUbl.Cac;
     
     
     /// <summary>

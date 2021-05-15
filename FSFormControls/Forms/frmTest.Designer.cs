@@ -83,12 +83,12 @@
             this.statusBarPanel1 = new System.Windows.Forms.StatusBarPanel();
             this.statusBarPanel2 = new System.Windows.Forms.StatusBarPanel();
             this.dbStatusBar3 = new FSFormControls.DBStatusBar();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBarPanel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBarProgressPanel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel3)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbStatusBar1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbStatusBarPanel1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbStatusBarProgressPanel1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel1)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel2)).BeginInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTabControl1)).BeginInit();
             this.dbTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -111,12 +111,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.statusBarPanel2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbStatusBar3)).BeginInit();
             this.SuspendLayout();
-            // 
-            // DbStatusBar1
-            // 
-            this.DbStatusBar1.Location = new System.Drawing.Point(0, 289);
-            this.DbStatusBar1.Size = new System.Drawing.Size(1131, 20);
-            this.DbStatusBar1.TabIndex = 7;
+            //// 
+            //// DbStatusBar1
+            //// 
+            //this.DbStatusBar1.Location = new System.Drawing.Point(0, 289);
+            //this.DbStatusBar1.Size = new System.Drawing.Size(1131, 20);
+            //this.DbStatusBar1.TabIndex = 7;
             // 
             // DbToolBar1
             // 
@@ -126,7 +126,7 @@
             // 
             // DbSBarPanel1
             // 
-            this.DbSBarPanel1.Width = 870;
+            //this.DbSBarPanel1.Width = 870;
             // 
             // dbTabControl1
             // 
@@ -1170,16 +1170,16 @@
             this.Name = "frmTest";
             this.Text = "frmTest";
             this.Controls.SetChildIndex(this.DbToolBar1, 0);
-            this.Controls.SetChildIndex(this.DbStatusBar1, 0);
+            //this.Controls.SetChildIndex(this.DbStatusBar1, 0);
             this.Controls.SetChildIndex(this.dbTabControl1, 0);
             this.Controls.SetChildIndex(this.dbStatusBar2, 0);
             this.Controls.SetChildIndex(this.dbStatusBar3, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBarPanel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBarProgressPanel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel3)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbStatusBar1)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbStatusBarPanel1)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbStatusBarProgressPanel1)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel1)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel2)).EndInit();
+            //((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTabControl1)).EndInit();
             this.dbTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

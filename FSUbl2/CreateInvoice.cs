@@ -4,10 +4,10 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
-using FS.Ubl2.Udt;
-using FS.Ubl2.Cac;
+using FSUbl.Udt;
+using FSUbl.Cac;
 
-namespace FS.Ubl2
+namespace FSUbl
 {
     public class CreateInvoice
     {
@@ -16,9 +16,9 @@ namespace FS.Ubl2
             string calle, string poblacion, string codigoPostal, string cliente,
             string calleCliente, string poblacionCliente, string codigoPostalCliente, 
             string cifCliente, decimal iva, decimal totalIva, decimal totalImporteNeto, 
-            decimal totalImporteBruto, decimal totalFactura, FS.Ubl2.Cac.InvoiceLineType[] lineas)
+            decimal totalImporteBruto, decimal totalFactura, FSUbl.Cac.InvoiceLineType[] lineas)
         {
-            FS.Ubl2.InvoiceType invoice = CreateInvoiceData(moneda, facturaId, fechaFactura, 
+            FSUbl.InvoiceType invoice = CreateInvoiceData(moneda, facturaId, fechaFactura, 
                 notas, empresaid, empresa, calle, poblacion, codigoPostal, cliente, calleCliente, 
                 poblacionCliente, codigoPostalCliente, cifCliente, iva, totalIva, totalImporteNeto,
                 totalImporteBruto, totalFactura, lineas);
@@ -29,7 +29,7 @@ namespace FS.Ubl2
             
             using (XmlWriter writer = XmlWriter.Create(xmlFilename, setting))
             {
-                Type typeToSerialize = typeof(FS.Ubl2.InvoiceType);
+                Type typeToSerialize = typeof(FSUbl.InvoiceType);
                 XmlSerializer xs = new XmlSerializer(typeToSerialize);
                 xs.Serialize(writer, invoice);
             }
@@ -37,18 +37,18 @@ namespace FS.Ubl2
             Console.WriteLine("Invoice written to:\n{0}", new FileInfo(xmlFilename).FullName );
         }
 
-        private static FS.Ubl2.InvoiceType CreateInvoiceData(string moneda, 
+        private static FSUbl.InvoiceType CreateInvoiceData(string moneda, 
             string facturaId, DateTime fechaFactura, string notas, string empresaid, 
             string empresa, string calle, string poblacion, string codigoPostal,
             string cliente,string calleCliente, string poblacionCliente, 
             string codigoPostalCliente, string cifCliente, 
             decimal iva, decimal totalIva, decimal totalImporteNeto, 
-            decimal totalImporteBruto, decimal totalFactura, FS.Ubl2.Cac.InvoiceLineType[] lineas)
+            decimal totalImporteBruto, decimal totalFactura, FSUbl.Cac.InvoiceLineType[] lineas)
         {
             // Default that shpould be set when you load the library. Don't need to set it for each document.
-            FS.Ubl2.UblBaseDocumentType.GlbCustomizationID =
+            FSUbl.UblBaseDocumentType.GlbCustomizationID =
                 "urn:tradeshift.com:ubl-2.0-customizations:2010-06";
-            FS.Ubl2.UblBaseDocumentType.GlbProfileID =
+            FSUbl.UblBaseDocumentType.GlbProfileID =
                 "urn:www.cenbii.eu:profile:bii04:ver1.0";
 
             // Default value assinged to all amounts in this thread
@@ -56,7 +56,7 @@ namespace FS.Ubl2
 
 
             // This initialization will only work with C# 3.0 and above
-            FS.Ubl2.InvoiceType res = new FS.Ubl2.InvoiceType
+            FSUbl.InvoiceType res = new FSUbl.InvoiceType
             {
                 // UBLVersionID = "2.0", Don't need to set this one. hardcoded in the library
                 ID = facturaId,

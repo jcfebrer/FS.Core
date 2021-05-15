@@ -2459,7 +2459,7 @@ namespace FSDatabase
         public string CommandUpdate(string tableName, DataRow row, string userName)
         {
             DataTable d_schema = GetSchemaTable(tableName);
-            var uqb = new UpdateQueryBuilder();
+            UpdateQueryBuilder uqb = new UpdateQueryBuilder();
             uqb.TableSource = tableName;
 
             string columnName;
@@ -2475,6 +2475,11 @@ namespace FSDatabase
                     //if (value is byte[])
                     //{
                     //    break;
+                    //}
+
+                    //if (value is Decimal || value is Int32 || value is float)
+                    //{
+                    //    value = value.ToString().Replace(",", ".");
                     //}
 
                     if (HasUserData(tableName))

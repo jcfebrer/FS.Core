@@ -9,7 +9,7 @@
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace FS.Ubl2.Cac
+namespace FSUbl.Cac
 {
     
     

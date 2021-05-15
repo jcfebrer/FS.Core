@@ -47,8 +47,7 @@ namespace FSWebBrowser
 
         } 
         
-        internal System.Windows.Forms.WebBrowser WebBrowser1; 
-        
+        internal System.Windows.Forms.WebBrowser WebBrowser1;       
     } 
     
     

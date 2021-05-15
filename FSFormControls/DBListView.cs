@@ -179,9 +179,9 @@ namespace FSFormControls
                 {
                     frmForm = (DBForm) frm;
 
-                    frmForm.ProgressReset();
-                    frmForm.ProgressStartPoint = 0;
-                    frmForm.ProgressEndPoint = DataControl.RecordCount();
+                    //frmForm.ProgressReset();
+                    //frmForm.ProgressStartPoint = 0;
+                    //frmForm.ProgressEndPoint = DataControl.RecordCount();
                 }
 
                 var t = 0;
@@ -201,7 +201,8 @@ namespace FSFormControls
                     DataControl.MoveNext();
                     t = t + 1;
 
-                    if (frmForm != null) frmForm.ProgressStep();
+                    //if (frmForm != null) 
+                    //    frmForm.ProgressStep();
                 }
 
                 ListView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);

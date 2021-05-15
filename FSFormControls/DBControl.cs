@@ -993,7 +993,8 @@ namespace FSFormControls
             var f = 0;
             var s = "";
 
-            if (table == null) return false;
+            if (table == null) 
+                return false;
 
             foreach (DataRow r in table.Rows)
                 if (r.RowState != DataRowState.Deleted)

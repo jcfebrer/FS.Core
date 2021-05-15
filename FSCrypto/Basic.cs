@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FSCrypto
 {
-    public class Utils
+    public class Basic
     {
         /// <summary>
         /// Encrypts the specified string.
@@ -119,60 +119,6 @@ namespace FSCrypto
             }
 
             return strdrypt;
-        }
-
-
-        /// <summary>
-        /// Encodes the base64.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <returns></returns>
-        public static string EncodeBase64(string str)
-        {
-            return EncodeBase64(str, false);
-        }
-
-        /// <summary>
-        /// Encodes the base64.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <param name="urlSafe">if set to <c>true</c> [URL safe].</param>
-        /// <returns></returns>
-        public static string EncodeBase64(string str, bool urlSafe)
-        {
-            byte[] strBytes = Encoding.UTF8.GetBytes(str);
-            string output = Convert.ToBase64String(strBytes);
-
-            if (urlSafe)
-                output = output.Replace('+', '-').Replace('/', '_');
-
-            return output;
-        }
-
-
-        /// <summary>
-        /// Decodes the base64.
-        /// </summary>
-        /// <param name="input">The input.</param>
-        /// <returns></returns>
-        public static string DecodeBase64(string input)
-        {
-            return DecodeBase64(input, false);
-        }
-
-        /// <summary>
-        /// Decodes the base64.
-        /// </summary>
-        /// <param name="input">The input.</param>
-        /// <param name="urlSafe">if set to <c>true</c> [URL safe].</param>
-        /// <returns></returns>
-        public static string DecodeBase64(string input, bool urlSafe)
-        {
-            if (urlSafe)
-                input = input.Replace('-', '+').Replace('_', '/');
-
-            byte[] strBytes = Convert.FromBase64String(input);
-            return Encoding.UTF8.GetString(strBytes);
-        }
+        } 
     }
 }

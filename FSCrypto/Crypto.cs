@@ -222,29 +222,7 @@ namespace FSCrypto
             if (memStream != null)
                 memS = Encoding.UTF8.GetString(memStream.ToArray());
             return memS;
-        }
-
-
-        public string Md5(string value)
-        {
-            var data = Encoding.ASCII.GetBytes(value);
-            var md5Sp = new MD5CryptoServiceProvider();
-            var hashbyte = md5Sp.ComputeHash(data, 0, data.Length);
-            var strHash = BitConverter.ToString(hashbyte);
-            strHash = strHash.Replace("-", "");
-            return strHash;
-        }
-
-
-        public string Md5(string value, string key)
-        {
-            var mac3Des = new MACTripleDES();
-            var md5 = new MD5CryptoServiceProvider();
-            mac3Des.Key = md5.ComputeHash(Encoding.UTF8.GetBytes(key));
-            return Convert.ToBase64String(Encoding.UTF8.GetBytes(value)) + "-" +
-                   Convert.ToBase64String(mac3Des.ComputeHash(Encoding.UTF8.GetBytes(value)));
-        }
-
+        } 
 
         /// <summary>
         ///     Convierte la clave en un array de bytes

@@ -112,15 +112,15 @@ namespace FSFormControls
             }
         }
 
-        public bool ShowStatusBar
-        {
-            get { return m_ShowStatusBar; }
-            set
-            {
-                m_ShowStatusBar = value;
-                DbStatusBar1.Visible = m_ShowStatusBar;
-            }
-        }
+        //public bool ShowStatusBar
+        //{
+        //    get { return m_ShowStatusBar; }
+        //    set
+        //    {
+        //        m_ShowStatusBar = value;
+        //        DbStatusBar1.Visible = m_ShowStatusBar;
+        //    }
+        //}
 
         public bool ShowMenu
         {
@@ -141,23 +141,23 @@ namespace FSFormControls
 
         public StatusBar.StatusBarPanelCollection StatusBarPanels { get; set; }
 
-        public long ProgressPosition
-        {
-            get { return DbStatusBarProgressPanel1.ProgressPosition; }
-            set { DbStatusBarProgressPanel1.ProgressPosition = value; }
-        }
+        //public long ProgressPosition
+        //{
+        //    get { return DbStatusBarProgressPanel1.ProgressPosition; }
+        //    set { DbStatusBarProgressPanel1.ProgressPosition = value; }
+        //}
 
-        public long ProgressStartPoint
-        {
-            get { return DbStatusBarProgressPanel1.StartPoint; }
-            set { DbStatusBarProgressPanel1.StartPoint = value; }
-        }
+        //public long ProgressStartPoint
+        //{
+        //    get { return DbStatusBarProgressPanel1.StartPoint; }
+        //    set { DbStatusBarProgressPanel1.StartPoint = value; }
+        //}
 
-        public long ProgressEndPoint
-        {
-            get { return DbStatusBarProgressPanel1.EndPoint; }
-            set { DbStatusBarProgressPanel1.EndPoint = value; }
-        }
+        //public long ProgressEndPoint
+        //{
+        //    get { return DbStatusBarProgressPanel1.EndPoint; }
+        //    set { DbStatusBarProgressPanel1.EndPoint = value; }
+        //}
 
         public bool AllowNavigate
         {
@@ -305,21 +305,21 @@ namespace FSFormControls
 
         public bool AutomaticConnect { get; set; } = true;
 
-        public DBStatusBar StatusBar
-        {
-            get { return DbStatusBar1; }
-            set { DbStatusBar1 = value; }
-        }
+        //public DBStatusBar StatusBar
+        //{
+        //    get { return DbStatusBar1; }
+        //    set { DbStatusBar1 = value; }
+        //}
 
-        public void ProgressStep()
-        {
-            DbStatusBarProgressPanel1.Step();
-        }
+        //public void ProgressStep()
+        //{
+        //    DbStatusBarProgressPanel1.Step();
+        //}
 
-        public void ProgressReset()
-        {
-            DbStatusBarProgressPanel1.Reset();
-        }
+        //public void ProgressReset()
+        //{
+        //    DbStatusBarProgressPanel1.Reset();
+        //}
 
         protected override void OnPaint(PaintEventArgs pe)
         {
@@ -418,16 +418,18 @@ namespace FSFormControls
             LinkUnBoundControls(this);
 
 
-            if (CanClose == false) ShowClose = false;
+            if (CanClose == false) 
+                ShowClose = false;
 
 
             //if (DBConnection != null)
             //    if (DBConnection.State == ConnectionState.Open)
             //        DBConnection.Close();
 
-            DbStatusBar1.Panels[0].Text = "Usuario: " + Global.UserName;
+            //DbStatusBar1.Panels[0].Text = "Usuario: " + Global.UserName;
 
-            if (DataControl != null) UpdateScrollBar();
+            if (DataControl != null) 
+                UpdateScrollBar();
 
             tmrAutoSave.Enabled = AutoSave;
 
@@ -639,7 +641,8 @@ namespace FSFormControls
 
         private void ConnectDBControls(Control.ControlCollection frm)
         {
-            if (frm == null) return;
+            if (frm == null) 
+                return;
 
 
             PutDBConnection(frm);
@@ -758,20 +761,20 @@ namespace FSFormControls
 
         private void UpdateScrollBar()
         {
-            DbStatusBar1.Panels[2].Text = "SQL: " + DataControl.Selection;
-            DbStatusBar1.Panels[3].Text = "Tabla: " + DataControl.TableName;
-            DbStatusBar1.Panels[4].Text = DataControl.DBPosition + 1 + "/" + DataControl.RecordCount();
+            //DbStatusBar1.Panels[2].Text = "SQL: " + DataControl.Selection;
+            //DbStatusBar1.Panels[3].Text = "Tabla: " + DataControl.TableName;
+            //DbStatusBar1.Panels[4].Text = DataControl.DBPosition + 1 + "/" + DataControl.RecordCount();
         }
 
 
         private void tmrAutoSave_Tick(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            var tx = StatusBar.Panels[0].Text;
-            StatusBar.Panels[0].Text = "Guardando datos ...";
+            //var tx = StatusBar.Panels[0].Text;
+            //StatusBar.Panels[0].Text = "Guardando datos ...";
             DataControl.Save();
-            StatusBar.Panels[0].Text = "Datos guardados";
-            StatusBar.Panels[0].Text = tx;
+            //StatusBar.Panels[0].Text = "Datos guardados";
+            //StatusBar.Panels[0].Text = tx;
             Cursor.Current = Cursors.Default;
         }
 
@@ -793,7 +796,6 @@ namespace FSFormControls
         #region '" Código generado por el Diseñador de Windows Forms "' 
 
         internal DBOfficeMenu DbOfficeMenu1;
-        public DBStatusBar DbStatusBar1;
         internal TabOrderSchemaProvider DbTabOrderSchemeProvider1;
         public DBToolBarEx DbToolBar1;
         internal MenuItem MenuItem3;
@@ -807,11 +809,6 @@ namespace FSFormControls
         internal ContextMenuStrip mnuContext;
         public MenuItem mnuForm;
         public MainMenu mnuFormMain;
-        public DBStatusBarPanel DbStatusBarPanel1;
-        public DBStatusBarProgressPanel DbStatusBarProgressPanel1;
-        public StatusBarPanel DbSBarPanel1;
-        public StatusBarPanel DbSBarPanel2;
-        public StatusBarPanel DbSBarPanel3;
         internal Timer tmrAutoSave;
 
         public DBForm()
@@ -861,9 +858,8 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBForm));
-            this.mnuFormMain = new System.Windows.Forms.MainMenu(this.components);
+            this.mnuFormMain = new System.Windows.Forms.MainMenu();
             this.mnuForm = new System.Windows.Forms.MenuItem();
             this.mnuConfPag = new System.Windows.Forms.MenuItem();
             this.mnuCalc = new System.Windows.Forms.MenuItem();
@@ -871,24 +867,12 @@ namespace FSFormControls
             this.mnuAbout = new System.Windows.Forms.MenuItem();
             this.MenuItem3 = new System.Windows.Forms.MenuItem();
             this.mnuClose = new System.Windows.Forms.MenuItem();
-            this.mnuContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuContext = new System.Windows.Forms.ContextMenuStrip();
             this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tmrAutoSave = new System.Windows.Forms.Timer(this.components);
-            this.DbStatusBar1 = new FSFormControls.DBStatusBar();
-            this.DbStatusBarPanel1 = new FSFormControls.DBStatusBarPanel();
-            this.DbStatusBarProgressPanel1 = new FSFormControls.DBStatusBarProgressPanel();
-            this.DbSBarPanel1 = new System.Windows.Forms.StatusBarPanel();
-            this.DbSBarPanel2 = new System.Windows.Forms.StatusBarPanel();
-            this.DbSBarPanel3 = new System.Windows.Forms.StatusBarPanel();
+            this.tmrAutoSave = new System.Windows.Forms.Timer();
             this.DbToolBar1 = new FSFormControls.DBToolBarEx();
-            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu(this.components);
+            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu();
             this.DbTabOrderSchemeProvider1 = new FSFormControls.TabOrderSchemaProvider();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBarPanel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBarProgressPanel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel3)).BeginInit();
             this.SuspendLayout();
             // 
             // mnuFormMain
@@ -956,71 +940,6 @@ namespace FSFormControls
             this.tmrAutoSave.Interval = 60000;
             this.tmrAutoSave.Tick += new System.EventHandler(this.tmrAutoSave_Tick);
             // 
-            // DbStatusBar1
-            // 
-            this.DbStatusBar1.Location = new System.Drawing.Point(0, 116);
-            this.DbStatusBar1.Name = "DbStatusBar1";
-            this.DbStatusBar1.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
-            this.DbStatusBarPanel1,
-            this.DbStatusBarProgressPanel1,
-            this.DbSBarPanel1,
-            this.DbSBarPanel2,
-            this.DbSBarPanel3});
-            this.DbStatusBar1.ShowPanels = true;
-            this.DbStatusBar1.Size = new System.Drawing.Size(860, 20);
-            this.DbStatusBar1.TabIndex = 0;
-            this.DbStatusBar1.ViewStyle = FSFormControls.DBStatusBar.ViewStyleEnum.Default;
-            this.DbStatusBar1.WrapText = false;
-            // 
-            // DbStatusBarPanel1
-            // 
-            this.DbStatusBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            this.DbStatusBarPanel1.BorderStyle = System.Windows.Forms.StatusBarPanelBorderStyle.Raised;
-            this.DbStatusBarPanel1.Key = "DbStatusBarPanel1";
-            this.DbStatusBarPanel1.Name = "DbStatusBarPanel1";
-            this.DbStatusBarPanel1.ProgressBarInfo = null;
-            this.DbStatusBarPanel1.SizingMode = FSFormControls.DBStatusBarPanel.SizingModeEnum.Spring;
-            this.DbStatusBarPanel1.Text = "Barra de estado";
-            this.DbStatusBarPanel1.Visible = false;
-            this.DbStatusBarPanel1.Width = 94;
-            // 
-            // DbStatusBarProgressPanel1
-            // 
-            this.DbStatusBarProgressPanel1.AnimationStyle = FSFormControls.ProgressDisplayStyle.Infinite;
-            this.DbStatusBarProgressPanel1.AnimationTick = System.TimeSpan.Parse("00:00:00.5000000");
-            this.DbStatusBarProgressPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Contents;
-            this.DbStatusBarProgressPanel1.EndPoint = ((long)(100));
-            this.DbStatusBarProgressPanel1.Key = "progreso";
-            this.DbStatusBarProgressPanel1.Name = "DbStatusBarProgressPanel1";
-            this.DbStatusBarProgressPanel1.ProgressBarInfo = null;
-            this.DbStatusBarProgressPanel1.ProgressPosition = ((long)(0));
-            this.DbStatusBarProgressPanel1.ShowText = true;
-            this.DbStatusBarProgressPanel1.SizingMode = FSFormControls.DBStatusBarProgressPanel.SizingModeEnum.Default;
-            this.DbStatusBarProgressPanel1.StartPoint = ((long)(0));
-            this.DbStatusBarProgressPanel1.StepSize = ((long)(10));
-            this.DbStatusBarProgressPanel1.Style = System.Windows.Forms.StatusBarPanelStyle.OwnerDraw;
-            this.DbStatusBarProgressPanel1.TextFont = new System.Drawing.Font("Arial", 8F);
-            this.DbStatusBarProgressPanel1.Visible = false;
-            this.DbStatusBarProgressPanel1.Width = 10;
-            // 
-            // DbSBarPanel1
-            // 
-            this.DbSBarPanel1.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-            this.DbSBarPanel1.Name = "DbSBarPanel1";
-            this.DbSBarPanel1.Text = "DbSBarPanel1";
-            this.DbSBarPanel1.Width = 599;
-            // 
-            // DbSBarPanel2
-            // 
-            this.DbSBarPanel2.Name = "DbSBarPanel2";
-            this.DbSBarPanel2.Text = "DbSBarPanel2";
-            // 
-            // DbSBarPanel3
-            // 
-            this.DbSBarPanel3.Name = "DbSBarPanel3";
-            this.DbSBarPanel3.Text = "DbSBarPanel3";
-            this.DbSBarPanel3.Width = 40;
-            // 
             // DbToolBar1
             // 
             this.DbToolBar1.About = null;
@@ -1053,7 +972,7 @@ namespace FSFormControls
             this.DbToolBar1.ShowSaveButton = true;
             this.DbToolBar1.ShowScrollBar = true;
             this.DbToolBar1.ShowSearchButton = true;
-            this.DbToolBar1.Size = new System.Drawing.Size(860, 30);
+            this.DbToolBar1.Size = new System.Drawing.Size(1042, 50);
             this.DbToolBar1.TabIndex = 1;
             this.DbToolBar1.TabStop = false;
             this.DbToolBar1.ToolBarType = FSFormControls.DBToolBarEx.tToolbar.ToolbarXPBig;
@@ -1069,20 +988,13 @@ namespace FSFormControls
             // DBForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(860, 136);
+            this.ClientSize = new System.Drawing.Size(1042, 354);
             this.ContextMenuStrip = this.mnuContext;
-            this.Controls.Add(this.DbStatusBar1);
             this.Controls.Add(this.DbToolBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mnuFormMain;
             this.Name = "DBForm";
             this.Text = "DBForm";
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBarPanel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbStatusBarProgressPanel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DbSBarPanel3)).EndInit();
             this.ResumeLayout(false);
 
         }

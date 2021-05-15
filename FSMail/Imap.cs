@@ -1584,7 +1584,7 @@ namespace FSMail
 				{
 					if (part.Headers[IMAP_MESSAGE_CONTENT_TRANSFER_ENCODING].ToLower().IndexOf(IMAP_MESSAGE_BASE64_ENCODING) >= 0)
 					{
-						part.Data = FSCrypto.Utils.DecodeBase64(part.Data);
+						part.Data = FSCrypto.Base64.Decode(part.Data);
 					}
 					if (part.Headers["content-transfer-encoding"].ToLower().IndexOf(IMAP_MESSAGE_QUOTED_PRINTABLE_ENCODING) >= 0)
 					{

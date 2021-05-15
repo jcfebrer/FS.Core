@@ -157,8 +157,7 @@ namespace FSNetwork
 
         public static bool CheckQueryString(string query, string check, string password)
 		{
-			Crypto crypt = new Crypto ();
-			if (crypt.Md5(query, password) == check)
+			if (Md5.Calc(query, password) == check)
 				return true;
 			return false;
 		}
@@ -166,8 +165,7 @@ namespace FSNetwork
 
 		public static bool CheckQueryString(string query, string check)
 		{
-			Crypto crypt = new Crypto ();
-			if (crypt.Md5(query) == check)
+			if (Md5.Calc(query) == check)
 				return true;
 			return false;
 		}

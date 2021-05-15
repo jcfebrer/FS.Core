@@ -9,9 +9,9 @@
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace FS.Ubl2.Ext
+namespace FSUbl.Ext
 {
-    using FS.Ubl2.Udt;
+    using FSUbl.Udt;
     
     
     /// <summary>

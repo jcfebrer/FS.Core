@@ -406,7 +406,7 @@ namespace FSFormControls
             Controls.Add(bottomPanel);
             Name = "frmWizard";
             ShowMenu = false;
-            ShowStatusBar = false;
+            //ShowStatusBar = false;
             ShowToolBar = false;
             Text = "frmWizard";
             Controls.SetChildIndex(bottomPanel, 0);

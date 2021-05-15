@@ -1,7 +1,7 @@
 ﻿using System.Xml.Serialization;
 using System.Xml;
 
-namespace FS.Ubl2
+namespace FSUbl
 {
     public abstract partial class UblBaseDocumentType
     {

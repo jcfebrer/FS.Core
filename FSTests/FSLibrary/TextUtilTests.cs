@@ -14,31 +14,41 @@ namespace FSLibrary.Tests
         [TestMethod()]
         public void AsciiTest()
         {
-            Assert.Fail();
+            byte[] result = TextUtil.Ascii("A");
+            if (result[0] != 65)
+                Assert.Fail();
         }
 
         [TestMethod()]
         public void StartsWithTest()
         {
-            Assert.Fail();
+            bool result = TextUtil.StartsWith("esto es una prueba", "esto");
+            if (!result)
+                Assert.Fail();
         }
 
         [TestMethod()]
         public void EndsWithTest()
         {
-            Assert.Fail();
+            bool result = TextUtil.EndsWith("esto es una prueba", "prueba");
+            if (!result)
+                Assert.Fail();
         }
 
         [TestMethod()]
         public void LengthTest()
         {
-            Assert.Fail();
+            int result = TextUtil.Length("esto");
+            if (result != 4)
+                Assert.Fail();
         }
 
         [TestMethod()]
         public void InsertTest()
         {
-            Assert.Fail();
+            string result = TextUtil.Insert("esto es una prueba", 4, "hola");
+            if (result != "estohola es una prueba")
+                Assert.Fail();
         }
 
         [TestMethod()]

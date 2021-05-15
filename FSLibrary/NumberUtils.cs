@@ -505,7 +505,6 @@ namespace FSLibrary
         /// <summary>
         /// Sliceses the specified source.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="source">The source.</param>
         /// <param name="count">The count.</param>
         /// <param name="padToLength">if set to <c>true</c> [pad to length].</param>

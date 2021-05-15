@@ -69,6 +69,7 @@ namespace FSFormControls
         internal ToolBarButton ToolBarButton83;
         internal ToolBarButton ToolBarButton84;
         internal ToolBarButton ToolBarButton85;
+        private ToolBarButton toolBarButton87;
         private ToolBarButton toolBarButton86;
 
         public int Value
@@ -415,6 +416,16 @@ namespace FSFormControls
         }
 
         private void tbrRegistrosBIG_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        {
+            ToolbarOptions(sender, e);
+        }
+
+        private void TbrRegistrosStandardBIG_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        {
+            ToolbarOptions(sender, e);
+        }
+
+        private void TbrRegistrosStandard_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
         {
             ToolbarOptions(sender, e);
         }
@@ -794,17 +805,6 @@ namespace FSFormControls
                     lastVisible.Visible = false;
         }
 
-        private void DBToolBar_Paint(object sender, PaintEventArgs e)
-        {
-            //ShowToolBar(); 
-        }
-
-
-        private void DBToolBar_Load(object sender, EventArgs e)
-        {
-            ShowToolBar();
-        }
-
 
         private void m_dbcontrol_ChangeRecord()
         {
@@ -954,10 +954,25 @@ namespace FSFormControls
             tbrRegistros.ButtonClick += tbrRegistros_ButtonClick;
             HScroll1.ValueChanged += HScroll1_ValueChanged;
             tbrRegistrosBIG.ButtonClick += tbrRegistrosBIG_ButtonClick;
-            Resize += DBToolBar_Resize;
+            tbrRegistrosStandard.ButtonClick += TbrRegistrosStandard_ButtonClick;
+            tbrRegistrosStandardBIG.ButtonClick += TbrRegistrosStandardBIG_ButtonClick;
+
+            Resize += DBToolBarEx_Resize;
+            Load += DBToolBarEx_Load;
+            Paint += DBToolBarEx_Paint;
         }
 
-        private void DBToolBar_Resize(object sender, EventArgs e)
+        private void DBToolBarEx_Paint(object sender, PaintEventArgs e)
+        {
+            ShowToolBar();
+        }
+
+        private void DBToolBarEx_Load(object sender, EventArgs e)
+        {
+            ShowToolBar();
+        }
+
+        private void DBToolBarEx_Resize(object sender, EventArgs e)
         {
             ShowToolBar();
         }
@@ -973,136 +988,136 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            components = new Container();
-            var resources = new ComponentResourceManager(typeof(DBToolBarEx));
-            tbrRegistros = new ToolBar();
-            Separador1 = new ToolBarButton();
-            btnBuscar = new ToolBarButton();
-            btnBuscarSiguiente = new ToolBarButton();
-            Separador2 = new ToolBarButton();
-            btnEstablecerFiltros = new ToolBarButton();
-            Separador3 = new ToolBarButton();
-            btnMoverPrimero = new ToolBarButton();
-            btnMoverAnterior = new ToolBarButton();
-            btnMoverSiguiente = new ToolBarButton();
-            btnMoverUltimo = new ToolBarButton();
-            Separador4 = new ToolBarButton();
-            btnNuevo = new ToolBarButton();
-            btnEditar = new ToolBarButton();
-            Separador6 = new ToolBarButton();
-            btnCancelarAlta = new ToolBarButton();
-            btnGuardar = new ToolBarButton();
-            ToolBarButton85 = new ToolBarButton();
-            Separador5 = new ToolBarButton();
-            btnEliminar = new ToolBarButton();
-            Separador7 = new ToolBarButton();
-            btnGo = new ToolBarButton();
-            btnListado = new ToolBarButton();
-            btlReport = new ToolBarButton();
-            Separator8 = new ToolBarButton();
-            btnImprimir = new ToolBarButton();
-            ToolBarButton6 = new ToolBarButton();
-            ToolBarButton79 = new ToolBarButton();
-            ToolBarButton82 = new ToolBarButton();
-            imgXPToolbar = new ImageList(components);
-            Separador8 = new ToolBarButton();
-            HScroll1 = new HScrollBar();
-            tbrRegistrosBIG = new ToolBar();
-            ToolBarButton1 = new ToolBarButton();
-            ToolBarButton2 = new ToolBarButton();
-            ToolBarButton3 = new ToolBarButton();
-            ToolBarButton4 = new ToolBarButton();
-            ToolBarButton5 = new ToolBarButton();
-            ToolBarButton7 = new ToolBarButton();
-            ToolBarButton8 = new ToolBarButton();
-            ToolBarButton9 = new ToolBarButton();
-            ToolBarButton10 = new ToolBarButton();
-            ToolBarButton11 = new ToolBarButton();
-            ToolBarButton12 = new ToolBarButton();
-            ToolBarButton13 = new ToolBarButton();
-            ToolBarButton14 = new ToolBarButton();
-            ToolBarButton15 = new ToolBarButton();
-            ToolBarButton16 = new ToolBarButton();
-            ToolBarButton17 = new ToolBarButton();
-            ToolBarButton84 = new ToolBarButton();
-            ToolBarButton18 = new ToolBarButton();
-            ToolBarButton19 = new ToolBarButton();
-            ToolBarButton20 = new ToolBarButton();
-            ToolBarButton21 = new ToolBarButton();
-            ToolBarButton22 = new ToolBarButton();
-            ToolBarButton23 = new ToolBarButton();
-            ToolBarButton24 = new ToolBarButton();
-            ToolBarButton25 = new ToolBarButton();
-            ToolBarButton26 = new ToolBarButton();
-            ToolBarButton77 = new ToolBarButton();
-            ToolBarButton78 = new ToolBarButton();
-            imgXPToolBarBIG = new ImageList(components);
-            lblReg = new Label();
-            imgStandard = new ImageList(components);
-            tbrRegistrosStandardBIG = new ToolBar();
-            ToolBarButton27 = new ToolBarButton();
-            ToolBarButton28 = new ToolBarButton();
-            ToolBarButton29 = new ToolBarButton();
-            ToolBarButton30 = new ToolBarButton();
-            ToolBarButton31 = new ToolBarButton();
-            ToolBarButton32 = new ToolBarButton();
-            ToolBarButton33 = new ToolBarButton();
-            ToolBarButton34 = new ToolBarButton();
-            ToolBarButton35 = new ToolBarButton();
-            ToolBarButton36 = new ToolBarButton();
-            ToolBarButton37 = new ToolBarButton();
-            ToolBarButton38 = new ToolBarButton();
-            ToolBarButton39 = new ToolBarButton();
-            ToolBarButton40 = new ToolBarButton();
-            ToolBarButton41 = new ToolBarButton();
-            ToolBarButton42 = new ToolBarButton();
-            ToolBarButton43 = new ToolBarButton();
-            ToolBarButton44 = new ToolBarButton();
-            ToolBarButton45 = new ToolBarButton();
-            ToolBarButton46 = new ToolBarButton();
-            ToolBarButton47 = new ToolBarButton();
-            ToolBarButton48 = new ToolBarButton();
-            ToolBarButton49 = new ToolBarButton();
-            ToolBarButton50 = new ToolBarButton();
-            ToolBarButton51 = new ToolBarButton();
-            ToolBarButton83 = new ToolBarButton();
-            toolBarButton86 = new ToolBarButton();
-            tbrRegistrosStandard = new ToolBar();
-            ToolBarButton52 = new ToolBarButton();
-            ToolBarButton53 = new ToolBarButton();
-            ToolBarButton54 = new ToolBarButton();
-            ToolBarButton55 = new ToolBarButton();
-            ToolBarButton56 = new ToolBarButton();
-            ToolBarButton57 = new ToolBarButton();
-            ToolBarButton58 = new ToolBarButton();
-            ToolBarButton59 = new ToolBarButton();
-            ToolBarButton60 = new ToolBarButton();
-            ToolBarButton61 = new ToolBarButton();
-            ToolBarButton62 = new ToolBarButton();
-            ToolBarButton63 = new ToolBarButton();
-            ToolBarButton64 = new ToolBarButton();
-            ToolBarButton65 = new ToolBarButton();
-            ToolBarButton66 = new ToolBarButton();
-            ToolBarButton67 = new ToolBarButton();
-            ToolBarButton68 = new ToolBarButton();
-            ToolBarButton69 = new ToolBarButton();
-            ToolBarButton70 = new ToolBarButton();
-            ToolBarButton71 = new ToolBarButton();
-            ToolBarButton72 = new ToolBarButton();
-            ToolBarButton73 = new ToolBarButton();
-            ToolBarButton74 = new ToolBarButton();
-            ToolBarButton75 = new ToolBarButton();
-            ToolBarButton76 = new ToolBarButton();
-            ToolBarButton80 = new ToolBarButton();
-            ToolBarButton81 = new ToolBarButton();
-            SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBToolBarEx));
+            this.tbrRegistros = new System.Windows.Forms.ToolBar();
+            this.imgXPToolbar = new System.Windows.Forms.ImageList(this.components);
+            this.Separador1 = new System.Windows.Forms.ToolBarButton();
+            this.btnBuscar = new System.Windows.Forms.ToolBarButton();
+            this.btnBuscarSiguiente = new System.Windows.Forms.ToolBarButton();
+            this.Separador2 = new System.Windows.Forms.ToolBarButton();
+            this.btnEstablecerFiltros = new System.Windows.Forms.ToolBarButton();
+            this.Separador3 = new System.Windows.Forms.ToolBarButton();
+            this.btnMoverPrimero = new System.Windows.Forms.ToolBarButton();
+            this.btnMoverAnterior = new System.Windows.Forms.ToolBarButton();
+            this.btnMoverSiguiente = new System.Windows.Forms.ToolBarButton();
+            this.btnMoverUltimo = new System.Windows.Forms.ToolBarButton();
+            this.Separador4 = new System.Windows.Forms.ToolBarButton();
+            this.btnNuevo = new System.Windows.Forms.ToolBarButton();
+            this.btnEditar = new System.Windows.Forms.ToolBarButton();
+            this.Separador6 = new System.Windows.Forms.ToolBarButton();
+            this.btnCancelarAlta = new System.Windows.Forms.ToolBarButton();
+            this.btnGuardar = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton85 = new System.Windows.Forms.ToolBarButton();
+            this.Separador5 = new System.Windows.Forms.ToolBarButton();
+            this.btnEliminar = new System.Windows.Forms.ToolBarButton();
+            this.Separador7 = new System.Windows.Forms.ToolBarButton();
+            this.btnGo = new System.Windows.Forms.ToolBarButton();
+            this.btnListado = new System.Windows.Forms.ToolBarButton();
+            this.btlReport = new System.Windows.Forms.ToolBarButton();
+            this.Separator8 = new System.Windows.Forms.ToolBarButton();
+            this.btnImprimir = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton6 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton79 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton82 = new System.Windows.Forms.ToolBarButton();
+            this.Separador8 = new System.Windows.Forms.ToolBarButton();
+            this.HScroll1 = new System.Windows.Forms.HScrollBar();
+            this.tbrRegistrosBIG = new System.Windows.Forms.ToolBar();
+            this.imgXPToolBarBIG = new System.Windows.Forms.ImageList(this.components);
+            this.ToolBarButton1 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton2 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton3 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton4 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton5 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton7 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton8 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton9 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton10 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton11 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton12 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton13 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton14 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton15 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton16 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton17 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton84 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton18 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton19 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton20 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton21 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton22 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton23 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton24 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton25 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton26 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton77 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton78 = new System.Windows.Forms.ToolBarButton();
+            this.lblReg = new System.Windows.Forms.Label();
+            this.imgStandard = new System.Windows.Forms.ImageList(this.components);
+            this.tbrRegistrosStandardBIG = new System.Windows.Forms.ToolBar();
+            this.ToolBarButton27 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton28 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton29 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton30 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton31 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton32 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton33 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton34 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton35 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton36 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton37 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton38 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton39 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton40 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton41 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton42 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton43 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton44 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton45 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton46 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton47 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton48 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton49 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton50 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton51 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton83 = new System.Windows.Forms.ToolBarButton();
+            this.toolBarButton86 = new System.Windows.Forms.ToolBarButton();
+            this.tbrRegistrosStandard = new System.Windows.Forms.ToolBar();
+            this.ToolBarButton52 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton53 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton54 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton55 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton56 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton57 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton58 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton59 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton60 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton61 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton62 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton63 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton64 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton65 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton66 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton67 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton68 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton69 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton70 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton71 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton72 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton73 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton74 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton75 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton76 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton80 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBarButton81 = new System.Windows.Forms.ToolBarButton();
+            this.toolBarButton87 = new System.Windows.Forms.ToolBarButton();
+            this.SuspendLayout();
             // 
             // tbrRegistros
             // 
-            tbrRegistros.Appearance = ToolBarAppearance.Flat;
-            tbrRegistros.Buttons.AddRange(new[]
-            {
-                Separador1,
+            this.tbrRegistros.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
+            this.tbrRegistros.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
+            Separador1,
                 btnBuscar,
                 btnBuscarSiguiente,
                 Separador2,
@@ -1131,229 +1146,229 @@ namespace FSFormControls
                 ToolBarButton79,
                 ToolBarButton82
             });
-            tbrRegistros.ButtonSize = new Size(16, 16);
-            tbrRegistros.Dock = DockStyle.None;
-            tbrRegistros.DropDownArrows = true;
-            tbrRegistros.ImageList = imgXPToolbar;
-            tbrRegistros.Location = new Point(24, 8);
-            tbrRegistros.Name = "tbrRegistros";
-            tbrRegistros.ShowToolTips = true;
-            tbrRegistros.Size = new Size(900, 28);
-            tbrRegistros.TabIndex = 9;
-            // 
-            // Separador1
-            // 
-            Separador1.Name = "Separador1";
-            Separador1.Style = ToolBarButtonStyle.Separator;
-            // 
-            // btnBuscar
-            // 
-            btnBuscar.ImageIndex = 0;
-            btnBuscar.Name = "btnBuscar";
-            btnBuscar.Tag = "BUSCAR";
-            btnBuscar.ToolTipText = "Buscar";
-            // 
-            // btnBuscarSiguiente
-            // 
-            btnBuscarSiguiente.ImageIndex = 1;
-            btnBuscarSiguiente.Name = "btnBuscarSiguiente";
-            btnBuscarSiguiente.Tag = "BUSCARSIGUIENTE";
-            btnBuscarSiguiente.ToolTipText = "Buscar siguiente";
-            // 
-            // Separador2
-            // 
-            Separador2.Name = "Separador2";
-            Separador2.Style = ToolBarButtonStyle.Separator;
-            // 
-            // btnEstablecerFiltros
-            // 
-            btnEstablecerFiltros.ImageIndex = 2;
-            btnEstablecerFiltros.Name = "btnEstablecerFiltros";
-            btnEstablecerFiltros.Tag = "ESTABLECERFILTROS";
-            btnEstablecerFiltros.ToolTipText = "Establecer filtro";
-            // 
-            // Separador3
-            // 
-            Separador3.Name = "Separador3";
-            Separador3.Style = ToolBarButtonStyle.Separator;
-            // 
-            // btnMoverPrimero
-            // 
-            btnMoverPrimero.ImageIndex = 3;
-            btnMoverPrimero.Name = "btnMoverPrimero";
-            btnMoverPrimero.Tag = "MOVERPRIMERO";
-            btnMoverPrimero.ToolTipText = "Primero";
-            // 
-            // btnMoverAnterior
-            // 
-            btnMoverAnterior.ImageIndex = 4;
-            btnMoverAnterior.Name = "btnMoverAnterior";
-            btnMoverAnterior.Tag = "MOVERANTERIOR";
-            btnMoverAnterior.ToolTipText = "Anterior";
-            // 
-            // btnMoverSiguiente
-            // 
-            btnMoverSiguiente.ImageIndex = 5;
-            btnMoverSiguiente.Name = "btnMoverSiguiente";
-            btnMoverSiguiente.Tag = "MOVERSIGUIENTE";
-            btnMoverSiguiente.ToolTipText = "Siguiente";
-            // 
-            // btnMoverUltimo
-            // 
-            btnMoverUltimo.ImageIndex = 6;
-            btnMoverUltimo.Name = "btnMoverUltimo";
-            btnMoverUltimo.Tag = "MOVERULTIMO";
-            btnMoverUltimo.ToolTipText = "Último";
-            // 
-            // Separador4
-            // 
-            Separador4.Name = "Separador4";
-            Separador4.Style = ToolBarButtonStyle.Separator;
-            // 
-            // btnNuevo
-            // 
-            btnNuevo.ImageIndex = 7;
-            btnNuevo.Name = "btnNuevo";
-            btnNuevo.Tag = "NUEVO";
-            btnNuevo.ToolTipText = "Nuevo";
-            // 
-            // btnEditar
-            // 
-            btnEditar.ImageIndex = 8;
-            btnEditar.Name = "btnEditar";
-            btnEditar.Tag = "EDITAR";
-            btnEditar.ToolTipText = "Editar";
-            // 
-            // Separador6
-            // 
-            Separador6.Name = "Separador6";
-            Separador6.Style = ToolBarButtonStyle.Separator;
-            // 
-            // btnCancelarAlta
-            // 
-            btnCancelarAlta.ImageIndex = 9;
-            btnCancelarAlta.Name = "btnCancelarAlta";
-            btnCancelarAlta.Tag = "CANCELARALTA";
-            btnCancelarAlta.ToolTipText = "Cancelar";
-            // 
-            // btnGuardar
-            // 
-            btnGuardar.ImageIndex = 10;
-            btnGuardar.Name = "btnGuardar";
-            btnGuardar.Tag = "GUARDAR";
-            btnGuardar.ToolTipText = "Guardar";
-            // 
-            // ToolBarButton85
-            // 
-            ToolBarButton85.ImageIndex = 14;
-            ToolBarButton85.Name = "ToolBarButton85";
-            ToolBarButton85.Tag = "REFRESCAR";
-            ToolBarButton85.ToolTipText = "Refrescar";
-            // 
-            // Separador5
-            // 
-            Separador5.Name = "Separador5";
-            Separador5.Style = ToolBarButtonStyle.Separator;
-            // 
-            // btnEliminar
-            // 
-            btnEliminar.ImageIndex = 11;
-            btnEliminar.Name = "btnEliminar";
-            btnEliminar.Tag = "ELIMINAR";
-            btnEliminar.ToolTipText = "Eliminar";
-            // 
-            // Separador7
-            // 
-            Separador7.Name = "Separador7";
-            Separador7.Style = ToolBarButtonStyle.Separator;
-            // 
-            // btnGo
-            // 
-            btnGo.ImageIndex = 12;
-            btnGo.Name = "btnGo";
-            btnGo.Tag = "GO";
-            btnGo.ToolTipText = "Ir a";
-            btnGo.Visible = false;
-            // 
-            // btnListado
-            // 
-            btnListado.ImageIndex = 13;
-            btnListado.Name = "btnListado";
-            btnListado.Tag = "LISTADO";
-            btnListado.ToolTipText = "Listado";
-            // 
-            // btlReport
-            // 
-            btlReport.ImageIndex = 12;
-            btlReport.Name = "btlReport";
-            btlReport.Tag = "REGISTRO";
-            btlReport.ToolTipText = "Registro";
-            // 
-            // Separator8
-            // 
-            Separator8.Name = "Separator8";
-            Separator8.Style = ToolBarButtonStyle.Separator;
-            // 
-            // btnImprimir
-            // 
-            btnImprimir.ImageIndex = 14;
-            btnImprimir.Name = "btnImprimir";
-            btnImprimir.Tag = "IMPRIMIR";
-            btnImprimir.ToolTipText = "Imprimir";
-            // 
-            // ToolBarButton6
-            // 
-            ToolBarButton6.Name = "ToolBarButton6";
-            ToolBarButton6.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton79
-            // 
-            ToolBarButton79.ImageIndex = 9;
-            ToolBarButton79.Name = "ToolBarButton79";
-            ToolBarButton79.Tag = "CERRAR";
-            ToolBarButton79.ToolTipText = "Cerrar formulario";
-            // 
-            // ToolBarButton82
-            // 
-            ToolBarButton82.Name = "ToolBarButton82";
-            ToolBarButton82.Style = ToolBarButtonStyle.Separator;
+            this.tbrRegistros.ButtonSize = new System.Drawing.Size(16, 16);
+            this.tbrRegistros.Dock = System.Windows.Forms.DockStyle.None;
+            this.tbrRegistros.DropDownArrows = true;
+            this.tbrRegistros.ImageList = this.imgXPToolbar;
+            this.tbrRegistros.Location = new System.Drawing.Point(24, 8);
+            this.tbrRegistros.Name = "tbrRegistros";
+            this.tbrRegistros.ShowToolTips = true;
+            this.tbrRegistros.Size = new System.Drawing.Size(900, 28);
+            this.tbrRegistros.TabIndex = 9;
             // 
             // imgXPToolbar
             // 
-            imgXPToolbar.ImageStream = (ImageListStreamer) resources.GetObject("imgXPToolbar.ImageStream");
-            imgXPToolbar.TransparentColor = Color.Fuchsia;
-            imgXPToolbar.Images.SetKeyName(0, "");
-            imgXPToolbar.Images.SetKeyName(1, "");
-            imgXPToolbar.Images.SetKeyName(2, "");
-            imgXPToolbar.Images.SetKeyName(3, "");
-            imgXPToolbar.Images.SetKeyName(4, "");
-            imgXPToolbar.Images.SetKeyName(5, "");
-            imgXPToolbar.Images.SetKeyName(6, "");
-            imgXPToolbar.Images.SetKeyName(7, "");
-            imgXPToolbar.Images.SetKeyName(8, "");
-            imgXPToolbar.Images.SetKeyName(9, "");
-            imgXPToolbar.Images.SetKeyName(10, "");
-            imgXPToolbar.Images.SetKeyName(11, "");
-            imgXPToolbar.Images.SetKeyName(12, "");
-            imgXPToolbar.Images.SetKeyName(13, "");
-            imgXPToolbar.Images.SetKeyName(14, "");
+            this.imgXPToolbar.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgXPToolbar.ImageStream")));
+            this.imgXPToolbar.TransparentColor = System.Drawing.Color.Fuchsia;
+            this.imgXPToolbar.Images.SetKeyName(0, "");
+            this.imgXPToolbar.Images.SetKeyName(1, "");
+            this.imgXPToolbar.Images.SetKeyName(2, "");
+            this.imgXPToolbar.Images.SetKeyName(3, "");
+            this.imgXPToolbar.Images.SetKeyName(4, "");
+            this.imgXPToolbar.Images.SetKeyName(5, "");
+            this.imgXPToolbar.Images.SetKeyName(6, "");
+            this.imgXPToolbar.Images.SetKeyName(7, "");
+            this.imgXPToolbar.Images.SetKeyName(8, "");
+            this.imgXPToolbar.Images.SetKeyName(9, "");
+            this.imgXPToolbar.Images.SetKeyName(10, "");
+            this.imgXPToolbar.Images.SetKeyName(11, "");
+            this.imgXPToolbar.Images.SetKeyName(12, "");
+            this.imgXPToolbar.Images.SetKeyName(13, "");
+            this.imgXPToolbar.Images.SetKeyName(14, "");
+            // 
+            // Separador1
+            // 
+            this.Separador1.Name = "Separador1";
+            this.Separador1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // btnBuscar
+            // 
+            this.btnBuscar.ImageIndex = 0;
+            this.btnBuscar.Name = "btnBuscar";
+            this.btnBuscar.Tag = "BUSCAR";
+            this.btnBuscar.ToolTipText = "Buscar";
+            // 
+            // btnBuscarSiguiente
+            // 
+            this.btnBuscarSiguiente.ImageIndex = 1;
+            this.btnBuscarSiguiente.Name = "btnBuscarSiguiente";
+            this.btnBuscarSiguiente.Tag = "BUSCARSIGUIENTE";
+            this.btnBuscarSiguiente.ToolTipText = "Buscar siguiente";
+            // 
+            // Separador2
+            // 
+            this.Separador2.Name = "Separador2";
+            this.Separador2.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // btnEstablecerFiltros
+            // 
+            this.btnEstablecerFiltros.ImageIndex = 2;
+            this.btnEstablecerFiltros.Name = "btnEstablecerFiltros";
+            this.btnEstablecerFiltros.Tag = "ESTABLECERFILTROS";
+            this.btnEstablecerFiltros.ToolTipText = "Establecer filtro";
+            // 
+            // Separador3
+            // 
+            this.Separador3.Name = "Separador3";
+            this.Separador3.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // btnMoverPrimero
+            // 
+            this.btnMoverPrimero.ImageIndex = 3;
+            this.btnMoverPrimero.Name = "btnMoverPrimero";
+            this.btnMoverPrimero.Tag = "MOVERPRIMERO";
+            this.btnMoverPrimero.ToolTipText = "Primero";
+            // 
+            // btnMoverAnterior
+            // 
+            this.btnMoverAnterior.ImageIndex = 4;
+            this.btnMoverAnterior.Name = "btnMoverAnterior";
+            this.btnMoverAnterior.Tag = "MOVERANTERIOR";
+            this.btnMoverAnterior.ToolTipText = "Anterior";
+            // 
+            // btnMoverSiguiente
+            // 
+            this.btnMoverSiguiente.ImageIndex = 5;
+            this.btnMoverSiguiente.Name = "btnMoverSiguiente";
+            this.btnMoverSiguiente.Tag = "MOVERSIGUIENTE";
+            this.btnMoverSiguiente.ToolTipText = "Siguiente";
+            // 
+            // btnMoverUltimo
+            // 
+            this.btnMoverUltimo.ImageIndex = 6;
+            this.btnMoverUltimo.Name = "btnMoverUltimo";
+            this.btnMoverUltimo.Tag = "MOVERULTIMO";
+            this.btnMoverUltimo.ToolTipText = "Último";
+            // 
+            // Separador4
+            // 
+            this.Separador4.Name = "Separador4";
+            this.Separador4.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.ImageIndex = 7;
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Tag = "NUEVO";
+            this.btnNuevo.ToolTipText = "Nuevo";
+            // 
+            // btnEditar
+            // 
+            this.btnEditar.ImageIndex = 8;
+            this.btnEditar.Name = "btnEditar";
+            this.btnEditar.Tag = "EDITAR";
+            this.btnEditar.ToolTipText = "Editar";
+            // 
+            // Separador6
+            // 
+            this.Separador6.Name = "Separador6";
+            this.Separador6.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // btnCancelarAlta
+            // 
+            this.btnCancelarAlta.ImageIndex = 9;
+            this.btnCancelarAlta.Name = "btnCancelarAlta";
+            this.btnCancelarAlta.Tag = "CANCELARALTA";
+            this.btnCancelarAlta.ToolTipText = "Cancelar";
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.ImageIndex = 10;
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Tag = "GUARDAR";
+            this.btnGuardar.ToolTipText = "Guardar";
+            // 
+            // ToolBarButton85
+            // 
+            this.ToolBarButton85.ImageIndex = 14;
+            this.ToolBarButton85.Name = "ToolBarButton85";
+            this.ToolBarButton85.Tag = "REFRESCAR";
+            this.ToolBarButton85.ToolTipText = "Refrescar";
+            // 
+            // Separador5
+            // 
+            this.Separador5.Name = "Separador5";
+            this.Separador5.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.ImageIndex = 11;
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Tag = "ELIMINAR";
+            this.btnEliminar.ToolTipText = "Eliminar";
+            // 
+            // Separador7
+            // 
+            this.Separador7.Name = "Separador7";
+            this.Separador7.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // btnGo
+            // 
+            this.btnGo.ImageIndex = 12;
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Tag = "GO";
+            this.btnGo.ToolTipText = "Ir a";
+            this.btnGo.Visible = false;
+            // 
+            // btnListado
+            // 
+            this.btnListado.ImageIndex = 13;
+            this.btnListado.Name = "btnListado";
+            this.btnListado.Tag = "LISTADO";
+            this.btnListado.ToolTipText = "Listado";
+            // 
+            // btlReport
+            // 
+            this.btlReport.ImageIndex = 12;
+            this.btlReport.Name = "btlReport";
+            this.btlReport.Tag = "REGISTRO";
+            this.btlReport.ToolTipText = "Registro";
+            // 
+            // Separator8
+            // 
+            this.Separator8.Name = "Separator8";
+            this.Separator8.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // btnImprimir
+            // 
+            this.btnImprimir.ImageIndex = 14;
+            this.btnImprimir.Name = "btnImprimir";
+            this.btnImprimir.Tag = "IMPRIMIR";
+            this.btnImprimir.ToolTipText = "Imprimir";
+            // 
+            // ToolBarButton6
+            // 
+            this.ToolBarButton6.Name = "ToolBarButton6";
+            this.ToolBarButton6.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton79
+            // 
+            this.ToolBarButton79.ImageIndex = 9;
+            this.ToolBarButton79.Name = "ToolBarButton79";
+            this.ToolBarButton79.Tag = "CERRAR";
+            this.ToolBarButton79.ToolTipText = "Cerrar formulario";
+            // 
+            // ToolBarButton82
+            // 
+            this.ToolBarButton82.Name = "ToolBarButton82";
+            this.ToolBarButton82.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // Separador8
             // 
-            Separador8.Name = "Separador8";
-            Separador8.Style = ToolBarButtonStyle.Separator;
+            this.Separador8.Name = "Separador8";
+            this.Separador8.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // HScroll1
             // 
-            HScroll1.Location = new Point(640, 104);
-            HScroll1.Name = "HScroll1";
-            HScroll1.Size = new Size(104, 16);
-            HScroll1.TabIndex = 10;
+            this.HScroll1.Location = new System.Drawing.Point(640, 104);
+            this.HScroll1.Name = "HScroll1";
+            this.HScroll1.Size = new System.Drawing.Size(104, 16);
+            this.HScroll1.TabIndex = 10;
             // 
             // tbrRegistrosBIG
             // 
-            tbrRegistrosBIG.Appearance = ToolBarAppearance.Flat;
-            tbrRegistrosBIG.Buttons.AddRange(new[]
+            this.tbrRegistrosBIG.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
+            tbrRegistrosBIG.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[]
             {
                 ToolBarButton1,
                 ToolBarButton2,
@@ -1384,267 +1399,267 @@ namespace FSFormControls
                 ToolBarButton77,
                 ToolBarButton78
             });
-            tbrRegistrosBIG.ButtonSize = new Size(24, 24);
-            tbrRegistrosBIG.Dock = DockStyle.None;
-            tbrRegistrosBIG.DropDownArrows = true;
-            tbrRegistrosBIG.ImageList = imgXPToolBarBIG;
-            tbrRegistrosBIG.Location = new Point(0, 40);
-            tbrRegistrosBIG.Name = "tbrRegistrosBIG";
-            tbrRegistrosBIG.ShowToolTips = true;
-            tbrRegistrosBIG.Size = new Size(900, 138);
-            tbrRegistrosBIG.TabIndex = 12;
-            // 
-            // ToolBarButton1
-            // 
-            ToolBarButton1.Name = "ToolBarButton1";
-            ToolBarButton1.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton2
-            // 
-            ToolBarButton2.ImageIndex = 3;
-            ToolBarButton2.Name = "ToolBarButton2";
-            ToolBarButton2.Tag = "BUSCAR";
-            ToolBarButton2.Text = "Buscar";
-            ToolBarButton2.ToolTipText = "Buscar";
-            // 
-            // ToolBarButton3
-            // 
-            ToolBarButton3.ImageIndex = 9;
-            ToolBarButton3.Name = "ToolBarButton3";
-            ToolBarButton3.Tag = "BUSCARSIGUIENTE";
-            ToolBarButton3.Text = "Sig...";
-            ToolBarButton3.ToolTipText = "Buscar siguiente";
-            // 
-            // ToolBarButton4
-            // 
-            ToolBarButton4.Name = "ToolBarButton4";
-            ToolBarButton4.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton5
-            // 
-            ToolBarButton5.ImageIndex = 14;
-            ToolBarButton5.Name = "ToolBarButton5";
-            ToolBarButton5.Tag = "ESTABLECERFILTROS";
-            ToolBarButton5.Text = "Filtro";
-            ToolBarButton5.ToolTipText = "Establecer filtro";
-            // 
-            // ToolBarButton7
-            // 
-            ToolBarButton7.Name = "ToolBarButton7";
-            ToolBarButton7.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton8
-            // 
-            ToolBarButton8.ImageIndex = 8;
-            ToolBarButton8.Name = "ToolBarButton8";
-            ToolBarButton8.Tag = "MOVERPRIMERO";
-            ToolBarButton8.Text = "Inicio";
-            ToolBarButton8.ToolTipText = "Primero";
-            // 
-            // ToolBarButton9
-            // 
-            ToolBarButton9.ImageIndex = 0;
-            ToolBarButton9.Name = "ToolBarButton9";
-            ToolBarButton9.Tag = "MOVERANTERIOR";
-            ToolBarButton9.Text = "Atrás";
-            ToolBarButton9.ToolTipText = "Anterior";
-            // 
-            // ToolBarButton10
-            // 
-            ToolBarButton10.ImageIndex = 1;
-            ToolBarButton10.Name = "ToolBarButton10";
-            ToolBarButton10.Tag = "MOVERSIGUIENTE";
-            ToolBarButton10.Text = "Sig...";
-            ToolBarButton10.ToolTipText = "Siguiente";
-            // 
-            // ToolBarButton11
-            // 
-            ToolBarButton11.ImageIndex = 2;
-            ToolBarButton11.Name = "ToolBarButton11";
-            ToolBarButton11.Tag = "MOVERULTIMO";
-            ToolBarButton11.Text = "Fin";
-            ToolBarButton11.ToolTipText = "?ltimo";
-            // 
-            // ToolBarButton12
-            // 
-            ToolBarButton12.Name = "ToolBarButton12";
-            ToolBarButton12.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton13
-            // 
-            ToolBarButton13.ImageIndex = 10;
-            ToolBarButton13.Name = "ToolBarButton13";
-            ToolBarButton13.Tag = "NUEVO";
-            ToolBarButton13.Text = "Nuevo";
-            ToolBarButton13.ToolTipText = "Nuevo";
-            // 
-            // ToolBarButton14
-            // 
-            ToolBarButton14.ImageIndex = 17;
-            ToolBarButton14.Name = "ToolBarButton14";
-            ToolBarButton14.Tag = "EDITAR";
-            ToolBarButton14.Text = "Editar";
-            ToolBarButton14.ToolTipText = "Editar";
-            // 
-            // ToolBarButton15
-            // 
-            ToolBarButton15.Name = "ToolBarButton15";
-            ToolBarButton15.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton16
-            // 
-            ToolBarButton16.ImageIndex = 11;
-            ToolBarButton16.Name = "ToolBarButton16";
-            ToolBarButton16.Tag = "CANCELARALTA";
-            ToolBarButton16.Text = "Canc...";
-            ToolBarButton16.ToolTipText = "Cancelar";
-            // 
-            // ToolBarButton17
-            // 
-            ToolBarButton17.ImageIndex = 6;
-            ToolBarButton17.Name = "ToolBarButton17";
-            ToolBarButton17.Tag = "GUARDAR";
-            ToolBarButton17.Text = "Salvar";
-            ToolBarButton17.ToolTipText = "Salvar";
-            // 
-            // ToolBarButton84
-            // 
-            ToolBarButton84.ImageIndex = 18;
-            ToolBarButton84.Name = "ToolBarButton84";
-            ToolBarButton84.Tag = "REFRESCAR";
-            ToolBarButton84.Text = "Refrescar";
-            ToolBarButton84.ToolTipText = "Refrescar";
-            // 
-            // ToolBarButton18
-            // 
-            ToolBarButton18.Name = "ToolBarButton18";
-            ToolBarButton18.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton19
-            // 
-            ToolBarButton19.ImageIndex = 5;
-            ToolBarButton19.Name = "ToolBarButton19";
-            ToolBarButton19.Tag = "ELIMINAR";
-            ToolBarButton19.Text = "Borrar";
-            ToolBarButton19.ToolTipText = "Borrar";
-            // 
-            // ToolBarButton20
-            // 
-            ToolBarButton20.Name = "ToolBarButton20";
-            ToolBarButton20.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton21
-            // 
-            ToolBarButton21.ImageIndex = 12;
-            ToolBarButton21.Name = "ToolBarButton21";
-            ToolBarButton21.Tag = "GO";
-            ToolBarButton21.ToolTipText = "Ir a";
-            ToolBarButton21.Visible = false;
-            // 
-            // ToolBarButton22
-            // 
-            ToolBarButton22.ImageIndex = 13;
-            ToolBarButton22.Name = "ToolBarButton22";
-            ToolBarButton22.Tag = "LISTADO";
-            ToolBarButton22.Text = "List...";
-            ToolBarButton22.ToolTipText = "Listado";
-            // 
-            // ToolBarButton23
-            // 
-            ToolBarButton23.ImageIndex = 16;
-            ToolBarButton23.Name = "ToolBarButton23";
-            ToolBarButton23.Tag = "REGISTRO";
-            ToolBarButton23.Text = "Reg...";
-            ToolBarButton23.ToolTipText = "Registro";
-            // 
-            // ToolBarButton24
-            // 
-            ToolBarButton24.Name = "ToolBarButton24";
-            ToolBarButton24.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton25
-            // 
-            ToolBarButton25.ImageIndex = 18;
-            ToolBarButton25.Name = "ToolBarButton25";
-            ToolBarButton25.Tag = "IMPRIMIR";
-            ToolBarButton25.Text = "Impr...";
-            ToolBarButton25.ToolTipText = "Imprimir";
-            // 
-            // ToolBarButton26
-            // 
-            ToolBarButton26.Name = "ToolBarButton26";
-            ToolBarButton26.Style = ToolBarButtonStyle.Separator;
-            // 
-            // ToolBarButton77
-            // 
-            ToolBarButton77.ImageIndex = 11;
-            ToolBarButton77.Name = "ToolBarButton77";
-            ToolBarButton77.Tag = "CERRAR";
-            ToolBarButton77.Text = "Cerrar";
-            ToolBarButton77.ToolTipText = "Cerrar formulario";
-            // 
-            // ToolBarButton78
-            // 
-            ToolBarButton78.Name = "ToolBarButton78";
-            ToolBarButton78.Style = ToolBarButtonStyle.Separator;
+            this.tbrRegistrosBIG.ButtonSize = new System.Drawing.Size(24, 24);
+            this.tbrRegistrosBIG.Dock = System.Windows.Forms.DockStyle.None;
+            this.tbrRegistrosBIG.DropDownArrows = true;
+            this.tbrRegistrosBIG.ImageList = this.imgXPToolBarBIG;
+            this.tbrRegistrosBIG.Location = new System.Drawing.Point(0, 40);
+            this.tbrRegistrosBIG.Name = "tbrRegistrosBIG";
+            this.tbrRegistrosBIG.ShowToolTips = true;
+            this.tbrRegistrosBIG.Size = new System.Drawing.Size(900, 30);
+            this.tbrRegistrosBIG.TabIndex = 12;
             // 
             // imgXPToolBarBIG
             // 
-            imgXPToolBarBIG.ImageStream = (ImageListStreamer) resources.GetObject("imgXPToolBarBIG.ImageStream");
-            imgXPToolBarBIG.TransparentColor = Color.Fuchsia;
-            imgXPToolBarBIG.Images.SetKeyName(0, "");
-            imgXPToolBarBIG.Images.SetKeyName(1, "");
-            imgXPToolBarBIG.Images.SetKeyName(2, "");
-            imgXPToolBarBIG.Images.SetKeyName(3, "");
-            imgXPToolBarBIG.Images.SetKeyName(4, "");
-            imgXPToolBarBIG.Images.SetKeyName(5, "");
-            imgXPToolBarBIG.Images.SetKeyName(6, "");
-            imgXPToolBarBIG.Images.SetKeyName(7, "");
-            imgXPToolBarBIG.Images.SetKeyName(8, "");
-            imgXPToolBarBIG.Images.SetKeyName(9, "");
-            imgXPToolBarBIG.Images.SetKeyName(10, "");
-            imgXPToolBarBIG.Images.SetKeyName(11, "");
-            imgXPToolBarBIG.Images.SetKeyName(12, "");
-            imgXPToolBarBIG.Images.SetKeyName(13, "");
-            imgXPToolBarBIG.Images.SetKeyName(14, "");
-            imgXPToolBarBIG.Images.SetKeyName(15, "");
-            imgXPToolBarBIG.Images.SetKeyName(16, "");
-            imgXPToolBarBIG.Images.SetKeyName(17, "");
-            imgXPToolBarBIG.Images.SetKeyName(18, "");
+            this.imgXPToolBarBIG.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgXPToolBarBIG.ImageStream")));
+            this.imgXPToolBarBIG.TransparentColor = System.Drawing.Color.Fuchsia;
+            this.imgXPToolBarBIG.Images.SetKeyName(0, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(1, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(2, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(3, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(4, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(5, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(6, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(7, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(8, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(9, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(10, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(11, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(12, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(13, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(14, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(15, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(16, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(17, "");
+            this.imgXPToolBarBIG.Images.SetKeyName(18, "");
+            // 
+            // ToolBarButton1
+            // 
+            this.ToolBarButton1.Name = "ToolBarButton1";
+            this.ToolBarButton1.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton2
+            // 
+            this.ToolBarButton2.ImageIndex = 3;
+            this.ToolBarButton2.Name = "ToolBarButton2";
+            this.ToolBarButton2.Tag = "BUSCAR";
+            this.ToolBarButton2.Text = "Buscar";
+            this.ToolBarButton2.ToolTipText = "Buscar";
+            // 
+            // ToolBarButton3
+            // 
+            this.ToolBarButton3.ImageIndex = 9;
+            this.ToolBarButton3.Name = "ToolBarButton3";
+            this.ToolBarButton3.Tag = "BUSCARSIGUIENTE";
+            this.ToolBarButton3.Text = "Sig...";
+            this.ToolBarButton3.ToolTipText = "Buscar siguiente";
+            // 
+            // ToolBarButton4
+            // 
+            this.ToolBarButton4.Name = "ToolBarButton4";
+            this.ToolBarButton4.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton5
+            // 
+            this.ToolBarButton5.ImageIndex = 14;
+            this.ToolBarButton5.Name = "ToolBarButton5";
+            this.ToolBarButton5.Tag = "ESTABLECERFILTROS";
+            this.ToolBarButton5.Text = "Filtro";
+            this.ToolBarButton5.ToolTipText = "Establecer filtro";
+            // 
+            // ToolBarButton7
+            // 
+            this.ToolBarButton7.Name = "ToolBarButton7";
+            this.ToolBarButton7.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton8
+            // 
+            this.ToolBarButton8.ImageIndex = 8;
+            this.ToolBarButton8.Name = "ToolBarButton8";
+            this.ToolBarButton8.Tag = "MOVERPRIMERO";
+            this.ToolBarButton8.Text = "Inicio";
+            this.ToolBarButton8.ToolTipText = "Primero";
+            // 
+            // ToolBarButton9
+            // 
+            this.ToolBarButton9.ImageIndex = 0;
+            this.ToolBarButton9.Name = "ToolBarButton9";
+            this.ToolBarButton9.Tag = "MOVERANTERIOR";
+            this.ToolBarButton9.Text = "Atrás";
+            this.ToolBarButton9.ToolTipText = "Anterior";
+            // 
+            // ToolBarButton10
+            // 
+            this.ToolBarButton10.ImageIndex = 1;
+            this.ToolBarButton10.Name = "ToolBarButton10";
+            this.ToolBarButton10.Tag = "MOVERSIGUIENTE";
+            this.ToolBarButton10.Text = "Sig...";
+            this.ToolBarButton10.ToolTipText = "Siguiente";
+            // 
+            // ToolBarButton11
+            // 
+            this.ToolBarButton11.ImageIndex = 2;
+            this.ToolBarButton11.Name = "ToolBarButton11";
+            this.ToolBarButton11.Tag = "MOVERULTIMO";
+            this.ToolBarButton11.Text = "Fin";
+            this.ToolBarButton11.ToolTipText = "?ltimo";
+            // 
+            // ToolBarButton12
+            // 
+            this.ToolBarButton12.Name = "ToolBarButton12";
+            this.ToolBarButton12.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton13
+            // 
+            this.ToolBarButton13.ImageIndex = 10;
+            this.ToolBarButton13.Name = "ToolBarButton13";
+            this.ToolBarButton13.Tag = "NUEVO";
+            this.ToolBarButton13.Text = "Nuevo";
+            this.ToolBarButton13.ToolTipText = "Nuevo";
+            // 
+            // ToolBarButton14
+            // 
+            this.ToolBarButton14.ImageIndex = 17;
+            this.ToolBarButton14.Name = "ToolBarButton14";
+            this.ToolBarButton14.Tag = "EDITAR";
+            this.ToolBarButton14.Text = "Editar";
+            this.ToolBarButton14.ToolTipText = "Editar";
+            // 
+            // ToolBarButton15
+            // 
+            this.ToolBarButton15.Name = "ToolBarButton15";
+            this.ToolBarButton15.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton16
+            // 
+            this.ToolBarButton16.ImageIndex = 11;
+            this.ToolBarButton16.Name = "ToolBarButton16";
+            this.ToolBarButton16.Tag = "CANCELARALTA";
+            this.ToolBarButton16.Text = "Canc...";
+            this.ToolBarButton16.ToolTipText = "Cancelar";
+            // 
+            // ToolBarButton17
+            // 
+            this.ToolBarButton17.ImageIndex = 6;
+            this.ToolBarButton17.Name = "ToolBarButton17";
+            this.ToolBarButton17.Tag = "GUARDAR";
+            this.ToolBarButton17.Text = "Salvar";
+            this.ToolBarButton17.ToolTipText = "Salvar";
+            // 
+            // ToolBarButton84
+            // 
+            this.ToolBarButton84.ImageIndex = 18;
+            this.ToolBarButton84.Name = "ToolBarButton84";
+            this.ToolBarButton84.Tag = "REFRESCAR";
+            this.ToolBarButton84.Text = "Refrescar";
+            this.ToolBarButton84.ToolTipText = "Refrescar";
+            // 
+            // ToolBarButton18
+            // 
+            this.ToolBarButton18.Name = "ToolBarButton18";
+            this.ToolBarButton18.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton19
+            // 
+            this.ToolBarButton19.ImageIndex = 5;
+            this.ToolBarButton19.Name = "ToolBarButton19";
+            this.ToolBarButton19.Tag = "ELIMINAR";
+            this.ToolBarButton19.Text = "Borrar";
+            this.ToolBarButton19.ToolTipText = "Borrar";
+            // 
+            // ToolBarButton20
+            // 
+            this.ToolBarButton20.Name = "ToolBarButton20";
+            this.ToolBarButton20.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton21
+            // 
+            this.ToolBarButton21.ImageIndex = 12;
+            this.ToolBarButton21.Name = "ToolBarButton21";
+            this.ToolBarButton21.Tag = "GO";
+            this.ToolBarButton21.ToolTipText = "Ir a";
+            this.ToolBarButton21.Visible = false;
+            // 
+            // ToolBarButton22
+            // 
+            this.ToolBarButton22.ImageIndex = 13;
+            this.ToolBarButton22.Name = "ToolBarButton22";
+            this.ToolBarButton22.Tag = "LISTADO";
+            this.ToolBarButton22.Text = "List...";
+            this.ToolBarButton22.ToolTipText = "Listado";
+            // 
+            // ToolBarButton23
+            // 
+            this.ToolBarButton23.ImageIndex = 16;
+            this.ToolBarButton23.Name = "ToolBarButton23";
+            this.ToolBarButton23.Tag = "REGISTRO";
+            this.ToolBarButton23.Text = "Reg...";
+            this.ToolBarButton23.ToolTipText = "Registro";
+            // 
+            // ToolBarButton24
+            // 
+            this.ToolBarButton24.Name = "ToolBarButton24";
+            this.ToolBarButton24.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton25
+            // 
+            this.ToolBarButton25.ImageIndex = 18;
+            this.ToolBarButton25.Name = "ToolBarButton25";
+            this.ToolBarButton25.Tag = "IMPRIMIR";
+            this.ToolBarButton25.Text = "Impr...";
+            this.ToolBarButton25.ToolTipText = "Imprimir";
+            // 
+            // ToolBarButton26
+            // 
+            this.ToolBarButton26.Name = "ToolBarButton26";
+            this.ToolBarButton26.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // ToolBarButton77
+            // 
+            this.ToolBarButton77.ImageIndex = 11;
+            this.ToolBarButton77.Name = "ToolBarButton77";
+            this.ToolBarButton77.Tag = "CERRAR";
+            this.ToolBarButton77.Text = "Cerrar";
+            this.ToolBarButton77.ToolTipText = "Cerrar formulario";
+            // 
+            // ToolBarButton78
+            // 
+            this.ToolBarButton78.Name = "ToolBarButton78";
+            this.ToolBarButton78.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // lblReg
             // 
-            lblReg.AutoSize = true;
-            lblReg.Location = new Point(544, 104);
-            lblReg.Name = "lblReg";
-            lblReg.Size = new Size(24, 13);
-            lblReg.TabIndex = 13;
-            lblReg.Text = "0/0";
+            this.lblReg.AutoSize = true;
+            this.lblReg.Location = new System.Drawing.Point(544, 104);
+            this.lblReg.Name = "lblReg";
+            this.lblReg.Size = new System.Drawing.Size(24, 13);
+            this.lblReg.TabIndex = 13;
+            this.lblReg.Text = "0/0";
             // 
             // imgStandard
             // 
-            imgStandard.ImageStream = (ImageListStreamer) resources.GetObject("imgStandard.ImageStream");
-            imgStandard.TransparentColor = Color.Transparent;
-            imgStandard.Images.SetKeyName(0, "");
-            imgStandard.Images.SetKeyName(1, "");
-            imgStandard.Images.SetKeyName(2, "");
-            imgStandard.Images.SetKeyName(3, "");
-            imgStandard.Images.SetKeyName(4, "");
-            imgStandard.Images.SetKeyName(5, "");
-            imgStandard.Images.SetKeyName(6, "");
-            imgStandard.Images.SetKeyName(7, "");
-            imgStandard.Images.SetKeyName(8, "");
-            imgStandard.Images.SetKeyName(9, "");
-            imgStandard.Images.SetKeyName(10, "");
-            imgStandard.Images.SetKeyName(11, "");
-            imgStandard.Images.SetKeyName(12, "");
-            imgStandard.Images.SetKeyName(13, "");
-            imgStandard.Images.SetKeyName(14, "");
+            this.imgStandard.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imgStandard.ImageStream")));
+            this.imgStandard.TransparentColor = System.Drawing.Color.Transparent;
+            this.imgStandard.Images.SetKeyName(0, "");
+            this.imgStandard.Images.SetKeyName(1, "");
+            this.imgStandard.Images.SetKeyName(2, "");
+            this.imgStandard.Images.SetKeyName(3, "");
+            this.imgStandard.Images.SetKeyName(4, "");
+            this.imgStandard.Images.SetKeyName(5, "");
+            this.imgStandard.Images.SetKeyName(6, "");
+            this.imgStandard.Images.SetKeyName(7, "");
+            this.imgStandard.Images.SetKeyName(8, "");
+            this.imgStandard.Images.SetKeyName(9, "");
+            this.imgStandard.Images.SetKeyName(10, "");
+            this.imgStandard.Images.SetKeyName(11, "");
+            this.imgStandard.Images.SetKeyName(12, "");
+            this.imgStandard.Images.SetKeyName(13, "");
+            this.imgStandard.Images.SetKeyName(14, "");
             // 
             // tbrRegistrosStandardBIG
             // 
-            tbrRegistrosStandardBIG.Appearance = ToolBarAppearance.Flat;
-            tbrRegistrosStandardBIG.Buttons.AddRange(new[]
+            this.tbrRegistrosStandardBIG.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
+            tbrRegistrosStandardBIG.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[]
             {
                 ToolBarButton27,
                 ToolBarButton28,
@@ -1674,208 +1689,208 @@ namespace FSFormControls
                 ToolBarButton83,
                 toolBarButton86
             });
-            tbrRegistrosStandardBIG.ButtonSize = new Size(24, 24);
-            tbrRegistrosStandardBIG.Dock = DockStyle.None;
-            tbrRegistrosStandardBIG.DropDownArrows = true;
-            tbrRegistrosStandardBIG.ImageList = imgStandard;
-            tbrRegistrosStandardBIG.Location = new Point(56, 136);
-            tbrRegistrosStandardBIG.Name = "tbrRegistrosStandardBIG";
-            tbrRegistrosStandardBIG.ShowToolTips = true;
-            tbrRegistrosStandardBIG.Size = new Size(900, 42);
-            tbrRegistrosStandardBIG.TabIndex = 14;
+            this.tbrRegistrosStandardBIG.ButtonSize = new System.Drawing.Size(24, 24);
+            this.tbrRegistrosStandardBIG.Dock = System.Windows.Forms.DockStyle.None;
+            this.tbrRegistrosStandardBIG.DropDownArrows = true;
+            this.tbrRegistrosStandardBIG.ImageList = this.imgStandard;
+            this.tbrRegistrosStandardBIG.Location = new System.Drawing.Point(56, 136);
+            this.tbrRegistrosStandardBIG.Name = "tbrRegistrosStandardBIG";
+            this.tbrRegistrosStandardBIG.ShowToolTips = true;
+            this.tbrRegistrosStandardBIG.Size = new System.Drawing.Size(900, 30);
+            this.tbrRegistrosStandardBIG.TabIndex = 14;
             // 
             // ToolBarButton27
             // 
-            ToolBarButton27.Name = "ToolBarButton27";
-            ToolBarButton27.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton27.Name = "ToolBarButton27";
+            this.ToolBarButton27.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton28
             // 
-            ToolBarButton28.ImageIndex = 0;
-            ToolBarButton28.Name = "ToolBarButton28";
-            ToolBarButton28.Tag = "BUSCAR";
-            ToolBarButton28.Text = "Buscar";
-            ToolBarButton28.ToolTipText = "Buscar";
+            this.ToolBarButton28.ImageIndex = 0;
+            this.ToolBarButton28.Name = "ToolBarButton28";
+            this.ToolBarButton28.Tag = "BUSCAR";
+            this.ToolBarButton28.Text = "Buscar";
+            this.ToolBarButton28.ToolTipText = "Buscar";
             // 
             // ToolBarButton29
             // 
-            ToolBarButton29.ImageIndex = 1;
-            ToolBarButton29.Name = "ToolBarButton29";
-            ToolBarButton29.Tag = "BUSCARSIGUIENTE";
-            ToolBarButton29.Text = "Sig...";
-            ToolBarButton29.ToolTipText = "Buscar siguiente";
+            this.ToolBarButton29.ImageIndex = 1;
+            this.ToolBarButton29.Name = "ToolBarButton29";
+            this.ToolBarButton29.Tag = "BUSCARSIGUIENTE";
+            this.ToolBarButton29.Text = "Sig...";
+            this.ToolBarButton29.ToolTipText = "Buscar siguiente";
             // 
             // ToolBarButton30
             // 
-            ToolBarButton30.Name = "ToolBarButton30";
-            ToolBarButton30.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton30.Name = "ToolBarButton30";
+            this.ToolBarButton30.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton31
             // 
-            ToolBarButton31.ImageIndex = 2;
-            ToolBarButton31.Name = "ToolBarButton31";
-            ToolBarButton31.Tag = "ESTABLECERFILTROS";
-            ToolBarButton31.Text = "Filtro";
-            ToolBarButton31.ToolTipText = "Establecer filtro";
+            this.ToolBarButton31.ImageIndex = 2;
+            this.ToolBarButton31.Name = "ToolBarButton31";
+            this.ToolBarButton31.Tag = "ESTABLECERFILTROS";
+            this.ToolBarButton31.Text = "Filtro";
+            this.ToolBarButton31.ToolTipText = "Establecer filtro";
             // 
             // ToolBarButton32
             // 
-            ToolBarButton32.Name = "ToolBarButton32";
-            ToolBarButton32.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton32.Name = "ToolBarButton32";
+            this.ToolBarButton32.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton33
             // 
-            ToolBarButton33.ImageIndex = 3;
-            ToolBarButton33.Name = "ToolBarButton33";
-            ToolBarButton33.Tag = "MOVERPRIMERO";
-            ToolBarButton33.Text = "Inicio";
-            ToolBarButton33.ToolTipText = "Primero";
+            this.ToolBarButton33.ImageIndex = 3;
+            this.ToolBarButton33.Name = "ToolBarButton33";
+            this.ToolBarButton33.Tag = "MOVERPRIMERO";
+            this.ToolBarButton33.Text = "Inicio";
+            this.ToolBarButton33.ToolTipText = "Primero";
             // 
             // ToolBarButton34
             // 
-            ToolBarButton34.ImageIndex = 4;
-            ToolBarButton34.Name = "ToolBarButton34";
-            ToolBarButton34.Tag = "MOVERANTERIOR";
-            ToolBarButton34.Text = "Atrás";
-            ToolBarButton34.ToolTipText = "Anterior";
+            this.ToolBarButton34.ImageIndex = 4;
+            this.ToolBarButton34.Name = "ToolBarButton34";
+            this.ToolBarButton34.Tag = "MOVERANTERIOR";
+            this.ToolBarButton34.Text = "Atrás";
+            this.ToolBarButton34.ToolTipText = "Anterior";
             // 
             // ToolBarButton35
             // 
-            ToolBarButton35.ImageIndex = 5;
-            ToolBarButton35.Name = "ToolBarButton35";
-            ToolBarButton35.Tag = "MOVERSIGUIENTE";
-            ToolBarButton35.Text = "Sig...";
-            ToolBarButton35.ToolTipText = "Siguiente";
+            this.ToolBarButton35.ImageIndex = 5;
+            this.ToolBarButton35.Name = "ToolBarButton35";
+            this.ToolBarButton35.Tag = "MOVERSIGUIENTE";
+            this.ToolBarButton35.Text = "Sig...";
+            this.ToolBarButton35.ToolTipText = "Siguiente";
             // 
             // ToolBarButton36
             // 
-            ToolBarButton36.ImageIndex = 6;
-            ToolBarButton36.Name = "ToolBarButton36";
-            ToolBarButton36.Tag = "MOVERULTIMO";
-            ToolBarButton36.Text = "Fin";
-            ToolBarButton36.ToolTipText = "?ltimo";
+            this.ToolBarButton36.ImageIndex = 6;
+            this.ToolBarButton36.Name = "ToolBarButton36";
+            this.ToolBarButton36.Tag = "MOVERULTIMO";
+            this.ToolBarButton36.Text = "Fin";
+            this.ToolBarButton36.ToolTipText = "Último";
             // 
             // ToolBarButton37
             // 
-            ToolBarButton37.ImageIndex = 7;
-            ToolBarButton37.Name = "ToolBarButton37";
-            ToolBarButton37.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton37.ImageIndex = 7;
+            this.ToolBarButton37.Name = "ToolBarButton37";
+            this.ToolBarButton37.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton38
             // 
-            ToolBarButton38.ImageIndex = 7;
-            ToolBarButton38.Name = "ToolBarButton38";
-            ToolBarButton38.Tag = "NUEVO";
-            ToolBarButton38.Text = "Nuevo";
-            ToolBarButton38.ToolTipText = "Nuevo";
+            this.ToolBarButton38.ImageIndex = 7;
+            this.ToolBarButton38.Name = "ToolBarButton38";
+            this.ToolBarButton38.Tag = "NUEVO";
+            this.ToolBarButton38.Text = "Nuevo";
+            this.ToolBarButton38.ToolTipText = "Nuevo";
             // 
             // ToolBarButton39
             // 
-            ToolBarButton39.ImageIndex = 12;
-            ToolBarButton39.Name = "ToolBarButton39";
-            ToolBarButton39.Tag = "EDITAR";
-            ToolBarButton39.Text = "Editar";
-            ToolBarButton39.ToolTipText = "Editar";
+            this.ToolBarButton39.ImageIndex = 12;
+            this.ToolBarButton39.Name = "ToolBarButton39";
+            this.ToolBarButton39.Tag = "EDITAR";
+            this.ToolBarButton39.Text = "Editar";
+            this.ToolBarButton39.ToolTipText = "Editar";
             // 
             // ToolBarButton40
             // 
-            ToolBarButton40.ImageIndex = 9;
-            ToolBarButton40.Name = "ToolBarButton40";
-            ToolBarButton40.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton40.ImageIndex = 9;
+            this.ToolBarButton40.Name = "ToolBarButton40";
+            this.ToolBarButton40.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton41
             // 
-            ToolBarButton41.ImageIndex = 9;
-            ToolBarButton41.Name = "ToolBarButton41";
-            ToolBarButton41.Tag = "CANCELARALTA";
-            ToolBarButton41.Text = "Canc...";
-            ToolBarButton41.ToolTipText = "Cancelar";
+            this.ToolBarButton41.ImageIndex = 9;
+            this.ToolBarButton41.Name = "ToolBarButton41";
+            this.ToolBarButton41.Tag = "CANCELARALTA";
+            this.ToolBarButton41.Text = "Canc...";
+            this.ToolBarButton41.ToolTipText = "Cancelar";
             // 
             // ToolBarButton42
             // 
-            ToolBarButton42.ImageIndex = 8;
-            ToolBarButton42.Name = "ToolBarButton42";
-            ToolBarButton42.Tag = "GUARDAR";
-            ToolBarButton42.Text = "Salvar";
-            ToolBarButton42.ToolTipText = "Guardar";
+            this.ToolBarButton42.ImageIndex = 8;
+            this.ToolBarButton42.Name = "ToolBarButton42";
+            this.ToolBarButton42.Tag = "GUARDAR";
+            this.ToolBarButton42.Text = "Salvar";
+            this.ToolBarButton42.ToolTipText = "Guardar";
             // 
             // ToolBarButton43
             // 
-            ToolBarButton43.Name = "ToolBarButton43";
-            ToolBarButton43.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton43.Name = "ToolBarButton43";
+            this.ToolBarButton43.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton44
             // 
-            ToolBarButton44.ImageIndex = 10;
-            ToolBarButton44.Name = "ToolBarButton44";
-            ToolBarButton44.Tag = "ELIMINAR";
-            ToolBarButton44.Text = "Borrar";
-            ToolBarButton44.ToolTipText = "Eliminar";
+            this.ToolBarButton44.ImageIndex = 10;
+            this.ToolBarButton44.Name = "ToolBarButton44";
+            this.ToolBarButton44.Tag = "ELIMINAR";
+            this.ToolBarButton44.Text = "Borrar";
+            this.ToolBarButton44.ToolTipText = "Eliminar";
             // 
             // ToolBarButton45
             // 
-            ToolBarButton45.Name = "ToolBarButton45";
-            ToolBarButton45.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton45.Name = "ToolBarButton45";
+            this.ToolBarButton45.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton46
             // 
-            ToolBarButton46.ImageIndex = 13;
-            ToolBarButton46.Name = "ToolBarButton46";
-            ToolBarButton46.Tag = "GO";
-            ToolBarButton46.ToolTipText = "Ir a";
-            ToolBarButton46.Visible = false;
+            this.ToolBarButton46.ImageIndex = 13;
+            this.ToolBarButton46.Name = "ToolBarButton46";
+            this.ToolBarButton46.Tag = "GO";
+            this.ToolBarButton46.ToolTipText = "Ir a";
+            this.ToolBarButton46.Visible = false;
             // 
             // ToolBarButton47
             // 
-            ToolBarButton47.ImageIndex = 11;
-            ToolBarButton47.Name = "ToolBarButton47";
-            ToolBarButton47.Tag = "LISTADO";
-            ToolBarButton47.Text = "List...";
-            ToolBarButton47.ToolTipText = "Listado";
+            this.ToolBarButton47.ImageIndex = 11;
+            this.ToolBarButton47.Name = "ToolBarButton47";
+            this.ToolBarButton47.Tag = "LISTADO";
+            this.ToolBarButton47.Text = "List...";
+            this.ToolBarButton47.ToolTipText = "Listado";
             // 
             // ToolBarButton48
             // 
-            ToolBarButton48.ImageIndex = 13;
-            ToolBarButton48.Name = "ToolBarButton48";
-            ToolBarButton48.Tag = "REGISTRO";
-            ToolBarButton48.Text = "Reg...";
-            ToolBarButton48.ToolTipText = "Registro";
+            this.ToolBarButton48.ImageIndex = 13;
+            this.ToolBarButton48.Name = "ToolBarButton48";
+            this.ToolBarButton48.Tag = "REGISTRO";
+            this.ToolBarButton48.Text = "Reg...";
+            this.ToolBarButton48.ToolTipText = "Registro";
             // 
             // ToolBarButton49
             // 
-            ToolBarButton49.Name = "ToolBarButton49";
-            ToolBarButton49.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton49.Name = "ToolBarButton49";
+            this.ToolBarButton49.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton50
             // 
-            ToolBarButton50.ImageIndex = 14;
-            ToolBarButton50.Name = "ToolBarButton50";
-            ToolBarButton50.Tag = "IMPRIMIR";
-            ToolBarButton50.Text = "Impr...";
-            ToolBarButton50.ToolTipText = "Imprimir";
+            this.ToolBarButton50.ImageIndex = 14;
+            this.ToolBarButton50.Name = "ToolBarButton50";
+            this.ToolBarButton50.Tag = "IMPRIMIR";
+            this.ToolBarButton50.Text = "Impr...";
+            this.ToolBarButton50.ToolTipText = "Imprimir";
             // 
             // ToolBarButton51
             // 
-            ToolBarButton51.Name = "ToolBarButton51";
-            ToolBarButton51.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton51.Name = "ToolBarButton51";
+            this.ToolBarButton51.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton83
             // 
-            ToolBarButton83.ImageIndex = 10;
-            ToolBarButton83.Name = "ToolBarButton83";
-            ToolBarButton83.Tag = "CERRAR";
-            ToolBarButton83.Text = "Cerrar";
-            ToolBarButton83.ToolTipText = "CErrar formulario";
+            this.ToolBarButton83.ImageIndex = 10;
+            this.ToolBarButton83.Name = "ToolBarButton83";
+            this.ToolBarButton83.Tag = "CERRAR";
+            this.ToolBarButton83.Text = "Cerrar";
+            this.ToolBarButton83.ToolTipText = "CErrar formulario";
             // 
             // toolBarButton86
             // 
-            toolBarButton86.Name = "toolBarButton86";
-            toolBarButton86.Style = ToolBarButtonStyle.Separator;
+            this.toolBarButton86.Name = "toolBarButton86";
+            this.toolBarButton86.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // tbrRegistrosStandard
             // 
-            tbrRegistrosStandard.Appearance = ToolBarAppearance.Flat;
-            tbrRegistrosStandard.Buttons.AddRange(new[]
+            this.tbrRegistrosStandard.Appearance = System.Windows.Forms.ToolBarAppearance.Flat;
+            tbrRegistrosStandard.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[]
             {
                 ToolBarButton52,
                 ToolBarButton53,
@@ -1905,200 +1920,205 @@ namespace FSFormControls
                 ToolBarButton80,
                 ToolBarButton81
             });
-            tbrRegistrosStandard.ButtonSize = new Size(24, 24);
-            tbrRegistrosStandard.Dock = DockStyle.None;
-            tbrRegistrosStandard.DropDownArrows = true;
-            tbrRegistrosStandard.ImageList = imgStandard;
-            tbrRegistrosStandard.Location = new Point(32, 100);
-            tbrRegistrosStandard.Name = "tbrRegistrosStandard";
-            tbrRegistrosStandard.ShowToolTips = true;
-            tbrRegistrosStandard.Size = new Size(900, 28);
-            tbrRegistrosStandard.TabIndex = 15;
+            this.tbrRegistrosStandard.ButtonSize = new System.Drawing.Size(24, 24);
+            this.tbrRegistrosStandard.Dock = System.Windows.Forms.DockStyle.None;
+            this.tbrRegistrosStandard.DropDownArrows = true;
+            this.tbrRegistrosStandard.ImageList = this.imgStandard;
+            this.tbrRegistrosStandard.Location = new System.Drawing.Point(32, 100);
+            this.tbrRegistrosStandard.Name = "tbrRegistrosStandard";
+            this.tbrRegistrosStandard.ShowToolTips = true;
+            this.tbrRegistrosStandard.Size = new System.Drawing.Size(900, 30);
+            this.tbrRegistrosStandard.TabIndex = 15;
             // 
             // ToolBarButton52
             // 
-            ToolBarButton52.Name = "ToolBarButton52";
-            ToolBarButton52.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton52.Name = "ToolBarButton52";
+            this.ToolBarButton52.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton53
             // 
-            ToolBarButton53.ImageIndex = 0;
-            ToolBarButton53.Name = "ToolBarButton53";
-            ToolBarButton53.Tag = "BUSCAR";
-            ToolBarButton53.ToolTipText = "Buscar";
+            this.ToolBarButton53.ImageIndex = 0;
+            this.ToolBarButton53.Name = "ToolBarButton53";
+            this.ToolBarButton53.Tag = "BUSCAR";
+            this.ToolBarButton53.ToolTipText = "Buscar";
             // 
             // ToolBarButton54
             // 
-            ToolBarButton54.ImageIndex = 1;
-            ToolBarButton54.Name = "ToolBarButton54";
-            ToolBarButton54.Tag = "BUSCARSIGUIENTE";
-            ToolBarButton54.ToolTipText = "Buscar siguiente";
+            this.ToolBarButton54.ImageIndex = 1;
+            this.ToolBarButton54.Name = "ToolBarButton54";
+            this.ToolBarButton54.Tag = "BUSCARSIGUIENTE";
+            this.ToolBarButton54.ToolTipText = "Buscar siguiente";
             // 
             // ToolBarButton55
             // 
-            ToolBarButton55.Name = "ToolBarButton55";
-            ToolBarButton55.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton55.Name = "ToolBarButton55";
+            this.ToolBarButton55.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton56
             // 
-            ToolBarButton56.ImageIndex = 2;
-            ToolBarButton56.Name = "ToolBarButton56";
-            ToolBarButton56.Tag = "ESTABLECERFILTROS";
-            ToolBarButton56.ToolTipText = "Establecer filtro";
+            this.ToolBarButton56.ImageIndex = 2;
+            this.ToolBarButton56.Name = "ToolBarButton56";
+            this.ToolBarButton56.Tag = "ESTABLECERFILTROS";
+            this.ToolBarButton56.ToolTipText = "Establecer filtro";
             // 
             // ToolBarButton57
             // 
-            ToolBarButton57.Name = "ToolBarButton57";
-            ToolBarButton57.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton57.Name = "ToolBarButton57";
+            this.ToolBarButton57.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton58
             // 
-            ToolBarButton58.ImageIndex = 3;
-            ToolBarButton58.Name = "ToolBarButton58";
-            ToolBarButton58.Tag = "MOVERPRIMERO";
-            ToolBarButton58.ToolTipText = "Primero";
+            this.ToolBarButton58.ImageIndex = 3;
+            this.ToolBarButton58.Name = "ToolBarButton58";
+            this.ToolBarButton58.Tag = "MOVERPRIMERO";
+            this.ToolBarButton58.ToolTipText = "Primero";
             // 
             // ToolBarButton59
             // 
-            ToolBarButton59.ImageIndex = 4;
-            ToolBarButton59.Name = "ToolBarButton59";
-            ToolBarButton59.Tag = "MOVERANTERIOR";
-            ToolBarButton59.ToolTipText = "Anterior";
+            this.ToolBarButton59.ImageIndex = 4;
+            this.ToolBarButton59.Name = "ToolBarButton59";
+            this.ToolBarButton59.Tag = "MOVERANTERIOR";
+            this.ToolBarButton59.ToolTipText = "Anterior";
             // 
             // ToolBarButton60
             // 
-            ToolBarButton60.ImageIndex = 5;
-            ToolBarButton60.Name = "ToolBarButton60";
-            ToolBarButton60.Tag = "MOVERSIGUIENTE";
-            ToolBarButton60.ToolTipText = "Siguiente";
+            this.ToolBarButton60.ImageIndex = 5;
+            this.ToolBarButton60.Name = "ToolBarButton60";
+            this.ToolBarButton60.Tag = "MOVERSIGUIENTE";
+            this.ToolBarButton60.ToolTipText = "Siguiente";
             // 
             // ToolBarButton61
             // 
-            ToolBarButton61.ImageIndex = 6;
-            ToolBarButton61.Name = "ToolBarButton61";
-            ToolBarButton61.Tag = "MOVERULTIMO";
-            ToolBarButton61.ToolTipText = "?ltimo";
+            this.ToolBarButton61.ImageIndex = 6;
+            this.ToolBarButton61.Name = "ToolBarButton61";
+            this.ToolBarButton61.Tag = "MOVERULTIMO";
+            this.ToolBarButton61.ToolTipText = "?ltimo";
             // 
             // ToolBarButton62
             // 
-            ToolBarButton62.ImageIndex = 7;
-            ToolBarButton62.Name = "ToolBarButton62";
-            ToolBarButton62.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton62.ImageIndex = 7;
+            this.ToolBarButton62.Name = "ToolBarButton62";
+            this.ToolBarButton62.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton63
             // 
-            ToolBarButton63.ImageIndex = 7;
-            ToolBarButton63.Name = "ToolBarButton63";
-            ToolBarButton63.Tag = "NUEVO";
-            ToolBarButton63.ToolTipText = "Nuevo";
+            this.ToolBarButton63.ImageIndex = 7;
+            this.ToolBarButton63.Name = "ToolBarButton63";
+            this.ToolBarButton63.Tag = "NUEVO";
+            this.ToolBarButton63.ToolTipText = "Nuevo";
             // 
             // ToolBarButton64
             // 
-            ToolBarButton64.ImageIndex = 12;
-            ToolBarButton64.Name = "ToolBarButton64";
-            ToolBarButton64.Tag = "EDITAR";
-            ToolBarButton64.ToolTipText = "Editar";
+            this.ToolBarButton64.ImageIndex = 12;
+            this.ToolBarButton64.Name = "ToolBarButton64";
+            this.ToolBarButton64.Tag = "EDITAR";
+            this.ToolBarButton64.ToolTipText = "Editar";
             // 
             // ToolBarButton65
             // 
-            ToolBarButton65.ImageIndex = 9;
-            ToolBarButton65.Name = "ToolBarButton65";
-            ToolBarButton65.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton65.ImageIndex = 9;
+            this.ToolBarButton65.Name = "ToolBarButton65";
+            this.ToolBarButton65.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton66
             // 
-            ToolBarButton66.ImageIndex = 9;
-            ToolBarButton66.Name = "ToolBarButton66";
-            ToolBarButton66.Tag = "CANCELARALTA";
-            ToolBarButton66.ToolTipText = "Cancelar";
+            this.ToolBarButton66.ImageIndex = 9;
+            this.ToolBarButton66.Name = "ToolBarButton66";
+            this.ToolBarButton66.Tag = "CANCELARALTA";
+            this.ToolBarButton66.ToolTipText = "Cancelar";
             // 
             // ToolBarButton67
             // 
-            ToolBarButton67.ImageIndex = 8;
-            ToolBarButton67.Name = "ToolBarButton67";
-            ToolBarButton67.Tag = "GUARDAR";
-            ToolBarButton67.ToolTipText = "Guardar";
+            this.ToolBarButton67.ImageIndex = 8;
+            this.ToolBarButton67.Name = "ToolBarButton67";
+            this.ToolBarButton67.Tag = "GUARDAR";
+            this.ToolBarButton67.ToolTipText = "Guardar";
             // 
             // ToolBarButton68
             // 
-            ToolBarButton68.Name = "ToolBarButton68";
-            ToolBarButton68.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton68.Name = "ToolBarButton68";
+            this.ToolBarButton68.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton69
             // 
-            ToolBarButton69.ImageIndex = 10;
-            ToolBarButton69.Name = "ToolBarButton69";
-            ToolBarButton69.Tag = "ELIMINAR";
-            ToolBarButton69.ToolTipText = "Eliminar";
+            this.ToolBarButton69.ImageIndex = 10;
+            this.ToolBarButton69.Name = "ToolBarButton69";
+            this.ToolBarButton69.Tag = "ELIMINAR";
+            this.ToolBarButton69.ToolTipText = "Eliminar";
             // 
             // ToolBarButton70
             // 
-            ToolBarButton70.Name = "ToolBarButton70";
-            ToolBarButton70.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton70.Name = "ToolBarButton70";
+            this.ToolBarButton70.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton71
             // 
-            ToolBarButton71.ImageIndex = 13;
-            ToolBarButton71.Name = "ToolBarButton71";
-            ToolBarButton71.Tag = "GO";
-            ToolBarButton71.ToolTipText = "Ir a";
-            ToolBarButton71.Visible = false;
+            this.ToolBarButton71.ImageIndex = 13;
+            this.ToolBarButton71.Name = "ToolBarButton71";
+            this.ToolBarButton71.Tag = "GO";
+            this.ToolBarButton71.ToolTipText = "Ir a";
+            this.ToolBarButton71.Visible = false;
             // 
             // ToolBarButton72
             // 
-            ToolBarButton72.ImageIndex = 11;
-            ToolBarButton72.Name = "ToolBarButton72";
-            ToolBarButton72.Tag = "LISTADO";
-            ToolBarButton72.ToolTipText = "Listado";
+            this.ToolBarButton72.ImageIndex = 11;
+            this.ToolBarButton72.Name = "ToolBarButton72";
+            this.ToolBarButton72.Tag = "LISTADO";
+            this.ToolBarButton72.ToolTipText = "Listado";
             // 
             // ToolBarButton73
             // 
-            ToolBarButton73.ImageIndex = 13;
-            ToolBarButton73.Name = "ToolBarButton73";
-            ToolBarButton73.Tag = "REGISTRO";
-            ToolBarButton73.ToolTipText = "Registro";
+            this.ToolBarButton73.ImageIndex = 13;
+            this.ToolBarButton73.Name = "ToolBarButton73";
+            this.ToolBarButton73.Tag = "REGISTRO";
+            this.ToolBarButton73.ToolTipText = "Registro";
             // 
             // ToolBarButton74
             // 
-            ToolBarButton74.Name = "ToolBarButton74";
-            ToolBarButton74.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton74.Name = "ToolBarButton74";
+            this.ToolBarButton74.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton75
             // 
-            ToolBarButton75.ImageIndex = 14;
-            ToolBarButton75.Name = "ToolBarButton75";
-            ToolBarButton75.Tag = "IMPRIMIR";
-            ToolBarButton75.ToolTipText = "Imprimir";
+            this.ToolBarButton75.ImageIndex = 14;
+            this.ToolBarButton75.Name = "ToolBarButton75";
+            this.ToolBarButton75.Tag = "IMPRIMIR";
+            this.ToolBarButton75.ToolTipText = "Imprimir";
             // 
             // ToolBarButton76
             // 
-            ToolBarButton76.Name = "ToolBarButton76";
-            ToolBarButton76.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton76.Name = "ToolBarButton76";
+            this.ToolBarButton76.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton80
             // 
-            ToolBarButton80.ImageIndex = 10;
-            ToolBarButton80.Name = "ToolBarButton80";
-            ToolBarButton80.Tag = "CERRAR";
-            ToolBarButton80.ToolTipText = "Cerrar formulario";
+            this.ToolBarButton80.ImageIndex = 10;
+            this.ToolBarButton80.Name = "ToolBarButton80";
+            this.ToolBarButton80.Tag = "CERRAR";
+            this.ToolBarButton80.ToolTipText = "Cerrar formulario";
             // 
             // ToolBarButton81
             // 
-            ToolBarButton81.Name = "ToolBarButton81";
-            ToolBarButton81.Style = ToolBarButtonStyle.Separator;
+            this.ToolBarButton81.Name = "ToolBarButton81";
+            this.ToolBarButton81.Style = System.Windows.Forms.ToolBarButtonStyle.Separator;
+            // 
+            // toolBarButton87
+            // 
+            this.toolBarButton87.Name = "toolBarButton87";
             // 
             // DBToolBarEx
             // 
-            Controls.Add(HScroll1);
-            Controls.Add(lblReg);
-            Controls.Add(tbrRegistrosStandard);
-            Controls.Add(tbrRegistrosStandardBIG);
-            Controls.Add(tbrRegistrosBIG);
-            Controls.Add(tbrRegistros);
-            Name = "DBToolBarEx";
-            Size = new Size(1041, 202);
-            ResumeLayout(false);
-            PerformLayout();
+            this.Controls.Add(this.HScroll1);
+            this.Controls.Add(this.lblReg);
+            this.Controls.Add(this.tbrRegistrosStandard);
+            this.Controls.Add(this.tbrRegistrosStandardBIG);
+            this.Controls.Add(this.tbrRegistrosBIG);
+            this.Controls.Add(this.tbrRegistros);
+            this.Name = "DBToolBarEx";
+            this.Size = new System.Drawing.Size(1041, 202);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
