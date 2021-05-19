@@ -83,6 +83,12 @@ namespace FSFormControls
             this.DbRecord1 = new FSFormControls.DBRecord();
             this.SuspendLayout();
             // 
+            // DbToolBar1
+            // 
+            this.DbToolBar1.Size = new System.Drawing.Size(722, 28);
+            this.DbToolBar1.ToolBarType = FSFormControls.DBToolBarEx.tToolbar.ToolbarXP;
+            this.DbToolBar1.VisibleScroll = true;
+            // 
             // mnuForm
             // 
             this.mnuForm.MergeType = System.Windows.Forms.MenuMerge.Replace;
@@ -109,7 +115,7 @@ namespace FSFormControls
             this.DbRecord1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DbRecord1.DoubleHeightInLargeText = false;
             this.DbRecord1.LabelAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.DbRecord1.LabelYIncrement = 20;
+            this.DbRecord1.LabelYIncrement = 30;
             this.DbRecord1.Location = new System.Drawing.Point(0, 28);
             this.DbRecord1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
             this.DbRecord1.Name = "DbRecord1";
@@ -131,7 +137,7 @@ namespace FSFormControls
             this.DbRecord1.ShowScrollBar = false;
             this.DbRecord1.ShowSearch = true;
             this.DbRecord1.ShowToolBar = false;
-            this.DbRecord1.Size = new System.Drawing.Size(722, 206);
+            this.DbRecord1.Size = new System.Drawing.Size(722, 226);
             this.DbRecord1.TabIndex = 0;
             this.DbRecord1.TextBoxShadow = false;
             this.DbRecord1.Track = false;
@@ -144,6 +150,7 @@ namespace FSFormControls
             this.Name = "frmRecord";
             this.Text = "Registro";
             this.ToolbarType = FSFormControls.DBToolBarEx.tToolbar.ToolbarXP;
+            this.Controls.SetChildIndex(this.DbToolBar1, 0);
             this.Controls.SetChildIndex(this.DbRecord1, 0);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -17,7 +17,7 @@ using System;
 
 namespace FSException
 {
-    public class ExceptionUtil : ApplicationException
+    public class ExceptionUtil : Exception
     {
         public enum ExceptionType
         {
@@ -48,7 +48,8 @@ namespace FSException
         {
             eType = type;
 
-            if (eType == ExceptionType.Error) WriteError(message, this);
+            if (eType == ExceptionType.Error) 
+                WriteError(message, this);
         }
 
 

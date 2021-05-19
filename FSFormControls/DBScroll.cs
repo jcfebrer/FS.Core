@@ -81,6 +81,18 @@ namespace FSFormControls
 
         public event ChangeEventHandler Change;
 
+
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
         public void Initialize()
         {
             Form frm = null;

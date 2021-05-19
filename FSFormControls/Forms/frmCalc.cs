@@ -89,7 +89,6 @@ namespace FSFormControls
             DbCalculator.BackColor = SystemColors.Control;
             DbCalculator.ButtonColor = SystemColors.Control;
             DbCalculator.ButtonSeparation = 3;
-            DbCalculator.DataControl = null;
             DbCalculator.EurValue = 166.386D;
             DbCalculator.Location = new Point(8, 12);
             DbCalculator.Name = "DbCalculator";

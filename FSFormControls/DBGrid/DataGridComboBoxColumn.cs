@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using FSLibrary;
 using FSException;
+using System.ComponentModel;
 
 #endregion
 
@@ -38,6 +39,26 @@ namespace FSFormControls
 
             ColumnComboBox.Leave += LeaveComboBox;
             ColumnComboBox.SelectionChangeCommitted += ComboStartEditing;
+        }
+
+        private string m_DBField;
+        [Description("Campo de la base de datos a enlazar.")]
+        public string DBField
+        {
+            get { return m_DBField; }
+            set { m_DBField = value; }
+        }
+
+
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
         }
 
         public Color BackGroundColour

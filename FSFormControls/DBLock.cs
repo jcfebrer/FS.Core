@@ -68,6 +68,18 @@ namespace FSFormControls
         }
 
 
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
+
         public bool IsLock(string tableName, string registerCode)
         {
             BdUtils db = new BdUtils(Global.ConnectionStringSetting);

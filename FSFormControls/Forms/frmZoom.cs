@@ -88,7 +88,6 @@ namespace FSFormControls
             cmdClose.About = null;
             cmdClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cmdClose.ButtonStyle = DBButton.ButtonStyleType.Normal;
-            cmdClose.DataControl = null;
             cmdClose.DropDownMenu = null;
             cmdClose.FillColorEnd = Color.White;
             cmdClose.FillColorStart = Color.LightGray;
@@ -122,7 +121,6 @@ namespace FSFormControls
             DbTextBox1.BackColorRead = Color.WhiteSmoke;
             DbTextBox1.BorderStyle = BorderStyle.Fixed3D;
             DbTextBox1.Capitalize = DBTextBox.TypeString.Normal;
-            DbTextBox1.DataControl = null;
             DbTextBox1.DataType = DBTextBox.TypeData.All;
             DbTextBox1.DateFormat = "dd/MM/yyyy";
             DbTextBox1.DBField = null;
@@ -163,8 +161,6 @@ namespace FSFormControls
             cmdSave.About = null;
             cmdSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cmdSave.ButtonStyle = DBButton.ButtonStyleType.Normal;
-            cmdSave.DataControl = null;
-            cmdSave.DropDownMenu = null;
             cmdSave.FillColorEnd = Color.White;
             cmdSave.FillColorStart = Color.LightGray;
             cmdSave.FillHoverColorEnd = Color.Beige;

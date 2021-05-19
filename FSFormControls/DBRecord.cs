@@ -37,7 +37,7 @@ namespace FSFormControls
 
         #endregion
 
-        private const int CONTROL_HEIGHT = 16;
+        private const int CONTROL_HEIGHT = 18;
 
 
         //private bool isInitialize = false;
@@ -71,12 +71,45 @@ namespace FSFormControls
             }
         }
 
-        public int PosYLabel { get; set; } = 20;
 
-        public int PosXLabel { get; set; } = 20;
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// Asignamos el parent del dbcontrol cuando se user dl dbcontrol sin asignar a un formulario.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set
+            {
+                if (value != null && value.Parent is null)
+                    value.Parent = this;
 
-        public int LabelYIncrement { get; set; } = 20;
+                m_DataControl = value;
+            }
+        }
 
+
+        private int m_PosYLabel = 20;
+        public int PosYLabel {
+            get { return m_PosYLabel; }
+            set { m_PosYLabel = value; }
+        }
+
+        private int m_PosXLabel = 20;
+        public int PosXLabel
+        {
+            get { return m_PosXLabel; }
+            set { m_PosXLabel = value; }
+        }
+
+        private int m_LabelYIncrement = 25;
+        public int LabelYIncrement
+        {
+           get { return m_LabelYIncrement; }
+           set { m_LabelYIncrement = value; }
+        }
 
         public bool DoubleHeightInLargeText { get; set; }
 
@@ -249,12 +282,12 @@ namespace FSFormControls
 
         public void Fill()
         {
-            var posXlabel = PosXLabel;
-            var posYlabel = PosYLabel;
+            var posXlabel = m_PosXLabel;
+            var posYlabel = m_PosYLabel;
             var f = 0;
             var posXData = 0;
             var posYData = 0;
-            var lastWidth = -LabelYIncrement;
+            var lastWidth = -m_LabelYIncrement;
             var lastHeight = 0;
 
             FunctionsGrid.GenerateColumns(DataControl, Columns, 2, AutoSize, CreateGraphics(), Font);
@@ -264,24 +297,24 @@ namespace FSFormControls
                 {
                     if (ShowMode == t_showmode.Horizontal)
                     {
-                        posXlabel = posXlabel + lastWidth + LabelYIncrement;
+                        posXlabel = posXlabel + lastWidth + m_LabelYIncrement;
                         posXData = posXlabel;
-                        posYData = posYlabel + LabelYIncrement;
+                        posYData = posYlabel + m_LabelYIncrement;
 
                         if (posXData + Columns[f].Width > Width)
                         {
                             posYlabel = posYlabel + 50;
-                            posYData = posYlabel + LabelYIncrement;
-                            posXlabel = PosXLabel;
+                            posYData = posYlabel + m_LabelYIncrement;
+                            posXlabel = m_PosXLabel;
                             posXData = posXlabel;
                         }
                     }
                     else
                     {
-                        posYlabel = posYlabel + (f > 0 ? LabelYIncrement + lastHeight : 0);
+                        posYlabel = posYlabel + (f > 0 ? m_LabelYIncrement + lastHeight : 0);
                         posYData = posYlabel;
                         posXData = 200;
-                        posXlabel = PosXLabel;
+                        posXlabel = m_PosXLabel;
                     }
 
                     AddColumn(f, posXlabel, posXData, posYlabel, posYData);
@@ -325,7 +358,8 @@ namespace FSFormControls
 
             var selCol = Columns[col];
 
-            if (selCol.HeaderCaption == "") selCol.HeaderCaption = TextUtil.PCase(selCol.FieldDB);
+            if (selCol.HeaderCaption == "")
+                selCol.HeaderCaption = TextUtil.PCase(selCol.FieldDB);
 
             labelCol.Font = selCol.Font;
             labelCol.AutoSize = true;
@@ -634,7 +668,8 @@ namespace FSFormControls
                 try
                 {
                     ctr = FunctionsForms.GetControlByDBField(panelRecord.Controls, Columns[f].FieldDB);
-                    if (!(ctr == null)) ((UserControl)ctr).Width = Columns[f].Width;
+                    if (ctr != null) 
+                        ((UserControl)ctr).Width = Columns[f].Width;
                 }
                 catch (Exception e)
                 {

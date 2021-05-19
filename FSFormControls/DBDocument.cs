@@ -26,6 +26,25 @@ namespace FSFormControls
         //    get { return Label1.DataBindings; }
         //}
 
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
+        private string m_DBField;
+        [Description("Campo de la base de datos a enlazar.")]
+        public string DBField
+        {
+            get { return m_DBField; }
+            set { m_DBField = value; }
+        }
+
 
         public AccessMode Mode
         {

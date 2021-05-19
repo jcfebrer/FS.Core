@@ -101,6 +101,18 @@ namespace FSFormControls
         }
 
 
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
+
         public bool VisibleScroll
         {
             get { return HScroll1.Visible; }
@@ -405,7 +417,7 @@ namespace FSFormControls
                 HScroll1.Value = DataControl.DBPosition;
                 DataControl.Go(DataControl.DBPosition);
 
-                PonReg();
+                ShowRecordLabel();
             }
         }
 
@@ -639,16 +651,16 @@ namespace FSFormControls
             if (HScroll1.Value != -1)
             {
                 DataControl.Go(HScroll1.Value);
-                PonReg();
+                ShowRecordLabel();
             }
 
             if (null != Change) Change();
         }
 
 
-        private void PonReg()
+        private void ShowRecordLabel()
         {
-            lblReg.Text = HScroll1.Value + 1 + " / " + HScroll1.Maximum + 1;
+            lblReg.Text = (int)(HScroll1.Value + 1) + " / " + (int)(HScroll1.Maximum + 1);
         }
 
 
@@ -661,7 +673,7 @@ namespace FSFormControls
                 HScroll1.Maximum = DataControl.RecordCount() - 1 == -1 ? 0 : DataControl.RecordCount() - 1;
 
                 HScroll1.LargeChange = DataControl.RecordCount() - 1 < 10 ? 1 : 10;
-                PonReg();
+                ShowRecordLabel();
             }
 
 
@@ -808,7 +820,7 @@ namespace FSFormControls
 
         private void m_dbcontrol_ChangeRecord()
         {
-            PonReg();
+            ShowRecordLabel();
         }
 
         #region Delegates

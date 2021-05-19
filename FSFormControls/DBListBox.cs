@@ -24,7 +24,6 @@ namespace FSFormControls
         public DBControl m_DBControl;
         public DBControl m_DBControlList;
 
-        public string m_DBField;
         public string m_DBFieldData = "";
         public string m_DBFieldList;
         public bool m_Editable = true;
@@ -33,6 +32,27 @@ namespace FSFormControls
         public string m_OrderBy;
         public object m_SelectedOption;
         public bool m_ShowCode;
+
+
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
+
+        private string m_DBField;
+        [Description("Campo de la base de datos a enlazar.")]
+        public string DBField
+        {
+            get { return m_DBField; }
+            set { m_DBField = value; }
+        }
 
 
         public string DBFieldData

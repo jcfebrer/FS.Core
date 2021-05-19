@@ -100,6 +100,18 @@ namespace FSFormControls
             }
         }
 
+
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
         public static string[] Fields;
 
 
@@ -338,7 +350,7 @@ namespace FSFormControls
         {
             get
             {
-                if (Selection != "")
+                if (!String.IsNullOrEmpty(Selection))
                 {
                     var fromPos = Selection.ToLower().IndexOf("from");
                     var spacePos = Selection.IndexOf(" ", fromPos + 5);
@@ -353,6 +365,11 @@ namespace FSFormControls
                     {
                         m_tableName = Selection;
                     }
+                }
+                else
+                {
+                    if (DataTable != null) 
+                        m_tableName = DataTable.TableName;
                 }
 
                 return m_tableName;
@@ -392,6 +409,12 @@ namespace FSFormControls
             TypeDB = DbType.Data;
             ArrayList = arrayList;
             DataTable = Utils.ConvertArrayListToDataTable(arrayList);
+            Connect();
+        }
+
+        public void Connect(string sql)
+        {
+            Selection = sql;
             Connect();
         }
 
@@ -736,17 +759,17 @@ namespace FSFormControls
             Go(pos);
         }
 
+
         public void Go(int position)
         {
-            var findForm = FindForm();
             var tempPage = 0;
             long pos;
 
             if (!Connected)
                 return;
 
-            if (position == m_DBPosition)
-                return;
+            //if (position == m_DBPosition)
+            //    return;
 
             if (Paging)
             {
@@ -759,6 +782,7 @@ namespace FSFormControls
                 }
             }
 
+            var findForm = FindForm();
 
             if (isEOF)
             {
@@ -778,21 +802,20 @@ namespace FSFormControls
                 Save();
 
             if (findForm != null)
+            {
                 UpdateControls(findForm.Controls);
-
-
-            if (findForm != null)
                 UpdateRelationDBControls(findForm.Controls, true, null);
-
-
-            if (findForm != null)
                 UpdateAsociatedDBFindTextBoxAndAsociatedCombo(findForm.Controls);
+            }
+            else throw new ExceptionUtil("Findform es Nulo");
 
+              
 
             if (LOPD != null)
                 LOPD.Save(TableName, DBLopd.Action.Show);
 
-            if (null != ChangeRecord) ChangeRecord();
+            if (null != ChangeRecord)
+                ChangeRecord();
         }
 
 
@@ -1427,7 +1450,7 @@ namespace FSFormControls
 
         public void ClearFields(ControlCollection frm)
         {
-            if (frm == null) 
+            if (frm == null)
                 return;
 
             foreach (Control ctr in frm)
@@ -1438,11 +1461,31 @@ namespace FSFormControls
                 }
                 else
                 {
-                    if (ctr is DBTextBox | ctr is DBLabel | ctr is DBFindTextBox | ctr is DBDate | ctr is DBCombo |
-                        ctr is DBFile)
-                        if (((DBUserControlBase)ctr).DataControl != null)
-                            if (((DBUserControlBase)ctr).DataControl.NameControl() == Name)
-                                ctr.Text = "";
+                    if (ctr is DBTextBox)
+                        if (((DBTextBox)ctr).DataControl != null)
+                            if (((DBTextBox)ctr).DataControl.NameControl() == Name)
+                                ((DBTextBox)ctr).Text = "";
+
+                    if (ctr is DBLabel)
+                        if (((DBLabel)ctr).DataControl != null)
+                            if (((DBLabel)ctr).DataControl.NameControl() == Name)
+                                ((DBLabel)ctr).Text = "";
+
+                    if (ctr is DBFindTextBox)
+                        if (((DBFindTextBox)ctr).DataControl != null)
+                            if (((DBFindTextBox)ctr).DataControl.NameControl() == Name)
+                                ((DBFindTextBox)ctr).Text = "";
+
+                    if (ctr is DBDate)
+                        if (((DBDate)ctr).DataControl != null)
+                            if (((DBDate)ctr).DataControl.NameControl() == Name)
+                                ((DBDate)ctr).Text = "";
+
+                    if (ctr is DBCombo)
+                        if (((DBCombo)ctr).DataControl != null)
+                            if (((DBCombo)ctr).DataControl.NameControl() == Name)
+                                ((DBCombo)ctr).Text = "";
+
                 }
             }
         }
@@ -1662,61 +1705,83 @@ namespace FSFormControls
             if (frm == null) return;
 
             foreach (Control ctr in frm)
+            {
                 if (FunctionsForms.IsContainer(ctr))
                 {
                     UpdateControls(ctr.Controls);
                 }
                 else
                 {
-                    if (ctr is DBFile | ctr is DBImage | ctr is DBEditPicture | ctr is DBCombo | ctr is DBTextBox |
-                        ctr is DBLabel | ctr is DBFindTextBox | ctr is DBDate | ctr is DBCheckBox)
+                    if (ctr is DBFile && ((DBFile)ctr).DataControl == null) 
+                        ((DBFile)ctr).DataControl = this;
+                    if (ctr is DBImage && ((DBImage)ctr).DataControl == null) 
+                            ((DBImage)ctr).DataControl = this;
+                    if (ctr is DBEditPicture && ((DBEditPicture)ctr).DataControl == null) 
+                        ((DBEditPicture)ctr).DataControl = this;
+                    if (ctr is DBCombo && ((DBCombo)ctr).DataControl == null) 
+                        ((DBCombo)ctr).DataControl = this;
+                    if (ctr is DBTextBox && ((DBTextBox)ctr).DataControl == null)
+                        ((DBTextBox)ctr).DataControl = this;
+                    if (ctr is DBLabel && ((DBLabel)ctr).DataControl == null) 
+                        ((DBLabel)ctr).DataControl = this;
+                    if (ctr is DBFindTextBox && ((DBFindTextBox)ctr).DataControl == null) 
+                        ((DBFindTextBox)ctr).DataControl = this;
+                    if (ctr is DBDate && ((DBDate)ctr).DataControl == null) 
+                        ((DBDate)ctr).DataControl = this;
+                    if (ctr is DBCheckBox && ((DBCheckBox)ctr).DataControl == null) 
+                        ((DBCheckBox)ctr).DataControl = this;
+
+                    if (ctr is DBTextBox && ((DBTextBox)ctr).DataControl != null && ((DBTextBox)ctr).DataControl.NameControl() == Name)
                     {
-                        if (((DBUserControlBase) ctr).DataControl == null) ((DBUserControlBase) ctr).DataControl = this;
-                        if (((DBUserControlBase) ctr).DataControl != null)
-                            if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
+                        if (((DBTextBox)ctr).DataType == DBTextBox.TypeData.Formula)
+                        {
+                            if (!string.IsNullOrEmpty(((DBTextBox)ctr).Expression))
                             {
-                                if (ctr is DBTextBox)
-                                    if (((DBTextBox) ctr).DataType == DBTextBox.TypeData.Formula)
-                                        if (!string.IsNullOrEmpty(((DBTextBox) ctr).Expression))
-                                        {
-                                            AddDataColumn("For" + ctr.Name, typeof(object),
-                                                ((DBTextBox) ctr).Expression);
-                                            try
-                                            {
-                                                ((DBTextBox) ctr).DataBindings.Add("Text", DataTable, "For" + ctr.Name);
-                                            }
-                                            catch (Exception e)
-                                            {
-                                                throw new ExceptionUtil(e);
-                                            }
-                                        }
-
-                                if (!string.IsNullOrEmpty(((DBUserControlBase) ctr).DBField))
-                                    try
-                                    {
-                                        if (ctr is DBCheckBox) ((DBCheckBox) ctr).UpdateCheckBox();
-                                        if (ctr is DBCombo)
-                                        {
-                                        }
-
-                                        if (ctr is DBTextBox)
-                                            if ((((DBTextBox) ctr).AsociatedDBFindTextBox == null) &
-                                                (((DBTextBox) ctr).AsociatedCombo == null))
-                                                ((DBTextBox) ctr).UpdateText();
-                                        if (ctr is DBFindTextBox) ((DBFindTextBox) ctr).UpdateText();
-                                        if (ctr is DBDate) ((DBDate) ctr).UpdateText();
-                                        if (ctr is DBImage) ((DBImage) ctr).UpdateImage();
-                                        if (ctr is DBEditPicture) ((DBEditPicture) ctr).UpdateImage();
-                                        if (ctr is DBFile) ((DBFile) ctr).UpdateFile();
-                                        if (ctr is DBLabel) ((DBLabel) ctr).UpdateText();
-                                    }
-                                    catch (Exception e)
-                                    {
-                                        throw new ExceptionUtil(e);
-                                    }
+                                AddDataColumn("For" + ctr.Name, typeof(object),
+                                    ((DBTextBox)ctr).Expression);
+                                try
+                                {
+                                    ((DBTextBox)ctr).DataBindings.Add("Text", DataTable, "For" + ctr.Name);
+                                }
+                                catch (Exception e)
+                                {
+                                    throw new ExceptionUtil(e);
+                                }
                             }
+                        }
+                    }
+
+
+                    try
+                    {
+                        if (ctr is DBCheckBox)
+                            ((DBCheckBox)ctr).UpdateCheckBox();
+
+                        if (ctr is DBTextBox)
+                        {
+                            if ((((DBTextBox)ctr).AsociatedDBFindTextBox == null) &
+                                (((DBTextBox)ctr).AsociatedCombo == null))
+                                ((DBTextBox)ctr).UpdateText();
+                        }
+                        if (ctr is DBFindTextBox)
+                            ((DBFindTextBox)ctr).UpdateText();
+                        if (ctr is DBDate)
+                            ((DBDate)ctr).UpdateText();
+                        if (ctr is DBImage)
+                            ((DBImage)ctr).UpdateImage();
+                        if (ctr is DBEditPicture)
+                            ((DBEditPicture)ctr).UpdateImage();
+                        if (ctr is DBFile)
+                            ((DBFile)ctr).UpdateFile();
+                        if (ctr is DBLabel)
+                            ((DBLabel)ctr).UpdateText();
+                    }
+                    catch (Exception e)
+                    {
+                        throw new ExceptionUtil(e);
                     }
                 }
+            }
         }
 
 
@@ -1865,31 +1930,29 @@ namespace FSFormControls
                 else
                 {
                     if (ctr is DBCombo | ctr is DBFindTextBox | ctr is DBTextBox | ctr is DBDate)
-                        if (((DBUserControlBase) ctr).DataControl != null)
-                            if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
-                                if (ctr.Text == "")
-                                {
-                                    var setErr = false;
+                        if (ctr.Text == "")
+                        {
+                            var setErr = false;
 
-                                    if (ctr is DBCombo)
-                                        if (((DBCombo) ctr).Obligatory)
-                                            setErr = true;
-                                    if (ctr is DBFindTextBox)
-                                        if (((DBFindTextBox) ctr).Obligatory)
-                                            setErr = true;
-                                    if (ctr is DBTextBox)
-                                        if (((DBTextBox) ctr).Obligatory)
-                                            setErr = true;
-                                    if (ctr is DBDate)
-                                        if (((DBDate) ctr).Obligatory)
-                                            setErr = true;
-                                    if (setErr)
-                                    {
-                                        ctr.Focus();
-                                        ErrorProvider1.SetError(ctr, "Campo obligatorio.");
-                                        return false;
-                                    }
-                                }
+                            if (ctr is DBCombo && ((DBCombo)ctr).DataControl != null && ((DBCombo)ctr).DataControl.NameControl() == Name)
+                                if (((DBCombo)ctr).Obligatory)
+                                    setErr = true;
+                            if (ctr is DBFindTextBox && ((DBFindTextBox)ctr).DataControl != null && ((DBFindTextBox)ctr).DataControl.NameControl() == Name)
+                                if (((DBFindTextBox)ctr).Obligatory)
+                                    setErr = true;
+                            if (ctr is DBTextBox && ((DBTextBox)ctr).DataControl != null && ((DBTextBox)ctr).DataControl.NameControl() == Name)
+                                if (((DBTextBox)ctr).Obligatory)
+                                    setErr = true;
+                            if (ctr is DBDate && ((DBDate)ctr).DataControl != null && ((DBDate)ctr).DataControl.NameControl() == Name)
+                                if (((DBDate)ctr).Obligatory)
+                                    setErr = true;
+                            if (setErr)
+                            {
+                                ctr.Focus();
+                                ErrorProvider1.SetError(ctr, "Campo obligatorio.");
+                                return false;
+                            }
+                        }
                 }
 
             return true;
@@ -1912,41 +1975,46 @@ namespace FSFormControls
                 }
                 else
                 {
-                    if (ctr is DBTextBox | ctr is DBFindTextBox)
-                        if (((DBUserControlBase) ctr).DataControl != null)
-                            if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
+                    if (ctr is DBTextBox)
+                        if (((DBTextBox)ctr).DataControl != null)
+                            if (((DBTextBox)ctr).DataControl.NameControl() == Name)
                             {
-                                if (ctr is DBTextBox)
-                                    if (((DBTextBox) ctr).MaxLength == Global.MAX_TEXT_LENGTH &&
-                                        !string.IsNullOrEmpty(((DBTextBox) ctr).DBField))
-                                    {
-                                        s = db.GetField(((DBTextBox) ctr).DBField, TableName).Tamano;
-                                        if ((s != 0) & (s < Global.MAX_TEXT_LENGTH))
-                                        {
-                                            if (((DBTextBox) ctr).DataType == DBTextBox.TypeData.Date)
-                                                s = Convert.ToInt32(Global.DATE_LENGTH);
-                                            ((DBTextBox) ctr).MaxLength = s;
-                                        }
-                                    }
 
-                                if (ctr is DBFindTextBox)
-                                    if (((DBFindTextBox) ctr).MaxLength == Global.MAX_TEXT_LENGTH &&
-                                        !string.IsNullOrEmpty(((DBFindTextBox) ctr).DBField))
+                                if (((DBTextBox)ctr).MaxLength == Global.MAX_TEXT_LENGTH &&
+                                    !string.IsNullOrEmpty(((DBTextBox)ctr).DBField))
+                                {
+                                    s = db.GetField(((DBTextBox)ctr).DBField, TableName).Tamano;
+                                    if ((s != 0) & (s < Global.MAX_TEXT_LENGTH))
                                     {
-                                        s = db.GetField(((DBFindTextBox) ctr).DBField, TableName).Tamano;
-                                        if ((s != 0) & (s < Global.MAX_TEXT_LENGTH))
-                                        {
-                                            if (((DBFindTextBox) ctr).DataType == DBTextBox.TypeData.Date)
-                                                s = Convert.ToInt32(Global.DATE_LENGTH);
-                                            ((DBFindTextBox) ctr).MaxLength = s;
-                                        }
+                                        if (((DBTextBox)ctr).DataType == DBTextBox.TypeData.Date)
+                                            s = Convert.ToInt32(Global.DATE_LENGTH);
+                                        ((DBTextBox)ctr).MaxLength = s;
                                     }
+                                }
+                            }
+
+                    if (ctr is DBFindTextBox)
+                        if (((DBFindTextBox)ctr).DataControl != null)
+                            if (((DBFindTextBox)ctr).DataControl.NameControl() == Name)
+                            {
+
+                                if (((DBFindTextBox)ctr).MaxLength == Global.MAX_TEXT_LENGTH &&
+                                    !string.IsNullOrEmpty(((DBFindTextBox)ctr).DBField))
+                                {
+                                    s = db.GetField(((DBFindTextBox)ctr).DBField, TableName).Tamano;
+                                    if ((s != 0) & (s < Global.MAX_TEXT_LENGTH))
+                                    {
+                                        if (((DBFindTextBox)ctr).DataType == DBTextBox.TypeData.Date)
+                                            s = Convert.ToInt32(Global.DATE_LENGTH);
+                                        ((DBFindTextBox)ctr).MaxLength = s;
+                                    }
+                                }
                             }
                 }
 
                 if (ctr is DBGrid)
-                    if (((DBUserControlBase) ctr).DataControl != null)
-                        if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
+                    if (((DBGrid) ctr).DataControl != null)
+                        if (((DBGrid) ctr).DataControl.NameControl() == Name)
                             for (f = 0; f <= ((DBGrid) ctr).Columns.Count - 1; f++)
                                 if (((DBGrid) ctr).Columns[f].MaxLength == 0 &&
                                     !string.IsNullOrEmpty(((DBGrid) ctr).DBField))
@@ -1962,8 +2030,8 @@ namespace FSFormControls
                                 }
 
                 if (ctr is DBGridView)
-                    if (((DBUserControlBase) ctr).DataControl != null)
-                        if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
+                    if (((DBGridView) ctr).DataControl != null)
+                        if (((DBGridView) ctr).DataControl.NameControl() == Name)
                             for (f = 0; f <= ((DBGridView) ctr).Columns.Count - 1; f++)
                                 if (((DBGridView) ctr).Columns[f].MaxLength == 0 &&
                                     !string.IsNullOrEmpty(((DBGridView) ctr).DBField))
@@ -1996,29 +2064,32 @@ namespace FSFormControls
                 }
                 else
                 {
-                    if (ctr is DBTextBox | ctr is DBFindTextBox)
-                        if (((DBUserControlBase) ctr).DataControl != null)
-                            if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
+                    if (ctr is DBTextBox)
+                        if (((DBTextBox)ctr).DataControl != null)
+                            if (((DBTextBox)ctr).DataControl.NameControl() == Name)
                             {
                                 if (ctr is DBTextBox)
                                 {
-                                    if (((DBTextBox) ctr).MaxValue == decimal.MaxValue &&
-                                        !string.IsNullOrEmpty(((DBUserControlBase) ctr).DBField))
-                                        ((DBTextBox) ctr).MaxValue =
-                                            db.FieldMaxValue(((DBUserControlBase) ctr).DBField);
-                                }
-                                else
-                                {
-                                    if (((DBFindTextBox) ctr).MaxValue == decimal.MaxValue &&
-                                        !string.IsNullOrEmpty(((DBUserControlBase) ctr).DBField))
-                                        ((DBFindTextBox) ctr).MaxValue =
-                                            db.FieldMaxValue(((DBUserControlBase) ctr).DBField);
+                                    if (((DBTextBox)ctr).MaxValue == decimal.MaxValue &&
+                                        !string.IsNullOrEmpty(((DBTextBox)ctr).DBField))
+                                        ((DBTextBox)ctr).MaxValue =
+                                            db.FieldMaxValue(((DBTextBox)ctr).DBField);
                                 }
                             }
 
+                    if (ctr is DBFindTextBox)
+                        if (((DBFindTextBox)ctr).DataControl != null)
+                            if (((DBFindTextBox)ctr).DataControl.NameControl() == Name)
+                            {
+                                if (((DBFindTextBox)ctr).MaxValue == decimal.MaxValue &&
+                                    !string.IsNullOrEmpty(((DBFindTextBox)ctr).DBField))
+                                    ((DBFindTextBox)ctr).MaxValue =
+                                        db.FieldMaxValue(((DBFindTextBox)ctr).DBField);
+                            }
+
                     if (ctr is DBGrid)
-                        if (((DBUserControlBase) ctr).DataControl != null)
-                            if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
+                        if (((DBGrid) ctr).DataControl != null)
+                            if (((DBGrid) ctr).DataControl.NameControl() == Name)
                                 for (f = 0; f <= ((DBGrid) ctr).Columns.Count - 1; f++)
                                     if (((DBGrid) ctr).Columns[f].MaxValue == decimal.MaxValue &&
                                         !string.IsNullOrEmpty(((DBGrid) ctr).DBField))
@@ -2026,8 +2097,8 @@ namespace FSFormControls
                                             db.FieldMaxValue(((DBGrid) ctr).Columns[f].FieldDB);
 
                     if (ctr is DBGridView)
-                        if (((DBUserControlBase) ctr).DataControl != null)
-                            if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
+                        if (((DBGridView) ctr).DataControl != null)
+                            if (((DBGridView) ctr).DataControl.NameControl() == Name)
                                 for (f = 0; f <= ((DBGridView) ctr).Columns.Count - 1; f++)
                                     if (((DBGridView) ctr).Columns[f].MaxValue == decimal.MaxValue &&
                                         !string.IsNullOrEmpty(((DBGridView) ctr).DBField))
@@ -2193,9 +2264,11 @@ namespace FSFormControls
 
         public void ModeDBControls(ControlCollection frm, AccessMode AccMode)
         {
-            if (frm == null) return;
+            if (frm == null)
+                return;
 
             foreach (Control ctr in frm)
+            {
                 if (FunctionsForms.IsContainer(ctr))
                 {
                     ModeDBControls(ctr.Controls, AccMode);
@@ -2203,24 +2276,33 @@ namespace FSFormControls
                 else
                 {
                     if (ctr is DBCombo | ctr is DBTextBox | ctr is DBFindTextBox | ctr is DBDate | ctr is DBCheckBox |
-                        ctr is DBGrid | ctr is DBGridView | ctr is DBImage | ctr is DBFile | ctr is DBEditPicture)
-                        if (((DBUserControlBase) ctr).DataControl != null)
-                            if (((DBUserControlBase) ctr).DataControl.NameControl() == Name)
-                            {
-                                if (ctr is DBCombo) ((DBCombo) ctr).Mode = AccMode;
-                                if (ctr is DBTextBox) ((DBTextBox) ctr).Mode = AccMode;
-                                if (ctr is DBFindTextBox) ((DBFindTextBox) ctr).Mode = AccMode;
-                                if (ctr is DBDate) ((DBDate) ctr).Mode = AccMode;
-                                if (ctr is DBCheckBox) ((DBCheckBox) ctr).Mode = AccMode;
-                                if (ctr is DBGrid) ((DBGrid) ctr).Mode = AccMode;
-                                if (ctr is DBGridView) ((DBGridView) ctr).Mode = AccMode;
-                                if (ctr is DBImage) ((DBImage) ctr).Mode = AccMode;
-                                if (ctr is DBFile) ((DBFile) ctr).Mode = AccMode;
-                                if (ctr is DBEditPicture) ((DBEditPicture) ctr).Mode = AccMode;
-                            }
-
-                    if (ctr is DBLabel) ((DBLabel) ctr).Mode = AccMode;
+                        ctr is DBGrid | ctr is DBGridView | ctr is DBImage | ctr is DBFile | ctr is DBEditPicture | ctr is DBLabel)
+                    {
+                        if (ctr is DBCombo && ((DBCombo)ctr).DataControl != null && ((DBCombo)ctr).DataControl.NameControl() == Name)
+                            ((DBCombo)ctr).Mode = AccMode;
+                        if (ctr is DBTextBox && ((DBTextBox)ctr).DataControl != null && ((DBTextBox)ctr).DataControl.NameControl() == Name)
+                            ((DBTextBox)ctr).Mode = AccMode;
+                        if (ctr is DBFindTextBox && ((DBFindTextBox)ctr).DataControl != null && ((DBFindTextBox)ctr).DataControl.NameControl() == Name)
+                            ((DBFindTextBox)ctr).Mode = AccMode;
+                        if (ctr is DBDate && ((DBDate)ctr).DataControl != null && ((DBDate)ctr).DataControl.NameControl() == Name)
+                            ((DBDate)ctr).Mode = AccMode;
+                        if (ctr is DBCheckBox && ((DBCheckBox)ctr).DataControl != null && ((DBCheckBox)ctr).DataControl.NameControl() == Name)
+                            ((DBCheckBox)ctr).Mode = AccMode;
+                        if (ctr is DBGrid && ((DBGrid)ctr).DataControl != null && ((DBGrid)ctr).DataControl.NameControl() == Name)
+                            ((DBGrid)ctr).Mode = AccMode;
+                        if (ctr is DBGridView && ((DBGridView)ctr).DataControl != null && ((DBGridView)ctr).DataControl.NameControl() == Name)
+                            ((DBGridView)ctr).Mode = AccMode;
+                        if (ctr is DBImage && ((DBImage)ctr).DataControl != null && ((DBImage)ctr).DataControl.NameControl() == Name)
+                            ((DBImage)ctr).Mode = AccMode;
+                        if (ctr is DBFile && ((DBFile)ctr).DataControl != null && ((DBFile)ctr).DataControl.NameControl() == Name)
+                            ((DBFile)ctr).Mode = AccMode;
+                        if (ctr is DBEditPicture && ((DBEditPicture)ctr).DataControl != null && ((DBEditPicture)ctr).DataControl.NameControl() == Name)
+                            ((DBEditPicture)ctr).Mode = AccMode;
+                        if (ctr is DBLabel && ((DBLabel)ctr).DataControl != null && ((DBLabel)ctr).DataControl.NameControl() == Name)
+                            ((DBLabel)ctr).Mode = AccMode;
+                    }
                 }
+            }
         }
 
 
@@ -2445,8 +2527,8 @@ namespace FSFormControls
                 else
                 {
                     if (ctr is DBTextBox)
-                        if (!string.IsNullOrEmpty(((DBUserControlBase) ctr).DBField))
-                            if (((DBUserControlBase) ctr).DBField.ToLower() == fieldName.ToLower())
+                        if (!string.IsNullOrEmpty(((DBTextBox) ctr).DBField))
+                            if (((DBTextBox) ctr).DBField.ToLower() == fieldName.ToLower())
                                 return (DBTextBox) ctr;
                 }
 

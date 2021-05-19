@@ -211,10 +211,18 @@ namespace FSFormControls
                 }
                 else
                 {
-                    if (ctr is DBTextBox | ctr is DBCombo | ctr is DBCheckBox | ctr is DBDate | ctr is DBFindTextBox |
-                        ctr is DBFile)
-                        if (((DBUserControlBase) ctr).DBField.ToLower() == dbfield.ToLower())
-                            return ctr;
+                    if (ctr is DBTextBox && ((DBTextBox)ctr).DBField.ToLower() == dbfield.ToLower())
+                        return ctr;
+                    if (ctr is DBCombo && ((DBCombo)ctr).DBField.ToLower() == dbfield.ToLower())
+                        return ctr;
+                    if (ctr is DBCheckBox && ((DBCheckBox)ctr).DBField.ToLower() == dbfield.ToLower())
+                        return ctr;
+                    if (ctr is DBDate && ((DBDate)ctr).DBField.ToLower() == dbfield.ToLower())
+                        return ctr;
+                    if (ctr is DBFindTextBox && ((DBFindTextBox)ctr).DBField.ToLower() == dbfield.ToLower())
+                        return ctr;
+                    if (ctr is DBFile && ((DBFile)ctr).DBField.ToLower() == dbfield.ToLower())
+                        return ctr;
                 }
 
             return null;

@@ -215,6 +215,34 @@ namespace FSFormControls
             }
         }
 
+
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DBControl; }
+            set
+            {
+                m_DBControl = value;
+
+                //Borramos las clumans si estuvieran definidas
+                datagrid.Columns.Clear();
+                Columns.Clear();
+            }
+        }
+
+
+        private string m_DBField;
+        [Description("Campo de la base de datos a enlazar.")]
+        public string DBField
+        {
+            get { return m_DBField; }
+            set { m_DBField = value; }
+        }
+
+
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DBColumnCollection Columns { get; set; } = new DBColumnCollection();
 
@@ -269,21 +297,7 @@ namespace FSFormControls
 
         public bool ShowRecordScrollBar { get; set; } = true;
 
-        [Description("DataBindings.")] public new ControlBindingsCollection DataBindings => datagrid.DataBindings;
-
-        [Description("DBControl asociado al control.")]
-        public new DBControl DataControl
-        {
-            get { return m_DBControl; }
-            set
-            {
-                m_DBControl = value;
-
-                //Borramos las clumans si estuvieran definidas
-                datagrid.Columns.Clear();
-                Columns.Clear();
-            }
-        }
+        //[Description("DataBindings.")] public new ControlBindingsCollection DataBindings => datagrid.DataBindings;
 
         public bool AllowAddNew { get; set; } = true;
 
@@ -945,405 +959,430 @@ namespace FSFormControls
                 switch (column.ColumnType)
                 {
                     case DBColumn.ColumnTypes.PictureColumn:
-                    {
-                        var dbic = new DataGridViewImageColumn();
+                        {
+                            var dbic = new DataGridViewImageColumn();
 
-                        dbic.Visible = !column.Hidden;
-                        dbic.DataPropertyName = column.FieldDB;
-                        dbic.HeaderText = column.HeaderCaption;
-                        dbic.ReadOnly = column.ReadColumn;
-                        dbic.Width = column.Width;
-                        dbic.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        dbic.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        dbic.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        dbic.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        dbic.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(dbic);
-                    }
+                            dbic.Visible = !column.Hidden;
+                            dbic.DataPropertyName = column.FieldDB;
+                            dbic.HeaderText = column.HeaderCaption;
+                            dbic.ReadOnly = column.ReadColumn;
+                            dbic.Width = column.Width;
+                            dbic.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            dbic.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            dbic.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            dbic.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            dbic.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(dbic);
+                        }
                         break;
                     case DBColumn.ColumnTypes.CheckColumn:
-                    {
-                        var dbcbc = new DataGridViewCheckBoxColumn();
+                        {
+                            var dbcbc = new DataGridViewCheckBoxColumn();
 
-                        dbcbc.Visible = !column.Hidden;
-                        dbcbc.DataPropertyName = column.FieldDB;
-                        dbcbc.HeaderText = column.HeaderCaption;
-                        dbcbc.ReadOnly = column.ReadColumn;
-                        dbcbc.Width = column.Width;
-                        dbcbc.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        dbcbc.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        dbcbc.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        dbcbc.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        dbcbc.DefaultCellStyle.NullValue = false;
-                        dbcbc.DefaultCellStyle.Format = column.FormatString;
-                        dbcbc.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(dbcbc);
-                    }
+                            dbcbc.Visible = !column.Hidden;
+                            dbcbc.DataPropertyName = column.FieldDB;
+                            dbcbc.HeaderText = column.HeaderCaption;
+                            dbcbc.ReadOnly = column.ReadColumn;
+                            dbcbc.Width = column.Width;
+                            dbcbc.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            dbcbc.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            dbcbc.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            dbcbc.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            dbcbc.DefaultCellStyle.NullValue = false;
+                            dbcbc.DefaultCellStyle.Format = column.FormatString;
+                            dbcbc.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(dbcbc);
+                        }
                         break;
                     case DBColumn.ColumnTypes.FormulaColumn:
-                    {
-                        var textCol = new DataGridViewTextBoxColumn();
+                        {
+                            var textCol = new DataGridViewTextBoxColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = "n" + column.Decimals;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = "n" + column.Decimals;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.TextColumn:
-                    {
-                        var textCol = new DataGridViewTextBoxColumn();
+                        {
+                            var textCol = new DataGridViewTextBoxColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = column.FormatString;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol); 
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = column.FormatString;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.MaskedColumn:
-                    {
-                        var cm = new DBGridViewMaskColumn(column.MaskInput);
+                        {
+                            var cm = new DBGridViewMaskColumn(column.MaskInput);
 
-                        cm.Visible = !column.Hidden;
-                        cm.DataPropertyName = column.FieldDB;
-                        cm.HeaderText = column.HeaderCaption;
-                        cm.ReadOnly = column.ReadColumn;
-                        cm.Width = column.Width;
-                        cm.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        cm.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        cm.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        cm.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        cm.DefaultCellStyle.Format = column.FormatString;
-                        cm.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(cm);
+                            cm.Visible = !column.Hidden;
+                            cm.DataPropertyName = column.FieldDB;
+                            cm.HeaderText = column.HeaderCaption;
+                            cm.ReadOnly = column.ReadColumn;
+                            cm.Width = column.Width;
+                            cm.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            cm.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            cm.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            cm.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            cm.DefaultCellStyle.Format = column.FormatString;
+                            cm.DefaultCellStyle.NullValue = column.NullValue;
 
-                        break;
-                    }
+                            datagrid.Columns.Add(cm);
+
+                            break;
+                        }
                     case DBColumn.ColumnTypes.TimePickerColumn:
-                    {
-                        var tp = new DBGridViewDateTimePickerColumn();
+                        {
+                            var tp = new DBGridViewDateTimePickerColumn();
 
-                        tp.Visible = !column.Hidden;
-                        tp.DataPropertyName = column.FieldDB;
-                        tp.HeaderText = column.HeaderCaption;
-                        tp.ReadOnly = column.ReadColumn;
-                        tp.Width = column.Width;
-                        tp.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        tp.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        tp.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        tp.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        tp.DefaultCellStyle.Format = column.FormatString;
-                        tp.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(tp);
-                    }
+                            tp.Visible = !column.Hidden;
+                            tp.DataPropertyName = column.FieldDB;
+                            tp.HeaderText = column.HeaderCaption;
+                            tp.ReadOnly = column.ReadColumn;
+                            tp.Width = column.Width;
+                            tp.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            tp.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            tp.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            tp.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            tp.DefaultCellStyle.Format = column.FormatString;
+                            tp.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(tp);
+                        }
                         break;
                     case DBColumn.ColumnTypes.MoneyColumn:
-                    {
-                        var textCol = new DataGridViewTextBoxColumn();
+                        {
+                            var textCol = new DataGridViewTextBoxColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = "c" + column.Decimals;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = "c" + column.Decimals;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.DateColumn:
-                    {
-                        var textCol = new DBGridViewDateTimePickerColumn();
+                        {
+                            var textCol = new DBGridViewDateTimePickerColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = Global.DATE_FORMAT;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = Global.DATE_FORMAT;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.TimeColumn:
-                    {
-                        var textCol = new DataGridViewTextBoxColumn();
+                        {
+                            var textCol = new DataGridViewTextBoxColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = Global.TIME_FORMAT;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = Global.TIME_FORMAT;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.FileColumn:
-                    {
-                        //DataGridFileColumn fileCol = new DataGridFileColumn( col, Columns[ col ], this ); 
+                        {
+                            //DataGridFileColumn fileCol = new DataGridFileColumn( col, Columns[ col ], this ); 
 
-                        //fileCol.MappingName = Columns[ col ].FieldDB; 
-                        //fileCol.HeaderText = Columns[ col ].HeaderCaption; 
-                        //fileCol.Width = System.Convert.ToInt32( Columns[ col ].Size ); 
-                        //fileCol.NullText = ""; 
-                        //fileCol.ReadOnly = Columns[ col ].ReadColumn; 
-                        //fileCol.Alignment = Columns[ col ].Alignment; 
-                        //fileCol.TextBox.MaxLength = Columns[ col ].MaxLength; 
-                        //try 
-                        //{ 
-                        //    dgTableStyle.GridColumnStyles.Add( fileCol ); 
-                        //} 
-                        //catch ( Exception e ) 
-                        //{ 
-                        //    Global.Err.ErrorMessage( this.FindForm(), this, e.Message + "\r\n" + "Columna: " + Columns[ col ].FieldDB, "", MessageBoxIcon.Error, null, false ); 
-                        //} 
-                    }
+                            //fileCol.MappingName = Columns[ col ].FieldDB; 
+                            //fileCol.HeaderText = Columns[ col ].HeaderCaption; 
+                            //fileCol.Width = System.Convert.ToInt32( Columns[ col ].Size ); 
+                            //fileCol.NullText = ""; 
+                            //fileCol.ReadOnly = Columns[ col ].ReadColumn; 
+                            //fileCol.Alignment = Columns[ col ].Alignment; 
+                            //fileCol.TextBox.MaxLength = Columns[ col ].MaxLength; 
+                            //try 
+                            //{ 
+                            //    dgTableStyle.GridColumnStyles.Add( fileCol ); 
+                            //} 
+                            //catch ( Exception e ) 
+                            //{ 
+                            //    Global.Err.ErrorMessage( this.FindForm(), this, e.Message + "\r\n" + "Columna: " + Columns[ col ].FieldDB, "", MessageBoxIcon.Error, null, false ); 
+                            //} 
+                        }
                         break;
                     case DBColumn.ColumnTypes.NumberColumn:
                     case DBColumn.ColumnTypes.AutoNumericColumn:
-                    {
-                        var textCol = new DataGridViewTextBoxColumn();
+                        {
+                            var textCol = new DataGridViewTextBoxColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = "n" + column.Decimals;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = "n" + column.Decimals;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.ComboColumn:
-                    {
-                        var comboCol = new DataGridViewComboBoxColumn();
+                        {
+                            var comboCol = new DataGridViewComboBoxColumn();
 
-                        comboCol.Visible = !column.Hidden;
-                        comboCol.DataSource = column.ColumnDBControl.DataTable;
-                        comboCol.DisplayMember = column.ComboListField;
-                        comboCol.ValueMember = column.ColumnDBFieldData;
-                        comboCol.DataPropertyName = column.FieldDB;
-                        comboCol.ReadOnly = column.ReadColumn;
-                        comboCol.Width = column.Width;
-                        comboCol.HeaderText = column.HeaderCaption;
-                        comboCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        comboCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        comboCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        comboCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        comboCol.DefaultCellStyle.Format = column.FormatString;
-                        comboCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(comboCol);
-                    }
+                            comboCol.Visible = !column.Hidden;
+                            comboCol.DataSource = column.ColumnDBControl.DataTable;
+                            comboCol.DisplayMember = column.ComboListField;
+                            comboCol.ValueMember = column.ColumnDBFieldData;
+                            comboCol.DataPropertyName = column.FieldDB;
+                            comboCol.ReadOnly = column.ReadColumn;
+                            comboCol.Width = column.Width;
+                            comboCol.HeaderText = column.HeaderCaption;
+                            comboCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            comboCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            comboCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            comboCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            comboCol.DefaultCellStyle.Format = column.FormatString;
+                            comboCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(comboCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.ButtonColumn:
-                    {
-                        var textCol = new DataGridViewButtonColumn();
+                        {
+                            var textCol = new DataGridViewButtonColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = column.FormatString;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = column.FormatString;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.Button2Column:
-                    {
-                        var textCol = new DataGridViewButtonColumn();
+                        {
+                            var textCol = new DataGridViewButtonColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = column.FormatString;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = column.FormatString;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.DescriptionColumn:
-                    {
-                        var textCol = new DataGridViewTextBoxColumn();
+                        {
+                            var textCol = new DataGridViewTextBoxColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = column.FormatString;
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = column.FormatString;
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                     case DBColumn.ColumnTypes.PercentColumn:
-                    {
-                        var textCol = new DataGridViewTextBoxColumn();
+                        {
+                            var textCol = new DataGridViewTextBoxColumn();
 
-                        textCol.Visible = !column.Hidden;
-                        textCol.DataPropertyName = column.FieldDB;
-                        textCol.HeaderText = column.HeaderCaption;
-                        textCol.ReadOnly = column.ReadColumn;
-                        textCol.Width = column.Width;
-                        textCol.DefaultCellStyle.WrapMode = column.MultiLine
-                            ? DataGridViewTriState.True
-                            : DataGridViewTriState.False;
-                        textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
-                        textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
-                        textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
-                            ? DataGridViewContentAlignment.MiddleCenter
-                            : column.Alignment == HorizontalAlignment.Left
-                                ? DataGridViewContentAlignment.MiddleLeft
-                                : DataGridViewContentAlignment.MiddleRight;
-                        textCol.DefaultCellStyle.Format = "p0";
-                        textCol.DefaultCellStyle.NullValue = column.NullValue;
-                        
-                        datagrid.Columns.Add(textCol);
-                    }
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = "p0";
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
+                        break;
+                    case DBColumn.ColumnTypes.ProgressColumn:
+                        {
+                            var textCol = new DBGridViewProgressBarColumn();
+
+                            textCol.Visible = !column.Hidden;
+                            textCol.DataPropertyName = column.FieldDB;
+                            textCol.HeaderText = column.HeaderCaption;
+                            textCol.ReadOnly = column.ReadColumn;
+                            textCol.Width = column.Width;
+                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                                ? DataGridViewTriState.True
+                                : DataGridViewTriState.False;
+                            textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
+                            textCol.DefaultCellStyle.ForeColor = column.ColumnForeColor;
+                            textCol.DefaultCellStyle.Alignment = column.Alignment == HorizontalAlignment.Center
+                                ? DataGridViewContentAlignment.MiddleCenter
+                                : column.Alignment == HorizontalAlignment.Left
+                                    ? DataGridViewContentAlignment.MiddleLeft
+                                    : DataGridViewContentAlignment.MiddleRight;
+                            textCol.DefaultCellStyle.Format = "n2";
+                            textCol.DefaultCellStyle.NullValue = column.NullValue;
+
+                            datagrid.Columns.Add(textCol);
+                        }
                         break;
                 }
 
@@ -1644,7 +1683,8 @@ namespace FSFormControls
 
             m_DBControl.Action = DBControl.DbActionTypes.Fill;
 
-            if (string.IsNullOrEmpty(m_DBControl.DBFieldData)) m_DBControl.DBFieldData = m_DBControl.FieldName(0);
+            if (string.IsNullOrEmpty(m_DBControl.DBFieldData)) 
+                m_DBControl.DBFieldData = m_DBControl.FieldName(0);
 
 
             if (m_DBControl.DataView != null)
@@ -1656,7 +1696,8 @@ namespace FSFormControls
 
             FillDescriptionColumns();
 
-            if (RecordMode) FillRecord();
+            if (RecordMode) 
+                FillRecord();
 
             if (!m_DBControl.Paging)
             {

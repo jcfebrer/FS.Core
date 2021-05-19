@@ -136,7 +136,6 @@ namespace FSFormControls
             DbButton1.About = "";
             DbButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             DbButton1.ButtonStyle = DBButton.ButtonStyleType.Normal;
-            DbButton1.DataControl = null;
             DbButton1.DropDownMenu = null;
             DbButton1.FillColorEnd = Color.White;
             DbButton1.FillColorStart = Color.LightGray;

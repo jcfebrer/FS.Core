@@ -53,7 +53,6 @@
             this.dbTreeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dbTreeView1.DataControl = null;
             this.dbTreeView1.EnableReArrange = false;
             this.dbTreeView1.HideSelection = true;
             this.dbTreeView1.HotTracking = false;

@@ -202,7 +202,6 @@
             this.dbTextBox1.BackColorRead = System.Drawing.Color.WhiteSmoke;
             this.dbTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dbTextBox1.Capitalize = FSFormControls.DBTextBox.TypeString.Normal;
-            this.dbTextBox1.DataControl = null;
             this.dbTextBox1.DataType = FSFormControls.DBTextBox.TypeData.All;
             this.dbTextBox1.DateFormat = "dd/MM/yyyy";
             this.dbTextBox1.DBFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -267,7 +266,6 @@
             this.dbDate1.AllowNullValue = true;
             this.dbDate1.Appearance = null;
             this.dbDate1.CustomFormat = "dd/MM/yyyy";
-            this.dbDate1.DataControl = null;
             this.dbDate1.Date = new System.DateTime(2019, 6, 15, 10, 26, 7, 990);
             this.dbDate1.DateTime = new System.DateTime(2019, 6, 15, 10, 26, 7, 990);
             this.dbDate1.Editable = true;
@@ -296,7 +294,6 @@
             this.dbCheckBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dbCheckBox1.Checked = false;
             this.dbCheckBox1.CheckState = System.Windows.Forms.CheckState.Unchecked;
-            this.dbCheckBox1.DataControl = null;
             this.dbCheckBox1.Editable = true;
             this.dbCheckBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.dbCheckBox1.Location = new System.Drawing.Point(6, 47);
@@ -312,7 +309,6 @@
             this.dbButton1.About = "";
             this.dbButton1.Appearance = null;
             this.dbButton1.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
-            this.dbButton1.DataControl = null;
             this.dbButton1.DialogResult = System.Windows.Forms.DialogResult.None;
             this.dbButton1.DropDownMenu = null;
             this.dbButton1.FillColorEnd = System.Drawing.Color.White;
@@ -350,7 +346,6 @@
             this.dbButton3});
             this.dbCombo1.Controls.Add(this.dbButton2);
             this.dbCombo1.Controls.Add(this.dbButton3);
-            this.dbCombo1.DataControl = null;
             this.dbCombo1.DataControlList = null;
             this.dbCombo1.DBFieldData = "";
             this.dbCombo1.DBFieldList = null;
@@ -386,7 +381,6 @@
             this.dbButton2.About = "";
             this.dbButton2.Appearance = null;
             this.dbButton2.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
-            this.dbButton2.DataControl = null;
             this.dbButton2.DialogResult = System.Windows.Forms.DialogResult.None;
             this.dbButton2.DropDownMenu = null;
             this.dbButton2.FillColorEnd = System.Drawing.Color.White;
@@ -416,7 +410,6 @@
             this.dbButton3.About = "";
             this.dbButton3.Appearance = null;
             this.dbButton3.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
-            this.dbButton3.DataControl = null;
             this.dbButton3.DialogResult = System.Windows.Forms.DialogResult.None;
             this.dbButton3.DropDownMenu = null;
             this.dbButton3.FillColorEnd = System.Drawing.Color.White;
@@ -584,7 +577,6 @@
             this.dbCombo2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.dbCombo2.AutoSize = true;
             this.dbCombo2.BlankSelection = false;
-            this.dbCombo2.DataControl = null;
             this.dbCombo2.DataControlList = null;
             this.dbCombo2.DBFieldData = "";
             this.dbCombo2.DBFieldList = null;
@@ -649,7 +641,6 @@
             this.dbControl1.About = "";
             this.dbControl1.ArrayList = null;
             this.dbControl1.AutoConnect = true;
-            this.dbControl1.DataControl = null;
             this.dbControl1.DataSet = null;
             this.dbControl1.DataTable = null;
             this.dbControl1.DataView = null;
@@ -704,7 +695,6 @@
             // 
             this.dbFile1.About = "";
             this.dbFile1.Data = null;
-            this.dbFile1.DataControl = null;
             this.dbFile1.FieldDateTime = "fecha";
             this.dbFile1.FieldFileName = "nombre";
             this.dbFile1.Location = new System.Drawing.Point(6, 48);
@@ -719,7 +709,6 @@
             // dbDocument1
             // 
             this.dbDocument1.About = "";
-            this.dbDocument1.DataControl = null;
             this.dbDocument1.Location = new System.Drawing.Point(377, 180);
             this.dbDocument1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
             this.dbDocument1.Name = "dbDocument1";
@@ -730,7 +719,6 @@
             // dbFindTextBox1
             // 
             this.dbFindTextBox1.About = "";
-            this.dbFindTextBox1.DataControl = null;
             this.dbFindTextBox1.DataControlList = null;
             this.dbFindTextBox1.DataType = FSFormControls.DBTextBox.TypeData.All;
             this.dbFindTextBox1.DBFieldData = null;
@@ -764,7 +752,6 @@
             // 
             this.dbFtp1.About = "";
             this.dbFtp1.CurrentDirectory = "/";
-            this.dbFtp1.DataControl = null;
             this.dbFtp1.Hostname = "ftp://";
             this.dbFtp1.KeepAlive = false;
             this.dbFtp1.Location = new System.Drawing.Point(377, 25);
@@ -874,7 +861,6 @@
             // 
             this.dbImage1.About = "";
             this.dbImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dbImage1.DataControl = null;
             this.dbImage1.Location = new System.Drawing.Point(214, 19);
             this.dbImage1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
             this.dbImage1.Name = "dbImage1";
@@ -886,7 +872,6 @@
             // dbLopd1
             // 
             this.dbLopd1.About = "";
-            this.dbLopd1.DataControl = null;
             this.dbLopd1.Location = new System.Drawing.Point(540, 68);
             this.dbLopd1.LOPD_DateField = null;
             this.dbLopd1.LOPD_OperationField = null;
@@ -921,7 +906,7 @@
             this.dbRecord1.DateType = FSFormControls.DBRecord.t_date.Normal;
             this.dbRecord1.DoubleHeightInLargeText = false;
             this.dbRecord1.LabelAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.dbRecord1.LabelYIncrement = 20;
+            this.dbRecord1.LabelYIncrement = 30;
             this.dbRecord1.Location = new System.Drawing.Point(20, 122);
             this.dbRecord1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
             this.dbRecord1.Name = "dbRecord1";
@@ -951,7 +936,6 @@
             // dbLock1
             // 
             this.dbLock1.About = "";
-            this.dbLock1.DataControl = null;
             this.dbLock1.Location = new System.Drawing.Point(373, 71);
             this.dbLock1.LOCK_DateTimeField = null;
             this.dbLock1.LOCK_RecurseCodeField = null;
@@ -1032,7 +1016,6 @@
             this.dbGraphics1.AlignmentBar = FSFormControls.b_BarTypes.HorizontalLeft;
             this.dbGraphics1.AlignmentLine = FSFormControls.b_LineTypes.Horizontal;
             this.dbGraphics1.Color = System.Drawing.Color.Empty;
-            this.dbGraphics1.DataControl = null;
             this.dbGraphics1.GraphBorder = false;
             this.dbGraphics1.Group = 0;
             this.dbGraphics1.KeyTitle = "";
@@ -1052,7 +1035,6 @@
             this.dbFrame1.BorderColor = System.Drawing.Color.Black;
             this.dbFrame1.BorderDiameter = 30;
             this.dbFrame1.BorderSize = 1;
-            this.dbFrame1.DataControl = null;
             this.dbFrame1.FrameColor = System.Drawing.Color.LightYellow;
             this.dbFrame1.Location = new System.Drawing.Point(16, 6);
             this.dbFrame1.Name = "dbFrame1";
@@ -1072,7 +1054,6 @@
             // dbScroll1
             // 
             this.dbScroll1.About = "";
-            this.dbScroll1.DataControl = null;
             this.dbScroll1.Location = new System.Drawing.Point(16, 159);
             this.dbScroll1.Max = 1;
             this.dbScroll1.Min = 1;
@@ -1105,7 +1086,6 @@
             this.dbEditPicture1.About = "";
             this.dbEditPicture1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dbEditPicture1.Data = "";
-            this.dbEditPicture1.DataControl = null;
             this.dbEditPicture1.Image = null;
             this.dbEditPicture1.Location = new System.Drawing.Point(16, 5);
             this.dbEditPicture1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
@@ -1120,7 +1100,6 @@
             // dbRichTextBox1
             // 
             this.dbRichTextBox1.About = "";
-            this.dbRichTextBox1.DataControl = null;
             this.dbRichTextBox1.Location = new System.Drawing.Point(425, 13);
             this.dbRichTextBox1.Name = "dbRichTextBox1";
             this.dbRichTextBox1.Size = new System.Drawing.Size(266, 223);

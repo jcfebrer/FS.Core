@@ -28,6 +28,7 @@ namespace FSFormControls
             DescriptionColumn,
             FormulaColumn,
             PercentColumn,
+            ProgressColumn,
             TimeColumn,
             FileColumn,
             TimePickerColumn,

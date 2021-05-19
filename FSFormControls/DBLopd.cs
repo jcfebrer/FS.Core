@@ -64,6 +64,18 @@ namespace FSFormControls
         public string LOPD_RecurseCodeField { get; set; }
 
 
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
+
         public void Save(string tableName, Action operation)
         {
             BdUtils db = new BdUtils(Global.ConnectionStringSetting);

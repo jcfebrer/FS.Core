@@ -25,10 +25,8 @@ namespace FSFormControls
         private Form m_mdiParent;
         private DBUserControlBase.AccessMode m_Mode = DBUserControlBase.AccessMode.ReadMode;
         private bool m_ShowMenu = true;
-        private bool m_ShowStatusBar = true;
+        //private bool m_ShowStatusBar = true;
         private bool m_ShowToolBar = true;
-
-        public DBControl DataControl { get; set; }
 
         public bool CanClose { get; set; } = true;
 
@@ -498,15 +496,27 @@ namespace FSFormControls
             {
                 foreach (Control ctr in frm.Controls)
                 {
-                    if (FunctionsForms.IsContainer(ctr)) LinkUnBoundControls(ctr);
+                    if (FunctionsForms.IsContainer(ctr))
+                        LinkUnBoundControls(ctr);
 
-                    if (ctr is DBCheckBox | ctr is DBTextBox | ctr is DBFindTextBox)
-                        if (((DBUserControlBase) ctr).DataControl == null)
-                        {
-                            if (ctr is DBCheckBox) ((DBCheckBox) ctr).UpdateCheckBox();
-                            if (ctr is DBTextBox) ((DBTextBox) ctr).UpdateText();
-                            if (ctr is DBFindTextBox) ((DBFindTextBox) ctr).UpdateText();
-                        }
+
+                    if (ctr is DBCheckBox)
+                    {
+                        if (((DBCheckBox)ctr).DataControl == null)
+                            ((DBCheckBox)ctr).UpdateCheckBox();
+                    }
+
+                    if (ctr is DBTextBox)
+                    {
+                        if (((DBTextBox)ctr).DataControl == null)
+                            ((DBTextBox)ctr).UpdateText();
+                    }
+
+                    if (ctr is DBFindTextBox)
+                    {
+                        if (((DBFindTextBox)ctr).DataControl == null)
+                            ((DBFindTextBox)ctr).UpdateText();
+                    }
                 }
             }
             catch (Exception ex)
@@ -801,7 +811,7 @@ namespace FSFormControls
         internal MenuItem MenuItem3;
         internal MenuItem MenuItem7;
         internal SaveFileDialog SaveFileDialog1;
-        private IContainer components;
+        private readonly IContainer components = null;
         internal MenuItem mnuAbout;
         internal MenuItem mnuCalc;
         internal MenuItem mnuClose;
@@ -810,6 +820,24 @@ namespace FSFormControls
         public MenuItem mnuForm;
         public MainMenu mnuFormMain;
         internal Timer tmrAutoSave;
+
+
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// Asignamos el parent del dbcontrol cuando se user dl dbcontrol sin asignar a un formulario.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set
+            {
+                if (value != null && value.Parent is null)
+                    value.Parent = this;
+                m_DataControl = value;
+            }
+        }
 
         public DBForm()
         {
@@ -955,7 +983,6 @@ namespace FSFormControls
             this.DbToolBar1.AllowRecord = true;
             this.DbToolBar1.AllowSave = true;
             this.DbToolBar1.AllowSearch = true;
-            this.DbToolBar1.DataControl = null;
             this.DbToolBar1.Dock = System.Windows.Forms.DockStyle.Top;
             this.DbToolBar1.Location = new System.Drawing.Point(0, 0);
             this.DbToolBar1.Name = "DbToolBar1";

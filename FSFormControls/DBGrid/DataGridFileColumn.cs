@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using FSLibrary;
 using FSException;
+using System.ComponentModel;
 
 #endregion
 
@@ -41,6 +42,18 @@ namespace FSFormControls
             ColumnFile.ModeChanged += ModeChanged;
 
             ColumnFile.Visible = false;
+        }
+
+
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
         }
 
         private void ModeChanged(DBUserControlBase.AccessMode mode)

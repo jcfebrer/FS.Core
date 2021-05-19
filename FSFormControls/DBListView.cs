@@ -45,6 +45,18 @@ namespace FSFormControls
             ListView1.ListViewItemSorter = lvwColumnSorter;
         }
 
+
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
         public bool CanDelete
         {
             get

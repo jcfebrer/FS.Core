@@ -39,13 +39,13 @@ namespace FSFormControls
                 m_Form.MouseUp += m_Form_MouseUp;
         }
 
-        [TypeConverter(typeof(FieldList))]
-        [DefaultValueAttribute("")]
-        [Description("Campo de la base de datos que debe mostrar este control.")]
-        public string DBField { get; set; } = "";
+        //[TypeConverter(typeof(FieldList))]
+        //[DefaultValueAttribute("")]
+        //[Description("Campo de la base de datos que debe mostrar este control.")]
+        //public string DBField { get; set; } = "";
 
-        [Description("DBControl asociado al control.")]
-        public DBControl DataControl { get; set; } = null;
+        //[Description("DBControl asociado al control.")]
+        //public DBControl DataControl { get; set; } = null;
 
         [Editor(typeof(EditorAbout), typeof(UITypeEditor))]
         public string About { get; set; } = "";

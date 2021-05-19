@@ -236,6 +236,27 @@ namespace FSFormControls
         }
 
 
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
+
+        private string m_DBField;
+        [Description("Campo de la base de datos a enlazar.")]
+        public string DBField
+        {
+            get { return m_DBField; }
+            set { m_DBField = value; }
+        }
+
+
         [Description("Número de decimales utilizado si el control es Numérico.")]
         public int Decimals { get; set; } = 2;
 
@@ -1110,7 +1131,7 @@ namespace FSFormControls
 
 
                 if (DataControl != null)
-                    if (DBField != "")
+                    if (!String.IsNullOrEmpty(DBField))
                     {
                         exactField = DataControl.FieldExactName(DBField);
                         if (exactField == "")
@@ -1151,22 +1172,6 @@ namespace FSFormControls
                             DataControl.GetColumn(DBField).DefaultValue = DefaultValue;
                         }
                     }
-                //else
-                //{
-                //    dbnText = new Binding("Text", this, "Text");
-                //}
-                //else
-                //{
-                //    dbnText = new Binding("Text", this, "Text");
-                //}
-
-                //if (!fldErr)
-                //{
-                //    dbnText.Format += dbnFormat;
-                //    dbnText.Parse += dbnParse;
-
-                //    Text1.DataBindings.Add(dbnText);
-                //}
             }
             catch (Exception e)
             {

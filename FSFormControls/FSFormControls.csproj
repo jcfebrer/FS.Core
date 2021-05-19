@@ -140,6 +140,11 @@
     <Compile Include="DBFileExplorer.Designer.cs">
       <DependentUpon>DBFileExplorer.cs</DependentUpon>
     </Compile>
+    <Compile Include="DBGridView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DBGridView\DBGridViewProgressBarCell.cs" />
+    <Compile Include="DBGridView\DBGridViewProgressBarColumn.cs" />
     <Compile Include="DBGridView\GridViewPrint.cs" />
     <Compile Include="DBGridView\GridViewPrintDocument.cs">
       <SubType>Component</SubType>
@@ -375,9 +380,6 @@
     <Compile Include="DBGrid.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DBGridView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="DBGrid\DataGridButton2Column.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -556,6 +558,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DBFileExplorer.resx">
       <DependentUpon>DBFileExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBGridView.resx">
+      <DependentUpon>DBGridView.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DBGridView\GridViewPrintOptions.resx">
       <DependentUpon>GridViewPrintOptions.cs</DependentUpon>
@@ -792,10 +798,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DBGrid.resx">
       <DependentUpon>DBGrid.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGridView.resx">
-      <DependentUpon>DBGridView.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DBGrid\DataGridComboBoxColumn.resx">

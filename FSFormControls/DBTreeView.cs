@@ -151,6 +151,18 @@ namespace FSFormControls
         }
 
 
+        private DBControl m_DataControl;
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set { m_DataControl = value; }
+        }
+
+
         public DBTreeViewNode SelectedDBNode => TreeView1.SelectedNode as DBTreeViewNode;
 
         public TreeNode SelectedNode
@@ -564,13 +576,40 @@ namespace FSFormControls
         }
 
 
-        public void AddLevel(DBControl DBC, string DBField, string DBFieldData, int level)
+        public void AddLevelBd(DBControl DBC, string DBField, string DBFieldData, int level)
         {
-            if (DBC.Connected == false) DBC.Connect();
+            if (DBC.Connected == false) 
+                DBC.Connect();
 
             TreeView1.BeginUpdate();
             foreach (DataRow row in DBC.DataTable.Rows)
-                AddNodeLevel(TreeView1.Nodes, row, DBField, DBFieldData, DBFieldData, level);
+            {
+                if (!AddNodeLevel(TreeView1.Nodes, row, DBField, DBFieldData, DBFieldData, level))
+                {
+                    throw new ExceptionUtil("Nivel " + level + " no añadido.");
+                }
+            }
+
+            TreeView1.EndUpdate();
+        }
+
+
+        public void AddLevelBd(string DBField, string DBFieldData, int level)
+        {
+            if (DataControl is null)
+                throw new ExceptionUtil("Datacontrol es nulo");
+
+            if (DataControl.Connected == false)
+                DataControl.Connect();
+
+            TreeView1.BeginUpdate();
+            foreach (DataRow row in DataControl.DataTable.Rows)
+            {
+                if(!AddNodeLevel(TreeView1.Nodes, row, DBField, DBFieldData, DBFieldData, level))
+                {
+                    throw new ExceptionUtil("Nivel " + level + " no añadido.");
+                }
+            }
 
             TreeView1.EndUpdate();
         }
@@ -579,6 +618,12 @@ namespace FSFormControls
         private bool AddNodeLevel(TreeNodeCollection nodes, DataRow row, string DBField, string DBFieldValue,
             string DBFieldData, int level)
         {
+            if (String.IsNullOrEmpty(DBFieldValue))
+                DBFieldValue = DBField;
+
+            if (String.IsNullOrEmpty(DBFieldData))
+                DBFieldData = DBField;
+
             DBTreeViewNode newNode = null;
             var lev = 0;
 
@@ -652,13 +697,16 @@ namespace FSFormControls
         }
 
 
+
         private void FillTreeXML(XmlNode node, TreeNodeCollection parentnode)
         {
-            if ((node == null) | (node.NodeType == XmlNodeType.Text) | (node.NodeType == XmlNodeType.CDATA)) return;
+            if ((node == null) | (node.NodeType == XmlNodeType.Text) | (node.NodeType == XmlNodeType.CDATA)) 
+                return;
 
             var tmptreenodecollection = AddNodeToTree(node, parentnode);
 
-            foreach (XmlNode tmpchildnode in node.ChildNodes) FillTreeXML(tmpchildnode, tmptreenodecollection);
+            foreach (XmlNode tmpchildnode in node.ChildNodes) 
+                FillTreeXML(tmpchildnode, tmptreenodecollection);
         }
 
 
