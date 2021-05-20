@@ -28,7 +28,7 @@ namespace FSFormControls
 
             DbGrid1.AllowDelete = false;
             DbGrid1.DataControl = DataControl;
-            DbGrid1.Mode = DBUserControlBase.AccessMode.ReadMode;
+            DbGrid1.Mode = Global.AccessMode.ReadMode;
 
             for (f = 0; f <= Convert.ToInt32(DbGrid1.DataControl.FieldsCount() - 1); f++)
                 DbGrid1.Columns.Add(DbGrid1.DataControl.FieldName(f),
@@ -107,7 +107,6 @@ namespace FSFormControls
             // 
             // DbGrid1
             // 
-            DbGrid1.About = null;
             DbGrid1.AllowAddNew = true;
             DbGrid1.AllowDelete = true;
             DbGrid1.AllowDrop = true;
@@ -142,7 +141,7 @@ namespace FSFormControls
             DbGrid1.LastCol = -1;
             DbGrid1.LastRow = -1;
             DbGrid1.Location = new Point(16, 40);
-            DbGrid1.Mode = DBUserControlBase.AccessMode.ReadMode;
+            DbGrid1.Mode = Global.AccessMode.ReadMode;
             DbGrid1.Name = "DbGrid1";
             DbGrid1.RecordMode = false;
             DbGrid1.RowHeadersVisible = true;
@@ -154,12 +153,10 @@ namespace FSFormControls
             DbGrid1.Size = new Size(672, 320);
             DbGrid1.TabIndex = 0;
             DbGrid1.TotalOperation = DBColumn.OperationTypes.Sum;
-            DbGrid1.Track = false;
             DbGrid1.XMLName = "";
             // 
             // DbButton1
             // 
-            DbButton1.About = null;
             DbButton1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             DbButton1.ButtonStyle = DBButton.ButtonStyleType.Normal;
             DbButton1.DropDownMenu = null;
@@ -182,7 +179,6 @@ namespace FSFormControls
             DbButton1.TextColorStart = Color.Blue;
             DbButton1.TextFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DbButton1.ToolTip = "";
-            DbButton1.Track = false;
             // 
             // frmListView
             // 

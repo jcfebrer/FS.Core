@@ -50,7 +50,7 @@ namespace FSFormControls
     [DefaultProperty("Shape")]
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBShape.bmp")]
     [ToolboxItem(true)]
-    public class DBShape : DBUserControlBase
+    public class DBShape : DBUserControl
     {
         private readonly IContainer components = null;
         private Region Fill_Region;

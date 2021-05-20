@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace FSFormControls
 {
-    public class DBCalculator : DBUserControlBase
+    public class DBCalculator : DBUserControl
     {
         public bool blnClear;
         public bool blnFrstOpen = true;

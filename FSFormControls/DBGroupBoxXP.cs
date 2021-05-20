@@ -18,7 +18,7 @@ namespace FSFormControls
     [Designer(typeof(DBGroupBoxXPDesigner))]
     [DesignTimeVisibleAttribute(true)]
     [ToolboxItem(true)]
-    public class DBGroupBoxXP : UserControl
+    public class DBGroupBoxXP : DBUserControl
     {
         #region '"Members"' 
 

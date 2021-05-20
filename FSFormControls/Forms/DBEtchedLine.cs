@@ -12,7 +12,7 @@ namespace FSFormControls
     /// <summary>
     ///     Summary description for UserControl1.
     /// </summary>
-    public class DBEtchedLine : UserControl
+    public class DBEtchedLine : DBUserControl
     {
         #region DrawPosition enum
 

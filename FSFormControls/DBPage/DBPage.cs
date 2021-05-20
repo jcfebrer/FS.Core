@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace FSFormControls
 {
-    public class DBPage : UserControl
+    public class DBPage : DBUserControl
     {
         public int m_Index;
         public string m_Text = "";

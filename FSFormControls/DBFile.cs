@@ -18,9 +18,9 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
-    public class DBFile : DBUserControlBase
+    public class DBFile : DBUserControl
     {
-        private AccessMode m_Mode = AccessMode.WriteMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
@@ -57,7 +57,7 @@ namespace FSFormControls
         public bool ShowText { get; set; } = true;
 
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -66,10 +66,10 @@ namespace FSFormControls
 
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         cmdLoad.Enabled = false;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         cmdLoad.Enabled = true;
                         break;
                 }
@@ -285,7 +285,7 @@ namespace FSFormControls
 
         public delegate void FileChangedEventHandler(object sender, EventArgs e);
 
-        public delegate void ModeChangedEventHandler(AccessMode mode);
+        public delegate void ModeChangedEventHandler(Global.AccessMode mode);
 
         #endregion
     }

@@ -33,7 +33,7 @@ namespace FSFormControls
             m_dbgrid = dbgrid;
 
             ReadOnly = true;
-            ColumnComboBox.Mode = DBUserControlBase.AccessMode.WriteMode;
+            ColumnComboBox.Mode = Global.AccessMode.WriteMode;
             ColumnComboBox.GridMode = true;
             ColumnComboBox.Visible = false;
 
@@ -87,7 +87,7 @@ namespace FSFormControls
 
         private void LeaveComboBox(object sender, EventArgs e)
         {
-            if (m_dbgrid.Mode == DBUserControlBase.AccessMode.ReadMode)
+            if (m_dbgrid.Mode == Global.AccessMode.ReadMode)
             {
                 ColumnComboBox.Visible = false;
                 return;

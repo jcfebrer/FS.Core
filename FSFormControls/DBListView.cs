@@ -15,7 +15,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBListView.bmp")]
     [ToolboxItem(true)]
-    public class DBListView : DBUserControlBase
+    public class DBListView : DBUserControl
     {
         private readonly DBListViewColumnSorter lvwColumnSorter;
 

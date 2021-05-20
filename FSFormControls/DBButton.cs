@@ -15,7 +15,7 @@ namespace FSFormControls
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBButton.bmp")]
     [DefaultEvent("Click")]
     [ToolboxItem(true)]
-    public class DBButton : DBUserControlBase, IButtonControl
+    public class DBButton : DBUserControl, IButtonControl
     {
         #region ButtonStyleType enum
 

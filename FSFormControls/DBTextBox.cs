@@ -19,7 +19,7 @@ namespace FSFormControls
     [DefaultEvent("KeyPress")]
     [Designer(typeof(DBTextBoxControlDesigner))]
     [ToolboxItem(true)]
-    public class DBTextBox : DBUserControlBase, ISupportInitialize
+    public class DBTextBox : DBUserControl, ISupportInitialize
     {
         internal Button cmdAmpliar;
         public string inicVal;
@@ -32,7 +32,7 @@ namespace FSFormControls
         private bool m_DotNumber;
         private bool m_Editable = true;
         private string m_MaskInput = "";
-        private AccessMode m_Mode = AccessMode.WriteMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         private bool m_MultiLine;
         private bool m_Obligatory;
         private bool m_Shadow;
@@ -148,7 +148,7 @@ namespace FSFormControls
             set
             {
                 m_Obligatory = value;
-                if (Mode == AccessMode.WriteMode)
+                if (Mode == Global.AccessMode.WriteMode)
                 {
                     if (value)
                         textbox.BackColor = Global.ObligatoryBackColor;
@@ -202,7 +202,7 @@ namespace FSFormControls
         public bool Encrypted { get; set; }
 
         [Description("Estado del control. Lectura / Escritura / Protegido.")]
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -210,11 +210,11 @@ namespace FSFormControls
                 m_Mode = value;
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         textbox.ReadOnly = true;
                         textbox.BackColor = BackColorRead;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         if (Editable)
                         {
                             textbox.ReadOnly = false;
@@ -225,7 +225,7 @@ namespace FSFormControls
                         }
 
                         break;
-                    case AccessMode.ProtectedMode:
+                    case Global.AccessMode.ProtectedMode:
                         textbox.BackColor = Global.ProtectedBackColor;
                         break;
                 }
@@ -492,7 +492,7 @@ namespace FSFormControls
 
         private void Text1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
             string validkeys = null;
             var t = (Keys) e.KeyChar;
 
@@ -579,7 +579,7 @@ namespace FSFormControls
             {
                 if ((m_DataType == TypeData.Numeric) | (m_DataType == TypeData.Money))
                 {
-                    if (Mode == AccessMode.WriteMode)
+                    if (Mode == Global.AccessMode.WriteMode)
                         showb = Global.ShowCalc;
                     else
                         showb = false;
@@ -620,7 +620,7 @@ namespace FSFormControls
             {
                 if (m_DataType == TypeData.Memo)
                 {
-                    if (Mode == AccessMode.WriteMode)
+                    if (Mode == Global.AccessMode.WriteMode)
                         showb = true;
                     else
                         showb = false;
@@ -805,7 +805,7 @@ namespace FSFormControls
             if (null != KeyDown) 
                 KeyDown(this, e);
 
-            if (Mode == AccessMode.ReadMode) 
+            if (Mode == Global.AccessMode.ReadMode) 
                 return;
             if (!string.IsNullOrEmpty(m_MaskInput)) 
                 CheckMaskKeyDown(e);
@@ -818,7 +818,7 @@ namespace FSFormControls
         {
             base.OnKeyUp(e);
 
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
             if (null != KeyUp) KeyUp(sender, e);
         }
 
@@ -834,7 +834,7 @@ namespace FSFormControls
 
         private void Text1_Changed(object sender, EventArgs e)
         {
-            if (Mode == AccessMode.ReadMode)
+            if (Mode == Global.AccessMode.ReadMode)
                 return;
 
             if (LastValue == textbox.Text)

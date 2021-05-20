@@ -18,7 +18,7 @@ namespace FSFormControls
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBDate.bmp")]
     [Designer(typeof(DBDateControlDesigner))]
     [ToolboxItem(true)]
-    public class DBDate : DBUserControlBase, ISupportInitialize
+    public class DBDate : DBUserControl, ISupportInitialize
     {
         private Color m_BackColor = Global.NormalBackColor;
         private string m_CustomFormat = "dd/MM/yyyy";
@@ -26,7 +26,7 @@ namespace FSFormControls
         private DateTimePickerFormat m_Format = DateTimePickerFormat.Custom;
 
         private bool m_IsNull;
-        private AccessMode m_Mode = AccessMode.WriteMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         private bool m_Obligatory;
         private string m_oldCustomFormat;
         private DateTimePickerFormat m_oldFormat;
@@ -103,8 +103,8 @@ namespace FSFormControls
         [Description("Modo lectura")]
         public bool ReadOnly
         {
-            get { return Mode == AccessMode.ReadMode; }
-            set { Mode = value ? AccessMode.ReadMode : AccessMode.WriteMode; }
+            get { return Mode == Global.AccessMode.ReadMode; }
+            set { Mode = value ? Global.AccessMode.ReadMode : Global.AccessMode.WriteMode; }
         }
 
         public char PromptChar { get; set; }
@@ -200,7 +200,7 @@ namespace FSFormControls
             }
         }
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -208,15 +208,15 @@ namespace FSFormControls
                 m_Mode = value;
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         DateTimePicker1.Enabled = false;
                         DateTimePicker1.BackColor = m_BackColor;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         DateTimePicker1.Enabled = true;
                         DateTimePicker1.BackColor = m_BackColor;
                         break;
-                    case AccessMode.ProtectedMode:
+                    case Global.AccessMode.ProtectedMode:
                         DateTimePicker1.BackColor = Global.ObligatoryBackColor;
                         break;
                 }

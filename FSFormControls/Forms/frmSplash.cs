@@ -308,7 +308,6 @@ namespace FSFormControls
             // 
             // DbTextBox1
             // 
-            DbTextBox1.About = null;
             DbTextBox1.AsociatedCombo = null;
             DbTextBox1.AsociatedDBFindTextBox = null;
             DbTextBox1.BackColorRead = Color.WhiteSmoke;
@@ -331,7 +330,7 @@ namespace FSFormControls
             DbTextBox1.MaskInput = "";
             DbTextBox1.MaxLength = 32767;
             DbTextBox1.MaxValue = decimal.MaxValue;
-            DbTextBox1.Mode = DBUserControlBase.AccessMode.WriteMode;
+            DbTextBox1.Mode = Global.AccessMode.WriteMode;
             DbTextBox1.Multiline = true;
             DbTextBox1.Name = "DbTextBox1";
             DbTextBox1.Obligatory = false;
@@ -348,7 +347,6 @@ namespace FSFormControls
             DbTextBox1.Text = "DbTextBox1";
             DbTextBox1.TextAlign = HorizontalAlignment.Center;
             DbTextBox1.ToolTip = "";
-            DbTextBox1.Track = false;
             DbTextBox1.XMLName = null;
             // 
             // SplashScreen

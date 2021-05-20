@@ -16,7 +16,7 @@ namespace FSFormControls
 {
     [DefaultProperty("Value")]
     [ToolboxItem(false)]
-    public class DataGridPropertyEditor : UserControl, IWindowsFormsEditorService, IServiceProvider,
+    public class DataGridPropertyEditor : DBUserControl, IWindowsFormsEditorService, IServiceProvider,
         ITypeDescriptorContext, ISupportInitialize
 
 

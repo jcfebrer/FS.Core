@@ -6,7 +6,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
-    public partial class DBOptionSet : DBUserControlBase, ISupportInitialize
+    public partial class DBOptionSet : DBUserControl, ISupportInitialize
     {
         public DBOptionSet()
         {

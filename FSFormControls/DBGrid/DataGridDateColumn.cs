@@ -222,7 +222,7 @@ namespace FSFormControls
         private void LeaveDate(object sender, EventArgs e)
         {
             var dbg = (DBGrid) TextBox.Parent.Parent;
-            if (dbg.Mode == DBUserControlBase.AccessMode.ReadMode)
+            if (dbg.Mode == Global.AccessMode.ReadMode)
             {
                 ColumnDate.Visible = false;
                 return;

@@ -204,6 +204,7 @@
     </Compile>
     <Compile Include="DBTooltipManager.cs" />
     <Compile Include="DBTreeViewNode.cs" />
+    <Compile Include="DBUserControl.cs" />
     <Compile Include="Forms\DBForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -490,9 +491,6 @@
     <Compile Include="DBRecord.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DBRectTracker.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="DBRichTextBox.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -517,7 +515,6 @@
     <Compile Include="DBTreeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DBUserControlBase.cs" />
     <Compile Include="Classes\Browse.cs" />
     <Compile Include="Classes\Burner.cs" />
     <Compile Include="Classes\Error.cs" />
@@ -578,6 +575,10 @@
       <DependentUpon>DBOptionSet.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DBPage\DBPage.resx" />
+    <EmbeddedResource Include="DBUserControl.resx">
+      <DependentUpon>DBUserControl.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DBForm.resx">
       <DependentUpon>DBForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -892,10 +893,6 @@
       <DependentUpon>DBRecord.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="DBRectTracker.resx">
-      <DependentUpon>DBRectTracker.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="DBRichTextBox.resx">
       <DependentUpon>DBRichTextBox.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -922,10 +919,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DBTreeView.resx">
       <DependentUpon>DBTreeView.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBUserControlBase.resx">
-      <DependentUpon>DBUserControlBase.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

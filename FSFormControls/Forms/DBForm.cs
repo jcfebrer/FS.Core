@@ -23,7 +23,7 @@ namespace FSFormControls
         private LinearGradientMode m_GradientMode = LinearGradientMode.Horizontal;
         private Color m_GradientStartColor = Color.Blue;
         private Form m_mdiParent;
-        private DBUserControlBase.AccessMode m_Mode = DBUserControlBase.AccessMode.ReadMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.ReadMode;
         private bool m_ShowMenu = true;
         //private bool m_ShowStatusBar = true;
         private bool m_ShowToolBar = true;
@@ -89,7 +89,7 @@ namespace FSFormControls
         public bool ShowContextMenu { get; set; } = true;
 
 
-        public DBUserControlBase.AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -443,7 +443,7 @@ namespace FSFormControls
         }
 
 
-        private void ModeAllControls(Control.ControlCollection frm, DBUserControlBase.AccessMode mode)
+        private void ModeAllControls(Control.ControlCollection frm, Global.AccessMode mode)
         {
             if (frm == null) return;
 
@@ -526,21 +526,21 @@ namespace FSFormControls
         }
 
 
-        private void TrackMode(Control frm, bool mode)
-        {
-            try
-            {
-                foreach (Control ctr in frm.Controls)
-                {
-                    if (FunctionsForms.IsContainer(ctr)) TrackMode(ctr, mode);
-                    if (ctr is DBUserControlBase) ((DBUserControlBase) ctr).Track = mode;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new ExceptionUtil(ex);
-            }
-        }
+        //private void TrackMode(Control frm, bool mode)
+        //{
+        //    try
+        //    {
+        //        foreach (Control ctr in frm.Controls)
+        //        {
+        //            if (FunctionsForms.IsContainer(ctr)) TrackMode(ctr, mode);
+        //            if (ctr is DBUserControl) ((DBUserControl) ctr).Track = mode;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ExceptionUtil(ex);
+        //    }
+        //}
 
 
         public void Save()
@@ -551,7 +551,7 @@ namespace FSFormControls
 
         private void MnuEditar(object sender, EventArgs e)
         {
-            TrackMode(this, true);
+            //TrackMode(this, true);
 
             ((ToolStripMenuItem)mnuContext.Items[11]).Checked = true;
             ((ToolStripMenuItem)mnuContext.Items[12]).Checked = false;
@@ -560,7 +560,7 @@ namespace FSFormControls
 
         private void MnuNormal(object sender, EventArgs e)
         {
-            TrackMode(this, false);
+            //TrackMode(this, false);
 
             ((ToolStripMenuItem)mnuContext.Items[11]).Checked = false;
             ((ToolStripMenuItem)mnuContext.Items[12]).Checked = true;
@@ -970,7 +970,7 @@ namespace FSFormControls
             // 
             // DbToolBar1
             // 
-            this.DbToolBar1.About = null;
+            
             this.DbToolBar1.AllowAddNew = true;
             this.DbToolBar1.AllowCancel = true;
             this.DbToolBar1.AllowClose = true;
@@ -1003,7 +1003,6 @@ namespace FSFormControls
             this.DbToolBar1.TabIndex = 1;
             this.DbToolBar1.TabStop = false;
             this.DbToolBar1.ToolBarType = FSFormControls.DBToolBarEx.tToolbar.ToolbarXPBig;
-            this.DbToolBar1.Track = false;
             this.DbToolBar1.Value = 0;
             this.DbToolBar1.VisibleScroll = true;
             this.DbToolBar1.VisibleTotalRecord = false;

@@ -10,6 +10,13 @@ namespace FSFormControls
 {
     public static class Global
     {
+        public enum AccessMode
+        {
+            ReadMode,
+            WriteMode,
+            ProtectedMode
+        }
+
         public const int MAX_COLUMN_WIDTH = 500;
         public const int MAX_TEXT_LENGTH = 32767;
         public const int DATE_LENGTH = 10;

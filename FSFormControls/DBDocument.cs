@@ -15,9 +15,9 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
-    public class DBDocument : DBUserControlBase
+    public class DBDocument : DBUserControl
     {
-        private AccessMode m_Mode = AccessMode.WriteMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
 
 
         //[Description("DataBindings.")]
@@ -46,7 +46,7 @@ namespace FSFormControls
         }
 
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -55,11 +55,11 @@ namespace FSFormControls
 
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         Label1.ContextMenu = null;
                         Label1.Enabled = false;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         Label1.ContextMenu = ContextMenu1;
                         Label1.Enabled = false;
                         break;

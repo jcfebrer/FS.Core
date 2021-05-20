@@ -82,7 +82,6 @@ namespace FSFormControls
             // 
             // DbCalculator
             // 
-            DbCalculator.About = null;
             DbCalculator.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
                                                    | AnchorStyles.Left
                                                    | AnchorStyles.Right;
@@ -95,7 +94,6 @@ namespace FSFormControls
             DbCalculator.Size = new Size(134, 205);
             DbCalculator.TabIndex = 0;
             DbCalculator.TextColor = Color.Blue;
-            DbCalculator.Track = false;
             // 
             // frmCalc
             // 

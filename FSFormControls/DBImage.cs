@@ -18,9 +18,9 @@ namespace FSFormControls
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBImage.bmp")]
     [ToolboxItem(true)]
     public class DBImage
-        : DBUserControlBase
+        : DBUserControl
     {
-        private AccessMode m_Mode = AccessMode.ReadMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
 
         public new BorderStyle BorderStyle
         {
@@ -63,7 +63,7 @@ namespace FSFormControls
         //}
 
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -72,10 +72,10 @@ namespace FSFormControls
 
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         ContextMenu1.MenuItems[0].Enabled = false;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         ContextMenu1.MenuItems[0].Enabled = true;
                         break;
                 }
@@ -159,7 +159,7 @@ namespace FSFormControls
         {
             base.OnMouseDown(e);
 
-            if (Mode == AccessMode.WriteMode)
+            if (Mode == Global.AccessMode.WriteMode)
                 ContextMenu1.Show(this, e.Location);
         }
 

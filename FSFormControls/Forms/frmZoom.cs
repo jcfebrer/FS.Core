@@ -85,7 +85,6 @@ namespace FSFormControls
             // 
             // cmdClose
             // 
-            cmdClose.About = null;
             cmdClose.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cmdClose.ButtonStyle = DBButton.ButtonStyleType.Normal;
             cmdClose.DropDownMenu = null;
@@ -108,11 +107,9 @@ namespace FSFormControls
             cmdClose.TextColorStart = Color.Blue;
             cmdClose.TextFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmdClose.ToolTip = "";
-            cmdClose.Track = false;
             // 
             // DbTextBox1
             // 
-            DbTextBox1.About = null;
             DbTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
                                                  | AnchorStyles.Left
                                                  | AnchorStyles.Right;
@@ -137,7 +134,7 @@ namespace FSFormControls
             DbTextBox1.MaskInput = null;
             DbTextBox1.MaxLength = 32767;
             DbTextBox1.MaxValue = decimal.MaxValue;
-            DbTextBox1.Mode = DBUserControlBase.AccessMode.WriteMode;
+            DbTextBox1.Mode = Global.AccessMode.WriteMode;
             DbTextBox1.Multiline = true;
             DbTextBox1.Name = "DbTextBox1";
             DbTextBox1.Obligatory = false;
@@ -153,12 +150,10 @@ namespace FSFormControls
             DbTextBox1.TabIndex = 2;
             DbTextBox1.TextAlign = HorizontalAlignment.Left;
             DbTextBox1.ToolTip = "";
-            DbTextBox1.Track = false;
             DbTextBox1.XMLName = null;
             // 
             // cmdSave
             // 
-            cmdSave.About = null;
             cmdSave.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             cmdSave.ButtonStyle = DBButton.ButtonStyleType.Normal;
             cmdSave.FillColorEnd = Color.White;
@@ -180,7 +175,6 @@ namespace FSFormControls
             cmdSave.TextColorStart = Color.Blue;
             cmdSave.TextFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cmdSave.ToolTip = "";
-            cmdSave.Track = false;
             // 
             // frmZoom
             // 

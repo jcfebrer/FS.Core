@@ -19,69 +19,23 @@ namespace FSFormControls
     [Designer(typeof(DBControlDesigner))]
     [DesignTimeVisible(true)]
     [ToolboxItem(false)]
-    public class DBUserControlBase : UserControl
+    public class DBUserControl : UserControl
     {
-        public enum AccessMode
+        public DBUserControl()
         {
-            ReadMode,
-            WriteMode,
-            ProtectedMode
         }
 
-        private Form m_Form;
-        public DBRectTracker Tracker;
-
-        public DBUserControlBase()
-        {
-            MouseDown += DBUsercontrolBase_MouseDown;
-
-            if (m_Form != null)
-                m_Form.MouseUp += m_Form_MouseUp;
-        }
-
-        //[TypeConverter(typeof(FieldList))]
-        //[DefaultValueAttribute("")]
-        //[Description("Campo de la base de datos que debe mostrar este control.")]
-        //public string DBField { get; set; } = "";
-
-        //[Description("DBControl asociado al control.")]
-        //public DBControl DataControl { get; set; } = null;
 
         [Editor(typeof(EditorAbout), typeof(UITypeEditor))]
         public string About { get; set; } = "";
 
-        public bool Track { get; set; }
-
-        private void DBUsercontrolBase_MouseDown(object sender, MouseEventArgs e)
-        {
-            m_Form = FindForm();
-            ((Control) sender).BringToFront();
-            ((Control) sender).Capture = false;
-            Tracker = (DBRectTracker) FunctionsForms.FindControlType(m_Form.Controls, "FSFormControls.DBRectTracker");
-            if (Tracker != null) m_Form.Controls.Remove(Tracker);
-
-            if (Track)
-            {
-                Tracker = new DBRectTracker((Control) sender);
-                m_Form.Controls.Add(Tracker);
-                Tracker.BringToFront();
-                Tracker.Draw();
-            }
-        }
-
-
-        private void m_Form_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (Track) m_Form.Controls.Remove(Tracker);
-        }
-
-        private void InitializeComponent()
+         private void InitializeComponent()
         {
             SuspendLayout();
             // 
-            // DBUsercontrolBase
+            // DBUsercontrol
             // 
-            Name = "DBUsercontrolBase";
+            Name = "DBUsercontrol";
             Size = new Size(151, 145);
             ResumeLayout(false);
         }

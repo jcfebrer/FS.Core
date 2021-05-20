@@ -27,7 +27,7 @@ namespace FSFormControls
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBGrid.bmp")]
     [DefaultEvent("Click")]
     [ToolboxItem(true)]
-    public class DBGrid : DBUserControlBase
+    public class DBGrid : DBUserControl
     {
         private readonly DataGridTableStyle dgTableStyle = new DataGridTableStyle();
         private readonly ImageList imageList_DragDrop = new ImageList();
@@ -45,7 +45,7 @@ namespace FSFormControls
         private bool m_CustomColumnHeaders;
         private Font m_DefaultHeaderFont;
         private int m_LastRowClicked = -1;
-        private AccessMode m_Mode = AccessMode.ReadMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         private int m_mouseDownColumn = -1;
         private int m_RowsInCaption = 2;
         private bool m_ShowTotals;
@@ -332,11 +332,11 @@ namespace FSFormControls
 
         public override bool AutoSize { get; set; } = true;
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get
             {
-                AccessMode modeReturn = 0;
+                Global.AccessMode modeReturn = 0;
                 modeReturn = m_Mode;
                 return modeReturn;
             }
@@ -345,7 +345,7 @@ namespace FSFormControls
                 m_Mode = value;
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         if (DataControl != null)
                             if (DataControl.DataTable != null)
                             {
@@ -354,9 +354,9 @@ namespace FSFormControls
                                 DataControl.DataTable.DefaultView.AllowNew = false;
                             }
 
-                        if (DbRecord1 != null) DbRecord1.Mode = AccessMode.ReadMode;
+                        if (DbRecord1 != null) DbRecord1.Mode = Global.AccessMode.ReadMode;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         if (Editable)
                         {
                             if (DataControl != null)
@@ -370,10 +370,10 @@ namespace FSFormControls
                             DataGrid1.ReadOnly = false;
                         }
 
-                        if (DbRecord1 != null) DbRecord1.Mode = AccessMode.WriteMode;
+                        if (DbRecord1 != null) DbRecord1.Mode = Global.AccessMode.WriteMode;
                         UnSelect(CurrentCell.RowNumber);
                         break;
-                    case AccessMode.ProtectedMode:
+                    case Global.AccessMode.ProtectedMode:
                         if (DataControl != null)
                             if (DataControl.DataTable != null)
                             {
@@ -382,7 +382,7 @@ namespace FSFormControls
                                 DataControl.DataTable.DefaultView.AllowNew = AllowAddNew;
                             }
 
-                        if (DbRecord1 != null) DbRecord1.Mode = AccessMode.ProtectedMode;
+                        if (DbRecord1 != null) DbRecord1.Mode = Global.AccessMode.ProtectedMode;
                         break;
                 }
 
@@ -1036,7 +1036,7 @@ namespace FSFormControls
 
                 frm.ShowDialog();
 
-                if (Mode == AccessMode.WriteMode)
+                if (Mode == Global.AccessMode.WriteMode)
                     if (frm.SelectedRow != null)
                         for (f = 0; f <= Columns.Count - 1; f++)
                             if (Columns[f].ColumnType == DBColumn.ColumnTypes.ButtonColumn)
@@ -2813,7 +2813,7 @@ namespace FSFormControls
             var col = DataGrid1.CurrentCell.ColumnNumber;
             var row = DataGrid1.CurrentCell.RowNumber;
 
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
 
             UpdateLastRowValue(row);
 
@@ -2840,7 +2840,7 @@ namespace FSFormControls
         }
 
 
-        public void ModeControls(AccessMode mode)
+        public void ModeControls(Global.AccessMode mode)
         {
             if (DataControl != null) DataControl.ModeDBControls(DataGrid1.Controls, mode);
         }
@@ -2881,7 +2881,7 @@ namespace FSFormControls
 
             m_mouseDownColumn = -1;
 
-            if (Mode == AccessMode.WriteMode) return;
+            if (Mode == Global.AccessMode.WriteMode) return;
 
             if (e.Button != MouseButtons.Left) return;
             if (!(DataControl == null)) DataControl.Action = DBControl.DbActionTypes.Change;

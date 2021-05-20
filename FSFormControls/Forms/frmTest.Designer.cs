@@ -55,7 +55,6 @@
             this.dbDateTimePicker1 = new FSFormControls.DBDateTimePicker();
             this.dbEtchedLine1 = new FSFormControls.DBEtchedLine();
             this.dbControl1 = new FSFormControls.DBControl();
-            this.dbRectTracker1 = new FSFormControls.DBRectTracker();
             this.dbFile1 = new FSFormControls.DBFile();
             this.dbDocument1 = new FSFormControls.DBDocument();
             this.dbFindTextBox1 = new FSFormControls.DBFindTextBox();
@@ -165,7 +164,7 @@
             // 
             // dbLabel1
             // 
-            this.dbLabel1.About = "";
+            
             this.dbLabel1.Angle = 0F;
             this.dbLabel1.Appearance = null;
             this.dbLabel1.AutoSize = true;
@@ -179,7 +178,7 @@
             this.dbLabel1.Decimals = 0;
             this.dbLabel1.EndColor = System.Drawing.Color.LightSkyBlue;
             this.dbLabel1.Location = new System.Drawing.Point(6, 6);
-            this.dbLabel1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.dbLabel1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbLabel1.Name = "dbLabel1";
             this.dbLabel1.ShadowColor = System.Drawing.Color.Black;
             this.dbLabel1.Size = new System.Drawing.Size(51, 13);
@@ -188,13 +187,12 @@
             this.dbLabel1.TabStop = false;
             this.dbLabel1.Text = "dbLabel1";
             this.dbLabel1.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.dbLabel1.Track = false;
             this.dbLabel1.XOffset = 1F;
             this.dbLabel1.YOffset = 1F;
             // 
             // dbTextBox1
             // 
-            this.dbTextBox1.About = "";
+            
             this.dbTextBox1.AcceptsReturn = false;
             this.dbTextBox1.Appearance = null;
             this.dbTextBox1.AsociatedCombo = null;
@@ -229,7 +227,7 @@
             -1,
             -1,
             -2147483648});
-            this.dbTextBox1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbTextBox1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbTextBox1.Multiline = false;
             this.dbTextBox1.Name = "dbTextBox1";
             this.dbTextBox1.NonAutoSizeHeight = 0;
@@ -256,13 +254,12 @@
             this.dbTextBox1.Text = "dbTextBox1";
             this.dbTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.dbTextBox1.ToolTip = "";
-            this.dbTextBox1.Track = false;
             this.dbTextBox1.Value = "dbTextBox1";
             this.dbTextBox1.XMLName = "";
             // 
             // dbDate1
             // 
-            this.dbDate1.About = "";
+            
             this.dbDate1.AllowNullValue = true;
             this.dbDate1.Appearance = null;
             this.dbDate1.CustomFormat = "dd/MM/yyyy";
@@ -276,7 +273,7 @@
             this.dbDate1.MaskInput = null;
             this.dbDate1.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dbDate1.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dbDate1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbDate1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbDate1.Name = "dbDate1";
             this.dbDate1.Obligatory = false;
             this.dbDate1.PromptChar = '\0';
@@ -284,12 +281,11 @@
             this.dbDate1.Size = new System.Drawing.Size(111, 20);
             this.dbDate1.TabIndex = 12;
             this.dbDate1.Text = "15/06/2019";
-            this.dbDate1.Track = false;
             this.dbDate1.Value = new System.DateTime(2019, 6, 15, 10, 26, 7, 990);
             // 
             // dbCheckBox1
             // 
-            this.dbCheckBox1.About = "";
+            
             this.dbCheckBox1.Appearance = null;
             this.dbCheckBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dbCheckBox1.Checked = false;
@@ -297,16 +293,15 @@
             this.dbCheckBox1.Editable = true;
             this.dbCheckBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.dbCheckBox1.Location = new System.Drawing.Point(6, 47);
-            this.dbCheckBox1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbCheckBox1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbCheckBox1.Name = "dbCheckBox1";
             this.dbCheckBox1.Size = new System.Drawing.Size(110, 33);
             this.dbCheckBox1.TabIndex = 14;
             this.dbCheckBox1.Text = "dbCheckBox1";
-            this.dbCheckBox1.Track = false;
             // 
             // dbButton1
             // 
-            this.dbButton1.About = "";
+            
             this.dbButton1.Appearance = null;
             this.dbButton1.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
             this.dbButton1.DialogResult = System.Windows.Forms.DialogResult.None;
@@ -331,11 +326,10 @@
             this.dbButton1.TextColorStart = System.Drawing.Color.Blue;
             this.dbButton1.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbButton1.ToolTip = "";
-            this.dbButton1.Track = false;
             // 
             // dbCombo1
             // 
-            this.dbCombo1.About = "";
+            
             this.dbCombo1.Appearance = null;
             this.dbCombo1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.dbCombo1.AutoSize = true;
@@ -357,7 +351,7 @@
             this.dbCombo1.IsInEditMode = true;
             this.dbCombo1.Items = null;
             this.dbCombo1.Location = new System.Drawing.Point(123, 56);
-            this.dbCombo1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbCombo1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbCombo1.Name = "dbCombo1";
             this.dbCombo1.Obligatory = false;
             this.dbCombo1.OrderBy = null;
@@ -372,13 +366,12 @@
             this.dbCombo1.Sort = true;
             this.dbCombo1.SortStyle = FSFormControls.DBCombo.SortStyleEnum.Ascending;
             this.dbCombo1.TabIndex = 15;
-            this.dbCombo1.Track = false;
             this.dbCombo1.Value = null;
             this.dbCombo1.ValueMember = "";
             // 
             // dbButton2
             // 
-            this.dbButton2.About = "";
+            
             this.dbButton2.Appearance = null;
             this.dbButton2.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
             this.dbButton2.DialogResult = System.Windows.Forms.DialogResult.None;
@@ -403,11 +396,10 @@
             this.dbButton2.TextColorStart = System.Drawing.Color.Blue;
             this.dbButton2.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbButton2.ToolTip = "dbButton2";
-            this.dbButton2.Track = false;
             // 
             // dbButton3
             // 
-            this.dbButton3.About = "";
+            
             this.dbButton3.Appearance = null;
             this.dbButton3.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
             this.dbButton3.DialogResult = System.Windows.Forms.DialogResult.None;
@@ -432,7 +424,6 @@
             this.dbButton3.TextColorStart = System.Drawing.Color.Blue;
             this.dbButton3.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbButton3.ToolTip = "dbButton3";
-            this.dbButton3.Track = false;
             // 
             // dbChart1
             // 
@@ -518,7 +509,7 @@
             // 
             // dbListBox1
             // 
-            this.dbListBox1.About = "";
+            
             this.dbListBox1.BlankSelection = false;
             this.dbListBox1.DataControl = null;
             this.dbListBox1.DataControlList = null;
@@ -526,7 +517,7 @@
             this.dbListBox1.DBFieldList = null;
             this.dbListBox1.Editable = true;
             this.dbListBox1.Location = new System.Drawing.Point(501, 6);
-            this.dbListBox1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbListBox1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbListBox1.Name = "dbListBox1";
             this.dbListBox1.Obligatory = false;
             this.dbListBox1.OrderBy = null;
@@ -535,11 +526,10 @@
             this.dbListBox1.ShowCode = false;
             this.dbListBox1.Size = new System.Drawing.Size(133, 110);
             this.dbListBox1.TabIndex = 32;
-            this.dbListBox1.Track = false;
             // 
             // dbListView1
             // 
-            this.dbListView1.About = "";
+            
             this.dbListView1.CanDelete = true;
             this.dbListView1.CheckBoxes = false;
             this.dbListView1.DataControl = null;
@@ -547,7 +537,6 @@
             this.dbListView1.Name = "dbListView1";
             this.dbListView1.Size = new System.Drawing.Size(138, 110);
             this.dbListView1.TabIndex = 33;
-            this.dbListView1.Track = false;
             this.dbListView1.XMLName = null;
             // 
             // tabPage2
@@ -556,7 +545,6 @@
             this.tabPage2.Controls.Add(this.dbDateTimePicker1);
             this.tabPage2.Controls.Add(this.dbEtchedLine1);
             this.tabPage2.Controls.Add(this.dbControl1);
-            this.tabPage2.Controls.Add(this.dbRectTracker1);
             this.tabPage2.Controls.Add(this.dbFile1);
             this.tabPage2.Controls.Add(this.dbDocument1);
             this.tabPage2.Controls.Add(this.dbFindTextBox1);
@@ -572,7 +560,7 @@
             // 
             // dbCombo2
             // 
-            this.dbCombo2.About = null;
+            
             this.dbCombo2.Appearance = null;
             this.dbCombo2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.dbCombo2.AutoSize = true;
@@ -588,7 +576,7 @@
             this.dbCombo2.ImageList = this.imageList1;
             this.dbCombo2.IsInEditMode = true;
             this.dbCombo2.Location = new System.Drawing.Point(8, 211);
-            this.dbCombo2.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbCombo2.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbCombo2.Name = "dbCombo2";
             this.dbCombo2.Obligatory = false;
             this.dbCombo2.OrderBy = null;
@@ -603,7 +591,6 @@
             this.dbCombo2.Sort = true;
             this.dbCombo2.SortStyle = FSFormControls.DBCombo.SortStyleEnum.Ascending;
             this.dbCombo2.TabIndex = 48;
-            this.dbCombo2.Track = false;
             this.dbCombo2.Value = null;
             this.dbCombo2.ValueMember = "";
             // 
@@ -638,7 +625,7 @@
             // 
             // dbControl1
             // 
-            this.dbControl1.About = "";
+            
             this.dbControl1.ArrayList = null;
             this.dbControl1.AutoConnect = true;
             this.dbControl1.DataSet = null;
@@ -652,7 +639,7 @@
             this.dbControl1.Location = new System.Drawing.Point(493, 6);
             this.dbControl1.LOCK = null;
             this.dbControl1.LOPD = null;
-            this.dbControl1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.dbControl1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbControl1.Name = "dbControl1";
             this.dbControl1.Page = 0;
             this.dbControl1.PageSettings = null;
@@ -670,7 +657,6 @@
             this.dbControl1.TabIndex = 16;
             this.dbControl1.TabStop = false;
             this.dbControl1.Text = "dbControl1";
-            this.dbControl1.Track = false;
             this.dbControl1.TypeDB = FSFormControls.DBControl.DbType.SQLServer;
             this.dbControl1.Versionable = false;
             this.dbControl1.VersionableDateField = "";
@@ -681,44 +667,29 @@
             this.dbControl1.XmlFile = "";
             this.dbControl1.XMLName = "";
             // 
-            // dbRectTracker1
-            // 
-            this.dbRectTracker1.BackColor = System.Drawing.Color.Wheat;
-            this.dbRectTracker1.Control = null;
-            this.dbRectTracker1.Location = new System.Drawing.Point(493, 71);
-            this.dbRectTracker1.Name = "dbRectTracker1";
-            this.dbRectTracker1.Rect = new System.Drawing.Rectangle(6, 6, 0, 0);
-            this.dbRectTracker1.Size = new System.Drawing.Size(63, 57);
-            this.dbRectTracker1.TabIndex = 40;
-            // 
             // dbFile1
             // 
-            this.dbFile1.About = "";
             this.dbFile1.Data = null;
             this.dbFile1.FieldDateTime = "fecha";
             this.dbFile1.FieldFileName = "nombre";
             this.dbFile1.Location = new System.Drawing.Point(6, 48);
-            this.dbFile1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbFile1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbFile1.Name = "dbFile1";
             this.dbFile1.ShowText = true;
             this.dbFile1.Size = new System.Drawing.Size(260, 24);
             this.dbFile1.TabIndex = 21;
             this.dbFile1.Text = "dbFile1";
-            this.dbFile1.Track = false;
             // 
             // dbDocument1
             // 
-            this.dbDocument1.About = "";
             this.dbDocument1.Location = new System.Drawing.Point(377, 180);
-            this.dbDocument1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbDocument1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbDocument1.Name = "dbDocument1";
             this.dbDocument1.Size = new System.Drawing.Size(130, 62);
             this.dbDocument1.TabIndex = 18;
-            this.dbDocument1.Track = false;
             // 
             // dbFindTextBox1
             // 
-            this.dbFindTextBox1.About = "";
             this.dbFindTextBox1.DataControlList = null;
             this.dbFindTextBox1.DataType = FSFormControls.DBTextBox.TypeData.All;
             this.dbFindTextBox1.DBFieldData = null;
@@ -732,14 +703,13 @@
             -1,
             -1,
             0});
-            this.dbFindTextBox1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.dbFindTextBox1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbFindTextBox1.Name = "dbFindTextBox1";
             this.dbFindTextBox1.Obligatory = false;
             this.dbFindTextBox1.ShowSelectForm = true;
             this.dbFindTextBox1.Size = new System.Drawing.Size(133, 20);
             this.dbFindTextBox1.TabIndex = 22;
             this.dbFindTextBox1.Text = "dbFindTextBox1";
-            this.dbFindTextBox1.Track = false;
             // 
             // dbPanel1
             // 
@@ -750,7 +720,7 @@
             // 
             // dbFtp1
             // 
-            this.dbFtp1.About = "";
+            
             this.dbFtp1.CurrentDirectory = "/";
             this.dbFtp1.Hostname = "ftp://";
             this.dbFtp1.KeepAlive = false;
@@ -760,7 +730,6 @@
             this.dbFtp1.Password = null;
             this.dbFtp1.Size = new System.Drawing.Size(110, 41);
             this.dbFtp1.TabIndex = 25;
-            this.dbFtp1.Track = false;
             this.dbFtp1.Username = null;
             // 
             // tabPage3
@@ -776,7 +745,7 @@
             // 
             // dbGridView1
             // 
-            this.dbGridView1.About = "";
+            
             this.dbGridView1.ActiveCell = null;
             this.dbGridView1.ActiveRow = null;
             this.dbGridView1.AllowAddNew = true;
@@ -793,7 +762,7 @@
             this.dbGridView1.DisplayLayout = null;
             this.dbGridView1.Editable = true;
             this.dbGridView1.Location = new System.Drawing.Point(6, 6);
-            this.dbGridView1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.dbGridView1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbGridView1.MultiSelect = false;
             this.dbGridView1.Name = "dbGridView1";
             this.dbGridView1.RecordMode = false;
@@ -807,7 +776,6 @@
             this.dbGridView1.SortedColumns = null;
             this.dbGridView1.TabIndex = 28;
             this.dbGridView1.TotalOperation = FSFormControls.DBColumn.OperationTypes.Sum;
-            this.dbGridView1.Track = false;
             // 
             // tabPage4
             // 
@@ -859,19 +827,18 @@
             // 
             // dbImage1
             // 
-            this.dbImage1.About = "";
+            
             this.dbImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dbImage1.Location = new System.Drawing.Point(214, 19);
-            this.dbImage1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.dbImage1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbImage1.Name = "dbImage1";
             this.dbImage1.Size = new System.Drawing.Size(138, 33);
             this.dbImage1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.dbImage1.TabIndex = 31;
-            this.dbImage1.Track = false;
             // 
             // dbLopd1
             // 
-            this.dbLopd1.About = "";
+            
             this.dbLopd1.Location = new System.Drawing.Point(540, 68);
             this.dbLopd1.LOPD_DateField = null;
             this.dbLopd1.LOPD_OperationField = null;
@@ -882,13 +849,12 @@
             this.dbLopd1.Name = "dbLopd1";
             this.dbLopd1.Size = new System.Drawing.Size(141, 48);
             this.dbLopd1.TabIndex = 35;
-            this.dbLopd1.Track = false;
             this.dbLopd1.User = null;
             this.dbLopd1.Visible = false;
             // 
             // dbRecord1
             // 
-            this.dbRecord1.About = "";
+            
             this.dbRecord1.AllowAddNew = true;
             this.dbRecord1.AllowCancel = true;
             this.dbRecord1.AllowDelete = true;
@@ -908,7 +874,7 @@
             this.dbRecord1.LabelAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.dbRecord1.LabelYIncrement = 30;
             this.dbRecord1.Location = new System.Drawing.Point(20, 122);
-            this.dbRecord1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.dbRecord1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbRecord1.Name = "dbRecord1";
             this.dbRecord1.PosXLabel = 20;
             this.dbRecord1.PosYLabel = 20;
@@ -931,11 +897,10 @@
             this.dbRecord1.Size = new System.Drawing.Size(661, 111);
             this.dbRecord1.TabIndex = 39;
             this.dbRecord1.TextBoxShadow = false;
-            this.dbRecord1.Track = false;
             // 
             // dbLock1
             // 
-            this.dbLock1.About = "";
+            
             this.dbLock1.Location = new System.Drawing.Point(373, 71);
             this.dbLock1.LOCK_DateTimeField = null;
             this.dbLock1.LOCK_RecurseCodeField = null;
@@ -944,7 +909,6 @@
             this.dbLock1.Name = "dbLock1";
             this.dbLock1.Size = new System.Drawing.Size(131, 38);
             this.dbLock1.TabIndex = 34;
-            this.dbLock1.Track = false;
             this.dbLock1.User = null;
             this.dbLock1.Visible = false;
             // 
@@ -964,7 +928,7 @@
             // 
             // dbGrid1
             // 
-            this.dbGrid1.About = "";
+            
             this.dbGrid1.AllowAddNew = true;
             this.dbGrid1.AllowDelete = true;
             this.dbGrid1.AllowDrop = true;
@@ -995,7 +959,7 @@
             this.dbGrid1.LastCol = -1;
             this.dbGrid1.LastRow = -1;
             this.dbGrid1.Location = new System.Drawing.Point(366, 6);
-            this.dbGrid1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.dbGrid1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbGrid1.Name = "dbGrid1";
             this.dbGrid1.RecordMode = false;
             this.dbGrid1.RowHeadersVisible = true;
@@ -1007,12 +971,11 @@
             this.dbGrid1.Size = new System.Drawing.Size(114, 114);
             this.dbGrid1.TabIndex = 27;
             this.dbGrid1.TotalOperation = FSFormControls.DBColumn.OperationTypes.Sum;
-            this.dbGrid1.Track = false;
             this.dbGrid1.XMLName = "";
             // 
             // dbGraphics1
             // 
-            this.dbGraphics1.About = "";
+            
             this.dbGraphics1.AlignmentBar = FSFormControls.b_BarTypes.HorizontalLeft;
             this.dbGraphics1.AlignmentLine = FSFormControls.b_LineTypes.Horizontal;
             this.dbGraphics1.Color = System.Drawing.Color.Empty;
@@ -1025,12 +988,11 @@
             this.dbGraphics1.Size = new System.Drawing.Size(173, 138);
             this.dbGraphics1.TabIndex = 26;
             this.dbGraphics1.Title = "";
-            this.dbGraphics1.Track = false;
             this.dbGraphics1.TypeGraph = FSFormControls.DBGraphics.t_typeGraph.Bar;
             // 
             // dbFrame1
             // 
-            this.dbFrame1.About = "";
+            
             this.dbFrame1.BackColor = System.Drawing.Color.Transparent;
             this.dbFrame1.BorderColor = System.Drawing.Color.Black;
             this.dbFrame1.BorderDiameter = 30;
@@ -1048,19 +1010,17 @@
             this.dbFrame1.TextColor = System.Drawing.Color.Black;
             this.dbFrame1.TextXPos = 10;
             this.dbFrame1.TextYPos = 10;
-            this.dbFrame1.Track = false;
             this.dbFrame1.Type = FSFormControls.DBFrame.FrameType.Rectangle;
             // 
             // dbScroll1
             // 
-            this.dbScroll1.About = "";
+            
             this.dbScroll1.Location = new System.Drawing.Point(16, 159);
             this.dbScroll1.Max = 1;
             this.dbScroll1.Min = 1;
             this.dbScroll1.Name = "dbScroll1";
             this.dbScroll1.Size = new System.Drawing.Size(524, 20);
             this.dbScroll1.TabIndex = 43;
-            this.dbScroll1.Track = false;
             this.dbScroll1.Value = 1;
             // 
             // dbProgressBar1
@@ -1083,28 +1043,26 @@
             // 
             // dbEditPicture1
             // 
-            this.dbEditPicture1.About = "";
+            
             this.dbEditPicture1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dbEditPicture1.Data = "";
             this.dbEditPicture1.Image = null;
             this.dbEditPicture1.Location = new System.Drawing.Point(16, 5);
-            this.dbEditPicture1.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.dbEditPicture1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbEditPicture1.Name = "dbEditPicture1";
             this.dbEditPicture1.PointSizeX = 9;
             this.dbEditPicture1.PointSizeY = 9;
             this.dbEditPicture1.Size = new System.Drawing.Size(366, 189);
             this.dbEditPicture1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal;
             this.dbEditPicture1.TabIndex = 19;
-            this.dbEditPicture1.Track = false;
             // 
             // dbRichTextBox1
             // 
-            this.dbRichTextBox1.About = "";
+            
             this.dbRichTextBox1.Location = new System.Drawing.Point(425, 13);
             this.dbRichTextBox1.Name = "dbRichTextBox1";
             this.dbRichTextBox1.Size = new System.Drawing.Size(266, 223);
             this.dbRichTextBox1.TabIndex = 41;
-            this.dbRichTextBox1.Track = false;
             // 
             // dbStatusBar2
             // 
@@ -1229,7 +1187,6 @@
         private DBProgressBar dbProgressBar1;
         private DBRadioButton dbRadioButton1;
         private DBRecord dbRecord1;
-        private DBRectTracker dbRectTracker1;
         private DBRichTextBox dbRichTextBox1;
         private DBScroll dbScroll1;
         private DBStatusBar dbStatusBar2;

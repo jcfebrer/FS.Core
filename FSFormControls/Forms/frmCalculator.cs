@@ -40,7 +40,6 @@ namespace FSFormControls
             // 
             // DbCalculator1
             // 
-            DbCalculator1.About = null;
             DbCalculator1.BackColor = Color.Silver;
             DbCalculator1.ButtonColor = Color.FromArgb(224, 224, 224);
             DbCalculator1.ButtonSeparation = 10;
@@ -51,7 +50,6 @@ namespace FSFormControls
             DbCalculator1.Size = new Size(160, 272);
             DbCalculator1.TabIndex = 0;
             DbCalculator1.TextColor = Color.Black;
-            DbCalculator1.Track = false;
             // 
             // frmCalculator
             // 

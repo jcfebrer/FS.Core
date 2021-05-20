@@ -56,9 +56,9 @@ namespace FSFormControls
             set { m_DataControl = value; }
         }
 
-        private void ModeChanged(DBUserControlBase.AccessMode mode)
+        private void ModeChanged(Global.AccessMode mode)
         {
-            if (mode == DBUserControlBase.AccessMode.ReadMode) LeaveFile(this, new EventArgs());
+            if (mode == Global.AccessMode.ReadMode) LeaveFile(this, new EventArgs());
         }
 
 
@@ -71,7 +71,7 @@ namespace FSFormControls
 
         private void LeaveFile(object sender, EventArgs e)
         {
-            if (m_dbgrid.Mode == DBUserControlBase.AccessMode.ReadMode)
+            if (m_dbgrid.Mode == Global.AccessMode.ReadMode)
             {
                 ColumnFile.Visible = false;
                 return;

@@ -17,14 +17,14 @@ namespace FSFormControls
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBLabel.bmp")]
     [DefaultEvent("Click")]
     [ToolboxItem(true)]
-    public class DBLabel : DBUserControlBase
+    public class DBLabel : DBUserControl
     {
         private long m_angle;
         private bool m_drawGradient;
 
         private bool m_drawShadow;
         private Color m_endColor = Color.LightSkyBlue;
-        private AccessMode m_Mode;
+        private Global.AccessMode m_Mode;
         private Color m_shadowColor = Color.Black;
         private Color m_startColor = Color.White;
         private ContentAlignment m_TextAlign = ContentAlignment.TopLeft;
@@ -32,13 +32,13 @@ namespace FSFormControls
         private Label label;
         private long m_yOffset = 1;
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
             {
                 m_Mode = value;
-                if (m_Mode == AccessMode.WriteMode)
+                if (m_Mode == Global.AccessMode.WriteMode)
                     label.Enabled = true;
                 else
                     label.Enabled = true;

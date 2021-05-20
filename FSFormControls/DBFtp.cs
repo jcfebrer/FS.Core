@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using FSLibrary;
 using DateTime = System.DateTime;
 using FSException;
+using System.Windows.Forms;
 
 #endregion
 
@@ -19,7 +20,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
-    public partial class DBFtp : DBUserControlBase
+    public partial class DBFtp : DBUserControl
     {
         public event UploadingEventHandler Uploading;
 

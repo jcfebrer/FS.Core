@@ -14,7 +14,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
-    public partial class DBFileExplorer : DBUserControlBase
+    public partial class DBFileExplorer : DBUserControl
     {
         public event TreeNodeMouseClickEventHandler NodeMouseClick;
         public event TreeNodeMouseClickEventHandler NodeMouseDoubleClick;

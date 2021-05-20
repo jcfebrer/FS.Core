@@ -253,7 +253,7 @@ namespace FSFormControls
         private void LeaveTextBox(object sender, EventArgs e)
         {
             var dbg = (DBGrid) TextBox.Parent.Parent;
-            if (dbg.Mode == DBUserControlBase.AccessMode.ReadMode)
+            if (dbg.Mode == Global.AccessMode.ReadMode)
             {
                 ColumnTextBox.Visible = false;
                 return;

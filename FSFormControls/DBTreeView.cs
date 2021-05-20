@@ -20,7 +20,7 @@ namespace FSFormControls
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBTreeView.bmp")]
     [DefaultEvent("Click")]
     [ToolboxItem(true)]
-    public class DBTreeView : DBUserControlBase, ISupportInitialize
+    public class DBTreeView : DBUserControl, ISupportInitialize
     {
         private const int MAPSIZE = 128;
 

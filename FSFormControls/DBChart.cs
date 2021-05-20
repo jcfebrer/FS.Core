@@ -18,7 +18,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBChart.bmp")]
     [ToolboxItem(true)]
-    public class DBChart : UserControl, ISupportInitialize
+    public class DBChart : DBUserControl, ISupportInitialize
     {
         #region plotType enum
 

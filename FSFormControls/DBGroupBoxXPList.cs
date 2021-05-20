@@ -17,7 +17,7 @@ namespace FSFormControls
     [Designer(typeof(DBGroupBoxXPListDesigner))]
     [DesignTimeVisibleAttribute(true)]
     [ToolboxItem(true)]
-    public class DBGroupBoxXPList : UserControl
+    public class DBGroupBoxXPList : DBUserControl
     {
         #region '"Constants"' 
 

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Windows.Forms;
 namespace FSFormControls
 {
-    partial class DBFtp : FSFormControls.DBUserControlBase 
+    partial class DBFtp : DBUserControl 
     { 
         
         [ System.Diagnostics.DebuggerNonUserCode() ]

@@ -147,7 +147,7 @@ namespace FSFormControls
             // 
             // txtRespuesta
             // 
-            this.txtRespuesta.About = null;
+            
             this.txtRespuesta.AcceptsReturn = false;
             this.txtRespuesta.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
@@ -187,7 +187,7 @@ namespace FSFormControls
             -1,
             -1,
             -2147483648});
-            this.txtRespuesta.Mode = FSFormControls.DBUserControlBase.AccessMode.WriteMode;
+            this.txtRespuesta.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.txtRespuesta.Multiline = true;
             this.txtRespuesta.Name = "txtRespuesta";
             this.txtRespuesta.NonAutoSizeHeight = 0;
@@ -214,13 +214,12 @@ namespace FSFormControls
             this.txtRespuesta.Text = "[Respuesta]";
             this.txtRespuesta.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtRespuesta.ToolTip = "";
-            this.txtRespuesta.Track = false;
             this.txtRespuesta.Value = "[Respuesta]";
             this.txtRespuesta.XMLName = null;
             // 
             // lblMensaje
             // 
-            this.lblMensaje.About = "";
+            
             this.lblMensaje.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMensaje.Angle = 0F;
@@ -235,7 +234,7 @@ namespace FSFormControls
             this.lblMensaje.Decimals = 2;
             this.lblMensaje.EndColor = System.Drawing.Color.LightSkyBlue;
             this.lblMensaje.Location = new System.Drawing.Point(12, 26);
-            this.lblMensaje.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.lblMensaje.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.lblMensaje.Name = "lblMensaje";
             this.lblMensaje.ShadowColor = System.Drawing.Color.Black;
             this.lblMensaje.Size = new System.Drawing.Size(483, 38);
@@ -244,7 +243,6 @@ namespace FSFormControls
             this.lblMensaje.TabStop = false;
             this.lblMensaje.Text = "[Mensaje]";
             this.lblMensaje.TextAlign = System.Drawing.ContentAlignment.TopLeft;
-            this.lblMensaje.Track = false;
             this.lblMensaje.XOffset = 1F;
             this.lblMensaje.YOffset = 1F;
             // 

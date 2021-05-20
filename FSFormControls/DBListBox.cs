@@ -16,7 +16,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBListBox.bmp")]
     [ToolboxItem(true)]
-    public class DBListBox : DBUserControlBase
+    public class DBListBox : DBUserControl
     {
         public bool isBinding;
         public Color m_BackColor = Global.NormalBackColor;
@@ -27,7 +27,7 @@ namespace FSFormControls
         public string m_DBFieldData = "";
         public string m_DBFieldList;
         public bool m_Editable = true;
-        public AccessMode m_Mode = AccessMode.WriteMode;
+        public Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         public bool m_Obligatory;
         public string m_OrderBy;
         public object m_SelectedOption;
@@ -92,11 +92,11 @@ namespace FSFormControls
         }
 
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get
             {
-                AccessMode modeReturn = 0;
+                Global.AccessMode modeReturn = 0;
                 modeReturn = m_Mode;
                 return modeReturn;
             }
@@ -105,15 +105,15 @@ namespace FSFormControls
                 m_Mode = value;
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         ListBox1.Enabled = false;
                         ListBox1.BackColor = m_BackColor;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         ListBox1.Enabled = true;
                         ListBox1.BackColor = m_BackColor;
                         break;
-                    case AccessMode.ProtectedMode:
+                    case Global.AccessMode.ProtectedMode:
                         ListBox1.BackColor = Global.ObligatoryBackColor;
                         break;
                 }

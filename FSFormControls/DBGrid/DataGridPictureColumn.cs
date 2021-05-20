@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace FSFormControls
 {
     [ToolboxItem(false)]
-    public class DataGridPictureColumn : UserControl, IImageContainer
+    public class DataGridPictureColumn : DBUserControl, IImageContainer
     {
         private static readonly Bitmap sEmptyBitmap = new Bitmap(1, 1);
         private IContainer components;

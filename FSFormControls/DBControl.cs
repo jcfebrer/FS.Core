@@ -30,7 +30,7 @@ namespace FSFormControls
     [DesignTimeVisible(true)]
     [DefaultProperty("Selection")]
     [ToolboxItem(true)]
-    public class DBControl : DBUserControlBase
+    public class DBControl : DBUserControl
     {
         #region Events
         public event ChangeRecordEventHandler ChangeRecord;
@@ -43,7 +43,7 @@ namespace FSFormControls
         #region Delegates
         public delegate void AfterSaveEventHandler();
         public delegate void BeforeSaveEventHandler(ref bool Cancel);
-        public delegate void ChangeModeEventHandler(AccessMode Mode);
+        public delegate void ChangeModeEventHandler(Global.AccessMode Mode);
         public delegate void ChangeRecordEventHandler();
         public delegate void ColumnChangedEventHandler(object sender, DataColumnChangeEventArgs e);
         public delegate void ColumnChangingEventHandler(object sender, DataColumnChangeEventArgs e);
@@ -130,7 +130,7 @@ namespace FSFormControls
         private int m_FindPosition;
         private DataRow[] m_FindRows;
         private bool m_isEOF;
-        private AccessMode m_Mode = AccessMode.ReadMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         private int m_Page;
         private string m_Selection = "";
         private string m_tableName = "";
@@ -189,7 +189,7 @@ namespace FSFormControls
             set { m_XMLName = value; }
         }
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get
             {
@@ -202,10 +202,10 @@ namespace FSFormControls
                     var db = new BdUtils(Global.ConnectionStringSetting);
                     switch (value)
                     {
-                        case AccessMode.ReadMode:
+                        case Global.AccessMode.ReadMode:
                             LOCK.UnLock(TableName, GetField(db.PrimaryKeyName(TableName)).ToString());
                             break;
-                        case AccessMode.WriteMode:
+                        case Global.AccessMode.WriteMode:
                             if (LOCK.IsLock(TableName, GetField(db.PrimaryKeyName(TableName)).ToString()))
                                 throw new ExceptionUtil("El usuario: " +
                                                         LOCK.LockUser(TableName, GetField(db.PrimaryKeyName(TableName)).ToString()) +
@@ -807,8 +807,6 @@ namespace FSFormControls
                 UpdateRelationDBControls(findForm.Controls, true, null);
                 UpdateAsociatedDBFindTextBoxAndAsociatedCombo(findForm.Controls);
             }
-            else throw new ExceptionUtil("Findform es Nulo");
-
               
 
             if (LOPD != null)
@@ -2262,7 +2260,7 @@ namespace FSFormControls
         }
 
 
-        public void ModeDBControls(ControlCollection frm, AccessMode AccMode)
+        public void ModeDBControls(ControlCollection frm, Global.AccessMode AccMode)
         {
             if (frm == null)
                 return;
@@ -2317,7 +2315,7 @@ namespace FSFormControls
         }
 
 
-        private void ModeRelationDBControls(ControlCollection frm, AccessMode AccMode)
+        private void ModeRelationDBControls(ControlCollection frm, Global.AccessMode AccMode)
         {
             if (frm == null) return;
 

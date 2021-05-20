@@ -17,7 +17,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
-    public class DBLock : DBUserControlBase
+    public class DBLock : DBUserControl
     {
         //private string m_Table;
 

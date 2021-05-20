@@ -16,7 +16,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBFindTextBox.bmp")]
     [ToolboxItem(true)]
-    public class DBFindTextBox : DBUserControlBase
+    public class DBFindTextBox : DBUserControl
     {
         public Color m_BackColor = Global.NormalBackColor;
         public DBTextBox.TypeData m_DataType = DBTextBox.TypeData.All;
@@ -27,7 +27,7 @@ namespace FSFormControls
         public bool m_DisableButton;
         public bool m_Editable = true;
         public double m_MaxValue;
-        public AccessMode m_Mode;
+        public Global.AccessMode m_Mode;
         public bool m_Obligatory;
         public bool m_ShowSelectForm = true;
 
@@ -112,7 +112,7 @@ namespace FSFormControls
         }
 
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -120,17 +120,17 @@ namespace FSFormControls
                 m_Mode = value;
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
-                        DbTextBox1.Mode = AccessMode.ReadMode;
+                    case Global.AccessMode.ReadMode:
+                        DbTextBox1.Mode = Global.AccessMode.ReadMode;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         if (m_Editable)
-                            DbTextBox1.Mode = AccessMode.WriteMode;
+                            DbTextBox1.Mode = Global.AccessMode.WriteMode;
                         else
-                            m_Mode = AccessMode.ReadMode;
+                            m_Mode = Global.AccessMode.ReadMode;
                         break;
-                    case AccessMode.ProtectedMode:
-                        DbTextBox1.Mode = AccessMode.ProtectedMode;
+                    case Global.AccessMode.ProtectedMode:
+                        DbTextBox1.Mode = Global.AccessMode.ProtectedMode;
                         break;
                 }
             }
@@ -200,14 +200,14 @@ namespace FSFormControls
 
                 if (!DataControlList.Connected) DataControlList.Connect();
 
-                if (Mode == AccessMode.ReadMode)
+                if (Mode == Global.AccessMode.ReadMode)
                     frm.Text = "Formulario de Selección - Solo Lectura";
                 else
                     frm.Text = "Formulario de Selección";
                 frm.DBFindTextBox = this;
                 frm.ShowDialog();
 
-                if (Mode == AccessMode.WriteMode)
+                if (Mode == Global.AccessMode.WriteMode)
                     if (!string.IsNullOrEmpty(frm.SelectedValue))
                     {
                         DbTextBox1.Text = frm.SelectedValue;
@@ -228,7 +228,7 @@ namespace FSFormControls
 
         public void DBFindTextBox_LostFocus(object sender, EventArgs e)
         {
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
 
             CheckInputFindTextBoxData();
             DataControl.UpdateAsociatedDBFindTextBoxAndAsociatedCombo(FindForm().Controls);
@@ -366,7 +366,6 @@ namespace FSFormControls
             // 
             // DbTextBox1
             // 
-            DbTextBox1.About = null;
             DbTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
                                                  | AnchorStyles.Left
                                                  | AnchorStyles.Right;
@@ -392,7 +391,7 @@ namespace FSFormControls
             DbTextBox1.MaskInput = null;
             DbTextBox1.MaxLength = 32767;
             DbTextBox1.MaxValue = decimal.MaxValue;
-            DbTextBox1.Mode = AccessMode.WriteMode;
+            DbTextBox1.Mode = Global.AccessMode.WriteMode;
             DbTextBox1.Multiline = true;
             DbTextBox1.Name = "DbTextBox1";
             DbTextBox1.Obligatory = false;
@@ -408,7 +407,6 @@ namespace FSFormControls
             DbTextBox1.TabIndex = 0;
             DbTextBox1.TextAlign = HorizontalAlignment.Left;
             DbTextBox1.ToolTip = "";
-            DbTextBox1.Track = false;
             DbTextBox1.XMLName = null;
             // 
             // cmdSearch

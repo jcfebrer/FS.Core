@@ -128,6 +128,7 @@ namespace FSFormControls
                         ((Button) webctrl).Text = HttpUtility.HtmlEncode(winctrl.Text);
                         break;
                     case "FSFormControls.DBGrid":
+                    case "FSFormControls.DBGridView":
                     case "System.Windows.Forms.DataGrid":
                         var rows = 0;
                         webctrl = new DataGrid();

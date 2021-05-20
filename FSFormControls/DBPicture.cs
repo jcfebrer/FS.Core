@@ -13,7 +13,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBPicture.bmp")]
     [ToolboxItem(true)]
-    public class DBPicture : DBUserControlBase
+    public class DBPicture : DBUserControl
     {
         #region t_PictureType enum
 

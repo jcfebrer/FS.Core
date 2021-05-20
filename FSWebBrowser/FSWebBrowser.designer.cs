@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace FSWebBrowser
 {
-    partial class Browser : DBUserControlBase 
+    partial class Browser : DBUserControl 
     { 
         
         [ System.Diagnostics.DebuggerNonUserCode() ]

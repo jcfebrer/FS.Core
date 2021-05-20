@@ -16,7 +16,7 @@ using FSFormControls;
 
 namespace FSReport
 {
-	public class Report : DBUserControlBase
+	public class Report : DBUserControl
     {
         #region '" Código generado por el Diseñador de Windows Forms "' 
 

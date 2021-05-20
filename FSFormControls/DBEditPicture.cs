@@ -16,7 +16,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
-    public class DBEditPicture : DBUserControlBase
+    public class DBEditPicture : DBUserControl
     {
         #region DrawObjectType enum
 
@@ -41,7 +41,7 @@ namespace FSFormControls
         private int firstX, firstY;
         private bool isSelected;
         private string m_Data;
-        private AccessMode m_Mode = AccessMode.WriteMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
 
         private int secondX, secondY;
 
@@ -84,7 +84,7 @@ namespace FSFormControls
         }
 
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -93,12 +93,12 @@ namespace FSFormControls
 
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         ContextMenu1.MenuItems[0].Enabled = false;
                         ToolBar1.Visible = false;
                         ToolBar2.Visible = false;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         ContextMenu1.MenuItems[0].Enabled = true;
                         ToolBar1.Visible = true;
                         ToolBar2.Visible = true;
@@ -347,7 +347,7 @@ namespace FSFormControls
 
         private void Mark_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
 
             SuspendLayout();
             isSelected = true;
@@ -358,7 +358,7 @@ namespace FSFormControls
 
         private void Mark_MouseMove(object sender, MouseEventArgs e)
         {
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
 
             if (isSelected)
             {
@@ -389,7 +389,7 @@ namespace FSFormControls
 
         private void Mark_MouseUp(object sender, MouseEventArgs e)
         {
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
 
             isSelected = false;
             ResumeLayout();
@@ -490,7 +490,7 @@ namespace FSFormControls
 
         private void PictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
 
             if (PictureBox1.Image == null) return;
 
@@ -522,7 +522,7 @@ namespace FSFormControls
 
         private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
 
             if (e.Button == MouseButtons.Right) return;
 
@@ -754,7 +754,7 @@ namespace FSFormControls
 
         private void PictureBox1_MouseUp(object sender, MouseEventArgs e)
         {
-            if (Mode == AccessMode.ReadMode) return;
+            if (Mode == Global.AccessMode.ReadMode) return;
 
             if (e.Button == MouseButtons.Right) return;
 

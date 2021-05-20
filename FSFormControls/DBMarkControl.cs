@@ -12,7 +12,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
-    public class DBMarkControl : UserControl
+    public class DBMarkControl : DBUserControl
     {
         public bool IsMoveMark;
         public int m_SizeX = 9;

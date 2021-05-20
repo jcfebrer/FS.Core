@@ -96,7 +96,7 @@ namespace FSFormControls
             // 
             // DbRecord1
             // 
-            this.DbRecord1.About = null;
+            
             this.DbRecord1.AllowAddNew = true;
             this.DbRecord1.AllowCancel = true;
             this.DbRecord1.AllowDelete = true;
@@ -117,7 +117,7 @@ namespace FSFormControls
             this.DbRecord1.LabelAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.DbRecord1.LabelYIncrement = 30;
             this.DbRecord1.Location = new System.Drawing.Point(0, 28);
-            this.DbRecord1.Mode = FSFormControls.DBUserControlBase.AccessMode.ReadMode;
+            this.DbRecord1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.DbRecord1.Name = "DbRecord1";
             this.DbRecord1.PosXLabel = 20;
             this.DbRecord1.PosYLabel = 20;
@@ -140,7 +140,6 @@ namespace FSFormControls
             this.DbRecord1.Size = new System.Drawing.Size(722, 226);
             this.DbRecord1.TabIndex = 0;
             this.DbRecord1.TextBoxShadow = false;
-            this.DbRecord1.Track = false;
             // 
             // frmRecord
             // 

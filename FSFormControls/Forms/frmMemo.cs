@@ -82,7 +82,6 @@ namespace FSFormControls
             // 
             // DbTextBox1
             // 
-            DbTextBox1.About = null;
             DbTextBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
                                                  | AnchorStyles.Left
                                                  | AnchorStyles.Right;
@@ -108,7 +107,7 @@ namespace FSFormControls
             DbTextBox1.MaskInput = null;
             DbTextBox1.MaxLength = 32767;
             DbTextBox1.MaxValue = decimal.MaxValue;
-            DbTextBox1.Mode = DBUserControlBase.AccessMode.WriteMode;
+            DbTextBox1.Mode = Global.AccessMode.WriteMode;
             DbTextBox1.Multiline = true;
             DbTextBox1.Name = "DbTextBox1";
             DbTextBox1.Obligatory = false;
@@ -124,7 +123,6 @@ namespace FSFormControls
             DbTextBox1.TabIndex = 3;
             DbTextBox1.TextAlign = HorizontalAlignment.Left;
             DbTextBox1.ToolTip = "";
-            DbTextBox1.Track = false;
             DbTextBox1.XMLName = null;
             // 
             // frmMemo

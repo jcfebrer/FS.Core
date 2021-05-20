@@ -47,7 +47,7 @@
             // 
             // dbTreeView1
             // 
-            this.dbTreeView1.About = null;
+            
             this.dbTreeView1.AllowLoadXML = false;
             this.dbTreeView1.AllowSaveXML = true;
             this.dbTreeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -64,7 +64,6 @@
             this.dbTreeView1.ShowRootLines = true;
             this.dbTreeView1.Size = new System.Drawing.Size(239, 167);
             this.dbTreeView1.TabIndex = 27;
-            this.dbTreeView1.Track = false;
             this.dbTreeView1.NodeMouseClick += new FSFormControls.DBTreeView.TreeNodeMouseClickEventHandler(this.dbTreeView1_NodeMouseClick);
             this.dbTreeView1.NodeMouseDoubleClick += new FSFormControls.DBTreeView.TreeNodeMouseDoubleClickEventHandler(this.dbTreeView1_NodeMouseDoubleClick);
             // 

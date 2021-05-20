@@ -16,11 +16,11 @@ namespace FSFormControls
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBCheckBox.bmp")]
     [DefaultEvent("CheckedChanged")]
     [ToolboxItem(true)]
-    public class DBCheckBox : DBUserControlBase, ISupportInitialize
+    public class DBCheckBox : DBUserControl, ISupportInitialize
     {
         private Color m_BackColor = Color.Transparent;
         private bool m_Editable = true;
-        private AccessMode m_Mode = AccessMode.WriteMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         private string m_Text = "";
 
         [Browsable(true)]
@@ -90,7 +90,7 @@ namespace FSFormControls
 
         public CheckBox checkbox { get; private set; }
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -98,15 +98,15 @@ namespace FSFormControls
                 m_Mode = value;
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         checkbox.Enabled = false;
                         checkbox.BackColor = m_BackColor;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         checkbox.Enabled = true;
                         checkbox.BackColor = m_BackColor;
                         break;
-                    case AccessMode.ProtectedMode:
+                    case Global.AccessMode.ProtectedMode:
                         checkbox.BackColor = Global.ObligatoryBackColor;
                         break;
                 }

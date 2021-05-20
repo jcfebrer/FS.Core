@@ -20,7 +20,7 @@ namespace FSFormControls
     [DefaultEvent("SelectedValueChanged")]
     [Designer(typeof(DBComboControlDesigner))]
     [ToolboxItem(true)]
-    public class DBCombo : DBUserControlBase, ISupportInitialize
+    public class DBCombo : DBUserControl, ISupportInitialize
     {
         public enum SortStyleEnum
         {
@@ -47,7 +47,7 @@ namespace FSFormControls
         //private bool m_FlatMode;
         private ImageList m_ImageList = new ImageList();
         private DBComboValues m_Items;
-        private AccessMode m_Mode = AccessMode.WriteMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         private bool m_Obligatory;
         private object m_SelectedOption;
         private bool m_ShowEdit;
@@ -117,8 +117,8 @@ namespace FSFormControls
         [Description("Modo lectura")]
         public bool ReadOnly
         {
-            get { return m_Mode == AccessMode.ReadMode; }
-            set { Mode = value ? AccessMode.ReadMode : AccessMode.WriteMode; }
+            get { return m_Mode == Global.AccessMode.ReadMode; }
+            set { Mode = value ? Global.AccessMode.ReadMode : Global.AccessMode.WriteMode; }
         }
 
         public ComboBoxStyle DropDownStyle
@@ -135,8 +135,8 @@ namespace FSFormControls
 
         public bool IsInEditMode
         {
-            get { return m_Mode == AccessMode.WriteMode; }
-            set { m_Mode = value ? AccessMode.WriteMode : AccessMode.ReadMode; }
+            get { return m_Mode == Global.AccessMode.WriteMode; }
+            set { m_Mode = value ? Global.AccessMode.WriteMode : Global.AccessMode.ReadMode; }
         }
 
         //public int SelectionStart
@@ -223,7 +223,7 @@ namespace FSFormControls
 
         public SortStyleEnum SortStyle { get; set; }
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get
             {
@@ -234,18 +234,18 @@ namespace FSFormControls
                 m_Mode = value;
                 switch (m_Mode)
                 {
-                    case AccessMode.ReadMode:
+                    case Global.AccessMode.ReadMode:
                         Combo1.Enabled = false;
                         Combo1.BackColor = Global.NormalBackColor;
                         cmdEdit.Visible = false;
                         break;
-                    case AccessMode.WriteMode:
+                    case Global.AccessMode.WriteMode:
                         Combo1.Enabled = true;
                         Combo1.BackColor = Global.WriteBackColor;
                         cmdEdit.Visible = true;
                         //Combo1.BringToFront();
                         break;
-                    case AccessMode.ProtectedMode:
+                    case Global.AccessMode.ProtectedMode:
                         Combo1.Enabled = true;
                         Combo1.BackColor = Global.ObligatoryBackColor;
                         cmdEdit.Visible = true;
@@ -1219,7 +1219,7 @@ namespace FSFormControls
             // 
             // DBCombo
             // 
-            this.About = null;
+            
             this.Controls.Add(this.Combo1);
             this.Controls.Add(this.cmdEdit);
             this.Name = "DBCombo";

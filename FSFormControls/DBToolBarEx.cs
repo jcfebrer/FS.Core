@@ -15,7 +15,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBToolBar.bmp")]
     [ToolboxItem(true)]
-    public class DBToolBarEx : DBUserControlBase
+    public class DBToolBarEx : DBUserControl
     {
         #region tToolbar enum
 
@@ -477,13 +477,13 @@ namespace FSFormControls
                         break;
                     case "NUEVO":
                         if (DataControl != null) DataControl.AddNew();
-                        if (DataControl != null) DataControl.Mode = AccessMode.WriteMode;
+                        if (DataControl != null) DataControl.Mode = Global.AccessMode.WriteMode;
                         break;
                     case "CANCELARALTA":
                         if (DataControl != null)
                         {
                             DataControl.CancelEdit();
-                            DataControl.Mode = AccessMode.ReadMode;
+                            DataControl.Mode = Global.AccessMode.ReadMode;
                         }
                         else
                         {
@@ -502,7 +502,7 @@ namespace FSFormControls
                         break;
                     case "EDITAR":
                         if (DataControl != null)
-                            DataControl.Mode = AccessMode.WriteMode;
+                            DataControl.Mode = Global.AccessMode.WriteMode;
                         else
                             EditAll();
                         break;
@@ -566,7 +566,7 @@ namespace FSFormControls
             //    Form findForm = FindForm();
             //    if (findForm != null && !(DataControl.RelationSaveError(findForm.Controls)))
             //    {
-            //        DataControl.Mode = DBUsercontrolBase.AccessMode.ReadMode;
+            //        DataControl.Mode = Global.AccessMode.ReadMode;
             //    }
             //}
             //else
@@ -599,7 +599,7 @@ namespace FSFormControls
                     if (ctr is DBControl)
                     {
                         ((DBControl) ctr).CancelEdit();
-                        ((DBControl) ctr).Mode = AccessMode.ReadMode;
+                        ((DBControl) ctr).Mode = Global.AccessMode.ReadMode;
                     }
                 }
 
@@ -618,7 +618,7 @@ namespace FSFormControls
                 }
                 else
                 {
-                    if (ctr is DBControl) ((DBControl) ctr).Mode = AccessMode.WriteMode;
+                    if (ctr is DBControl) ((DBControl) ctr).Mode = Global.AccessMode.WriteMode;
                 }
         }
 
@@ -639,7 +639,7 @@ namespace FSFormControls
                         ((DBControl) ctr).Save();
 
                         if (!((DBControl) ctr).RelationSaveError(FindForm().Controls))
-                            ((DBControl) ctr).Mode = AccessMode.ReadMode;
+                            ((DBControl) ctr).Mode = Global.AccessMode.ReadMode;
                     }
                 }
         }

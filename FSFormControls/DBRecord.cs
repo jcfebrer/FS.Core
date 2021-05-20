@@ -15,7 +15,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBToolbar.bmp")]
     [ToolboxItem(true)]
-    public class DBRecord : DBUserControlBase
+    public class DBRecord : DBUserControl
     {
         #region t_date enum
 
@@ -41,7 +41,7 @@ namespace FSFormControls
 
 
         //private bool isInitialize = false;
-        private AccessMode m_Mode = AccessMode.ReadMode;
+        private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
 
         public bool ShowToolBar
         {
@@ -56,7 +56,7 @@ namespace FSFormControls
             }
         }
 
-        public AccessMode Mode
+        public Global.AccessMode Mode
         {
             get { return m_Mode; }
             set
@@ -746,7 +746,6 @@ namespace FSFormControls
             // 
             // DbToolBar1
             // 
-            DbToolBar1.About = null;
             DbToolBar1.AllowAddNew = true;
             DbToolBar1.AllowCancel = true;
             DbToolBar1.AllowClose = true;
@@ -780,7 +779,6 @@ namespace FSFormControls
             DbToolBar1.TabIndex = 3;
             DbToolBar1.TabStop = false;
             DbToolBar1.ToolBarType = DBToolBarEx.tToolbar.ToolbarXP;
-            DbToolBar1.Track = false;
             DbToolBar1.Value = 0;
             DbToolBar1.VisibleScroll = true;
             DbToolBar1.VisibleTotalRecord = true;
