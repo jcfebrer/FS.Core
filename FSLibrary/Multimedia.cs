@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FSLibrary
 {
@@ -14,6 +10,28 @@ namespace FSLibrary
     /// </summary>
     public static class Multimedia
     {
+        public static class Pitch
+        {
+            public static string C = "0|2093";
+            public static string Csharp = "1|2217";
+            public static string Dflat = "1|2217";
+            public static string D = "2|2349";
+            public static string Dsharp = "3|2489";
+            public static string Eflat = "3|2489";
+            public static string E = "4|2637";
+            public static string F = "5|2794";
+            public static string Fsharp = "6|2960";
+            public static string Gflat = "6|2960";
+            public static string G = "7|3136";
+            public static string Gsharp = "8|3322";
+            public static string Aflat = "8|3322";
+            public static string A = "9|3520";
+            public static string Asharp = "10|3729";
+            public static string Bflat = "10|3729";
+            public static string B = "11|3951";
+            public static string Rest = "0|0";
+        }
+
         private static SoundPlayer keySound = null;
 
         /// <summary>
@@ -42,11 +60,71 @@ namespace FSLibrary
         }
 
         /// <summary>
+        /// Play beep sound
+        /// </summary>
+        public static void PlayBeep()
+        {
+            SystemSounds.Beep.Play();
+        }
+        /// <summary>
+        /// Play asterisk sound
+        /// </summary>
+        public static void PlayAsterik()
+        {
+            SystemSounds.Asterisk.Play();
+        }
+        /// <summary>
+        /// Play exclamation sound
+        /// </summary>
+        public static void PlayExclamation()
+        {
+            SystemSounds.Exclamation.Play();
+        }
+        /// <summary>
+        /// Play question sound
+        /// </summary>
+        public static void PlayQuestion()
+        {
+            SystemSounds.Question.Play();
+        }
+        /// <summary>
+        /// Play hand sound
+        /// </summary>
+        public static void PlayHand()
+        {
+            SystemSounds.Hand.Play();
+        }
+
+        public static void BeepZx(double Duration, int pitch)
+        {
+            int p = 0;
+
+            switch (pitch % 12)
+            {
+                case 0: p = 2093; break; //C
+                case 1: p = 2217; break; //C#
+                case 2: p = 2343; break; //D
+                case 3: p = 2489; break; //D#
+                case 4: p = 2637; break; //E
+                case 5: p = 2794; break; //F
+                case 6: p = 2960; break; //G#
+                case 7: p = 3136; break; //G
+                case 8: p = 3322; break; //F#
+                case 9: p = 3520; break; //A
+                case 10: p = 3729; break; //A#
+                case 11: p = 3951; break; //B
+            }
+
+            Console.Beep(p, (int)(Duration * 1000));
+        }
+
+
+        /// <summary>
         /// Beeps the specified frequency.
         /// </summary>
         /// <param name="Frequency">The frequency.</param>
         /// <param name="Duration">The duration.</param>
-        public static void Beep(double Frequency, double Duration)
+        public static void Beep(int Frequency, int Duration)
         {
             Beep(1, Frequency, Duration);
         }
@@ -57,14 +135,16 @@ namespace FSLibrary
         /// <param name="Amplitude">The amplitude.</param>
         /// <param name="Frequency">The frequency.</param>
         /// <param name="Duration">The duration.</param>
-        public static void Beep(double Amplitude, double Frequency, double Duration)
+        public static void Beep(int Amplitude, int Frequency, int Duration)
         {
             double A = ((Amplitude * 32768.0) / 1000.0) - 1.0;
             double DeltaFT = (2 * Math.PI * Frequency) / 44100.0;
-            double Samples = (44100 * Duration) / 1000;
+            int Samples = (44100 * Duration) / 1000;
 
-            int Bytes = (int)Samples * 4;
+            Console.WriteLine(Samples);
+            int Bytes = Samples * 4;
             int[] Hdr = new int[] { 0x46464952, 0x24 + Bytes, 0x45564157, 0x20746d66, 0x10, 0x20001, 0xac44, 0x2b110, 0x100004, 0x61746164, Bytes };
+
             using (MemoryStream MS = new MemoryStream(0x24 + Bytes))
             {
                 using (BinaryWriter BW = new BinaryWriter(MS))
@@ -74,17 +154,15 @@ namespace FSLibrary
                     {
                         BW.Write(Hdr[I]);
                     }
-                    int sample = (int)Samples - 1;
+                    int sample = Samples - 1;
                     for (int T = 0; T <= sample; T++)
                     {
                         short Sample = (short)Math.Round((double)(A * Math.Sin(DeltaFT * T)));
                         BW.Write(Sample);
                         BW.Write(Sample);
                     }
-
                     BW.Flush();
                     MS.Seek(0L, SeekOrigin.Begin);
-
                     using (SoundPlayer SP = new SoundPlayer(MS))
                     {
                         SP.PlaySync();

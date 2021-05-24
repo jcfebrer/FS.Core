@@ -3267,6 +3267,15 @@ namespace FSLibrary
             IntPtr lParam);
 
         /// <summary>
+        /// Sonido con fecuencia y duración
+        /// </summary>
+        /// <param name="freq"></param>
+        /// <param name="duration"></param>
+        /// <returns></returns>
+        [DllImport("kernel32.dll")]
+        public static extern bool Beep(int freq, int duration);
+
+        /// <summary>
         /// Gets the focus.
         /// </summary>
         /// <returns></returns>
