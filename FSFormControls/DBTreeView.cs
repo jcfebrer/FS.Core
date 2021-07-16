@@ -31,8 +31,8 @@ namespace FSFormControls
         {
             InitializeComponent();
 
-            if (AllowSaveXML == false) ContextMenu1.MenuItems[0].Visible = false;
-            if (AllowLoadXML == false) ContextMenu1.MenuItems[1].Visible = false;
+            ContextMenu1.MenuItems[0].Visible = AllowSaveXML;
+            ContextMenu1.MenuItems[1].Visible = AllowLoadXML;
 
 
             TreeView1.DoubleClick += TreeView1_DoubleClick;
@@ -56,7 +56,6 @@ namespace FSFormControls
             TreeView1.NodeMouseHover += TreeView1_NodeMouseHover;
 
             TreeView1.ShowNodeToolTips = true;
-
         }
 
         #region Delegates
@@ -111,7 +110,10 @@ namespace FSFormControls
         public bool AllowSaveXML { get; set; } = false;
 
 
-        public TreeNodeCollection Nodes => TreeView1.Nodes;
+        public TreeNodeCollection Nodes
+        {
+            get { return TreeView1.Nodes; }
+        }
 
         public bool HotTracking
         {
@@ -984,63 +986,62 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            components = new Container();
-            var resources = new ComponentResourceManager(typeof(DBTreeView));
-            TreeView1 = new TreeView();
-            ContextMenu1 = new ContextMenu();
-            MenuItem1 = new MenuItem();
-            MenuItem2 = new MenuItem();
-            ImageList1 = new ImageList(components);
-            SaveFileDialog1 = new SaveFileDialog();
-            OpenFileDialog1 = new OpenFileDialog();
-            SuspendLayout();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBTreeView));
+            this.TreeView1 = new System.Windows.Forms.TreeView();
+            this.ContextMenu1 = new System.Windows.Forms.ContextMenu();
+            this.MenuItem1 = new System.Windows.Forms.MenuItem();
+            this.MenuItem2 = new System.Windows.Forms.MenuItem();
+            this.ImageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.SuspendLayout();
             // 
             // TreeView1
             // 
-            TreeView1.AllowDrop = true;
-            TreeView1.ContextMenu = ContextMenu1;
-            TreeView1.Dock = DockStyle.Fill;
-            TreeView1.ImageIndex = 0;
-            TreeView1.ImageList = ImageList1;
-            TreeView1.Location = new Point(0, 0);
-            TreeView1.Name = "TreeView1";
-            TreeView1.SelectedImageIndex = 0;
-            TreeView1.Size = new Size(149, 106);
-            TreeView1.TabIndex = 0;
+            this.TreeView1.AllowDrop = true;
+            this.TreeView1.ContextMenu = this.ContextMenu1;
+            this.TreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.TreeView1.ImageIndex = 0;
+            this.TreeView1.ImageList = this.ImageList1;
+            this.TreeView1.Location = new System.Drawing.Point(0, 0);
+            this.TreeView1.Name = "TreeView1";
+            this.TreeView1.SelectedImageIndex = 0;
+            this.TreeView1.Size = new System.Drawing.Size(149, 126);
+            this.TreeView1.TabIndex = 0;
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new[]
-            {
-                MenuItem1,
-                MenuItem2
-            });
+            this.ContextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.MenuItem1,
+            this.MenuItem2});
             // 
             // MenuItem1
             // 
-            MenuItem1.Index = 0;
-            MenuItem1.Text = "Guardar XML";
+            this.MenuItem1.Index = 0;
+            this.MenuItem1.Text = "Guardar XML";
             // 
             // MenuItem2
             // 
-            MenuItem2.Index = 1;
-            MenuItem2.Text = "Cargar XML";
+            this.MenuItem2.Index = 1;
+            this.MenuItem2.Text = "Cargar XML";
             // 
             // ImageList1
             // 
-            ImageList1.ImageStream = (ImageListStreamer) resources.GetObject("ImageList1.ImageStream");
-            ImageList1.TransparentColor = Color.White;
-            ImageList1.Images.SetKeyName(0, "");
-            ImageList1.Images.SetKeyName(1, "");
-            ImageList1.Images.SetKeyName(2, "");
+            this.ImageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("ImageList1.ImageStream")));
+            this.ImageList1.TransparentColor = System.Drawing.Color.White;
+            this.ImageList1.Images.SetKeyName(0, "");
+            this.ImageList1.Images.SetKeyName(1, "");
+            this.ImageList1.Images.SetKeyName(2, "");
             // 
             // DBTreeView
             // 
-            ContextMenu = ContextMenu1;
-            Controls.Add(TreeView1);
-            Name = "DBTreeView";
-            Size = new Size(149, 106);
-            ResumeLayout(false);
+            this.ContextMenu = this.ContextMenu1;
+            this.Controls.Add(this.TreeView1);
+            this.Name = "DBTreeView";
+            this.Size = new System.Drawing.Size(149, 126);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

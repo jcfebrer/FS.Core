@@ -156,8 +156,7 @@
             this.dbLabel1.BorderStyleInner = System.Windows.Forms.BorderStyle.None;
             this.dbLabel1.BorderStyleOuter = System.Windows.Forms.BorderStyle.None;
             this.dbLabel1.Capitalize = FSFormControls.DBTextBox.TypeString.Normal;
-            this.dbLabel1.DataControl = null;
-            this.dbLabel1.DataType = FSFormControls.DBTextBox.TypeData.All;
+                        this.dbLabel1.DataType = FSFormControls.DBTextBox.TypeData.All;
             this.dbLabel1.DateFormat = "dd/MM/yyyy";
             this.dbLabel1.DBField = null;
             this.dbLabel1.Decimals = 0;
@@ -185,8 +184,7 @@
             this.dbTextBox1.BackColorRead = System.Drawing.Color.WhiteSmoke;
             this.dbTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dbTextBox1.Capitalize = FSFormControls.DBTextBox.TypeString.Normal;
-            this.dbTextBox1.DataControl = null;
-            this.dbTextBox1.DataType = FSFormControls.DBTextBox.TypeData.All;
+                        this.dbTextBox1.DataType = FSFormControls.DBTextBox.TypeData.All;
             this.dbTextBox1.DateFormat = "dd/MM/yyyy";
             this.dbTextBox1.DBField = null;
             this.dbTextBox1.DBFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -250,8 +248,7 @@
             this.dbDate1.AllowNullValue = true;
             this.dbDate1.Appearance = null;
             this.dbDate1.CustomFormat = "dd/MM/yyyy";
-            this.dbDate1.DataControl = null;
-            this.dbDate1.Date = new System.DateTime(2019, 6, 15, 10, 26, 7, 990);
+                        this.dbDate1.Date = new System.DateTime(2019, 6, 15, 10, 26, 7, 990);
             this.dbDate1.DateTime = new System.DateTime(2019, 6, 15, 10, 26, 7, 990);
             this.dbDate1.DBField = null;
             this.dbDate1.Editable = true;
@@ -279,8 +276,7 @@
             this.dbCheckBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.dbCheckBox1.Checked = false;
             this.dbCheckBox1.CheckState = System.Windows.Forms.CheckState.Unchecked;
-            this.dbCheckBox1.DataControl = null;
-            this.dbCheckBox1.DBField = null;
+                        this.dbCheckBox1.DBField = null;
             this.dbCheckBox1.Editable = true;
             this.dbCheckBox1.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
             this.dbCheckBox1.Location = new System.Drawing.Point(6, 47);
@@ -331,8 +327,7 @@
             this.dbButton3});
             this.dbCombo1.Controls.Add(this.dbButton2);
             this.dbCombo1.Controls.Add(this.dbButton3);
-            this.dbCombo1.DataControl = null;
-            this.dbCombo1.DataControlList = null;
+                        this.dbCombo1.DataControlList = null;
             this.dbCombo1.DBField = null;
             this.dbCombo1.DBFieldData = "";
             this.dbCombo1.DBFieldList = null;
@@ -505,8 +500,7 @@
             // 
             this.dbListBox1.About = "";
             this.dbListBox1.BlankSelection = false;
-            this.dbListBox1.DataControl = null;
-            this.dbListBox1.DataControlList = null;
+                        this.dbListBox1.DataControlList = null;
             this.dbListBox1.DBField = null;
             this.dbListBox1.DBFieldData = "";
             this.dbListBox1.DBFieldList = null;
@@ -527,8 +521,7 @@
             this.dbListView1.About = "";
             this.dbListView1.CanDelete = true;
             this.dbListView1.CheckBoxes = false;
-            this.dbListView1.DataControl = null;
-            this.dbListView1.Location = new System.Drawing.Point(357, 6);
+                        this.dbListView1.Location = new System.Drawing.Point(357, 6);
             this.dbListView1.Name = "dbListView1";
             this.dbListView1.Size = new System.Drawing.Size(138, 110);
             this.dbListView1.TabIndex = 33;
@@ -560,8 +553,7 @@
             this.dbCombo2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.None;
             this.dbCombo2.AutoSize = true;
             this.dbCombo2.BlankSelection = false;
-            this.dbCombo2.DataControl = null;
-            this.dbCombo2.DataControlList = null;
+                        this.dbCombo2.DataControlList = null;
             this.dbCombo2.DBField = null;
             this.dbCombo2.DBFieldData = "";
             this.dbCombo2.DBFieldList = null;
@@ -626,8 +618,7 @@
             this.dbControl1.About = "";
             this.dbControl1.ArrayList = null;
             this.dbControl1.AutoConnect = true;
-            this.dbControl1.DataControl = null;
-            this.dbControl1.DataSet = null;
+                        this.dbControl1.DataSet = null;
             this.dbControl1.DataTable = null;
             this.dbControl1.DataView = null;
             this.dbControl1.DBFieldData = "";
@@ -670,8 +661,7 @@
             // 
             this.dbFile1.About = "";
             this.dbFile1.Data = null;
-            this.dbFile1.DataControl = null;
-            this.dbFile1.DBField = null;
+                        this.dbFile1.DBField = null;
             this.dbFile1.FieldDateTime = "fecha";
             this.dbFile1.FieldFileName = "nombre";
             this.dbFile1.Location = new System.Drawing.Point(6, 48);
@@ -685,8 +675,7 @@
             // dbDocument1
             // 
             this.dbDocument1.About = "";
-            this.dbDocument1.DataControl = null;
-            this.dbDocument1.DBField = null;
+                        this.dbDocument1.DBField = null;
             this.dbDocument1.Location = new System.Drawing.Point(377, 180);
             this.dbDocument1.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbDocument1.Name = "dbDocument1";
@@ -696,8 +685,7 @@
             // dbFindTextBox1
             // 
             this.dbFindTextBox1.About = "";
-            this.dbFindTextBox1.DataControl = null;
-            this.dbFindTextBox1.DataControlList = null;
+                        this.dbFindTextBox1.DataControlList = null;
             this.dbFindTextBox1.DataType = FSFormControls.DBTextBox.TypeData.All;
             this.dbFindTextBox1.DBField = null;
             this.dbFindTextBox1.DBFieldData = null;
@@ -763,8 +751,7 @@
             this.dbGridView1.AutoSave = true;
             this.dbGridView1.AutoSize = true;
             this.dbGridView1.CaptionText = null;
-            this.dbGridView1.DataControl = null;
-            this.dbGridView1.DataSource = null;
+                        this.dbGridView1.DataSource = null;
             this.dbGridView1.DBField = null;
             this.dbGridView1.DefaultDecimals = 2;
             this.dbGridView1.DefaultHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -839,8 +826,7 @@
             // 
             this.dbImage1.About = "";
             this.dbImage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dbImage1.DataControl = null;
-            this.dbImage1.DBField = null;
+                        this.dbImage1.DBField = null;
             this.dbImage1.Location = new System.Drawing.Point(214, 19);
             this.dbImage1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbImage1.Name = "dbImage1";
@@ -851,8 +837,7 @@
             // dbLopd1
             // 
             this.dbLopd1.About = "";
-            this.dbLopd1.DataControl = null;
-            this.dbLopd1.Location = new System.Drawing.Point(540, 68);
+                        this.dbLopd1.Location = new System.Drawing.Point(540, 68);
             this.dbLopd1.LOPD_DateField = null;
             this.dbLopd1.LOPD_OperationField = null;
             this.dbLopd1.LOPD_RecurseCodeField = null;
@@ -881,8 +866,7 @@
             this.dbRecord1.AllowSearch = true;
             this.dbRecord1.AutoSize = true;
             this.dbRecord1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.dbRecord1.DataControl = null;
-            this.dbRecord1.DateType = FSFormControls.DBRecord.t_date.Normal;
+                        this.dbRecord1.DateType = FSFormControls.DBRecord.t_date.Normal;
             this.dbRecord1.DoubleHeightInLargeText = false;
             this.dbRecord1.LabelAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.dbRecord1.LabelYIncrement = 30;
@@ -914,8 +898,7 @@
             // dbLock1
             // 
             this.dbLock1.About = "";
-            this.dbLock1.DataControl = null;
-            this.dbLock1.Location = new System.Drawing.Point(373, 71);
+                        this.dbLock1.Location = new System.Drawing.Point(373, 71);
             this.dbLock1.LOCK_DateTimeField = null;
             this.dbLock1.LOCK_RecurseCodeField = null;
             this.dbLock1.LOCK_RecurseField = null;
@@ -960,8 +943,7 @@
             this.dbGrid1.ColumnHeadersVisible = true;
             this.dbGrid1.CurrentRowIndex = -1;
             this.dbGrid1.CustomColumnHeaders = false;
-            this.dbGrid1.DataControl = null;
-            this.dbGrid1.DBField = null;
+                        this.dbGrid1.DBField = null;
             this.dbGrid1.DefaultDecimals = 2;
             this.dbGrid1.DefaultHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbGrid1.Editable = true;
@@ -1030,8 +1012,7 @@
             // dbScroll1
             // 
             this.dbScroll1.About = "";
-            this.dbScroll1.DataControl = null;
-            this.dbScroll1.Location = new System.Drawing.Point(16, 159);
+                        this.dbScroll1.Location = new System.Drawing.Point(16, 159);
             this.dbScroll1.Max = 1;
             this.dbScroll1.Min = 1;
             this.dbScroll1.Name = "dbScroll1";
@@ -1062,8 +1043,7 @@
             this.dbEditPicture1.About = "";
             this.dbEditPicture1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dbEditPicture1.Data = "";
-            this.dbEditPicture1.DataControl = null;
-            this.dbEditPicture1.DBField = null;
+                        this.dbEditPicture1.DBField = null;
             this.dbEditPicture1.Image = null;
             this.dbEditPicture1.Location = new System.Drawing.Point(16, 5);
             this.dbEditPicture1.Mode = FSFormControls.Global.AccessMode.WriteMode;

@@ -158,8 +158,7 @@ namespace FSFormControls
             this.txtRespuesta.BackColorRead = System.Drawing.Color.WhiteSmoke;
             this.txtRespuesta.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.txtRespuesta.Capitalize = FSFormControls.DBTextBox.TypeString.Normal;
-            this.txtRespuesta.DataControl = null;
-            this.txtRespuesta.DataType = FSFormControls.DBTextBox.TypeData.All;
+                        this.txtRespuesta.DataType = FSFormControls.DBTextBox.TypeData.All;
             this.txtRespuesta.DateFormat = "dd/MM/yyyy";
             this.txtRespuesta.DBField = null;
             this.txtRespuesta.DBFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -228,8 +227,7 @@ namespace FSFormControls
             this.lblMensaje.BorderStyleInner = System.Windows.Forms.BorderStyle.None;
             this.lblMensaje.BorderStyleOuter = System.Windows.Forms.BorderStyle.None;
             this.lblMensaje.Capitalize = FSFormControls.DBTextBox.TypeString.Normal;
-            this.lblMensaje.DataControl = null;
-            this.lblMensaje.DataType = FSFormControls.DBTextBox.TypeData.All;
+                        this.lblMensaje.DataType = FSFormControls.DBTextBox.TypeData.All;
             this.lblMensaje.DateFormat = "dd/MM/yyyy";
             this.lblMensaje.Decimals = 2;
             this.lblMensaje.EndColor = System.Drawing.Color.LightSkyBlue;

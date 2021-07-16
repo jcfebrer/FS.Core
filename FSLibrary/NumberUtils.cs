@@ -26,7 +26,7 @@ namespace FSLibrary
             double retNum;
 
             if (String.IsNullOrEmpty(value))
-                value = "0";
+                return false;
 
             isNum = double.TryParse(value, NumberStyles.Number | NumberStyles.AllowCurrencySymbol | NumberStyles.AllowThousands
 | NumberStyles.AllowDecimalPoint, NumberFormatInfo.CurrentInfo,

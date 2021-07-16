@@ -3,9 +3,11 @@
 using FSException;
 using FSLibrary;
 using System;
+using System.Collections.Specialized;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -108,7 +110,7 @@ namespace FSNetwork
             getHTTPReturn = sr.ReadToEnd();
             sr.Close();
 
-            if (!(Cookies == null))
+            if (Cookies != null)
             {
                 if (!String.IsNullOrEmpty(MyResponse.Headers["set-cookie"]))
                 {
@@ -275,7 +277,22 @@ namespace FSNetwork
             }
             catch (WebException e)
             {
-                return e.ToString();
+                using (WebResponse response2 = e.Response)
+                {
+                    HttpWebResponse httpResponse = (HttpWebResponse)response2;
+                    if (httpResponse != null)
+                    {
+                        Console.WriteLine("Error code: {0}", httpResponse.StatusCode);
+                        using (Stream data = response2.GetResponseStream())
+                        using (var reader2 = new StreamReader(data))
+                        {
+                            string text = reader2.ReadToEnd();
+                            return text;
+                        }
+                    }
+                    else
+                        e.ToString();
+                }
             }
             catch (System.Exception ex)
             {
@@ -326,7 +343,22 @@ namespace FSNetwork
             }
             catch (WebException ex)
             {
-                throw new ExceptionUtil(ex);
+                using (WebResponse response2 = ex.Response)
+                {
+                    HttpWebResponse httpResponse = (HttpWebResponse)response2;
+                    if (httpResponse != null)
+                    {
+                        Console.WriteLine("Error code: {0}", httpResponse.StatusCode);
+                        using (Stream data = response2.GetResponseStream())
+                        using (var reader2 = new StreamReader(data))
+                        {
+                            string text = reader2.ReadToEnd();
+                            throw new ExceptionUtil(text);
+                        }
+                    }
+                    else
+                        throw new ExceptionUtil(ex);
+                }
             }
 
             return result;
@@ -450,6 +482,75 @@ namespace FSNetwork
             }
         }
 
+
+        public static void HttpUploadFile(string url, string file, NameValueCollection formValues, X509Certificate2 certificate)
+        {
+            string boundary = "---------------------------" + DateTime.Now.Ticks.ToString("x");
+            byte[] boundarybytes = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "\r\n");
+
+            HttpWebRequest wr = (HttpWebRequest)WebRequest.Create(url);
+            wr.ContentType = "multipart/form-data; boundary=" + boundary;
+            wr.Method = "POST";
+            wr.KeepAlive = true;
+            wr.Credentials = System.Net.CredentialCache.DefaultCredentials;
+
+            if (certificate != null)
+                wr.ClientCertificates.Add(certificate);
+
+            Stream rs = wr.GetRequestStream();
+
+            if (formValues != null)
+            {
+                foreach (string key in formValues.Keys)
+                {
+                    rs.Write(boundarybytes, 0, boundarybytes.Length);
+                    string formitem = string.Format("Content-Disposition: form-data; name=\"{0}\"\r\n\r\n{1}", key, formValues[key]);
+                    byte[] formitembytes = System.Text.Encoding.UTF8.GetBytes(formitem);
+                    rs.Write(formitembytes, 0, formitembytes.Length);
+                }
+            }
+            rs.Write(boundarybytes, 0, boundarybytes.Length);
+
+            string header = string.Format("Content-Disposition: form-data; name=\"file\"; filename=\"{0}\"\r\nContent-Type: {1}\r\n\r\n", Path.GetFileName(file), Path.GetExtension(file));
+            byte[] headerbytes = System.Text.Encoding.UTF8.GetBytes(header);
+            rs.Write(headerbytes, 0, headerbytes.Length);
+
+            FileStream fileStream = new FileStream(file, FileMode.Open, FileAccess.Read);
+            byte[] buffer = new byte[4096];
+            int bytesRead = 0;
+            while ((bytesRead = fileStream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                rs.Write(buffer, 0, bytesRead);
+            }
+            fileStream.Close();
+
+            byte[] trailer = System.Text.Encoding.ASCII.GetBytes("\r\n--" + boundary + "--\r\n");
+            rs.Write(trailer, 0, trailer.Length);
+            rs.Close();
+
+            WebResponse wresp = null;
+            try
+            {
+                wresp = wr.GetResponse();
+                Stream stream2 = wresp.GetResponseStream();
+                StreamReader reader2 = new StreamReader(stream2);
+                //"File uploaded, server response is: {0}", reader2.ReadToEnd()));
+            }
+            catch (Exception ex)
+            {
+                //"Error uploading file", ex);
+                if (wresp != null)
+                {
+                    wresp.Close();
+                    wresp = null;
+                }
+            }
+            finally
+            {
+                wr = null;
+            }
+        }
+
         public static string GetRequest(string url)
         {
             Encoding enc = Encoding.GetEncoding("UTF-8");
@@ -508,6 +609,20 @@ namespace FSNetwork
 
             return String.Format("{0}://{1}{2}{3}",
                 url.Scheme, url.Host, port, VirtualPathUtility.ToAbsolute(relativeUrl));
+        }
+
+        public static string ReadHeaders(WebHeaderCollection headers)
+        {
+            string headerText = "";
+            for (int i = 0; i < headers.Count; ++i)
+            {
+                string headerName = headers.GetKey(i);
+                foreach (string value in headers.GetValues(i))
+                {
+                    headerText += String.Format("{0}: {1}" + Environment.NewLine, headerName, value);
+                }
+            }
+            return headerText;
         }
     }
 }

@@ -12,24 +12,24 @@ namespace FSLibrary
     {
         public static class Pitch
         {
-            public static string C = "0|2093";
-            public static string Csharp = "1|2217";
-            public static string Dflat = "1|2217";
-            public static string D = "2|2349";
-            public static string Dsharp = "3|2489";
-            public static string Eflat = "3|2489";
-            public static string E = "4|2637";
-            public static string F = "5|2794";
-            public static string Fsharp = "6|2960";
-            public static string Gflat = "6|2960";
-            public static string G = "7|3136";
-            public static string Gsharp = "8|3322";
-            public static string Aflat = "8|3322";
-            public static string A = "9|3520";
-            public static string Asharp = "10|3729";
-            public static string Bflat = "10|3729";
-            public static string B = "11|3951";
-            public static string Rest = "0|0";
+            static string C = "0|2093";
+            static string Csharp = "1|2217";
+            static string Dflat = "1|2217";
+            static string D = "2|2349";
+            static string Dsharp = "3|2489";
+            static string Eflat = "3|2489";
+            static string E = "4|2637";
+            static string F = "5|2794";
+            static string Fsharp = "6|2960";
+            static string Gflat = "6|2960";
+            static string G = "7|3136";
+            static string Gsharp = "8|3322";
+            static string Aflat = "8|3322";
+            static string A = "9|3520";
+            static string Asharp = "10|3729";
+            static string Bflat = "10|3729";
+            static string B = "11|3951";
+            static string Rest = "0|0";
         }
 
         private static SoundPlayer keySound = null;
@@ -95,6 +95,11 @@ namespace FSLibrary
             SystemSounds.Hand.Play();
         }
 
+        /// <summary>
+        /// Beep de ZX Spectrum
+        /// </summary>
+        /// <param name="Duration"></param>
+        /// <param name="pitch"></param>
         public static void BeepZx(double Duration, int pitch)
         {
             int p = 0;

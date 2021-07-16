@@ -36,10 +36,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FSNetwork, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\FSApps\dll\FSNetwork.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -93,6 +89,10 @@
     <ProjectReference Include="..\FSMail\FSMail.csproj">
       <Project>{890916d9-1b2a-4c31-a2cd-f9cc8a80bd87}</Project>
       <Name>FSMail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj">
+      <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>
+      <Name>FSNetwork</Name>
     </ProjectReference>
     <ProjectReference Include="..\FSParser\FSParser.csproj">
       <Project>{7c38ee9f-9765-44bb-9477-7e59e3122aac}</Project>

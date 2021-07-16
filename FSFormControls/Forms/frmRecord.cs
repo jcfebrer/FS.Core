@@ -110,8 +110,7 @@ namespace FSFormControls
             this.DbRecord1.AllowSearch = true;
             this.DbRecord1.AutoSize = true;
             this.DbRecord1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.DbRecord1.DataControl = null;
-            this.DbRecord1.DateType = FSFormControls.DBRecord.t_date.Normal;
+                        this.DbRecord1.DateType = FSFormControls.DBRecord.t_date.Normal;
             this.DbRecord1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DbRecord1.DoubleHeightInLargeText = false;
             this.DbRecord1.LabelAlign = System.Windows.Forms.HorizontalAlignment.Left;

@@ -3030,9 +3030,18 @@ namespace FSLibrary
         /// </summary>
         public const int WM_PAINT = 0x000F;
         /// <summary>
+        /// Get text
+        /// </summary>
+        public const int WM_GETTEXT = 0x000D;
+        /// <summary>
         /// The GWL exstyle
         /// </summary>
         public const int GWL_EXSTYLE = -20;
+
+        /// <summary>
+        /// get richedit text
+        /// </summary>
+        public const int GWL_ID = -12;
         /// <summary>
         /// The ws ex layered
         /// </summary>
@@ -3253,6 +3262,36 @@ namespace FSLibrary
             int dwMilliseconds
         );
 
+
+
+        /// <summary>
+        /// Tipo WindowsProc para enumerar las ventanas
+        /// </summary>
+        /// <param name="hwnd"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
+        public delegate int EnumWindowsProc(IntPtr hwnd, int lParam);
+
+        /// <summary>
+        /// Función que devuelve la ventana en x,y
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns></returns>
+        [DllImport("user32.Dll")]
+        public static extern int EnumWindows(EnumWindowsProc x, int y);
+
+        /// <summary>
+        /// Devuelve los hijos de una ventana
+        /// </summary>
+        /// <param name="window"></param>
+        /// <param name="callback"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
+        [DllImport("user32")]
+        public static extern bool EnumChildWindows(IntPtr window, EnumWindowsProc callback, int lParam);
+
+
         /// <summary>
         /// Enums the desktop windows.
         /// </summary>
@@ -3464,6 +3503,37 @@ namespace FSLibrary
         /// <returns></returns>
         [DllImport("user32.dll")]
         public static extern int GetDoubleClickTime();
+
+
+        /// <summary>
+        /// Envia un mensaje a la ventana
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="IDDlgItem"></param>
+        /// <param name="uMsg"></param>
+        /// <param name="nMaxCount"></param>
+        /// <param name="lpString"></param>
+        /// <returns></returns>
+        [DllImport("User32.dll")]
+        public static extern IntPtr SendDlgItemMessage(IntPtr hWnd, int IDDlgItem, int uMsg, int nMaxCount, StringBuilder lpString);
+        
+        /// <summary>
+        /// Obtiene la ventana padre
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <returns></returns>
+        [DllImport("User32.dll")]
+        public static extern IntPtr GetParent(IntPtr hWnd);
+        
+        /// <summary>
+        /// Obtiene el rectangulo de la ventana indicada
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="lpRect"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
+        public static extern long GetWindowRect(IntPtr hWnd, ref Rectangle lpRect);
+
 
         /// <summary>
         /// Gets the current thread identifier.
