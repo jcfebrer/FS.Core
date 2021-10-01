@@ -10,27 +10,30 @@ namespace FSLibrary
     /// </summary>
     public static class Multimedia
     {
-        public static class Pitch
-        {
-            static string C = "0|2093";
-            static string Csharp = "1|2217";
-            static string Dflat = "1|2217";
-            static string D = "2|2349";
-            static string Dsharp = "3|2489";
-            static string Eflat = "3|2489";
-            static string E = "4|2637";
-            static string F = "5|2794";
-            static string Fsharp = "6|2960";
-            static string Gflat = "6|2960";
-            static string G = "7|3136";
-            static string Gsharp = "8|3322";
-            static string Aflat = "8|3322";
-            static string A = "9|3520";
-            static string Asharp = "10|3729";
-            static string Bflat = "10|3729";
-            static string B = "11|3951";
-            static string Rest = "0|0";
-        }
+        ///// <summary>
+        ///// Clase Pitch
+        ///// </summary>
+        //public static class Pitch
+        //{
+        //    static string C = "0|2093";
+        //    static string Csharp = "1|2217";
+        //    static string Dflat = "1|2217";
+        //    static string D = "2|2349";
+        //    static string Dsharp = "3|2489";
+        //    static string Eflat = "3|2489";
+        //    static string E = "4|2637";
+        //    static string F = "5|2794";
+        //    static string Fsharp = "6|2960";
+        //    static string Gflat = "6|2960";
+        //    static string G = "7|3136";
+        //    static string Gsharp = "8|3322";
+        //    static string Aflat = "8|3322";
+        //    static string A = "9|3520";
+        //    static string Asharp = "10|3729";
+        //    static string Bflat = "10|3729";
+        //    static string B = "11|3951";
+        //    static string Rest = "0|0";
+        //}
 
         private static SoundPlayer keySound = null;
 

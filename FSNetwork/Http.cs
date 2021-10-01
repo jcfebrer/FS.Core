@@ -536,7 +536,7 @@ namespace FSNetwork
                 StreamReader reader2 = new StreamReader(stream2);
                 //"File uploaded, server response is: {0}", reader2.ReadToEnd()));
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 //"Error uploading file", ex);
                 if (wresp != null)

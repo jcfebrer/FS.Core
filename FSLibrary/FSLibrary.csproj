@@ -90,9 +90,6 @@
   </Target>
   -->
   <ItemGroup>
-    <Reference Include="FSDatabase">
-      <HintPath>..\..\AplicacionGT\dll\FSDatabase.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
