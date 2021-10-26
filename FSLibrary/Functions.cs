@@ -36,9 +36,9 @@ namespace FSLibrary
         }
 
         /// <summary>
-        /// Maps the specified x.
+        /// Convierte el valor x proporcionalmente a los valores de entrada.
         /// </summary>
-        /// <param name="x">The x.</param>
+        /// <param name="x">El valor a convertir.</param>
         /// <param name="in_min">The in minimum.</param>
         /// <param name="in_max">The in maximum.</param>
         /// <param name="out_min">The out minimum.</param>

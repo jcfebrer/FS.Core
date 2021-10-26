@@ -146,8 +146,8 @@ namespace FSFormControls
                         ((DataGrid) webctrl).Style["POSITION"] = "absolute";
                         ((DataGrid) webctrl).Style["LEFT"] = x + "px";
                         ((DataGrid) webctrl).Style["TOP"] = y + "px";
-                        ((DataGrid) webctrl).Style["WIDTH"] = "";
-                        ((DataGrid) webctrl).Style["HEIGHT"] = sy + "px";
+                        //((DataGrid) webctrl).Style["WIDTH"] = sx + "px";
+                        //((DataGrid) webctrl).Style["HEIGHT"] = sy + "px";
                         ((DataGrid) webctrl).Font.Name = winctrl.Font.Name;
                         ((DataGrid) webctrl).Font.Size = FontUnit.Point(Convert.ToInt32(winctrl.Font.Size));
 
