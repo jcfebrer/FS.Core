@@ -45,7 +45,7 @@ namespace FSLibrary
                 ParameterInfo[] propParams = prop.GetIndexParameters();
                 if (propParams.Length == 0)
                 {
-                    object propValue = prop.GetValue(obj);
+                    object propValue = prop.GetValue(obj, null);
 
                     if (prop.PropertyType == typeof(Byte[]) && propValue != null)
                     {

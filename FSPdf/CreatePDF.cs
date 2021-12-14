@@ -3,9 +3,10 @@ using System.IO;
 using System.Text.RegularExpressions;
 using PdfSharp;
 using PdfSharp.Pdf;
-using TheArtOfDev.HtmlRenderer.Core.Entities;
-using TheArtOfDev.HtmlRenderer.PdfSharp;
 using FSNetwork;
+using System.Web;
+using TheArtOfDev.HtmlRenderer;
+using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 namespace FSPdf
 {
@@ -20,7 +21,7 @@ namespace FSPdf
 		
        
 		
-		public static void Generate(System.Web.HttpContext context, string html, bool landscape)
+		public static void Generate(HttpContext context, string html, bool landscape)
 		{
 			PdfGenerateConfig pdfConfig = new PdfGenerateConfig();
         	pdfConfig.PageSize = PdfSharp.PageSize.A4;

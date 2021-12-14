@@ -25,8 +25,10 @@ namespace FSTrace
     /// <summary>Implementa funcionalidad de traceo</summary>
     public static class Log
     {
-        public static event EventHandler<string> OnMessageLogText;
-        public static event EventHandler<LogMessage> OnMessageLog;
+        public delegate void MessageLogEventHandler(object source, Log.LogMessage e);
+        public delegate void MessageLogTextEventHandler(object source, string e);
+        public static event MessageLogTextEventHandler OnMessageLogText;
+        public static event MessageLogEventHandler OnMessageLog;
         public static TraceLevel m_LogTraceLevel = TraceLevel.Verbose;
 
         private const string ExceptionMessageFormat = "The following exception happened: {0}";

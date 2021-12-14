@@ -9,7 +9,7 @@ namespace FSLibrary
     /// <summary>
     /// Clase para la obtención del código CRC8 de TicketBAI
     /// </summary>
-    public class TicketBAI_CRC
+    public class Crc8
     {
         // CRC-8,
         // Poly = x^8 + x^2 + x^1 + x^0

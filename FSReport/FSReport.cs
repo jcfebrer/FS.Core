@@ -11,6 +11,7 @@ using CrystalDecisions.Windows.Forms;
 using FSLibrary;
 using FSException;
 using FSFormControls;
+using System.IO;
 
 #endregion
 
@@ -205,8 +206,8 @@ namespace FSReport
                 {
                     strParValPair = m_Parameters.Split(char.Parse("&"));
 
-                    Array transTemp3 = strParValPair;
-                    for (index = 0; index <= transTemp3.GetUpperBound(0); index++)
+                    Array arrParValPair = strParValPair;
+                    for (index = 0; index <= arrParValPair.GetUpperBound(0); index++)
                     {
                         if (strParValPair[index].IndexOf("=") + 1 > 0)
                         {
@@ -234,8 +235,8 @@ namespace FSReport
                     m_Database = "";
                 }
 
-                ChangeLoginInfo(crReportDocument.Database.Tables);
-                SetSubreportSelection(crReportDocument);
+                Functions.ChangeLoginInfo(crReportDocument.Database.Tables, m_Server, m_Database, m_UserName, m_Password);
+                Functions.SetSubreportSelection(crReportDocument, m_SubReportSelection, m_Server, m_Database, m_UserName, m_Password);
 
 
                 if (DataSet != null)
@@ -256,70 +257,6 @@ namespace FSReport
             catch (System.Exception e)
             {
 				throw new ExceptionUtil(e);
-            }
-        }
-
-
-        private void SetSubreportSelection(CrystalDecisions.CrystalReports.Engine.ReportDocument crReportDocument)
-        {
-            ReportObjects crReportObjects = null;
-
-            crReportObjects = crReportDocument.ReportDefinition.ReportObjects;
-
-            int f = 0;
-            ReportObject crReportObject = null;
-            SubreportObject crSubreportObject = null;
-            CrystalDecisions.CrystalReports.Engine.ReportDocument crSubreport = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
-            for (f = 0; f <= crReportObjects.Count - 1; f++)
-            {
-                crReportObject = crReportObjects[f];
-
-
-                if (crReportObject.Kind == ReportObjectKind.SubreportObject)
-                {
-                    crSubreportObject = ((SubreportObject) (crReportObject));
-                    crSubreport = crReportDocument.OpenSubreport(crSubreportObject.SubreportName);
-
-                    ChangeLoginInfo(crSubreport.Database.Tables);
-
-                    if (m_SubReportSelection != "" & crSubreport.RecordSelectionFormula != "")
-                    {
-                        crSubreport.RecordSelectionFormula = m_SubReportSelection;
-                    }
-                }
-            }
-        }
-
-
-        private void ChangeLoginInfo(Tables crTables)
-        {
-            TableLogOnInfos crtableLogoninfos = new TableLogOnInfos();
-            TableLogOnInfo crtableLogoninfo = new TableLogOnInfo();
-            ConnectionInfo crConnectionInfo = new ConnectionInfo();
-
-
-            crConnectionInfo.ServerName = m_Server;
-            crConnectionInfo.DatabaseName = m_Database;
-            crConnectionInfo.UserID = m_UserName;
-            if (m_Password != null) crConnectionInfo.Password = m_Password;
-
-
-            foreach (Table CrTable in crTables)
-            {
-                crtableLogoninfo = CrTable.LogOnInfo;
-                crtableLogoninfo.ConnectionInfo = crConnectionInfo;
-                CrTable.ApplyLogOnInfo(crtableLogoninfo);
-            }
-
-            foreach (Table CrTable in crTables)
-            {
-                crtableLogoninfo = CrTable.LogOnInfo;
-
-                crConnectionInfo.UserID = m_UserName;
-                if (m_Password != null) crConnectionInfo.Password = m_Password;
-
-                crtableLogoninfo.ConnectionInfo = crConnectionInfo;
-                CrTable.ApplyLogOnInfo(crtableLogoninfo);
             }
         }
     }

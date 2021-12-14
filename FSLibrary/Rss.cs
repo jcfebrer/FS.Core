@@ -12,6 +12,7 @@
 
 using System;
 using System.Collections;
+using System.Net;
 using System.Text;
 using System.Xml;
 
@@ -301,29 +302,29 @@ namespace FSLibrary
             }
 
             myNode = fetchNode(DocumentRoot.ChildNodes, "title");
-            if (!(myNode == null)) myRSSHeader.Title = myNode.InnerText;
+            if ((myNode != null)) myRSSHeader.Title = myNode.InnerText;
             myNode = fetchNode(DocumentRoot.ChildNodes, "link");
-            if (!(myNode == null) & (myNode.InnerText != "")) myRSSHeader.Link = new Uri(myNode.InnerText);
+            if ((myNode != null) & (myNode.InnerText != "")) myRSSHeader.Link = new Uri(myNode.InnerText);
             myNode = fetchNode(DocumentRoot.ChildNodes, "description");
-            if (!(myNode == null)) myRSSHeader.Description = myNode.InnerText;
+            if (myNode != null) myRSSHeader.Description = myNode.InnerText;
             myNode = fetchNode(DocumentRoot.ChildNodes, "language");
-            if (!(myNode == null)) myRSSHeader.Language = myNode.InnerText;
+            if (myNode != null) myRSSHeader.Language = myNode.InnerText;
             myNode = fetchNode(DocumentRoot.ChildNodes, "copyright");
-            if (!(myNode == null)) myRSSHeader.Copyright = myNode.InnerText;
+            if (myNode != null) myRSSHeader.Copyright = myNode.InnerText;
             myNode = fetchNode(DocumentRoot.ChildNodes, "managingEditor");
-            if (!(myNode == null)) myRSSHeader.managingEditor = myNode.InnerText;
+            if (myNode != null) myRSSHeader.managingEditor = myNode.InnerText;
             myNode = fetchNode(DocumentRoot.ChildNodes, "webMaster");
-            if (!(myNode == null)) myRSSHeader.webMaster = myNode.InnerText;
+            if (myNode != null) myRSSHeader.webMaster = myNode.InnerText;
 
             switch (Version)
             {
                 case RSSVersion.version_RDF:
                     myNode = fetchNode(DocumentRoot.ChildNodes, "dc:date");
-                    if (!(myNode == null)) myRSSHeader.lastBuildDate = System.DateTime.Parse(myNode.InnerText);
+                    if (myNode != null) myRSSHeader.lastBuildDate = System.DateTime.Parse(myNode.InnerText);
                     break;
                 default:
                     myNode = fetchNode(DocumentRoot.ChildNodes, "lastBuildDate");
-                    if (!(myNode == null)) myRSSHeader.lastBuildDate = System.DateTime.Parse(myNode.InnerText);
+                    if (myNode != null) myRSSHeader.lastBuildDate = System.DateTime.Parse(myNode.InnerText);
                     break;
             }
 
@@ -345,24 +346,24 @@ namespace FSLibrary
 
 
                     myNode = fetchNode(myItemNode.ChildNodes, "description");
-                    if (!(myNode == null)) myItem.Description = myNode.InnerText;
+                    if (myNode != null) myItem.Description = myNode.InnerText;
                     myNode = fetchNode(myItemNode.ChildNodes, "title");
-                    if (!(myNode == null)) myItem.Title = myNode.InnerText;
+                    if (myNode != null) myItem.Title = myNode.InnerText;
                     myNode = fetchNode(myItemNode.ChildNodes, "link");
-                    if (!(myNode == null) & (myNode.InnerText != "")) myItem.Link = new Uri(myNode.InnerText);
+                    if ((myNode != null) & (myNode.InnerText != "")) myItem.Link = new Uri(myNode.InnerText);
 
                     switch (Version)
                     {
                         case RSSVersion.version_RDF:
                             myNode = fetchNode(myItemNode.ChildNodes, "dc:date");
-                            if (!(myNode == null)) myItem.pubDate = System.DateTime.Parse(myNode.InnerText);
+                            if (myNode != null) myItem.pubDate = System.DateTime.Parse(myNode.InnerText);
                             break;
                         default:
                             myNode = fetchNode(myItemNode.ChildNodes, "lastBuildDate");
-                            if (!(myNode == null)) myItem.pubDate = System.DateTime.Parse(myNode.InnerText);
+                            if (myNode != null) myItem.pubDate = System.DateTime.Parse(myNode.InnerText);
 
                             myNode = fetchNode(myItemNode.ChildNodes, "pubDate");
-                            if (!(myNode == null)) myItem.pubDate = System.DateTime.Parse(myNode.InnerText);
+                            if (myNode != null) myItem.pubDate = System.DateTime.Parse(myNode.InnerText);
                             break;
                     }
 

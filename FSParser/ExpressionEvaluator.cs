@@ -1845,7 +1845,7 @@ namespace FSParser
                         object obj = inObject ? stack.Pop() : Context;
                         object keepObj = obj;
                         Type objType = null;
-                        Type[] inferedGenericsTypes = obj?.GetType().GenericTypeArguments;
+                        Type[] inferedGenericsTypes = obj?.GetType().GetGenericArguments();
                         ValueTypeNestingTrace valueTypeNestingTrace = null;
 
                         if (obj != null && TypesToBlock.Contains(obj.GetType()))
@@ -1909,7 +1909,7 @@ namespace FSParser
                                     }
                                     else if (objType.GetProperty(varFuncName, InstanceBindingFlag) is PropertyInfo instancePropertyInfo
                                         && (instancePropertyInfo.PropertyType.IsSubclassOf(typeof(Delegate)) || instancePropertyInfo.PropertyType == typeof(Delegate))
-                                        && instancePropertyInfo.GetValue(obj) is Delegate del)
+                                        && instancePropertyInfo.GetValue(obj, null) is Delegate del)
                                     {
                                         stack.Push(del.DynamicInvoke(oArgs.ToArray()));
                                     }
@@ -1938,7 +1938,7 @@ namespace FSParser
                                         }
                                         else if (objType.GetProperty(varFuncName, StaticBindingFlag) is PropertyInfo staticPropertyInfo
                                         && (staticPropertyInfo.PropertyType.IsSubclassOf(typeof(Delegate)) || staticPropertyInfo.PropertyType == typeof(Delegate))
-                                        && staticPropertyInfo.GetValue(obj) is Delegate del2)
+                                        && staticPropertyInfo.GetValue(obj, null) is Delegate del2)
                                         {
                                             stack.Push(del2.DynamicInvoke(oArgs.ToArray()));
                                         }
@@ -3123,7 +3123,7 @@ namespace FSParser
 
                             return parameterInfos.Length == 2
                                 && parameterInfos[1].ParameterType.Name.StartsWith("Func")
-                                && parameterInfos[1].ParameterType.GenericTypeArguments is Type[] genericTypesArgs
+                                && parameterInfos[1].ParameterType.GetGenericArguments() is Type[] genericTypesArgs
                                 && genericTypesArgs.Length == 2
                                 && genericTypesArgs[1] == lambdaResultType;
                         });

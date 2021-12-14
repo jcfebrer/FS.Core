@@ -11,7 +11,8 @@ namespace FSNetwork
     public class UPnP2
     {
         static TimeSpan _timeout = new TimeSpan(0, 0, 0, 3);
-        public static event EventHandler<DeviceUPnP> OnDeviceSearch;
+        public delegate void MessageLogTextEventHandler(object source, DeviceUPnP e);
+        public static event MessageLogTextEventHandler OnDeviceSearch;
         public static ConnectionTypeEnum ConnectionType = UPnP2.ConnectionTypeEnum.WANIPConnection;
 
         public enum ConnectionTypeEnum

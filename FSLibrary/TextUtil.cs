@@ -2679,68 +2679,53 @@ namespace FSLibrary
         /// <summary>
         /// Removes the illegal data.
         /// </summary>
-        /// <param name="strInputEntry">The string input entry.</param>
+        /// <param name="str">The string input entry.</param>
         /// <returns></returns>
-        /// <exception cref="ExceptionUtil">Valor invalido en cadena: " + dataOrig + "\nValor error: " + strInputEntry</exception>
-        public static string RemoveIllegalData(string strInputEntry)
+        public static string RemoveIllegalData(string str)
         {
-            var dataOrig = strInputEntry;
-            if (strInputEntry == "")
+            if (str == null)
+                return string.Empty;
+            if (str == "")
                 return string.Empty;
 
-            const string reemp = "{BAD}";
+            const string reemp = "*";
 
-            strInputEntry = Replace(strInputEntry, "<", reemp);
-            strInputEntry = Replace(strInputEntry, ">", reemp);
-            strInputEntry = Replace(strInputEntry, "[", reemp);
-            strInputEntry = Replace(strInputEntry, "]", reemp);
-            strInputEntry = Replace(strInputEntry, "--", reemp);
-            strInputEntry = Replace(strInputEntry, "*", reemp);
-            //strInputEntry = Replace(strInputEntry, "=", reemp);
-            //strInputEntry = Replace(strInputEntry, ",", reemp);
-            //strInputEntry = Replace(strInputEntry, "'", reemp);
-            //strInputEntry = Replace(strInputEntry, ".", reemp);
-            strInputEntry = Replace(strInputEntry, ";", reemp);
-            strInputEntry = Replace(strInputEntry, "\"", reemp);
-            //strInputEntry = Replace(strInputEntry, "{", reemp);
-            //strInputEntry = Replace(strInputEntry, "}", reemp);
-            //strInputEntry = Replace(strInputEntry, "%", reemp);
-            strInputEntry = Replace(strInputEntry, "select ", reemp);
-            strInputEntry = Replace(strInputEntry, "join ", reemp);
-            strInputEntry = Replace(strInputEntry, "union ", reemp);
-            strInputEntry = Replace(strInputEntry, "where ", reemp);
-            strInputEntry = Replace(strInputEntry, "insert ", reemp);
-            strInputEntry = Replace(strInputEntry, "delete ", reemp);
-            strInputEntry = Replace(strInputEntry, "update ", reemp);
-            strInputEntry = Replace(strInputEntry, "like ", reemp);
-            strInputEntry = Replace(strInputEntry, "drop ", reemp);
-            strInputEntry = Replace(strInputEntry, "create ", reemp);
-            strInputEntry = Replace(strInputEntry, "modify ", reemp);
-            strInputEntry = Replace(strInputEntry, "rename ", reemp);
-            strInputEntry = Replace(strInputEntry, "alter ", reemp);
-            strInputEntry = Replace(strInputEntry, "cast ", reemp);
-            strInputEntry = Replace(strInputEntry, "declare ", reemp);
-            strInputEntry = Replace(strInputEntry, "from ", reemp);
-            strInputEntry = Replace(strInputEntry, "exec ", reemp);
-            strInputEntry = Replace(strInputEntry, "xp_", reemp);
-            strInputEntry = Replace(strInputEntry, "script", reemp);
-            strInputEntry = Replace(strInputEntry, "alert", reemp);
-            strInputEntry = Replace(strInputEntry, "object", reemp);
-            strInputEntry = Replace(strInputEntry, "applet", reemp);
-            strInputEntry = Replace(strInputEntry, "embed", reemp);
-            strInputEntry = Replace(strInputEntry, "event ", reemp);
-            strInputEntry = Replace(strInputEntry, "document ", reemp);
-            strInputEntry = Replace(strInputEntry, "cookie", reemp);
-            strInputEntry = Replace(strInputEntry, "form ", reemp);
-            strInputEntry = Replace(strInputEntry, "iframe", reemp);
-            strInputEntry = Replace(strInputEntry, "textarea", reemp);
-            strInputEntry = Replace(strInputEntry, " on ", reemp);
+            str = Replace(str, "<", reemp);
+            str = Replace(str, ">", reemp);
+            str = Replace(str, "[", reemp);
+            str = Replace(str, "]", reemp);
+            str = Replace(str, "--", reemp);
+            //str = Replace(str, "*", reemp);
+            str = Replace(str, ";", reemp);
+            str = Replace(str, "\"", reemp);
+            str = Replace(str, "select ", reemp);
+            str = Replace(str, "join ", reemp);
+            str = Replace(str, "union ", reemp);
+            str = Replace(str, "insert ", reemp);
+            str = Replace(str, "delete ", reemp);
+            str = Replace(str, "update ", reemp);
+            str = Replace(str, "like ", reemp);
+            str = Replace(str, "drop ", reemp);
+            str = Replace(str, "create ", reemp);
+            str = Replace(str, "modify ", reemp);
+            str = Replace(str, "rename ", reemp);
+            str = Replace(str, "alter ", reemp);
+            str = Replace(str, "cast ", reemp);
+            str = Replace(str, "declare ", reemp);
+            str = Replace(str, "exec ", reemp);
+            str = Replace(str, "xp_", reemp);
+            str = Replace(str, "script", reemp);
+            str = Replace(str, "alert", reemp);
+            str = Replace(str, "object", reemp);
+            str = Replace(str, "applet", reemp);
+            str = Replace(str, "embed", reemp);
+            str = Replace(str, "event ", reemp);
+            str = Replace(str, "document ", reemp);
+            str = Replace(str, "cookie", reemp);
+            str = Replace(str, "iframe", reemp);
+            str = Replace(str, "textarea", reemp);
 
-            strInputEntry = Regex.Replace(strInputEntry, @"<(.|\n)*?>", reemp);
-
-            if (strInputEntry != dataOrig)
-                throw new ExceptionUtil("Valor invalido en cadena: " + dataOrig + "\nValor error: " + strInputEntry);
-            return strInputEntry;
+            return str;
         }
 
 

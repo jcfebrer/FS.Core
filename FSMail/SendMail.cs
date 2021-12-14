@@ -14,27 +14,18 @@ using System;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
 using System.Web;
-using FSCrypto;
-using System.Security.Cryptography.Pkcs;
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.IO;
+using FSTrace;
 
 #endregion
 
 namespace FSMail
 {
-	public class SendMail
+	public static class SendMail
 	{
-		public SendMail()
-		{
-			smd = new SendMailDelegate(SendMailMessage);
-		}
-		
-		private delegate Boolean SendMailDelegate(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla);
-		private SendMailDelegate smd;
 		private static List<string> attachments;
 
 		public static string Server;
@@ -44,12 +35,6 @@ namespace FSMail
 		public static bool EnableSSL;
 		public static string UserPortal;
 		public static string UserFullName;
-
-		
-		public void SendMailAsync(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla)
-		{
-			smd.BeginInvoke(sTo, sCC, sCCO, sSubject, sBody, sFrom, sFromName, plantilla, null, null);
-		}
 
         public static bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla)
         {
@@ -67,7 +52,10 @@ namespace FSMail
 
         public static bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
 		{
-            if (System.Diagnostics.Debugger.IsAttached) return false;
+            if (System.Diagnostics.Debugger.IsAttached)
+				return false;
+
+			Log.TraceInfo("Inicio de envio de correo.");
 
             MailMessage Mail = new MailMessage();
 
@@ -147,12 +135,14 @@ namespace FSMail
 			try {
 				if (Mail.To.Count > 0)
 					smtpClient.Send(Mail);
-			} catch {
-				throw;
+			} catch(Exception e) {
+				Log.TraceError(e);
+				return false;
 			}
 
+			Log.TraceInfo("FIN de envio de correo.");
 
-            return true;
+			return true;
 		}
 
 		public static bool SendErrorMail(string message)
@@ -165,83 +155,65 @@ namespace FSMail
             return SendErrorMail(message, ex, false, null);
         }
 
+		public static bool SendErrorMail(System.Exception ex)
+		{
+			return SendErrorMail("", ex, false, null);
+		}
+
 		public static bool SendErrorMail(string message, System.Exception ex, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
 		{
-			if (System.Diagnostics.Debugger.IsAttached)
-				return false;
-
-			string sFrom = ConfigurationManager.AppSettings["DebugFromEmail"];
-			string sTo = ConfigurationManager.AppSettings["DebugToEmail"];
-
-			if (String.IsNullOrEmpty(sFrom) || String.IsNullOrEmpty(sTo))
-				return false;
-
-			MailMessage Mail = new MailMessage();
-
 			string sSubject = "Error: Excepción no controlada";
 			string sBody = "";
 
-			if (ex == null && HttpContext.Current != null && HttpContext.Current.Server != null )
+
+			if (ex == null && HttpContext.Current != null && HttpContext.Current.Server != null)
 			{
 				ex = HttpContext.Current.Server.GetLastError();
+			}
 
+			if (HttpContext.Current != null && HttpContext.Current.Request != null)
+			{
 				sSubject = "Error en: " + HttpContext.Current.Request.Url + " - " +
-									   HttpContext.Current.Request.FilePath;
-				sBody = "Se ha registrado un error en (Global.asax): " + HttpContext.Current.Request.Url + "\n" +
-										"\n";
-				sBody += "Fichero: " + HttpContext.Current.Request.FilePath + "\n";
-				sBody += "QueryString: " +
-			HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.QueryString.ToString()) + "\n";
+										HttpContext.Current.Request.FilePath;
+				sBody = "Se ha registrado un error en: " + HttpContext.Current.Request.Url + "\r\n" +
+										"\r\n";
+				sBody += "Fichero: " + HttpContext.Current.Request.FilePath + "\r\n";
+				sBody += "RawUrl: " + HttpContext.Current.Request.RawUrl + "\r\n";
+				sBody += "QueryString: " + HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.QueryString.ToString()) + "\r\n";
 				string ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
 				sBody = sBody + "IP: <a href='https://dig.whois.com.au/ip/" + ip + "'>" + ip + "</a>\r\n";
 			}
-	
 
-			if (ex != null) {
-				sBody += "Error: " + ex;
 
-				if (ex.InnerException != null) {
+			if (ex != null)
+			{
+				sBody += "Message: " + ex.Message;
+				sBody += "\r\nError: " + ex;
+
+				if (ex.InnerException != null)
+				{
 					sBody += "\r\nErrorInner: " + ex.InnerException;
 				}
 			}
 
-			sBody += "\n\n";
-			sBody += "Mensaje: " + message + "\n";
-			
-			if (UserPortal != null) {
-				sBody = sBody + "Usuario: " + UserPortal + "\n";
-				sBody = sBody + "Nombre completo: " + UserFullName + "\n";
+			sBody += "\r\n\r\n";
+
+			if (message != "")
+			{
+				sBody += "Mensaje: " + message + "\r\n";
 			}
 
-			sBody = sBody + "\r\n" + "\r\nFecha: " + System.DateTime.Now + "\r\n";
-
-			Mail.From = new MailAddress(sFrom, "Error 500");
-			Mail.To.Add(new MailAddress(sTo));
-			Mail.Subject = sSubject;
-
-            if (Firmar)
-            {
-                Mail.Body = FSCertificate.Certificate.SignMessage(sBody, Certificado);
-            }
-            else
-            {
-                Mail.Body = sBody;
-            }
-
-			Crypto crypt = new Crypto();
-
-			SmtpClient client = new SmtpClient();
-			client.Host = ConfigurationManager.AppSettings["DebugServer"];
-			client.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["DebugUser"],
-				crypt.Decryp(ConfigurationManager.AppSettings["DebugPassword"]));
-
-			try {
-				client.Send(Mail);
-			} catch {
-                return false;
+			if (UserPortal != null)
+			{
+				sBody = sBody + "Usuario: " + UserPortal + "\r\n";
+				sBody = sBody + "Nombre completo: " + UserFullName + "\r\n";
 			}
 
-            return true;
+			sBody = sBody + "\r\n\r\nFecha: " + System.DateTime.Now + "\r\n";
+
+			return SendMailMessage(ConfigurationManager.AppSettings["CorreoInfo"], "", "", sSubject, sBody,
+				ConfigurationManager.AppSettings["CorreoInfo"], ConfigurationManager.AppSettings["CorreoInfo"], "", Firmar, Certificado);
+
 		}
     }
 }

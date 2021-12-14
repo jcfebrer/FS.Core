@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using ZXing;
 using ZXing.QrCode;
 
@@ -18,9 +19,19 @@ namespace FSBarcode
 			Ean_13,
 			Ean_8
 		}
-		public Bitmap Generate(string valor, CodeFormat barcodeFormat)
+		public static Bitmap Generate(string data, int width, int height, CodeFormat barcodeFormat)
 		{
-			BarcodeWriter writer = new BarcodeWriter();
+			QrCodeEncodingOptions options = new QrCodeEncodingOptions();
+			options = new QrCodeEncodingOptions
+			{
+				DisableECI = true,
+				CharacterSet = "UTF-8",
+				Width = width,
+				Height = height,
+			};
+
+			BarcodeWriter writer = new ZXing.BarcodeWriter();
+			writer.Options = options;
 
 			switch (barcodeFormat)
 			{
@@ -45,11 +56,13 @@ namespace FSBarcode
 					break;
 			}
 
-			Bitmap result = writer.Write(valor);
-			return new Bitmap(result);
+			using (Bitmap result = writer.Write(data))
+			{
+				return new Bitmap(result);
+			}
 		}
 
-		public string ReadQRFromFile(string fileName)
+		public static string ReadQRFromFile(string fileName)
 		{
 			BarcodeReader reader = new BarcodeReader();
 
@@ -58,34 +71,51 @@ namespace FSBarcode
 			reader.Options = new ZXing.Common.DecodingOptions { TryHarder = true };
 
 			// create an in memory bitmap
-			var barcodeBitmap = (Bitmap)Bitmap.FromFile(fileName);
+			using (Bitmap barcodeBitmap = (Bitmap)Bitmap.FromFile(fileName))
+			{
+				// decode the barcode from the in memory bitmap
+				Result result = reader.Decode(barcodeBitmap);
+				// output results to console
+				//Console.WriteLine($"Decoded barcode text: {barcodeResult?.Text}");
+				//Console.WriteLine($"Barcode format: {barcodeResult?.BarcodeFormat}");
 
-			// decode the barcode from the in memory bitmap
-			var result = reader.Decode(barcodeBitmap);
-
-			// output results to console
-			//Console.WriteLine($"Decoded barcode text: {barcodeResult?.Text}");
-			//Console.WriteLine($"Barcode format: {barcodeResult?.BarcodeFormat}");
-
-			if (result != null)
-				return result.Text;
-			else
-				return "Imposible leer QR";
+				if (result != null)
+					return result.Text;
+				else
+					return "Imposible leer QR";
+			}
 		}
 
-		public Bitmap GenerateQR(string valor)
+		private static void SaveQRToFile(string qrText, int width, int height, string fileName)
 		{
-			BarcodeWriter writer = new BarcodeWriter();
-			writer.Format = BarcodeFormat.QR_CODE;
-			writer.Options = new QrCodeEncodingOptions();
-			writer.Options.Width = 400;
-			writer.Options.Height = 400;
-
-			Bitmap result = writer.Write(valor);
-			return new Bitmap(result);
+			using (Bitmap bitMap = Generate(qrText, width, height, CodeFormat.QR))
+			{
+				bitMap.Save(fileName);
+			}
 		}
 
-		public string ReadQRFromImage(Bitmap bitmap)
+		private static Bitmap GetQRBitmap(string qrText, int width, int height)
+		{
+			using (Bitmap bitMap = Generate(qrText, width, height, CodeFormat.QR))
+			{
+				return bitMap;
+			}
+		}
+
+		private static byte[] GetQRBytes(string qrText, int width, int height)
+		{
+			using (Bitmap bitMap = Generate(qrText, width, height, CodeFormat.QR))
+			{
+				using (MemoryStream ms = new MemoryStream())
+				{
+					bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+					byte[] byteImage = ms.ToArray();
+					return byteImage;
+				}
+			}
+		}
+
+		public static string ReadQRFromImage(Bitmap bitmap)
 		{
 			try
 			{
@@ -96,16 +126,16 @@ namespace FSBarcode
 				reader.TryInverted = true;
 				reader.Options = new ZXing.Common.DecodingOptions { TryHarder = true };
 
-				var result = reader.Decode(bitmap);
+				Result result = reader.Decode(bitmap);
 
 				if (result != null)
 					return result.Text;
 				else
-					return "QRCode couldn't be decoded.";
+					return "Imposible de decodificar QR.";
 			}
 			catch (Exception ex)
 			{
-				return "QRCode couldn't be detected. Error: " + ex.Message;
+				return "Imposible de detectar QR. Error: " + ex.Message;
 			}
 		}
 	}

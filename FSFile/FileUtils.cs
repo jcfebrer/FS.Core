@@ -53,14 +53,13 @@ namespace FSFile
             return hash;
         }
 
-        public async static Task<String> CalcCrc32Async(string fileName, CancellationToken token)
+        public static string CalcCrc32Async(string fileName, CancellationToken token)
         {
             string crc32 = "";
-            await Task.Run(() =>
+            Task.Factory.StartNew(() =>
             {
                 crc32 = CalcCrc32(fileName);
             }, token);
-
             return crc32;
         }
 
