@@ -23,13 +23,18 @@ namespace FSCertificate
             return true;
         }
 
-        public static X509Certificate2 GetCertificate(string sn)
+        /// <summary>
+        /// Obtiene el certificado del almacen indicando su nombre.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public static X509Certificate2 GetCertificateByName(string name)
         {
             X509Certificate2 certificate = new X509Certificate2();
             X509Store Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
             Store.Open(OpenFlags.ReadOnly);
             foreach (var cert in Store.Certificates)
-                if (cert.SerialNumber == sn)
+                if (cert.FriendlyName == name)
                 {
                     certificate = cert;
                     break;
@@ -40,6 +45,34 @@ namespace FSCertificate
             return certificate;
         }
 
+        /// <summary>
+        /// Obtiene el certificado del almacen indicando su número de serie.
+        /// </summary>
+        /// <param name="serialNumber"></param>
+        /// <returns></returns>
+        public static X509Certificate2 GetCertificateBySerialNumber(string serialNumber)
+        {
+            X509Certificate2 certificate = new X509Certificate2();
+            X509Store Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            Store.Open(OpenFlags.ReadOnly);
+            foreach (var cert in Store.Certificates)
+                if (cert.SerialNumber == serialNumber)
+                {
+                    certificate = cert;
+                    break;
+                }
+
+            Store.Close();
+
+            return certificate;
+        }
+
+        /// <summary>
+        /// Obtiene el certificado indicando el path al fichero .p12 o .pfx y password.
+        /// </summary>
+        /// <param name="certPath"></param>
+        /// <param name="certPass"></param>
+        /// <returns></returns>
         public static X509Certificate2 GetCertificate(string certPath, string certPass)
         {
             var cert = new X509Certificate2(certPath, certPass, X509KeyStorageFlags.Exportable);
@@ -47,10 +80,8 @@ namespace FSCertificate
             return cert;
         }
 
-        public static string GetSerialNumber(string certPath, string certPass)
+        public static string GetSerialNumber(X509Certificate2 cert)
         {
-            var cert = new X509Certificate2(certPath, certPass, X509KeyStorageFlags.Exportable);
-
             return cert.GetSerialNumberString();
         }
 
@@ -72,16 +103,16 @@ namespace FSCertificate
         // Sign an XML file. 
         // This document cannot be verified unless the verifying 
         // code has the key with which it was signed.
-        public static void SignXml(XmlDocument xmlDoc, X509Certificate2 cert)
+        public static void SignXml(XmlDocument xmlDocument, X509Certificate2 cert)
         {
             // Check arguments.
-            if (xmlDoc == null)
-                throw new ArgumentException("xmlDoc");
+            if (xmlDocument == null)
+                throw new ArgumentException("xmlDocument");
             if (cert == null)
                 throw new ArgumentException("cert");
 
             // Create a SignedXml object.
-            SignedXml signedXml = new SignedXml(xmlDoc);
+            SignedXml signedXml = new SignedXml(xmlDocument);
 
             KeyInfo keyInfo = new KeyInfo();
             KeyInfoX509Data keyInfoData = new KeyInfoX509Data(cert);
@@ -110,8 +141,68 @@ namespace FSCertificate
             XmlElement xmlDigitalSignature = signedXml.GetXml();
 
             // Append the element to the XML document.
-            xmlDoc.DocumentElement.AppendChild(xmlDoc.ImportNode(xmlDigitalSignature, true));
+            xmlDocument.DocumentElement.AppendChild(xmlDocument.ImportNode(xmlDigitalSignature, true));
 
+        }
+
+        public static void SignXml(string fileName, X509Certificate2 cert)
+        {
+            // Check arguments.
+            if (fileName == null)
+                throw new ArgumentException("fileName");
+            if (cert == null)
+                throw new ArgumentException("cert");
+
+            // Create a new XML document.
+            XmlDocument xmlDocument = new XmlDocument();
+
+            // Load the passed XML file into the document. 
+            xmlDocument.Load(fileName);
+
+            SignXml(xmlDocument, cert);
+        }
+
+        // Verify the signature of an XML file against an asymmetric 
+        // algorithm and return the result.
+        public static Boolean VerifyXml(XmlDocument xmlDocument, X509Certificate2 cert)
+        {
+            // Check arguments.
+            if (xmlDocument == null)
+                throw new ArgumentException("xmlDocument");
+            if (cert == null)
+                throw new ArgumentException("cert");
+
+            // Create a new SignedXml object and pass it
+            // the XML document class.
+            SignedXml signedXml = new SignedXml(xmlDocument);
+
+            // Find the "Signature" node and create a new
+            // XmlNodeList object.
+            XmlNodeList nodeList = xmlDocument.GetElementsByTagName("Signature");
+
+            // Load the signature node.
+            signedXml.LoadXml((XmlElement)nodeList[0]);
+
+            // Check the signature and return the result.
+            return signedXml.CheckSignature((RSA)cert.PrivateKey);
+        }
+
+
+        public static Boolean VerifyXml(string fileName, X509Certificate2 cert)
+        {
+            // Check arguments.
+            if (fileName == null)
+                throw new ArgumentException("fileName");
+            if (cert == null)
+                throw new ArgumentException("cert");
+
+            // Create a new XML document.
+            XmlDocument xmlDocument = new XmlDocument();
+
+            // Load the passed XML file into the document. 
+            xmlDocument.Load(fileName);
+
+            return VerifyXml(xmlDocument, cert);
         }
     }
 }

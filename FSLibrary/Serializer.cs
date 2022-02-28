@@ -56,6 +56,24 @@ namespace FSLibrary
                         sb.Append(OPEN_PARAM + prop.Name + PARAM_SEPARATOR + propValue + CLOSE_PARAM);
                     }
                 }
+                else
+                {
+                    int count = 0;
+                    while (true)
+                    {
+                        try
+                        {
+                            prop.GetValue(obj, new object[] { count });
+                            count++;
+                        }
+                        catch (TargetInvocationException) { break; }
+                    }
+
+                    for (int i = 0; i < count; i++)
+                    {
+                        sb.Append(OPEN_PARAM + prop.Name + PARAM_SEPARATOR + prop.GetValue(obj, new object[] { i }) + CLOSE_PARAM);
+                    }
+                }
             }
             sb.Append(CLOSE_BLOCK);
             return sb.ToString();
@@ -119,7 +137,6 @@ namespace FSLibrary
         /// <returns></returns>
         public static T DeSerialize<T>(string serializeData, T target) where T : new()
         {
-            string value = "";
             List<string> deserializedObjects = ExtractData(serializeData);
 
             foreach (string obj in deserializedObjects)
@@ -165,6 +182,24 @@ namespace FSLibrary
                         object byteValue = (String.IsNullOrEmpty(property.Value)) ? null : Convert.ChangeType(Encoding.ASCII.GetBytes(property.Value), propInfo.PropertyType);
                         propInfo?.SetValue(target, byteValue, null);
                     }
+                    else if (propInfo.PropertyType == typeof(System.Drawing.Point))
+                    {
+                        string _value = property.Value.Replace(OPEN_BRACKET, "").Replace(CLOSE_BRACKET, "");
+                        string[] parameters = _value.Split(COMMA_SEPARATOR);
+                        int x = Convert.ToInt32(parameters[0].Split(EQUAL_SEPARATOR)[1]);
+                        int y = Convert.ToInt32(parameters[1].Split(EQUAL_SEPARATOR)[1]);
+                        System.Drawing.Point point = new System.Drawing.Point(x, y);
+                        propInfo?.SetValue(target, point, null);
+                    }
+                    else if (propInfo.PropertyType == typeof(System.Drawing.Size))
+                    {
+                        string _value = property.Value.Replace(OPEN_BRACKET, "").Replace(CLOSE_BRACKET, "");
+                        string[] parameters = _value.Split(COMMA_SEPARATOR);
+                        int width = Convert.ToInt32(parameters[0].Split(EQUAL_SEPARATOR)[1]);
+                        int height = Convert.ToInt32(parameters[1].Split(EQUAL_SEPARATOR)[1]);
+                        System.Drawing.Size size = new System.Drawing.Size(width, height);
+                        propInfo?.SetValue(target, size, null);
+                    }
                     else if (propInfo.PropertyType.BaseType == typeof(Enum))
                     {
                         Object enumValue = Enum.Parse(propInfo.PropertyType, property.Value, false);
@@ -172,8 +207,8 @@ namespace FSLibrary
                     }
                     else
                     {
-                        value = property.Value;
-                        propInfo?.SetValue(target, Convert.ChangeType(value, propInfo.PropertyType), null);
+                        string _value = property.Value;
+                        propInfo?.SetValue(target, Convert.ChangeType(_value, propInfo.PropertyType), null);
                     }                 
                 }
             }
