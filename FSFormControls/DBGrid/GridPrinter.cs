@@ -1,5 +1,6 @@
 #region
 
+using FSException;
 using System;
 using System.Collections;
 using System.Data;
@@ -204,7 +205,7 @@ namespace FSFormControls
                 DrawVerticalGridLines(g, TheLinePen, lastRowBottom);
                 return false;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
@@ -263,7 +264,7 @@ namespace FSFormControls
                 var bContinue = DrawRows(g);
                 return bContinue;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;

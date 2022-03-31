@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Windows.Forms;
 using FSLibrary;
 
 namespace FSFormControls
 {
     public class DBComboValues : CollectionBase, IBindingList
     {
-        private readonly DBCombo m_dbcombo;
+        private readonly ComboBox m_combobox;
         private ListChangedEventHandler onListChanged;
 
-        public DBComboValues(DBCombo dbcombo)
+        public DBComboValues(ComboBox combobox)
         {
-            m_dbcombo = dbcombo;
+            m_combobox = combobox;
         }
 
         public DBComboboxItem this[int index]
@@ -112,25 +113,25 @@ namespace FSFormControls
         public void Add(string value, string text)
         {
             List.Add(new DBComboboxItem(value, text));
-            m_dbcombo.Items.Add(new DBComboboxItem(value, text));
+            m_combobox.Items.Add(new DBComboboxItem(value, text));
         }
 
         public void Add(int value, string text)
         {
             List.Add(new DBComboboxItem(value, text));
-            m_dbcombo.Items.Add(new DBComboboxItem(value, text));
+            m_combobox.Items.Add(new DBComboboxItem(value, text));
         }
 
         public void Add(decimal value, string text)
         {
             List.Add(new DBComboboxItem(value, text));
-            m_dbcombo.Items.Add(new DBComboboxItem(value, text));
+            m_combobox.Items.Add(new DBComboboxItem(value, text));
         }
 
         public DBComboboxItem Add(DBComboboxItem Value)
         {
             List.Add(Value);
-            m_dbcombo.Items.Add(Value);
+            m_combobox.Items.Add(Value);
 
             return Value;
         }
@@ -138,7 +139,7 @@ namespace FSFormControls
         public DBRadioButton Add(DBRadioButton Value)
         {
             List.Add(Value);
-            m_dbcombo.Items.Add(Value);
+            m_combobox.Items.Add(Value);
 
             return Value;
         }
@@ -150,7 +151,7 @@ namespace FSFormControls
             for (f = 0; f <= Values.Length - 1; f++)
             {
                 List.Add(Values[f]);
-                m_dbcombo.Items.Add(Values[f]);
+                m_combobox.Items.Add(Values[f]);
             }
         }
 
@@ -158,14 +159,14 @@ namespace FSFormControls
         public void Remove(DBComboboxItem Value)
         {
             List.Remove(Value);
-            m_dbcombo.Items.Remove(Value);
+            m_combobox.Items.Remove(Value);
         }
 
 
         public void Insert(int index, DBComboboxItem Value)
         {
             List.Insert(index, Value);
-            m_dbcombo.Items.Insert(index, Value);
+            m_combobox.Items.Insert(index, Value);
         }
 
 

@@ -441,7 +441,7 @@ namespace FSGraphics
                 image2.UnlockBits(bmData2);
                 bmpRes.UnlockBits(bmDataRes);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 Log.TraceError(ex);
             }
@@ -597,7 +597,7 @@ namespace FSGraphics
                 image2.UnlockBits(bmData2);
                 bmpRes.UnlockBits(bmDataRes);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 Log.TraceError(ex);
             }
@@ -794,7 +794,7 @@ namespace FSGraphics
                     }
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 Log.TraceError(ex);
                 return null;

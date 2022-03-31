@@ -16,8 +16,8 @@ namespace FSDatabase
     public static class Utils
     {
         public static string m_simbDate = "#";
-        public static TypeBd BDType { get; set; }
-        public enum TypeBd
+        public static ServerTypeEnum ServerType { get; set; }
+        public enum ServerTypeEnum
         {
             SQLServer,
             MySQL,
@@ -27,6 +27,15 @@ namespace FSDatabase
             Access2000,
             Oracle,
             SQLite
+        }
+
+        public enum FieldTypeEnum
+        {
+            DateTime,
+            String,
+            Email,
+            Number,
+            Boolean
         }
 
         private static IEnumerable<IEnumerable<T>> ToChunks<T>(IEnumerable<T> enumerable,
@@ -55,27 +64,55 @@ namespace FSDatabase
             return dtList[page];
         }
 
-        public static string FormatSQL(string sql)
+        public static FieldTypeEnum GetFSTypeFromSystemType(Type type)
         {
-            return FormatSQL(sql, BDType);
+            return GetFSTypeFromSystemType(type.ToString().ToLower());
         }
 
-        public static string FormatSQL(string sql, TypeBd bdType)
+        public static FieldTypeEnum GetFSTypeFromSystemType(string type)
+        {
+            switch (type.ToLower())
+            {
+                case "system.int16":
+                case "system.int32":
+                case "system.int64":
+                case "system.double":
+                case "system.single":
+                case "system.byte":
+                case "system.decimal":
+                    return FieldTypeEnum.Number;
+                case "system.datetime":
+                    return FieldTypeEnum.DateTime;
+                case "system.char":
+                case "system.string":
+                    return FieldTypeEnum.String;
+                case "system.boolean":
+                    return FieldTypeEnum.Boolean;
+            }
+            return FieldTypeEnum.String;
+        }
+
+        public static string FormatSQL(string sql)
+        {
+            return FormatSQL(sql, ServerType);
+        }
+
+        public static string FormatSQL(string sql, ServerTypeEnum bdType)
         {
             switch (bdType)
             {
-                case TypeBd.SQLServer:
+                case ServerTypeEnum.SQLServer:
                     sql = TextUtil.Replace(sql, "true", "1");
                     sql = TextUtil.Replace(sql, "false", "0");
                     break;
-                case TypeBd.Oracle:
+                case ServerTypeEnum.Oracle:
                     sql = TextUtil.Replace(sql, "true", "1");
                     sql = TextUtil.Replace(sql, "false", "0");
                     sql = TextUtil.Replace(sql, "[", "");
                     sql = TextUtil.Replace(sql, "]", "");
                     break;
-                case TypeBd.SQLite:
-                case TypeBd.MySQL:
+                case ServerTypeEnum.SQLite:
+                case ServerTypeEnum.MySQL:
                     sql = TextUtil.Replace(sql, "true", "1");
                     sql = TextUtil.Replace(sql, "false", "0");
                     sql = TextUtil.Replace(sql, "len(", "length(");
@@ -106,7 +143,7 @@ namespace FSDatabase
 
                 return true;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -126,7 +163,7 @@ namespace FSDatabase
 
                 return dataTable.Rows.Count == 0;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -140,7 +177,7 @@ namespace FSDatabase
                 dv.Sort = field + (ascendent ? " asc" : " desc");
                 return dv.ToTable();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -181,7 +218,7 @@ namespace FSDatabase
                 dv.Sort = "rndSortId";
                 return dv.ToTable();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -215,19 +252,19 @@ namespace FSDatabase
                                                         " carácteres.");
                         }
 
-                        switch (field.Tipo2)
+                        switch (field.Tipo)
                         {
-                            case "f":
+                            case FieldTypeEnum.DateTime:
                                 if (!FSLibrary.DateTimeUtil.IsDate(value) && value != "")
                                     throw new ExceptionUtil("El valor: [" + value + "], no es una fecha valida.",
                                         ExceptionUtil.ExceptionType.Information);
                                 break;
-                            case "e":
+                            case FieldTypeEnum.Email:
                                 if (!TextUtil.IsEmail(value))
                                     throw new ExceptionUtil("El valor: [" + value + "], no es un email valido.",
                                         ExceptionUtil.ExceptionType.Information);
                                 break;
-                            case "u":
+                            //case "u":
                                 //var ex = ExisteValor(field.Campo, value, frmTabla);
 
                                 //if (ex)
@@ -235,8 +272,8 @@ namespace FSDatabase
                                 //        "Ya existe el valor: [" + value +
                                 //        "], en la base de datos. Utiliza un valor diferente.",
                                 //        ExceptionUtil.ExceptionType.Information);
-                                break;
-                            case "n":
+                                //break;
+                            case FieldTypeEnum.Number:
                                 if (value != "")
                                     if (!NumberUtils.IsNumeric(value))
                                         throw new ExceptionUtil("El valor: [" + value + "], no es un valor numérico.",
@@ -246,7 +283,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -277,7 +314,7 @@ namespace FSDatabase
 
                 return sWhere;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -289,7 +326,7 @@ namespace FSDatabase
             {
                 ds.WriteXml(fileName);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -334,7 +371,7 @@ namespace FSDatabase
                 sw.WriteLine("</html>");
                 sw.Close();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -385,7 +422,7 @@ namespace FSDatabase
                 {
                     c = c + dataTable.Columns[f].ColumnName + "-";
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -399,7 +436,7 @@ namespace FSDatabase
                     {
                         c = c + dataTable.Rows[f][g] + "-";
                     }
-                    catch (Exception ex)
+                    catch (ExceptionUtil ex)
                     {
                         throw new ExceptionUtil(ex);
                     }
@@ -419,7 +456,7 @@ namespace FSDatabase
                 foreach (var dr in rows) dtNew.ImportRow(dr);
                 return dtNew;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -433,7 +470,7 @@ namespace FSDatabase
             {
                 total = NumberUtils.NumberDouble(dataTable.Compute("Sum(" + column + ")", ""));
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -449,7 +486,7 @@ namespace FSDatabase
             {
                 max = NumberUtils.NumberDouble(dataTable.Compute("Max(" + column + ")", ""));
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -466,7 +503,7 @@ namespace FSDatabase
             {
                 min = NumberUtils.NumberDouble(dataTable.Compute("Min(" + column + ")", ""));
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -482,7 +519,7 @@ namespace FSDatabase
             {
                 avg = NumberUtils.NumberDouble(dataTable.Compute("Avg(" + column + ")", ""));
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -616,7 +653,7 @@ namespace FSDatabase
         {
             var dat = date.ToShortDateString();
 
-            if (BDType == TypeBd.MySQL)
+            if (ServerType == ServerTypeEnum.MySQL)
                 dat = date.ToString("yyyy-MM-dd");
 
             return m_simbDate + dat + m_simbDate;
@@ -626,7 +663,7 @@ namespace FSDatabase
         {
             var dat = date.ToShortDateString();
 
-            if (BDType == TypeBd.MySQL)
+            if (ServerType == ServerTypeEnum.MySQL)
                 dat = date.ToString("yyyy-MM-dd");
 
             return m_simbDate + dat + " " + date.ToString("HH:mm:ss") + m_simbDate;
@@ -637,7 +674,7 @@ namespace FSDatabase
         {
             var dat = date.ToLongDateString();
 
-            if (BDType == TypeBd.MySQL)
+            if (ServerType == ServerTypeEnum.MySQL)
                 dat = date.ToString("yyyy-MM-dd");
 
             return m_simbDate + dat + m_simbDate;
@@ -674,7 +711,7 @@ namespace FSDatabase
                 return new Version(int.Parse(verTokens[0]), int.Parse(verTokens[1]), int.Parse(verTokens[2]),
                     int.Parse(verTokens[3]));
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }

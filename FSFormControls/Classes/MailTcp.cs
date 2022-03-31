@@ -86,7 +86,7 @@ namespace FSFormControls
                 var sendBytes = Encoding.ASCII.GetBytes(strMessage);
                 ns.Write(sendBytes, 0, sendBytes.Length);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
                 //errNumber = -2;

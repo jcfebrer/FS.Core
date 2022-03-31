@@ -27,6 +27,77 @@ namespace FSFormControls
         private bool m_ShowMenu = true;
         //private bool m_ShowStatusBar = true;
         private bool m_ShowToolBar = true;
+        private DBControl m_DataControl;
+        public DBStatusBar barraEstado;
+        private StatusBarPanel estado;
+        private StatusBarPanel mensaje;
+        private StatusBarPanel info;
+        private DateTime loadTime;
+
+
+        public DBForm()
+        {
+            loadTime = DateTime.Now;
+
+            InitializeComponent();
+
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
+
+            barraEstado.Panels[0].Text = "";
+            barraEstado.Panels[1].Text = "";
+            barraEstado.Panels[2].Text = "";
+
+            mnuContext.Items.Add("&Imprimir", null, PrintDocument);
+            mnuContext.Items.Add("&Vista Preliminar", null, PrintPreview);
+            mnuContext.Items.Add("&Guardar como HTML", null, SaveAsHTML);
+            mnuContext.Items.Add("&Refrescar", null, MnuRefresh);
+            mnuContext.Items.Add("-");
+            mnuContext.Items.Add("&Filtro", null, MnuFilter);
+            mnuContext.Items.Add("&Quitar filtro", null, MnuDelFilter);
+            mnuContext.Items.Add("-");
+            mnuContext.Items.Add("&Buscar", null, MnuFind);
+            mnuContext.Items.Add("&Buscar siguiente", null, MnuFindNext);
+            mnuContext.Items.Add("-");
+            mnuContext.Items.Add("&Modo Editar", null, MnuEditar);
+            mnuContext.Items.Add("Modo &Normal", null, MnuNormal);
+            mnuContext.Items.Add("-");
+            mnuContext.Items.Add("&Acerca de ...", null, MnuAcercade);
+
+            ((ToolStripMenuItem)mnuContext.Items[11]).Checked = false;
+            ((ToolStripMenuItem)mnuContext.Items[12]).Checked = true;
+
+
+            //Guardamos la referencia al formulario en una variable global para poder consultarlo despues.
+            if (!Global.Forms.Exist(this))
+                Global.Forms.Add(this);
+
+            this.Load += DBForm_Load;
+            this.FormClosing += DBForm_FormClosing;
+            this.Shown += DBForm_Shown;
+        }
+
+        private void DBForm_Shown(object sender, EventArgs e)
+        {
+            TimeSpan ts = (DateTime.Now - loadTime);
+            barraEstado.Panels[2].Text = "LT: " + ts.TotalMilliseconds.ToString("0.###") + " ms.";
+        }
+
+        /// <summary>
+        /// Asignación del DBcontrol.
+        /// Asignamos el parent del dbcontrol cuando se user dl dbcontrol sin asignar a un formulario.
+        /// </summary>
+        [Description("Control de datos para la gestión de los registros asociados.")]
+        public DBControl DataControl
+        {
+            get { return m_DataControl; }
+            set
+            {
+                if (value != null && value.Parent is null)
+                    value.Parent = this;
+                m_DataControl = value;
+            }
+        }
 
         public bool CanClose { get; set; } = true;
 
@@ -129,12 +200,6 @@ namespace FSFormControls
 
                 ShowMenuBar(m_ShowMenu);
             }
-        }
-
-        public DBToolBarEx.tToolbar ToolbarType
-        {
-            get { return DbToolBar1.ToolBarType; }
-            set { DbToolBar1.ToolBarType = value; }
         }
 
         public StatusBar.StatusBarPanelCollection StatusBarPanels { get; set; }
@@ -331,9 +396,11 @@ namespace FSFormControls
         {
             DataTable dt = null;
 
-            if (AutoSave) DataControl.Save();
+            if (AutoSave) 
+                DataControl.Save();
 
-            if (AlertOnSave == false) return;
+            if (AlertOnSave == false) 
+                return;
 
             if (DataControl != null)
             {
@@ -344,26 +411,15 @@ namespace FSFormControls
                     frmS.DataTable = dt;
                     frmS.ShowDialog("Tiene datos sin guardar. ¿Está seguro de querer salir?", "Salir");
                     if (frmS.button == frmShowTable.button_enum.no)
-                    {
                         e.Cancel = true;
-                    }
                     else
-                    {
-                        //if (DBConnection != null)
-                        //    if (DBConnection.State == ConnectionState.Open)
-                        //        DBConnection.Close();
                         e.Cancel = false;
-                    }
                 }
                 else
-                {
                     e.Cancel = false;
-                }
             }
             else
-            {
                 e.Cancel = false;
-            }
 
             if (!CanClose)
                 e.Cancel = true;
@@ -519,7 +575,7 @@ namespace FSFormControls
                     }
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -536,7 +592,7 @@ namespace FSFormControls
         //            if (ctr is DBUserControl) ((DBUserControl) ctr).Track = mode;
         //        }
         //    }
-        //    catch (Exception ex)
+        //    catch (ExceptionUtil ex)
         //    {
         //        throw new ExceptionUtil(ex);
         //    }
@@ -598,7 +654,7 @@ namespace FSFormControls
                 var s = new frmAbout();
                 s.ShowDialog();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -626,7 +682,7 @@ namespace FSFormControls
                 tw = null;
                 ProcessUtil.OpenDocument(fic);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil("Errores en la exportación.", ex);
             }
@@ -796,7 +852,7 @@ namespace FSFormControls
                 var s = new frmAbout();
                 s.ShowDialog();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -811,7 +867,7 @@ namespace FSFormControls
         internal MenuItem MenuItem3;
         internal MenuItem MenuItem7;
         internal SaveFileDialog SaveFileDialog1;
-        private readonly IContainer components = null;
+        private IContainer components;
         internal MenuItem mnuAbout;
         internal MenuItem mnuCalc;
         internal MenuItem mnuClose;
@@ -820,58 +876,19 @@ namespace FSFormControls
         public MenuItem mnuForm;
         public MainMenu mnuFormMain;
         internal Timer tmrAutoSave;
+        
 
+        //protected override CreateParams CreateParams
+        //{
+        //    get
+        //    {
+        //        CreateParams cp = base.CreateParams;
+        //        cp.ExStyle |= 0x02000000;
 
-        private DBControl m_DataControl;
-        /// <summary>
-        /// Asignación del DBcontrol.
-        /// Asignamos el parent del dbcontrol cuando se user dl dbcontrol sin asignar a un formulario.
-        /// </summary>
-        [Description("Control de datos para la gestión de los registros asociados.")]
-        public DBControl DataControl
-        {
-            get { return m_DataControl; }
-            set
-            {
-                if (value != null && value.Parent is null)
-                    value.Parent = this;
-                m_DataControl = value;
-            }
-        }
+        //        return cp;
+        //    }
+        //}
 
-        public DBForm()
-        {
-            InitializeComponent();
-
-            SetStyle(ControlStyles.DoubleBuffer, true);
-
-            mnuContext.Items.Add("&Imprimir", null, PrintDocument);
-            mnuContext.Items.Add("&Vista Preliminar", null, PrintPreview);
-            mnuContext.Items.Add("&Guardar como HTML", null, SaveAsHTML);
-            mnuContext.Items.Add("&Refrescar", null, MnuRefresh);
-            mnuContext.Items.Add("-");
-            mnuContext.Items.Add("&Filtro", null, MnuFilter);
-            mnuContext.Items.Add("&Quitar filtro", null, MnuDelFilter);
-            mnuContext.Items.Add("-");
-            mnuContext.Items.Add("&Buscar", null, MnuFind);
-            mnuContext.Items.Add("&Buscar siguiente", null, MnuFindNext);
-            mnuContext.Items.Add("-");
-            mnuContext.Items.Add("&Modo Editar", null, MnuEditar);
-            mnuContext.Items.Add("Modo &Normal", null, MnuNormal);
-            mnuContext.Items.Add("-");
-            mnuContext.Items.Add("&Acerca de ...", null, MnuAcercade);
-
-            ((ToolStripMenuItem)mnuContext.Items[11]).Checked = false;
-            ((ToolStripMenuItem)mnuContext.Items[12]).Checked = true;
-
-
-            //Guardamos la referencia al formulario en una variable global para poder consultarlo despues.
-            if (!Global.Forms.Exist(this))
-                Global.Forms.Add(this);
-
-            this.Load += DBForm_Load;
-            this.FormClosing += DBForm_FormClosing;
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -886,8 +903,9 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBForm));
-            this.mnuFormMain = new System.Windows.Forms.MainMenu();
+            this.mnuFormMain = new System.Windows.Forms.MainMenu(this.components);
             this.mnuForm = new System.Windows.Forms.MenuItem();
             this.mnuConfPag = new System.Windows.Forms.MenuItem();
             this.mnuCalc = new System.Windows.Forms.MenuItem();
@@ -895,12 +913,20 @@ namespace FSFormControls
             this.mnuAbout = new System.Windows.Forms.MenuItem();
             this.MenuItem3 = new System.Windows.Forms.MenuItem();
             this.mnuClose = new System.Windows.Forms.MenuItem();
-            this.mnuContext = new System.Windows.Forms.ContextMenuStrip();
+            this.mnuContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tmrAutoSave = new System.Windows.Forms.Timer();
+            this.tmrAutoSave = new System.Windows.Forms.Timer(this.components);
+            this.barraEstado = new FSFormControls.DBStatusBar();
+            this.estado = new System.Windows.Forms.StatusBarPanel();
+            this.mensaje = new System.Windows.Forms.StatusBarPanel();
+            this.info = new System.Windows.Forms.StatusBarPanel();
             this.DbToolBar1 = new FSFormControls.DBToolBarEx();
-            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu();
+            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu(this.components);
             this.DbTabOrderSchemeProvider1 = new FSFormControls.TabOrderSchemaProvider();
+            ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estado)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mensaje)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.info)).BeginInit();
             this.SuspendLayout();
             // 
             // mnuFormMain
@@ -968,9 +994,39 @@ namespace FSFormControls
             this.tmrAutoSave.Interval = 60000;
             this.tmrAutoSave.Tick += new System.EventHandler(this.tmrAutoSave_Tick);
             // 
+            // barraEstado
+            // 
+            this.barraEstado.Location = new System.Drawing.Point(0, 322);
+            this.barraEstado.Name = "barraEstado";
+            this.barraEstado.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
+            this.estado,
+            this.mensaje,
+            this.info});
+            this.barraEstado.ShowPanels = true;
+            this.barraEstado.Size = new System.Drawing.Size(1042, 22);
+            this.barraEstado.TabIndex = 2;
+            this.barraEstado.Text = "dbStatusBar1";
+            this.barraEstado.ViewStyle = FSFormControls.DBStatusBar.ViewStyleEnum.Default;
+            this.barraEstado.WrapText = false;
+            // 
+            // estado
+            // 
+            this.estado.Name = "estado";
+            // 
+            // mensaje
+            // 
+            this.mensaje.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
+            this.mensaje.Name = "mensaje";
+            this.mensaje.Width = 825;
+            // 
+            // info
+            // 
+            this.info.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
+            this.info.Name = "info";
+            // 
             // DbToolBar1
             // 
-            
+            this.DbToolBar1.About = "";
             this.DbToolBar1.AllowAddNew = true;
             this.DbToolBar1.AllowCancel = true;
             this.DbToolBar1.AllowClose = true;
@@ -983,6 +1039,7 @@ namespace FSFormControls
             this.DbToolBar1.AllowRecord = true;
             this.DbToolBar1.AllowSave = true;
             this.DbToolBar1.AllowSearch = true;
+            this.DbToolBar1.DataControl = null;
             this.DbToolBar1.Dock = System.Windows.Forms.DockStyle.Top;
             this.DbToolBar1.Location = new System.Drawing.Point(0, 0);
             this.DbToolBar1.Name = "DbToolBar1";
@@ -1002,7 +1059,6 @@ namespace FSFormControls
             this.DbToolBar1.Size = new System.Drawing.Size(1042, 50);
             this.DbToolBar1.TabIndex = 1;
             this.DbToolBar1.TabStop = false;
-            this.DbToolBar1.ToolBarType = FSFormControls.DBToolBarEx.tToolbar.ToolbarXPBig;
             this.DbToolBar1.Value = 0;
             this.DbToolBar1.VisibleScroll = true;
             this.DbToolBar1.VisibleTotalRecord = false;
@@ -1014,13 +1070,18 @@ namespace FSFormControls
             // DBForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(1042, 354);
+            this.ClientSize = new System.Drawing.Size(1042, 344);
             this.ContextMenuStrip = this.mnuContext;
+            this.Controls.Add(this.barraEstado);
             this.Controls.Add(this.DbToolBar1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Menu = this.mnuFormMain;
             this.Name = "DBForm";
             this.Text = "DBForm";
+            ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.estado)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.mensaje)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.info)).EndInit();
             this.ResumeLayout(false);
 
         }

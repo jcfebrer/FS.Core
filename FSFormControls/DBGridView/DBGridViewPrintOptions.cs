@@ -4,14 +4,14 @@ using System.Windows.Forms;
 
 namespace FSFormControls.UserControls.DBGridView
 {
-    public partial class GridViewPrintOptions : Form
+    public partial class DBGridViewPrintOptions : Form
     {
-        public GridViewPrintOptions()
+        public DBGridViewPrintOptions()
         {
             InitializeComponent();
         }
 
-        public GridViewPrintOptions(List<string> availableFields)
+        public DBGridViewPrintOptions(List<string> availableFields)
         {
             InitializeComponent();
 

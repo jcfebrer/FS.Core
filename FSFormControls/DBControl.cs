@@ -331,7 +331,7 @@ namespace FSFormControls
                 {
                     DataTable.DefaultView.RowFilter = m_Filter;
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw new ExceptionUtil("Filtro incorrecto: " + m_Filter, ex);
                 }
@@ -591,7 +591,7 @@ namespace FSFormControls
                         else
                             DataTable.ReadXml(XmlFile);
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         Cursor.Current = Cursors.Default;
                         Application.DoEvents();
@@ -703,7 +703,7 @@ namespace FSFormControls
 
                 if (result == DialogResult.OK) pd.Print();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -725,7 +725,7 @@ namespace FSFormControls
                 dlg.WindowState = FormWindowState.Maximized;
                 dlg.ShowDialog();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -974,7 +974,7 @@ namespace FSFormControls
 
                         throw new ExceptionUtil("Error de concurrencia!");
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         SaveError = true;
                         Global.Action = DbActionTypes.None;
@@ -982,7 +982,7 @@ namespace FSFormControls
                         throw new ExceptionUtil(e);
                     }
                 }
-                catch (Exception eUpdate)
+                catch (ExceptionUtil eUpdate)
                 {
                     DataTable.RejectChanges();
                     SaveError = true;
@@ -996,7 +996,7 @@ namespace FSFormControls
                 if (findForm != null)
                     SaveRelationDBControls(findForm.Controls, v);
             }
-            catch (Exception eSaveRelation)
+            catch (ExceptionUtil eSaveRelation)
             {
                 SaveError = true;
                 throw new ExceptionUtil(eSaveRelation.Message);
@@ -1174,7 +1174,7 @@ namespace FSFormControls
                     dt.AcceptChanges();
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1263,7 +1263,7 @@ namespace FSFormControls
                     pos = DataTable.DefaultView.Count - 1;
                 return DataTable.DefaultView[pos][fieldName];
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1291,7 +1291,7 @@ namespace FSFormControls
                     else
                         throw new ExceptionUtil("Nombre de columna invalido: " + fieldName);
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw new ExceptionUtil(ex);
                 }
@@ -1308,7 +1308,7 @@ namespace FSFormControls
                         throw new ExceptionUtil("Campo: " + FieldName + ". Inexistente");
                     return DataTable.Columns[FieldName].ColumnName;
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -1344,7 +1344,7 @@ namespace FSFormControls
             {
                 DataTable.Columns[FieldName].DefaultValue = Value;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil("Imposible establece el valor por defecto al campo: " + FieldName, ex);
             }
@@ -1366,7 +1366,7 @@ namespace FSFormControls
                         DataTable.DefaultView.AllowNew = true;
                     }
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -1387,7 +1387,7 @@ namespace FSFormControls
 
                 Global.Action = DbActionTypes.None;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1500,7 +1500,7 @@ namespace FSFormControls
                     return DataTable.Columns[column].ColumnName;
                 return string.Empty;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1532,7 +1532,7 @@ namespace FSFormControls
             {
                 i = DataTable.Columns[columnName].Ordinal;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil("Column: " + columnName + "\r\n" + e.Message);
             }
@@ -1568,7 +1568,7 @@ namespace FSFormControls
 
                 if (foundRow.Length != 0) strField = foundRow[0][fieldName] + "";
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1618,7 +1618,7 @@ namespace FSFormControls
 
                 if (foundRow != -1) intPos = foundRow;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1741,7 +1741,7 @@ namespace FSFormControls
                                 {
                                     ((DBTextBox)ctr).DataBindings.Add("Text", DataTable, "For" + ctr.Name);
                                 }
-                                catch (Exception e)
+                                catch (ExceptionUtil e)
                                 {
                                     throw new ExceptionUtil(e);
                                 }
@@ -1774,7 +1774,7 @@ namespace FSFormControls
                         if (ctr is DBLabel)
                             ((DBLabel)ctr).UpdateText();
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -2163,7 +2163,7 @@ namespace FSFormControls
                                             ((DBControl) ctr).SetFieldDefaultValue(
                                                 ((DBControl) ctr).RelationDBField, value);
                                         }
-                                        catch (Exception ex)
+                                        catch (ExceptionUtil ex)
                                         {
                                             throw new ExceptionUtil(
                                                 "Imposible establecer el campo: " + ((DBControl) ctr).RelationDBField +
@@ -2202,7 +2202,7 @@ namespace FSFormControls
                                     ((DBControl) ctr).Save(version);
                     }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2358,7 +2358,7 @@ namespace FSFormControls
                 var db = new BdUtils(Global.ConnectionStringSetting);
                 DataTable = db.Execute(Selection, m_Page, PagingSize);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 Connected = false;
                 Cursor.Current = Cursors.Default;
@@ -2377,7 +2377,7 @@ namespace FSFormControls
             {
                 col = new DataColumn(ColumnName, ColumnType, Expression);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2390,7 +2390,7 @@ namespace FSFormControls
             {
                 DataTable.Columns.Add(col);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2418,7 +2418,7 @@ namespace FSFormControls
                 keys[f] = DataTable.Columns[FieldName];
                 DataTable.PrimaryKey = keys;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2486,7 +2486,7 @@ namespace FSFormControls
                                 if (FieldExists(colName)) row[colName] = row[col.ColumnName];
                             }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2588,7 +2588,7 @@ namespace FSFormControls
                                                     ((DBTextBox) ctr).AsociatedDBFindTextBox.Text,
                                                     ((DBTextBox) ctr).DBField);
                                         }
-                                        catch (Exception e)
+                                        catch (ExceptionUtil e)
                                         {
                                             throw new ExceptionUtil(e);
                                         }
@@ -2606,7 +2606,7 @@ namespace FSFormControls
                                                     Convert.ToString(((DBTextBox) ctr).AsociatedCombo.SelectedValue),
                                                     ((DBTextBox) ctr).DBField);
                                         }
-                                        catch (Exception e)
+                                        catch (ExceptionUtil e)
                                         {
                                             throw new ExceptionUtil(e);
                                         }
@@ -2681,7 +2681,7 @@ namespace FSFormControls
                 {
                     Filter = frm.Filter;
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil("Filtro incorrecto: " + frm.Filter, e);
                 }
@@ -2714,7 +2714,7 @@ namespace FSFormControls
                         m_FindPosition = 0;
                     }
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil("Filtro de b?squeda incorrecto: " + frm.Filter, e);
                 }

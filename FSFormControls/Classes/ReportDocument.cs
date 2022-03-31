@@ -1,5 +1,6 @@
 #region
 
+using FSException;
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -42,7 +43,7 @@ namespace FSFormControls
 
                 return prop.GetValue(obj, null).ToString();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 return ex.Message;
             }

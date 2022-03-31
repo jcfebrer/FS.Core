@@ -76,7 +76,7 @@ namespace FSDatabase
                 m_dataTable.Rows.Add(row);
                 return true;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -92,7 +92,7 @@ namespace FSDatabase
                 m_dataTable.WriteXml(m_fileName);
                 return true;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

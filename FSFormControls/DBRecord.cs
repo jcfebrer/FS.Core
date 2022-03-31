@@ -117,7 +117,7 @@ namespace FSFormControls
 
         public HorizontalAlignment LabelAlign { get; set; } = HorizontalAlignment.Left;
 
-        public override bool AutoSize { get; set; } = true;
+        public bool AutoSizeColumns { get; set; } = true;
 
 
         public t_date DateType { get; set; } = t_date.Normal;
@@ -290,7 +290,7 @@ namespace FSFormControls
             var lastWidth = -m_LabelYIncrement;
             var lastHeight = 0;
 
-            FunctionsGrid.GenerateColumns(DataControl, Columns, 2, AutoSize, CreateGraphics(), Font);
+            FunctionsGrid.GenerateColumns(DataControl, Columns, 2, AutoSizeColumns, CreateGraphics(), Font);
 
             for (f = 0; f <= Columns.Count - 1; f++)
                 try
@@ -327,7 +327,7 @@ namespace FSFormControls
 
                     lastWidth = Convert.ToInt32(Columns[f].Width);
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -671,7 +671,7 @@ namespace FSFormControls
                     if (ctr != null) 
                         ((UserControl)ctr).Width = Columns[f].Width;
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -728,68 +728,70 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            panelRecord = new Panel();
-            DbToolBar1 = new DBToolBarEx();
-            SuspendLayout();
+            this.panelRecord = new System.Windows.Forms.Panel();
+            this.DbToolBar1 = new FSFormControls.DBToolBarEx();
+            this.SuspendLayout();
             // 
             // panelRecord
             // 
-            panelRecord.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
-                                                  | AnchorStyles.Left
-                                                  | AnchorStyles.Right;
-            panelRecord.AutoScroll = true;
-            panelRecord.BorderStyle = BorderStyle.FixedSingle;
-            panelRecord.Location = new Point(0, 0);
-            panelRecord.Name = "panelRecord";
-            panelRecord.Size = new Size(637, 95);
-            panelRecord.TabIndex = 2;
+            this.panelRecord.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelRecord.AutoScroll = true;
+            this.panelRecord.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelRecord.Location = new System.Drawing.Point(0, 0);
+            this.panelRecord.Name = "panelRecord";
+            this.panelRecord.Size = new System.Drawing.Size(897, 365);
+            this.panelRecord.TabIndex = 2;
             // 
             // DbToolBar1
             // 
-            DbToolBar1.AllowAddNew = true;
-            DbToolBar1.AllowCancel = true;
-            DbToolBar1.AllowClose = true;
-            DbToolBar1.AllowDelete = true;
-            DbToolBar1.AllowEdit = true;
-            DbToolBar1.AllowFilter = true;
-            DbToolBar1.AllowList = true;
-            DbToolBar1.AllowNavigate = true;
-            DbToolBar1.AllowPrint = true;
-            DbToolBar1.AllowRecord = true;
-            DbToolBar1.AllowSave = true;
-            DbToolBar1.AllowSearch = true;
-            DbToolBar1.DataControl = null;
-            DbToolBar1.Dock = DockStyle.Bottom;
-            DbToolBar1.Location = new Point(0, 91);
-            DbToolBar1.Name = "DbToolBar1";
-            DbToolBar1.ShowAddNewButton = true;
-            DbToolBar1.ShowCancelButton = true;
-            DbToolBar1.ShowCloseButton = true;
-            DbToolBar1.ShowDeleteButton = true;
-            DbToolBar1.ShowEditButton = true;
-            DbToolBar1.ShowFilterButton = true;
-            DbToolBar1.ShowListButton = true;
-            DbToolBar1.ShowNavigateButton = true;
-            DbToolBar1.ShowPrintButton = true;
-            DbToolBar1.ShowRecordButton = true;
-            DbToolBar1.ShowSaveButton = true;
-            DbToolBar1.ShowScrollBar = true;
-            DbToolBar1.ShowSearchButton = true;
-            DbToolBar1.Size = new Size(637, 28);
-            DbToolBar1.TabIndex = 3;
-            DbToolBar1.TabStop = false;
-            DbToolBar1.ToolBarType = DBToolBarEx.tToolbar.ToolbarXP;
-            DbToolBar1.Value = 0;
-            DbToolBar1.VisibleScroll = true;
-            DbToolBar1.VisibleTotalRecord = true;
+            this.DbToolBar1.About = "";
+            this.DbToolBar1.AllowAddNew = true;
+            this.DbToolBar1.AllowCancel = true;
+            this.DbToolBar1.AllowClose = true;
+            this.DbToolBar1.AllowDelete = true;
+            this.DbToolBar1.AllowEdit = true;
+            this.DbToolBar1.AllowFilter = true;
+            this.DbToolBar1.AllowList = true;
+            this.DbToolBar1.AllowNavigate = true;
+            this.DbToolBar1.AllowPrint = true;
+            this.DbToolBar1.AllowRecord = true;
+            this.DbToolBar1.AllowSave = true;
+            this.DbToolBar1.AllowSearch = true;
+            this.DbToolBar1.DataControl = null;
+            this.DbToolBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.DbToolBar1.Location = new System.Drawing.Point(0, 251);
+            this.DbToolBar1.Name = "DbToolBar1";
+            this.DbToolBar1.ShowAddNewButton = true;
+            this.DbToolBar1.ShowCancelButton = true;
+            this.DbToolBar1.ShowCloseButton = true;
+            this.DbToolBar1.ShowDeleteButton = true;
+            this.DbToolBar1.ShowEditButton = true;
+            this.DbToolBar1.ShowFilterButton = true;
+            this.DbToolBar1.ShowListButton = true;
+            this.DbToolBar1.ShowNavigateButton = true;
+            this.DbToolBar1.ShowPrintButton = true;
+            this.DbToolBar1.ShowRecordButton = true;
+            this.DbToolBar1.ShowSaveButton = true;
+            this.DbToolBar1.ShowScrollBar = true;
+            this.DbToolBar1.ShowSearchButton = true;
+            this.DbToolBar1.ShowText = true;
+            this.DbToolBar1.Size = new System.Drawing.Size(1020, 138);
+            this.DbToolBar1.TabIndex = 3;
+            this.DbToolBar1.TabStop = false;
+            this.DbToolBar1.Value = 0;
+            this.DbToolBar1.VisibleScroll = true;
+            this.DbToolBar1.VisibleTotalRecord = true;
             // 
             // DBRecord
             // 
-            Controls.Add(DbToolBar1);
-            Controls.Add(panelRecord);
-            Name = "DBRecord";
-            Size = new Size(637, 119);
-            ResumeLayout(false);
+            this.Controls.Add(this.DbToolBar1);
+            this.Controls.Add(this.panelRecord);
+            this.Name = "DBRecord";
+            this.Size = new System.Drawing.Size(897, 389);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

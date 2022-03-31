@@ -67,7 +67,7 @@ namespace FSFormControls
             {
                 SelectedRow = DbGrid1.DataControl.DataTable.DefaultView[DbGrid1.RowSel].Row;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -116,7 +116,7 @@ namespace FSFormControls
                                               | AnchorStyles.Left
                                               | AnchorStyles.Right;
             DbGrid1.AutoSave = true;
-            DbGrid1.AutoSize = true;
+            DbGrid1.AutoSizeColumns = true;
             DbGrid1.BackGroundColor = Color.LightGray;
             DbGrid1.BorderStyle = BorderStyle.Fixed3D;
             DbGrid1.CaptionBackColor = SystemColors.ActiveCaption;
@@ -189,7 +189,6 @@ namespace FSFormControls
             Name = "frmListView";
             ShowInTaskbar = false;
             Text = "Listado";
-            ToolbarType = DBToolBarEx.tToolbar.ToolbarXP;
             Controls.SetChildIndex(DbGrid1, 0);
             Controls.SetChildIndex(DbButton1, 0);
             ResumeLayout(false);

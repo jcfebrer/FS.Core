@@ -1,5 +1,6 @@
 #region
 
+using FSException;
 using System;
 using System.Collections;
 using System.Data;
@@ -10,7 +11,7 @@ using System.Windows.Forms;
 
 namespace FSFormControls.UserControls.DBGridView
 {
-    public class GridViewPrinter
+    public class DBGridViewPrinter
     {
         private const int kVerticalCellLeeway = 10;
         private readonly DBColumnCollection m_Columns;
@@ -29,7 +30,7 @@ namespace FSFormControls.UserControls.DBGridView
         public int totalSize;
 
 
-        public GridViewPrinter(DataGridView aGrid, System.Drawing.Printing.PrintDocument aPrintDocument,
+        public DBGridViewPrinter(DataGridView aGrid, System.Drawing.Printing.PrintDocument aPrintDocument,
             DataTable aTable, DBColumnCollection aColumns)
         {
             m_DataGrid = aGrid;
@@ -204,7 +205,7 @@ namespace FSFormControls.UserControls.DBGridView
                 DrawVerticalGridLines(g, TheLinePen, lastRowBottom);
                 return false;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
@@ -264,7 +265,7 @@ namespace FSFormControls.UserControls.DBGridView
                 var bContinue = DrawRows(g);
                 return bContinue;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;

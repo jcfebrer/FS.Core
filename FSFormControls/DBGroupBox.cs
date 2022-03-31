@@ -9,6 +9,10 @@ namespace FSFormControls
 {
     public class DBGroupBox : GroupBox, ISupportInitialize
     {
+        public DBGroupBox()
+        {
+        }
+
         public string Caption
         {
             get { return Text; }

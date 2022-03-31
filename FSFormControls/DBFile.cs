@@ -109,7 +109,7 @@ namespace FSFormControls
                 //txtFileName.DataBindings.Add("Text", DataControl.DataTable, FieldFileName);
                 //txtDateTime.DataBindings.Add("Text", DataControl.DataTable, FieldDateTime);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }

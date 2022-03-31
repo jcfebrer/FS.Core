@@ -598,7 +598,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw ex;
             }
@@ -665,7 +665,7 @@ namespace FSFormControls
 
                 g.DrawString(TextOptions.Text, TextOptions.TextFont, _TextBrush, StartPosition, Topposition);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw ex;
             }
@@ -699,7 +699,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw ex;
             }
@@ -739,7 +739,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw ex;
             }
@@ -782,7 +782,7 @@ namespace FSFormControls
                             break;
                     }
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw ex;
                 }
@@ -823,7 +823,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw ex;
             }
@@ -854,7 +854,7 @@ namespace FSFormControls
                             break;
                     }
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw ex;
                 }
@@ -889,7 +889,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw ex;
             }
@@ -918,7 +918,7 @@ namespace FSFormControls
                 Tri_Points[2] = new Point(_Width + Rect.X, _Height + Rect.Y);
                 return Tri_Points;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw ex;
             }
@@ -1114,7 +1114,7 @@ namespace FSFormControls
                     return true;
                 return base.CanConvertFrom(context, sourceType);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible CanConvertFrom: ShadowPropertiesConverter", ex);
             }
@@ -1128,7 +1128,7 @@ namespace FSFormControls
                 if ((destinationType == typeof(InstanceDescriptor)) | (destinationType == typeof(string))) return true;
                 return base.CanConvertTo(context, destinationType);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible CanConvertTo: ShadowPropertiesConverter", ex);
             }
@@ -1159,7 +1159,7 @@ namespace FSFormControls
                     return base.ConvertFrom(context, culture, value);
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible convertir: " + m_Value, ex);
             }
@@ -1201,7 +1201,7 @@ namespace FSFormControls
 
                 return base.ConvertTo(context, culture, value, destinationType);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible convertir.", ex);
             }
@@ -1316,7 +1316,7 @@ namespace FSFormControls
                     return base.ConvertFrom(context, culture, value);
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible convertir: " + m_Value, ex);
             }
@@ -1358,7 +1358,7 @@ namespace FSFormControls
 
                 return base.ConvertTo(context, culture, value, destinationType);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible realizar conversión: ConvertTo - HatchPropertiesConverter", ex);
             }
@@ -1623,7 +1623,7 @@ namespace FSFormControls
                     return base.ConvertFrom(context, culture, value);
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible convertir: " + m_Value, ex);
             }
@@ -1669,7 +1669,7 @@ namespace FSFormControls
 
                 return base.ConvertTo(context, culture, value, destinationType);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible convertir.", ex);
             }
@@ -1871,7 +1871,7 @@ namespace FSFormControls
                     return base.ConvertFrom(context, culture, value);
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible convertir: " + m_Value, ex);
             }
@@ -1936,7 +1936,7 @@ namespace FSFormControls
 
                 return base.ConvertTo(context, culture, value, destinationType);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ArgumentException("Imposible convertir.", ex);
             }

@@ -42,6 +42,49 @@ namespace FSFormControls
         private string m_XMLName = "";
 
 
+        public DBTextBox()
+        {
+            InitializeComponent();
+
+            SetStyle(ControlStyles.DoubleBuffer, true);
+
+            //lblShadow.TabStop = false;
+
+            cmdAmpliar.Click += cmdAmpliar_Click;
+            cmdCalc.Click += cmdCalc_Click;
+            cmdKeyboard.Click += cmdKeyboard_Click;
+
+            Resize += Control_Resize;
+
+            textbox.KeyDown += Text1_KeyDown;
+            textbox.Leave += Text1_Leave;
+            textbox.KeyUp += Text1_KeyUp;
+            textbox.MouseDown += Text1_MouseDown;
+            textbox.KeyPress += Text1_KeyPress;
+            textbox.Enter += Text1_Enter;
+            textbox.LostFocus += Text1_LostFocus;
+            textbox.MouseUp += Text1_MouseUp;
+            textbox.TextChanged += Text1_Changed;
+            textbox.MouseEnter += Text1_MouseEnter;
+            textbox.GotFocus += Text1_GotFocus;
+
+            Load += DBTextBox_Load;
+        }
+
+        private void DBTextBox_Load(object sender, EventArgs e)
+        {
+            InitializeButtons();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                if (components != null)
+                    components.Dispose();
+            base.Dispose(disposing);
+        }
+
+
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
@@ -458,7 +501,8 @@ namespace FSFormControls
         {
             var f = 0;
 
-            if (string.IsNullOrEmpty(m_MaskInput)) return;
+            if (string.IsNullOrEmpty(m_MaskInput)) 
+                return;
 
             try
             {
@@ -483,7 +527,7 @@ namespace FSFormControls
                 for (f = 0; f <= m_MaskInput.Length - 1; f++)
                     m_aMskMask.SetValue(char.Parse(m_MaskInput.Substring(f, 1)), f);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -604,7 +648,7 @@ namespace FSFormControls
                     textbox.Width = Width;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -645,7 +689,7 @@ namespace FSFormControls
                     textbox.Width = Width;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -673,7 +717,7 @@ namespace FSFormControls
                     textbox.Width = Width;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -721,37 +765,32 @@ namespace FSFormControls
         private void Control_Resize(object sender, EventArgs e)
         {
             textbox.Location = new Point(0, 0);
-            textbox.Size = new Size(textbox.Width - (16 * ButtonsRight.Count), textbox.Height);
+            textbox.Size = new Size(this.Width - (16 * ButtonsRight.Count), textbox.Height);
             this.Height = textbox.Height;
             
-            CreateButtons();
+            ResizeButtons();
         }
 
-        private void CreateButtons()
+
+        private void InitializeButtons()
         {
-            var r = 1;
             if (ButtonsRight != null && ButtonsRight.Count > 0)
             {
                 foreach (DBButton button in ButtonsRight)
                 {
-                    button.Top = 0;
                     button.FlatStyle = FlatStyle.Flat;
                     button.Width = 16;
                     button.Height = 16;
                     button.Visible = true;
-                    button.Left = textbox.Width - 16 * r;
+                    button.Top = 0;
                     button.Click += Button_Click;
                     button.ToolTip = button.Text;
                     button.MouseEnter += Button_MouseEnter;
 
-                    Controls.Add(button);
                     button.BringToFront();
-
-                    r++;
                 }
             }
 
-            var l = 0;
             if (ButtonsLeft != null && ButtonsLeft.Count > 0)
             {
                 foreach (DBButton button in ButtonsLeft)
@@ -760,13 +799,35 @@ namespace FSFormControls
                     button.Width = 16;
                     button.Height = 16;
                     button.Visible = true;
-                    button.Left = l * 16;
+                    button.Top = 0;
                     button.Click += Button_Click;
                     button.ToolTip = button.Text;
                     button.MouseEnter += Button_MouseEnter;
 
-                    Controls.Add(button);
                     button.BringToFront();
+                }
+            }
+        }
+
+        private void ResizeButtons()
+        {
+            int r = 1;
+            if (ButtonsRight != null && ButtonsRight.Count > 0)
+            {
+                foreach (DBButton button in ButtonsRight)
+                {
+                    button.Left = this.Width - 16 * r;
+
+                    r++;
+                }
+            }
+
+            int l = 0;
+            if (ButtonsLeft != null && ButtonsLeft.Count > 0)
+            {
+                foreach (DBButton button in ButtonsLeft)
+                {
+                    button.Left = l * 16;
 
                     l++;
                 }
@@ -920,7 +981,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1045,7 +1106,7 @@ namespace FSFormControls
                     }
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1173,7 +1234,7 @@ namespace FSFormControls
                         }
                     }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil("Campo: " + DBField, e);
             }
@@ -1578,48 +1639,6 @@ namespace FSFormControls
         internal Button cmdKeyboard;
         private IContainer components;
 
-        public DBTextBox()
-        {
-            InitializeComponent();
-
-            SetStyle(ControlStyles.DoubleBuffer, true);
-
-            //lblShadow.TabStop = false;
-
-            cmdAmpliar.Click += cmdAmpliar_Click;
-            cmdCalc.Click += cmdCalc_Click;
-            cmdKeyboard.Click += cmdKeyboard_Click;
-
-            Resize += Control_Resize;
-
-            textbox.KeyDown += Text1_KeyDown;
-            textbox.Leave += Text1_Leave;
-            textbox.KeyUp += Text1_KeyUp;
-            textbox.MouseDown += Text1_MouseDown;
-            textbox.KeyPress += Text1_KeyPress;
-            textbox.Enter += Text1_Enter;
-            textbox.LostFocus += Text1_LostFocus;
-            textbox.MouseUp += Text1_MouseUp;
-            textbox.TextChanged += Text1_Changed;
-            textbox.MouseEnter += Text1_MouseEnter;
-            textbox.GotFocus += Text1_GotFocus;
-
-            Load += DBTextBox_Load;
-        }
-
-        private void DBTextBox_Load(object sender, EventArgs e)
-        {
-            CreateButtons();
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-                if (components != null)
-                    components.Dispose();
-            base.Dispose(disposing);
-        }
-
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
@@ -1684,10 +1703,12 @@ namespace FSFormControls
 
         public void BeginInit()
         {
+            //((ISupportInitialize)textbox).BeginInit();
         }
 
         public void EndInit()
         {
+            //((ISupportInitialize)textbox).EndInit();
         }
 
         #endregion

@@ -10,6 +10,7 @@
 
 #region
 
+using FSException;
 using System;
 using System.IO;
 using System.Security.Cryptography;
@@ -171,7 +172,7 @@ namespace FSCrypto
                     throw new Exception("Error al inicializar la clave y el vector");
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new Exception(e.Message);
             }
@@ -213,7 +214,7 @@ namespace FSCrypto
                     throw new Exception("Error al inicializar la clave y el vector.");
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new Exception(e.Message);
             }
@@ -333,7 +334,7 @@ namespace FSCrypto
                     throw new Exception("Error al inicializar la clave y el vector.");
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new Exception(e.Message);
             }

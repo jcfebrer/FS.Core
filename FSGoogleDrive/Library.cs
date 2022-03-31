@@ -232,7 +232,7 @@ namespace FSGoogleDrive
 				
 				return file.Name;
 				
-			} catch (Exception ex) {
+			} catch (ExceptionUtil ex) {
 				throw new ExceptionUtil("Request Files.Get failed.", ex);
 			}
 		}
@@ -251,7 +251,7 @@ namespace FSGoogleDrive
 				
 				return file.Parents;
 				
-			} catch (Exception ex) {
+			} catch (ExceptionUtil ex) {
 				throw new ExceptionUtil("Request Files.Get failed.", ex);
 			}
 		}
@@ -265,7 +265,7 @@ namespace FSGoogleDrive
 				// Requesting data.
 				request.Execute();
 				
-			} catch (Exception ex) {
+			} catch (ExceptionUtil ex) {
 				throw new ExceptionUtil("Request Files.Delete failed.", ex);
 			}
 		}
@@ -275,7 +275,7 @@ namespace FSGoogleDrive
 			try {
 				// Make the request.
 				driveService.Files.EmptyTrash().Execute();
-			} catch (Exception ex) {
+			} catch (ExceptionUtil ex) {
 				throw new ExceptionUtil("Request Files.EmptyTrash failed.", ex);
 			}
 		}
@@ -302,7 +302,7 @@ namespace FSGoogleDrive
 			
 				var file = request.ResponseBody;
 				fileId = file.Id;
-			} catch (Exception ex) {
+			} catch (ExceptionUtil ex) {
 				throw new ExceptionUtil("Failed to upload file.", ex);
 			}
 			return fileId;
@@ -334,7 +334,7 @@ namespace FSGoogleDrive
 			
 				var file = request.ResponseBody;
 				fileId = file.Id;
-			} catch (Exception ex) {
+			} catch (ExceptionUtil ex) {
 				throw new ExceptionUtil("Failed to upload file.", ex);
 			}
 			return fileId;
@@ -368,7 +368,7 @@ namespace FSGoogleDrive
 				
 				var file = request.ResponseBody;
 				fileId = file.Id;
-			} catch (Exception ex) {
+			} catch (ExceptionUtil ex) {
 				throw new ExceptionUtil("Failed to upload file.", ex);
 			}
 			return fileId;

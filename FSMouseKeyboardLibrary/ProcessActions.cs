@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSException;
+using System;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -86,7 +87,7 @@ namespace FSMouseKeyboardLibrary
                     MouseActionsEntry entries = (MouseActionsEntry)ser.Deserialize(fs);
                     return entries;
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     MessageBox.Show(ex.Message, "Abrir XML", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;

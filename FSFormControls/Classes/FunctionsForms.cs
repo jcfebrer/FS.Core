@@ -30,6 +30,23 @@ namespace FSFormControls
             return DBColumn.ColumnTypes.TextColumn;
         }
 
+        public static DBColumn.ColumnTypes ConvertFieldTypeToColumnType(FSDatabase.Utils.FieldTypeEnum fieldType)
+        {
+            switch (fieldType)
+            {
+                case FSDatabase.Utils.FieldTypeEnum.Number:
+                    return DBColumn.ColumnTypes.NumberColumn;
+                case FSDatabase.Utils.FieldTypeEnum.DateTime:
+                    return DBColumn.ColumnTypes.DateColumn;
+                case FSDatabase.Utils.FieldTypeEnum.String:
+                    return DBColumn.ColumnTypes.TextColumn;
+                case FSDatabase.Utils.FieldTypeEnum.Boolean:
+                    return DBColumn.ColumnTypes.CheckColumn;
+            }
+
+            return DBColumn.ColumnTypes.TextColumn;
+        }
+
         public static void TabpageHide(TabControl tabcontrol, int pageNumber)
         {
             if (tabcontrol.Controls.Contains(tabcontrol.TabPages[pageNumber]))

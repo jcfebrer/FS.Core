@@ -5,9 +5,14 @@ using System.Text;
 
 namespace FSLibrary
 {
+    /// <summary>
+    /// Clase para el tratamiento del dni
+    /// </summary>
     public class Dni
     {
-        //Devuelve true si es valido el DNI
+        /// <summary>
+        /// Devuelve true si es valido el DNI
+        /// </summary>
         public static bool Check(string dni)
         {
             //Comprobamos si el DNI tiene 9 digitos
@@ -30,6 +35,11 @@ namespace FSLibrary
             return true;
         }
 
+        /// <summary>
+        /// Calcula la letra del dni
+        /// </summary>
+        /// <param name="dni"></param>
+        /// <returns></returns>
         public static string CalculateDNILetter(string dni)
         {
             //Intentamos convertir los números del DNI a integer
@@ -40,6 +50,11 @@ namespace FSLibrary
             return CalculateDNILetter(dniInteger);  
         }
 
+        /// <summary>
+        /// Calcula la letra del dni
+        /// </summary>
+        /// <param name="dniNumbers"></param>
+        /// <returns></returns>
         public static string CalculateDNILetter(int dniNumbers)
         {
             //Cargamos los digitos de control

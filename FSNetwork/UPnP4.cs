@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.VisualBasic;
 using System.Net.Sockets;
 using System.Net;
+using FSException;
 
 namespace FSNetwork
 {
@@ -104,7 +105,7 @@ namespace FSNetwork
                 // return services
                 return ret;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 Debug.WriteLine(ex.Message);
             }

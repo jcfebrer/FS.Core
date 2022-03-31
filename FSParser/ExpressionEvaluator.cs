@@ -7,6 +7,7 @@
     Licence : MIT (https://github.com/codingseb/ExpressionEvaluator/blob/master/LICENSE.md)
 *******************************************************************************************************/
 
+using FSException;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -1141,7 +1142,7 @@ namespace FSParser
                     {
                         lastResult = ScriptEvaluate(tryStatementsList[0][0], ref isReturn, ref isBreak, ref isContinue);
                     }
-                    catch (Exception exception)
+                    catch (ExceptionUtil exception)
                     {
                         bool atLeasOneCatch = false;
 
@@ -1969,7 +1970,7 @@ namespace FSParser
                         {
                             throw;
                         }
-                        catch (Exception ex)
+                        catch (ExceptionUtil ex)
                         {
                             //Transport the exception in stack.
                             stack.Push(new BubbleExceptionContainer()
@@ -2211,7 +2212,7 @@ namespace FSParser
                         {
                             throw;
                         }
-                        catch (Exception ex)
+                        catch (ExceptionUtil ex)
                         {
                             //Transport the exception in stack.
                             stack.Push(new BubbleExceptionContainer()
@@ -2870,7 +2871,7 @@ namespace FSParser
                                 {
                                     list[i] = operatorEvalutationsDict[eOp](null, (dynamic)list[i - 1]);
                                 }
-                                catch (Exception ex)
+                                catch (ExceptionUtil ex)
                                 {
                                     var right = (dynamic)list[i - 1];
                                     if (right is BubbleExceptionContainer)
@@ -2891,7 +2892,7 @@ namespace FSParser
                                 {
                                     list[i] = operatorEvalutationsDict[eOp]((dynamic)list[i + 1], null);
                                 }
-                                catch (Exception ex)
+                                catch (ExceptionUtil ex)
                                 {
                                     var left = (dynamic)list[i + 1];
                                     if (left is BubbleExceptionContainer)
@@ -2912,7 +2913,7 @@ namespace FSParser
                                 {
                                     list[i] = operatorEvalutationsDict[eOp]((dynamic)list[i + 1], (dynamic)list[i - 1]);
                                 }
-                                catch (Exception ex)
+                                catch (ExceptionUtil ex)
                                 {
                                     var left = (dynamic)list[i + 1];
                                     var right = (dynamic)list[i - 1];

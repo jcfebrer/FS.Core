@@ -371,7 +371,7 @@ namespace FSFormControls
                         throw new CIOChannelException("Unable to open COM" + Port);
                     }
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw new CIOChannelException(ex.Message, ex);
                 }
@@ -545,7 +545,7 @@ namespace FSFormControls
                     return iReadChars;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil("Read Error: " + ex.Message, ex);
             }

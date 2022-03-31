@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
+using FSException;
 using FSLibrary;
 using DateTimeUtil = FSLibrary.DateTimeUtil;
 
@@ -99,7 +100,7 @@ namespace FSFormControls
                 else
                     Global.Errors.Add(ex);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 MessageBox.Show("Imposible gestionar error. Función: ErrorMessage. Error: " + e, "Febrer Software");
             }
@@ -200,7 +201,7 @@ namespace FSFormControls
                 SW.Flush();
                 SW.Close();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show("Imposible guardar log de errores. Error: " + ex.Message, "Febrer Software",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -217,7 +218,7 @@ namespace FSFormControls
                 log.Source = "Application";
                 log.WriteEntry(message, EventLogEntryType.Error);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show("Imposible guardar log de errores. Error: " + ex.Message, "Febrer Software",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

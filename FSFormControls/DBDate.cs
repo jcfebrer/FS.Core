@@ -353,7 +353,7 @@ namespace FSFormControls
                     }
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -373,7 +373,7 @@ namespace FSFormControls
                     e.Value = Convert.ToDateTime(e.Value);
                 }
             }
-            catch (Exception exp)
+            catch (ExceptionUtil exp)
             {
                 throw new ExceptionUtil("Fecha incorrecta: " + exp.Message);
             }

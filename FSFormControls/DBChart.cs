@@ -553,7 +553,7 @@ namespace FSFormControls
 
                 Save(file, imFormat);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil("Imposible guardar imagen.", ex);
             }

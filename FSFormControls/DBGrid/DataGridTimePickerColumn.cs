@@ -45,7 +45,7 @@ namespace FSFormControls
                 var value = timePicker.Value;
                 SetColumnValueAtRow(dataSource, rowNum, value);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }

@@ -105,7 +105,7 @@ namespace FSGraphics
                 //LogUtil.TraceInfo("Screen capture method 1 done in: " + t.ElapsedMilliseconds + "ms. Size: " + bitmap.Size.ToString());
                 return bitmap;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 Log.TraceError(ex);
                 Thread.Sleep(200);

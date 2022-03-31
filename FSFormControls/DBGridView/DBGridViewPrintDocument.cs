@@ -12,7 +12,7 @@ using System.Windows.Forms;
 namespace FSFormControls.UserControls.DBGridView
 {
     [ToolboxItem(false)]
-    public class GridViewPrintDocument : System.Drawing.Printing.PrintDocument
+    public class DBGridViewPrintDocument : System.Drawing.Printing.PrintDocument
     {
         private readonly FSFormControls.DBGridView dataGridToPrint;
         private readonly DataView objView;
@@ -24,7 +24,7 @@ namespace FSFormControls.UserControls.DBGridView
         private Font printFont;
         private CurrencyManager privCM;
 
-        public GridViewPrintDocument(FSFormControls.DBGridView dataGridToPrint, DataView objView, DataTable objTable,
+        public DBGridViewPrintDocument(FSFormControls.DBGridView dataGridToPrint, DataView objView, DataTable objTable,
             CurrencyManager privCM,
             int NP, string Question)
         {

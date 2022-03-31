@@ -142,7 +142,7 @@ namespace FSFormControls
                 var da = DateTime.Parse(db.ExecuteReaderSingleRow(ssql, LOCK_DateTimeField));
                 return da;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil("Error almacenando información de bloqueo. SQL: " + ssql, ex);
             }
@@ -184,7 +184,7 @@ namespace FSFormControls
             {
                 db.ExecuteScalar(ssql);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil("Error eliminando información de bloqueo por usuario. SQL: " + ssql, ex);
             }

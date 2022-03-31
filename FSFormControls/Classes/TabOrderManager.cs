@@ -1,5 +1,6 @@
 #region
 
+using FSException;
 using System;
 using System.Collections;
 using System.Diagnostics;
@@ -72,7 +73,7 @@ namespace FSFormControls
 
                 return curTabIndex;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 Debug.Assert(false, "Exception in TabOrderManager.SetTabOrder:  " + e.Message);
                 return 0;

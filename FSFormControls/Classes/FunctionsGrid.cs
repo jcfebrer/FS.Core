@@ -129,7 +129,7 @@ namespace FSFormControls
                                 dgstyles[iCurrCol].Width = iWidth + 4;
                     }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

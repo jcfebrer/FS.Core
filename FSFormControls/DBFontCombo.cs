@@ -42,7 +42,7 @@ namespace FSFormControls
                     }
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -100,7 +100,7 @@ namespace FSFormControls
                     Font = (Font) OFC.ConvertFromString(Text);
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

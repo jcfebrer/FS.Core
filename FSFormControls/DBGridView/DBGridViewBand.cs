@@ -1,4 +1,4 @@
-﻿namespace FSFormControls
+﻿namespace FSFormControls.UserControls.DBGridView
 {
     public class DBGridViewBand
     {

@@ -214,7 +214,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -235,7 +235,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

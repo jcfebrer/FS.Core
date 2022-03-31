@@ -115,7 +115,7 @@ namespace FSFormControls
 
                 if (m_FixedSize) Width = m_Blocks.TotalSize();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }

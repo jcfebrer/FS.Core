@@ -51,9 +51,185 @@ namespace FSFormControls
         private bool m_Obligatory;
         private object m_SelectedOption;
         private bool m_ShowEdit;
-
-
         private DBControl m_DataControl;
+        private string m_DBField;
+
+
+
+        #region Delegates
+
+        public delegate void SelectionChangedEventHandler(object sender, EventArgs e);
+        public delegate void DropDownEventHandler(object sender, EventArgs e);
+        public delegate void EnterEventHandler(object sender, EventArgs e);
+        public delegate void KeyDownEventHandler(object sender, KeyEventArgs e);
+        public delegate void KeyPressEventHandler(object sender, KeyPressEventArgs e);
+        public delegate void LeaveEventHandler(object sender, EventArgs e);
+        public delegate void LostFocusEventHandler(object sender, EventArgs e);
+        public delegate void SelectedIndexChangedEventHandler(object sender, EventArgs e);
+        public delegate void SelectedValueChangedEventHandler(object sender, EventArgs e);
+        public delegate void SelectionChangeCommittedEventHandler(object sender, EventArgs e);
+        public delegate void TextChangedEventHandler(object sender, EventArgs e);
+        public delegate void ValidatedEventHandler(object sender, EventArgs e);
+        public delegate void VisibleChangedEventHandler(object sender, EventArgs e);
+        public delegate void MouseEnterElementEventHandler(object sender, DBEditorButtonEventArgs e);
+
+        #endregion
+
+        #region Events
+
+        public event EventHandler SelectionChanged;
+        public new event EventHandler TextChanged;
+        public event SelectedValueChangedEventHandler SelectedValueChanged;
+        public event SelectedIndexChangedEventHandler SelectedIndexChanged;
+        public new event VisibleChangedEventHandler VisibleChanged;
+        public new event ValidatedEventHandler Validated;
+        public new event EventHandler Enter;
+        public event DropDownEventHandler DropDown;
+        public new event LostFocusEventHandler LostFocus;
+        public new event EventHandler GotFocus;
+        public new event EventHandler MouseEnter;
+        public event SelectionChangeCommittedEventHandler SelectionChangeCommitted;
+        public new event KeyDownEventHandler KeyDown;
+        public new event LeaveEventHandler Leave;
+        public new event KeyPressEventHandler KeyPress;
+        public event EventHandler AfterEnterEditMode;
+        public event EventHandler AfterExitEditMode;
+        public event DBEditorButtonEventHandler EditorButtonClick;
+        public event MouseEnterElementEventHandler MouseEnterElement;
+
+        #endregion
+
+        #region '" Código generado por el Diseñador de Windows Forms "' 
+
+        private readonly IContainer components = null;
+        private ComboBox combobox;
+
+        public DBCombo()
+        {
+            InitializeComponent();
+
+            SetStyle(ControlStyles.DoubleBuffer, true);
+            //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
+
+            combobox.MouseUp += Combo1_MouseUp;
+            combobox.VisibleChanged += Combo1_VisibleChanged;
+            //Combo1.DrawItem += DrawItem;
+            //Combo1.MeasureItem += MeasureItem;
+            combobox.LostFocus += Combo1_LostFocus;
+            combobox.SelectionChangeCommitted += Combo1_SelectionChangeCommitted;
+            combobox.SelectedIndexChanged += Combo1_SelectedIndexChanged;
+            combobox.Leave += Combo1_Leave;
+            combobox.Enter += Combo1_Enter;
+            combobox.MouseDown += Combo1_MouseDown;
+            combobox.MouseEnter += Combo1_MouseEnter;
+            combobox.KeyPress += Combo1_KeyPress;
+            combobox.KeyUp += Combo1_KeyUp;
+            combobox.SelectedValueChanged += Combo1_SelectedValueChanged;
+            combobox.Validated += Combo1_Validated;
+            combobox.KeyDown += Combo1_KeyDown;
+            combobox.DropDown += Combo1_DropDown;
+            combobox.GotFocus += Combo1_GotFocus;
+            combobox.TextChanged += Combo1_TextChanged;
+
+            Resize += Control_Resize;
+
+            cmdEdit.Click += cmdEdit_Click;
+
+            Load += DBCombo_Load;
+        }
+
+        private void DBCombo_Load(object sender, EventArgs e)
+        {
+            InitializeButtons();
+        }
+
+        private void Combo1_MouseEnter(object sender, EventArgs e)
+        {
+            if (MouseEnter != null)
+                MouseEnter(sender, e);
+        }
+
+        private void Combo1_GotFocus(object sender, EventArgs e)
+        {
+            if (null != GotFocus)
+                GotFocus(sender, e);
+
+            if (null != AfterEnterEditMode)
+                AfterEnterEditMode(sender, e);
+        }
+
+        private void cmdEdit_Click(object sender, EventArgs e)
+        {
+            if (DataControlList != null)
+            {
+                var frmR = new frmRecord();
+                var dbc = new DBControl();
+                dbc.Parent = frmR;
+                dbc.Selection = DataControlList.Selection;
+                dbc.TypeDB = DataControlList.TypeDB;
+                dbc.DataTable = DataControlList.DataTable;
+                dbc.DataSet = DataControlList.DataSet;
+                dbc.DataView = DataControlList.DataView;
+
+                frmR.DataControl = dbc;
+                frmR.Show();
+            }
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+                if (components != null)
+                    components.Dispose();
+            base.Dispose(disposing);
+        }
+
+        [DebuggerStepThrough]
+        private void InitializeComponent()
+        {
+            this.combobox = new System.Windows.Forms.ComboBox();
+            this.cmdEdit = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // combobox
+            // 
+            this.combobox.Location = new System.Drawing.Point(0, 0);
+            this.combobox.Name = "combobox";
+            this.combobox.Size = new System.Drawing.Size(123, 21);
+            this.combobox.TabIndex = 1;
+            // 
+            // cmdEdit
+            // 
+            this.cmdEdit.Location = new System.Drawing.Point(176, 0);
+            this.cmdEdit.Name = "cmdEdit";
+            this.cmdEdit.Size = new System.Drawing.Size(16, 21);
+            this.cmdEdit.TabIndex = 2;
+            this.cmdEdit.Text = "E";
+            // 
+            // DBCombo
+            // 
+            this.About = null;
+            this.Controls.Add(this.combobox);
+            this.Controls.Add(this.cmdEdit);
+            this.Name = "DBCombo";
+            this.Size = new System.Drawing.Size(210, 29);
+            this.ResumeLayout(false);
+
+        }
+
+        public void BeginInit()
+        {
+            //((ISupportInitialize)combobox).BeginInit();
+        }
+
+        public void EndInit()
+        {
+            //((ISupportInitialize)combobox).EndInit();
+        }
+
+        #endregion
+
+        
         /// <summary>
         /// Asignación del DBcontrol.
         /// </summary>
@@ -64,8 +240,6 @@ namespace FSFormControls
             set { m_DataControl = value; }
         }
 
-
-        private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
         public string DBField
         {
@@ -94,14 +268,19 @@ namespace FSFormControls
             set
             {
                 m_DBFieldData = value;
-                Combo1.ValueMember = m_DBFieldData;
+                combobox.ValueMember = m_DBFieldData;
             }
         }
 
         public AutoCompleteMode AutoCompleteMode
         {
-            get { return Combo1.AutoCompleteMode; }
-            set { Combo1.AutoCompleteMode = value; }
+            get { return combobox.AutoCompleteMode; }
+            set {
+                if (combobox.DropDownStyle == ComboBoxStyle.DropDownList && combobox.AutoCompleteSource != AutoCompleteSource.ListItems)
+                    combobox.AutoCompleteMode = AutoCompleteMode.None;
+                else
+                    combobox.AutoCompleteMode = value;
+            }
         }
 
         public bool Obligatory
@@ -110,7 +289,7 @@ namespace FSFormControls
             set
             {
                 m_Obligatory = value;
-                if (value) Combo1.BackColor = Global.ObligatoryBackColor;
+                if (value) combobox.BackColor = Global.ObligatoryBackColor;
             }
         }
 
@@ -127,7 +306,7 @@ namespace FSFormControls
             set
             {
                 m_DropDownStyle = value;
-                Combo1.DropDownStyle = m_DropDownStyle;
+                combobox.DropDownStyle = m_DropDownStyle;
             }
         }
 
@@ -169,11 +348,11 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ValueMember
         {
-            get { return Combo1.ValueMember; }
+            get { return combobox.ValueMember; }
             set
             {
                 doTextChanged = false;
-                Combo1.ValueMember = value;
+                combobox.ValueMember = value;
                 doTextChanged = true;
             }
         }
@@ -183,11 +362,11 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DisplayMember
         {
-            get { return Combo1.DisplayMember; }
+            get { return combobox.DisplayMember; }
             set
             {
                 doTextChanged = false;
-                Combo1.DisplayMember = value;
+                combobox.DisplayMember = value;
                 doTextChanged = true;
             }
         }
@@ -204,8 +383,8 @@ namespace FSFormControls
 
         public override Color BackColor
         {
-            get { return Combo1.BackColor; }
-            set { Combo1.BackColor = value; }
+            get { return combobox.BackColor; }
+            set { combobox.BackColor = value; }
         }
 
 
@@ -217,7 +396,7 @@ namespace FSFormControls
             set
             {
                 m_DBFieldList = value;
-                Combo1.DisplayMember = m_DBFieldList;
+                combobox.DisplayMember = m_DBFieldList;
             }
         }
 
@@ -235,19 +414,19 @@ namespace FSFormControls
                 switch (m_Mode)
                 {
                     case Global.AccessMode.ReadMode:
-                        Combo1.Enabled = false;
-                        Combo1.BackColor = Global.NormalBackColor;
+                        combobox.Enabled = false;
+                        combobox.BackColor = Global.NormalBackColor;
                         cmdEdit.Visible = false;
                         break;
                     case Global.AccessMode.WriteMode:
-                        Combo1.Enabled = true;
-                        Combo1.BackColor = Global.WriteBackColor;
+                        combobox.Enabled = true;
+                        combobox.BackColor = Global.WriteBackColor;
                         cmdEdit.Visible = true;
                         //Combo1.BringToFront();
                         break;
                     case Global.AccessMode.ProtectedMode:
-                        Combo1.Enabled = true;
-                        Combo1.BackColor = Global.ObligatoryBackColor;
+                        combobox.Enabled = true;
+                        combobox.BackColor = Global.ObligatoryBackColor;
                         cmdEdit.Visible = true;
                         //Combo1.BringToFront();
                         break;
@@ -257,13 +436,19 @@ namespace FSFormControls
 
         public DBComboValues Items
         {
-            get { return m_Items; }
+            get
+            {
+                if (m_Items == null)
+                    m_Items = new DBComboValues(combobox);
+
+                return m_Items;
+            }
             set
             {
                 m_Items = value;
                 if (value != null)
                     foreach (DBComboboxItem v in value)
-                        Combo1.Items.Add(v);
+                        combobox.Items.Add(v);
             }
         }
 
@@ -276,7 +461,7 @@ namespace FSFormControls
             set
             {
                 m_SelectedOption = value;
-                Combo1.SelectedValue = value;
+                combobox.SelectedValue = value;
             }
         }
 
@@ -285,16 +470,16 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectedIndex
         {
-            get { return Combo1.SelectedIndex; }
-            set { Combo1.SelectedIndex = value; }
+            get { return combobox.SelectedIndex; }
+            set { combobox.SelectedIndex = value; }
         }
 
         public bool BlankSelection { get; set; }
 
         public bool DroppedDown
         {
-            get { return Combo1.DroppedDown; }
-            set { Combo1.DroppedDown = value; }
+            get { return combobox.DroppedDown; }
+            set { combobox.DroppedDown = value; }
         }
 
         [Browsable(false)]
@@ -302,7 +487,7 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object Selected
         {
-            set { Combo1.SelectedIndex = Combo1.FindStringExact(Convert.ToString(value)); }
+            set { combobox.SelectedIndex = combobox.FindStringExact(Convert.ToString(value)); }
         }
 
         public DBControl DataControlList
@@ -327,8 +512,8 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public override string Text
         {
-            get { return Combo1.Text; }
-            set { Combo1.Text = value; }
+            get { return combobox.Text; }
+            set { combobox.Text = value; }
         }
 
         [Browsable(false)]
@@ -336,18 +521,15 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object Value
         {
-            get { return Combo1.SelectedValue; }
+            get { return combobox.SelectedValue; }
             set
             {
-                if (value == null || Convert.ToInt32(value) == 0)
-                    value = -1;
+                if (value == null)
+                    return;
 
-                if (Convert.ToInt32(value) != -1)
-                {
-                    DBComboboxItem dbitem = FindByValue(value.ToString());
-                    if(dbitem != null)
-                        Combo1.Text = dbitem.Text;
-                }
+                DBComboboxItem dbitem = FindByValue(value.ToString());
+                if (dbitem != null)
+                    combobox.Text = dbitem.Text;
             }
         }
 
@@ -362,16 +544,17 @@ namespace FSFormControls
             set
             {
                 m_Editable = value;
-                Combo1.Enabled = !m_Editable;
+                combobox.Enabled = !m_Editable;
                 if (m_Editable)
                 {
-                    if (!m_Obligatory) Combo1.BackColor = Global.NormalBackColor;
-                    Combo1.TabStop = true;
+                    if (!m_Obligatory) 
+                        combobox.BackColor = Global.NormalBackColor;
+                    combobox.TabStop = true;
                 }
                 else
                 {
-                    Combo1.BackColor = Global.DisableBackColor;
-                    Combo1.TabStop = false;
+                    combobox.BackColor = Global.DisableBackColor;
+                    combobox.TabStop = false;
                 }
             }
         }
@@ -388,8 +571,8 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object SelectedValue
         {
-            get { return Combo1.SelectedValue; }
-            set { Combo1.SelectedValue = value; }
+            get { return combobox.SelectedValue; }
+            set { combobox.SelectedValue = value; }
         }
 
         [Browsable(false)]
@@ -397,12 +580,12 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object SelectedItem
         {
-            get { return Combo1.SelectedItem; }
-            set { Combo1.SelectedItem = value; }
+            get { return combobox.SelectedItem; }
+            set { combobox.SelectedItem = value; }
         }
 
 
-        public new ControlBindingsCollection DataBindings => Combo1.DataBindings;
+        public new ControlBindingsCollection DataBindings => combobox.DataBindings;
 
         public bool ShowEdit
         {
@@ -417,14 +600,14 @@ namespace FSFormControls
 
         public override Color ForeColor
         {
-            get { return Combo1.ForeColor; }
+            get { return combobox.ForeColor; }
 
-            set { Combo1.ForeColor = value; }
+            set { combobox.ForeColor = value; }
         }
 
         public bool IsItemInList()
         {
-            if (Combo1.Items.Contains(Combo1.SelectedText))
+            if (combobox.Items.Contains(combobox.SelectedText))
                 return true;
             return false;
         }
@@ -455,14 +638,14 @@ namespace FSFormControls
                             throw new ExceptionUtil("Imposible conectar DataControlList.");
 
                         doTextChanged = false;
-                        Combo1.DataSource = DataControlList.DataTable;
+                        combobox.DataSource = DataControlList.DataTable;
                         doTextChanged = true;
                     }
                 }
                 else
                 {
                     doTextChanged = false;
-                    Combo1.DataSource = DataControlList.DataTable;
+                    combobox.DataSource = DataControlList.DataTable;
                     doTextChanged = true;
                 }
 
@@ -475,7 +658,7 @@ namespace FSFormControls
                     if (DBFieldList == null)
                         throw new ExceptionUtil("Campo DBFieldList no especificado.");
 
-                    if (db.GetField(DBFieldList, DataControlList.TableName).Tipo.Name.ToLower() == "string")
+                    if (db.GetField(DBFieldList, DataControlList.TableName).Tipo == Utils.FieldTypeEnum.String)
                         if (BlankSelection)
                         {
                             DataRow rowblank = null;
@@ -501,10 +684,10 @@ namespace FSFormControls
                 if (string.IsNullOrEmpty(m_DBFieldData))
                     m_DBFieldData = DataControlList.FieldName(0);
 
-                if (string.IsNullOrEmpty(Combo1.DisplayMember))
-                    Combo1.DisplayMember = DataControlList.FieldExactName(DBFieldList);
-                if(string.IsNullOrEmpty(Combo1.ValueMember))
-                    Combo1.ValueMember = DataControlList.FieldExactName(m_DBFieldData);
+                if (string.IsNullOrEmpty(combobox.DisplayMember))
+                    combobox.DisplayMember = DataControlList.FieldExactName(DBFieldList);
+                if(string.IsNullOrEmpty(combobox.ValueMember))
+                    combobox.ValueMember = DataControlList.FieldExactName(m_DBFieldData);
 
 
                 if (!string.IsNullOrEmpty(DBField))
@@ -532,7 +715,7 @@ namespace FSFormControls
 
                 filled = true;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e.Message);
             }
@@ -542,7 +725,7 @@ namespace FSFormControls
         {
             if (ImageList != null)
                 if (ImageList.Images.Count > 0)
-                    Combo1.DrawMode = DrawMode.OwnerDrawVariable;
+                    combobox.DrawMode = DrawMode.OwnerDrawVariable;
         }
 
         private void Combo1_KeyDown(object sender, KeyEventArgs e)
@@ -554,9 +737,10 @@ namespace FSFormControls
                         DataControlList.ShowRecord();
 
                 e.Handled = true;
-                if (null != KeyDown) KeyDown(this, e);
+                if (null != KeyDown) 
+                    KeyDown(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -564,34 +748,34 @@ namespace FSFormControls
 
         private void Control_Resize(object sender, EventArgs e)
         {
-            Combo1.Location = new Point(0, 0);
-            Combo1.Size = new Size(Width - (16 * ButtonsRight.Count), Combo1.Height);
-            this.Height = Combo1.Height;
+            combobox.Location = new Point(0, 0);
+            combobox.Size = new Size(this.Width - (16 * ButtonsRight.Count), combobox.Height);
+            this.Height = combobox.Height;
 
-            CreateButtons();
+            ResizeButtons();
         }
 
         public void BeginUpdate()
         {
-            Combo1.BeginUpdate();
+            combobox.BeginUpdate();
         }
 
 
         public void EndUpdate()
         {
-            Combo1.EndUpdate();
+            combobox.EndUpdate();
         }
 
 
         public int FindString(string s)
         {
-            return Combo1.FindString(s);
+            return combobox.FindString(s);
         }
 
 
         public int FindStringExact(string s)
         {
-            return Combo1.FindStringExact(s);
+            return combobox.FindStringExact(s);
         }
 
         public DBComboboxItem FindByValue(string value)
@@ -606,9 +790,9 @@ namespace FSFormControls
             {
                 if (m_DBControlList != null)
                     foreach (DataRow row in m_DBControlList.DataTable.Rows)
-                        if (row[Combo1.ValueMember].ToString().ToLower() == value.ToLower())
-                            return new DBComboboxItem(row[Combo1.ValueMember].ToString(),
-                                row[Combo1.DisplayMember].ToString());
+                        if (row[combobox.ValueMember].ToString().ToLower() == value.ToLower())
+                            return new DBComboboxItem(row[combobox.ValueMember].ToString(),
+                                row[combobox.DisplayMember].ToString());
             }
 
             return null;
@@ -624,12 +808,12 @@ namespace FSFormControls
 
         private void Combo1_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (Combo1.SelectedIndex != -1 && !GridMode)
+            if (combobox.SelectedIndex != -1 && !GridMode)
                 if (DataControl != null && DBField != "")
                     if (DataControl.Connected)
-                        if (Combo1.SelectedItem is DataRowView)
+                        if (combobox.SelectedItem is DataRowView)
                         {
-                            m_SelectedOption = ((DataRowView) Combo1.SelectedItem).Row[0];
+                            m_SelectedOption = ((DataRowView) combobox.SelectedItem).Row[0];
 
                             DataControl.SetField(DBField, m_SelectedOption.ToString());
                         }
@@ -719,20 +903,20 @@ namespace FSFormControls
             }
 
 
-            sTypedText = Combo1.Text;
-            iFoundIndex = Combo1.FindString(sTypedText);
+            sTypedText = combobox.Text;
+            iFoundIndex = combobox.FindString(sTypedText);
 
             if (iFoundIndex >= 0)
             {
-                oFoundItem = Combo1.Items[iFoundIndex];
+                oFoundItem = combobox.Items[iFoundIndex];
 
-                sFoundText = Combo1.GetItemText(oFoundItem);
+                sFoundText = combobox.GetItemText(oFoundItem);
 
                 sAppendText = sFoundText.Substring(sTypedText.Length);
-                Combo1.Text = sTypedText + sAppendText;
+                combobox.Text = sTypedText + sAppendText;
 
-                Combo1.SelectionStart = sTypedText.Length;
-                Combo1.SelectionLength = sAppendText.Length;
+                combobox.SelectionStart = sTypedText.Length;
+                combobox.SelectionLength = sAppendText.Length;
             }
         }
 
@@ -740,7 +924,7 @@ namespace FSFormControls
         public void AutoCompleteCombo_Leave()
         {
             var iFoundIndex = 0;
-            iFoundIndex = FindStringExact(Combo1.Text);
+            iFoundIndex = FindStringExact(combobox.Text);
             SelectedIndex = iFoundIndex;
         }
 
@@ -753,7 +937,8 @@ namespace FSFormControls
 
         private void Combo1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (null != KeyPress) KeyPress(this, e);
+            if (null != KeyPress) 
+                KeyPress(this, e);
         }
 
         private void Combo1_Enter(object sender, EventArgs e)
@@ -992,10 +1177,8 @@ namespace FSFormControls
         //    e.ItemWidth = Combo1.Width;
         //}
 
-
-        private void CreateButtons()
+        private void InitializeButtons()
         {
-            var r = 1;
             if (ButtonsRight != null && ButtonsRight.Count > 0)
             {
                 foreach (DBButton button in ButtonsRight)
@@ -1004,19 +1187,14 @@ namespace FSFormControls
                     button.Width = 16;
                     button.Height = 16;
                     button.Visible = true;
-                    button.Left = Combo1.Width - 16 * r;
+                    button.Top = 0;
                     button.Click += Button_Click;
                     button.ToolTip = button.Text;
                     button.MouseEnter += Button_MouseEnter;
 
-                    Controls.Add(button);
                     button.BringToFront();
-
-                    r++;
                 }
             }
-
-            var l = 0;
 
             if (ButtonsLeft != null && ButtonsLeft.Count > 0)
             {
@@ -1026,13 +1204,36 @@ namespace FSFormControls
                     button.Width = 16;
                     button.Height = 16;
                     button.Visible = true;
-                    button.Left = l * 16;
+                    button.Top = 0;
                     button.Click += Button_Click;
                     button.ToolTip = button.Text;
                     button.MouseEnter += Button_MouseEnter;
 
-                    Controls.Add(button);
                     button.BringToFront();
+                }
+            }
+        }
+
+        private void ResizeButtons()
+        {
+            int r = 1;
+            if (ButtonsRight != null && ButtonsRight.Count > 0)
+            {
+                foreach (DBButton button in ButtonsRight)
+                {
+                    button.Left = this.Width - 16 * r;
+
+                    r++;
+                }
+            }
+
+            int l = 0;
+
+            if (ButtonsLeft != null && ButtonsLeft.Count > 0)
+            {
+                foreach (DBButton button in ButtonsLeft)
+                {
+                    button.Left = l * 16;
 
                     l++;
                 }
@@ -1052,193 +1253,6 @@ namespace FSFormControls
             if (EditorButtonClick != null)
                 EditorButtonClick(sender, new DBEditorButtonEventArgs());
         }
-
-        #region Delegates
-
-        public delegate void SelectionChangedEventHandler(object sender, EventArgs e);
-
-        public delegate void DropDownEventHandler(object sender, EventArgs e);
-
-        public delegate void EnterEventHandler(object sender, EventArgs e);
-
-        public delegate void KeyDownEventHandler(object sender, KeyEventArgs e);
-
-        public delegate void KeyPressEventHandler(object sender, KeyPressEventArgs e);
-
-        public delegate void LeaveEventHandler(object sender, EventArgs e);
-
-        public delegate void LostFocusEventHandler(object sender, EventArgs e);
-
-        public delegate void SelectedIndexChangedEventHandler(object sender, EventArgs e);
-
-        public delegate void SelectedValueChangedEventHandler(object sender, EventArgs e);
-
-        public delegate void SelectionChangeCommittedEventHandler(object sender, EventArgs e);
-
-        public delegate void TextChangedEventHandler(object sender, EventArgs e);
-
-        public delegate void ValidatedEventHandler(object sender, EventArgs e);
-
-        public delegate void VisibleChangedEventHandler(object sender, EventArgs e);
-
-        public delegate void MouseEnterElementEventHandler(object sender, DBEditorButtonEventArgs e);
-
-        #endregion
-
-        #region Events
-
-        public event EventHandler SelectionChanged;
-        public new event EventHandler TextChanged;
-        public event SelectedValueChangedEventHandler SelectedValueChanged;
-        public event SelectedIndexChangedEventHandler SelectedIndexChanged;
-        public new event VisibleChangedEventHandler VisibleChanged;
-        public new event ValidatedEventHandler Validated;
-        public new event EventHandler Enter;
-        public event DropDownEventHandler DropDown;
-        public new event LostFocusEventHandler LostFocus;
-        public new event EventHandler GotFocus;
-        public new event EventHandler MouseEnter;
-        public event SelectionChangeCommittedEventHandler SelectionChangeCommitted;
-        public new event KeyDownEventHandler KeyDown;
-        public new event LeaveEventHandler Leave;
-        public new event KeyPressEventHandler KeyPress;
-        public event EventHandler AfterEnterEditMode;
-        public event EventHandler AfterExitEditMode;
-        public event DBEditorButtonEventHandler EditorButtonClick;
-        public event MouseEnterElementEventHandler MouseEnterElement;
-
-        #endregion
-
-        #region '" Código generado por el Diseñador de Windows Forms "' 
-
-        private readonly IContainer components = null;
-        private ComboBox Combo1;
-
-        public DBCombo()
-        {
-            InitializeComponent();
-
-            SetStyle(ControlStyles.DoubleBuffer, true);
-
-            Combo1.MouseUp += Combo1_MouseUp;
-            Combo1.VisibleChanged += Combo1_VisibleChanged;
-            //Combo1.DrawItem += DrawItem;
-            //Combo1.MeasureItem += MeasureItem;
-            Combo1.LostFocus += Combo1_LostFocus;
-            Combo1.SelectionChangeCommitted += Combo1_SelectionChangeCommitted;
-            Combo1.SelectedIndexChanged += Combo1_SelectedIndexChanged;
-            Combo1.Leave += Combo1_Leave;
-            Combo1.Enter += Combo1_Enter;
-            Combo1.MouseDown += Combo1_MouseDown;
-            Combo1.MouseEnter += Combo1_MouseEnter;
-            Combo1.KeyPress += Combo1_KeyPress;
-            Combo1.KeyUp += Combo1_KeyUp;
-            Combo1.SelectedValueChanged += Combo1_SelectedValueChanged;
-            Combo1.Validated += Combo1_Validated;
-            Combo1.KeyDown += Combo1_KeyDown;
-            Combo1.DropDown += Combo1_DropDown;
-            Combo1.GotFocus += Combo1_GotFocus;
-            Combo1.TextChanged += Combo1_TextChanged;
-            base.Resize += Control_Resize;
-            cmdEdit.Click += cmdEdit_Click;
-
-            if(m_Items == null)
-                m_Items = new DBComboValues(this);
-
-            Load += DBCombo_Load;
-        }
-
-        private void DBCombo_Load(object sender, EventArgs e)
-        {
-            CreateButtons();
-        }
-
-        private void Combo1_MouseEnter(object sender, EventArgs e)
-        {
-            if (MouseEnter != null)
-                MouseEnter(sender, e);
-        }
-
-        private void Combo1_GotFocus(object sender, EventArgs e)
-        {
-            if (null != GotFocus)
-                GotFocus(sender, e);
-
-            if (null != AfterEnterEditMode)
-                AfterEnterEditMode(sender, e);
-        }
-
-        private void cmdEdit_Click(object sender, EventArgs e)
-        {
-            if (DataControlList != null)
-            {
-                var frmR = new frmRecord();
-                var dbc = new DBControl();
-                dbc.Parent = frmR;
-                dbc.Selection = DataControlList.Selection;
-                dbc.TypeDB = DataControlList.TypeDB;
-                dbc.DataTable = DataControlList.DataTable;
-                dbc.DataSet = DataControlList.DataSet;
-                dbc.DataView = DataControlList.DataView;
-
-                frmR.DataControl = dbc;
-                frmR.AutoSize = true;
-                frmR.Show();
-            }
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-                if (components != null)
-                    components.Dispose();
-            base.Dispose(disposing);
-        }
-
-        [DebuggerStepThrough]
-        private void InitializeComponent()
-        {
-            this.Combo1 = new System.Windows.Forms.ComboBox();
-            this.cmdEdit = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // Combo1
-            // 
-            this.Combo1.Location = new System.Drawing.Point(0, 0);
-            this.Combo1.Name = "Combo1";
-            this.Combo1.Size = new System.Drawing.Size(123, 21);
-            this.Combo1.TabIndex = 1;
-            // 
-            // cmdEdit
-            // 
-            this.cmdEdit.Location = new System.Drawing.Point(176, 0);
-            this.cmdEdit.Name = "cmdEdit";
-            this.cmdEdit.Size = new System.Drawing.Size(16, 21);
-            this.cmdEdit.TabIndex = 2;
-            this.cmdEdit.Text = "E";
-            // 
-            // DBCombo
-            // 
-            
-            this.Controls.Add(this.Combo1);
-            this.Controls.Add(this.cmdEdit);
-            this.Name = "DBCombo";
-            this.Size = new System.Drawing.Size(227, 40);
-            this.ResumeLayout(false);
-
-        }
-
-        public void BeginInit()
-        {
-            //((ISupportInitialize)Combo1).BeginInit();
-        }
-
-        public void EndInit()
-        {
-            //((ISupportInitialize)Combo1).EndInit();
-        }
-
-        #endregion
     }
 
 

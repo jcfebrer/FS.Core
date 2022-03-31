@@ -334,7 +334,7 @@ namespace FSFormControls
 
         public bool RecordMode { get; set; }
 
-        public override bool AutoSize { get; set; } = true;
+        public bool AutoSizeColumns { get; set; }
 
         public DataGridViewSelectionMode SelectionMode
         {
@@ -752,7 +752,7 @@ namespace FSFormControls
             {
                 return datagrid.Rows[row].Cells[column].Value;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -785,7 +785,7 @@ namespace FSFormControls
                 {
                     return datagrid[row, i];
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -816,7 +816,7 @@ namespace FSFormControls
             {
                 return DataControl.DataTable.Rows[row][Columns[column].FieldDB];
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -840,13 +840,16 @@ namespace FSFormControls
 
         public object RowDataValue(string columnName, int row)
         {
-            if (DataControl.DataTable.Rows.Count == 0) return null;
-            if (row == -1) row = datagrid.CurrentCell.RowIndex;
+            if (DataControl.DataTable.Rows.Count == 0) 
+                return null;
+            if (row == -1) 
+                row = datagrid.CurrentCell.RowIndex;
+
             try
             {
                 return DataControl.DataTable.Rows[row][columnName];
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -873,7 +876,7 @@ namespace FSFormControls
                 {
                     if (col.Obligatory)
                     {
-                        if (String.IsNullOrEmpty(e.FormattedValue.ToString()))
+                        if (e.FormattedValue == null)
                         {
                             datagrid.Rows[e.RowIndex].ErrorText = "Valor obligatorio. Columna: [" + col.HeaderCaption + "]";
                             e.Cancel = true;
@@ -884,7 +887,7 @@ namespace FSFormControls
                     string errorText = "";
                     bool check = true;
 
-                    if (!String.IsNullOrEmpty(e.FormattedValue.ToString()))
+                    if (e.FormattedValue != null)
                     {
                         switch (col.ColumnType)
                         {
@@ -1393,7 +1396,7 @@ namespace FSFormControls
                         var dtcol = DataControl.DataTable.Columns[column.FieldDB];
                         if (dtcol != null) dtcol.Unique = column.Unique;
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -1403,7 +1406,7 @@ namespace FSFormControls
                     HideColumn(column.FieldDB);
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil("Error al Añadir la columna: " + column.FieldDB, e);
             }
@@ -1433,7 +1436,7 @@ namespace FSFormControls
             {
                 GridViewPrint.PrintDataGridView(datagrid, false);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1446,7 +1449,7 @@ namespace FSFormControls
             {
                 GridViewPrint.PrintDataGridView(datagrid, true);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1489,7 +1492,7 @@ namespace FSFormControls
 
                 Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1519,7 +1522,7 @@ namespace FSFormControls
 
                 Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1559,7 +1562,7 @@ namespace FSFormControls
 
                 Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1653,7 +1656,8 @@ namespace FSFormControls
         {
             var f = 0;
 
-            if (m_DBControl == null) throw new ExceptionUtil("[" + Name + "] DBGrid sin DBControl asociado.");
+            if (m_DBControl == null) 
+                throw new ExceptionUtil("[" + Name + "] DBGrid sin DBControl asociado.");
 
             m_DBControl.DataTable.ColumnChanging += ColumnChangingEvt;
             m_DBControl.DataTable.RowChanging += RowChangingEvt;
@@ -1742,7 +1746,7 @@ namespace FSFormControls
 
         private void GenerateColumns()
         {
-            FunctionsGrid.GenerateColumns(DataControl, Columns, 2, AutoSize, datagrid.CreateGraphics(), datagrid.Font);
+            FunctionsGrid.GenerateColumns(DataControl, Columns, 2, AutoSizeColumns, datagrid.CreateGraphics(), datagrid.Font);
 
             if (datagrid.Columns.Count == 0)
                 foreach (DBColumn column in Columns)
@@ -1779,7 +1783,7 @@ namespace FSFormControls
 
                 if (null != ColumnChanging) ColumnChanging(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1800,7 +1804,7 @@ namespace FSFormControls
 
                 if (null != RowChanging) RowChanging(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1818,7 +1822,7 @@ namespace FSFormControls
 
                 if (null != RowChanged) RowChanged(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1844,7 +1848,7 @@ namespace FSFormControls
 
                 if (null != ColumnChanged) ColumnChanged(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2064,7 +2068,7 @@ namespace FSFormControls
                                         }
                                 }
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -2116,7 +2120,7 @@ namespace FSFormControls
                                 }
                             }
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -2372,7 +2376,7 @@ namespace FSFormControls
                         DataControl.DataTable.Columns[Columns[f].FieldDB].AutoIncrementSeed =
                             Convert.ToInt64(Utils.MaxColumn(DataControl.DataTable, Columns[f].FieldDB) + 1);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2517,162 +2521,162 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            components = new Container();
-            ToolTip1 = new ToolTip(components);
-            splitContainer1 = new SplitContainer();
-            lblPage = new Label();
-            cmdPageNext = new Button();
-            cmdPagePrevious = new Button();
-            cmdPageFirst = new Button();
-            cmdPageLast = new Button();
-            datagrid = new DataGridView();
-            dataGridViewTotal = new DataGridView();
-            printDocument1 = new System.Drawing.Printing.PrintDocument();
-            picRefrescar = new PictureBox();
-            ((ISupportInitialize) splitContainer1).BeginInit();
-            splitContainer1.Panel1.SuspendLayout();
-            splitContainer1.Panel2.SuspendLayout();
-            splitContainer1.SuspendLayout();
-            ((ISupportInitialize) datagrid).BeginInit();
-            ((ISupportInitialize) dataGridViewTotal).BeginInit();
-            ((ISupportInitialize) picRefrescar).BeginInit();
-            SuspendLayout();
-            // 
-            // splitContainer1
-            // 
-            splitContainer1.Dock = DockStyle.Fill;
-            splitContainer1.Location = new Point(0, 0);
-            splitContainer1.Name = "splitContainer1";
-            splitContainer1.Orientation = Orientation.Horizontal;
-            // 
-            // splitContainer1.Panel1
-            // 
-            splitContainer1.Panel1.Controls.Add(lblPage);
-            splitContainer1.Panel1.Controls.Add(cmdPageNext);
-            splitContainer1.Panel1.Controls.Add(cmdPagePrevious);
-            splitContainer1.Panel1.Controls.Add(cmdPageFirst);
-            splitContainer1.Panel1.Controls.Add(cmdPageLast);
-            splitContainer1.Panel1.Controls.Add(picRefrescar);
-            splitContainer1.Panel1.Controls.Add(datagrid);
-            // 
-            // splitContainer1.Panel2
-            // 
-            splitContainer1.Panel2.Controls.Add(dataGridViewTotal);
-            splitContainer1.Size = new Size(281, 247);
-            splitContainer1.SplitterDistance = 171;
-            splitContainer1.TabIndex = 1;
-            // 
-            // lblPage
-            // 
-            lblPage.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblPage.BackColor = SystemColors.ActiveCaption;
-            lblPage.ForeColor = SystemColors.ControlLightLight;
-            lblPage.Location = new Point(103, 9);
-            lblPage.Name = "lblPage";
-            lblPage.Size = new Size(80, 12);
-            lblPage.TabIndex = 17;
-            lblPage.Text = "1/1";
-            lblPage.TextAlign = ContentAlignment.MiddleCenter;
-            lblPage.Visible = false;
-            // 
-            // cmdPageNext
-            // 
-            cmdPageNext.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            cmdPageNext.BackColor = Color.LightGray;
-            cmdPageNext.Image = Resources.DBGridViewNext;
-            cmdPageNext.Location = new Point(223, 8);
-            cmdPageNext.Name = "cmdPageNext";
-            cmdPageNext.Size = new Size(16, 16);
-            cmdPageNext.TabIndex = 16;
-            cmdPageNext.UseVisualStyleBackColor = false;
-            cmdPageNext.Visible = false;
-            // 
-            // cmdPagePrevious
-            // 
-            cmdPagePrevious.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            cmdPagePrevious.BackColor = Color.LightGray;
-            cmdPagePrevious.Image = Resources.DBGridViewPrevious;
-            cmdPagePrevious.Location = new Point(207, 8);
-            cmdPagePrevious.Name = "cmdPagePrevious";
-            cmdPagePrevious.Size = new Size(16, 16);
-            cmdPagePrevious.TabIndex = 15;
-            cmdPagePrevious.UseVisualStyleBackColor = false;
-            cmdPagePrevious.Visible = false;
-            // 
-            // cmdPageFirst
-            // 
-            cmdPageFirst.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            cmdPageFirst.BackColor = Color.LightGray;
-            cmdPageFirst.Image = Resources.DBGridViewFirst;
-            cmdPageFirst.Location = new Point(191, 8);
-            cmdPageFirst.Name = "cmdPageFirst";
-            cmdPageFirst.Size = new Size(16, 16);
-            cmdPageFirst.TabIndex = 14;
-            cmdPageFirst.UseVisualStyleBackColor = false;
-            cmdPageFirst.Visible = false;
-            // 
-            // cmdPageLast
-            // 
-            cmdPageLast.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            cmdPageLast.BackColor = Color.LightGray;
-            cmdPageLast.Image = Resources.DBGridViewLast;
-            cmdPageLast.Location = new Point(239, 8);
-            cmdPageLast.Name = "cmdPageLast";
-            cmdPageLast.Size = new Size(16, 16);
-            cmdPageLast.TabIndex = 13;
-            cmdPageLast.UseVisualStyleBackColor = false;
-            cmdPageLast.Visible = false;
-            // 
-            // dataGridView1
-            // 
-            datagrid.AllowUserToOrderColumns = true;
-            datagrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            datagrid.Dock = DockStyle.Fill;
-            datagrid.Location = new Point(0, 0);
-            datagrid.Name = "datagrid";
-            datagrid.Size = new Size(281, 171);
-            datagrid.TabIndex = 1;
-            // 
-            // dataGridViewTotal
-            // 
-            dataGridViewTotal.AllowUserToOrderColumns = true;
-            dataGridViewTotal.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewTotal.Dock = DockStyle.Fill;
-            dataGridViewTotal.Location = new Point(0, 0);
-            dataGridViewTotal.Name = "dataGridViewTotal";
-            dataGridViewTotal.Size = new Size(281, 72);
-            dataGridViewTotal.TabIndex = 2;
+            this.components = new System.ComponentModel.Container();
+            this.ToolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.picRefrescar = new System.Windows.Forms.PictureBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.lblPage = new System.Windows.Forms.Label();
+            this.cmdPageNext = new System.Windows.Forms.Button();
+            this.cmdPagePrevious = new System.Windows.Forms.Button();
+            this.cmdPageFirst = new System.Windows.Forms.Button();
+            this.cmdPageLast = new System.Windows.Forms.Button();
+            this.datagrid = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTotal = new System.Windows.Forms.DataGridView();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            ((System.ComponentModel.ISupportInitialize)(this.picRefrescar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.datagrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTotal)).BeginInit();
+            this.SuspendLayout();
             // 
             // picRefrescar
             // 
-            picRefrescar.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            picRefrescar.Cursor = Cursors.Hand;
-            picRefrescar.Image = Resources.DBGridViewRefresh;
-            picRefrescar.Location = new Point(258, 8);
-            picRefrescar.Name = "picRefrescar";
-            picRefrescar.Size = new Size(16, 16);
-            picRefrescar.SizeMode = PictureBoxSizeMode.AutoSize;
-            picRefrescar.TabIndex = 18;
-            picRefrescar.TabStop = false;
-            ToolTip1.SetToolTip(picRefrescar, "Actualizar");
-            picRefrescar.Visible = false;
-            picRefrescar.Click += MnuRefrescar;
+            this.picRefrescar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.picRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.picRefrescar.Image = global::FSFormControls.Properties.Resources.DBGridViewRefresh;
+            this.picRefrescar.Location = new System.Drawing.Point(337, 8);
+            this.picRefrescar.Name = "picRefrescar";
+            this.picRefrescar.Size = new System.Drawing.Size(16, 16);
+            this.picRefrescar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.picRefrescar.TabIndex = 18;
+            this.picRefrescar.TabStop = false;
+            this.ToolTip1.SetToolTip(this.picRefrescar, "Actualizar");
+            this.picRefrescar.Visible = false;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.lblPage);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdPageNext);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdPagePrevious);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdPageFirst);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdPageLast);
+            this.splitContainer1.Panel1.Controls.Add(this.picRefrescar);
+            this.splitContainer1.Panel1.Controls.Add(this.datagrid);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.dataGridViewTotal);
+            this.splitContainer1.Size = new System.Drawing.Size(360, 286);
+            this.splitContainer1.SplitterDistance = 198;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // lblPage
+            // 
+            this.lblPage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPage.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.lblPage.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblPage.Location = new System.Drawing.Point(182, 9);
+            this.lblPage.Name = "lblPage";
+            this.lblPage.Size = new System.Drawing.Size(80, 12);
+            this.lblPage.TabIndex = 17;
+            this.lblPage.Text = "1/1";
+            this.lblPage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPage.Visible = false;
+            // 
+            // cmdPageNext
+            // 
+            this.cmdPageNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdPageNext.BackColor = System.Drawing.Color.LightGray;
+            this.cmdPageNext.Image = global::FSFormControls.Properties.Resources.DBGridViewNext;
+            this.cmdPageNext.Location = new System.Drawing.Point(302, 8);
+            this.cmdPageNext.Name = "cmdPageNext";
+            this.cmdPageNext.Size = new System.Drawing.Size(16, 16);
+            this.cmdPageNext.TabIndex = 16;
+            this.cmdPageNext.UseVisualStyleBackColor = false;
+            this.cmdPageNext.Visible = false;
+            // 
+            // cmdPagePrevious
+            // 
+            this.cmdPagePrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdPagePrevious.BackColor = System.Drawing.Color.LightGray;
+            this.cmdPagePrevious.Image = global::FSFormControls.Properties.Resources.DBGridViewPrevious;
+            this.cmdPagePrevious.Location = new System.Drawing.Point(286, 8);
+            this.cmdPagePrevious.Name = "cmdPagePrevious";
+            this.cmdPagePrevious.Size = new System.Drawing.Size(16, 16);
+            this.cmdPagePrevious.TabIndex = 15;
+            this.cmdPagePrevious.UseVisualStyleBackColor = false;
+            this.cmdPagePrevious.Visible = false;
+            // 
+            // cmdPageFirst
+            // 
+            this.cmdPageFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdPageFirst.BackColor = System.Drawing.Color.LightGray;
+            this.cmdPageFirst.Image = global::FSFormControls.Properties.Resources.DBGridViewFirst;
+            this.cmdPageFirst.Location = new System.Drawing.Point(270, 8);
+            this.cmdPageFirst.Name = "cmdPageFirst";
+            this.cmdPageFirst.Size = new System.Drawing.Size(16, 16);
+            this.cmdPageFirst.TabIndex = 14;
+            this.cmdPageFirst.UseVisualStyleBackColor = false;
+            this.cmdPageFirst.Visible = false;
+            // 
+            // cmdPageLast
+            // 
+            this.cmdPageLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmdPageLast.BackColor = System.Drawing.Color.LightGray;
+            this.cmdPageLast.Image = global::FSFormControls.Properties.Resources.DBGridViewLast;
+            this.cmdPageLast.Location = new System.Drawing.Point(318, 8);
+            this.cmdPageLast.Name = "cmdPageLast";
+            this.cmdPageLast.Size = new System.Drawing.Size(16, 16);
+            this.cmdPageLast.TabIndex = 13;
+            this.cmdPageLast.UseVisualStyleBackColor = false;
+            this.cmdPageLast.Visible = false;
+            // 
+            // datagrid
+            // 
+            this.datagrid.AllowUserToOrderColumns = true;
+            this.datagrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.datagrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.datagrid.Location = new System.Drawing.Point(0, 0);
+            this.datagrid.Name = "datagrid";
+            this.datagrid.Size = new System.Drawing.Size(360, 198);
+            this.datagrid.TabIndex = 1;
+            // 
+            // dataGridViewTotal
+            // 
+            this.dataGridViewTotal.AllowUserToOrderColumns = true;
+            this.dataGridViewTotal.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTotal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewTotal.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewTotal.Name = "dataGridViewTotal";
+            this.dataGridViewTotal.Size = new System.Drawing.Size(360, 84);
+            this.dataGridViewTotal.TabIndex = 2;
             // 
             // DBGridView
             // 
-            AllowDrop = true;
-            Controls.Add(splitContainer1);
-            Name = "DBGridView";
-            Size = new Size(281, 247);
-            splitContainer1.Panel1.ResumeLayout(false);
-            splitContainer1.Panel1.PerformLayout();
-            splitContainer1.Panel2.ResumeLayout(false);
-            ((ISupportInitialize) splitContainer1).EndInit();
-            splitContainer1.ResumeLayout(false);
-            ((ISupportInitialize) datagrid).EndInit();
-            ((ISupportInitialize) dataGridViewTotal).EndInit();
-            ((ISupportInitialize) picRefrescar).EndInit();
-            ResumeLayout(false);
+            this.AllowDrop = true;
+            this.Controls.Add(this.splitContainer1);
+            this.Name = "DBGridView";
+            this.Size = new System.Drawing.Size(360, 286);
+            ((System.ComponentModel.ISupportInitialize)(this.picRefrescar)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.datagrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTotal)).EndInit();
+            this.ResumeLayout(false);
+
         }
 
         #endregion

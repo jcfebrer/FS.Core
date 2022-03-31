@@ -130,10 +130,10 @@ namespace FSDatabase
         }
 
 
-        public BdUtils(string connectionString, Utils.TypeBd typeBd)
+        public BdUtils(string connectionString, Utils.ServerTypeEnum typeBd)
         {
             ConnString = connectionString;
-            Utils.BDType = typeBd;
+            Utils.ServerType = typeBd;
 
             SetVariables();
             SetDBMSType();
@@ -207,7 +207,7 @@ namespace FSDatabase
                 ConnString = TextUtil.Replace(ConnString, "{app_path}", FileUtils.ApplicationPath());
 
             //inicialiamos la variable SimbDate
-            if (Utils.BDType == Utils.TypeBd.Oledb || Utils.BDType == Utils.TypeBd.Odbc)
+            if (Utils.ServerType == Utils.ServerTypeEnum.Oledb || Utils.ServerType == Utils.ServerTypeEnum.Odbc)
                 Utils.m_simbDate = "#";
             else
                 Utils.m_simbDate = "'";
@@ -223,33 +223,33 @@ namespace FSDatabase
         {
             if (TextUtil.IndexOf(ProviderName, "sqlclient") >= 0 || TextUtil.IndexOf(ConnString, "sqloledb") >= 0)
             {
-                Utils.BDType = Utils.TypeBd.SQLServer;
+                Utils.ServerType = Utils.ServerTypeEnum.SQLServer;
             }
 
 
             if (TextUtil.IndexOf(ProviderName, "mysql") >= 0)
             {
-                Utils.BDType = Utils.TypeBd.MySQL;
+                Utils.ServerType = Utils.ServerTypeEnum.MySQL;
             }
 
             if (TextUtil.IndexOf(ProviderName, "oracle") >= 0)
             {
-                Utils.BDType = Utils.TypeBd.Oracle;
+                Utils.ServerType = Utils.ServerTypeEnum.Oracle;
             }
 
             if (TextUtil.IndexOf(ProviderName, "odbc") >= 0)
             {
-                Utils.BDType = Utils.TypeBd.Odbc;
+                Utils.ServerType = Utils.ServerTypeEnum.Odbc;
             }
 
             if (TextUtil.IndexOf(ProviderName, "oledb") >= 0)
             {
-                Utils.BDType = Utils.TypeBd.Oledb;
+                Utils.ServerType = Utils.ServerTypeEnum.Oledb;
             }
 
             if (TextUtil.IndexOf(ProviderName, "sqlite") >= 0)
             {
-                Utils.BDType = Utils.TypeBd.SQLite;
+                Utils.ServerType = Utils.ServerTypeEnum.SQLite;
             }
         }
 
@@ -258,33 +258,33 @@ namespace FSDatabase
         /// </summary>
         private void SetDBMSType()
         {
-            if (Utils.BDType == Utils.TypeBd.SQLServer)
+            if (Utils.ServerType == Utils.ServerTypeEnum.SQLServer)
             {
                 Dbms.dbmsType = DBMSType.SQLServer;
             }
 
 
-            if (Utils.BDType == Utils.TypeBd.MySQL)
+            if (Utils.ServerType == Utils.ServerTypeEnum.MySQL)
             {
                 Dbms.dbmsType = DBMSType.MySQL;
             }
 
-            if (Utils.BDType == Utils.TypeBd.Oracle)
+            if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
             {
                 Dbms.dbmsType = DBMSType.Oracle;
             }
 
-            if (Utils.BDType == Utils.TypeBd.Odbc)
+            if (Utils.ServerType == Utils.ServerTypeEnum.Odbc)
             {
                 Dbms.dbmsType = DBMSType.Odbc;
             }
 
-            if (Utils.BDType == Utils.TypeBd.Oledb)
+            if (Utils.ServerType == Utils.ServerTypeEnum.Oledb)
             {
                 Dbms.dbmsType = DBMSType.Access;
             }
 
-            if (Utils.BDType == Utils.TypeBd.SQLite)
+            if (Utils.ServerType == Utils.ServerTypeEnum.SQLite)
             {
                 Dbms.dbmsType = DBMSType.SQLite;
             }
@@ -333,7 +333,7 @@ namespace FSDatabase
                 if (Transaction == null)
                     Transaction = conn.BeginTransaction();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -378,7 +378,7 @@ namespace FSDatabase
                     return true;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -445,7 +445,7 @@ namespace FSDatabase
                     return conn.ServerVersion;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -479,7 +479,7 @@ namespace FSDatabase
                 Log.TraceInfo("DB:GetSchemaTable");
 
                 string[] restrictions;
-                if (Utils.BDType == Utils.TypeBd.Oracle)
+                if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
                 {
                     restrictions = new string[] {null};
                 }
@@ -495,7 +495,7 @@ namespace FSDatabase
                 using (DbConnection conn = Connection())
                 {
 
-                    dt = Utils.BDType == Utils.TypeBd.Oledb || Utils.BDType == Utils.TypeBd.Oracle
+                    dt = Utils.ServerType == Utils.ServerTypeEnum.Oledb || Utils.ServerType == Utils.ServerTypeEnum.Oracle
                         ? conn.GetSchema("Tables", restrictions)
                         : conn.GetSchema("Tables");
 
@@ -511,18 +511,18 @@ namespace FSDatabase
 
                         var add = true;
                         string schema;
-                        if (Utils.BDType == Utils.TypeBd.Oracle)
+                        if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
                             schema = Functions.Valor(dt.Rows[i]["OWNER"]);
                         else
                             schema = Functions.Valor(r["TABLE_SCHEMA"]);
                         if (schema != "")
                             schema += ".";
                         var tableName = schema + r["TABLE_NAME"];
-                        if (Utils.BDType == Utils.TypeBd.MySQL)
+                        if (Utils.ServerType == Utils.ServerTypeEnum.MySQL)
                             add = Functions.Valor(r["TABLE_SCHEMA"]).ToLower() == "portalnet";
-                        if (Utils.BDType == Utils.TypeBd.Access2000 || Utils.BDType == Utils.TypeBd.Access97)
+                        if (Utils.ServerType == Utils.ServerTypeEnum.Access2000 || Utils.ServerType == Utils.ServerTypeEnum.Access97)
                             add = TextUtil.Substring(r["TABLE_NAME"].ToString(), 0, 4) != "MSys";
-                        if (Utils.BDType == Utils.TypeBd.Oracle)
+                        if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
                             add = Functions.Valor(r["TYPE"]).ToLower() == "user";
 
                         r["TABLE_NAME"] = tableName;
@@ -543,7 +543,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -585,7 +585,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -609,7 +609,7 @@ namespace FSDatabase
 
                 restrictions[0] = null;
                 restrictions[1] = null;
-                if (Utils.BDType == Utils.TypeBd.Oracle)
+                if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
                 {
                     restrictions[2] = tableName.IndexOf(".") > 0 ? tableName.Split('.')[1] : tableName;
                     columnOrder = "";
@@ -629,7 +629,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -646,7 +646,7 @@ namespace FSDatabase
 
                 Log.TraceInfo("DB:GetSchemaForeignKeys");
 
-                if (Utils.BDType == Utils.TypeBd.Oledb)
+                if (Utils.ServerType == Utils.ServerTypeEnum.Oledb)
                 {
                     using (var conn2 = new OleDbConnection(ConnString))
                     {
@@ -655,11 +655,11 @@ namespace FSDatabase
                         dt = conn2.GetOleDbSchemaTable(OleDbSchemaGuid.Foreign_Keys, null);
                     }
                 }
-                else if (Utils.BDType == Utils.TypeBd.SQLServer)
+                else if (Utils.ServerType == Utils.ServerTypeEnum.SQLServer)
                 {
                     dt = GetSchemaForeignKeysSql();
                 }
-                else if (Utils.BDType == Utils.TypeBd.Oracle)
+                else if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
                 {
                     dt = GetSchemaForeignKeysOracle();
                 }
@@ -673,7 +673,7 @@ namespace FSDatabase
                 Web.SetCacheValue("cacheSchemaForeignKeys_ID" + ConnStringEntryId, dt);
                 return dt;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -707,7 +707,7 @@ namespace FSDatabase
                 Web.SetCacheValue("cacheSchemaForeignKeysSql_ID" + ConnStringEntryId, dt);
                 return dt;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -754,7 +754,7 @@ namespace FSDatabase
                 Web.SetCacheValue("cacheSchemaForeignKeysOracle_ID" + ConnStringEntryId, dt);
                 return dt;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -778,7 +778,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -799,7 +799,7 @@ namespace FSDatabase
                         return r["ColumnName"].ToString();
                 return "<Sin key>";
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -820,7 +820,7 @@ namespace FSDatabase
                         return r["ColumnName"].ToString();
                 return "<Sin desc>";
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -858,7 +858,7 @@ namespace FSDatabase
                     return schemas.ToArray();
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -884,7 +884,7 @@ namespace FSDatabase
                     dt = conn.GetSchema("Views");
 
                     // en Oracle solo mostramos las vistas que pertenezcan a esquemas de tipo "User"
-                    if (Utils.BDType == Utils.TypeBd.Oracle)
+                    if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
                     {
                         var schemas = GetOracleSchemas();
 
@@ -906,7 +906,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -934,7 +934,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -954,7 +954,7 @@ namespace FSDatabase
                     return conn.ConnectionString;
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -996,7 +996,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1054,7 +1054,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1110,14 +1110,14 @@ namespace FSDatabase
                     sOrderBy = sWhere + " " + sOrderBy;
                 }
 
-                if (Utils.BDType == Utils.TypeBd.MySQL || Utils.BDType == Utils.TypeBd.SQLite)
+                if (Utils.ServerType == Utils.ServerTypeEnum.MySQL || Utils.ServerType == Utils.ServerTypeEnum.SQLite)
                     sql = "select * from ( select * from (select * from " + sTableName + sOrderBy + " limit " +
                           iPageSize * iPage + ") " + sOrderByInv + " limit " + iPageSize + ") as " + sOrderBy;
                 else
                     sql = "select * from ( select top " + iPageSize + " * from (select top " + iPageSize * iPage +
                           " * from " +
                           sTableName + " " + sOrderBy + ") " + sOrderByInv + ") " + sOrderBy;
-                if (Utils.BDType == Utils.TypeBd.Oracle)
+                if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
                     sql = "select * from ( select * from (select * from " +
                           sTableName + " " + sOrderBy + ") WHERE ROWNUM <=" + iPageSize * iPage + " " + sOrderByInv +
                           ") WHERE ROWNUM <=" + iPageSize + sOrderBy;
@@ -1152,7 +1152,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1183,7 +1183,7 @@ namespace FSDatabase
 
                 sql2 = TextUtil.Replace(sql2, ";", "");
 
-                if (Utils.BDType != Utils.TypeBd.MySQL) sql2 = TextUtil.Replace(sql2, "select", "select top " + iPageSize * iPage);
+                if (Utils.ServerType != Utils.ServerTypeEnum.MySQL) sql2 = TextUtil.Replace(sql2, "select", "select top " + iPageSize * iPage);
 
                 int iOrder = TextUtil.IndexOf(sql2, "order by");
 
@@ -1202,7 +1202,7 @@ namespace FSDatabase
                 if (TextUtil.IndexOf(sOrderBy, " asc") > 0) sOrderByInv = TextUtil.Replace(sOrderBy, " asc", " DESC");
                 if (TextUtil.IndexOf(sOrderBy, " desc") > 0) sOrderByInv = TextUtil.Replace(sOrderBy, " desc", " ASC");
 
-                if (Utils.BDType == Utils.TypeBd.MySQL)
+                if (Utils.ServerType == Utils.ServerTypeEnum.MySQL)
                     sql = "select * from ( select * from (" + sql2 + sOrderBy + " limit " + iPageSize * iPage + ") p " +
                           sOrderByInv + " limit " + iPageSize + ") q " + sOrderBy;
                 else
@@ -1241,7 +1241,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1281,7 +1281,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1295,11 +1295,11 @@ namespace FSDatabase
         {
             try
             {
-                if (Utils.BDType == Utils.TypeBd.SQLServer)
+                if (Utils.ServerType == Utils.ServerTypeEnum.SQLServer)
                     return ExecuteScalar("select @@IDENTITY").ToString();
                 return null;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1314,11 +1314,11 @@ namespace FSDatabase
         {
             try
             {
-                if (Utils.BDType == Utils.TypeBd.SQLServer)
+                if (Utils.ServerType == Utils.ServerTypeEnum.SQLServer)
                     return ExecuteScalar("select SCOPE_IDENTITY()").ToString();
                 return null;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1363,7 +1363,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1402,7 +1402,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1438,7 +1438,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1469,7 +1469,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1515,7 +1515,7 @@ namespace FSDatabase
                 var ssql = "select count(*) from " + tableName;
                 return Convert.ToInt32(ExecuteScalar(ssql));
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1566,7 +1566,7 @@ namespace FSDatabase
                 else
                     return -1;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1586,7 +1586,7 @@ namespace FSDatabase
                 //    max = max2;
                 //}
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1608,7 +1608,7 @@ namespace FSDatabase
                 //    min = min2;
                 //}
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1623,7 +1623,7 @@ namespace FSDatabase
             {
                 sum = NumberUtils.NumberDouble(ExecuteScalar("select sum(" + column + ") from " + tableName));
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1639,7 +1639,7 @@ namespace FSDatabase
             {
                 avg = NumberUtils.NumberDouble(ExecuteScalar("select avg(" + column + ") from " + tableName));
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1693,7 +1693,7 @@ namespace FSDatabase
 
                 return dtSchema.Rows[colPos]["ColumnName"].ToString();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1709,7 +1709,7 @@ namespace FSDatabase
                     return true;
                 return false;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1736,7 +1736,7 @@ namespace FSDatabase
                     if (c.ToLower() == fieldName.ToLower())
                     {
                         field.Campo = c;
-                        field.Tipo = Type.GetType(Functions.Valor(fld["DataType"]));
+                        field.Tipo = Utils.GetFSTypeFromSystemType(Functions.Valor(fld["DataType"]));
                         field.Tamano = NumberUtils.NumberInt(fld["ColumnSize"]);
                         return field;
                     }
@@ -1744,7 +1744,7 @@ namespace FSDatabase
 
                 return null;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1809,7 +1809,7 @@ namespace FSDatabase
                         return true;
                 return false;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1841,7 +1841,7 @@ namespace FSDatabase
                         return schema + row["PK_TABLE_NAME"];
                 return string.Empty;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1865,12 +1865,12 @@ namespace FSDatabase
                 var dr = dt.Rows.Find(columnName);
 
                 if (dr != null)
-                    switch (Utils.BDType)
+                    switch (Utils.ServerType)
                     {
-                        case Utils.TypeBd.MySQL:
+                        case Utils.ServerTypeEnum.MySQL:
                             s = Functions.ValorZero(dr["COLUMN_COMMENT"].ToString());
                             break;
-                        case Utils.TypeBd.Odbc:
+                        case Utils.ServerTypeEnum.Odbc:
                             s = Functions.ValorZero(dr["REMARKS"].ToString());
                             break;
                         default:
@@ -1885,7 +1885,7 @@ namespace FSDatabase
 
                 return s;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1929,7 +1929,7 @@ namespace FSDatabase
 
                 return "CREATE TABLE [" + table + "] (" + sFields + ")";
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2018,7 +2018,7 @@ namespace FSDatabase
 
                 return "INSERT into [" + tableName + "] (" + sFields + ") VALUES (" + sData + ")";
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2102,7 +2102,7 @@ namespace FSDatabase
 
                 return "UPDATE [" + tableName + "] SET " + sFields + " WHERE " + condicion;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2186,7 +2186,7 @@ namespace FSDatabase
 
                 return "INSERT into [" + tableName + "] (" + sFields + ") VALUES (" + sData + ")";
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2269,7 +2269,7 @@ namespace FSDatabase
 
                 return "INSERT into [" + tableName + "] (" + sFields + ") VALUES (" + sData + ")";
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2342,7 +2342,7 @@ namespace FSDatabase
 
                 return "UPDATE [" + tableName + "] SET " + sData + " WHERE " + condition;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2407,7 +2407,7 @@ namespace FSDatabase
 
                 return "UPDATE [" + tableName + "] SET " + sData + " WHERE " + condition;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2593,7 +2593,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2624,7 +2624,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2650,7 +2650,7 @@ namespace FSDatabase
                 fs.Write(b, 0, b.Length);
                 fs.Close();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2688,7 +2688,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2720,7 +2720,7 @@ namespace FSDatabase
                 cmd.ExecuteNonQuery();
                 cn.Close();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2742,7 +2742,7 @@ namespace FSDatabase
 
                 return sb.ToString();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2761,40 +2761,40 @@ namespace FSDatabase
                 //sb.Append("SqlClientPermission: " + FSLibrary.Functions.TestPermission(new SqlClientPermission(PermissionState.Unrestricted)));
                 return sb.ToString();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
         }
 
-        public string GenerateConnectionString(Utils.TypeBd baseType, string baseName, string server, string fileName,
+        public string GenerateConnectionString(Utils.ServerTypeEnum baseType, string baseName, string server, string fileName,
             string userName, string password)
         {
             try
             {
                 switch (baseType)
                 {
-                    case Utils.TypeBd.Odbc:
+                    case Utils.ServerTypeEnum.Odbc:
                         return "Provider=MSDASQL.1;Password=" + password + ";Persist Security Info=True;User ID=" +
                                userName +
                                ";Data Source=" + baseName;
-                    case Utils.TypeBd.Oracle:
+                    case Utils.ServerTypeEnum.Oracle:
                         return "Provider=OraOLEDB.Oracle.1;Password=" + password +
                                ";Persist Security Info=True;User ID=" +
                                userName + ";Data Source=" + baseName;
-                    case Utils.TypeBd.SQLServer:
+                    case Utils.ServerTypeEnum.SQLServer:
                         return "Provider=SQLOLEDB.1;Password=" + password + ";Persist Security Info=True;User ID=" +
                                userName + ";Initial Catalog=" + baseName + ";Data Source=" + server;
-                    case Utils.TypeBd.Access2000:
+                    case Utils.ServerTypeEnum.Access2000:
                         return "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + fileName +
                                ";Persist Security Info=False";
-                    case Utils.TypeBd.Access97:
+                    case Utils.ServerTypeEnum.Access97:
                         return "Provider=Microsoft.Jet.OLEDB.3.51;Persist Security Info=False;Data Source=" + fileName;
                 }
 
                 return string.Empty;
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }

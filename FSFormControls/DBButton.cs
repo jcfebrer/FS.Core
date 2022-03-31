@@ -56,8 +56,8 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
-            get { return Button1.Text; }
-            set { Button1.Text = value; }
+            get { return button.Text; }
+            set { button.Text = value; }
         }
 
         public Color FillColorStart
@@ -66,14 +66,14 @@ namespace FSFormControls
             set
             {
                 m_FillColorStart = value;
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
         public string Key
         {
-            get { return Button1.Name; }
-            set { Button1.Name = value; }
+            get { return button.Name; }
+            set { button.Name = value; }
         }
 
         public Color FillColorEnd
@@ -82,7 +82,7 @@ namespace FSFormControls
             set
             {
                 m_FillColorEnd = value;
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
@@ -92,7 +92,7 @@ namespace FSFormControls
             set
             {
                 m_FillHoverColorStart = value;
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
@@ -102,7 +102,7 @@ namespace FSFormControls
             set
             {
                 m_FillHoverColorEnd = value;
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
@@ -112,7 +112,7 @@ namespace FSFormControls
             set
             {
                 m_TextColorStart = value;
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
@@ -122,28 +122,28 @@ namespace FSFormControls
             set
             {
                 m_TextColorEnd = value;
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
         public Font TextFont
         {
-            get { return Button1.Font; }
-            set { Button1.Font = value; }
+            get { return button.Font; }
+            set { button.Font = value; }
         }
 
         public DBAppearance Appearance { get; set; }
 
         public ContentAlignment TextAlign
         {
-            get { return Button1.TextAlign; }
-            set { Button1.TextAlign = value; }
+            get { return button.TextAlign; }
+            set { button.TextAlign = value; }
         }
 
         public FlatStyle FlatStyle
         {
-            get { return Button1.FlatStyle; }
-            set { Button1.FlatStyle = value; }
+            get { return button.FlatStyle; }
+            set { button.FlatStyle = value; }
         }
 
         public ButtonStyleType ButtonStyle
@@ -155,16 +155,16 @@ namespace FSFormControls
                 m_ButtonStyle = value;
                 if (value == ButtonStyleType.DropDown)
                 {
-                    Button1.ImageAlign = ContentAlignment.MiddleRight;
-                    Button1.Image = (Bitmap) resources.GetObject("Button1.Image");
+                    button.ImageAlign = ContentAlignment.MiddleRight;
+                    button.Image = (Bitmap) resources.GetObject("button.Image");
                 }
                 else
                 {
-                    Button1.ImageAlign = ContentAlignment.MiddleCenter;
-                    Button1.Image = null;
+                    button.ImageAlign = ContentAlignment.MiddleCenter;
+                    button.Image = null;
                 }
 
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
@@ -177,20 +177,20 @@ namespace FSFormControls
             set
             {
                 m_ToolTip = value;
-                ToolTip1.SetToolTip(Button1, m_ToolTip);
+                ToolTip1.SetToolTip(button, m_ToolTip);
             }
         }
 
         public Image Image
         {
-            get { return Button1.Image; }
-            set { Button1.Image = value; }
+            get { return button.Image; }
+            set { button.Image = value; }
         }
 
         public ContentAlignment ImageAlign
         {
-            get { return Button1.ImageAlign; }
-            set { Button1.ImageAlign = value; }
+            get { return button.ImageAlign; }
+            set { button.ImageAlign = value; }
         }
 
         public LinearGradientMode GradientMode
@@ -199,7 +199,7 @@ namespace FSFormControls
             set
             {
                 m_GradientMode = value;
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
@@ -209,21 +209,23 @@ namespace FSFormControls
             set
             {
                 m_Gradient = value;
-                Button1.Refresh();
+                button.Refresh();
             }
         }
 
         public DialogResult DialogResult
         {
-            get { return Button1.DialogResult; }
+            get { return button.DialogResult; }
 
-            set { Button1.DialogResult = value; }
+            set { button.DialogResult = value; }
         }
 
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            if (null != Click) Click(this, e);
+            if (null != Click) 
+                Click(this, e);
+
             DropDownMenu_PopUp(this, e);
         }
 
@@ -233,10 +235,10 @@ namespace FSFormControls
             var pos = new Point();
 
             if (ButtonStyle == ButtonStyleType.DropDown)
-                if (!(DropDownMenu == null))
+                if (DropDownMenu != null)
                 {
                     pos = Location;
-                    pos.Y = pos.Y + Button1.Height;
+                    pos.Y = pos.Y + button.Height;
 
                     DropDownMenu.Show(ParentForm, pos);
                 }
@@ -249,7 +251,8 @@ namespace FSFormControls
             Brush HoverBrush = null;
             var StringSize = new SizeF();
 
-            if (m_Gradient == false) return;
+            if (m_Gradient == false) 
+                return;
 
             var recF = new RectangleF(0, 0, Width, Height);
             HoverBrush = new LinearGradientBrush(recF, FillHoverColorStart, FillHoverColorEnd, m_GradientMode);
@@ -266,26 +269,26 @@ namespace FSFormControls
             else
                 ControlPaint.DrawBorder3D(e.Graphics, ClientRectangle, Border3DStyle.Etched);
 
-            StringSize = e.Graphics.MeasureString(Button1.Text, TextFont);
+            StringSize = e.Graphics.MeasureString(button.Text, TextFont);
             switch (TextAlign)
             {
                 case ContentAlignment.BottomCenter:
                 case ContentAlignment.MiddleCenter:
                 case ContentAlignment.TopCenter:
-                    e.Graphics.DrawString(Button1.Text, TextFont, TextBrush,
+                    e.Graphics.DrawString(button.Text, TextFont, TextBrush,
                         Convert.ToInt32(Width / 2) - Convert.ToInt32(StringSize.Width / 2),
                         Convert.ToInt32(Height / 2) - Convert.ToInt32(StringSize.Height / 2));
                     break;
                 case ContentAlignment.BottomLeft:
                 case ContentAlignment.MiddleLeft:
                 case ContentAlignment.TopLeft:
-                    e.Graphics.DrawString(Button1.Text, TextFont, TextBrush, Convert.ToInt32(0 + 5),
+                    e.Graphics.DrawString(button.Text, TextFont, TextBrush, Convert.ToInt32(0 + 5),
                         Convert.ToInt32(Height / 2) - Convert.ToInt32(StringSize.Height / 2));
                     break;
                 case ContentAlignment.BottomRight:
                 case ContentAlignment.MiddleRight:
                 case ContentAlignment.TopRight:
-                    e.Graphics.DrawString(Button1.Text, TextFont, TextBrush,
+                    e.Graphics.DrawString(button.Text, TextFont, TextBrush,
                         Convert.ToInt32(Width - StringSize.Width - 5),
                         Convert.ToInt32(Height / 2) - Convert.ToInt32(StringSize.Height / 2));
                     break;
@@ -296,7 +299,7 @@ namespace FSFormControls
         private void Button1_MouseLeave(object sender, EventArgs e)
         {
             m_SwapMouse = false;
-            Button1.Refresh();
+            button.Refresh();
             base.OnMouseLeave(new EventArgs());
         }
 
@@ -304,7 +307,7 @@ namespace FSFormControls
         private void Button1_MouseEnter(object sender, EventArgs e)
         {
             m_SwapMouse = true;
-            Button1.Refresh();
+            button.Refresh();
             base.OnMouseEnter(new EventArgs());
         }
 
@@ -312,7 +315,7 @@ namespace FSFormControls
         private void Button1_MouseDown(object sender, MouseEventArgs e)
         {
             m_DownMouse = true;
-            Button1.Refresh();
+            button.Refresh();
             base.OnMouseDown(e);
         }
 
@@ -320,13 +323,13 @@ namespace FSFormControls
         private void Button1_MouseUp(object sender, MouseEventArgs e)
         {
             m_DownMouse = false;
-            Button1.Refresh();
+            button.Refresh();
             base.OnMouseUp(e);
         }
 
         #region '" Código generado por el Diseñador de Windows Forms "' 
 
-        private Button Button1;
+        private Button button;
         internal ToolTip ToolTip1;
         private IContainer components;
 
@@ -337,12 +340,12 @@ namespace FSFormControls
 
             SetStyle(ControlStyles.DoubleBuffer, true);
 
-            Button1.Click += Button1_Click;
-            Button1.Paint += Button1_Paint;
-            Button1.MouseLeave += Button1_MouseLeave;
-            Button1.MouseEnter += Button1_MouseEnter;
-            Button1.MouseDown += Button1_MouseDown;
-            Button1.MouseUp += Button1_MouseUp;
+            button.Click += Button1_Click;
+            button.Paint += Button1_Paint;
+            button.MouseLeave += Button1_MouseLeave;
+            button.MouseEnter += Button1_MouseEnter;
+            button.MouseDown += Button1_MouseDown;
+            button.MouseUp += Button1_MouseUp;
         }
 
         public DBButton()
@@ -369,22 +372,22 @@ namespace FSFormControls
         private void InitializeComponent()
         {
             components = new Container();
-            Button1 = new Button();
+            button = new Button();
             ToolTip1 = new ToolTip(components);
             SuspendLayout();
             // 
             // Button1
             // 
-            Button1.Dock = DockStyle.Fill;
-            Button1.ImageAlign = ContentAlignment.MiddleRight;
-            Button1.Location = new Point(0, 0);
-            Button1.Name = "Button1";
-            Button1.Size = new Size(95, 39);
-            Button1.TabIndex = 0;
+            button.Dock = DockStyle.Fill;
+            button.ImageAlign = ContentAlignment.MiddleRight;
+            button.Location = new Point(0, 0);
+            button.Name = "Button1";
+            button.Size = new Size(95, 39);
+            button.TabIndex = 0;
             // 
             // DBButton
             // 
-            Controls.Add(Button1);
+            Controls.Add(button);
             Name = "DBButton";
             Size = new Size(95, 39);
             ResumeLayout(false);
@@ -392,12 +395,12 @@ namespace FSFormControls
 
         public void NotifyDefault(bool value)
         {
-            Button1.NotifyDefault(value);
+            button.NotifyDefault(value);
         }
 
         public void PerformClick()
         {
-            Button1.PerformClick();
+            button.PerformClick();
         }
 
         #endregion

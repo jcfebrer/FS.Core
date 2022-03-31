@@ -118,7 +118,7 @@ namespace FSFormControls
                 OpenFileDialog1.Filter = "JPEG|*.jpg|Mapa de bits|*.bmp|GIF|*.gif|Metarchivo|*.wmf|Icono|*.ico";
                 OpenFileDialog1.ShowDialog();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

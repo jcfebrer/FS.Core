@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using FSException;
 using FSLibrary;
 
 #endregion
@@ -67,7 +68,7 @@ namespace FSFormControls
                 MessageBox.Show("Mensaje enviado.");
                 Close();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show(ex.Message);
             }

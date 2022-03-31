@@ -29,7 +29,7 @@ namespace FSExcel
             {
                 m_WrkBk = m_Excel.Workbooks.Open(fileName);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

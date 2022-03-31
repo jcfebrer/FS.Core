@@ -138,7 +138,7 @@ namespace FSFormControls
 
                 smtp.Send(insMail);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

@@ -118,7 +118,7 @@ namespace FSFormControls
                 ColumnDate.BringToFront();
                 ColumnDate.Focus();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -236,7 +236,7 @@ namespace FSFormControls
                 {
                     SetColumnValueAtRow(m_source, m_rowNum, v);
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw new ExceptionUtil(ex);
                 }

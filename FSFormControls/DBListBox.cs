@@ -268,7 +268,7 @@ namespace FSFormControls
                         isBinding = true;
                     }
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }

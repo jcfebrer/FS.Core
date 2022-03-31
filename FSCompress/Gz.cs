@@ -31,7 +31,7 @@ namespace FSCompress
                         {
                             StreamUtil.CopyTo(fileToBeZippedAsStream, gzipStream);
                         }
-                        catch (Exception ex)
+                        catch (ExceptionUtil ex)
                         {
                             throw new ExceptionUtil(ex);
                         }
@@ -57,7 +57,7 @@ namespace FSCompress
                         {
                             StreamUtil.CopyTo(decompressionStream, decompressedStream);
                         }
-                        catch (Exception ex)
+                        catch (ExceptionUtil ex)
                         {
                             throw new ExceptionUtil(ex);
                         }
@@ -79,7 +79,7 @@ namespace FSCompress
                     return compressedStream.ToArray();
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -97,7 +97,7 @@ namespace FSCompress
                     return resultStream.ToArray();
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -181,7 +181,7 @@ namespace FSCompress
 
                 return true;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -224,7 +224,7 @@ namespace FSCompress
                             CompressFile(sourceFolder, sRelativePath, str);
                     }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -238,7 +238,7 @@ namespace FSCompress
                 using (GZipStream zipStream = new GZipStream(inFile, CompressionMode.Decompress, true))
                     while (DecompressFile(targetFolder, zipStream)) ;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

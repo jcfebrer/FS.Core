@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSException;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -55,7 +56,7 @@ namespace FSFormControls.UserControls.DBGridView
                 }
 
                 // Showing the PrintOption Form
-                var dlg = new GridViewPrintOptions(AvailableColumns);
+                var dlg = new DBGridViewPrintOptions(AvailableColumns);
                 if (dlg.ShowDialog() != DialogResult.OK) return;
 
                 PrintTitle = dlg.PrintTitle;
@@ -88,7 +89,7 @@ namespace FSFormControls.UserControls.DBGridView
                 printDoc.BeginPrint -= PrintDoc_BeginPrint;
                 printDoc.PrintPage -= PrintDoc_PrintPage;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -135,7 +136,7 @@ namespace FSFormControls.UserControls.DBGridView
                 NewPage = true;
                 RowPos = 0;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -334,7 +335,7 @@ namespace FSFormControls.UserControls.DBGridView
 
                 e.HasMorePages = false;
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

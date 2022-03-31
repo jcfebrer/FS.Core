@@ -173,7 +173,7 @@ namespace FSFormControls
                         rs.Close();
                     }
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw new ExceptionUtil(ex);
                 }

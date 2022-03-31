@@ -1,6 +1,6 @@
 namespace FSFormControls.UserControls.DBGridView
 {
-    partial class GridViewPrintOptions
+    partial class DBGridViewPrintOptions
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@ namespace FSFormControls.UserControls.DBGridView
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GridViewPrintOptions));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBGridViewPrintOptions));
             this.rdoSelectedRows = new System.Windows.Forms.RadioButton();
             this.rdoAllRows = new System.Windows.Forms.RadioButton();
             this.chkFitToPageWidth = new System.Windows.Forms.CheckBox();
@@ -167,7 +167,7 @@ namespace FSFormControls.UserControls.DBGridView
             this.chklst.Size = new System.Drawing.Size(170, 244);
             this.chklst.TabIndex = 13;
             // 
-            // GridViewPrintOptions
+            // DBGridViewPrintOptions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -181,7 +181,7 @@ namespace FSFormControls.UserControls.DBGridView
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.chklst);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "GridViewPrintOptions";
+            this.Name = "DBGridViewPrintOptions";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Opciones de impresión";

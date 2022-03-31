@@ -172,7 +172,7 @@ namespace FSFormControls
                         sstr = strValue + " = " + anObj;
                     aRowA = objSource.Select(sstr);
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw new ExceptionUtil("Expresión: " + sstr, ex);
                 }

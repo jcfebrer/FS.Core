@@ -151,7 +151,7 @@ namespace FSFormControls
                 m_ShowTotals = value;
                 DataGridTotal.Visible = value;
                 SplitContainer1.Panel2Collapsed = !value;
-                Resize();
+                ResizeGrid();
             }
         }
 
@@ -330,7 +330,7 @@ namespace FSFormControls
             set { DataGrid1.CurrentCell = value; }
         }
 
-        public override bool AutoSize { get; set; } = true;
+        public bool AutoSizeColumns { get; set; }
 
         public Global.AccessMode Mode
         {
@@ -471,7 +471,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(picCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -495,7 +495,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(boolCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -528,7 +528,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(textCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -557,7 +557,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(textCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -578,7 +578,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(tp);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -609,7 +609,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(textCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -640,7 +640,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(textCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -670,7 +670,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(textCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -690,7 +690,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(fileCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -739,7 +739,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(textCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -784,7 +784,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(comboCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -811,7 +811,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(buttonCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -842,7 +842,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(button2Col);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -933,7 +933,7 @@ namespace FSFormControls
                                     break;
                             }
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -958,7 +958,7 @@ namespace FSFormControls
                         {
                             dgTableStyle.GridColumnStyles.Add(textCol);
                         }
-                        catch (Exception e)
+                        catch (ExceptionUtil e)
                         {
                             throw new ExceptionUtil("Error columna: " + Columns[col].FieldDB, e);
                         }
@@ -973,14 +973,14 @@ namespace FSFormControls
                         var dtcol = DataControl.DataTable.Columns[Columns[col].FieldDB];
                         if (dtcol != null) dtcol.Unique = Columns[col].Unique;
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         throw new ExceptionUtil(e);
                     }
 
                 if (Columns[col].Hidden) HideColumn(Columns[col].FieldDB);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil("Error al Añadir la columna: " + Columns[col].FieldDB, e);
             }
@@ -1053,7 +1053,7 @@ namespace FSFormControls
                                                 true, true);
                                             DataControl.Action = DBControl.DbActionTypes.None;
                                         }
-                                        catch (Exception ex)
+                                        catch (ExceptionUtil ex)
                                         {
                                             throw new ExceptionUtil(ex);
                                         }
@@ -1087,7 +1087,6 @@ namespace FSFormControls
 
         private ArrayList GetDataGridColumns()
         {
-            var htblCols = new Hashtable();
             var alistCols = new ArrayList();
 
 
@@ -1105,7 +1104,7 @@ namespace FSFormControls
 
         public void ResizeColumns()
         {
-            if (AutoSize)
+            if (AutoSizeColumns)
                 FunctionsGrid.AutoSizeColumnsToContent(DataControl, Columns, DataGrid1.CreateGraphics(),
                     DataGrid1.Font, dgTableStyle.GridColumnStyles);
             else
@@ -1129,7 +1128,7 @@ namespace FSFormControls
 
                 if (result == DialogResult.OK) pd.Print();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1151,7 +1150,7 @@ namespace FSFormControls
                 dlg.WindowState = FormWindowState.Maximized;
                 dlg.ShowDialog();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1542,9 +1541,9 @@ namespace FSFormControls
 
                 dt.Rows.Add(dr);
 
-                Resize();
+                ResizeGrid();
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1623,7 +1622,7 @@ namespace FSFormControls
 
                 Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1654,7 +1653,7 @@ namespace FSFormControls
 
                 Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1696,7 +1695,7 @@ namespace FSFormControls
 
                 Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1903,7 +1902,7 @@ namespace FSFormControls
                         Columns.Add(DataControl.ColumnMapping[f].FieldDB, DataControl.ColumnMapping[f].HeaderCaption);
             }
 
-            if (AutoSize)
+            if (AutoSizeColumns)
                 FunctionsGrid.AutoSizeColumnsToContent(DataControl, Columns, DataGrid1.CreateGraphics(),
                     DataGrid1.Font, ColumnStyles);
             else
@@ -1914,7 +1913,7 @@ namespace FSFormControls
                 {
                     AddColumn(f);
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -1975,7 +1974,7 @@ namespace FSFormControls
                 SplitContainer1.Panel2Collapsed = true;
             }
 
-            Resize();
+            ResizeGrid();
         }
 
 
@@ -1990,7 +1989,7 @@ namespace FSFormControls
 
                 if (null != ColumnChanging) ColumnChanging(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2012,7 +2011,7 @@ namespace FSFormControls
                 if (null != RowChanging)
                     RowChanging(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2033,7 +2032,7 @@ namespace FSFormControls
                 if (null != RowChanged)
                     RowChanged(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2059,7 +2058,7 @@ namespace FSFormControls
 
                 if (null != ColumnChanged) ColumnChanged(this, e);
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2135,7 +2134,7 @@ namespace FSFormControls
                 if (DataControl.DataTable.Rows.Count > row)
                     UpdateAsociatedColumns(DataControl.DataTable.Rows[row], updateDescriptionColumn, acceptChanges);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2330,7 +2329,7 @@ namespace FSFormControls
                                         }
                                 }
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -2395,7 +2394,7 @@ namespace FSFormControls
                                 }
                             }
                     }
-                    catch (Exception e)
+                    catch (ExceptionUtil e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -2649,7 +2648,7 @@ namespace FSFormControls
                         if (!Convert.IsDBNull(v))
                             DataControl.UpdateRelationDBControls(FindForm().Controls, true, v);
                 }
-                catch (Exception ex)
+                catch (ExceptionUtil ex)
                 {
                     throw new ExceptionUtil(ex);
                 }
@@ -2677,7 +2676,7 @@ namespace FSFormControls
             {
                 return DataGrid1[row, column];
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2710,7 +2709,7 @@ namespace FSFormControls
                 {
                     return DataGrid1[row, i];
                 }
-                catch (Exception e)
+                catch (ExceptionUtil e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -2742,7 +2741,7 @@ namespace FSFormControls
             {
                 return DataControl.DataTable.Rows[row][Columns[column].FieldDB];
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2772,7 +2771,7 @@ namespace FSFormControls
             {
                 return DataControl.DataTable.Rows[row][columnName];
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -3041,7 +3040,7 @@ namespace FSFormControls
                         DataControl.DataTable.Columns[Columns[f].FieldDB].AutoIncrementSeed =
                             Convert.ToInt64(Utils.MaxColumn(DataControl.DataTable, Columns[f].FieldDB) + 1);
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -3305,7 +3304,7 @@ namespace FSFormControls
         }
 
 
-        public new void Resize()
+        public void ResizeGrid()
         {
             if (ShowTotals)
             {
@@ -3333,9 +3332,9 @@ namespace FSFormControls
         {
             try
             {
-                Resize();
+                ResizeGrid();
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -3438,7 +3437,7 @@ namespace FSFormControls
             DataGrid1.MouseMove += DataGrid1_MouseMove;
             PrintDocument1.PrintPage += PrintDocument1_PrintPage;
             PrintPreviewDialog1.Load += PrintPreviewDialog1_Load;
-            base.Resize += DBGrid_Resize;
+            this.Resize += DBGrid_Resize;
             DataGrid1.MouseLeave += DataGrid1_MouseLeave;
             PictureBox1.Click += PictureBox1_Click;
 

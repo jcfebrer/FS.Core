@@ -33,7 +33,7 @@ namespace FSFormControls
             //    DbRecord1.Columns.Add(coldata);
             //}
 
-            DbRecord1.AutoSize = AutoSize;
+            DbRecord1.AutoSizeColumns = true;
 
             DbRecord1.Fill();
 
@@ -86,7 +86,6 @@ namespace FSFormControls
             // DbToolBar1
             // 
             this.DbToolBar1.Size = new System.Drawing.Size(722, 28);
-            this.DbToolBar1.ToolBarType = FSFormControls.DBToolBarEx.tToolbar.ToolbarXP;
             this.DbToolBar1.VisibleScroll = true;
             // 
             // mnuForm
@@ -108,7 +107,7 @@ namespace FSFormControls
             this.DbRecord1.AllowRecord = true;
             this.DbRecord1.AllowSave = true;
             this.DbRecord1.AllowSearch = true;
-            this.DbRecord1.AutoSize = true;
+            this.DbRecord1.AutoSizeColumns = true;
             this.DbRecord1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
                         this.DbRecord1.DateType = FSFormControls.DBRecord.t_date.Normal;
             this.DbRecord1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -147,7 +146,6 @@ namespace FSFormControls
             this.Controls.Add(this.DbRecord1);
             this.Name = "frmRecord";
             this.Text = "Registro";
-            this.ToolbarType = FSFormControls.DBToolBarEx.tToolbar.ToolbarXP;
             this.Controls.SetChildIndex(this.DbToolBar1, 0);
             this.Controls.SetChildIndex(this.DbRecord1, 0);
             this.ResumeLayout(false);

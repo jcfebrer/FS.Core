@@ -1579,28 +1579,6 @@ namespace FSLibrary
             return str;
         }
 
-        /// <summary>
-        /// Replaces the re g2.
-        /// </summary>
-        /// <param name="original">The original.</param>
-        /// <param name="pattern">The pattern.</param>
-        /// <param name="replacement">The replacement.</param>
-        /// <returns></returns>
-        public static string ReplaceREG2(string original, string pattern, string replacement)
-        {
-            if (original == null)
-                return string.Empty;
-            if (replacement == null)
-                return original;
-            if (pattern == null)
-                return original;
-            if (original.IndexOf(pattern, StringComparison.CurrentCultureIgnoreCase) == -1)
-                return original;
-            string repl = original;
-            while (repl.IndexOf(pattern) > 0)
-                repl = Regex.Replace(original, Regex.Escape(pattern), replacement, RegexOptions.IgnoreCase);
-            return repl;
-        }
 
         /// <summary>
         /// Uniques the words.
@@ -2772,17 +2750,41 @@ namespace FSLibrary
         /// <summary>
         /// Replaces the reg.
         /// </summary>
-        /// <param name="cadena">The cadena.</param>
+        /// <param name="str">The string.</param>
         /// <param name="regex">The regex.</param>
         /// <param name="regreplace">The regreplace.</param>
         /// <param name="options">The options.</param>
         /// <returns></returns>
-        public static string ReplaceREG(string cadena, string regex, string regreplace, RegexOptions options)
+        public static string ReplaceREG(string str, string regex, string regreplace, RegexOptions options)
         {
             var oReg = new Regex(regex, options);
-            var oMatch = oReg.Match(cadena);
-            if (oMatch.Success) return oReg.Replace(cadena, regreplace);
-            return cadena;
+            var oMatch = oReg.Match(str);
+            if (oMatch.Success) return oReg.Replace(str, regreplace);
+            return str;
+        }
+
+
+        /// <summary>
+        /// Replaces the recursive regex.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <param name="regex">The regex.</param>
+        /// <param name="regreplace">The regreplace.</param>
+        /// <returns></returns>
+        public static string ReplaceRecursiveREG(string str, string regex, string regreplace)
+        {
+            if (str == null)
+                return string.Empty;
+            if (regreplace == null)
+                return str;
+            if (regex == null)
+                return str;
+            if (str.IndexOf(regex, StringComparison.CurrentCultureIgnoreCase) == -1)
+                return str;
+            string repl = str;
+            while (repl.IndexOf(regex) > 0)
+                repl = Regex.Replace(str, Regex.Escape(regex), regreplace, RegexOptions.IgnoreCase);
+            return repl;
         }
 
         /// <summary>

@@ -262,7 +262,7 @@ namespace FSFormControls
                 //    Label1.DataBindings.Add(dbnText);
                 //}
             }
-            catch (Exception e)
+            catch (ExceptionUtil e)
             {
                 throw new ExceptionUtil("Campo: " + DBField, e);
             }
@@ -333,7 +333,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (ExceptionUtil ex)
             {
                 throw new ExceptionUtil(ex);
             }

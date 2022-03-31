@@ -21,18 +21,17 @@ namespace FSNetwork
         {
             m_WhoisServers = new Hashtable();
 
-            Hashtable transTemp0 = m_WhoisServers;
-            transTemp0.Add("com", "whois.register.com");
-            transTemp0.Add("org", "whois.register.com");
-            transTemp0.Add("net", "whois.register.com");
-            transTemp0.Add("ac", "whois.nic.ac");
-            transTemp0.Add("be", "whois.dns.be");
-            transTemp0.Add("de", "whois.denic.de");
-            transTemp0.Add("fr", "whois.nic.fr");
-            transTemp0.Add("gov", "whois.nic.gov");
-            transTemp0.Add("mil", "whois.nic.mil");
-            transTemp0.Add("uk", "whois.nic.uk");
-            transTemp0.Add("es", "whois.register.com");
+            m_WhoisServers.Add("com", "whois.register.com");
+            m_WhoisServers.Add("org", "whois.register.com");
+            m_WhoisServers.Add("net", "whois.register.com");
+            m_WhoisServers.Add("ac", "whois.nic.ac");
+            m_WhoisServers.Add("be", "whois.dns.be");
+            m_WhoisServers.Add("de", "whois.denic.de");
+            m_WhoisServers.Add("fr", "whois.nic.fr");
+            m_WhoisServers.Add("gov", "whois.nic.gov");
+            m_WhoisServers.Add("mil", "whois.nic.mil");
+            m_WhoisServers.Add("uk", "whois.nic.uk");
+            m_WhoisServers.Add("es", "whois.register.com");
         }
 
         public int Timeout
@@ -82,12 +81,12 @@ namespace FSNetwork
                             builder.Append(InputStream.ReadLine() + "\r\n");
                         }
                     }
-                    catch (Exception Err)
+                    catch (ExceptionUtil Err)
                     {
                         throw new ExceptionUtil("Error geting whois data from whois server", Err);
                     }
                 }
-                catch (Exception Err)
+                catch (ExceptionUtil Err)
                 {
                     throw new ExceptionUtil("Error sending whois request to whois server", Err);
                 }

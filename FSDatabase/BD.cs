@@ -25,9 +25,7 @@ namespace FSDatabase
 
         public int Tamano;
 
-        public Type Tipo;
-
-        public string Tipo2;
+        public Utils.FieldTypeEnum Tipo;
 
         public string Valor;
 
@@ -35,52 +33,53 @@ namespace FSDatabase
         {
             Campo = "";
             Valor = "";
-            Tipo = typeof(string);
+            Tipo = Utils.FieldTypeEnum.String;
             Obligatorio = false;
             Tamano = 50;
-            Tipo2 = "";
         }
 
-        public Field(string campo, object valor)
+        public Field(string campo, string valor)
         {
             Campo = campo;
             Valor = valor.ToString();
-            Tipo = valor.GetType();
+            Tipo = Utils.FieldTypeEnum.String;
         }
 
-        public Field(string campo, string valor, Type tipo)
+        public Field(string campo, int valor)
+        {
+            Campo = campo;
+            Valor = valor.ToString();
+            Tipo = Utils.FieldTypeEnum.Number;
+        }
+
+        public Field(string campo, DateTime valor)
+        {
+            Campo = campo;
+            Valor = valor.ToString();
+            Tipo = Utils.FieldTypeEnum.DateTime;
+        }
+
+        public Field(string campo, bool valor)
+        {
+            Campo = campo;
+            Valor = valor.ToString();
+            Tipo = Utils.FieldTypeEnum.Boolean;
+        }
+
+        public Field(string campo, string valor, Utils.FieldTypeEnum tipo)
         {
             Campo = campo;
             Valor = valor;
             Tipo = tipo;
         }
 
-
-        public Field(string campo, string valor, Type tipo, string tipo2)
-        {
-            Campo = campo;
-            Valor = valor;
-            Tipo = tipo;
-            Tipo2 = tipo2;
-        }
-
-        public Field(string campo, string valor, Type tipo, int tamano, bool obligatorio)
+        public Field(string campo, string valor, Utils.FieldTypeEnum tipo, int tamano, bool obligatorio)
         {
             Campo = campo;
             Valor = valor;
             Tipo = tipo;
             Obligatorio = obligatorio;
             Tamano = tamano;
-        }
-
-        public Field(string campo, string valor, Type tipo, string tipo2, int tamano, bool obligatorio)
-        {
-            Campo = campo;
-            Valor = valor;
-            Tipo = tipo;
-            Obligatorio = obligatorio;
-            Tamano = tamano;
-            Tipo2 = tipo2;
         }
     }
 
@@ -114,12 +113,27 @@ namespace FSDatabase
             return null;
         }
 
-        public int Add(string campo, object valor)
+        public int Add(string campo, int valor)
         {
             return List.Add(new Field(campo, valor));
         }
 
-        public int Add(string campo, string valor, Type tipo)
+        public int Add(string campo, bool valor)
+        {
+            return List.Add(new Field(campo, valor));
+        }
+
+        public int Add(string campo, DateTime valor)
+        {
+            return List.Add(new Field(campo, valor));
+        }
+
+        public int Add(string campo, string valor)
+        {
+            return List.Add(new Field(campo, valor));
+        }
+
+        public int Add(string campo, string valor, Utils.FieldTypeEnum tipo)
         {
             return List.Add(new Field(campo, valor, tipo));
         }

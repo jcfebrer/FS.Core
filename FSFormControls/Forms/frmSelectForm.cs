@@ -90,7 +90,7 @@ namespace FSFormControls
                                               | AnchorStyles.Left
                                               | AnchorStyles.Right;
             DbGrid1.AutoSave = true;
-            DbGrid1.AutoSize = true;
+            DbGrid1.AutoSizeColumns = true;
             DbGrid1.BackGroundColor = Color.LightGray;
             DbGrid1.BorderStyle = BorderStyle.Fixed3D;
             DbGrid1.CaptionBackColor = SystemColors.ActiveCaption;

@@ -2,19 +2,19 @@
 using System.ComponentModel;
 using FSLibrary;
 
-namespace FSFormControls
+namespace FSFormControls.UserControls.DBGridView
 {
-    public class DBGridViewFilterCollection : CollectionBase, IBindingList
+    public class DBGridViewBandCollection : CollectionBase, IBindingList
     {
         private ListChangedEventHandler onListChanged;
 
-        public DBGridViewFilter this[int index]
+        public DBGridViewBand this[int index]
         {
-            get { return (DBGridViewFilter) List[index]; }
+            get { return (DBGridViewBand) List[index]; }
             set { List[index] = value; }
         }
 
-        public DBGridViewFilter this[string name] => get_Find(name);
+        public DBGridViewBand this[string name] => get_Find(name);
 
         public bool AllowEdit => false;
 
@@ -34,13 +34,14 @@ namespace FSFormControls
 
         public bool SupportsSorting => false;
 
-        public DBGridViewFilter get_Find(string name)
+        public DBGridViewBand get_Find(string name)
         {
-            foreach (DBGridViewFilter DBGridViewFilter in List)
-                if (DBGridViewFilter.Name.ToLower() == name.ToLower())
-                    return DBGridViewFilter;
+            foreach (DBGridViewBand DBGridViewBand in List)
+                if (DBGridViewBand.Name.ToLower() == name.ToLower())
+                    return DBGridViewBand;
             return null;
         }
+
 
         public int get_GetColumnOrdinal(string name)
         {
@@ -50,7 +51,7 @@ namespace FSFormControls
 
             if (name.Substring(0, 1) == "_") name = TextUtil.Replace(name, "_", "");
 
-            foreach (DBGridViewFilter dbcol in List)
+            foreach (DBGridViewBand dbcol in List)
             {
                 if (dbcol.Name.ToLower() == name.ToLower()) return f;
                 f = f + 1;
@@ -59,39 +60,39 @@ namespace FSFormControls
             return -1;
         }
 
-        public DBGridViewFilter Add(DBGridViewFilter Value)
+        public DBGridViewBand Add(DBGridViewBand Value)
         {
             List.Add(Value);
 
             return Value;
         }
 
-        public void AddRange(DBGridViewFilter[] Values)
+        public void AddRange(DBGridViewBand[] Values)
         {
             var f = 0;
             for (f = 0; f <= Values.Length - 1; f++) List.Add(Values[f]);
         }
 
 
-        public void Remove(DBGridViewFilter Value)
+        public void Remove(DBGridViewBand Value)
         {
             List.Remove(Value);
         }
 
 
-        public void Insert(int index, DBGridViewFilter Value)
+        public void Insert(int index, DBGridViewBand Value)
         {
             List.Insert(index, Value);
         }
 
 
-        public bool Contains(DBGridViewFilter Value)
+        public bool Contains(DBGridViewBand Value)
         {
             return List.Contains(Value);
         }
 
 
-        public int IndexOf(DBGridViewFilter Value)
+        public int IndexOf(DBGridViewBand Value)
         {
             return List.IndexOf(Value);
         }
@@ -135,10 +136,6 @@ namespace FSFormControls
 
 
         public void RemoveSort()
-        {
-        }
-
-        public void ExpandAll(bool v)
         {
         }
 
@@ -198,8 +195,6 @@ namespace FSFormControls
         bool IBindingList.SupportsSearching => SupportsSearching;
 
         bool IBindingList.SupportsSorting => SupportsSorting;
-
-        public DBColumnCollection ColumnFilters { get; set; }
 
         #endregion
 
