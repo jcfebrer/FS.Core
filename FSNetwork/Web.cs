@@ -261,9 +261,7 @@ namespace FSNetwork
 			if (dato == null) dato = HttpContext.Current.Request.QueryString[name];
 			if (dato == null) return "";
 
-			dato = TextUtil.RemoveIllegalData(Functions.Valor(dato));
-
-            //dato = Replace(Valor(dato), ",", "{coma}");
+			dato = TextUtil.OnlyAlfaNumeric(Functions.Valor(dato));
 
             //seleccionamos el último valor
             string[] datos = dato.ToString().Split(',');

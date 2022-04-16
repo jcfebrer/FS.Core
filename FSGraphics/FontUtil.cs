@@ -11,6 +11,11 @@ namespace FSGraphics
 {
     class FontUtil
     {
+        /// <summary>
+        /// Devuelve en aArray una lista de las fuentes instaladas
+        /// </summary>
+        /// <param name="aArray"></param>
+        /// <returns></returns>
         public static int FontArray(ref string[] aArray)
         {
             var fc = new InstalledFontCollection();

@@ -431,7 +431,7 @@ namespace FSLibrary
             int i = 0;
             long result = 0;
             i = IndexOf(str, start, search);
-            while (i > 0)
+            while (i >= 0)
             {
                 result = result + 1;
                 i = IndexOf(str, i + 1, search);
@@ -500,9 +500,7 @@ namespace FSLibrary
             for (nPos = 0; nPos <= str.Length - 1; nPos++)
             {
                 cCar = str.Substring(nPos, 1);
-                object transTemp5 = cCar;
-                object transTemp6 = "";
-                cCad2 += str.IndexOf(cCar) == -1 ? transTemp5 : transTemp6;
+                cCad2 += str.IndexOf(cCar) == -1 ? cCar : "";
             }
 
             return cCad2;
@@ -727,7 +725,7 @@ namespace FSLibrary
             string strtemp = null;
             var PstrText = str.Trim();
             intPos = IndexOf(PstrText, 1, TWO_SPACES);
-            while (intPos > 0)
+            while (intPos >= 0)
             {
                 strtemp = PstrText.Substring(intPos + 1).TrimStart();
                 PstrText = PstrText.Substring(0, intPos) + strtemp;
@@ -787,7 +785,8 @@ namespace FSLibrary
             for (i = 0; i <= str.Length - 1; i++)
             {
                 var p = str.Substring(i, 1);
-                if (ValidChars.IndexOf(p) > 0) result = result + str.Substring(i, 1);
+                if (ValidChars.IndexOf(p) > -1)
+                    result = result + str.Substring(i, 1);
             }
 
             return result;
@@ -795,26 +794,16 @@ namespace FSLibrary
 
 
         /// <summary>
-        /// Devuelve una cadena con solo caracteres alfa numéricos.
+        /// Devuelve una cadena con solo caracteres alfa numéricos incluyendo acentos.
         /// </summary>
         /// <param name="str">The string.</param>
         /// <returns></returns>
         public static string OnlyAlfaNumeric(string str)
         {
-            var alpha = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
-            return FilterString(str, alpha);
-        }
-
-        /// <summary>
-        /// Devuelve una cadena con solo caracteres alfa numéricos incluyendo acentos.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <returns></returns>
-        public static string OnlyAlfaNumericWithAccents(string str)
-        {
             string alpha = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
             string accents = "áéíóúÁÉÍÓÚ";
-            return FilterString(str, alpha + accents);
+            string symb = "@%.";
+            return FilterString(str, alpha + accents + symb);
         }
 
 
@@ -1140,7 +1129,7 @@ namespace FSLibrary
             var wordCount = 1;
             var position = 0;
             position = str.IndexOf(delimiter);
-            while (position > 0)
+            while (position > -1)
             {
                 wordCount = wordCount + 1;
                 position = str.IndexOf(delimiter, position + 1);
@@ -1165,7 +1154,7 @@ namespace FSLibrary
             while (position > 0)
             {
                 position = str.IndexOf(searchFor, position + 1);
-                if (position > 0) wordCount = wordCount + 1;
+                if (position > -1) wordCount = wordCount + 1;
             }
 
             return wordCount;
@@ -1248,13 +1237,13 @@ namespace FSLibrary
             for (counter = 2; counter <= index; counter++)
             {
                 startPos = str.IndexOf(delimitChar, startPos) + 1;
-                if (startPos == 0) indexExceedsWordCount = true;
+                if (startPos == -1) indexExceedsWordCount = true;
             }
 
             if (!indexExceedsWordCount & !(index == 0))
             {
                 endPos = str.IndexOf(delimitChar, startPos + 1);
-                if (endPos <= 0) endPos = str.Length;
+                if (endPos < 0) endPos = str.Length;
                 retVal = str.Substring(startPos, endPos - startPos);
             }
 
@@ -1318,7 +1307,7 @@ namespace FSLibrary
             for (int i = str.Length - 1; i <= 0; i--)
             {
                 string c = str.Substring(i, 1);
-                if (IndexOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 1, c) == 0)
+                if (IndexOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 1, c) == -1)
                     result += " ";
 
                 result += c;
@@ -1361,7 +1350,7 @@ namespace FSLibrary
             fullName = fullName.Trim();
             var comma = ",";
             i = fullName.IndexOf(comma) + 1;
-            if (i == 0)
+            if (i == -1)
             {
                 result = fullName;
             }
@@ -1386,7 +1375,7 @@ namespace FSLibrary
         {
             long result = 0;
             result = IndexOf(str, index, search);
-            if (result > 0) 
+            if (result >= 0) 
                 result += search.Length;
             return result;
         }
@@ -1405,7 +1394,7 @@ namespace FSLibrary
             do
             {
                 str = IndexOf(Source, str, search);
-                if (str == 0) 
+                if (str == -1) 
                     break;
                 result = str;
                 str++;
@@ -1427,7 +1416,7 @@ namespace FSLibrary
             string[] TmpStrArray = null;
             int i = 0;
 
-            if (IndexOf(Ztring, 1, " ") == 0)
+            if (IndexOf(Ztring, 1, " ") == -1)
             {
                 result = Base + " " + Ztring + "\r\n";
                 return result;
@@ -2008,7 +1997,7 @@ namespace FSLibrary
             {
                 string c = str.Substring(i, 1);
 
-                if ("abcdefghijklmnñopqrstuvwxyz".IndexOf(c) > 0)
+                if ("abcdefghijklmnñopqrstuvwxyz".IndexOf(c) >= 0)
                 {
                     pos = i;
                     break;
@@ -2655,59 +2644,6 @@ namespace FSLibrary
 
 
         /// <summary>
-        /// Removes the illegal data.
-        /// </summary>
-        /// <param name="str">The string input entry.</param>
-        /// <returns></returns>
-        public static string RemoveIllegalData(string str)
-        {
-            if (str == null)
-                return string.Empty;
-            if (str == "")
-                return string.Empty;
-
-            const string reemp = "*";
-
-            str = Replace(str, "<", reemp);
-            str = Replace(str, ">", reemp);
-            str = Replace(str, "[", reemp);
-            str = Replace(str, "]", reemp);
-            str = Replace(str, "--", reemp);
-            //str = Replace(str, "*", reemp);
-            str = Replace(str, ";", reemp);
-            str = Replace(str, "\"", reemp);
-            str = Replace(str, "select ", reemp);
-            str = Replace(str, "join ", reemp);
-            str = Replace(str, "union ", reemp);
-            str = Replace(str, "insert ", reemp);
-            str = Replace(str, "delete ", reemp);
-            str = Replace(str, "update ", reemp);
-            str = Replace(str, "like ", reemp);
-            str = Replace(str, "drop ", reemp);
-            str = Replace(str, "create ", reemp);
-            str = Replace(str, "modify ", reemp);
-            str = Replace(str, "rename ", reemp);
-            str = Replace(str, "alter ", reemp);
-            str = Replace(str, "cast ", reemp);
-            str = Replace(str, "declare ", reemp);
-            str = Replace(str, "exec ", reemp);
-            str = Replace(str, "xp_", reemp);
-            str = Replace(str, "script", reemp);
-            str = Replace(str, "alert", reemp);
-            str = Replace(str, "object", reemp);
-            str = Replace(str, "applet", reemp);
-            str = Replace(str, "embed", reemp);
-            str = Replace(str, "event ", reemp);
-            str = Replace(str, "document ", reemp);
-            str = Replace(str, "cookie", reemp);
-            str = Replace(str, "iframe", reemp);
-            str = Replace(str, "textarea", reemp);
-
-            return str;
-        }
-
-
-        /// <summary>
         /// Añade ceros por la parte derecha.
         /// </summary>
         /// <param name="str">The string.</param>
@@ -2782,7 +2718,7 @@ namespace FSLibrary
             if (str.IndexOf(regex, StringComparison.CurrentCultureIgnoreCase) == -1)
                 return str;
             string repl = str;
-            while (repl.IndexOf(regex) > 0)
+            while (repl.IndexOf(regex) >= 0)
                 repl = Regex.Replace(str, Regex.Escape(regex), regreplace, RegexOptions.IgnoreCase);
             return repl;
         }

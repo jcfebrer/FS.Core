@@ -10,6 +10,11 @@ namespace FSGraphics
 {
     class PrintingUtil
     {
+        /// <summary>
+        /// Devuelve en aArray una lista de impresoras instaladas
+        /// </summary>
+        /// <param name="aArray"></param>
+        /// <returns></returns>
         public static int PrintersArray(ref string[] aArray)
         {
             var oPrtSettings = new PrinterSettings();
