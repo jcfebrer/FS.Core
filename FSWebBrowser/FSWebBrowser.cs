@@ -798,7 +798,7 @@ namespace FSWebBrowser
 
                     imgRange.execCommand("Copy", false, null);
 
-                    using (Bitmap bmp = (Bitmap)Clipboard.GetDataObject().GetData(DataFormats.Bitmap))
+                    using (Bitmap bmp = (Bitmap)FSLibrary.Clipboard.GetDataObject().GetData(DataFormats.Bitmap))
                     {
 
                         if (bmp != null)
@@ -844,47 +844,24 @@ namespace FSWebBrowser
 
         #region "Remove Flash Banner"
 
-        [DllImport("user32.dll")]
-        private static extern int GetClassName(IntPtr hWnd, StringBuilder lpClassName, int nMaxCount);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr GetWindow(IntPtr hWnd, uint uCmd);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool PostMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern bool SendMessage(IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
-        [DllImport("user32.dll", SetLastError = true)]
-        public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className,
-                                                 IntPtr windowTitle);
-
         private void RemoveFlashBannerData()
         {
             IntPtr webHandle = WebBrowser1.Handle;
 
-            webHandle = FindWindowEx(webHandle, IntPtr.Zero, "Shell Embedding", IntPtr.Zero);
-            webHandle = FindWindowEx(webHandle, IntPtr.Zero, "Shell DocObject View", IntPtr.Zero);
-            webHandle = FindWindowEx(webHandle, IntPtr.Zero, "Internet Explorer_Server", IntPtr.Zero);
-            webHandle = FindWindowEx(webHandle, IntPtr.Zero, "MacromediaFlashPlayerActiveX", IntPtr.Zero);
+            webHandle = Win32API.FindWindowEx(webHandle, IntPtr.Zero, "Shell Embedding", IntPtr.Zero);
+            webHandle = Win32API.FindWindowEx(webHandle, IntPtr.Zero, "Shell DocObject View", IntPtr.Zero);
+            webHandle = Win32API.FindWindowEx(webHandle, IntPtr.Zero, "Internet Explorer_Server", IntPtr.Zero);
+            webHandle = Win32API.FindWindowEx(webHandle, IntPtr.Zero, "MacromediaFlashPlayerActiveX", IntPtr.Zero);
 
             if (webHandle != IntPtr.Zero)
             {
                 Thread.Sleep(500);
-                PostMessage(webHandle, (uint) MouseMessages.WM_MOUSEMOVE, new IntPtr((uint) MouseMessages.MK_LBUTTON),
+                Win32API.PostMessage(webHandle, Win32API.WM_MOUSEMOVE, new IntPtr(Win32API.MOUSEEVENTF_MOVE),
                             MakeLParam(17, 376)); //boton de play
-                PostMessage(webHandle, (uint) MouseMessages.WM_LBUTTONDOWN, new IntPtr((uint) MouseMessages.MK_LBUTTON),
+                Win32API.PostMessage(webHandle, Win32API.WM_LBUTTONDOWN, new IntPtr(Win32API.MOUSEEVENTF_MOVE),
                             MakeLParam(17, 376));
-                PostMessage(webHandle, (uint) MouseMessages.WM_LBUTTONUP, new IntPtr((uint) MouseMessages.MK_LBUTTON),
+                Win32API.PostMessage(webHandle, Win32API.WM_LBUTTONUP, new IntPtr(Win32API.MOUSEEVENTF_MOVE),
                             MakeLParam(17, 376));
-
-                //SendMessage(webHandle, (uint)MouseMessages.WM_MOUSEMOVE, new IntPtr((uint)MouseMessages.MK_LBUTTON), MakeLParam(17, 376));  //boton de play
-                //SendMessage(webHandle, (uint)MouseMessages.WM_LBUTTONDOWN, new IntPtr((uint)MouseMessages.MK_LBUTTON), MakeLParam(17, 376));
-                //SendMessage(webHandle, (uint)MouseMessages.WM_LBUTTONUP, new IntPtr((uint)MouseMessages.MK_LBUTTON), MakeLParam(17, 376));
             }
         }
 
@@ -892,38 +869,6 @@ namespace FSWebBrowser
         {
             return (IntPtr) ((hiWord << 16) | (loWord & 0xffff));
         }
-
-        #region Nested type: GetWindow_Cmd
-
-        private enum GetWindow_Cmd : uint
-        {
-            GW_HWNDFIRST = 0,
-            GW_HWNDLAST = 1,
-            GW_HWNDNEXT = 2,
-            GW_HWNDPREV = 3,
-            GW_OWNER = 4,
-            GW_CHILD = 5,
-            GW_ENABLEDPOPUP = 6
-        }
-
-        #endregion
-
-        #region Nested type: MouseMessages
-
-        private enum MouseMessages : uint
-        {
-            MK_LBUTTON = 0x0001,
-            MK_RBUTTON = 0x0002,
-            MK_MBUTTON = 0x0010,
-            WM_LBUTTONDOWN = 0x0201,
-            WM_LBUTTONUP = 0x0202,
-            WM_MOUSEMOVE = 0x0200,
-            WM_MOUSEWHEEL = 0x020A,
-            WM_RBUTTONDOWN = 0x0204,
-            WM_RBUTTONUP = 0x0205
-        }
-
-        #endregion
 
         #endregion
 

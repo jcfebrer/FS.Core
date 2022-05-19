@@ -145,7 +145,7 @@ namespace FSFormControls
             var bm = Image;
 
             if (bm == EmptyBitmap) bm = null;
-            var dataObj = Clipboard.GetDataObject();
+            var dataObj = FSLibrary.Clipboard.GetDataObject();
 
             Cut.Enabled = !(bm == null);
             Copy.Enabled = !(bm == null);
@@ -171,11 +171,11 @@ namespace FSFormControls
 
             if ((sender == Cut) | (sender == Copy))
                 if (!(bm == null))
-                    Clipboard.SetDataObject(bm, false);
+                    FSLibrary.Clipboard.SetDataObject(bm, false);
             if (!(sender == Copy) & !(sender == PasteFrom)) Image = EmptyBitmap;
             if (sender == Paste)
             {
-                var dataObj = Clipboard.GetDataObject();
+                var dataObj = FSLibrary.Clipboard.GetDataObject();
                 var Newbm = (Bitmap) dataObj.GetData(DataFormats.Bitmap);
                 Image = Newbm;
             }

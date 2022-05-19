@@ -51,6 +51,7 @@
     <Compile Include="Base64.cs" />
     <Compile Include="Crc32.cs" />
     <Compile Include="Crc32C.cs" />
+    <Compile Include="Crypt.cs" />
     <Compile Include="Crypto.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Md5.cs" />

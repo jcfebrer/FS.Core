@@ -13,11 +13,6 @@ namespace FSGoogleFirebase
         string apiKey = "";
         string senderId = "";
 
-        public Push()
-        {
-
-        }
-
         public Push(string apiKey, string senderId)
         {
             this.apiKey = apiKey;
@@ -27,11 +22,11 @@ namespace FSGoogleFirebase
         /// Envio de mensajes prush a través de la plataforma Firebase de Google
         /// </summary>
         /// <param name="regFB"></param>
-        /// <param name="mensaje"></param>
+        /// <param name="data"></param>
         /// <param name="apiKey"></param>
         /// <param name="senderId"></param>
         /// <returns></returns>
-        public string SendMenssage(string regFB, string mensaje)
+        public string SendMenssage(string regFB, string data)
         {
             try
             {
@@ -46,7 +41,7 @@ namespace FSGoogleFirebase
                 using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
                     // Dim json As String = "{""to"": """ & regFB & """,""content_available"": true,""priority"": ""high"",""notification"": {""body"": """ & mensaje & """, ""title"": """ & mensaje & """}}"
-                    string json = "{\"to\": \"" + regFB + "\",\"content_available\": true,\"priority\": \"high\",\"data\": {\"body\": \"" + mensaje + "\"}}";
+                    string json = "{\"to\": \"" + regFB + "\",\"content_available\": true,\"priority\": \"high\",\"data\": {\"body\": \"" + data + "\"}}";
                     streamWriter.Write(json);
                     streamWriter.Flush();
                 }

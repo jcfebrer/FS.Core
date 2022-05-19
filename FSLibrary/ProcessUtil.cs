@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 
@@ -82,6 +83,16 @@ namespace FSLibrary
         }
 
         /// <summary>
+        /// Ejecuta el fichero o url
+        /// </summary>
+        /// <param name="file">Fichero o Url</param>
+        /// <returns></returns>
+        public static Process Execute(string file)
+        {
+            return Process.Start(file);
+        }
+
+        /// <summary>
         /// Hides the active window.
         /// </summary>
         public static void HideActiveWindow()
@@ -144,6 +155,59 @@ namespace FSLibrary
                     Win32API.ShowWindow(handle, Win32API.SW_HIDE);
                 }
             }
+        }
+
+        /// <summary>
+        /// Envia el proceso actual al frente.
+        /// </summary>
+        public static void ActivateCurrentProcess()
+        {
+            Process process = Process.GetCurrentProcess();
+            if (process == null)
+                return;
+
+            ActivateByProcess(process);
+        }
+
+        /// <summary>
+        /// Envia el proceso 'processName' al frente.
+        /// </summary>
+        /// <param name="processName"></param>
+        public static void ActivateByProcessName(string processName)
+        {
+            Process process = null;
+            Process[] procesess = Process.GetProcessesByName(processName);
+            foreach (Process p in procesess)
+                if (!String.IsNullOrEmpty(p.MainWindowTitle))
+                    process = p;
+
+            if(process != null)
+                ActivateByProcess(process);
+        }
+
+        /// <summary>
+        /// Activamos el proceso indicado en "windowName".
+        /// </summary>
+        /// <param name="windowName"></param>
+        public static void ActivateByWindowName(string windowName)
+        {
+            IntPtr hWnd = Win32API.FindWindow(null, windowName);
+            if (Win32API.IsIconic(hWnd))
+                Win32API.ShowWindow(hWnd, Win32API.WindowShowStyle.Restore);
+            Win32API.SetForegroundWindow(hWnd);
+        }
+
+
+        /// <summary>
+        /// Activamos el proceso indicado en "process".
+        /// </summary>
+        /// <param name="process"></param>
+        public static void ActivateByProcess(Process process)
+        {
+            IntPtr hWnd = process.MainWindowHandle;
+            if (Win32API.IsIconic(hWnd))
+                Win32API.ShowWindow(hWnd, Win32API.WindowShowStyle.Restore);
+            Win32API.SetForegroundWindow(hWnd);
         }
     }
 }

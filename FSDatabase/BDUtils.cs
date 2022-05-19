@@ -1904,20 +1904,18 @@ namespace FSDatabase
                     if (frmCampos != null) c = frmCampos.Find(frm.Form.Keys[f]);
 
                     if (c != null)
-                        switch (c.Tipo.ToString().ToLower())
+                        switch (c.Tipo)
                         {
-                            case "system.integer":
-                            case "system.int64":
+                            case Utils.FieldTypeEnum.Number:
                                 sFields = sFields + "[" + frm.Form.Keys[f] + "] int NULL,";
                                 break;
-                            case "system.string":
+                            case Utils.FieldTypeEnum.String:
                                 sFields = sFields + "[" + frm.Form.Keys[f] + "] nvarchar(" + c.Tamano + ")" + " NULL,";
                                 break;
-                            case "system.boolean":
-                            case "system.sbyte":
+                            case Utils.FieldTypeEnum.Boolean:
                                 sFields = sFields + "[" + frm.Form.Keys[f] + "] bit NULL,";
                                 break;
-                            case "system.datetime":
+                            case Utils.FieldTypeEnum.DateTime:
                                 sFields = sFields + "[" + frm.Form.Keys[f] + "] datetime NULL,";
                                 break;
                         }
@@ -1964,21 +1962,18 @@ namespace FSDatabase
                             {
                                 if (c.Valor != "") v = c.Valor;
 
-                                switch (c.Tipo.ToString().ToLower())
+                                switch (c.Tipo)
                                 {
-                                    case "system.integer":
-                                    case "system.int64":
-                                    case "system.int32":
+                                    case Utils.FieldTypeEnum.Number:
                                         sData += NumberUtils.NumberDouble(v) + ",";
                                         break;
-                                    case "system.string":
+                                    case Utils.FieldTypeEnum.String:
                                         sData += "'" + TextUtil.Left(v.Trim(), c.Tamano) + "',";
                                         break;
-                                    case "system.boolean":
-                                    case "system.sbyte":
+                                    case Utils.FieldTypeEnum.Boolean:
                                         sData += Functions.ValorBool(v) + ",";
                                         break;
-                                    case "system.datetime":
+                                    case Utils.FieldTypeEnum.DateTime:
                                         if (!FSLibrary.DateTimeUtil.IsDate(v))
                                             sData += "Null,";
                                         else
@@ -2056,22 +2051,19 @@ namespace FSDatabase
                             {
                                 if (c.Valor != "") v = c.Valor;
 
-                                switch (c.Tipo.ToString().ToLower())
+                                switch (c.Tipo)
                                 {
-                                    case "system.integer":
-                                    case "system.int64":
-                                    case "system.int32":
+                                    case Utils.FieldTypeEnum.Number:
                                         sFields = sFields + "[" + campo + "]=" + NumberUtils.NumberDouble(v) + ",";
                                         break;
-                                    case "system.string":
+                                    case Utils.FieldTypeEnum.String:
                                         sFields = sFields + "[" + campo + "]='" + TextUtil.Left(v.Trim(), c.Tamano) +
                                                   "',";
                                         break;
-                                    case "system.boolean":
-                                    case "system.sbyte":
+                                    case Utils.FieldTypeEnum.Boolean:
                                         sFields = sFields + "[" + campo + "]='" + Functions.ValorBool(v) + "',";
                                         break;
-                                    case "system.datetime":
+                                    case Utils.FieldTypeEnum.DateTime:
                                         if (!FSLibrary.DateTimeUtil.IsDate(v))
                                             sFields = sFields + "[" + campo + "]=Null,";
                                         else
@@ -2208,26 +2200,21 @@ namespace FSDatabase
                     {
                         sFields.Append("[" + campo + "],");
 
-                        switch (registro.get_List(f).Tipo.ToString().ToLower())
+                        switch (registro.get_List(f).Tipo)
                         {
-                            case "system.string":
+                            case Utils.FieldTypeEnum.String:
                                 sData.Append("'" + registro.get_List(f).Valor + "',");
                                 break;
-                            case "system.integer":
-                            case "system.int32":
-                            case "system.int64":
-                            case "system.double":
-                            case "system.long":
+                            case Utils.FieldTypeEnum.Number:
                                 if (NumberUtils.IsNumeric(registro.get_List(f).Valor))
                                     sData.Append(registro.get_List(f).Valor + ",");
                                 else
                                     sData.Append("0,");
                                 break;
-                            case "system.boolean":
-                            case "system.sbyte":
+                            case Utils.FieldTypeEnum.Boolean:
                                 sData.Append(registro.get_List(f).Valor.ToLower() == "true" ? "true," : "false,");
                                 break;
-                            case "system.datetime":
+                            case Utils.FieldTypeEnum.DateTime:
                                 var dateTime = registro.get_List(f).Valor;
                                 if (FSLibrary.DateTimeUtil.IsDate(dateTime))
                                 {
@@ -2359,29 +2346,24 @@ namespace FSDatabase
                     var campo = registro.get_List(f).Campo;
 
                     if (!IsControlField(campo))
-                        switch (registro.get_List(f).Tipo.ToString().ToLower())
+                        switch (registro.get_List(f).Tipo)
                         {
-                            case "system.string":
+                            case Utils.FieldTypeEnum.String:
                                 sData += "[" + campo + "]='" + registro.get_List(f).Valor + "',";
                                 break;
-                            case "system.integer":
-                            case "system.int32":
-                            case "system.int64":
-                            case "system.double":
-                            case "system.long":
+                            case Utils.FieldTypeEnum.Number:
                                 if (NumberUtils.IsNumeric(registro.get_List(f).Valor))
                                     sData += "[" + campo + "]=" + registro.get_List(f).Valor + ",";
                                 else
                                     sData += "[" + campo + "]=0,";
                                 break;
-                            case "system.boolean":
-                            case "system.sbyte":
+                            case Utils.FieldTypeEnum.Boolean:
                                 if (registro.get_List(f).Valor.ToLower() == "true")
                                     sData += "[" + campo + "]=true,";
                                 else
                                     sData += "[" + campo + "]=false,";
                                 break;
-                            case "system.datetime":
+                            case Utils.FieldTypeEnum.DateTime:
                                 if (FSLibrary.DateTimeUtil.IsDate(registro.get_List(f).Valor))
                                     //DateTime.cDate2(DateTime.cDate3(registro.get_List(f).Valor), DateFormat, DateSeparator)
                                     sData += "[" + campo + "]=" +

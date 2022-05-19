@@ -3,6 +3,7 @@ using System.Text;
 using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Windows.Forms;
+using FSLibrary;
 
 namespace FSMouseKeyboardLibrary
 {
@@ -22,27 +23,6 @@ namespace FSMouseKeyboardLibrary
     /// </summary>
     public static class MouseSimulator
     {
-
-        #region Windows API Code
-
-        [DllImport("user32.dll")]
-        static extern int ShowCursor(bool show);
-
-        [DllImport("user32.dll")]
-        static extern void mouse_event(int flags, int dX, int dY, int buttons, int extraInfo);
-
-        const int MOUSEEVENTF_MOVE = 0x1;
-        const int MOUSEEVENTF_LEFTDOWN = 0x2;
-        const int MOUSEEVENTF_LEFTUP = 0x4;
-        const int MOUSEEVENTF_RIGHTDOWN = 0x8;
-        const int MOUSEEVENTF_RIGHTUP = 0x10;
-        const int MOUSEEVENTF_MIDDLEDOWN = 0x20;
-        const int MOUSEEVENTF_MIDDLEUP = 0x40;
-        const int MOUSEEVENTF_WHEEL = 0x800;
-        const int MOUSEEVENTF_ABSOLUTE = 0x8000; 
-
-        #endregion
-
         #region Properties
 
         /// <summary>
@@ -100,7 +80,7 @@ namespace FSMouseKeyboardLibrary
         /// <param name="button"></param>
         public static void MouseDown(MouseButton button)
         {
-            mouse_event(((int)button), 0, 0, 0, 0);
+            Win32API.mouse_event(((int)button), 0, 0, 0, 0);
         }
 
         /// <summary>
@@ -129,7 +109,7 @@ namespace FSMouseKeyboardLibrary
         /// <param name="button"></param>
         public static void MouseUp(MouseButton button)
         {
-            mouse_event(((int)button) * 2, 0, 0, 0, 0);
+            Win32API.mouse_event(((int)button) * 2, 0, 0, 0, 0);
         }
 
         /// <summary>
@@ -219,7 +199,7 @@ namespace FSMouseKeyboardLibrary
         public static void MouseWheel(int delta)
         {
 
-            mouse_event(MOUSEEVENTF_WHEEL, 0, 0, delta, 0);
+            Win32API.mouse_event(Win32API.MOUSEEVENTF_WHEEL, 0, 0, delta, 0);
 
         }
 
@@ -228,7 +208,7 @@ namespace FSMouseKeyboardLibrary
         /// </summary>
         public static void Show()
         {
-            ShowCursor(true);
+            Win32API.ShowCursor(true);
         }
 
         /// <summary>
@@ -236,7 +216,7 @@ namespace FSMouseKeyboardLibrary
         /// </summary>
         public static void Hide()
         {
-            ShowCursor(false);
+            Win32API.ShowCursor(false);
         } 
 
         #endregion

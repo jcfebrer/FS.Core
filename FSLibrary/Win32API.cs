@@ -3100,6 +3100,16 @@ namespace FSLibrary
         public const int SRCCOPY = 13369376;
 
         /// <summary>
+        /// Extended Key
+        /// </summary>
+        public const int KEYEVENTF_EXTENDEDKEY = 0x1;
+
+        /// <summary>
+        /// KeyUp
+        /// </summary>
+        public const int KEYEVENTF_KEYUP = 0x2;
+
+        /// <summary>
         /// The mouseeventf move
         /// </summary>
         public const int MOUSEEVENTF_MOVE = 0x0001; /* mouse move */
@@ -3249,6 +3259,7 @@ namespace FSLibrary
             LogonProvider logonProvider,
             out IntPtr token);
 
+
         /// <summary>
         /// Waits for single object.
         /// </summary>
@@ -3313,6 +3324,18 @@ namespace FSLibrary
         /// <returns></returns>
         [DllImport("kernel32.dll")]
         public static extern bool Beep(int freq, int duration);
+
+
+        /// <summary>
+        /// Función que genera eventos de teclado.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="scan"></param>
+        /// <param name="flags"></param>
+        /// <param name="extraInfo"></param>
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte key, byte scan, int flags, int extraInfo);
+
 
         /// <summary>
         /// Gets the focus.
@@ -3890,6 +3913,14 @@ namespace FSLibrary
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
         /// <summary>
+        /// Finds the window.
+        /// </summary>
+        /// <returns></returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern IntPtr FindWindowEx(IntPtr parentHandle, IntPtr childAfter, string className,
+                                                 IntPtr windowTitle);
+
+        /// <summary>
         /// Gets the dc.
         /// </summary>
         /// <param name="hWnd">The h WND.</param>
@@ -4196,6 +4227,15 @@ namespace FSLibrary
         /// <param name="dwExtraInfo">The dw extra information.</param>
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(int dwFlags, int dx, int dy, int cButtons, int dwExtraInfo);
+
+        /// <summary>
+        /// Muestra u oculta el cursor
+        /// </summary>
+        /// <param name="show"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll")]
+        public static extern int ShowCursor(bool show);
+
 
         /// <summary>
         /// Sets the cursor position.

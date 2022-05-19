@@ -92,6 +92,23 @@ namespace FSDatabase
             return FieldTypeEnum.String;
         }
 
+        public static FieldTypeEnum ConvertStringToFieldType(string fieldType)
+        {
+            switch (fieldType.ToLower())
+            {
+                case "number":
+                    return FieldTypeEnum.Number;
+                case "datetime":
+                    return FieldTypeEnum.DateTime;
+                case "string":
+                    return FieldTypeEnum.String;
+                case "boolean":
+                    return FieldTypeEnum.Boolean;
+            }
+
+            return FieldTypeEnum.String;
+        }
+
         public static string FormatSQL(string sql)
         {
             return FormatSQL(sql, ServerType);
@@ -289,22 +306,18 @@ namespace FSDatabase
             }
         }
 
-        public static string DameWhere(string fieldName, string fieldType, string value)
+        public static string DameWhere(string fieldName, FieldTypeEnum fieldType, string value)
         {
             try
             {
                 string sWhere;
 
-                switch (fieldType.ToLower())
+                switch (fieldType)
                 {
-                    case "system.datetime":
+                    case FieldTypeEnum.DateTime:
                         sWhere = "[" + fieldName + "]=" + m_simbDate + value + m_simbDate;
                         break;
-                    case "system.int16":
-                    case "system.int32":
-                    case "system,int64":
-                    case "system.integer":
-                    case "system.double":
+                    case FieldTypeEnum.Number:
                         sWhere = "[" + fieldName + "]=" + NumberUtils.NumberDouble(value);
                         break;
                     default:
