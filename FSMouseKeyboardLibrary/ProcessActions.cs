@@ -10,6 +10,7 @@ namespace FSMouseKeyboardLibrary
 {
     public class ProcessActions
     {
+        private static bool cancel = false;
         public delegate void ActionEntryEventHandler(MouseActionEntry action, int position);
         public static event ActionEntryEventHandler OnEntryProcess;
 
@@ -25,11 +26,15 @@ namespace FSMouseKeyboardLibrary
                 ProcessActions.Do(actions);
             }
         }
+
         public static void Do(MouseActionsEntry actions)
         {
             int f = 0;
             foreach (MouseActionEntry action in actions)
             {
+                if (cancel)
+                    break;
+
                 OnEntryProcess(action, f++);
 
                 Thread.Sleep(action.Interval);
@@ -74,6 +79,11 @@ namespace FSMouseKeyboardLibrary
                 }
 
             }
+        }
+
+        public static void Cancel()
+        {
+            cancel = true;
         }
 
         public static MouseActionsEntry OpenFileXml(string file)

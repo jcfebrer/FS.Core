@@ -10,12 +10,12 @@ namespace FSGoogleFirebase
 {
     public class Push
     {
-        string apiKey = "";
+        string serverApiKey = "";
         string senderId = "";
 
         public Push(string apiKey, string senderId)
         {
-            this.apiKey = apiKey;
+            this.serverApiKey = apiKey;
             this.senderId = senderId;
         }
         /// <summary>
@@ -23,8 +23,6 @@ namespace FSGoogleFirebase
         /// </summary>
         /// <param name="regFB"></param>
         /// <param name="data"></param>
-        /// <param name="apiKey"></param>
-        /// <param name="senderId"></param>
         /// <returns></returns>
         public string SendMenssage(string regFB, string data)
         {
@@ -34,7 +32,7 @@ namespace FSGoogleFirebase
                 string webAddr = "https://fcm.googleapis.com/fcm/send";
                 HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(webAddr);
                 httpWebRequest.ContentType = "application/json";
-                httpWebRequest.Headers.Add(string.Format("Authorization: key={0}", apiKey));
+                httpWebRequest.Headers.Add(string.Format("Authorization: key={0}", serverApiKey));
                 httpWebRequest.Headers.Add(string.Format("Sender: id={0}", senderId));
                 httpWebRequest.Method = "POST";
 

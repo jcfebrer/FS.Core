@@ -68,7 +68,7 @@ namespace FSMouseKeyboardLibrary
             {
                 Cursor.Position = new Point(X, value);
             }
-        } 
+        }
 
         #endregion
 
@@ -217,10 +217,45 @@ namespace FSMouseKeyboardLibrary
         public static void Hide()
         {
             Win32API.ShowCursor(false);
-        } 
+        }
 
         #endregion
 
+
+        #region Mover el ratón entre 2 puntos
+
+        public static void MouseMove(int x, int y)
+        {
+            Position = new Point(x, y);
+        }
+
+        public static void MouseMove(Point point)
+        {
+            Position = point;
+        }
+
+        public static void MouseMove(Point pointA, Point pointB)
+        {
+            MouseMove(pointA.X, pointA.Y, pointB.X, pointB.Y);
+        }
+
+        public static void MouseMove(int fromX, int fromY, int toX, int toY)
+        {
+            int diffX = toX - fromX;
+            int diffY = toY - fromY;
+
+            int pointNum = 8;
+
+            int intervalX = diffX / (pointNum + 1);
+            int intervalY = diffY / (pointNum + 1);
+
+            for (int i = 1; i <= pointNum; i++)
+            {
+                Position = new Point(fromX + intervalX * i, fromY + intervalY * i);
+            }
+        }
+
+        #endregion
     }
 
 }
