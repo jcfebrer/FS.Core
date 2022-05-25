@@ -399,6 +399,26 @@ namespace FSLibrary
         }
 
         /// <summary>
+        /// Devuelve el valor hexadecimal de un entero
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static string IntToHex(int number)
+        {
+            return number.ToString("X");
+        }
+
+        /// <summary>
+        /// Devuelve el valor enterio de un numero hexadecimal
+        /// </summary>
+        /// <param name="number"></param>
+        /// <returns></returns>
+        public static int HexToInt(string number)
+        {
+            return int.Parse(number, System.Globalization.NumberStyles.HexNumber);
+        }
+
+        /// <summary>
         /// Randoms the hexadecimal value.
         /// </summary>
         /// <param name="hexLength">Length of the hexadecimal.</param>

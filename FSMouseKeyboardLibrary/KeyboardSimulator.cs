@@ -39,12 +39,75 @@ namespace FSMouseKeyboardLibrary
         {
             foreach (char ch in text)
             {
-                if (Char.IsUpper(ch))
+                bool shift = Char.IsUpper(ch);
+                Keys k;
+
+                switch (Char.ToUpper(ch))
+                {
+                    case 'Á':
+                        KeyPress(Keys.OemQuotes);
+                        k = Keys.A;
+                        break;
+                    case 'É':
+                        KeyPress(Keys.OemQuotes);
+                        k = Keys.E;
+                        break;
+                    case 'Í':
+                        KeyPress(Keys.OemQuotes);
+                        k = Keys.I;
+                        break;
+                    case 'Ó':
+                        KeyPress(Keys.OemQuotes);
+                        k = Keys.O;
+                        break;
+                    case 'Ú':
+                        KeyPress(Keys.OemQuotes);
+                        k = Keys.U;
+                        break;
+                    case ' ':
+                        k = Keys.Space;
+                        break;
+                    case '?':
+                        shift = true;
+                        k = Keys.OemOpenBrackets;
+                        break;
+                    case '¿':
+                        shift = true;
+                        k = Keys.Oem6;
+                        break;
+                    case '.':
+                        k = Keys.OemPeriod;
+                        break;
+                    case ',':
+                        k = Keys.Oemcomma;
+                        break;
+                    case '_':
+                        shift = true;
+                        k = Keys.Subtract;
+                        break;
+                    case '-':
+                        k = Keys.Subtract;
+                        break;
+                    case '+':
+                        k = Keys.Add;
+                        break;
+                    case '/':
+                        k = Keys.Divide;
+                        break;
+                    case '*':
+                        k = Keys.Multiply;
+                        break;
+                    default:
+                        k = (Keys)Char.ToUpper(ch);
+                        break;
+                }    
+
+                if (shift)
                     KeyDown(Keys.ShiftKey);
 
-                KeyPress((Keys)Char.ToUpper(ch));
+                KeyPress(k);
 
-                if (Char.IsUpper(ch))
+                if (shift)
                     KeyUp(Keys.ShiftKey);
             }
         }

@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Drawing;
 using System.Windows.Forms;
 using FSLibrary;
+using System.Threading;
 
 namespace FSMouseKeyboardLibrary
 {
@@ -234,24 +235,35 @@ namespace FSMouseKeyboardLibrary
             Position = point;
         }
 
-        public static void MouseMove(Point pointA, Point pointB)
+        public static void MouseMove(Point pointA, Point pointB, int pointCount = 15, int sleep = 50)
         {
-            MouseMove(pointA.X, pointA.Y, pointB.X, pointB.Y);
+            MouseMove(pointA.X, pointA.Y, pointB.X, pointB.Y, pointCount, sleep);
         }
 
-        public static void MouseMove(int fromX, int fromY, int toX, int toY)
+        public static void MouseMove(int fromX, int fromY, int toX, int toY, int pointCount = 15, int sleep = 50)
         {
             int diffX = toX - fromX;
             int diffY = toY - fromY;
 
-            int pointNum = 8;
+            int intervalX = diffX / pointCount;
+            int intervalY = diffY / pointCount;
 
-            int intervalX = diffX / (pointNum + 1);
-            int intervalY = diffY / (pointNum + 1);
-
-            for (int i = 1; i <= pointNum; i++)
+            for (int i = 0; i < pointCount; i++)
             {
                 Position = new Point(fromX + intervalX * i, fromY + intervalY * i);
+                Thread.Sleep(sleep);
+            }
+        }
+
+        public static void MouseMove2(Point a, Point b, int pointCount = 15, int sleep = 50)
+        {
+            Double d = Math.Sqrt((a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y)) / pointCount;
+            Double fi = Math.Atan2(b.Y - a.Y, b.X - a.X);
+
+            for (int i = 0; i < pointCount; i++)
+            {
+                Position = new Point((int)(a.X + i * d * Math.Cos(fi)), (int)(a.Y + i * d * Math.Sin(fi)));
+                Thread.Sleep(sleep);
             }
         }
 

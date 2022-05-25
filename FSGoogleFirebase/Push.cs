@@ -13,18 +13,47 @@ namespace FSGoogleFirebase
         string serverApiKey = "";
         string senderId = "";
 
+        public enum PushType
+        {
+            Notification,
+            Data
+        }
+
         public Push(string apiKey, string senderId)
         {
             this.serverApiKey = apiKey;
             this.senderId = senderId;
         }
+
         /// <summary>
         /// Envio de mensajes prush a través de la plataforma Firebase de Google
         /// </summary>
         /// <param name="regFB"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public string SendMenssage(string regFB, string data)
+        public string SendData(string regFB, string data)
+        {
+            return SendMenssage(regFB, data, "", PushType.Data);
+        }
+
+        /// <summary>
+        /// Envio de mensajes prush a través de la plataforma Firebase de Google
+        /// </summary>
+        /// <param name="regFB"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public string SendNotification(string regFB, string message, string title)
+        {
+            return SendMenssage(regFB, message, title, PushType.Notification);
+        }
+
+        /// <summary>
+        /// Envio de mensajes prush a través de la plataforma Firebase de Google
+        /// </summary>
+        /// <param name="regFB"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public string SendMenssage(string regFB, string message, string title, PushType pushType)
         {
             try
             {
@@ -38,8 +67,15 @@ namespace FSGoogleFirebase
 
                 using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
                 {
-                    // Dim json As String = "{""to"": """ & regFB & """,""content_available"": true,""priority"": ""high"",""notification"": {""body"": """ & mensaje & """, ""title"": """ & mensaje & """}}"
-                    string json = "{\"to\": \"" + regFB + "\",\"content_available\": true,\"priority\": \"high\",\"data\": {\"body\": \"" + data + "\"}}";
+                    string json;
+                    if (pushType == PushType.Notification)
+                    {
+                        json = "{\"to\": \"" + regFB + "\",\"content_available\": true,\"priority\": \"high\",\"notification\": {\"body\": \"" + message + "\",\"title\": \"" + title + "\"}}";
+                    }
+                    else
+                    {
+                        json = "{\"to\": \"" + regFB + "\",\"content_available\": true,\"priority\": \"high\",\"data\": {\"body\": \"" + message + "\"}}";
+                    }
                     streamWriter.Write(json);
                     streamWriter.Flush();
                 }

@@ -1,5 +1,6 @@
 ﻿using FSException;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,22 +15,24 @@ namespace FSMouseKeyboardLibrary
         public delegate void ActionEntryEventHandler(MouseActionEntry action, int position);
         public static event ActionEntryEventHandler OnEntryProcess;
 
-        public static void Do(MouseActionsEntry actions, bool repeat, int repeatCount)
+        public static void Do(MouseActionsEntry actions, bool repeat, int repeatCount, bool makePointsIntermediate)
         {
             if (!repeat)
             {
                 repeatCount = 1;
             }
 
-            for (int f = 0; f <= repeatCount; f++)
+            for (int f = 0; f < repeatCount; f++)
             {
-                ProcessActions.Do(actions);
+                ProcessActions.Do(actions, makePointsIntermediate);
             }
         }
 
-        public static void Do(MouseActionsEntry actions)
+        public static void Do(MouseActionsEntry actions, bool makePointsIntermediate)
         {
             int f = 0;
+            Point lastPoint = new Point(0, 0);
+
             foreach (MouseActionEntry action in actions)
             {
                 if (cancel)
@@ -37,20 +40,30 @@ namespace FSMouseKeyboardLibrary
 
                 OnEntryProcess(action, f++);
 
-                Thread.Sleep(action.Interval);
+
+                if (makePointsIntermediate)
+                {
+                    Point currentPoint = new Point(action.X, action.Y);
+                    MouseSimulator.MouseMove(lastPoint, currentPoint);
+                    lastPoint = currentPoint;
+                }
+                else
+                {
+                    Thread.Sleep(action.Interval);
+                    MouseSimulator.X = action.X;
+                    MouseSimulator.Y = action.Y;
+                }
 
                 switch (action.Type)
                 {
                     case MouseActionEntry.EventType.MouseMove:
                         {
-                            MouseSimulator.X = action.X;
-                            MouseSimulator.Y = action.Y;
+                            //MouseSimulator.X = action.X;
+                            //MouseSimulator.Y = action.Y;
                         }
                         break;
                     case MouseActionEntry.EventType.MouseDown:
                         {
-                            MouseSimulator.X = action.X;
-                            MouseSimulator.Y = action.Y;
                             MouseSimulator.Click(action.Button);
                         }
                         break;
