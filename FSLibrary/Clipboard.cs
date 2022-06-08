@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FSLibrary
@@ -17,11 +18,40 @@ namespace FSLibrary
         /// <returns></returns>
         public static string GetClipBoardText()
         {
-            if (System.Windows.Forms.Clipboard.ContainsText(TextDataFormat.Text))
-            {
-                return System.Windows.Forms.Clipboard.GetText(TextDataFormat.Text);
-            }
-            return null;
+            string idat = String.Empty;
+            Exception threadEx = null;
+            Thread staThread = new Thread(
+                delegate ()
+                {
+                    try
+                    {
+                        if (System.Windows.Forms.Clipboard.ContainsText(TextDataFormat.Text))
+                        {
+                            idat = System.Windows.Forms.Clipboard.GetText(TextDataFormat.Text);
+                        }
+                        else
+                            idat = String.Empty;
+                    }
+
+                    catch (Exception ex)
+                    {
+                        threadEx = ex;
+                    }
+                });
+            staThread.SetApartmentState(ApartmentState.STA);
+            staThread.Start();
+            staThread.Join();
+
+            return idat;
+        }
+
+        /// <summary>
+        /// Obtiene el texto del portapapeles
+        /// </summary>
+        /// <returns></returns>
+        public static string GetText()
+        {
+            return GetClipBoardText();
         }
 
         /// <summary>
@@ -30,7 +60,26 @@ namespace FSLibrary
         /// <returns></returns>
         public static IDataObject GetDataObject()
         {
-            return System.Windows.Forms.Clipboard.GetDataObject();
+            IDataObject idat = null;
+            Exception threadEx = null;
+            Thread staThread = new Thread(
+                delegate ()
+                {
+                    try
+                    {
+                        idat= System.Windows.Forms.Clipboard.GetDataObject();
+                    }
+
+                    catch (Exception ex)
+                    {
+                        threadEx = ex;
+                    }
+                });
+            staThread.SetApartmentState(ApartmentState.STA);
+            staThread.Start();
+            staThread.Join();
+
+            return idat;
         }
 
         /// <summary>
@@ -40,7 +89,23 @@ namespace FSLibrary
         /// <param name="copy"></param>
         public static void SetDataObject(object obj, bool copy)
         {
-            System.Windows.Forms.Clipboard.SetDataObject(obj, copy);
+            Exception threadEx = null;
+            Thread staThread = new Thread(
+                delegate ()
+                {
+                    try
+                    {
+                        System.Windows.Forms.Clipboard.SetDataObject(obj, copy);
+                    }
+
+                    catch (Exception ex)
+                    {
+                        threadEx = ex;
+                    }
+                });
+            staThread.SetApartmentState(ApartmentState.STA);
+            staThread.Start();
+            staThread.Join();
         }
     }
 }

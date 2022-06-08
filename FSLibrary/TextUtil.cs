@@ -390,6 +390,21 @@ namespace FSLibrary
                        CompareOptions.IgnoreNonSpace | CompareOptions.IgnoreCase) == 0;
         }
 
+        /// <summary>
+        /// Devuelve el contenido diferente entre s1 y s2
+        /// </summary>
+        /// <param name="s1"></param>
+        /// <param name="s2"></param>
+        /// <returns></returns>
+        public static string Difference(string s1, string s2)
+        {
+            if (String.IsNullOrEmpty(s1))
+                return "";
+
+            string strDiff = s2.Replace(s1, "");
+            return strDiff;
+        }
+
 
         /// <summary>
         /// Removes the accents.

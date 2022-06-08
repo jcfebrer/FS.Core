@@ -35,15 +35,160 @@ namespace FSMouseKeyboardLibrary
             Win32API.keybd_event(ParseKey(key), 0, 0, 0);
         }
 
+        /// <summary>
+        /// Envia las teclas definidas en la cadena 'text' como eventos de pulsación.
+        /// Corresponden a un teclado español.
+        /// </summary>
+        /// <param name="text"></param>
         public static void SendText(string text)
         {
-            foreach (char ch in text)
+            text = text.Replace("{shift}", "{s");
+            text = text.Replace("{control}", "{c");
+            text = text.Replace("{ctrl}", "{c");
+            text = text.Replace("{ctr}", "{c");
+            text = text.Replace("{alt}", "{a");
+            text = text.Replace("{win}", "{w");
+            text = text.Replace("{windows}", "{w");
+
+            text = text.Replace("{f1}", "^1");
+            text = text.Replace("{f2}", "^2");
+            text = text.Replace("{f3}", "^3");
+            text = text.Replace("{f4}", "^4");
+            text = text.Replace("{f5}", "^5");
+            text = text.Replace("{f6}", "^6");
+            text = text.Replace("{f7}", "^7");
+            text = text.Replace("{f8}", "^8");
+            text = text.Replace("{f9}", "^9");
+            text = text.Replace("{f10}", "^0");
+            text = text.Replace("{f11}", "^o");
+            text = text.Replace("{f12}", "^p");
+            text = text.Replace("{enter}", "^e");
+            text = text.Replace("{esc}", "^x");
+            text = text.Replace("{sup}", "^s");
+            text = text.Replace("{del}", "^s");
+            text = text.Replace("{back}", "^b");
+            text = text.Replace("{ins}", "^i");
+            text = text.Replace("{avpag}", "^a");
+            text = text.Replace("{repag}", "^g");
+            text = text.Replace("{end}", "^n");
+            text = text.Replace("{home}", "^h");
+
+            text = text.Replace("{up}", "^u");
+            text = text.Replace("{left}", "^l");
+            text = text.Replace("{right}", "^r");
+            text = text.Replace("{down}", "^d");
+
+            for (int f = 0; f< text.Length; f++)
             {
+                char ch = text.Substring(f, 1).ToCharArray()[0];
+                char nextCh = '#';
+                if (f < text.Length - 1)
+                    nextCh = text.Substring(f + 1, 1).ToCharArray()[0];
+
                 bool shift = Char.IsUpper(ch);
-                Keys k;
+                Keys k = Keys.None;
 
                 switch (Char.ToUpper(ch))
                 {
+                    case '{':
+                        switch (nextCh)
+                        {
+                            case 'c':
+                                KeyDown(Keys.Control);
+                                break;
+                            case 'a':
+                                KeyDown(Keys.Alt);
+                                break;
+                            case 's':
+                                KeyDown(Keys.Shift);
+                                break;
+                            case 'w':
+                                KeyDown(Keys.LWin);
+                                break;
+                        }
+                        f++;
+                        break;
+                    case '^':
+                        switch (nextCh)
+                        {        
+                            case 'l':
+                                k = Keys.Left;
+                                break;
+                            case 'r':
+                                k = Keys.Right;
+                                break;
+                            case 'u':
+                                k = Keys.Up;
+                                break;
+                            case 'd':
+                                k = Keys.Down;
+                                break;
+                            case 'e':
+                                k = Keys.Enter;
+                                break;
+                            case 'b':
+                                k = Keys.Back;
+                                break;
+                            case 'x':
+                                k = Keys.Escape;
+                                break;
+                            case 's':
+                                k = Keys.Delete;
+                                break;
+                            case 'i':
+                                k = Keys.Insert;
+                                break;
+                            case 'a':
+                                k = Keys.PageDown;
+                                break;
+                            case 'g':
+                                k = Keys.PageUp;
+                                break;
+                            case 'n':
+                                k = Keys.End;
+                                break;
+                            case 'h':
+                                k = Keys.Home;
+                                break;
+                            case '1':
+                                k = Keys.F1;
+                                break;
+                            case '2':
+                                k = Keys.F2;
+                                break;
+                            case '3':
+                                k = Keys.F3;
+                                break;
+                            case '4':
+                                k = Keys.F4;
+                                break;
+                            case '5':
+                                k = Keys.F5;
+                                break;
+                            case '6':
+                                k = Keys.F6;
+                                break;
+                            case '7':
+                                k = Keys.F7;
+                                break;
+                            case '8':
+                                k = Keys.F8;
+                                break;
+                            case '9':
+                                k = Keys.F9;
+                                break;
+                            case '0':
+                                k = Keys.F10;
+                                break;
+                            case 'o':
+                                k = Keys.F11;
+                                break;
+                            case 'p':
+                                k = Keys.F12;
+                                break;
+                        }
+                        f++;
+                        break;
                     case 'Á':
                         KeyPress(Keys.OemQuotes);
                         k = Keys.A;
@@ -78,6 +223,46 @@ namespace FSMouseKeyboardLibrary
                     case '.':
                         k = Keys.OemPeriod;
                         break;
+                    case '!':
+                        shift = true;
+                        k = Keys.D1;
+                        break;
+                    case '"':
+                        shift = true;
+                        k = Keys.D2;
+                        break;
+                    case '·':
+                        shift = true;
+                        k = Keys.D3;
+                        break;
+                    case '$':
+                        shift = true;
+                        k = Keys.D4;
+                        break;
+                    case '%':
+                        shift = true;
+                        k = Keys.D5;
+                        break;
+                    case '&':
+                        shift = true;
+                        k = Keys.D6;
+                        break;
+                    case '/':
+                        shift = true;
+                        k = Keys.D7;
+                        break;
+                    case '(':
+                        shift = true;
+                        k = Keys.D8;
+                        break;
+                    case ')':
+                        shift = true;
+                        k = Keys.D9;
+                        break;
+                    case '=':
+                        shift = true;
+                        k = Keys.D0;
+                        break;
                     case ',':
                         k = Keys.Oemcomma;
                         break;
@@ -91,31 +276,37 @@ namespace FSMouseKeyboardLibrary
                     case '+':
                         k = Keys.Add;
                         break;
-                    case '/':
-                        k = Keys.Divide;
-                        break;
                     case '*':
                         k = Keys.Multiply;
                         break;
                     default:
                         k = (Keys)Char.ToUpper(ch);
                         break;
-                }    
+                }
 
-                if (shift)
-                    KeyDown(Keys.ShiftKey);
+                if (k != Keys.None)
+                {
+                    if (shift)
+                        KeyDown(Keys.ShiftKey);
 
-                KeyPress(k);
+                    KeyPress(k);
 
-                if (shift)
-                    KeyUp(Keys.ShiftKey);
+                    if (shift)
+                        KeyUp(Keys.ShiftKey);
+                }
             }
+
+            KeyUp(Keys.Control);
+            KeyUp(Keys.Alt);
+            KeyUp(Keys.Shift);
+            KeyUp(Keys.LWin);
         }
 
         public static void KeyUp(Keys key)
         {
             Win32API.keybd_event(ParseKey(key), 0, Win32API.KEYEVENTF_KEYUP, 0);
         }
+
 
         public static void KeyPress(Keys key)
         {

@@ -35,6 +35,7 @@ namespace FSMail
 		public static bool EnableSSL;
 		public static string UserPortal;
 		public static string UserFullName;
+		public static string ErrorEmail;
 
         public static bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla)
         {
@@ -52,7 +53,7 @@ namespace FSMail
 
         public static bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
 		{
-            //if (System.Diagnostics.Debugger.IsAttached)
+			//if (System.Diagnostics.Debugger.IsAttached)
 			//	return false;
 
 			Log.TraceInfo("Inicio de envio de correo.");
@@ -60,10 +61,20 @@ namespace FSMail
             MailMessage Mail = new MailMessage();
 
 			Mail.BodyEncoding = System.Text.Encoding.UTF8;
-			Mail.From = new MailAddress(sFrom, sFromName);
-			Mail.To.Add(new MailAddress(sTo));
 
-			if (sCCO != "") {
+			if (!String.IsNullOrEmpty(sFrom))
+				Mail.From = new MailAddress(sFrom, sFromName);
+			else
+				throw new Exception("Destinatario del mensaje 'sFrom', no especificado.");
+
+
+			if (!String.IsNullOrEmpty(sTo))
+				Mail.To.Add(new MailAddress(sTo));
+			else
+				throw new Exception("Destinatario del mensaje 'sTo', no especificado.");
+
+
+			if (!String.IsNullOrEmpty(sCCO)) {
 				string[] toMail = sCCO.Split(';');
 
 				foreach (string s in toMail) {
@@ -72,7 +83,7 @@ namespace FSMail
 				}
 			}
 
-			if (sCC != "") {
+			if (!String.IsNullOrEmpty(sCC)) {
 				string[] toMail = sCC.Split(';');
 
 				foreach (string s in toMail) {
@@ -80,6 +91,19 @@ namespace FSMail
 						Mail.CC.Add(new MailAddress(s));
 				}
 			}
+
+			if (!String.IsNullOrEmpty(UserPortal))
+			{
+				sBody = sBody + "Usuario: " + UserPortal + "\r\n";
+			}
+			if (!String.IsNullOrEmpty(UserFullName))
+			{
+				sBody = sBody + "Nombre completo: " + UserFullName + "\r\n";
+			}
+
+
+			sBody = sBody + "\r\n\r\nFecha: " + System.DateTime.Now + "\r\n";
+
 
 			Mail.Priority = MailPriority.Normal;
 			Mail.Subject = sSubject;
@@ -203,16 +227,8 @@ namespace FSMail
 				sBody += "Mensaje: " + message + "\r\n";
 			}
 
-			if (UserPortal != null)
-			{
-				sBody = sBody + "Usuario: " + UserPortal + "\r\n";
-				sBody = sBody + "Nombre completo: " + UserFullName + "\r\n";
-			}
-
-			sBody = sBody + "\r\n\r\nFecha: " + System.DateTime.Now + "\r\n";
-
-			return SendMailMessage(ConfigurationManager.AppSettings["CorreoInfo"], "", "", sSubject, sBody,
-				ConfigurationManager.AppSettings["CorreoInfo"], ConfigurationManager.AppSettings["CorreoInfo"], "", Firmar, Certificado);
+			return SendMailMessage(ErrorEmail, "", "", sSubject, sBody,
+				ErrorEmail, ErrorEmail, "", Firmar, Certificado);
 
 		}
     }
