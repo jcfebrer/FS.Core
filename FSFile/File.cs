@@ -12,6 +12,7 @@ namespace FSFile
         string _dir;
         string _Nombre;
         string _FullName;
+        string _FullName83;
         string _NombreNormalizado;
         decimal _Tamaño;
         System.DateTime _FechaArchivo;
@@ -66,6 +67,12 @@ namespace FSFile
         {
             get { return _FullName; }
             set { _FullName = value; }
+        }
+
+        public string FullName83
+        {
+            get { return _FullName83; }
+            set { _FullName83 = value; }
         }
 
         public decimal Tamaño

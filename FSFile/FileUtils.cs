@@ -2,8 +2,10 @@
 using FSLibrary;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -88,8 +90,9 @@ namespace FSFile
                 fil.FechaArchivo = f.CreationTime;
                 fil.Label = DriveLabel(f.Directory.Root.FullName);
                 fil.FullName = f.FullName;
+                fil.FullName83 = FSFile.FileUtils.GetShortFileName(f.FullName);
 
-                if(calcSoundEx)
+                if (calcSoundEx)
                     fil.SoundEx = FSFuzzyStrings.SoundExEsp.Do(f.Name);
 
                 if(calcCRC32)
@@ -213,7 +216,7 @@ namespace FSFile
         {
             using (StreamWriter sw = new StreamWriter(fileName))
             {
-                sw.WriteLine(@"""Path"",""Nombre original"",""Nombre normalizado"",""Label"",""Tamaño"",""Fecha""");  //cabecera
+                sw.WriteLine(@"""Path"",""Nombre original"",""Nombre normalizado"",""Nombre 8.3"",""Label"",""Tamaño"",""Fecha""");  //cabecera
 
                 foreach (File pel in ficheros)
                 {
@@ -221,6 +224,7 @@ namespace FSFile
                     sw.WriteLine(@"""" + pel.Dir +
                                 @""",""" + pel.Nombre +
                                  @""",""" + pel.NombreNormalizado +
+                                 @""",""" + pel.FullName83 +
                                  @""",""" + pel.Label +
                                  @""",""" + pel.Tamaño +
                                  @""",""" + pel.FechaArchivo
@@ -230,6 +234,38 @@ namespace FSFile
                 sw.Close();
             }
         }
+
+        public static void SaveAsCsv(string fileName, DataTable dataTable)
+        {
+            using (StreamWriter sw = new StreamWriter(fileName))
+            {
+                int f = 0;
+                foreach (DataColumn col in dataTable.Columns)
+                {
+                    sw.WriteLine(@"" + col.ColumnName);
+
+                    if (f != dataTable.Columns.Count)
+                        sw.Write(@""",");
+
+                    f++;
+                }
+
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    int g = 0;
+                    foreach (DataColumn col in dataTable.Columns)
+                    {
+                        sw.WriteLine(@"""" + row[g]
+                                     + @"""");
+
+                        g++;
+                    }
+                }
+
+                sw.Close();
+            }
+        }
+
 
         public static string ApplicationPath()
         {
@@ -587,6 +623,24 @@ namespace FSFile
             if (lcRetVal.Length == 0) lcRetVal = aStr[aStr.Length - 1].Substring(0, nMaxLength);
 
             return lcRetVal;
+        }
+
+        public static string GetLongFileName(String shortFileName)
+        {
+            StringBuilder longPath = new StringBuilder(2048);
+            int len = Win32API.GetLongPathName(shortFileName, longPath, longPath.Capacity);
+            //if (len == 0) throw new System.ComponentModel.Win32Exception();
+
+            return longPath.ToString();
+        }
+
+        public static string GetShortFileName(String longFileName)
+        {
+            StringBuilder shortPath = new StringBuilder(255);
+            int len = Win32API.GetShortPathName(longFileName, shortPath, shortPath.Capacity);
+            //if (len == 0) throw new System.ComponentModel.Win32Exception();
+
+            return shortPath.ToString();
         }
     }
 }

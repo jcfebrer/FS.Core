@@ -18,6 +18,7 @@ namespace FSFormControls
     {
         public event TreeNodeMouseClickEventHandler NodeMouseClick;
         public event TreeNodeMouseClickEventHandler NodeMouseDoubleClick;
+        public const string GO_BACK = "back";
 
         public DBFileExplorer()
         {
@@ -71,10 +72,21 @@ namespace FSFormControls
 
         public void LoadFolders(string path, DBTreeViewNode node)
         {
+            DBTreeViewNode nodeBack = new DBTreeViewNode();
+            nodeBack.Text = "..";
+            nodeBack.Value = GO_BACK;
+
             if (node == null)
+            {
                 this.dbTreeView1.Nodes.Clear();
+                dbTreeView1.Nodes.Add(nodeBack);
+            }
             else
+            {
                 node.Nodes.Clear();
+                node.Nodes.Add(nodeBack);
+            }
+
 
             Folders folders = FolderUtils.GetFolders(path, false);
 

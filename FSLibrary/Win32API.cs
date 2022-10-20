@@ -3274,6 +3274,26 @@ namespace FSLibrary
         );
 
 
+        /// <summary>
+        /// Devuelve el path largo dado un path 8.3
+        /// </summary>
+        /// <param name="shortPath"></param>
+        /// <param name="longPath"></param>
+        /// <param name="bufSize"></param>
+        /// <returns></returns>
+        [DllImport("kernel32", EntryPoint = "GetLongPathName", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetLongPathName(string shortPath, StringBuilder longPath, int bufSize);
+
+        /// <summary>
+        /// Devuelve el path corto 8.2 dado un path largo.
+        /// </summary>
+        /// <param name="longPath"></param>
+        /// <param name="shortPath"></param>
+        /// <param name="bufSize"></param>
+        /// <returns></returns>
+        [DllImport("kernel32", EntryPoint = "GetShortPathName", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern int GetShortPathName(string longPath, StringBuilder shortPath, int bufSize);
+
 
         /// <summary>
         /// Tipo WindowsProc para enumerar las ventanas

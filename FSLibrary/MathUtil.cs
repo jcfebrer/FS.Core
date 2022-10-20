@@ -98,12 +98,30 @@ namespace FSLibrary
             }
         }
 
+
+        /// <summary>
+        /// Evalua la expresión especificada
+        /// </summary>
+        /// <param name="valor"></param>
+        /// <returns></returns>
+        public string Eval(string valor)
+        {
+            if (Evaluate(valor))
+                valor = Result.ToString();
+
+            if (!NumberUtils.IsNumeric(valor))
+                valor = "'" + valor + "'";
+
+            return valor;
+        }
+
+
         /// <summary>
         /// Evaluates the specified expression.
         /// </summary>
         /// <param name="expression">The expression.</param>
         /// <returns></returns>
-        public bool Evaluate(string expression)
+        private bool Evaluate(string expression)
         {
             try
             {

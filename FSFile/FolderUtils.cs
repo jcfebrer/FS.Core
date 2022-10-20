@@ -1,10 +1,7 @@
-﻿using FSLibrary;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
+using System.Security.Permissions;
 
 namespace FSFile
 {
@@ -37,23 +34,32 @@ namespace FSFile
 
             foreach (DirectoryInfo f in flatList)
             {
-                Folder fil = new Folder(f.Name);
+                Folder fol = new Folder(f.Name);
 
-                fil.Nombre = f.Name;
-                fil.Tamaño = 0;
-                fil.FechaArchivo = f.CreationTime;
-                fil.Path = f.FullName;
+                fol.Nombre = f.Name;
+                fol.Tamaño = 0;
+                fol.FechaArchivo = f.CreationTime;
+                fol.Path = f.FullName;
 
+                FileIOPermission fileIOPermission = new FileIOPermission(PermissionState.Unrestricted);
+                fileIOPermission.AllLocalFiles = FileIOPermissionAccess.Read;
                 try
                 {
+                    fileIOPermission.Demand();
+
                     DirectoryInfo[] dir = f.GetDirectories();
                     if (dir != null && dir.Length > 0)
-                        fil.HasSubfolder = true;
+                        fol.HasSubfolder = true;
                 }
-                catch
-                { }
+                catch (UnauthorizedAccessException)
+                {
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
 
-                carpetas.Add(fil);
+                carpetas.Add(fol);
             }
 
             return carpetas;
@@ -88,13 +94,13 @@ namespace FSFile
             return resultList;
         }
 
-        public static void SaveAsCsv(string fileName, Folders carpetas)
+        public static void SaveAsCsv(string fileName, Folders folders)
         {
             using (StreamWriter sw = new StreamWriter(fileName))
             {
                 sw.WriteLine(@"""Nombre"",""Path"",""Tamaño"",""Fecha""");  //cabecera
 
-                foreach (Folder fol in carpetas)
+                foreach (Folder fol in folders)
                 {
 
                     sw.WriteLine(@"""" + fol.Nombre +

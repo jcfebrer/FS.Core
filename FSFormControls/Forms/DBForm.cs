@@ -996,7 +996,7 @@ namespace FSFormControls
             // 
             // barraEstado
             // 
-            this.barraEstado.Location = new System.Drawing.Point(0, 322);
+            this.barraEstado.Location = new System.Drawing.Point(0, 112);
             this.barraEstado.Name = "barraEstado";
             this.barraEstado.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
             this.estado,
@@ -1056,7 +1056,8 @@ namespace FSFormControls
             this.DbToolBar1.ShowSaveButton = true;
             this.DbToolBar1.ShowScrollBar = true;
             this.DbToolBar1.ShowSearchButton = true;
-            this.DbToolBar1.Size = new System.Drawing.Size(1042, 50);
+            this.DbToolBar1.ShowText = true;
+            this.DbToolBar1.Size = new System.Drawing.Size(1020, 138);
             this.DbToolBar1.TabIndex = 1;
             this.DbToolBar1.TabStop = false;
             this.DbToolBar1.Value = 0;
@@ -1070,7 +1071,7 @@ namespace FSFormControls
             // DBForm
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(1042, 344);
+            this.ClientSize = new System.Drawing.Size(1042, 134);
             this.ContextMenuStrip = this.mnuContext;
             this.Controls.Add(this.barraEstado);
             this.Controls.Add(this.DbToolBar1);
