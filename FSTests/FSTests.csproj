@@ -74,10 +74,16 @@
     <Compile Include="FSMail\Pop3Tests.cs" />
     <Compile Include="FSParserTests.cs" />
     <Compile Include="FSNetworkTests.cs" />
+    <Compile Include="FSParser\HtmlRenderTest.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FSFuzzyStrings\SoundExTests.cs" />
     <Compile Include="FSFuzzyStrings\StringExtensionsTests.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Varios.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,6 +118,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\factura.html" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
