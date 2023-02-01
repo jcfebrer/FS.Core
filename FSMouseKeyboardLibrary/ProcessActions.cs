@@ -15,15 +15,20 @@ namespace FSMouseKeyboardLibrary
         public delegate void ActionEntryEventHandler(MouseActionEntry action, int position);
         public static event ActionEntryEventHandler OnEntryProcess;
 
-        public static void Do(MouseActionsEntry actions, bool repeat, int repeatCount, bool makePointsIntermediate)
+        public static void Do(MouseActionsEntry actions, bool repeat, decimal repeatCount, bool makePointsIntermediate)
         {
+            cancel = false;
+
             if (!repeat)
             {
                 repeatCount = 1;
             }
 
             for (int f = 0; f < repeatCount; f++)
-            {
+            { 
+                if (cancel)
+                    break;
+
                 ProcessActions.Do(actions, makePointsIntermediate);
             }
         }
@@ -91,6 +96,7 @@ namespace FSMouseKeyboardLibrary
                         break;
                 }
 
+                Application.DoEvents();
             }
         }
 

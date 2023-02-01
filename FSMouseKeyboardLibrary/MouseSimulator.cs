@@ -252,6 +252,8 @@ namespace FSMouseKeyboardLibrary
             {
                 Position = new Point(fromX + intervalX * i, fromY + intervalY * i);
                 Thread.Sleep(sleep);
+
+                Application.DoEvents();
             }
         }
 
@@ -264,6 +266,8 @@ namespace FSMouseKeyboardLibrary
             {
                 Position = new Point((int)(a.X + i * d * Math.Cos(fi)), (int)(a.Y + i * d * Math.Sin(fi)));
                 Thread.Sleep(sleep);
+
+                Application.DoEvents();
             }
         }
 

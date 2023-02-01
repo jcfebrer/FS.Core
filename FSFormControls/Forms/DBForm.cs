@@ -903,9 +903,8 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBForm));
-            this.mnuFormMain = new System.Windows.Forms.MainMenu(this.components);
+            this.mnuFormMain = new System.Windows.Forms.MainMenu();
             this.mnuForm = new System.Windows.Forms.MenuItem();
             this.mnuConfPag = new System.Windows.Forms.MenuItem();
             this.mnuCalc = new System.Windows.Forms.MenuItem();
@@ -913,15 +912,15 @@ namespace FSFormControls
             this.mnuAbout = new System.Windows.Forms.MenuItem();
             this.MenuItem3 = new System.Windows.Forms.MenuItem();
             this.mnuClose = new System.Windows.Forms.MenuItem();
-            this.mnuContext = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnuContext = new System.Windows.Forms.ContextMenuStrip();
             this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tmrAutoSave = new System.Windows.Forms.Timer(this.components);
+            this.tmrAutoSave = new System.Windows.Forms.Timer();
             this.barraEstado = new FSFormControls.DBStatusBar();
             this.estado = new System.Windows.Forms.StatusBarPanel();
             this.mensaje = new System.Windows.Forms.StatusBarPanel();
             this.info = new System.Windows.Forms.StatusBarPanel();
             this.DbToolBar1 = new FSFormControls.DBToolBarEx();
-            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu(this.components);
+            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu();
             this.DbTabOrderSchemeProvider1 = new FSFormControls.TabOrderSchemaProvider();
             ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estado)).BeginInit();
@@ -996,14 +995,14 @@ namespace FSFormControls
             // 
             // barraEstado
             // 
-            this.barraEstado.Location = new System.Drawing.Point(0, 112);
+            this.barraEstado.Location = new System.Drawing.Point(0, 281);
             this.barraEstado.Name = "barraEstado";
             this.barraEstado.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
             this.estado,
             this.mensaje,
             this.info});
             this.barraEstado.ShowPanels = true;
-            this.barraEstado.Size = new System.Drawing.Size(1042, 22);
+            this.barraEstado.Size = new System.Drawing.Size(1154, 22);
             this.barraEstado.TabIndex = 2;
             this.barraEstado.Text = "dbStatusBar1";
             this.barraEstado.ViewStyle = FSFormControls.DBStatusBar.ViewStyleEnum.Default;
@@ -1017,7 +1016,7 @@ namespace FSFormControls
             // 
             this.mensaje.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
             this.mensaje.Name = "mensaje";
-            this.mensaje.Width = 825;
+            this.mensaje.Width = 937;
             // 
             // info
             // 
@@ -1070,8 +1069,8 @@ namespace FSFormControls
             // 
             // DBForm
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(1042, 134);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(1154, 303);
             this.ContextMenuStrip = this.mnuContext;
             this.Controls.Add(this.barraEstado);
             this.Controls.Add(this.DbToolBar1);
