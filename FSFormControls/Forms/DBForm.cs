@@ -903,8 +903,9 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBForm));
-            this.mnuFormMain = new System.Windows.Forms.MainMenu();
+            this.mnuFormMain = new System.Windows.Forms.MainMenu(this.components);
             this.mnuForm = new System.Windows.Forms.MenuItem();
             this.mnuConfPag = new System.Windows.Forms.MenuItem();
             this.mnuCalc = new System.Windows.Forms.MenuItem();
@@ -912,15 +913,15 @@ namespace FSFormControls
             this.mnuAbout = new System.Windows.Forms.MenuItem();
             this.MenuItem3 = new System.Windows.Forms.MenuItem();
             this.mnuClose = new System.Windows.Forms.MenuItem();
-            this.mnuContext = new System.Windows.Forms.ContextMenuStrip();
+            this.mnuContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tmrAutoSave = new System.Windows.Forms.Timer();
+            this.tmrAutoSave = new System.Windows.Forms.Timer(this.components);
             this.barraEstado = new FSFormControls.DBStatusBar();
             this.estado = new System.Windows.Forms.StatusBarPanel();
             this.mensaje = new System.Windows.Forms.StatusBarPanel();
             this.info = new System.Windows.Forms.StatusBarPanel();
             this.DbToolBar1 = new FSFormControls.DBToolBarEx();
-            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu();
+            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu(this.components);
             this.DbTabOrderSchemeProvider1 = new FSFormControls.TabOrderSchemaProvider();
             ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estado)).BeginInit();
