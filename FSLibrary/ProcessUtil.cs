@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 
@@ -12,6 +12,12 @@ namespace FSLibrary
     /// </summary>
     public class ProcessUtil
     {
+        public class ProcessData
+        {
+            public string Name;
+            public string DisplayTitle;
+        }
+
         /// <summary>
         /// Determines whether [is already running].
         /// </summary>
@@ -208,6 +214,39 @@ namespace FSLibrary
             if (Win32API.IsIconic(hWnd))
                 Win32API.ShowWindow(hWnd, Win32API.WindowShowStyle.Restore);
             Win32API.SetForegroundWindow(hWnd);
+        }
+
+        /// <summary>
+        /// Devuelve un listado de los servicios activos
+        /// </summary>
+        /// <returns></returns>
+        public static List<ProcessData> GetProcesses()
+        {
+            List<ProcessData> listProcess = new List<ProcessData>();
+            foreach (Process pr in Process.GetProcesses())
+            {
+                ProcessData processData = new ProcessData();
+                processData.DisplayTitle = pr.MainWindowTitle;
+                processData.Name = pr.ProcessName;
+
+                listProcess.Add(processData);
+            }
+
+            return listProcess;
+        }
+
+        /// <summary>
+        /// Comprueba si un proceso se esta ejecutando
+        /// </summary>
+        /// <param name="processName"></param>
+        /// <returns></returns>
+        public static bool IsRunning(string processName)
+        {
+            Process[] pname = Process.GetProcessesByName(processName);
+            if (pname.Length == 0)
+                return false;
+            else
+                return true;
         }
     }
 }

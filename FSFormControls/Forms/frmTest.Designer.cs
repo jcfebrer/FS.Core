@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTest));
             this.dbTabControl1 = new FSFormControls.DBTabControl();
             this.tabPage1 = new FSFormControls.DBTabPage();
+            this.dbButton18 = new FSFormControls.DBButton();
             this.dbCombo9 = new FSFormControls.DBCombo();
             this.dbTextBox4 = new FSFormControls.DBTextBox();
             this.dbTextBox3 = new FSFormControls.DBTextBox();
@@ -75,13 +76,13 @@
             this.dbListBox1 = new FSFormControls.DBListBox();
             this.dbListView1 = new FSFormControls.DBListView();
             this.tabPage2 = new FSFormControls.DBTabPage();
+            this.dbDocument1 = new FSFormControls.DBDocument();
             this.dbCombo2 = new FSFormControls.DBCombo();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.dbDateTimePicker1 = new FSFormControls.DBDateTimePicker();
             this.dbEtchedLine1 = new FSFormControls.DBEtchedLine();
             this.dbControl1 = new FSFormControls.DBControl();
             this.dbFile1 = new FSFormControls.DBFile();
-            this.dbDocument1 = new FSFormControls.DBDocument();
             this.dbFindTextBox1 = new FSFormControls.DBFindTextBox();
             this.dbPanel1 = new FSFormControls.DBPanel();
             this.dbFtp1 = new FSFormControls.DBFtp();
@@ -151,12 +152,12 @@
             // 
             // barraEstado
             // 
-            this.barraEstado.Location = new System.Drawing.Point(0, 522);
+            this.barraEstado.Location = new System.Drawing.Point(0, 501);
             this.barraEstado.Size = new System.Drawing.Size(1071, 22);
             // 
             // DbToolBar1
             // 
-            this.DbToolBar1.Size = new System.Drawing.Size(1071, 50);
+            this.DbToolBar1.Size = new System.Drawing.Size(1020, 138);
             this.DbToolBar1.TabIndex = 0;
             this.DbToolBar1.VisibleScroll = true;
             // 
@@ -169,14 +170,15 @@
             this.dbTabControl1.Controls.Add(this.tabPage5);
             this.dbTabControl1.Controls.Add(this.tabPage6);
             this.dbTabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dbTabControl1.Location = new System.Drawing.Point(0, 50);
+            this.dbTabControl1.Location = new System.Drawing.Point(0, 138);
             this.dbTabControl1.Name = "dbTabControl1";
             this.dbTabControl1.SelectedIndex = 0;
-            this.dbTabControl1.Size = new System.Drawing.Size(1071, 472);
+            this.dbTabControl1.Size = new System.Drawing.Size(1071, 363);
             this.dbTabControl1.TabIndex = 8;
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dbButton18);
             this.tabPage1.Controls.Add(this.dbCombo9);
             this.tabPage1.Controls.Add(this.dbTextBox4);
             this.tabPage1.Controls.Add(this.dbTextBox3);
@@ -198,10 +200,39 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1063, 446);
+            this.tabPage1.Size = new System.Drawing.Size(1063, 337);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Controles básicos";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dbButton18
+            // 
+            this.dbButton18.About = "";
+            this.dbButton18.Appearance = null;
+            this.dbButton18.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
+            this.dbButton18.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dbButton18.DropDownMenu = null;
+            this.dbButton18.FillColorEnd = System.Drawing.Color.White;
+            this.dbButton18.FillColorStart = System.Drawing.Color.LightGray;
+            this.dbButton18.FillHoverColorEnd = System.Drawing.Color.Beige;
+            this.dbButton18.FillHoverColorStart = System.Drawing.Color.Beige;
+            this.dbButton18.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.dbButton18.Gradient = false;
+            this.dbButton18.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.dbButton18.Image = null;
+            this.dbButton18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.dbButton18.Key = "Button1";
+            this.dbButton18.Location = new System.Drawing.Point(846, 200);
+            this.dbButton18.Name = "dbButton18";
+            this.dbButton18.Size = new System.Drawing.Size(95, 39);
+            this.dbButton18.TabIndex = 54;
+            this.dbButton18.Text = "Test DBGauge";
+            this.dbButton18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dbButton18.TextColorEnd = System.Drawing.Color.Black;
+            this.dbButton18.TextColorStart = System.Drawing.Color.Blue;
+            this.dbButton18.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dbButton18.ToolTip = "";
+            this.dbButton18.Click += new System.EventHandler(this.dbButton18_Click);
             // 
             // dbCombo9
             // 
@@ -1509,10 +1540,22 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1063, 446);
+            this.tabPage2.Size = new System.Drawing.Size(1063, 337);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "tabPage2      ";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // dbDocument1
+            // 
+            this.dbDocument1.About = "";
+            this.dbDocument1.BackColor = System.Drawing.Color.Silver;
+            this.dbDocument1.DataControl = null;
+            this.dbDocument1.DBField = null;
+            this.dbDocument1.Location = new System.Drawing.Point(377, 115);
+            this.dbDocument1.Mode = FSFormControls.Global.AccessMode.WriteMode;
+            this.dbDocument1.Name = "dbDocument1";
+            this.dbDocument1.Size = new System.Drawing.Size(130, 62);
+            this.dbDocument1.TabIndex = 18;
             // 
             // dbCombo2
             // 
@@ -1533,7 +1576,7 @@
             this.dbCombo2.GridMode = false;
             this.dbCombo2.ImageList = this.imageList1;
             this.dbCombo2.IsInEditMode = true;
-            this.dbCombo2.Location = new System.Drawing.Point(174, 115);
+            this.dbCombo2.Location = new System.Drawing.Point(174, 104);
             this.dbCombo2.Mode = FSFormControls.Global.AccessMode.WriteMode;
             this.dbCombo2.Name = "dbCombo2";
             this.dbCombo2.Obligatory = false;
@@ -1643,18 +1686,6 @@
             this.dbFile1.TabIndex = 21;
             this.dbFile1.Text = "dbFile1";
             // 
-            // dbDocument1
-            // 
-            this.dbDocument1.About = "";
-            this.dbDocument1.BackColor = System.Drawing.Color.Silver;
-            this.dbDocument1.DataControl = null;
-            this.dbDocument1.DBField = null;
-            this.dbDocument1.Location = new System.Drawing.Point(377, 115);
-            this.dbDocument1.Mode = FSFormControls.Global.AccessMode.WriteMode;
-            this.dbDocument1.Name = "dbDocument1";
-            this.dbDocument1.Size = new System.Drawing.Size(130, 62);
-            this.dbDocument1.TabIndex = 18;
-            // 
             // dbFindTextBox1
             // 
             this.dbFindTextBox1.About = "";
@@ -1708,7 +1739,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1110, 432);
+            this.tabPage3.Size = new System.Drawing.Size(1063, 337);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "tabPage3      ";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -1758,7 +1789,7 @@
             this.tabPage4.Controls.Add(this.dbLock1);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(1106, 416);
+            this.tabPage4.Size = new System.Drawing.Size(1063, 337);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -1897,7 +1928,7 @@
             this.tabPage5.Controls.Add(this.dbProgressBar1);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1106, 416);
+            this.tabPage5.Size = new System.Drawing.Size(1063, 337);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -2014,7 +2045,7 @@
             this.tabPage6.Controls.Add(this.dbRichTextBox1);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1106, 416);
+            this.tabPage6.Size = new System.Drawing.Size(1063, 337);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -2046,7 +2077,7 @@
             // 
             // dbStatusBar2
             // 
-            this.dbStatusBar2.Location = new System.Drawing.Point(0, 491);
+            this.dbStatusBar2.Location = new System.Drawing.Point(0, 470);
             this.dbStatusBar2.Name = "dbStatusBar2";
             this.dbStatusBar2.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
             this.statusBarPanel1,
@@ -2068,7 +2099,7 @@
             // 
             // dbStatusBar3
             // 
-            this.dbStatusBar3.Location = new System.Drawing.Point(0, 460);
+            this.dbStatusBar3.Location = new System.Drawing.Point(0, 439);
             this.dbStatusBar3.Name = "dbStatusBar3";
             this.dbStatusBar3.Size = new System.Drawing.Size(1071, 31);
             this.dbStatusBar3.TabIndex = 47;
@@ -2079,7 +2110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1071, 544);
+            this.ClientSize = new System.Drawing.Size(1071, 523);
             this.Controls.Add(this.dbStatusBar3);
             this.Controls.Add(this.dbStatusBar2);
             this.Controls.Add(this.dbTabControl1);
@@ -2215,5 +2246,6 @@
         private DBButton dbButton16;
         private DBButton dbButton17;
         private DBCombo dbCombo9;
+        private DBButton dbButton18;
     }
 }

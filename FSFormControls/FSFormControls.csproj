@@ -167,6 +167,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DBGauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DBGauge.Designer.cs">
+      <DependentUpon>DBGauge.cs</DependentUpon>
+    </Compile>
     <Compile Include="DBFileExplorer.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -246,6 +252,12 @@
     </Compile>
     <Compile Include="Forms\DBEtchedLine.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTestGauge.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTestGauge.Designer.cs">
+      <DependentUpon>frmTestGauge.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmAbout.cs">
       <SubType>Form</SubType>
@@ -625,6 +637,9 @@
     <None Include="Resources\DBChart.bmp" />
     <None Include="Resources\DBTabControl.bmp" />
     <None Include="Resources\DBTreeView.bmp" />
+    <EmbeddedResource Include="Forms\frmTestGauge.resx">
+      <DependentUpon>frmTestGauge.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTest.resx">
       <DependentUpon>frmTest.cs</DependentUpon>
     </EmbeddedResource>

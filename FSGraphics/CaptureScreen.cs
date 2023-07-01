@@ -4,6 +4,7 @@ using FSTrace;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -145,6 +146,127 @@ namespace FSGraphics
         {
             var r = new Rectangle(x, y, w, h);
             return CreateScreenCapture(r, showCursor);
+        }
+
+
+
+        /// <summary>
+        /// Creates an Image object containing a screen shot of the entire desktop
+        /// </summary>
+        /// <returns></returns>
+        public Image CaptureWindow()
+        {
+            return CaptureWindow(Win32API.GetDesktopWindow());
+        }
+        /// <summary>
+        /// Creates an Image object containing a screen shot of a specific window
+        /// </summary>
+        /// <param name="handle">The handle to the window. (In windows forms, this is obtained by the Handle property)</param>
+        /// <returns></returns>
+        public Image CaptureWindow(IntPtr handle)
+        {
+            // get te hDC of the target window
+            IntPtr hdcSrc = Win32API.GetWindowDC(handle);
+            // get the size
+            Rectangle windowRect = new Rectangle();
+            Win32API.GetWindowRect(handle, ref windowRect);
+            int width = windowRect.Right - windowRect.Left;
+            int height = windowRect.Bottom - windowRect.Top;
+            // create a device context we can copy to
+            IntPtr hdcDest = Win32API.CreateCompatibleDC(hdcSrc);
+            // create a bitmap we can copy it to,
+            // using GetDeviceCaps to get the width/height
+            IntPtr hBitmap = Win32API.CreateCompatibleBitmap(hdcSrc, width, height);
+            // select the bitmap object
+            IntPtr hOld = Win32API.SelectObject(hdcDest, hBitmap);
+            // bitblt over
+            Win32API.BitBlt(hdcDest, 0, 0, width, height, hdcSrc, 0, 0, Win32API.SRCCOPY);
+            // restore selection
+            Win32API.SelectObject(hdcDest, hOld);
+            // clean up 
+            Win32API.DeleteDC(hdcDest);
+            Win32API.ReleaseDC(handle, hdcSrc);
+            // get a .NET image object for it
+            Image img = Image.FromHbitmap(hBitmap);
+            // free up the Bitmap object
+            Win32API.DeleteObject(hBitmap);
+            return img;
+        }
+        /// <summary>
+        /// Captures a screen shot of a specific window, and saves it to a file
+        /// </summary>
+        /// <param name="handle"></param>
+        /// <param name="filename"></param>
+        /// <param name="format"></param>
+        public Image CaptureWindowToFile(IntPtr handle, string filename, ImageFormat format)
+        {
+            Image img = CaptureWindow(handle);
+            img.Save(filename, format);
+
+            return img;
+        }
+        /// <summary>
+        /// Captures a screen shot of the entire desktop, and saves it to a file
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="format"></param>
+        public Image CaptureScreenToFile(string filename, ImageFormat format)
+        {
+            Image img = CaptureWindow();
+            img.Save(filename, format);
+
+            return img;
+        }
+
+
+        public Image CaptureScreenToFile(string filename)
+        {
+            using (Bitmap bmpScreenshot = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, PixelFormat.Format32bppArgb))
+            {
+                using (Graphics gfxScreenshot = Graphics.FromImage(bmpScreenshot))
+                {
+                    try
+                    {
+                        gfxScreenshot.CopyFromScreen(Screen.PrimaryScreen.Bounds.X, Screen.PrimaryScreen.Bounds.Y, 0, 0, Screen.PrimaryScreen.Bounds.Size, CopyPixelOperation.SourceCopy);
+
+                        ImageCodecInfo codec = GetEncoderInfo("image/jpeg");
+
+                        System.Drawing.Imaging.Encoder qualityEncoder = System.Drawing.Imaging.Encoder.Quality;
+                        EncoderParameter ratio = new EncoderParameter(qualityEncoder, 10L); //calidad muy baja para jpg
+
+                        EncoderParameters codecParams = new EncoderParameters(1);
+                        codecParams.Param[0] = ratio;
+
+                        if (File.Exists(filename)) File.Delete(filename);
+
+                        using (FileStream fs = new FileStream(filename, FileMode.Create))
+                        {
+                            bmpScreenshot.Save(fs, codec, codecParams);
+                            fs.Close();
+                        }
+
+                        return (Image)bmpScreenshot;
+                    }
+                    catch (ExceptionUtil e)
+                    {
+                        throw new ExceptionUtil("Error al realizar la captura", e);
+                    }
+                }
+            }
+        }
+
+
+        private static ImageCodecInfo GetEncoderInfo(String mimeType)
+        {
+            int j;
+            ImageCodecInfo[] encoders;
+            encoders = ImageCodecInfo.GetImageEncoders();
+            for (j = 0; j < encoders.Length; ++j)
+            {
+                if (encoders[j].MimeType == mimeType)
+                    return encoders[j];
+            }
+            return null;
         }
     }
 }

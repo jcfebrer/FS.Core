@@ -34,15 +34,15 @@ namespace FSMail
 		public bool Recent { get; set; }
 		private bool disposed = false;
 		
-		public Pop3(string host, int port, string email, string password) : this(host, port, email, password, false) { }
-		public Pop3(string host, int port, string email, string password, bool secure)
+		public Pop3(string host, int port, string email, string password) : this(host, port, email, password, false, false) { }
+		public Pop3(string host, int port, string email, string password, bool secure, bool recent)
 		{
 			Host = host;
 			Port = port;
 			Email = email;
 			Password = password;
 			IsSecure = secure;
-			Recent = true;
+			Recent = recent;
 		}
 
 		public void Connect()

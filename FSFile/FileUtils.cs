@@ -493,6 +493,16 @@ namespace FSFile
             return fi.Name;
         }
 
+        public static DateTime GetModification(string cFileName)
+        {
+            return GetLastWriteTime(cFileName);
+        }
+
+        public static DateTime GetLastWriteTime(string cFileName)
+        {
+            return System.IO.File.GetLastWriteTime(cFileName);
+        }
+
         public static string GetPath(string cPath)
         {
             var lcPath = cPath.Trim();

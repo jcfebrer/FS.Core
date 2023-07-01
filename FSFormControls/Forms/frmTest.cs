@@ -15,5 +15,11 @@
             dbCombo1.Items.Add(7, "Valor 7");
             dbCombo1.Items.Add(8, "Valor 8");
         }
+
+        private void dbButton18_Click(object sender, System.EventArgs e)
+        {
+            frmTestGauge ftmT = new frmTestGauge();
+            ftmT.Show();
+        }
     }
 }

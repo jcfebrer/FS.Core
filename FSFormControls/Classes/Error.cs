@@ -15,7 +15,7 @@ namespace FSFormControls
 {
     public class Error
     {
-        public void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon,
+        public static void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon,
             Exception ex, bool Silent)
         {
             if (FSException.ExceptionUtil.IsCritical(ex)) throw ex;
@@ -106,89 +106,89 @@ namespace FSFormControls
             }
         }
 
-        public void ErrorMessage(Form frm, object sender, string message)
+        public static void ErrorMessage(Form frm, object sender, string message)
         {
             ErrorMessage(frm, sender, message);
         }
 
-        public void ErrorMessage(Form frm, object sender, string message, string title)
+        public static void ErrorMessage(Form frm, object sender, string message, string title)
         {
             ErrorMessage(frm, sender, message, title, MessageBoxIcon.Error);
         }
 
-        public void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon)
+        public static void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon)
         {
             ErrorMessage(frm, sender, message, title, icon, null);
         }
 
-        public void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon,
+        public static void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon,
             Exception ex)
         {
             ErrorMessage(frm, sender, message, title, icon, ex, false);
         }
 
 
-        public void ErrorMessage(Exception e)
+        public static void ErrorMessage(Exception e)
         {
             ErrorMessage(null, null, "", "", MessageBoxIcon.Error, e, false);
         }
 
 
-        public void ErrorMessage(Form frm, Exception e)
+        public static void ErrorMessage(Form frm, Exception e)
         {
             ErrorMessage(frm, null, "", "", MessageBoxIcon.Error, e, false);
         }
 
 
-        public void ErrorMessage(Form frm, Exception e, string message)
+        public static void ErrorMessage(Form frm, Exception e, string message)
         {
             ErrorMessage(frm, null, message, "", MessageBoxIcon.Error, e, false);
         }
 
 
-        public void ErrorMessage(Form frm, string message)
+        public static void ErrorMessage(Form frm, string message)
         {
             ErrorMessage(frm, null, message, "", MessageBoxIcon.Error, null, false);
         }
 
 
-        public void ErrorMessage(string message)
+        public static void ErrorMessage(string message)
         {
             ErrorMessage(null, null, message, "", MessageBoxIcon.Error, null, false);
         }
 
 
-        public void ErrorMessage(Exception e, string message)
+        public static void ErrorMessage(Exception e, string message)
         {
             ErrorMessage(null, null, message, "", MessageBoxIcon.Error, e, false);
         }
 
 
-        public void ErrorMessage(Form frm, object sender, Exception e)
+        public static void ErrorMessage(Form frm, object sender, Exception e)
         {
             ErrorMessage(frm, sender, "", "", MessageBoxIcon.Error, e, false);
         }
 
 
-        public void ErrorMessage(Form frm, Exception e, bool silent)
+        public static void ErrorMessage(Form frm, Exception e, bool silent)
         {
             ErrorMessage(frm, null, "", "", MessageBoxIcon.Error, e, silent);
         }
 
 
-        public void ErrorMessage(Form frm, string message, bool silent)
+        public static void ErrorMessage(Form frm, string message, bool silent)
         {
             ErrorMessage(frm, null, message, "", MessageBoxIcon.Error, null, silent);
         }
 
 
-        public void ErrorMessage(Form frm, object sender, Exception e, bool silent)
+        public static void ErrorMessage(Form frm, object sender, Exception e, bool silent)
         {
             ErrorMessage(frm, sender, "", "", MessageBoxIcon.Error, e, silent);
         }
 
 
-        public void WriteEvent(string message)
+        public static void WriteEvent(string message)
         {
             try
             {
@@ -209,7 +209,7 @@ namespace FSFormControls
         }
 
 
-        public void WriteEventLog(string message)
+        public static void WriteEventLog(string message)
         {
             try
             {

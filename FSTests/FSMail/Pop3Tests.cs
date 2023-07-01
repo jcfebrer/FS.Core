@@ -18,7 +18,7 @@ namespace FSTests.FSMail
             int totalEmails = 0;
             List<Pop3Email> emails;
 
-            using (Pop3 client = new Pop3("pop.gmail.com", 995, "comuprueba", "uspumnuzpciebuxw", true))
+            using (Pop3 client = new Pop3("pop.gmail.com", 995, "comuprueba", "uspumnuzpciebuxw", true, true))
             {
                 client.Connect();
 

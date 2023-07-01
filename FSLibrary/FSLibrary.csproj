@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlarmClock.cs" />
+    <Compile Include="Autorun.cs" />
     <Compile Include="Clipboard.cs" />
     <Compile Include="Contenedor_ISO6346.cs" />
     <Compile Include="Dni.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="Crc8.cs" />
+    <Compile Include="SystemInfo.cs" />
     <Compile Include="WakeOnLan.cs" />
     <Compile Include="Win32API.cs" />
     <Compile Include="Xml.cs" />

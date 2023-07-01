@@ -34,14 +34,14 @@ namespace FSException
         public ExceptionUtil(string message)
             : base(message)
         {
-            WriteError(message, this);
+            WriteError(message);
         }
 
 
         public ExceptionUtil(Exception e)
             : base(e.Message, e)
         {
-            WriteError(e.ToString(), e);
+            WriteError(e);
         }
 
         public ExceptionUtil(string message, ExceptionType type) : base(message)
@@ -49,14 +49,16 @@ namespace FSException
             eType = type;
 
             if (eType == ExceptionType.Error) 
-                WriteError(message, this);
+                WriteError(message);
+            if (eType == ExceptionType.Information)
+                WriteInfo(message);
         }
 
 
         public ExceptionUtil(string message, Exception e)
             : base(message, e)
         {
-            WriteError(message + ": " + e, e);
+            WriteError(message, e);
         }
 
 
@@ -67,14 +69,24 @@ namespace FSException
 
         public static void WriteError(string message, Exception e)
         {
-            try
-            {
-                string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-                Log.TraceError(processName + "\n" + message);
-            }
-            catch
-            {
-            }
+            WriteError(message + Environment.NewLine + e.ToString());
+        }
+
+        public static void WriteError(Exception e)
+        {
+            WriteError(e.ToString());
+        }
+
+        public static void WriteError(string message)
+        {
+            string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            Log.TraceError(processName + Environment.NewLine + message);
+        }
+
+        public static void WriteInfo(string message)
+        {
+            string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
+            Log.TraceInfo(processName + Environment.NewLine + message);
         }
 
         /// <summary>
