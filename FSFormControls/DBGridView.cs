@@ -86,6 +86,7 @@ namespace FSFormControls
         public event CellClickEventHandler CellDoubleClick;
         public event DataErrorEventHandler DataError;
         public event CellValueChangedEventHandler CellValueChanged;
+        public event DataGridViewCellFormattingEventHandler CellFormatting;
         public event RowsAddedEventHandler RowsAdded;
         public event CellEndEditEventHandler CellEndEdit;
         public event DataGridViewRowEventHandler InitializeRow;
@@ -477,6 +478,28 @@ namespace FSFormControls
             set { datagrid.CurrentCell = value; }
         }
 
+        public bool ReadOnly { 
+            get { return datagrid.ReadOnly; } 
+            set { datagrid.ReadOnly = value; }
+        }
+
+        public bool AllowUserToAddRows {
+            get { return datagrid.AllowUserToAddRows; }
+            set { datagrid.AllowUserToAddRows = value; }
+        }
+
+        public int FirstDisplayedScrollingRowIndex 
+        { 
+            get { return datagrid.FirstDisplayedScrollingRowIndex; }
+            set { datagrid.FirstDisplayedScrollingRowIndex = value; } 
+        }
+
+        public DataGridViewRow RowTemplate 
+        { 
+            get { return datagrid.RowTemplate; } 
+            set { datagrid.RowTemplate = value; }
+        }
+
         public void BeginInit()
         {
         }
@@ -664,6 +687,9 @@ namespace FSFormControls
         private void DataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             // if(error)e.CellStyle.BackColor = Color.Red;
+
+            if (CellFormatting != null)
+                CellFormatting(sender, e);
         }
 
         private void DataGridView1_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -952,8 +978,11 @@ namespace FSFormControls
         {
             try
             {
-                if (!((column.ColumnType == DBColumn.ColumnTypes.DescriptionColumn) |
-                      (column.ColumnType == DBColumn.ColumnTypes.FormulaColumn)))
+                if (!Columns.Contains(column))
+                    Columns.Add(column);
+
+                if (DataControl != null && !(column.ColumnType == DBColumn.ColumnTypes.DescriptionColumn |
+                      column.ColumnType == DBColumn.ColumnTypes.FormulaColumn))
                     column.FieldDB = DataControl.FieldExactName(column.FieldDB);
 
 
@@ -1390,7 +1419,7 @@ namespace FSFormControls
                 }
 
 
-                if (DataControl.DataTable != null)
+                if (DataControl != null && DataControl.DataTable != null)
                     try
                     {
                         var dtcol = DataControl.DataTable.Columns[column.FieldDB];

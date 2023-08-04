@@ -11,6 +11,7 @@
 #region
 
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
@@ -22,9 +23,37 @@ using System.Threading;
 
 namespace FSTrace
 {
+    public class LogData
+    {
+        public DateTime Date { get; set; }
+        public string Message { get; set; }
+        public TraceLevel TraceLevel { get; set; }
+        public int Count { get; set; }
+
+        public LogData()
+        { }
+
+        public LogData(DateTime date, string message, TraceLevel traceLevel)
+        {
+            this.Date = date;
+            this.Message = message;
+            this.TraceLevel = traceLevel;
+            this.Count = 0;
+        }
+
+        public bool IsTraceLevel(TraceLevel level, bool state)
+        {
+            if (this.TraceLevel == level)
+                return state;
+            return false;
+        }
+    }
+
     /// <summary>Implementa funcionalidad de traceo</summary>
     public static class Log
     {
+        private static List<LogData> logData = new List<LogData>();
+
         public delegate void MessageLogEventHandler(object source, Log.LogMessage e);
         public delegate void MessageLogTextEventHandler(object source, string e);
         public static event MessageLogTextEventHandler OnMessageLogText;
@@ -36,6 +65,8 @@ namespace FSTrace
         private static TraceListener m_traceListener;
         private static bool m_firstSection = true;
         private static TraceSwitch m_logLevelSwitch;
+        private static bool m_saveLogData = false;
+        private static bool m_groupData = false;
 
         public static TraceLevel LogTraceLevel
         {
@@ -45,6 +76,18 @@ namespace FSTrace
                 m_LogTraceLevel = value;
                 LogLevelSwitch.Level = value;
             }
+        }
+
+        public static bool SaveLogData
+        {
+            get { return m_saveLogData; }
+            set { m_saveLogData = value; }
+        }
+
+        public static bool GroupData
+        {
+            get { return m_groupData; }
+            set { m_groupData = value; }
         }
 
         /// <summary>
@@ -113,6 +156,24 @@ namespace FSTrace
             //Si solo se ha especificado nombre del archivo de log
             //en el archivo de configuración añadimos el path del proceso
             return logFile;
+        }
+
+        public static List<LogData> GetLogData(bool error, bool warning, bool info)
+        {
+            Func<LogData, bool> predicate1 = s => s.IsTraceLevel(TraceLevel.Error, error);
+            Func<LogData, bool> predicate2 = s => s.IsTraceLevel(TraceLevel.Warning, warning);
+            Func<LogData, bool> predicate3 = s => s.IsTraceLevel(TraceLevel.Info, info);
+            return logData.FindAll(s => (predicate1(s) || predicate2(s) || predicate3(s)));
+        }
+
+        public static List<LogData> GetLogData(TraceLevel level)
+        {
+            return logData.FindAll(x => x.TraceLevel == level);
+        }
+
+        public static List<LogData> GetLogData()
+        {
+            return logData;
         }
 
         /// <summary>
@@ -188,7 +249,7 @@ namespace FSTrace
                 message += FirstSection();
             }
 
-            var msgLog = GetMessageLog(traceLevel, message);
+            LogMessage msgLog = GetMessageLog(traceLevel, message);
 
 
             if (m_traceListener != null)
@@ -202,6 +263,20 @@ namespace FSTrace
                 System.Diagnostics.Trace.AutoFlush = true;
                 System.Diagnostics.Trace.IndentSize = 4;
                 System.Diagnostics.Trace.WriteLine(msgLog.ToString());
+            }
+
+            if (m_saveLogData)
+            {
+                if (m_groupData && logData.Exists(e => e.Message == msgLog.Message))
+                {
+                    LogData logUpdate = logData.Find(e => e.Message == msgLog.Message);
+                    logUpdate.Date = msgLog.Time;
+                    logUpdate.Count++;
+                }
+                else
+                {
+                    logData.Add(new LogData(msgLog.Time, msgLog.Message, msgLog.TraceLevel));
+                }
             }
 
             using (EventLog eventLog = new EventLog("Application"))

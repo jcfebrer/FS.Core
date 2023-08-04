@@ -69,7 +69,7 @@ namespace FSException
 
         public static void WriteError(string message, Exception e)
         {
-            WriteError(message + Environment.NewLine + e.ToString());
+            WriteError(message + " : " + e.ToString());
         }
 
         public static void WriteError(Exception e)
@@ -80,13 +80,13 @@ namespace FSException
         public static void WriteError(string message)
         {
             string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            Log.TraceError(processName + Environment.NewLine + message);
+            Log.TraceError(processName + " : " + message);
         }
 
         public static void WriteInfo(string message)
         {
             string processName = System.Diagnostics.Process.GetCurrentProcess().ProcessName;
-            Log.TraceInfo(processName + Environment.NewLine + message);
+            Log.TraceInfo(processName + " : " + message);
         }
 
         /// <summary>

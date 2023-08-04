@@ -18,23 +18,24 @@ namespace FSFormControls
         public static void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon,
             Exception ex, bool Silent)
         {
-            if (FSException.ExceptionUtil.IsCritical(ex)) throw ex;
+            if (FSException.ExceptionUtil.IsCritical(ex))
+                throw ex;
 
             try
             {
                 string mess = null;
                 var frmE = new frmError();
                 var senderName = "Nothing";
-                var ver = "";
+                var assemblyVersion = "";
                 try
                 {
-                    ver = "Versión: " +
+                    assemblyVersion = "Assembly Version: " +
                           FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileMajorPart + "." +
                           FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).FileMinorPart;
                 }
                 catch
                 {
-                    ver = "Null";
+                    assemblyVersion = "Null";
                 }
 
 
@@ -63,33 +64,38 @@ namespace FSFormControls
                 }
 
                 mess = mess + "User Name: " + Environment.UserName + "\r\n";
-                mess = mess + "Version: " + Environment.Version;
-                mess = mess + "\r\n" + ver + "\r\n";
+                mess = mess + "Version: " + Environment.Version + "\r\n";
+                mess = mess + assemblyVersion + "\r\n";
                 mess = mess + "Sender: [" + senderName + "]" + "\r\n";
 
-                if (sender is DBControl) mess = mess + "SQL: " + ((DBControl) sender).Selection + "\r\n";
+                if (sender is DBControl)
+                    mess = mess + "SQL: " + ((DBControl) sender).Selection + "\r\n";
 
-                if (frm != null) mess = mess + "Form: " + frm.Name + "\r\n";
+                if (frm != null)
+                    mess = mess + "Form: " + frm.Name + "\r\n";
 
                 if (ex == null)
                 {
-                    if (message == "")
-                        message =
-                            "Error no controlado de la aplicación. Pulse en 'Desplegar', para una información mas ampliada del error.";
+                    if (String.IsNullOrEmpty(message))
+                        message = "Error no controlado de la aplicación. Pulse en 'Desplegar', para una información mas ampliada del error.";
                 }
                 else
                 {
-                    if (message == "") message = ex.Message;
+                    if (String.IsNullOrEmpty(message))
+                        message = ex.Message;
                     mess = mess + "\r\n" + ex.Message + "\r\n" + ex.Source + "\r\n" + ex.StackTrace + "\r\n";
                     if (ex.InnerException != null)
                         mess = mess + "\r\n[InnerException]\r\n" + ex.InnerException + "\r\n";
                 }
 
-                if (title == "") title = "Gestor de Errores";
+                if (String.IsNullOrEmpty(title)) 
+                    title = "Gestor de Errores";
                 mess = mess + message;
 
-                if (Global.SaveErrorsOnFile) WriteEvent(mess);
-                if (Global.SaveErrorsOnEventLog) WriteEventLog(mess);
+                if (Global.SaveErrorsOnFile)
+                    WriteEvent(mess);
+                if (Global.SaveErrorsOnEventLog)
+                    WriteEventLog(mess);
 
                 if (!Global.SilentError)
                     if (!Silent)
