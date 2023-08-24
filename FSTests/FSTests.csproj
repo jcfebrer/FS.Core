@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>FSTests</RootNamespace>
     <AssemblyName>FSTests</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -46,6 +46,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <Choose>
@@ -61,6 +62,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="FSIA\ChatGPTTest.cs" />
     <Compile Include="FSDatabase\UtilsTests.cs" />
     <Compile Include="FSCryptoTests.cs" />
     <Compile Include="FSLibrary\DniTests.cs" />
@@ -87,6 +89,10 @@
     <Compile Include="Varios.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FSAi\FSIA.csproj">
+      <Project>{76444524-DB7E-4762-AD1F-E816AEABDE09}</Project>
+      <Name>FSIA</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSCrypto\FSCrypto.csproj">
       <Project>{5DDE5624-1823-435D-8C88-46EB601106A4}</Project>
       <Name>FSCrypto</Name>

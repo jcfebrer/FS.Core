@@ -26,7 +26,13 @@ namespace FSAi
                 ApiKey = key,
             });
 
-            var sampleFile = await FileExtensions.ReadAllBytesAsync($"SampleData/{fileName}");
+            byte[] sampleFile;
+            using (FileStream stream = File.Open($"{fileName}", FileMode.Open))
+            {
+                sampleFile = new byte[stream.Length];
+                await stream.ReadAsync(sampleFile, 0, (int)stream.Length);
+            }
+            //var sampleFile = await FileExtensions.ReadAllBytesAsync($"SampleData/{fileName}");
             var audioResult = await openAiService.Audio.CreateTranscription(new AudioCreateTranscriptionRequest
             {
                 FileName = fileName,

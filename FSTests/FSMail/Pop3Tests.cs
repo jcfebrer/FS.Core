@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,12 @@ namespace FSTests.FSMail
             int totalEmails = 0;
             List<Pop3Email> emails;
 
-            using (Pop3 client = new Pop3("pop.gmail.com", 995, "comuprueba", "uspumnuzpciebuxw", true, true))
+            using (Pop3 client = new Pop3(ConfigurationManager.AppSettings["Pop3Server"], 
+                Convert.ToInt32(ConfigurationManager.AppSettings["Pop3Port"]), 
+                ConfigurationManager.AppSettings["Pop3UserName"], 
+                ConfigurationManager.AppSettings["Pop3Password"], 
+                Convert.ToBoolean(ConfigurationManager.AppSettings["Pop3Ssl"]), 
+                Convert.ToBoolean(ConfigurationManager.AppSettings["Pop3Recent"])))
             {
                 client.Connect();
 

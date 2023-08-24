@@ -4,6 +4,9 @@ using System.Text;
 
 namespace FSLibrary
 {
+    /// <summary>
+    /// Librería para la gestión del disco duro.
+    /// </summary>
     public class HardDisk
     {
         /// <summary>
@@ -18,6 +21,10 @@ namespace FSLibrary
             return lcJustDrive;
         }
 
+        /// <summary>
+        /// Información de disco
+        /// </summary>
+        /// <returns></returns>
         public static string DriveInformation()
         {
             StringBuilder sb = new StringBuilder();

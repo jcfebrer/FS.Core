@@ -11,17 +11,41 @@ namespace FSLibrary
     /// </summary>
     public class SystemInfo
     {
+        /// <summary>
+        /// Nombre de usuario
+        /// </summary>
         public string UserName { get; set; }
+        /// <summary>
+        /// Clave
+        /// </summary>
         public string Password { get; set; }
+        /// <summary>
+        /// Dominio
+        /// </summary>
         public string Domain { get; set; }
+        /// <summary>
+        /// Ip
+        /// </summary>
         public string Ip { get; set; }
 
+        /// <summary>
+        /// Tipo de datos de disco
+        /// </summary>
         public enum DiskDataType
         {
+            /// <summary>
+            /// Tamaño total
+            /// </summary>
             TotalSize,
+            /// <summary>
+            /// Espacio libre
+            /// </summary>
             FreeSpace
         }
 
+        /// <summary>
+        /// Información del sistema
+        /// </summary>
         public SystemInfo()
         {
             Ip = "";
@@ -30,6 +54,13 @@ namespace FSLibrary
             Password = "";
         }
 
+        /// <summary>
+        /// Información del sistema
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="domain"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
         public SystemInfo(string ip, string domain, string username, string password)
         {
             Ip = ip;
@@ -489,7 +520,6 @@ namespace FSLibrary
         /// <summary>
         /// Recupera toda la información indicando un path
         /// </summary>
-        /// <param name="path"></param>
         /// <returns></returns>
         public string GetAllInformation()
         {
@@ -829,19 +859,30 @@ namespace FSLibrary
             return lnRetVal;
         }
 
-
+        /// <summary>
+        /// Espacio en disco
+        /// </summary>
+        /// <returns></returns>
         public long DiskSpace()
         {
             return DiskSpace("", DiskDataType.FreeSpace);
         }
 
-
+        /// <summary>
+        /// Espacio en disco
+        /// </summary>
+        /// <param name="tcDrive"></param>
+        /// <returns></returns>
         public long DiskSpace(string tcDrive)
         {
             return DiskSpace(tcDrive, DiskDataType.FreeSpace);
         }
 
-
+        /// <summary>
+        /// Tipo de unidad
+        /// </summary>
+        /// <param name="tcDrive"></param>
+        /// <returns></returns>
         public int DriveType(string tcDrive)
         {
             var nRetVal = -1;

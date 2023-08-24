@@ -36,19 +36,19 @@ namespace FSMail
 		/// <summary>
 		/// Max Message flags: 10
 		/// </summary>
-		protected const ushort IMAP_MAX_MSG_FLAGS = 10;
+		protected const int IMAP_MAX_MSG_FLAGS = 10;
 		/// <summary>
 		/// Imap default port: 143
 		/// </summary>
-		protected const ushort IMAP_DEFAULT_PORT = 143;
+		protected const int IMAP_DEFAULT_PORT = 143;
 		/// <summary>
 		/// Imap default timeout:30 sec
 		/// </summary>
-		protected const ushort IMAP_DEFAULT_TIMEOUT = 30;
+		protected const int IMAP_DEFAULT_TIMEOUT = 30;
 		/// <summary>
 		/// Imap Command Identifier value:Initial 0
 		/// </summary>
-		protected static ushort IMAP_COMMAND_VAL = 0;
+		protected static int IMAP_COMMAND_VAL = 0;
 		/// <summary>
 		/// Imap command Identified prefix: IMAP00
 		/// </summary>
@@ -366,7 +366,7 @@ namespace FSMail
 		/// <summary>
 		/// Imap port : default IMAP_DEFAULT_PORT : 143
 		/// </summary>
-		protected ushort m_nPort = IMAP_DEFAULT_PORT;
+		protected int m_nPort = IMAP_DEFAULT_PORT;
 		/// <summary>
 		/// User id
 		/// </summary>
@@ -425,7 +425,7 @@ namespace FSMail
 		/// <param name="nPort">Imap port</param>
 		/// <param name="sslEnabled"> </param>
 		/// <returns>ImapResponseEnum type</returns>
-		protected ImapResponseEnum Connect(string sHost, ushort nPort, bool sslEnabled = false)
+		protected ImapResponseEnum Connect(string sHost, int nPort, bool sslEnabled = false)
 		{
 			IMAP_COMMAND_VAL = 0;
 			ImapResponseEnum eImapResponse = ImapResponseEnum.IMAP_SUCCESS_RESPONSE;

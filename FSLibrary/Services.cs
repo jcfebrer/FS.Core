@@ -244,23 +244,65 @@ namespace FSLibrary
         }
     }
 
+    /// <summary>
+    /// Información del servicio
+    /// </summary>
     public class ServiceInfo
     {
+        /// <summary>
+        /// Estado del servicio
+        /// </summary>
         public enum ServiceStatus
         {
+            /// <summary>
+            /// Pendiente de continuar
+            /// </summary>
             ContinuePending = 5,
+            /// <summary>
+            /// Pausado
+            /// </summary>
             Paused = 7,
+            /// <summary>
+            /// Pendiente de pausa
+            /// </summary>
             PausePending = 6,
+            /// <summary>
+            /// Ejecutandose
+            /// </summary>
             Running = 4,
+            /// <summary>
+            /// Pendiente de iniciar
+            /// </summary>
             StartPending = 2,
+            /// <summary>
+            /// Parado
+            /// </summary>
             Stopped = 1,
+            /// <summary>
+            /// Pendiente de parar
+            /// </summary>
             StopPending = 3
         }
 
+        /// <summary>
+        /// Nombre del servicio
+        /// </summary>
         public string ServiceName { get; set; }
+        /// <summary>
+        /// Estado del servicio
+        /// </summary>
         public ServiceStatus Status { get; set; }
+        /// <summary>
+        /// Nombre para mostrar
+        /// </summary>
         public string DisplayName { get; set; }
+        /// <summary>
+        /// Nombre de la máquina
+        /// </summary>
         public string MachineName { get; set; }
+        /// <summary>
+        /// Tipo de servicio
+        /// </summary>
         public string ServiceType { get; set; }
     }
 }

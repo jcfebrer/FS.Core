@@ -12,9 +12,18 @@ namespace FSLibrary
     /// </summary>
     public class ProcessUtil
     {
+        /// <summary>
+        /// Clase ProcessData
+        /// </summary>
         public class ProcessData
         {
+            /// <summary>
+            /// Nombre
+            /// </summary>
             public string Name;
+            /// <summary>
+            /// Título
+            /// </summary>
             public string DisplayTitle;
         }
 

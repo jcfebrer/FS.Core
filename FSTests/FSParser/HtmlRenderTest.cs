@@ -24,6 +24,7 @@ namespace FSTests.FSParser
             _documento.Emisor.IdentificadorFiscal = "1234567X";
             _documento.Emisor.Telefono = "943320222";
             _documento.Emisor.Nombre = "Emisor";
+            _documento.Emisor.Pais = "España";
 
             _documento.Emisor.Domicilio = new Domicilio();
             _documento.Emisor.Domicilio.Provincia = "Segovia";
@@ -36,6 +37,7 @@ namespace FSTests.FSParser
             _documento.Destinatario.IdentificadorFiscal = "234321111X";
             _documento.Destinatario.Telefono = "9498787665";
             _documento.Destinatario.Nombre = "Destinatario";
+            _documento.Destinatario.Pais = "España";
 
             _documento.Destinatario.Domicilio = new Domicilio();
             _documento.Destinatario.Domicilio.Provincia = "Burgos";
