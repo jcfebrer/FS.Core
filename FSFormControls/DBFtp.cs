@@ -49,11 +49,12 @@ namespace FSFormControls
             InitializeComponent();
         }
 
-        public DBFtp(string Hostname, string Username, string Password)
+        public DBFtp(string Hostname, string Username, string Password, bool EnableSSL = false)
         {
             _hostname = Hostname;
             _username = Username;
             this.Password = Password;
+            this.EnableSSL = EnableSSL;
 
             InitializeComponent();
         }
@@ -449,6 +450,7 @@ namespace FSFormControls
             var result = (FtpWebRequest) WebRequest.Create(URI);
             result.Credentials = GetCredentials();
             result.KeepAlive = false;
+            result.EnableSsl = EnableSSL;
             return result;
         }
 
@@ -469,10 +471,7 @@ namespace FSFormControls
 
         private string AdjustDir(string path)
         {
-            var transTemp0 = path.StartsWith("/");
-            object transTemp1 = "";
-            object transTemp2 = "/";
-            return (string) (transTemp0 ? transTemp1 : transTemp2) + path;
+            return (string) (path.StartsWith("/") ? "" : "/") + path;
         }
 
 
@@ -565,6 +564,8 @@ namespace FSFormControls
 
         public string Password { get; set; }
 
+        public bool EnableSSL { get; set; }
+
         public bool Passive { get; set; }
 
         public bool KeepAlive { get; set; }
@@ -573,10 +574,7 @@ namespace FSFormControls
         {
             get
             {
-                var transTemp5 = _currentDirectory.EndsWith("/");
-                object transTemp6 = "";
-                object transTemp7 = "/";
-                return _currentDirectory + (string) (transTemp5 ? transTemp6 : transTemp7);
+                return _currentDirectory + (string) (_currentDirectory.EndsWith("/") ? "" : "/");
             }
             set
             {
