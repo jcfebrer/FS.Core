@@ -946,13 +946,13 @@ namespace FSLibrary
         /// </summary>
         /// <param name="serviceName"></param>
         /// <returns>Error code. Si es diferente de 0 ha habido un problema.</returns>
-        public uint StartService(string serviceName)
+        public int StartService(string serviceName)
         {
             // Start service
             ManagementObject wmiService = new ManagementObject(GetScope(), new ManagementPath("Win32_Service.Name='" + serviceName + "'"), new ObjectGetOptions());
             wmiService.Get();
             ManagementBaseObject outParams = wmiService.InvokeMethod("StartService", null, null);
-            uint ret = (uint)outParams.Properties["ReturnValue"].Value;
+            int ret = (int)outParams.Properties["ReturnValue"].Value;
             if (ret != 0)
                 throw new ExceptionUtil(string.Format("Error al iniciar el servicio con el código de error: {0}", ret));
             return ret;
@@ -963,13 +963,13 @@ namespace FSLibrary
         /// </summary>
         /// <param name="serviceName"></param>
         /// <returns>Error code. Si es diferente de 0 ha habido un problema.</returns>
-        public uint StopService(string serviceName)
+        public int StopService(string serviceName)
         {
             // Start service
             ManagementObject wmiService = new ManagementObject(GetScope(), new ManagementPath("Win32_Service.Name='" + serviceName + "'"), new ObjectGetOptions());
             wmiService.Get();
             ManagementBaseObject outParams = wmiService.InvokeMethod("StopService", null, null);
-            uint ret = (uint)outParams.Properties["ReturnValue"].Value;
+            int ret = (int)outParams.Properties["ReturnValue"].Value;
             if (ret != 0)
                 throw new ExceptionUtil(string.Format("Error al parar el servicio con el código de error: {0}", ret));
             return ret;

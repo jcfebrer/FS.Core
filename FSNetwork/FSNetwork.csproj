@@ -71,6 +71,7 @@
     <Compile Include="UPnP4.cs" />
     <Compile Include="Web.cs" />
     <Compile Include="WebDownload.cs" />
+    <Compile Include="WebService.cs" />
     <Compile Include="Whois.cs" />
     <Compile Include="Wininet.cs" />
   </ItemGroup>

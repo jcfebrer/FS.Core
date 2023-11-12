@@ -5,6 +5,7 @@ The above copyright notice and this permission notice shall be included in all c
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
@@ -152,64 +153,87 @@ namespace FSLibrary
                     if (!propInfo.CanWrite)
                         continue;
 
-                    if (propInfo.PropertyType == typeof(System.Net.IPEndPoint))
+                    if (propInfo.CanRead) //propInfo.GetIndexParameters().Length == 0 && 
                     {
-                        System.Net.IPEndPoint ipendpoint = null;
-                        if (!String.IsNullOrEmpty(property.Value))
+                        if (propInfo.PropertyType == typeof(System.Net.IPEndPoint))
                         {
-                            string address = property.Value.Split(IP_SEPARATOR)[0];
-                            string port = property.Value.Split(IP_SEPARATOR)[1];
-                            ipendpoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse(address), Convert.ToInt32(port));
+                            System.Net.IPEndPoint ipendpoint = null;
+                            if (!String.IsNullOrEmpty(property.Value))
+                            {
+                                string address = property.Value.Split(IP_SEPARATOR)[0];
+                                string port = property.Value.Split(IP_SEPARATOR)[1];
+                                ipendpoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse(address), Convert.ToInt32(port));
+                            }
+                            propInfo?.SetValue(target, ipendpoint, null);
                         }
-                        propInfo?.SetValue(target, ipendpoint, null);
-                    }
-                    else if (propInfo.PropertyType == typeof(System.Drawing.Rectangle))
-                    {
-                        if (!String.IsNullOrEmpty(property.Value))
+                        else if (propInfo.PropertyType == typeof(System.Drawing.Rectangle))
+                        {
+                            if (!String.IsNullOrEmpty(property.Value))
+                            {
+                                string _value = property.Value.Replace(OPEN_BRACKET, "").Replace(CLOSE_BRACKET, "");
+                                string[] parameters = _value.Split(COMMA_SEPARATOR);
+                                int x = Convert.ToInt32(parameters[0].Split(EQUAL_SEPARATOR)[1]);
+                                int y = Convert.ToInt32(parameters[1].Split(EQUAL_SEPARATOR)[1]);
+                                int w = Convert.ToInt32(parameters[2].Split(EQUAL_SEPARATOR)[1]);
+                                int h = Convert.ToInt32(parameters[3].Split(EQUAL_SEPARATOR)[1]);
+                                System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(x, y, w, h);
+                                propInfo?.SetValue(target, rectangle, null);
+                            }
+                        }
+                        else if (propInfo.PropertyType == typeof(Byte[]))
+                        {
+                            object byteValue = (String.IsNullOrEmpty(property.Value)) ? null : Convert.ChangeType(Encoding.ASCII.GetBytes(property.Value), propInfo.PropertyType);
+                            propInfo?.SetValue(target, byteValue, null);
+                        }
+                        //else if (propInfo.PropertyType == typeof(System.String))
+                        //{
+                        //    object stringValue = (String.IsNullOrEmpty(property.Value)) ? null : property.Value;
+                        //    propInfo?.SetValue(target, stringValue, null);
+                        //}
+                        else if (propInfo.PropertyType == typeof(System.Drawing.Point))
                         {
                             string _value = property.Value.Replace(OPEN_BRACKET, "").Replace(CLOSE_BRACKET, "");
                             string[] parameters = _value.Split(COMMA_SEPARATOR);
                             int x = Convert.ToInt32(parameters[0].Split(EQUAL_SEPARATOR)[1]);
                             int y = Convert.ToInt32(parameters[1].Split(EQUAL_SEPARATOR)[1]);
-                            int w = Convert.ToInt32(parameters[2].Split(EQUAL_SEPARATOR)[1]);
-                            int h = Convert.ToInt32(parameters[3].Split(EQUAL_SEPARATOR)[1]);
-                            System.Drawing.Rectangle rectangle = new System.Drawing.Rectangle(x, y, w, h);
-                            propInfo?.SetValue(target, rectangle, null);
+                            System.Drawing.Point point = new System.Drawing.Point(x, y);
+                            propInfo?.SetValue(target, point, null);
+                        }
+                        else if (propInfo.PropertyType == typeof(System.Drawing.Size))
+                        {
+                            string _value = property.Value.Replace(OPEN_BRACKET, "").Replace(CLOSE_BRACKET, "");
+                            string[] parameters = _value.Split(COMMA_SEPARATOR);
+                            int width = Convert.ToInt32(parameters[0].Split(EQUAL_SEPARATOR)[1]);
+                            int height = Convert.ToInt32(parameters[1].Split(EQUAL_SEPARATOR)[1]);
+                            System.Drawing.Size size = new System.Drawing.Size(width, height);
+                            propInfo?.SetValue(target, size, null);
+                        }
+                        else if (propInfo.PropertyType.BaseType == typeof(Enum))
+                        {
+                            Object enumValue = Enum.Parse(propInfo.PropertyType, property.Value, false);
+                            propInfo?.SetValue(target, Enum.ToObject(propInfo.PropertyType, enumValue), null);
+                        }
+                        else
+                        {
+                            if (target is List<string>)
+                            {
+                                if (propInfo.PropertyType == typeof(System.String))
+                                {
+                                    //object instance = Activator.CreateInstance(propInfo.PropertyType);
+                                    IList list = (IList)target;
+                                    string stringValue = (String.IsNullOrEmpty(property.Value)) ? null : property.Value;
+                                    list.Add(stringValue);
+
+                                    //propInfo?.SetValue(target, list, null);
+                                }
+                            }
+                            else
+                            {
+                                string _value = property.Value;
+                                propInfo?.SetValue(target, Convert.ChangeType(_value, propInfo.PropertyType), null);
+                            }
                         }
                     }
-                    else if (propInfo.PropertyType == typeof(Byte[]))
-                    {
-                        object byteValue = (String.IsNullOrEmpty(property.Value)) ? null : Convert.ChangeType(Encoding.ASCII.GetBytes(property.Value), propInfo.PropertyType);
-                        propInfo?.SetValue(target, byteValue, null);
-                    }
-                    else if (propInfo.PropertyType == typeof(System.Drawing.Point))
-                    {
-                        string _value = property.Value.Replace(OPEN_BRACKET, "").Replace(CLOSE_BRACKET, "");
-                        string[] parameters = _value.Split(COMMA_SEPARATOR);
-                        int x = Convert.ToInt32(parameters[0].Split(EQUAL_SEPARATOR)[1]);
-                        int y = Convert.ToInt32(parameters[1].Split(EQUAL_SEPARATOR)[1]);
-                        System.Drawing.Point point = new System.Drawing.Point(x, y);
-                        propInfo?.SetValue(target, point, null);
-                    }
-                    else if (propInfo.PropertyType == typeof(System.Drawing.Size))
-                    {
-                        string _value = property.Value.Replace(OPEN_BRACKET, "").Replace(CLOSE_BRACKET, "");
-                        string[] parameters = _value.Split(COMMA_SEPARATOR);
-                        int width = Convert.ToInt32(parameters[0].Split(EQUAL_SEPARATOR)[1]);
-                        int height = Convert.ToInt32(parameters[1].Split(EQUAL_SEPARATOR)[1]);
-                        System.Drawing.Size size = new System.Drawing.Size(width, height);
-                        propInfo?.SetValue(target, size, null);
-                    }
-                    else if (propInfo.PropertyType.BaseType == typeof(Enum))
-                    {
-                        Object enumValue = Enum.Parse(propInfo.PropertyType, property.Value, false);
-                        propInfo?.SetValue(target, Enum.ToObject(propInfo.PropertyType, enumValue), null);
-                    }
-                    else
-                    {
-                        string _value = property.Value;
-                        propInfo?.SetValue(target, Convert.ChangeType(_value, propInfo.PropertyType), null);
-                    }                 
                 }
             }
             return target;

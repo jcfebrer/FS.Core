@@ -623,5 +623,33 @@ namespace FSLibrary
 
         //    return strDateElement;
         //}
+
+        /// <summary>
+        /// Devuelve la fecha en formato ISO8601 a DateTime
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static DateTime ISO8601ToDateTime(string date)
+        {
+            if (date == null)
+                return DateTime.MinValue;
+
+            return DateTime.ParseExact(date, "yyyyMMddTHHmmss",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Devuelve la fecha en formato DateTime a IS8601
+        /// </summary>
+        /// <param name="date"></param>
+        /// <returns></returns>
+        public static string DateTimeToISO8601(DateTime date)
+        {
+            if (date == null)
+                date = DateTime.MinValue;
+
+            return date.ToString("yyyyMMddTHHmmss",
+                                       System.Globalization.CultureInfo.InvariantCulture);
+        }
     }
 }

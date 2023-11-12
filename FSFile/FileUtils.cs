@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -651,6 +652,61 @@ namespace FSFile
             //if (len == 0) throw new System.ComponentModel.Win32Exception();
 
             return shortPath.ToString();
+        }
+
+        public static List<FileInfo> FindFilesMatching(string dirPath, string pattern)
+        {
+            var files = new List<FileInfo>();
+
+            if (!Directory.Exists(dirPath))
+            {
+                throw new ArgumentException("Directory Path does not exist!");
+            }
+
+            var dirInfo = new DirectoryInfo(dirPath);
+            files = dirInfo.GetFiles("*" + pattern).ToList();
+
+            return files;
+        }
+
+        public static List<string> GetFileExtensionsInDirectory(string dirPath)
+        {
+            var files = new List<string>();
+
+            if (!Directory.Exists(dirPath))
+            {
+                throw new ArgumentException("Directory Path does not exist!");
+            }
+
+            var dirInfo = new DirectoryInfo(dirPath);
+            files = dirInfo.GetFiles().Select(f => f.Extension).Distinct().ToList();
+
+            return files;
+        }
+
+        public static List<FileInfo> FindImageFiles(string dirPath)
+        {
+            string[] extensions = { ".bmp", ".jpg", ".png" };
+            var imgFiles = new List<FileInfo>();
+
+            var dirInfo = new DirectoryInfo(dirPath);
+            imgFiles = dirInfo.GetFiles("*.*")
+                    .Where(f => extensions.Contains(f.Extension.ToLower())).ToList();
+
+            return imgFiles;
+        }
+
+        public static IEnumerable<FileInfo> GetFilesByExtensions(DirectoryInfo dir, params string[] extensions)
+        {
+            if (extensions == null)
+            {
+                throw new ArgumentNullException("extensions");
+            }
+
+            IEnumerable<FileInfo> files = dir.EnumerateFiles();
+            var fileInfoList = files.Where(f => extensions.Contains(f.Extension));
+
+            return fileInfoList;
         }
     }
 }

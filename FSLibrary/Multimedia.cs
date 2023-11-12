@@ -121,6 +121,7 @@ namespace FSLibrary
                 case 9: p = 3520; break; //A
                 case 10: p = 3729; break; //A#
                 case 11: p = 3951; break; //B
+                default: p = 2093; break; //C
             }
 
             Console.Beep(p, (int)(Duration * 1000));

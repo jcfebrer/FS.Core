@@ -134,6 +134,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HardDisk.cs" />
     <Compile Include="Info.cs" />
+    <Compile Include="IniParser.cs" />
     <Compile Include="KnownFolders.cs" />
     <Compile Include="MimeType.cs" />
     <Compile Include="Multimedia.cs" />

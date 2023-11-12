@@ -19,10 +19,13 @@ namespace FSAi
             User,
             Function
         }
-        public string key { get; set; }
-        public ChatGPT(string key)
+        public string Key { get; set; }
+        public string Organization { get; set; }
+
+        public ChatGPT(string key, string organization)
         {
-            this.key = key;
+            this.Key = key;
+            this.Organization = organization;
         }
 
 
@@ -30,7 +33,8 @@ namespace FSAi
         {
             var openAiService = new OpenAIService(new OpenAiOptions()
             {
-                ApiKey = key,
+                ApiKey = Key,
+                Organization = Organization,
             });
 
             var Messages = new List<ChatMessage>();
@@ -66,12 +70,19 @@ namespace FSAi
 
             chatCompletionCreateRequest.Messages = Messages;
 
-            var completionResult = await openAiService.ChatCompletion.CreateCompletion(chatCompletionCreateRequest);
+            try
+            {
+                var completionResult = await openAiService.ChatCompletion.CreateCompletion(chatCompletionCreateRequest);
 
-            if (completionResult.Successful)
-                return completionResult.Choices.First().Message.Content;
-            else
-                return completionResult.Error.Message;
+                if (completionResult.Successful)
+                    return completionResult.Choices.First().Message.Content;
+                else
+                    return completionResult.Error.Message;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

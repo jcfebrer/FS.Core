@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -79,70 +80,6 @@ namespace FSLibrary
         public static int Length(string str)
         {
             return str.Length;
-        }
-
-
-        /// <summary>
-        /// Inserta la cadena indicada en las posición pos.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <param name="pos">The position.</param>
-        /// <param name="Subcad">The subcad.</param>
-        /// <param name="desplazar">if set to <c>true</c> [desplazar].</param>
-        /// <param name="truncar">if set to <c>true</c> [truncar].</param>
-        /// <returns></returns>
-        public static string Insert(string str, int pos, string Subcad, bool desplazar, bool truncar)
-        {
-            pos = pos - 1;
-            var nLargoOriginal = str.Length;
-            string cResult = null;
-            try
-            {
-                if (desplazar)
-                {
-                    cResult = str.Insert(pos, Subcad);
-                }
-                else
-                {
-                    Subcad = Subcad.Substring(0, nLargoOriginal - pos);
-                    cResult = str.Remove(pos, Subcad.Length);
-                    cResult = cResult.Insert(pos, Subcad);
-                }
-
-                if (truncar)
-                    return cResult.Substring(0, nLargoOriginal);
-                return cResult;
-            }
-            catch (ExceptionUtil)
-            {
-                return str;
-            }
-        }
-
-        /// <summary>
-        /// Inserta la cadena indicada en las posición pos.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <param name="pos">The position.</param>
-        /// <param name="Subcad">The subcad.</param>
-        /// <returns></returns>
-        public static string Insert(string str, int pos, string Subcad)
-        {
-            return Insert(str, pos, Subcad, false);
-        }
-
-
-        /// <summary>
-        /// Inserta la cadena indicada en las posición pos.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <param name="pos">The position.</param>
-        /// <param name="Subcad">The subcad.</param>
-        /// <param name="desplazar">if set to <c>true</c> [desplazar].</param>
-        /// <returns></returns>
-        public static string Insert(string str, int pos, string Subcad, bool desplazar)
-        {
-            return Insert(str, pos, Subcad, desplazar, true);
         }
 
 
@@ -232,9 +169,9 @@ namespace FSLibrary
         public static string Amplia(string str, string spaceChar)
         {
             string result = "";
-            for (int nPos = 0; nPos <= str.Length - 1; nPos++)
+            for (int nPos = 0; nPos <= str.Length - 2; nPos++)
                 result += str.Substring(nPos, 1) + spaceChar;
-            return result + str.Substring(str.Length, 1);
+            return result + str.Substring(str.Length - 1, 1);
         }
 
 
@@ -347,9 +284,9 @@ namespace FSLibrary
         /// <returns></returns>
         public static string RemoveChar(string str, string blankChar = " ")
         {
-            string nuevaCadena = null;
-            nuevaCadena = str.Trim();
-            foreach (var cad in nuevaCadena)
+            string nuevaCadena = "";
+            str = str.Trim();
+            foreach (var cad in str)
                 if (cad != char.Parse(blankChar))
                     nuevaCadena = nuevaCadena + cad;
             return nuevaCadena;
@@ -413,20 +350,20 @@ namespace FSLibrary
         /// <returns></returns>
         public static string RemoveAccents(string str)
         {
-            string Con = null;
-            string Sin = null;
-            long posCad = 0;
-            long i = 0;
+            int posCad = 0;
             var result = "";
             string cad = null;
             var subs = "";
-            Con = "á,é,í,ó,ú,Á,É,Í,Ó,Ú";
-            Sin = "a,e,i,o,u,A,E,I,O,U";
-            for (i = 0; i <= str.Length - 1; i++)
+            string Con = "á,é,í,ó,ú,Á,É,Í,Ó,Ú";
+            string Sin = "a,e,i,o,u,A,E,I,O,U";
+            for (int i = 0; i <= str.Length - 1; i++)
             {
-                cad = str.Substring(Convert.ToInt32(i), 1);
-                posCad = Con.IndexOf(cad) + 1;
-                if (posCad > 0) subs = Sin.Substring((int) (posCad * 2), 1);
+                cad = str.Substring(i, 1);
+                posCad = Con.IndexOf(cad);
+                if (posCad >= 0)
+                    subs = Sin.Substring(posCad, 1);
+                else
+                    subs = cad;
                 result = result + subs;
             }
 
@@ -503,7 +440,7 @@ namespace FSLibrary
 
 
         /// <summary>
-        /// Filters the dup.
+        /// Filters the duplicates.
         /// </summary>
         /// <param name="str">The string.</param>
         /// <returns></returns>
@@ -515,7 +452,7 @@ namespace FSLibrary
             for (nPos = 0; nPos <= str.Length - 1; nPos++)
             {
                 cCar = str.Substring(nPos, 1);
-                cCad2 += str.IndexOf(cCar) == -1 ? cCar : "";
+                cCad2 += str.IndexOf(cCar, nPos + 1) >= 0 ? cCar : "";
             }
 
             return cCad2;
@@ -536,7 +473,7 @@ namespace FSLibrary
             for (i = 1; i <= str.Length - 1; i++)
             {
                 Subcad = str.Substring(i, 1);
-                if (Convert.ToInt32(Subcad) > Convert.ToInt32(cMayor)) 
+                if (Ascii(Subcad)[0] > Ascii(cMayor)[0]) 
                     cMayor = Subcad;
             }
 
@@ -558,7 +495,7 @@ namespace FSLibrary
             for (i = 1; i <= str.Length - 1; i++)
             {
                 Subcad = str.Substring(i, 1);
-                if (Convert.ToInt32(Subcad) < Convert.ToInt32(cMenor)) 
+                if ((int)Ascii(Subcad)[0] < (int)Ascii(cMenor)[0]) 
                     cMenor = Subcad;
             }
 
@@ -573,15 +510,9 @@ namespace FSLibrary
         /// <returns></returns>
         public static string SortStringAsc(string str)
         {
-            var nContador = 0;
-            var nPos = 0;
-            for (nContador = 0; nContador <= str.Length - 2; nContador++)
-            for (nPos = 0; nPos <= str.Length - nContador - 1; nPos++)
-                if (double.Parse(str.Substring(nPos, 1)) > double.Parse(str.Substring(nPos + 1, 1)))
-                    str = str.Substring(0, nPos - 1) + str.Substring(nPos + 1, 1) +
-                               str.Substring(nPos, 1) +
-                               str.Substring(str.Length - str.Length - nPos - 1);
-            return str;
+            char[] characters = str.ToArray();
+            Array.Sort(characters);
+            return new string(characters);
         }
 
 
@@ -592,15 +523,10 @@ namespace FSLibrary
         /// <returns></returns>
         public static string SortStringDesc(string str)
         {
-            var nContador = 0;
-            var nPos = 0;
-            for (nContador = 0; nContador <= str.Length - 2; nContador++)
-            for (nPos = 0; nPos <= str.Length - nContador - 1; nPos++)
-                if (double.Parse(str.Substring(nPos, 1)) < double.Parse(str.Substring(nPos + 1, 1)))
-                    str = str.Substring(0, nPos - 1) + str.Substring(nPos + 1, 1) +
-                               str.Substring(nPos, 1) +
-                               str.Substring(str.Length - str.Length - nPos - 1);
-            return str;
+            char[] characters = str.ToArray();
+            Array.Sort(characters);
+            Array.Reverse(characters);
+            return new string(characters);
         }
 
 
@@ -611,11 +537,10 @@ namespace FSLibrary
         /// <returns></returns>
         public static int CountWords(string str)
         {
-            int nPos = 0;
             var lSwitch = true;
             int result = 0;
             var cCad2 = @",;.:-_'{}[]()*+^`???=/&%$#@ |!\" + @"""";
-            for (nPos = 0; nPos <= str.Length - 1; nPos++)
+            for (int nPos = 0; nPos <= str.Length - 1; nPos++)
             {
                 if (!Contains(cCad2, str.Substring(nPos, 1)) & lSwitch)
                 {
@@ -637,9 +562,8 @@ namespace FSLibrary
         public static int CountWordsByBlankSpace(string str)
         {
             var wordCount = 0;
-            var counter = 0;
             var isSpace = true;
-            for (counter = 0; counter <= str.Length - 1; counter++)
+            for (int counter = 0; counter <= str.Length - 1; counter++)
                 if (str.Substring(counter, 1) == " ")
                 {
                     isSpace = true;
@@ -666,8 +590,7 @@ namespace FSLibrary
         public static string StripControlChars(string str, bool KeepCRLF)
         {
             var sb = new StringBuilder(str.Length);
-            var index = 0;
-            for (index = 0; index <= str.Length - 1; index++)
+            for (int index = 0; index <= str.Length - 1; index++)
                 if (!char.IsControl(str, index))
                     sb.Append(str[index]);
                 else if (KeepCRLF && str.Substring(index, 2) == "\n") sb.Append(str[index]);
@@ -1312,43 +1235,21 @@ namespace FSLibrary
 
 
         /// <summary>
-        /// Camels the case.
+        /// Camel case.
         /// </summary>
         /// <param name="str">The string.</param>
         /// <returns></returns>
         public static string CamelCase(string str)
         {
-            string result = "";
-            for (int i = str.Length - 1; i <= 0; i--)
+            TextInfo textInfo = CultureInfo.CurrentCulture.TextInfo;
+            string[] words = str.Split(' ');
+            string camelCase = "";
+            foreach (string word in words)
             {
-                string c = str.Substring(i, 1);
-                if (IndexOf("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", 1, c) == -1)
-                    result += " ";
-
-                result += c;
+                camelCase += textInfo.ToTitleCase(word);
             }
-
-            result = Replace(result.ToUpper(), " ", "");
-            return result;
-        }
-
-
-        /// <summary>
-        /// Converts the camel case.
-        /// </summary>
-        /// <param name="str">The string.</param>
-        /// <returns></returns>
-        public static string ConvertCamelCase(string str)
-        {
-            string result = "";
-            str = str.Trim();
-            for (long i = 1; i <= str.Length; i++)
-                if ((Convert.ToInt32(char.Parse(str.Substring(Convert.ToInt32(i), 1))) ==
-                     Convert.ToInt32(char.Parse(Substring(Convert.ToString(i), 1).ToUpper()))) & (i != 1))
-                    result = result + " " + str.Substring(Convert.ToInt32(i), 1);
-                else
-                    result = result + str.Substring(Convert.ToInt32(i), 1);
-            return result;
+            camelCase = char.ToLowerInvariant(camelCase[0]) + camelCase.Substring(1);
+            return camelCase;
         }
 
 

@@ -5,6 +5,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
+using System.Net;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using System.Web;
 
@@ -344,6 +347,24 @@ namespace FSNetwork
 				return "";
 			}
 			return dato[valor];
+		}
+
+		public static void WriteCookiesToFile(string file, CookieContainer cookieContainer)
+		{
+			using (Stream stream = File.Create(file))
+			{
+				BinaryFormatter formatter = new BinaryFormatter();
+				formatter.Serialize(stream, cookieContainer);
+			}
+		}
+
+		public static CookieContainer ReadCookiesFromFile(string file)
+		{
+			using (Stream stream = File.Open(file, FileMode.Open))
+			{
+				BinaryFormatter formatter = new BinaryFormatter();
+				return (CookieContainer)formatter.Deserialize(stream);
+			}
 		}
 
 
