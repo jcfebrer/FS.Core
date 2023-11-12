@@ -426,6 +426,18 @@ namespace FSFormControls
             return true;
         }
 
+        public DateTime GetDateTimestamp(string fileName)
+        {
+            var source = GetFullPath(fileName);
+            if (!FtpFileExists(source)) throw new FileNotFoundException("File " + source + " not found");
+
+            var URI = Hostname + source;
+            var ftp = GetRequest(URI);
+            ftp.Method = WebRequestMethods.Ftp.GetDateTimestamp;
+            FtpWebResponse response = (FtpWebResponse)ftp.GetResponse();
+            return response.LastModified;
+        }
+
         #endregion
 
         #region '"private supporting fns"' 
