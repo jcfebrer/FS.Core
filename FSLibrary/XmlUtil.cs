@@ -55,7 +55,6 @@ namespace FSLibrary
         /// <summary>
         /// Convierte en texto el objeto XML model.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="model"></param>
         /// <returns></returns>
         public static string FormatXMLToString(Object model)

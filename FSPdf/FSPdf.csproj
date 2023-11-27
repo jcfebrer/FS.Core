@@ -88,11 +88,11 @@
     <Reference Include="Microsoft.CSharp">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    <Reference Include="PdfSharp">
+      <HintPath>..\..\FSApps\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
     </Reference>
     <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
-      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+      <HintPath>..\..\FSApps\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

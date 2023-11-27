@@ -43,8 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="LZ4, Version=1.0.15.93, Culture=neutral, PublicKeyToken=62e1b5ec1eec9bdd, processorArchitecture=MSIL">
-      <HintPath>..\packages\lz4net.1.0.15.93\lib\net4-client\LZ4.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\FSApps\packages\lz4net.1.0.15.93\lib\net4-client\LZ4.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -96,9 +95,6 @@
     <Content Include="zlib.NET\readme.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\FSException\FSException.csproj">
       <Project>{2a366b72-70b3-4700-b962-5920a0eee074}</Project>
       <Name>FSException</Name>
@@ -115,6 +111,9 @@
       <Project>{2ea3b2cc-791c-430c-8135-79d270be20b4}</Project>
       <Name>FSTrace</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
