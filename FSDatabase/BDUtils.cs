@@ -1736,7 +1736,7 @@ namespace FSDatabase
                     if (c.ToLower() == fieldName.ToLower())
                     {
                         field.Campo = c;
-                        field.Tipo = Utils.GetFSTypeFromSystemType(Functions.Valor(fld["DataType"]));
+                        field.Tipo = Utils.GetFSTypeFromType(Functions.Valor(fld["DataType"]));
                         field.Tamano = NumberUtils.NumberInt(fld["ColumnSize"]);
                         return field;
                     }

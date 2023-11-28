@@ -2,16 +2,17 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Resources;
+using System;
 
 // Information about this assembly is defined by the following attributes. 
 // Change them to the values specific to your project.
 
 [assembly: AssemblyTitle("FSFtp")]
-[assembly: AssemblyDescription("FTP and FTPS client implementation")]
+[assembly: AssemblyDescription("Cliente FTP y FTPS")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("FSFtp")]
-[assembly: AssemblyCopyright("FSFtp - J.P. Trosclair")]
+[assembly: AssemblyCopyright("FSFtp")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -29,3 +30,4 @@ using System.Resources;
 
 [assembly: GuidAttribute("A88FA910-1553-4000-AA56-6FC001AD7CF1")]
 [assembly: NeutralResourcesLanguageAttribute("en")]
+[assembly: CLSCompliant(true)]

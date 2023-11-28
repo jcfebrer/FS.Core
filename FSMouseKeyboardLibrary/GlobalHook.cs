@@ -16,20 +16,20 @@ namespace FSMouseKeyboardLibrary
     {
         #region Private Variables
 
-        protected int _hookType;
-        protected int _handleToHook;
-        protected bool _isStarted;
-        protected Win32API.HookProc _hookCallback;
+        protected int hookType;
+        protected int handleToHook;
+        protected bool isStarted;
+        protected Win32API.HookProc hookCallback;
 
         #endregion
 
         #region Properties
 
-        public bool IsStarted
+        public bool IsStart
         {
             get
             {
-                return _isStarted;
+                return isStarted;
             }
         }
 
@@ -51,13 +51,13 @@ namespace FSMouseKeyboardLibrary
         public void Start()
         {
 
-            if (!_isStarted &&
-                _hookType != 0)
+            if (!isStarted &&
+                hookType != 0)
             {
 
                 // Make sure we keep a reference to this delegate!
                 // If not, GC randomly collects it, and a NullReference exception is thrown
-                _hookCallback = new Win32API.HookProc(HookCallbackProcedure);
+                hookCallback = new Win32API.HookProc(HookCallbackProcedure);
 
                 //Metodo 1:
                 //_handleToHook = SetWindowsHookEx(
@@ -69,17 +69,17 @@ namespace FSMouseKeyboardLibrary
                 //Metodo 2:
                 using (ProcessModule curModule = Process.GetCurrentProcess().MainModule)
                 {
-                    _handleToHook = Win32API.SetWindowsHookEx(
-                    _hookType,
-                    _hookCallback,
+                    handleToHook = Win32API.SetWindowsHookEx(
+                    hookType,
+                    hookCallback,
                     Win32API.GetModuleHandle(curModule.ModuleName),
                     0);
                 }
 
                 // Were we able to sucessfully start hook?
-                if (_handleToHook != 0)
+                if (handleToHook != 0)
                 {
-                    _isStarted = true;
+                    isStarted = true;
                 }
 
             }
@@ -89,12 +89,12 @@ namespace FSMouseKeyboardLibrary
         public void Stop()
         {
 
-            if (_isStarted)
+            if (isStarted)
             {
 
-                Win32API.UnhookWindowsHookEx(_handleToHook);
+                Win32API.UnhookWindowsHookEx(handleToHook);
 
-                _isStarted = false;
+                isStarted = false;
 
             }
 
@@ -111,7 +111,7 @@ namespace FSMouseKeyboardLibrary
         protected void Application_ApplicationExit(object sender, EventArgs e)
         {
 
-            if (_isStarted)
+            if (isStarted)
             {
                 Stop();
             }

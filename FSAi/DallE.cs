@@ -5,9 +5,11 @@ using OpenAI.Managers;
 using OpenAI;
 using OpenAI.ObjectModels.ResponseModels.ImageResponseModel;
 using System.Threading.Tasks;
+using System;
 
 namespace FSAi
 {
+    [CLSCompliant(false)]
     public class DallE
     {
         public string key { get; set; }

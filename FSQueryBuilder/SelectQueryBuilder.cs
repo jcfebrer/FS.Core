@@ -28,9 +28,9 @@ namespace FSQueryBuilder
     public class SelectQueryBuilder : IQueryBuilder, ITableConsumer, IColumnsConsumer, IWhereConsumer, IHavingConsumer,
         IOrderByConsumer, IJoinConsumer, ITopConsumer
     {
-        protected ColumnsStatement columns = new ColumnsStatement();
+        protected ColumnsStatement columnsStatement = new ColumnsStatement();
         protected List<string> groupByColumns = new List<string>(); // array of string
-        protected List<JoinClause> joins = new List<JoinClause>(); // array of JoinClause
+        protected List<JoinClause> joinClauses = new List<JoinClause>(); // array of JoinClause
         protected List<OrderByClause> orderByStatement = new List<OrderByClause>(); // array of OrderByClause
         protected TopClause topClause = new TopClause(100, TopUnit.Percent);
 
@@ -47,7 +47,7 @@ namespace FSQueryBuilder
 
         public ColumnsStatement Columns
         {
-            get { return columns; }
+            get { return columnsStatement; }
         }
 
         IWhereExpression _Having;
@@ -58,7 +58,7 @@ namespace FSQueryBuilder
 
         public List<JoinClause> Joins
         {
-            get { return joins; }
+            get { return joinClauses; }
         }
 
         public List<OrderByClause> OrderBy
@@ -99,9 +99,9 @@ namespace FSQueryBuilder
             }
 
             // Output joins
-            if (joins.Count > 0)
+            if (joinClauses.Count > 0)
             {
-                foreach (JoinClause clause in joins)
+                foreach (JoinClause clause in joinClauses)
                 {
                     StringBuilder joinString = new StringBuilder();
                     switch (clause.joinType)
@@ -170,7 +170,7 @@ namespace FSQueryBuilder
         	set { _TableSource = value; }
         }
 
-        public TopClause TopClause
+        public TopClause Top
         {
             get { return topClause; }
         }

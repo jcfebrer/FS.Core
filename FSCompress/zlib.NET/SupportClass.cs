@@ -4,7 +4,8 @@ using System;
 
 namespace FSCompress.Zlib
 {
-	public class SupportClass
+    [CLSCompliant(false)]
+    public class SupportClass
 	{
 		/// <summary>
 		/// This method returns the literal value received

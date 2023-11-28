@@ -6,8 +6,8 @@ namespace FSQueryBuilder.QueryParts.Top
     {
         public static void TopRecords(ITopConsumer consumer, int value)
         {
-            consumer.TopClause.quantity = value;
-            consumer.TopClause.unit = TopUnit.Records;
+            consumer.Top.quantity = value;
+            consumer.Top.unit = TopUnit.Records;
         }
     }
 }

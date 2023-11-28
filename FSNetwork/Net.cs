@@ -92,7 +92,7 @@ namespace FSNetwork
             throw new InvalidOperationException($"Could not find best interface for {remoteAddress}.");
         }
 
-        public static IPAddress __GetLocalIPAddress()
+        public static IPAddress GetLocalIPAddress()
         {
             var host = Dns.GetHostEntry(Dns.GetHostName());
             foreach (IPAddress ip in host.AddressList)

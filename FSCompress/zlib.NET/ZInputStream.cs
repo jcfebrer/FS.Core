@@ -120,14 +120,14 @@ namespace FSCompress.Zlib
 		
 		public  override int Read()
 		{
-			if (read(buf1, 0, 1) == - 1)
+			if (readInt(buf1, 0, 1) == - 1)
 				return (- 1);
 			return (buf1[0] & 0xFF);
 		}
 		
 		internal bool nomoreinput = false;
 				
-		public int read(byte[] b, int off, int len)
+		public int readInt(byte[] b, int off, int len)
 		{
 			if (len == 0)
 				return (0);

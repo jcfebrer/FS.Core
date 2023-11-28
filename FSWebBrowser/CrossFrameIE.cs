@@ -10,6 +10,7 @@ using WebBrowser = System.Windows.Forms.WebBrowser;
 
 namespace FSWebBrowser
 {
+    [CLSCompliant(false)]
     public class CrossFrameIE
     {
         private const int E_ACCESSDENIED = unchecked((int) 0x80070005L);

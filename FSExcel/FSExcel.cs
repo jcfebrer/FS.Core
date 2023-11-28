@@ -8,6 +8,7 @@ using FSException;
 
 namespace FSExcel
 {
+    [CLSCompliant(false)]
     public class Excel
     {
         public Application m_Excel;

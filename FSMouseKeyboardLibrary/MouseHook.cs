@@ -44,7 +44,7 @@ namespace FSMouseKeyboardLibrary
         public MouseHook()
         {
 
-            _hookType = Win32API.WH_MOUSE_LL;
+            hookType = Win32API.WH_MOUSE_LL;
 
         }
 
@@ -119,7 +119,7 @@ namespace FSMouseKeyboardLibrary
                 
             }
 
-            return Win32API.CallNextHookEx(_handleToHook, nCode, wParam, lParam);
+            return Win32API.CallNextHookEx(handleToHook, nCode, wParam, lParam);
 
         }
 

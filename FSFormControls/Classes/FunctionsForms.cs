@@ -6,7 +6,7 @@ namespace FSFormControls
 {
     public class FunctionsForms
     {
-        public static DBColumn.ColumnTypes ConvertFieldTypeToColumnType(Type fieldType)
+        public static DBColumn.ColumnTypes ConvertSystemTypeToColumnType(Type fieldType)
         {
             switch (fieldType.ToString().ToLower())
             {

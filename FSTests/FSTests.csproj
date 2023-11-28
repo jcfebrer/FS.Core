@@ -203,6 +203,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -260,7 +261,6 @@
     <None Include="Connected Services\ServiceReference2\FSTests.ServiceReference2.UsuariosResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="packages.config" />
     <None Include="Resources\factura.html" />
   </ItemGroup>
   <ItemGroup>

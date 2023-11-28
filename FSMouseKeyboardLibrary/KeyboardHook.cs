@@ -26,7 +26,7 @@ namespace FSMouseKeyboardLibrary
         public KeyboardHook()
         {
 
-            _hookType = Win32API.WH_KEYBOARD_LL;
+            hookType = Win32API.WH_KEYBOARD_LL;
 
         }
 
@@ -129,7 +129,7 @@ namespace FSMouseKeyboardLibrary
             }
             else
             {
-                return Win32API.CallNextHookEx(_handleToHook, nCode, wParam, lParam);
+                return Win32API.CallNextHookEx(handleToHook, nCode, wParam, lParam);
             }
 
         }

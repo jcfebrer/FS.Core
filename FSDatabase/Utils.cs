@@ -66,10 +66,10 @@ namespace FSDatabase
 
         public static FieldTypeEnum GetFSTypeFromSystemType(Type type)
         {
-            return GetFSTypeFromSystemType(type.ToString().ToLower());
+            return GetFSTypeFromType(type.ToString().ToLower());
         }
 
-        public static FieldTypeEnum GetFSTypeFromSystemType(string type)
+        public static FieldTypeEnum GetFSTypeFromType(string type)
         {
             switch (type.ToLower())
             {

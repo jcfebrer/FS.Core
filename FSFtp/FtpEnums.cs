@@ -302,7 +302,7 @@ namespace FSFtp {
     /// Types of file permissions
     /// </summary>
     [Flags]
-    public enum FtpPermission : uint {
+    public enum FtpPermission : int {
         /// <summary>
         /// No access
         /// </summary>

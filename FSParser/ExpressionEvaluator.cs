@@ -206,9 +206,9 @@ namespace FSParser
             ExpressionOperator.UnaryMinus
         };
 
-        protected virtual IList<ExpressionOperator> LeftOperandOnlyOperatorsEvaluationDictionary => leftOperandOnlyOperatorsEvaluationDictionary;
-        protected virtual IList<ExpressionOperator> RightOperandOnlyOperatorsEvaluationDictionary => rightOperandOnlyOperatorsEvaluationDictionary;
-        protected virtual IList<IDictionary<ExpressionOperator, Func<dynamic, dynamic, object>>> OperatorsEvaluations => operatorsEvaluations;
+        protected virtual IList<ExpressionOperator> LeftOperandOnlyOperatorsEvaluationDictionaryExpr => leftOperandOnlyOperatorsEvaluationDictionary;
+        protected virtual IList<ExpressionOperator> RightOperandOnlyOperatorsEvaluationDictionaryExpr => rightOperandOnlyOperatorsEvaluationDictionary;
+        protected virtual IList<IDictionary<ExpressionOperator, Func<dynamic, dynamic, object>>> OperatorsEvaluations => operatorsEvaluationsExpr;
 
         protected static object IndexingOperatorFunc(dynamic left, dynamic right)
         {
@@ -234,7 +234,7 @@ namespace FSParser
             return left[right];
         }
 
-        protected static readonly IList<IDictionary<ExpressionOperator, Func<dynamic, dynamic, object>>> operatorsEvaluations =
+        protected static readonly IList<IDictionary<ExpressionOperator, Func<dynamic, dynamic, object>>> operatorsEvaluationsExpr =
             new List<IDictionary<ExpressionOperator, Func<dynamic, dynamic, object>>>()
         {
             new Dictionary<ExpressionOperator, Func<dynamic, dynamic, object>>()
@@ -2865,7 +2865,7 @@ namespace FSParser
 
                         if ((list[i] as ExpressionOperator) == eOp)
                         {
-                            if (RightOperandOnlyOperatorsEvaluationDictionary.Contains(eOp))
+                            if (RightOperandOnlyOperatorsEvaluationDictionaryExpr.Contains(eOp))
                             {
                                 try
                                 {
@@ -2886,7 +2886,7 @@ namespace FSParser
                                 list.RemoveAt(i - 1);
                                 break;
                             }
-                            else if (LeftOperandOnlyOperatorsEvaluationDictionary.Contains(eOp))
+                            else if (LeftOperandOnlyOperatorsEvaluationDictionaryExpr.Contains(eOp))
                             {
                                 try
                                 {
@@ -3849,7 +3849,7 @@ namespace FSParser
 
     public partial class ExpressionOperator : IEquatable<ExpressionOperator>
     {
-        protected static uint indexer = 0;
+        protected static int indexer = 0;
 
         protected ExpressionOperator()
         {
@@ -3857,7 +3857,7 @@ namespace FSParser
             OperatorValue = indexer;
         }
 
-        protected uint OperatorValue { get; }
+        protected int OperatorValue { get; }
 
         public static readonly ExpressionOperator Plus = new ExpressionOperator();
         public static readonly ExpressionOperator Minus = new ExpressionOperator();
