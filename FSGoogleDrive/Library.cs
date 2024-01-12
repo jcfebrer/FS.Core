@@ -26,15 +26,15 @@ namespace FSGoogleDrive
 	}
 	public class Library
 	{
-		// If modifying these scopes, delete your previously saved credentials
-		// at ~/.credentials/drive-dotnet-quickstart.json
-		//follow this link
-		//https://developers.google.com/drive/v3/web/quickstart/dotnet
+        // If modifying these scopes, delete your previously saved credentials
+        // at ~/.credentials/drive-dotnet-quickstart.json
+        //follow this link
+        //https://developers.google.com/drive/v3/web/quickstart/dotnet
 
-		string[] Scopes = { DriveService.Scope.Drive };
-		// modify your app scripts
+        string[] Scopes = { DriveService.Scope.Drive };
+        // modify your app scripts
 
-		string ApplicationName = "Drive API .NET Quickstart";
+        string ApplicationName = "Drive API .NET Quickstart";
 		DriveService driveService;
 		bool fileValidation = false;
 		

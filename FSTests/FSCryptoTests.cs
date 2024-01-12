@@ -20,6 +20,14 @@ namespace FSTests
         }
 
         [TestMethod()]
+        public void Sha256()
+        {
+            string c = FSCrypto.Sha256.Calc("16055459");
+
+            Assert.AreEqual("480C48B710C892B02CA8A26486F73C0BC9C3134AD036E46BA1D8701F9639F487", c, "Cálculo de SHA256 incorrecto: " + c);
+        }
+
+        [TestMethod()]
         public void Crypto()
         {
             Crypto crypto = new Crypto();

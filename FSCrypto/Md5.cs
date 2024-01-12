@@ -22,8 +22,9 @@ namespace FSCrypto
             var mac3Des = new MACTripleDES();
             var md5 = new MD5CryptoServiceProvider();
             mac3Des.Key = md5.ComputeHash(Encoding.UTF8.GetBytes(key));
-            return Convert.ToBase64String(Encoding.UTF8.GetBytes(value)) + "-" +
-                   Convert.ToBase64String(mac3Des.ComputeHash(Encoding.UTF8.GetBytes(value)));
+            string valueBase64 = Convert.ToBase64String(Encoding.UTF8.GetBytes(value));
+            string valueTripleDes = Convert.ToBase64String(mac3Des.ComputeHash(Encoding.UTF8.GetBytes(value)));
+            return valueBase64 + "-" + valueTripleDes;
         }
 
     }

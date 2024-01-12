@@ -74,7 +74,7 @@ namespace FSNetwork
 
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(Url);
 
-            if (req.SupportsCookieContainer && this.CookieContainer != null)
+            if (this.CookieContainer != null)  // if (req.SupportsCookieContainer && 
                 req.CookieContainer = this.CookieContainer;
 
 

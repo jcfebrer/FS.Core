@@ -158,22 +158,6 @@ namespace FSNetwork
 			}
 		}
 
-        public static bool CheckQueryString(string query, string check, string password)
-		{
-			if (Md5.Calc(query, password) == check)
-				return true;
-			return false;
-		}
-
-
-		public static bool CheckQueryString(string query, string check)
-		{
-			if (Md5.Calc(query) == check)
-				return true;
-			return false;
-		}
-
-
 		public static string ServerMapPath(string path)
 		{
 			string serverMapPath = null;

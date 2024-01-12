@@ -3121,5 +3121,17 @@ namespace FSLibrary
             /// </summary>
             public const char VerticalTab = '\v';
         }
+
+        /// <summary>
+        /// Cuenta el numero de ocurrencias de una cadena en otra
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="pattern"></param>
+        /// <returns></returns>
+        public static int CountStringREG(string str, string pattern)
+        {
+            int tot = Regex.Matches(str, pattern).Count;
+            return tot;
+        }
     }
 }

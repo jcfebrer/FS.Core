@@ -53,10 +53,12 @@ namespace FSMail
 
         public static bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
 		{
-			//if (System.Diagnostics.Debugger.IsAttached)
-			//	return false;
+            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
-			Log.TraceInfo("Inicio de envio de correo.");
+            //if (System.Diagnostics.Debugger.IsAttached)
+            //	return false;
+
+            Log.TraceInfo("Inicio de envio de correo.");
 
             MailMessage Mail = new MailMessage();
 
@@ -205,7 +207,7 @@ namespace FSMail
 				sBody += "RawUrl: " + HttpContext.Current.Request.RawUrl + "\r\n";
 				sBody += "QueryString: " + HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.QueryString.ToString()) + "\r\n";
 				string ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-				sBody = sBody + "IP: <a href='https://dig.whois.com.au/ip/" + ip + "'>" + ip + "</a>\r\n";
+				sBody = sBody + "IP: <a href='https://www.whois.com/whois/" + ip + "'>" + ip + "</a>\r\n";
 			}
 
 

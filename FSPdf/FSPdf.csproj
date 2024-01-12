@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FSPdf</RootNamespace>
     <AssemblyName>FSPdf</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

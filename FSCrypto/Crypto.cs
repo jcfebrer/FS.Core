@@ -25,6 +25,7 @@ namespace FSCrypto
     /// </summary>
     public enum CryptoProvider
     {
+        AES,
         DES,
         TripleDES,
         RC2,
@@ -45,9 +46,10 @@ namespace FSCrypto
     /// </summary>
     public class Crypto
     {
-        public const string Password = "16055459";
+        public const string KeyDefault = "16055459x";
+        public const string IvDefault = "12345678";
 
-        private readonly CryptoProvider algorithm;
+        private readonly CryptoProvider algorithm = CryptoProvider.TripleDES;
 
 
         /// <summary>
@@ -56,9 +58,9 @@ namespace FSCrypto
         /// <param name="alg"></param>
         public Crypto()
         {
-            algorithm = CryptoProvider.DES;
-            Iv = "12345678";
-            Key = Password;
+            algorithm = CryptoProvider.TripleDES;
+            Iv = IvDefault;
+            Key = KeyDefault;
         }
 
         /// <summary>
@@ -68,8 +70,8 @@ namespace FSCrypto
         public Crypto(CryptoProvider alg)
         {
             algorithm = alg;
-            Iv = "12345678";
-            Key = Password;
+            Iv = IvDefault;
+            Key = KeyDefault;
         }
 
 
@@ -78,8 +80,8 @@ namespace FSCrypto
         /// </summary>
         public Crypto(string key)
         {
-            algorithm = CryptoProvider.DES;
-            Iv = "12345678";
+            algorithm = CryptoProvider.TripleDES;
+            Iv = IvDefault;
             Key = key;
         }
 
@@ -88,7 +90,7 @@ namespace FSCrypto
         /// </summary>
         public Crypto(string key, string keyIv)
         {
-            algorithm = CryptoProvider.DES;
+            algorithm = CryptoProvider.TripleDES;
             Iv = keyIv;
             Key = key;
         }
@@ -100,7 +102,7 @@ namespace FSCrypto
         public Crypto(CryptoProvider alg, string key)
         {
             algorithm = alg;
-            Iv = "12345678";
+            Iv = IvDefault;
             Key = key;
         }
 
@@ -126,11 +128,20 @@ namespace FSCrypto
         /// </summary>
         public string Iv { get; set; }
 
+        /// <summary>
+        ///     CypherMode
+        /// </summary>
+        public CipherMode cipherMode { get; set; } = CipherMode.ECB;
+
+        /// <summary>
+        ///     PaddingMode
+        /// </summary>
+        public PaddingMode paddingMode { get; set; } = PaddingMode.PKCS7;
 
         /// <summary>
         ///     MD5enc
         /// </summary>
-        public bool EncKeyMD5 { get; set; } = false;
+        public bool EncKeyMD5 { get; set; } = true;
 
 
         /// <summary>
@@ -152,20 +163,24 @@ namespace FSCrypto
                     memStream = new MemoryStream(cadena.Length * 2);
                     var cryptoProvider =
                         new CryptoServiceProvider(algorithm,
-                            CryptoAction.Encrypt);
+                            CryptoAction.Encrypt, cipherMode, paddingMode);
 
                     //si se requiere MD5 en la encriptación de la clave
                     if (EncKeyMD5)
                     {
                         var md5 = new MD5CryptoServiceProvider();
-                        var hashByte = Encoding.ASCII.GetBytes(cadena);
+                        var hashByte = UTF8Encoding.UTF8.GetBytes(Key);
                         key = md5.ComputeHash(hashByte, 0, hashByte.Length);
                     }
 
                     var transform = cryptoProvider.GetServiceProvider(key, iv);
-                    var cs = new CryptoStream(memStream, transform, CryptoStreamMode.Write);
-                    cs.Write(textoPlano, 0, textoPlano.Length);
-                    cs.Close();
+
+                    var resultArray = transform.TransformFinalBlock(textoPlano, 0, textoPlano.Length);
+                    return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+
+                    //var cs = new CryptoStream(memStream, transform, CryptoStreamMode.Write);
+                    //cs.Write(textoPlano, 0, textoPlano.Length);
+                    //cs.Close();
                 }
                 else
                 {
@@ -177,11 +192,10 @@ namespace FSCrypto
                 throw new Exception(e.Message);
             }
 
-            var memS = "";
-            if (memStream != null)
-                memS = Convert.ToBase64String(memStream.ToArray());
-
-            return memS;
+            //var memS = "";
+            //if (memStream != null)
+            //    memS = Convert.ToBase64String(memStream.ToArray());
+            //return memS;
         }
 
         /// <summary>
@@ -203,11 +217,24 @@ namespace FSCrypto
                     memStream = new MemoryStream(cadena.Length);
                     var cryptoProvider =
                         new CryptoServiceProvider(algorithm,
-                            CryptoAction.Desencrypt);
+                            CryptoAction.Desencrypt, cipherMode, paddingMode);
+
+                    //si se requiere MD5 en la encriptación de la clave
+                    if (EncKeyMD5)
+                    {
+                        var md5 = new MD5CryptoServiceProvider();
+                        var hashByte = UTF8Encoding.UTF8.GetBytes(Key);
+                        key = md5.ComputeHash(hashByte, 0, hashByte.Length);
+                    }
+
                     var transform = cryptoProvider.GetServiceProvider(key, iv);
-                    var cs = new CryptoStream(memStream, transform, CryptoStreamMode.Write);
-                    cs.Write(textoCifrado, 0, textoCifrado.Length);
-                    cs.Close();
+
+                    var resultArray = transform.TransformFinalBlock(textoCifrado, 0, textoCifrado.Length);
+                    return UTF8Encoding.UTF8.GetString(resultArray);
+
+                    //var cs = new CryptoStream(memStream, transform, CryptoStreamMode.Write);
+                    //cs.Write(textoCifrado, 0, textoCifrado.Length);
+                    //cs.Close();
                 }
                 else
                 {
@@ -219,11 +246,11 @@ namespace FSCrypto
                 throw new Exception(e.Message);
             }
 
-            var memS = "";
-            if (memStream != null)
-                memS = Encoding.UTF8.GetString(memStream.ToArray());
-            return memS;
-        } 
+            //var memS = "";
+            //if (memStream != null)
+            //    memS = Encoding.UTF8.GetString(memStream.ToArray());
+            //return memS;
+        }
 
         /// <summary>
         ///     Convierte la clave en un array de bytes
@@ -303,9 +330,17 @@ namespace FSCrypto
                     var largoArchivo = fsIn.Length;
                     long bytesProcesados = 0;
                     var cryptoProvider = new CryptoServiceProvider(algorithm,
-                        action);
+                        action, cipherMode, paddingMode);
                     var transform = cryptoProvider.GetServiceProvider(key, iv);
                     CryptoStream cryptoStream = null;
+
+                    //si se requiere MD5 en la encriptación de la clave
+                    if (EncKeyMD5)
+                    {
+                        var md5 = new MD5CryptoServiceProvider();
+                        var hashByte = UTF8Encoding.UTF8.GetBytes(Key);
+                        key = md5.ComputeHash(hashByte, 0, hashByte.Length);
+                    }
 
                     switch (action)
                     {
@@ -346,12 +381,16 @@ namespace FSCrypto
     {
         private readonly CryptoProvider algorithm;
         private readonly CryptoAction cAction;
+        private readonly CipherMode cipherMode;
+        private readonly PaddingMode paddingMode;
 
 
-        internal CryptoServiceProvider(CryptoProvider alg, CryptoAction action)
+        internal CryptoServiceProvider(CryptoProvider alg, CryptoAction action, CipherMode cipherMode, PaddingMode paddingMode)
         {
             algorithm = alg;
             cAction = action;
+            this.cipherMode = cipherMode;
+            this.paddingMode = paddingMode;
         }
 
         internal ICryptoTransform GetServiceProvider(byte[] key, byte[] iv)
@@ -360,8 +399,31 @@ namespace FSCrypto
 
             switch (algorithm)
             {
+                case CryptoProvider.AES:
+                    var aes = new AesCryptoServiceProvider();
+
+                    aes.Mode = cipherMode;
+                    aes.Padding = paddingMode;
+                    aes.KeySize = 256;
+
+                    switch (cAction)
+                    {
+                        case CryptoAction.Encrypt:
+                            transform = aes.CreateEncryptor(key, iv);
+                            break;
+                        case CryptoAction.Desencrypt:
+                            transform = aes.CreateDecryptor(key, iv);
+                            break;
+                    }
+
+                    aes.Clear();
+                    return transform;
                 case CryptoProvider.DES:
                     var des = new DESCryptoServiceProvider();
+
+                    des.Mode = cipherMode;
+                    des.Padding = paddingMode;
+
                     switch (cAction)
                     {
                         case CryptoAction.Encrypt:
@@ -372,9 +434,14 @@ namespace FSCrypto
                             break;
                     }
 
+                    des.Clear();
                     return transform;
                 case CryptoProvider.TripleDES:
                     var des3 = new TripleDESCryptoServiceProvider();
+
+                    des3.Mode = cipherMode;
+                    des3.Padding = paddingMode;
+
                     switch (cAction)
                     {
                         case CryptoAction.Encrypt:
@@ -385,9 +452,14 @@ namespace FSCrypto
                             break;
                     }
 
+                    des3.Clear();
                     return transform;
                 case CryptoProvider.RC2:
                     var rc2 = new RC2CryptoServiceProvider();
+
+                    rc2.Mode = cipherMode;
+                    rc2.Padding = paddingMode;
+
                     switch (cAction)
                     {
                         case CryptoAction.Encrypt:
@@ -398,9 +470,14 @@ namespace FSCrypto
                             break;
                     }
 
+                    rc2.Clear();
                     return transform;
                 case CryptoProvider.Rijndael:
                     Rijndael rijndael = new RijndaelManaged();
+
+                    rijndael.Mode = cipherMode;
+                    rijndael.Padding = paddingMode;
+
                     switch (cAction)
                     {
                         case CryptoAction.Encrypt:
@@ -411,6 +488,7 @@ namespace FSCrypto
                             break;
                     }
 
+                    rijndael.Clear();
                     return transform;
                 default:
                     throw new CryptographicException("Error al inicializar al proveedor de cifrado");
