@@ -269,4 +269,19 @@
         pu4gFTbKgTiGSgGqum54KXNt1uML2zUN7d+hlHoHDmg00n7laSgAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="FSInputBoxError" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\fsinputboxerror.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FSInputBoxExclamation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\fsinputboxexclamation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FSInputBoxInformation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\fsinputboxinformation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FSInputBoxNic80x80" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\fsinputboxnic80x80.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="FSInputBoxQuestion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\resources\fsinputboxquestion.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

@@ -467,8 +467,8 @@ namespace FSFormControls
                         if (DataControl != null)
                         {
                             var pos = 0;
-                            var ibr = InputBox.Show("Ir a:");
-                            pos = Convert.ToInt32(ibr);
+                            var ibr = InputBox.ShowDialog("Ir a:", "", "", InputBox.Icon.Question, InputBox.Buttons.Ok, InputBox.Type.TextBox);
+                            pos = Convert.ToInt32(InputBox.ResultValue);
                             if (pos != 0)
                                 if ((pos >= HScroll1.Minimum) & (pos <= HScroll1.Maximum + 1))
                                     HScroll1.Value = pos - 1;

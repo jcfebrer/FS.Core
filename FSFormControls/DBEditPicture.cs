@@ -773,13 +773,10 @@ namespace FSFormControls
             var m = (DBMarkControl) objectMenu.SourceControl;
 
             var drwobj = getObjectByMark(m);
-            object transTemp2 = drwobj;
-            if (!(transTemp2 == null))
+            if (drwobj != null)
             {
-                var frmInfo = new frmInputBox();
-                frmInfo.txtRespuesta.Text = drwobj.Info;
-                frmInfo.ShowDialog();
-                drwobj.Info = frmInfo.txtRespuesta.Text;
+                DialogResult result = InputBox.ShowDialog("Editar información: ", "Información", drwobj.Info, InputBox.Icon.Information);
+                drwobj.Info = InputBox.ResultValue;
                 Redraw();
             }
         }

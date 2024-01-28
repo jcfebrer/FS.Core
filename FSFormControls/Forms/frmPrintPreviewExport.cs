@@ -77,8 +77,8 @@ namespace FSFormControls
             }
             else if (Convert.ToInt32(e.Button.Tag) == 101)
             {
-                var ibr = InputBox.Show("¿Dirección email de destino?");
-                Export.SendEMail(Global.MailUserName, ibr.Text, ds);
+                var ibr = InputBox.ShowDialog("¿Dirección email de destino?", "", "", InputBox.Icon.Question, InputBox.Buttons.Ok, InputBox.Type.TextBox);
+                Export.SendEMail(Global.MailUserName, InputBox.ResultValue, ds);
             }
         }
     }
