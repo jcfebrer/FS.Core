@@ -533,18 +533,15 @@ namespace FSFormControls
             g.SmoothingMode = SmoothingMode.AntiAlias;
             g.Clear(Graph.KeyBackColor);
 
-            if (double.Parse(Graph.KeyTitle) > double.Parse(""))
-            {
-                var titleRectF = new RectangleF(0, 0, bmSize.Width + 12, 25);
-                var titleFormat = new StringFormat();
-                var titleFont = new Font(Graph.KeyTitleFontName, Graph.KeyTitleFontSize, Graph.KeyTitleFontStyle);
-                gBrush.Color = Graph.KeyTitleColor;
-                titleFormat.Alignment = StringAlignment.Center;
-                titleFormat.LineAlignment = StringAlignment.Center;
-                g.DrawString(Graph.KeyTitle, titleFont, gBrush, titleRectF, titleFormat);
-                titleFormat.Dispose();
-                titleFont.Dispose();
-            }
+            var titleRectF = new RectangleF(0, 0, bmSize.Width + 12, 25);
+            var titleFormat = new StringFormat();
+            var titleFont = new Font(Graph.KeyTitleFontName, Graph.KeyTitleFontSize, Graph.KeyTitleFontStyle);
+            gBrush.Color = Graph.KeyTitleColor;
+            titleFormat.Alignment = StringAlignment.Center;
+            titleFormat.LineAlignment = StringAlignment.Center;
+            g.DrawString(Graph.KeyTitle, titleFont, gBrush, titleRectF, titleFormat);
+            titleFormat.Dispose();
+            titleFont.Dispose();
 
             Font drawFont = null;
             var approximateWidth = 0;

@@ -429,7 +429,7 @@ namespace FSFormControls
     }
 
 
-    public class Globals
+    class Globals
     {
         public static int PIC_AREA_SIZE = 24;
         public static int MIN_MENU_HEIGHT = 22;

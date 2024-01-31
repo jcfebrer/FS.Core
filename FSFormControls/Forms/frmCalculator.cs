@@ -35,32 +35,34 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            DbCalculator1 = new DBCalculator();
-            SuspendLayout();
+            this.DbCalculator1 = new FSFormControls.DBCalculator();
+            this.SuspendLayout();
             // 
             // DbCalculator1
             // 
-            DbCalculator1.BackColor = Color.Silver;
-            DbCalculator1.ButtonColor = Color.FromArgb(224, 224, 224);
-            DbCalculator1.ButtonSeparation = 10;
-            DbCalculator1.Dock = DockStyle.Fill;
-            DbCalculator1.EurValue = 166.386D;
-            DbCalculator1.Location = new Point(0, 0);
-            DbCalculator1.Name = "DbCalculator1";
-            DbCalculator1.Size = new Size(160, 272);
-            DbCalculator1.TabIndex = 0;
-            DbCalculator1.TextColor = Color.Black;
+            this.DbCalculator1.About = "";
+            this.DbCalculator1.BackColor = System.Drawing.Color.Silver;
+            this.DbCalculator1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.DbCalculator1.ButtonSeparation = 10;
+            this.DbCalculator1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DbCalculator1.EurValue = 166.386D;
+            this.DbCalculator1.Location = new System.Drawing.Point(0, 0);
+            this.DbCalculator1.Name = "DbCalculator1";
+            this.DbCalculator1.Size = new System.Drawing.Size(160, 272);
+            this.DbCalculator1.TabIndex = 0;
+            this.DbCalculator1.TextColor = System.Drawing.Color.Black;
             // 
             // frmCalculator
             // 
-            AutoScaleBaseSize = new Size(5, 13);
-            ClientSize = new Size(160, 272);
-            Controls.Add(DbCalculator1);
-            FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            Name = "frmCalculator";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "Calculadora";
-            ResumeLayout(false);
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
+            this.ClientSize = new System.Drawing.Size(160, 272);
+            this.Controls.Add(this.DbCalculator1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.Name = "frmCalculator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Calculadora";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
