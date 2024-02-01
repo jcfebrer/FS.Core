@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FSFile
+namespace FSDisk
 {
     public class FileUtils
     {
@@ -91,7 +91,7 @@ namespace FSFile
                 fil.FechaArchivo = f.CreationTime;
                 fil.Label = DriveLabel(f.Directory.Root.FullName);
                 fil.FullName = f.FullName;
-                fil.FullName83 = FSFile.FileUtils.GetShortFileName(f.FullName);
+                fil.FullName83 = FSDisk.FileUtils.GetShortFileName(f.FullName);
 
                 if (calcSoundEx)
                     fil.SoundEx = FSFuzzyStrings.SoundExEsp.Do(f.Name);

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using FSFile;
+using FSDisk;
 using System.IO;
 
 namespace FSFormControls

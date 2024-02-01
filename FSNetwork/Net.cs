@@ -151,7 +151,19 @@ namespace FSNetwork
             return externalip;
         }
 
+        public static string GetPublicAddress2()
+        {
+            WebRequest req = WebRequest.Create("http://checkip.dyndns.org");
+            using (WebResponse resp = req.GetResponse())
+            {
 
+                System.IO.StreamReader sr = new System.IO.StreamReader(resp.GetResponseStream());
+                string result = sr.ReadToEnd();
+                result = TextUtil.SearchIpValues(result).First();
+                
+                return result;
+            }
+        }
 
         public static bool IsUrl(string Url)
         {

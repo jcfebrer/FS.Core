@@ -25,10 +25,6 @@ namespace FSPdf
 
             return text;
         }
-        private string CleanJumps(string text)
-        {
-            return text.Replace("\n", "").Replace("\r", "");
-        }
 
         public string ReadPdfFile(string Filename)
         {

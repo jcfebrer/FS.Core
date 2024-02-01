@@ -80,13 +80,13 @@
       <Project>{5DDE5624-1823-435D-8C88-46EB601106A4}</Project>
       <Name>FSCrypto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSDisk\FSDisk.csproj">
+      <Project>{b9b3d9b8-8c7b-49a7-bbab-8321f04cc02c}</Project>
+      <Name>FSDisk</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSException\FSException.csproj">
       <Project>{2a366b72-70b3-4700-b962-5920a0eee074}</Project>
       <Name>FSException</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSFile\FSFile.csproj">
-      <Project>{b9b3d9b8-8c7b-49a7-bbab-8321f04cc02c}</Project>
-      <Name>FSFile</Name>
     </ProjectReference>
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
       <Project>{7e0adef9-bcb8-48cd-99b6-68bf862f7083}</Project>

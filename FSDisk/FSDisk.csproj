@@ -7,8 +7,8 @@
     <ProjectGuid>{B9B3D9B8-8C7B-49A7-BBAB-8321F04CC02C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FSFile</RootNamespace>
-    <AssemblyName>FSFile</AssemblyName>
+    <RootNamespace>FSDisk</RootNamespace>
+    <AssemblyName>FSDisk</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

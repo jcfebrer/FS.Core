@@ -7,10 +7,8 @@ using System.Drawing;
 using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
-using FSLibrary;
 using DateTime = System.DateTime;
 using FSException;
-using System.Windows.Forms;
 
 #endregion
 
@@ -505,7 +503,6 @@ namespace FSFormControls
             var result = "";
             using (var response = (FtpWebResponse) ftp.GetResponse())
             {
-                var size = response.ContentLength;
                 using (var datastream = response.GetResponseStream())
                 {
                     using (var sr = new StreamReader(datastream))

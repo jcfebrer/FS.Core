@@ -38,28 +38,21 @@ namespace FSNetwork
 
         public static string GetFromUrl(string url, Encoding enc, string user, string password)
         {
-            try
-            {
-                HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
-                myRequest.Method = "GET";
+            HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
+            myRequest.Method = "GET";
 
-                if(!String.IsNullOrEmpty(user))
-                    myRequest.Credentials = new NetworkCredential(user, password);
+            if (!String.IsNullOrEmpty(user))
+                myRequest.Credentials = new NetworkCredential(user, password);
 
-                HttpWebResponse myResponse = ((HttpWebResponse)(myRequest.GetResponse()));
-                Stream receiveStream = myResponse.GetResponseStream();
-                StreamReader readStream = new StreamReader(receiveStream, enc);
-                string responseText = readStream.ReadToEnd();
+            HttpWebResponse myResponse = ((HttpWebResponse)(myRequest.GetResponse()));
+            Stream receiveStream = myResponse.GetResponseStream();
+            StreamReader readStream = new StreamReader(receiveStream, enc);
+            string responseText = readStream.ReadToEnd();
 
-                myResponse.Close();
-                readStream.Close();
+            myResponse.Close();
+            readStream.Close();
 
-                return responseText;
-            }
-            catch (System.Exception e)
-            {
-                throw new ExceptionUtil(e);
-            }
+            return responseText;
         }
 
         public static string PostHttp(string url, string postdata)

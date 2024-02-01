@@ -2,7 +2,7 @@
 using System;
 using System.Drawing;
 
-namespace FSFile
+namespace FSDisk
 {
 	/// <summary>
 	/// Description of File.

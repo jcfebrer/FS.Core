@@ -24,25 +24,55 @@ using FSTrace;
 
 namespace FSMail
 {
-	public static class SendMail
+	public class SendMail
 	{
-		private static List<string> attachments;
+		private List<string> attachments;
 
-		public static string Server;
-		public static string User;
-		public static string Password;
-		public static int Port;
-		public static bool EnableSSL;
-		public static string UserPortal;
-		public static string UserFullName;
-		public static string ErrorEmail;
+		private string server;
+        private string user;
+        private string password;
+        private int port;
+        private bool enableSSL;
+        private string errorEmail;
 
-        public static bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla)
+        private string userPortal;
+        private string userFullName;
+
+        public string Server { get => server; set => server = value; }
+        public string User { get => user; set => user = value; }
+        public string Password { get => password; set => password = value; }
+        public int Port { get => port; set => port = value; }
+        public bool EnableSSL { get => enableSSL; set => enableSSL = value; }
+        public string ErrorEmail { get => errorEmail; set => errorEmail = value; }
+        public string UserPortal { get => userPortal; set => userPortal = value; }
+        public string UserFullName { get => userFullName; set => userFullName = value; }
+
+        public SendMail(string server, string user, string password, int port, bool enableSSL, string errorEmail)
         {
-            return SendMailMessage(sTo, sCC, sCCO, sSubject, sBody, sFrom, sFromName, plantilla, false, null);
+			Server = server;
+			User = user;
+			Password = password;
+			Port = port;
+			EnableSSL = enableSSL;
+			ErrorEmail = errorEmail;
         }
 
-		public static void AddAttachment(string pathToAttachment)
+		public SendMail(string server, string user, string password, int port, bool enableSSL)
+		{
+			Server = server;
+			User = user;
+			Password = password;
+			Port = port;
+			EnableSSL = enableSSL;
+			ErrorEmail = user;
+		}
+
+		public bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string plantilla)
+        {
+            return SendMailMessage(sTo, sCC, sCCO, sSubject, sBody, plantilla, false, null);
+        }
+
+		public void AddAttachment(string pathToAttachment)
         {
 			if(attachments == null)
 				attachments = new List<string>();
@@ -51,12 +81,12 @@ namespace FSMail
 				attachments.Add(pathToAttachment);
         }
 
-        public static bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string sFrom, string sFromName, string plantilla, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
+        public bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string plantilla, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
 		{
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
 
-            //if (System.Diagnostics.Debugger.IsAttached)
-            //	return false;
+			//if (System.Diagnostics.Debugger.IsAttached)
+			//	return false;
 
             Log.TraceInfo("Inicio de envio de correo.");
 
@@ -64,16 +94,17 @@ namespace FSMail
 
 			Mail.BodyEncoding = System.Text.Encoding.UTF8;
 
-			if (!String.IsNullOrEmpty(sFrom))
-				Mail.From = new MailAddress(sFrom, sFromName);
-			else
-				throw new Exception("Destinatario del mensaje 'sFrom', no especificado.");
-
 
 			if (!String.IsNullOrEmpty(sTo))
 				Mail.To.Add(new MailAddress(sTo));
 			else
 				throw new Exception("Destinatario del mensaje 'sTo', no especificado.");
+
+			
+			if (!String.IsNullOrEmpty(User))
+				Mail.From = new MailAddress(User);
+			else
+				throw new Exception("Usuario de correo, no especificado.");
 
 
 			if (!String.IsNullOrEmpty(sCCO)) {
@@ -171,22 +202,22 @@ namespace FSMail
 			return true;
 		}
 
-		public static bool SendErrorMail(string message)
+		public bool SendErrorMail(string message)
 		{
 			return SendErrorMail(message, null);
 		}
 
-		public static bool SendErrorMail(string message, System.Exception ex)
+		public bool SendErrorMail(string message, System.Exception ex)
         {
             return SendErrorMail(message, ex, false, null);
         }
 
-		public static bool SendErrorMail(System.Exception ex)
+		public bool SendErrorMail(System.Exception ex)
 		{
 			return SendErrorMail("", ex, false, null);
 		}
 
-		public static bool SendErrorMail(string message, System.Exception ex, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
+		public bool SendErrorMail(string message, System.Exception ex, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
 		{
 			string sSubject = "Error: Excepción no controlada";
 			string sBody = "";
@@ -230,7 +261,7 @@ namespace FSMail
 			}
 
 			return SendMailMessage(ErrorEmail, "", "", sSubject, sBody,
-				ErrorEmail, ErrorEmail, "", Firmar, Certificado);
+				"", Firmar, Certificado);
 
 		}
     }

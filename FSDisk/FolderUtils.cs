@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Permissions;
 
-namespace FSFile
+namespace FSDisk
 {
     public class FolderUtils
     {
@@ -131,6 +131,16 @@ namespace FSFile
                 if (writeTime < timeOld)
                     Directory.Delete(dirs[i], true);
             }
+        }
+
+        public static DateTime GetModification(string folder)
+        {
+            return GetLastWriteTime(folder);
+        }
+
+        public static DateTime GetLastWriteTime(string folder)
+        {
+            return System.IO.Directory.GetLastWriteTime(folder);
         }
     }
 }

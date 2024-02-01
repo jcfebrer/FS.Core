@@ -7,10 +7,10 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using FSFile;
 using FSLibrary;
 using DateTime = System.DateTime;
 using FSException;
+using FSDisk;
 
 #endregion
 

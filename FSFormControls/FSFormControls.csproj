@@ -983,6 +983,10 @@
       <Project>{31743f95-0d43-4ab1-bd23-45d8a88f2635}</Project>
       <Name>FSDatabase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSDisk\FSDisk.csproj">
+      <Project>{B9B3D9B8-8C7B-49A7-BBAB-8321F04CC02C}</Project>
+      <Name>FSDisk</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSExcel\FSExcel.csproj">
       <Project>{314CD2F3-012F-4643-BC45-222083317D25}</Project>
       <Name>FSExcel</Name>
@@ -990,10 +994,6 @@
     <ProjectReference Include="..\FSException\FSException.csproj">
       <Project>{2a366b72-70b3-4700-b962-5920a0eee074}</Project>
       <Name>FSException</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSFile\FSFile.csproj">
-      <Project>{b9b3d9b8-8c7b-49a7-bbab-8321f04cc02c}</Project>
-      <Name>FSFile</Name>
     </ProjectReference>
     <ProjectReference Include="..\FSGraphics\FSGraphics.csproj">
       <Project>{13461507-32fc-48bc-bd27-f3a9de011825}</Project>

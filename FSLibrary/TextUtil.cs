@@ -50,6 +50,16 @@ namespace FSLibrary
         }
 
         /// <summary>
+        /// Quita los elementos html de un texto
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string StripHTML(string input)
+        {
+            return Regex.Replace(input, "<.*?>", String.Empty);
+        }
+
+        /// <summary>
         /// Devuelve true/false si la cadena empieza por search.
         /// </summary>
         /// <param name="str">The cadena.</param>
@@ -3132,6 +3142,50 @@ namespace FSLibrary
         {
             int tot = Regex.Matches(str, pattern).Count;
             return tot;
+        }
+
+        /// <summary>
+        /// Busca las direcciones URL en un texto
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> SearchUrlValues(string text)
+        {
+            Regex regex = new Regex("<a [^>]*href=(?:'(?<href>.*?)')|(?:\"(?<href>.*?)\")", RegexOptions.IgnoreCase);
+            return regex.Matches(text).OfType<Match>().Select(m => m.Groups["href"].Value);
+        }
+
+        /// <summary>
+        /// Busca los valores numéricos en un texto
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> SearchNumericValues(string text)
+        {
+            Regex regex = new Regex(@"(?<number>\d+(\,\d+)?)"); //^\d+$)");
+            return regex.Matches(text).OfType<Match>().Select(m => m.Groups["number"].Value);
+        }
+
+        /// <summary>
+        /// Busca las fechas en un texto
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> SearchDateValues(string text)
+        {
+            Regex regex = new Regex(@"(?<date>\d{1,2}\/\d{1,2}\/\d{4}?)");
+            return regex.Matches(text).OfType<Match>().Select(m => m.Groups["date"].Value);
+        }
+
+        /// <summary>
+        /// Busca las direcciones IP en un texto
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public static IEnumerable<string> SearchIpValues(string text)
+        {
+            Regex regex = new Regex(@"(?<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}?)");
+            return regex.Matches(text).OfType<Match>().Select(m => m.Groups["ip"].Value);
         }
     }
 }

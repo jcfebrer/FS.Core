@@ -20,7 +20,7 @@ using System.IO;
 using System.Security.Permissions;
 using System.Text;
 using System.Web;
-using FSFile;
+using FSDisk;
 using FSNetwork;
 using FSLibrary;
 using FSQueryBuilder.Constants;

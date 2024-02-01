@@ -11,7 +11,7 @@
 #region
 
 using FSException;
-using FSFile;
+using FSDisk;
 using FSLibrary;
 using System;
 using System.IO;
