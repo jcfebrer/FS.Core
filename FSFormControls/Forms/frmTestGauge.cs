@@ -29,13 +29,15 @@ namespace FSFormControls.Forms
 
         private void gauge2_ValueInRangeChanged(object sender, DBGauge.ValueInRangeChangedEventArgs e)
         {
+            DBGauge gauge = (DBGauge)sender;
+
             if (e.valueInRange == 1)
             {
-                label1.Text="WARNING!--OBJECTS IN MIRROR MAY APPEAR SLOWER THAN THEY USED TO.";
+                label1.Text="WARNING!--OBJECTS IN MIRROR MAY APPEAR SLOWER THAN THEY USED TO. " + gauge.CapText;
             }
             else if (e.valueInRange==2)
             {
-                label1.Text="IF THIS GAUGE DISPLAYS YOUR CURRENT SPEED AND YOU STILL CAN SEE THIS THEN SOMTHING IS WRONG ;-)";
+                label1.Text="IF THIS GAUGE DISPLAYS YOUR CURRENT SPEED AND YOU STILL CAN SEE THIS THEN SOMTHING IS WRONG ;-) " + gauge.CapText;
             }
             else
             {

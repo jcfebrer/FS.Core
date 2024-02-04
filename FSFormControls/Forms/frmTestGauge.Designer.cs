@@ -131,7 +131,7 @@ namespace FSFormControls.Forms
             this.label1.TabIndex = 20;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // FSFormControls.DBGauge5
+            // gauge5
             // 
             this.gauge5.BaseArcColor = System.Drawing.Color.Gray;
             this.gauge5.BaseArcRadius = 40;
@@ -163,7 +163,7 @@ namespace FSFormControls.Forms
             this.gauge5.Location = new System.Drawing.Point(695, 411);
             this.gauge5.MaxValue = 50F;
             this.gauge5.MinValue = 0F;
-            this.gauge5.Name = "FSFormControls.DBGauge5";
+            this.gauge5.Name = "gauge5";
             this.gauge5.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Violet;
             this.gauge5.NeedleColor2 = System.Drawing.Color.Black;
             this.gauge5.NeedleRadius = 40;
@@ -237,7 +237,7 @@ namespace FSFormControls.Forms
             this.gauge5.Text = "FSFormControls.DBGauge5";
             this.gauge5.Value = 0F;
             // 
-            // FSFormControls.DBGauge3
+            // gauge3
             // 
             this.gauge3.BaseArcColor = System.Drawing.Color.Gray;
             this.gauge3.BaseArcRadius = 40;
@@ -269,7 +269,7 @@ namespace FSFormControls.Forms
             this.gauge3.Location = new System.Drawing.Point(63, 401);
             this.gauge3.MaxValue = 50F;
             this.gauge3.MinValue = 0F;
-            this.gauge3.Name = "FSFormControls.DBGauge3";
+            this.gauge3.Name = "gauge3";
             this.gauge3.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Green;
             this.gauge3.NeedleColor2 = System.Drawing.Color.White;
             this.gauge3.NeedleRadius = 40;
@@ -343,7 +343,7 @@ namespace FSFormControls.Forms
             this.gauge3.Text = "FSFormControls.DBGauge3";
             this.gauge3.Value = 0F;
             // 
-            // FSFormControls.DBGauge12
+            // gauge12
             // 
             this.gauge12.BaseArcColor = System.Drawing.Color.Gray;
             this.gauge12.BaseArcRadius = 40;
@@ -375,7 +375,7 @@ namespace FSFormControls.Forms
             this.gauge12.Location = new System.Drawing.Point(611, 266);
             this.gauge12.MaxValue = 100F;
             this.gauge12.MinValue = 0F;
-            this.gauge12.Name = "FSFormControls.DBGauge12";
+            this.gauge12.Name = "gauge12";
             this.gauge12.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Gray;
             this.gauge12.NeedleColor2 = System.Drawing.Color.Black;
             this.gauge12.NeedleRadius = 45;
@@ -449,7 +449,7 @@ namespace FSFormControls.Forms
             this.gauge12.Text = "FSFormControls.DBGauge12";
             this.gauge12.Value = 0F;
             // 
-            // FSFormControls.DBGauge7
+            // gauge7
             // 
             this.gauge7.BackColor = System.Drawing.SystemColors.Control;
             this.gauge7.BaseArcColor = System.Drawing.Color.Gray;
@@ -483,7 +483,7 @@ namespace FSFormControls.Forms
             this.gauge7.Location = new System.Drawing.Point(547, 411);
             this.gauge7.MaxValue = 50F;
             this.gauge7.MinValue = 0F;
-            this.gauge7.Name = "FSFormControls.DBGauge7";
+            this.gauge7.Name = "gauge7";
             this.gauge7.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Green;
             this.gauge7.NeedleColor2 = System.Drawing.Color.GreenYellow;
             this.gauge7.NeedleRadius = 40;
@@ -557,7 +557,7 @@ namespace FSFormControls.Forms
             this.gauge7.Text = "FSFormControls.DBGauge7";
             this.gauge7.Value = 0F;
             // 
-            // FSFormControls.DBGauge8
+            // gauge8
             // 
             this.gauge8.BackColor = System.Drawing.SystemColors.Control;
             this.gauge8.BaseArcColor = System.Drawing.Color.Gray;
@@ -591,7 +591,7 @@ namespace FSFormControls.Forms
             this.gauge8.Location = new System.Drawing.Point(511, 163);
             this.gauge8.MaxValue = 50F;
             this.gauge8.MinValue = 0F;
-            this.gauge8.Name = "FSFormControls.DBGauge8";
+            this.gauge8.Name = "gauge8";
             this.gauge8.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Blue;
             this.gauge8.NeedleColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.gauge8.NeedleRadius = 40;
@@ -665,7 +665,7 @@ namespace FSFormControls.Forms
             this.gauge8.Text = "FSFormControls.DBGauge8";
             this.gauge8.Value = 22F;
             // 
-            // FSFormControls.DBGauge11
+            // gauge11
             // 
             this.gauge11.BackColor = System.Drawing.SystemColors.Control;
             this.gauge11.BaseArcColor = System.Drawing.Color.Gray;
@@ -699,7 +699,7 @@ namespace FSFormControls.Forms
             this.gauge11.Location = new System.Drawing.Point(631, 9);
             this.gauge11.MaxValue = 10F;
             this.gauge11.MinValue = 0F;
-            this.gauge11.Name = "FSFormControls.DBGauge11";
+            this.gauge11.Name = "gauge11";
             this.gauge11.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Green;
             this.gauge11.NeedleColor2 = System.Drawing.Color.Black;
             this.gauge11.NeedleRadius = 40;
@@ -773,7 +773,7 @@ namespace FSFormControls.Forms
             this.gauge11.Text = "FSFormControls.DBGauge11";
             this.gauge11.Value = 0F;
             // 
-            // FSFormControls.DBGauge10
+            // gauge10
             // 
             this.gauge10.BackColor = System.Drawing.SystemColors.Control;
             this.gauge10.BaseArcColor = System.Drawing.Color.Gray;
@@ -807,7 +807,7 @@ namespace FSFormControls.Forms
             this.gauge10.Location = new System.Drawing.Point(695, 167);
             this.gauge10.MaxValue = 100F;
             this.gauge10.MinValue = 0F;
-            this.gauge10.Name = "FSFormControls.DBGauge10";
+            this.gauge10.Name = "gauge10";
             this.gauge10.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Red;
             this.gauge10.NeedleColor2 = System.Drawing.Color.Black;
             this.gauge10.NeedleRadius = 40;
@@ -881,7 +881,7 @@ namespace FSFormControls.Forms
             this.gauge10.Text = "FSFormControls.DBGauge10";
             this.gauge10.Value = 0F;
             // 
-            // FSFormControls.DBGauge9
+            // gauge9
             // 
             this.gauge9.BackColor = System.Drawing.SystemColors.Control;
             this.gauge9.BaseArcColor = System.Drawing.Color.Gray;
@@ -915,7 +915,7 @@ namespace FSFormControls.Forms
             this.gauge9.Location = new System.Drawing.Point(611, 167);
             this.gauge9.MaxValue = 100F;
             this.gauge9.MinValue = 0F;
-            this.gauge9.Name = "FSFormControls.DBGauge9";
+            this.gauge9.Name = "gauge9";
             this.gauge9.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Gray;
             this.gauge9.NeedleColor2 = System.Drawing.Color.Black;
             this.gauge9.NeedleRadius = 40;
@@ -989,7 +989,7 @@ namespace FSFormControls.Forms
             this.gauge9.Text = "FSFormControls.DBGauge9";
             this.gauge9.Value = 0F;
             // 
-            // FSFormControls.DBGauge6
+            // gauge6
             // 
             this.gauge6.BackColor = System.Drawing.SystemColors.Control;
             this.gauge6.BaseArcColor = System.Drawing.Color.Gray;
@@ -1023,7 +1023,7 @@ namespace FSFormControls.Forms
             this.gauge6.Location = new System.Drawing.Point(82, 266);
             this.gauge6.MaxValue = 50F;
             this.gauge6.MinValue = 0F;
-            this.gauge6.Name = "FSFormControls.DBGauge6";
+            this.gauge6.Name = "gauge6";
             this.gauge6.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Blue;
             this.gauge6.NeedleColor2 = System.Drawing.Color.RoyalBlue;
             this.gauge6.NeedleRadius = 48;
@@ -1097,7 +1097,7 @@ namespace FSFormControls.Forms
             this.gauge6.Text = "FSFormControls.DBGauge6";
             this.gauge6.Value = 22F;
             // 
-            // FSFormControls.DBGauge2
+            // gauge2
             // 
             this.gauge2.BaseArcColor = System.Drawing.Color.Gray;
             this.gauge2.BaseArcRadius = 130;
@@ -1130,7 +1130,7 @@ namespace FSFormControls.Forms
             this.gauge2.Location = new System.Drawing.Point(199, 187);
             this.gauge2.MaxValue = 400F;
             this.gauge2.MinValue = -100F;
-            this.gauge2.Name = "FSFormControls.DBGauge2";
+            this.gauge2.Name = "gauge2";
             this.gauge2.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Yellow;
             this.gauge2.NeedleColor2 = System.Drawing.Color.DimGray;
             this.gauge2.NeedleRadius = 130;
@@ -1205,7 +1205,7 @@ namespace FSFormControls.Forms
             this.gauge2.Value = 0F;
             this.gauge2.ValueInRangeChanged += new FSFormControls.DBGauge.ValueInRangeChangedDelegate(this.gauge2_ValueInRangeChanged);
             // 
-            // FSFormControls.DBGauge1
+            // gauge1
             // 
             this.gauge1.BackColor = System.Drawing.SystemColors.Control;
             this.gauge1.BaseArcColor = System.Drawing.Color.LightSlateGray;
@@ -1238,7 +1238,7 @@ namespace FSFormControls.Forms
             this.gauge1.Location = new System.Drawing.Point(63, 21);
             this.gauge1.MaxValue = 400F;
             this.gauge1.MinValue = -100F;
-            this.gauge1.Name = "FSFormControls.DBGauge1";
+            this.gauge1.Name = "gauge1";
             this.gauge1.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Gray;
             this.gauge1.NeedleColor2 = System.Drawing.Color.DimGray;
             this.gauge1.NeedleRadius = 80;
@@ -1313,7 +1313,7 @@ namespace FSFormControls.Forms
             this.gauge1.Value = 50F;
             this.gauge1.ValueInRangeChanged += new FSFormControls.DBGauge.ValueInRangeChangedDelegate(this.gauge1_ValueInRangeChanged);
             // 
-            // FSFormControls.DBGauge4
+            // gauge4
             // 
             this.gauge4.BaseArcColor = System.Drawing.Color.Gray;
             this.gauge4.BaseArcRadius = 150;
@@ -1345,7 +1345,7 @@ namespace FSFormControls.Forms
             this.gauge4.Location = new System.Drawing.Point(315, 3);
             this.gauge4.MaxValue = 300F;
             this.gauge4.MinValue = -300F;
-            this.gauge4.Name = "FSFormControls.DBGauge4";
+            this.gauge4.Name = "gauge4";
             this.gauge4.NeedleColor1 = FSFormControls.DBGauge.NeedleColorEnum.Green;
             this.gauge4.NeedleColor2 = System.Drawing.Color.DimGray;
             this.gauge4.NeedleRadius = 150;
@@ -1419,7 +1419,7 @@ namespace FSFormControls.Forms
             this.gauge4.Text = "FSFormControls.DBGauge4";
             this.gauge4.Value = 0F;
             // 
-            // Form1
+            // frmTestGauge
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1442,7 +1442,7 @@ namespace FSFormControls.Forms
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.gauge1);
             this.Controls.Add(this.gauge4);
-            this.Name = "Form1";
+            this.Name = "frmTestGauge";
             this.Text = "FSFormControls.DBGauge Test Window";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();

@@ -224,7 +224,7 @@ namespace FSFormControls
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new[]
+            ContextMenu1.MenuItems.AddRange(new MenuItem[]
             {
                 MenuItem1
             });

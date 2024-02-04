@@ -18,6 +18,7 @@ namespace FSFormControls
     [ToolboxItem(true)]
     public class DBCheckBox : DBUserControl, ISupportInitialize
     {
+        private CheckBox checkbox;
         private Color m_BackColor = Color.Transparent;
         private bool m_Editable = true;
         private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
@@ -36,6 +37,10 @@ namespace FSFormControls
             }
         }
 
+        public CheckBox CheckBox {
+            get { return checkbox; }
+            set { checkbox = value; }
+        }
 
         private DBControl m_DataControl;
         /// <summary>
@@ -87,8 +92,6 @@ namespace FSFormControls
                 checkbox.Enabled = m_Editable;
             }
         }
-
-        public CheckBox checkbox { get; private set; }
 
         public Global.AccessMode Mode
         {

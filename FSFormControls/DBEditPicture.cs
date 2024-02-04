@@ -931,7 +931,7 @@ namespace FSFormControls
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new[]
+            ContextMenu1.MenuItems.AddRange(new MenuItem[]
             {
                 MenuItem1
             });
@@ -944,7 +944,7 @@ namespace FSFormControls
             // ToolBar1
             // 
             ToolBar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            ToolBar1.Buttons.AddRange(new[]
+            ToolBar1.Buttons.AddRange(new ToolBarButton[]
             {
                 ToolBarButton9,
                 ToolBarButton2,
@@ -1031,7 +1031,7 @@ namespace FSFormControls
             // ToolBar2
             // 
             ToolBar2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            ToolBar2.Buttons.AddRange(new[]
+            ToolBar2.Buttons.AddRange(new ToolBarButton[]
             {
                 ToolBarButton10,
                 ToolBarButton11,
@@ -1124,7 +1124,7 @@ namespace FSFormControls
             // 
             // objectMenu
             // 
-            objectMenu.MenuItems.AddRange(new[]
+            objectMenu.MenuItems.AddRange(new MenuItem[]
             {
                 MenuItem2,
                 MenuItem3,

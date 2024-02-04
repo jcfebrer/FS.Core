@@ -2454,7 +2454,7 @@ namespace FSFormControls
             // 
             // ToolBar1
             // 
-            ToolBar1.Buttons.AddRange(new[]
+            ToolBar1.Buttons.AddRange(new ToolBarButton[]
             {
                 ToolBarButton1,
                 ToolBarButton2,
@@ -2537,7 +2537,7 @@ namespace FSFormControls
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new[]
+            ContextMenu1.MenuItems.AddRange(new MenuItem[]
             {
                 MenuItem1,
                 MenuItem2,
@@ -2592,7 +2592,7 @@ namespace FSFormControls
             // 
             // ContextMenu2
             // 
-            ContextMenu2.MenuItems.AddRange(new[]
+            ContextMenu2.MenuItems.AddRange(new MenuItem[]
             {
                 MenuItem5,
                 MenuItem6,

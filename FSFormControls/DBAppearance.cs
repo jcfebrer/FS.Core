@@ -3,6 +3,9 @@ using System.Windows.Forms;
 
 namespace FSFormControls
 {
+    /// <summary>
+    /// Compatibilidad con Infragistics
+    /// </summary>
     public class DBAppearance
     {
         public enum Alpha

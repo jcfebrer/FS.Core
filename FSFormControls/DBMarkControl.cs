@@ -84,14 +84,15 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            SuspendLayout();
+            this.SuspendLayout();
             // 
             // DBMarkControl
             // 
-            BackColor = Color.Black;
-            Name = "DBMarkControl";
-            Size = new Size(34, 26);
-            ResumeLayout(false);
+            this.BackColor = System.Drawing.Color.Black;
+            this.Name = "DBMarkControl";
+            this.Size = new System.Drawing.Size(34, 26);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

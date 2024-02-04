@@ -4447,6 +4447,21 @@ namespace FSLibrary
             string password, string username, int flags);
 
         /// <summary>
+        /// Espacio en disco utilizando recurso compartido.
+        /// </summary>
+        /// <param name="lpDirectoryName"></param>
+        /// <param name="lpFreeBytesAvailable"></param>
+        /// <param name="lpTotalNumberOfBytes"></param>
+        /// <param name="lpTotalNumberOfFreeBytes"></param>
+        /// <returns></returns>
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetDiskFreeSpaceEx(string lpDirectoryName,
+           out long lpFreeBytesAvailable,
+           out long lpTotalNumberOfBytes,
+           out long lpTotalNumberOfFreeBytes);
+
+        /// <summary>
         /// ws the net cancel connection2.
         /// </summary>
         /// <param name="name">The name.</param>

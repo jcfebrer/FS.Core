@@ -613,7 +613,7 @@ namespace FSFormControls
 
             CheckBox cb = null;
             if (c is DBCheckBox)
-                cb = ((DBCheckBox) c).checkbox;
+                cb = ((DBCheckBox) c).CheckBox;
             else
                 cb = (CheckBox) c;
 

@@ -458,26 +458,27 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            DateTimePicker1 = new DateTimePicker();
-            SuspendLayout();
+            this.DateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.SuspendLayout();
             // 
             // DateTimePicker1
             // 
-            DateTimePicker1.CalendarTitleBackColor = Color.FromArgb(0, 192, 0);
-            DateTimePicker1.CustomFormat = "dd/MM/yyyy";
-            DateTimePicker1.Dock = DockStyle.Fill;
-            DateTimePicker1.Format = DateTimePickerFormat.Custom;
-            DateTimePicker1.Location = new Point(0, 0);
-            DateTimePicker1.Name = "DateTimePicker1";
-            DateTimePicker1.Size = new Size(101, 20);
-            DateTimePicker1.TabIndex = 0;
+            this.DateTimePicker1.CalendarTitleBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.DateTimePicker1.CustomFormat = "dd/MM/yyyy";
+            this.DateTimePicker1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.DateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.DateTimePicker1.Location = new System.Drawing.Point(0, 0);
+            this.DateTimePicker1.Name = "DateTimePicker1";
+            this.DateTimePicker1.Size = new System.Drawing.Size(101, 20);
+            this.DateTimePicker1.TabIndex = 0;
             // 
             // DBDate
             // 
-            Controls.Add(DateTimePicker1);
-            Name = "DBDate";
-            Size = new Size(101, 36);
-            ResumeLayout(false);
+            this.Controls.Add(this.DateTimePicker1);
+            this.Name = "DBDate";
+            this.Size = new System.Drawing.Size(101, 36);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiskUtil.cs" />
     <Compile Include="File.cs" />
     <Compile Include="Files.cs" />
     <Compile Include="FolderUtils.cs" />

@@ -19,6 +19,8 @@ using System.Collections.Generic;
 using System.Net.Mime;
 using System.IO;
 using FSTrace;
+using System.Diagnostics;
+using System.Reflection;
 
 #endregion
 
@@ -35,6 +37,7 @@ namespace FSMail
         private bool enableSSL;
         private string errorEmail;
 
+		private string projectName;
         private string userPortal;
         private string userFullName;
 
@@ -44,10 +47,11 @@ namespace FSMail
         public int Port { get => port; set => port = value; }
         public bool EnableSSL { get => enableSSL; set => enableSSL = value; }
         public string ErrorEmail { get => errorEmail; set => errorEmail = value; }
-        public string UserPortal { get => userPortal; set => userPortal = value; }
+		public string ProjectName { get => projectName; set => projectName = value; }
+		public string UserPortal { get => userPortal; set => userPortal = value; }
         public string UserFullName { get => userFullName; set => userFullName = value; }
 
-        public SendMail(string server, string user, string password, int port, bool enableSSL, string errorEmail)
+        public SendMail(string server, string user, string password, int port, bool enableSSL, string errorEmail, string projectName)
         {
 			Server = server;
 			User = user;
@@ -55,9 +59,10 @@ namespace FSMail
 			Port = port;
 			EnableSSL = enableSSL;
 			ErrorEmail = errorEmail;
+			ProjectName = projectName;
         }
 
-		public SendMail(string server, string user, string password, int port, bool enableSSL)
+		public SendMail(string server, string user, string password, int port, bool enableSSL, string projectName)
 		{
 			Server = server;
 			User = user;
@@ -65,6 +70,7 @@ namespace FSMail
 			Port = port;
 			EnableSSL = enableSSL;
 			ErrorEmail = user;
+			ProjectName = projectName;
 		}
 
 		public bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string plantilla)
@@ -137,6 +143,8 @@ namespace FSMail
 
 			sBody = sBody + "\r\n\r\nFecha: " + System.DateTime.Now + "\r\n";
 
+			if (!String.IsNullOrEmpty(ProjectName))
+				sSubject += " - " + projectName;
 
 			Mail.Priority = MailPriority.Normal;
 			Mail.Subject = sSubject;
@@ -244,12 +252,15 @@ namespace FSMail
 
 			if (ex != null)
 			{
-				sBody += "Message: " + ex.Message;
-				sBody += "\r\nError: " + ex;
+				sBody += "<i><b><u>For Developer Use Only: </u></b></i>" + "<br><br>" +
+					"Project Name:   " + Assembly.GetCallingAssembly().GetName().Name + "<br>" +
+					"Error Message:  " + ex.Message + "<br>" +
+					"Error:  " + ex + "<br>";
 
 				if (ex.InnerException != null)
 				{
-					sBody += "\r\nErrorInner: " + ex.InnerException;
+					sBody += "Inner Message : " + ex.InnerException.Message + "<br>";
+					sBody += "Error: " + ex.InnerException;
 				}
 			}
 

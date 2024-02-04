@@ -21,5 +21,11 @@
             frmTestGauge ftmT = new frmTestGauge();
             ftmT.Show();
         }
+
+        private void dbButton19_Click(object sender, System.EventArgs e)
+        {
+            frmTestVuMeter ftmT = new frmTestVuMeter();
+            ftmT.Show();
+        }
     }
 }

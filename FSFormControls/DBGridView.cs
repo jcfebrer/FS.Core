@@ -491,7 +491,10 @@ namespace FSFormControls
         public int FirstDisplayedScrollingRowIndex 
         { 
             get { return datagrid.FirstDisplayedScrollingRowIndex; }
-            set { datagrid.FirstDisplayedScrollingRowIndex = value; } 
+            set { 
+                if(value != -1)
+                    datagrid.FirstDisplayedScrollingRowIndex = value; 
+            } 
         }
 
         public DataGridViewRow RowTemplate 

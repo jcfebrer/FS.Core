@@ -27,6 +27,7 @@ namespace FSFormControls
         //}
 
         private DBControl m_DataControl;
+
         /// <summary>
         /// Asignación del DBcontrol.
         /// </summary>
@@ -151,43 +152,42 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            ContextMenu1 = new ContextMenu();
-            MenuItem1 = new MenuItem();
-            OpenFileDialog1 = new OpenFileDialog();
-            Label1 = new Label();
-            SuspendLayout();
+            this.ContextMenu1 = new System.Windows.Forms.ContextMenu();
+            this.MenuItem1 = new System.Windows.Forms.MenuItem();
+            this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.Label1 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new[]
-            {
-                MenuItem1
-            });
+            this.ContextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.MenuItem1});
             // 
             // MenuItem1
             // 
-            MenuItem1.Index = 0;
-            MenuItem1.Text = "Seleccionar Imagen";
+            this.MenuItem1.Index = 0;
+            this.MenuItem1.Text = "Seleccionar Imagen";
             // 
             // Label1
             // 
-            Label1.BorderStyle = BorderStyle.Fixed3D;
-            Label1.ContextMenu = ContextMenu1;
-            Label1.Dock = DockStyle.Fill;
-            Label1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
-            Label1.Location = new Point(0, 0);
-            Label1.Name = "Label1";
-            Label1.Size = new Size(150, 146);
-            Label1.TabIndex = 1;
-            Label1.Text = "DBDocument";
-            Label1.Visible = false;
+            this.Label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.Label1.ContextMenu = this.ContextMenu1;
+            this.Label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label1.Location = new System.Drawing.Point(0, 0);
+            this.Label1.Name = "Label1";
+            this.Label1.Size = new System.Drawing.Size(150, 105);
+            this.Label1.TabIndex = 1;
+            this.Label1.Text = "DBDocument";
+            this.Label1.Visible = false;
             // 
             // DBDocument
             // 
-            Controls.Add(Label1);
-            Name = "DBDocument";
-            Size = new Size(150, 146);
-            ResumeLayout(false);
+            this.Controls.Add(this.Label1);
+            this.Name = "DBDocument";
+            this.Size = new System.Drawing.Size(150, 105);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

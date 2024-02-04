@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTest));
+            System.Windows.Forms.DataGridViewRow dataGridViewRow1 = new System.Windows.Forms.DataGridViewRow();
             this.dbTabControl1 = new FSFormControls.DBTabControl();
             this.tabPage1 = new FSFormControls.DBTabPage();
             this.dbButton18 = new FSFormControls.DBButton();
@@ -108,6 +109,7 @@
             this.statusBarPanel1 = new System.Windows.Forms.StatusBarPanel();
             this.statusBarPanel2 = new System.Windows.Forms.StatusBarPanel();
             this.dbStatusBar3 = new FSFormControls.DBStatusBar();
+            this.dbButton19 = new FSFormControls.DBButton();
             ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTabControl1)).BeginInit();
             this.dbTabControl1.SuspendLayout();
@@ -178,6 +180,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.dbButton19);
             this.tabPage1.Controls.Add(this.dbButton18);
             this.tabPage1.Controls.Add(this.dbCombo9);
             this.tabPage1.Controls.Add(this.dbTextBox4);
@@ -222,9 +225,9 @@
             this.dbButton18.Image = null;
             this.dbButton18.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.dbButton18.Key = "Button1";
-            this.dbButton18.Location = new System.Drawing.Point(846, 200);
+            this.dbButton18.Location = new System.Drawing.Point(820, 200);
             this.dbButton18.Name = "dbButton18";
-            this.dbButton18.Size = new System.Drawing.Size(95, 39);
+            this.dbButton18.Size = new System.Drawing.Size(95, 23);
             this.dbButton18.TabIndex = 54;
             this.dbButton18.Text = "Test DBGauge";
             this.dbButton18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1723,6 +1726,7 @@
             // 
             this.dbFtp1.About = "";
             this.dbFtp1.CurrentDirectory = "/";
+            this.dbFtp1.EnableSSL = false;
             this.dbFtp1.Hostname = "ftp://";
             this.dbFtp1.KeepAlive = false;
             this.dbFtp1.Location = new System.Drawing.Point(377, 25);
@@ -1752,6 +1756,7 @@
             this.dbGridView1.AllowAddNew = true;
             this.dbGridView1.AllowDelete = true;
             this.dbGridView1.AllowDrop = true;
+            this.dbGridView1.AllowUserToAddRows = true;
             this.dbGridView1.AlternatingColor = System.Drawing.Color.Empty;
             this.dbGridView1.AutoSave = true;
             this.dbGridView1.AutoSizeColumns = true;
@@ -1763,13 +1768,16 @@
             this.dbGridView1.DefaultHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbGridView1.DisplayLayout = null;
             this.dbGridView1.Editable = true;
+            this.dbGridView1.FirstDisplayedScrollingRowIndex = -1;
             this.dbGridView1.Location = new System.Drawing.Point(6, 6);
             this.dbGridView1.Mode = FSFormControls.Global.AccessMode.ReadMode;
             this.dbGridView1.MultiSelect = false;
             this.dbGridView1.Name = "dbGridView1";
+            this.dbGridView1.ReadOnly = false;
             this.dbGridView1.RecordMode = false;
             this.dbGridView1.RowHeadersWidth = 41;
             this.dbGridView1.RowsInCaption = 2;
+            this.dbGridView1.RowTemplate = dataGridViewRow1;
             this.dbGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dbGridView1.ShowExpand = false;
             this.dbGridView1.ShowRecordScrollBar = true;
@@ -2106,6 +2114,35 @@
             this.dbStatusBar3.ViewStyle = FSFormControls.DBStatusBar.ViewStyleEnum.Default;
             this.dbStatusBar3.WrapText = false;
             // 
+            // dbButton19
+            // 
+            this.dbButton19.About = "";
+            this.dbButton19.Appearance = null;
+            this.dbButton19.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
+            this.dbButton19.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dbButton19.DropDownMenu = null;
+            this.dbButton19.FillColorEnd = System.Drawing.Color.White;
+            this.dbButton19.FillColorStart = System.Drawing.Color.LightGray;
+            this.dbButton19.FillHoverColorEnd = System.Drawing.Color.Beige;
+            this.dbButton19.FillHoverColorStart = System.Drawing.Color.Beige;
+            this.dbButton19.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.dbButton19.Gradient = false;
+            this.dbButton19.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.dbButton19.Image = null;
+            this.dbButton19.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.dbButton19.Key = "Button1";
+            this.dbButton19.Location = new System.Drawing.Point(820, 229);
+            this.dbButton19.Name = "dbButton19";
+            this.dbButton19.Size = new System.Drawing.Size(95, 25);
+            this.dbButton19.TabIndex = 55;
+            this.dbButton19.Text = "Test DBVuMeter";
+            this.dbButton19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dbButton19.TextColorEnd = System.Drawing.Color.Black;
+            this.dbButton19.TextColorStart = System.Drawing.Color.Blue;
+            this.dbButton19.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dbButton19.ToolTip = "";
+            this.dbButton19.Click += new System.EventHandler(this.dbButton19_Click);
+            // 
             // frmTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2247,5 +2284,6 @@
         private DBButton dbButton17;
         private DBCombo dbCombo9;
         private DBButton dbButton18;
+        private DBButton dbButton19;
     }
 }

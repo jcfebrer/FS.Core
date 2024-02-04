@@ -247,6 +247,7 @@
     <Compile Include="DBTooltipManager.cs" />
     <Compile Include="DBTreeViewNode.cs" />
     <Compile Include="DBUserControl.cs" />
+    <Compile Include="DBVUMeter.cs" />
     <Compile Include="Forms\DBForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +256,12 @@
     </Compile>
     <Compile Include="Forms\DBEtchedLine.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTestVuMeter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTestVuMeter.Designer.cs">
+      <DependentUpon>frmTestVuMeter.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmTestGauge.cs">
       <SubType>Form</SubType>
@@ -633,6 +640,9 @@
     <None Include="Resources\DBChart.bmp" />
     <None Include="Resources\DBTabControl.bmp" />
     <None Include="Resources\DBTreeView.bmp" />
+    <EmbeddedResource Include="Forms\frmTestVuMeter.resx">
+      <DependentUpon>frmTestVuMeter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTestGauge.resx">
       <DependentUpon>frmTestGauge.cs</DependentUpon>
     </EmbeddedResource>
@@ -1026,5 +1036,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\FSInputBoxQuestion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\DBGauge.bmp" />
+    <Content Include="Resources\DBGridViewCollapse.png" />
+    <Content Include="Resources\DBGridViewExpand.png" />
+    <Content Include="Resources\DBVuMeter.bmp" />
   </ItemGroup>
 </Project>

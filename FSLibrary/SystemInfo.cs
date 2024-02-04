@@ -767,9 +767,9 @@ namespace FSLibrary
             ManagementObjectSearcher mos = new ManagementObjectSearcher(GetScope(), new SelectQuery("select * from Win32_OperatingSystem"));
             foreach (ManagementObject managementObject in mos.Get())
             {
-                if (managementObject["TotalVirtualMemorySize"] != null)
+                if (managementObject["TotalVisibleMemorySize"] != null)
                 {
-                    return long.Parse(managementObject["TotalVirtualMemorySize"].ToString());
+                    return long.Parse(managementObject["TotalVisibleMemorySize"].ToString());
                 }
             }
 
@@ -785,9 +785,9 @@ namespace FSLibrary
             ManagementObjectSearcher mos = new ManagementObjectSearcher(GetScope(), new SelectQuery("select * from Win32_OperatingSystem"));
             foreach (ManagementObject managementObject in mos.Get())
             {
-                if (managementObject["FreeVirtualMemory"] != null)
+                if (managementObject["FreePhysicalMemory"] != null)
                 {
-                    return long.Parse(managementObject["FreeVirtualMemory"].ToString());
+                    return long.Parse(managementObject["FreePhysicalMemory"].ToString());
                 }
             }
 
