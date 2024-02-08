@@ -7,7 +7,7 @@ using FSLibrary;
 
 #endregion
 
-namespace FSFormControls
+namespace Fdisk
 {
     public class Browse
     {

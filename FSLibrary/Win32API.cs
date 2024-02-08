@@ -4446,20 +4446,6 @@ namespace FSLibrary
         public static extern int WNetAddConnection2(NetResource netResource,
             string password, string username, int flags);
 
-        /// <summary>
-        /// Espacio en disco utilizando recurso compartido.
-        /// </summary>
-        /// <param name="lpDirectoryName"></param>
-        /// <param name="lpFreeBytesAvailable"></param>
-        /// <param name="lpTotalNumberOfBytes"></param>
-        /// <param name="lpTotalNumberOfFreeBytes"></param>
-        /// <returns></returns>
-        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetDiskFreeSpaceEx(string lpDirectoryName,
-           out long lpFreeBytesAvailable,
-           out long lpTotalNumberOfBytes,
-           out long lpTotalNumberOfFreeBytes);
 
         /// <summary>
         /// ws the net cancel connection2.
@@ -4471,6 +4457,16 @@ namespace FSLibrary
         [DllImport("mpr.dll")]
         public static extern int WNetCancelConnection2(string name, int flags,
             bool force);
+
+        /// <summary>
+        /// SetKeyboardState
+        /// </summary>
+        /// <param name="keys"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true,
+            CallingConvention = CallingConvention.Winapi)]
+        public static extern bool SetKeyboardState(byte[] keys);
+
 
         /// <summary>
         /// NetResource
@@ -4616,6 +4612,387 @@ namespace FSLibrary
             /// </summary>
             Ndscontainer = 0x0b
         }
+
+
+        #region Nested type: DRIVERSTATUS
+
+        /// <summary>
+        /// DRIVERSTATUS
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential, Size = 12)]
+        public class DRIVERSTATUS
+        {
+            /// <summary>
+            /// bDriveError
+            /// </summary>
+            public byte bDriveError;
+            /// <summary>
+            /// bIDEStatus
+            /// </summary>
+            public byte bIDEStatus;
+
+            /// <summary>
+            /// bReserved
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+            public byte[] bReserved;
+
+            /// <summary>
+            /// dwReserved
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
+            public int[] dwReserved;
+
+            /// <summary>
+            /// DRIVERSTATUS
+            /// </summary>
+            public DRIVERSTATUS()
+            {
+                bReserved = new byte[2];
+                dwReserved = new int[2];
+            }
+        }
+
+        #endregion
+
+        #region Nested type: IDEREGS
+
+        /// <summary>
+        /// IDEREGS
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential, Size = 8)]
+        public class IDEREGS
+        {
+            /// <summary>
+            /// bCommandReg
+            /// </summary>
+            public byte bCommandReg;
+            /// <summary>
+            /// bCylHighReg
+            /// </summary>
+            public byte bCylHighReg;
+            /// <summary>
+            /// bCylLowReg
+            /// </summary>
+            public byte bCylLowReg;
+            /// <summary>
+            /// bDriveHeadReg
+            /// </summary>
+            public byte bDriveHeadReg;
+            /// <summary>
+            /// bFeaturesReg
+            /// </summary>
+            public byte bFeaturesReg;
+            /// <summary>
+            /// bReserved
+            /// </summary>
+            public byte bReserved;
+            /// <summary>
+            /// bSectorCountReg
+            /// </summary>
+            public byte bSectorCountReg;
+            /// <summary>
+            /// bSectorNumberReg
+            /// </summary>
+            public byte bSectorNumberReg;
+        }
+
+        #endregion
+
+        #region Nested type: IDSECTOR
+
+        /// <summary>
+        /// IDSECTOR
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
+        public class IDSECTOR
+        {
+            /// <summary>
+            /// bReserved
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 382)]
+            public byte[] bReserved;
+
+            /// <summary>
+            /// sFirmwareRev
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+            public char[] sFirmwareRev;
+
+            /// <summary>
+            /// sModelNumber
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 40)]
+            public char[] sModelNumber;
+
+            /// <summary>
+            /// sSerialNumber
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+            public char[] sSerialNumber;
+
+            /// <summary>
+            /// ulCurrentSectorCapacity
+            /// </summary>
+            public int ulCurrentSectorCapacity;
+            /// <summary>
+            /// ulTotalAddressableSectors
+            /// </summary>
+            public int ulTotalAddressableSectors;
+            /// <summary>
+            /// wBS
+            /// </summary>
+            public short wBS;
+            /// <summary>
+            /// wBufferclass
+            /// </summary>
+            public short wBufferclass;
+            /// <summary>
+            /// wBufferSize
+            /// </summary>
+            public short wBufferSize;
+            /// <summary>
+            /// wBytesPerSector
+            /// </summary>
+            public short wBytesPerSector;
+            /// <summary>
+            /// wBytesPerTrack
+            /// </summary>
+            public short wBytesPerTrack;
+            /// <summary>
+            /// wCapabilities
+            /// </summary>
+            public short wCapabilities;
+            /// <summary>
+            /// wDMATiming
+            /// </summary>
+            public short wDMATiming;
+            /// <summary>
+            /// wDoubleWordIO
+            /// </summary>
+            public short wDoubleWordIO;
+            /// <summary>
+            /// wECCSize
+            /// </summary>
+            public short wECCSize;
+            /// <summary>
+            /// wGenConfig
+            /// </summary>
+            public short wGenConfig;
+            /// <summary>
+            /// wMoreVendorUnique
+            /// </summary>
+            public short wMoreVendorUnique;
+            /// <summary>
+            /// wMultiWordDMA
+            /// </summary>
+            public short wMultiWordDMA;
+            /// <summary>
+            /// wMultSectorCapacity
+            /// </summary>
+            public short wMultSectorCapacity;
+            /// <summary>
+            /// wMultSectorStuff
+            /// </summary>
+            public short wMultSectorStuff;
+            /// <summary>
+            /// wNumCurrentCyls
+            /// </summary>
+            public short wNumCurrentCyls;
+            /// <summary>
+            /// wNumCurrentHeads
+            /// </summary>
+            public short wNumCurrentHeads;
+            /// <summary>
+            /// wNumCurrentSectorsPerTrack
+            /// </summary>
+            public short wNumCurrentSectorsPerTrack;
+            /// <summary>
+            /// wNumCyls
+            /// </summary>
+            public short wNumCyls;
+            /// <summary>
+            /// wNumHeads
+            /// </summary>
+            public short wNumHeads;
+            /// <summary>
+            /// wPIOTiming
+            /// </summary>
+            public short wPIOTiming;
+            /// <summary>
+            /// wReserved
+            /// </summary>
+            public short wReserved;
+            /// <summary>
+            /// wReserved1
+            /// </summary>
+            public short wReserved1;
+            /// <summary>
+            /// wSectorsPerTrack
+            /// </summary>
+            public short wSectorsPerTrack;
+            /// <summary>
+            /// wSingleWordDMA
+            /// </summary>
+            public short wSingleWordDMA;
+
+            /// <summary>
+            /// wVendorUnique
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+            public short[] wVendorUnique;
+
+            /// <summary>
+            /// IDSECTOR
+            /// </summary>
+            public IDSECTOR()
+            {
+                wVendorUnique = new short[3];
+                bReserved = new byte[382];
+                sFirmwareRev = new char[8];
+                sSerialNumber = new char[20];
+                sModelNumber = new char[40];
+            }
+        }
+
+        #endregion
+
+        #region Nested type: SENDCMDINPARAMS
+
+        /// <summary>
+        /// SENDCMDINPARAMS
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential, Size = 32)]
+        public class SENDCMDINPARAMS
+        {
+            /// <summary>
+            /// bDriveNumber
+            /// </summary>
+            public byte bDriveNumber;
+
+            /// <summary>
+            /// bReserved
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+            public byte[] bReserved;
+
+            /// <summary>
+            /// cBufferSize
+            /// </summary>
+            public int cBufferSize;
+
+            /// <summary>
+            /// dwReserved
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
+            public int[] dwReserved;
+
+            /// <summary>
+            /// irDriveRegs
+            /// </summary>
+            public IDEREGS irDriveRegs;
+
+            /// <summary>
+            /// SENDCMDINPARAMS
+            /// </summary>
+            public SENDCMDINPARAMS()
+            {
+                irDriveRegs = new IDEREGS();
+                bReserved = new byte[3];
+                dwReserved = new int[4];
+            }
+        }
+
+        #endregion
+
+        #region Nested type: SENDCMDOUTPARAMS
+
+        /// <summary>
+        /// SENDCMDOUTPARAMS
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
+        public class SENDCMDOUTPARAMS
+        {
+            /// <summary>
+            /// cBufferSize
+            /// </summary>
+            public int cBufferSize;
+            /// <summary>
+            /// DStatus
+            /// </summary>
+            public DRIVERSTATUS DStatus;
+            /// <summary>
+            /// ids
+            /// </summary>
+            public IDSECTOR ids;
+
+            /// <summary>
+            /// SENDCMDOUTPARAMS
+            /// </summary>
+            public SENDCMDOUTPARAMS()
+            {
+                DStatus = new DRIVERSTATUS();
+                ids = new IDSECTOR();
+            }
+        }
+
+        #endregion
+
+        /// <summary>
+        /// CloseHandle
+        /// </summary>
+        /// <param name="hObject"></param>
+        /// <returns></returns>
+        [DllImport("kernel32")]
+        public static extern int CloseHandle(int hObject);
+
+        /// <summary>
+        /// CreateFile
+        /// </summary>
+        /// <param name="lpFileName"></param>
+        /// <param name="dwDesiredAccess"></param>
+        /// <param name="dwShareMode"></param>
+        /// <param name="lpSecurityAttributes"></param>
+        /// <param name="dwCreationDisposition"></param>
+        /// <param name="dwFlagsAndAttributes"></param>
+        /// <param name="hTemplateFile"></param>
+        /// <returns></returns>
+        [DllImport("kernel32", EntryPoint = "CreateFileA")]
+        public static extern int CreateFile(string lpFileName, int dwDesiredAccess, int dwShareMode,
+            int lpSecurityAttributes, int dwCreationDisposition,
+            int dwFlagsAndAttributes, int hTemplateFile);
+
+        /// <summary>
+        /// DeviceIoControl
+        /// </summary>
+        /// <param name="hDevice"></param>
+        /// <param name="dwIoControlCode"></param>
+        /// <param name="lpInBuffer"></param>
+        /// <param name="nInBufferSize"></param>
+        /// <param name="lpOutBuffer"></param>
+        /// <param name="nOutBufferSize"></param>
+        /// <param name="lpBytesReturned"></param>
+        /// <param name="lpOverlapped"></param>
+        /// <returns></returns>
+        [DllImport("kernel32")]
+        public static extern int DeviceIoControl(int hDevice, int dwIoControlCode, out SENDCMDINPARAMS lpInBuffer,
+            int nInBufferSize, out SENDCMDOUTPARAMS lpOutBuffer,
+            int nOutBufferSize, ref int lpBytesReturned, int lpOverlapped);
+
+        /// <summary>
+        /// Espacio en disco utilizando recurso compartido.
+        /// </summary>
+        /// <param name="lpDirectoryName"></param>
+        /// <param name="lpFreeBytesAvailable"></param>
+        /// <param name="lpTotalNumberOfBytes"></param>
+        /// <param name="lpTotalNumberOfFreeBytes"></param>
+        /// <returns></returns>
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetDiskFreeSpaceEx(string lpDirectoryName,
+           out long lpFreeBytesAvailable,
+           out long lpTotalNumberOfBytes,
+           out long lpTotalNumberOfFreeBytes);
 
         /// <summary>
         /// Gets the window process identifier.

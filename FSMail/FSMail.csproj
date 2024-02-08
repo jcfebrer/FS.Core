@@ -56,6 +56,7 @@
     <Compile Include="Imap.cs" />
     <Compile Include="ImapBase.cs" />
     <Compile Include="ImapExpception.cs" />
+    <Compile Include="MailTcp.cs" />
     <Compile Include="MIME\MimeBody.cs" />
     <Compile Include="MIME\MimeCode.cs" />
     <Compile Include="MIME\MimeCodeBase64.cs" />

@@ -8,7 +8,7 @@ using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSDisk
 {
     public class Burner
     {

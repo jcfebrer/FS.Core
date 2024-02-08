@@ -17,7 +17,7 @@ using TextBox = System.Web.UI.WebControls.TextBox;
 
 namespace FSFormControls
 {
-    internal class Form2Html
+    internal class ConvertToHtml
     {
         public string GenerateHTML(Form frm)
         {

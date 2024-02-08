@@ -168,7 +168,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ConvertToAspx.cs" />
     <Compile Include="Classes\InputBox.cs" />
+    <Compile Include="Classes\SMS.cs" />
     <Compile Include="Classes\SortableBindingList.cs" />
     <Compile Include="DBGauge.cs">
       <SubType>Component</SubType>
@@ -247,7 +249,9 @@
     <Compile Include="DBTooltipManager.cs" />
     <Compile Include="DBTreeViewNode.cs" />
     <Compile Include="DBUserControl.cs" />
-    <Compile Include="DBVUMeter.cs" />
+    <Compile Include="DBVuMeter.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Forms\DBForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -318,9 +322,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmShowTable.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmSplash.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmTaskBarNotifier.cs">
@@ -564,12 +565,10 @@
     <Compile Include="DBTreeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Classes\Browse.cs" />
-    <Compile Include="Classes\Burner.cs" />
     <Compile Include="Classes\Error.cs" />
     <Compile Include="Classes\ErrorCollection.cs" />
     <Compile Include="Classes\Export.cs" />
-    <Compile Include="Classes\Form2Html.cs" />
+    <Compile Include="Classes\ConvertToHtml.cs" />
     <Compile Include="Classes\FormsCollection.cs" />
     <Compile Include="Classes\FunctionsForms.cs" />
     <Compile Include="Classes\Global.cs" />
@@ -577,20 +576,14 @@
     <Compile Include="DBGrid\GridPrintDocument.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Classes\HardDisk.cs" />
-    <Compile Include="Classes\Keyboard.cs" />
-    <Compile Include="Classes\Mail.cs" />
-    <Compile Include="Classes\MailTcp.cs" />
     <Compile Include="Classes\PageSetup.cs" />
     <Compile Include="Classes\PDUEncoder.cs" />
     <Compile Include="Classes\PrintDocument.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Classes\Registry.cs" />
     <Compile Include="Classes\ReportDocument.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Classes\SMS.cs" />
     <Compile Include="Classes\TabOrderManager.cs" />
     <Compile Include="Classes\TabOrderSchemaProvider.cs">
       <SubType>Component</SubType>
@@ -748,10 +741,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmShowTable.resx">
       <DependentUpon>frmShowTable.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmSplash.resx">
-      <DependentUpon>frmSplash.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmTaskBarNotifier.resx">
@@ -1013,6 +1002,14 @@
       <Project>{7e0adef9-bcb8-48cd-99b6-68bf862f7083}</Project>
       <Name>FSLibrary</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSMail\FSMail.csproj">
+      <Project>{890916d9-1b2a-4c31-a2cd-f9cc8a80bd87}</Project>
+      <Name>FSMail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMouseKeyboardLibrary\FSMouseKeyboardLibrary.csproj">
+      <Project>{F419622F-4D82-40A6-B4FB-3FE36579F018}</Project>
+      <Name>FSMouseKeyboardLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSNetwork\FSNetwork.csproj">
       <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>
       <Name>FSNetwork</Name>
@@ -1020,6 +1017,10 @@
     <ProjectReference Include="..\FSQueryBuilder\FSQueryBuilder.csproj">
       <Project>{9281d89a-c56f-4620-b036-1258cdb9b28e}</Project>
       <Name>FSQueryBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj">
+      <Project>{1CF06DF5-C06E-4B00-8611-62EEC4B37B29}</Project>
+      <Name>FSSystemInfo</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

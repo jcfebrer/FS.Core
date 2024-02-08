@@ -178,19 +178,20 @@ namespace FSFormControls
 
         public static object FindControlType(Control.ControlCollection frm, string strType)
         {
-            string typ = null;
-
-            if (frm == null) return null;
+            if (frm == null) 
+                return null;
 
             foreach (Control ctr in frm)
             {
-                typ = ctr.GetType().ToString();
-                if (ctr is DBPanel | ctr is Panel | ctr is TabControl | ctr is TabPage | ctr is DBTabControl |
-                    ctr is DBTabPage |
-                    ctr is GroupBox)
-                    return FindControlType(ctr.Controls, strType);
+                if (ctr.GetType().ToString() == strType)
+                    return ctr;
 
-                if (typ == strType) return ctr;
+                if (FunctionsForms.IsContainer(ctr))
+                {
+                    object find = FindControlType(ctr.Controls, strType);
+                    if (find != null)
+                        return find;
+                }
             }
 
             return null;
@@ -199,19 +200,20 @@ namespace FSFormControls
 
         public static object GetControlByName(Control.ControlCollection frm, string name)
         {
-            string nam = null;
-
-            if (frm == null) return null;
+            if (frm == null)
+                return null;
 
             foreach (Control ctr in frm)
             {
-                nam = ctr.Name.ToLower();
-                if (ctr is DBPanel | ctr is Panel | ctr is DBRecord | ctr is TabControl | ctr is TabPage |
-                    ctr is DBTabControl |
-                    ctr is DBTabPage | ctr is GroupBox)
-                    return GetControlByName(ctr.Controls, name);
+                if (ctr.Name.ToLower() == name.ToLower())
+                    return ctr;
 
-                if (nam == name.ToLower()) return ctr;
+                if (FunctionsForms.IsContainer(ctr))
+                {
+                    object find = GetControlByName(ctr.Controls, name);
+                    if (find != null)
+                        return find;
+                }
             }
 
             return null;
@@ -222,78 +224,45 @@ namespace FSFormControls
             if (frm == null) return null;
 
             foreach (Control ctr in frm)
+            {
+                if (ctr is DBTextBox && ((DBTextBox)ctr).DBField.ToLower() == dbfield.ToLower())
+                    return ctr;
+                if (ctr is DBCombo && ((DBCombo)ctr).DBField.ToLower() == dbfield.ToLower())
+                    return ctr;
+                if (ctr is DBCheckBox && ((DBCheckBox)ctr).DBField.ToLower() == dbfield.ToLower())
+                    return ctr;
+                if (ctr is DBDate && ((DBDate)ctr).DBField.ToLower() == dbfield.ToLower())
+                    return ctr;
+                if (ctr is DBFindTextBox && ((DBFindTextBox)ctr).DBField.ToLower() == dbfield.ToLower())
+                    return ctr;
+                if (ctr is DBFile && ((DBFile)ctr).DBField.ToLower() == dbfield.ToLower())
+                    return ctr;
+
                 if (IsContainer(ctr))
                 {
-                    return GetControlByDBField(ctr.Controls, dbfield);
+                    object find = GetControlByDBField(ctr.Controls, dbfield);
+                    if (find != null)
+                        return find;
                 }
-                else
-                {
-                    if (ctr is DBTextBox && ((DBTextBox)ctr).DBField.ToLower() == dbfield.ToLower())
-                        return ctr;
-                    if (ctr is DBCombo && ((DBCombo)ctr).DBField.ToLower() == dbfield.ToLower())
-                        return ctr;
-                    if (ctr is DBCheckBox && ((DBCheckBox)ctr).DBField.ToLower() == dbfield.ToLower())
-                        return ctr;
-                    if (ctr is DBDate && ((DBDate)ctr).DBField.ToLower() == dbfield.ToLower())
-                        return ctr;
-                    if (ctr is DBFindTextBox && ((DBFindTextBox)ctr).DBField.ToLower() == dbfield.ToLower())
-                        return ctr;
-                    if (ctr is DBFile && ((DBFile)ctr).DBField.ToLower() == dbfield.ToLower())
-                        return ctr;
-                }
+            }
 
             return null;
-        }
-
-        public static void showSplash()
-        {
-            var SplashScreen = new SplashScreen();
-            SplashScreen.ShowSplashScreen();
-            SplashScreen.SetStatus("Loading module 1");
-            Thread.Sleep(500);
-            SplashScreen.SetStatus("Loading module 2");
-            Thread.Sleep(300);
-            SplashScreen.SetStatus("Loading module 3");
-            Thread.Sleep(900);
-            SplashScreen.SetStatus("Loading module 4");
-            Thread.Sleep(100);
-            SplashScreen.SetStatus("Loading module 5");
-            Thread.Sleep(400);
-            SplashScreen.SetStatus("Loading module 6");
-            Thread.Sleep(50);
-            SplashScreen.SetStatus("Loading module 7");
-            Thread.Sleep(240);
-            SplashScreen.SetStatus("Loading module 8");
-            Thread.Sleep(900);
-            SplashScreen.SetStatus("Loading module 9");
-            Thread.Sleep(240);
-            SplashScreen.SetStatus("Loading module 10");
-            Thread.Sleep(90);
-            SplashScreen.SetStatus("Loading module 11");
-            Thread.Sleep(1000);
-            SplashScreen.SetStatus("Loading module 12");
-            Thread.Sleep(100);
-            SplashScreen.SetStatus("Loading module 13");
-            Thread.Sleep(500);
-            SplashScreen.SetStatus("Loading module 14");
-            Thread.Sleep(1000);
-            SplashScreen.SetStatus("Loading module 15");
-            Thread.Sleep(20);
-            SplashScreen.SetStatus("Loading module 16");
-            Thread.Sleep(450);
-            SplashScreen.SetStatus("Loading module 17");
-            Thread.Sleep(240);
-            SplashScreen.SetStatus("Loading module 18");
-            Thread.Sleep(90);
         }
 
         public static bool IsContainer(object ctr)
         {
             if (ctr is DBPanel | ctr is Panel | ctr is DBRecord | ctr is TabControl | ctr is TabPage |
-                ctr is DBTabControl |
+                ctr is DBTabControl | ctr is FlowLayoutPanel |
                 ctr is DBTabPage | ctr is GroupBox | ctr is DBGroupBoxXP | ctr is DBGroupBoxXPList |
                 ctr is SplitContainer | ctr is SplitterPanel | ctr is DBFrame)
                 return true;
+
+            if (ctr is Control)
+            {
+                if (((Control)ctr).Controls != null && ((Control)ctr).Controls.Count > 0)
+                    return true;
+            }
+
             return false;
         }
     }

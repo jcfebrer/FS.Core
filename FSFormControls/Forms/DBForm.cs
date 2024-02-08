@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using FSLibrary;
 using FSException;
 using FSGraphics;
+using FSSystemInfo;
 
 #endregion
 
@@ -32,6 +33,7 @@ namespace FSFormControls
         private StatusBarPanel estado;
         private StatusBarPanel mensaje;
         private StatusBarPanel info;
+        private MenuItem menuItem1;
         private DateTime loadTime;
 
 
@@ -51,6 +53,7 @@ namespace FSFormControls
             mnuContext.Items.Add("&Imprimir", null, PrintDocument);
             mnuContext.Items.Add("&Vista Preliminar", null, PrintPreview);
             mnuContext.Items.Add("&Guardar como HTML", null, SaveAsHTML);
+            mnuContext.Items.Add("&Guardar como ASPX", null, SaveAsASPX);
             mnuContext.Items.Add("&Refrescar", null, MnuRefresh);
             mnuContext.Items.Add("-");
             mnuContext.Items.Add("&Filtro", null, MnuFilter);
@@ -676,10 +679,28 @@ namespace FSFormControls
                 if (fic == "") return;
                 var tw = new StreamWriter(fic);
 
-                var dbform2html = new Form2Html();
+                var dbform2html = new ConvertToHtml();
                 tw.Write(dbform2html.GenerateHTML(this));
                 tw.Close();
                 tw = null;
+                ProcessUtil.OpenDocument(fic);
+            }
+            catch (ExceptionUtil ex)
+            {
+                throw new ExceptionUtil("Errores en la exportación.", ex);
+            }
+        }
+
+        private void SaveAsASPX(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog1.ShowDialog();
+                var fic = SaveFileDialog1.FileName;
+                if (fic == "") return;
+
+                var dbform2aspx = new Convert2Aspx(Convert2Aspx.AspxTypes.Page);
+                dbform2aspx.Convert(this, Path.GetDirectoryName(fic));
                 ProcessUtil.OpenDocument(fic);
             }
             catch (ExceptionUtil ex)
@@ -788,6 +809,32 @@ namespace FSFormControls
             PageSetup.Setup();
         }
 
+        private void menuItem1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveDialog = new SaveFileDialog();
+            if (saveDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    //Convert the form to an ASP.NET Web Form
+                    Convert2Aspx convert2Aspx = new Convert2Aspx();
+                    convert2Aspx.AspxType = Convert2Aspx.AspxTypes.Page;
+                    convert2Aspx.SourceLanguage = Convert2Aspx.SourceLanguages.C_Sharp;
+                    convert2Aspx.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
+
+                    //Convert the form to an ASP.NET user control
+                    Convert2Aspx convert2AspxUC = new Convert2Aspx();
+                    convert2AspxUC.AspxType = Convert2Aspx.AspxTypes.UserControl;
+                    convert2AspxUC.SourceLanguage = Convert2Aspx.SourceLanguages.C_Sharp;
+                    convert2AspxUC.RootName = this.Name + "UC";
+                    convert2AspxUC.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
+                }
+                catch (Exception ex)
+                {
+                    Error.ErrorMessage(ex);
+                }
+            }
+        }
 
         private void mnuCerrar_Click(object sender, EventArgs e)
         {
@@ -908,6 +955,7 @@ namespace FSFormControls
             this.mnuFormMain = new System.Windows.Forms.MainMenu(this.components);
             this.mnuForm = new System.Windows.Forms.MenuItem();
             this.mnuConfPag = new System.Windows.Forms.MenuItem();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.mnuCalc = new System.Windows.Forms.MenuItem();
             this.MenuItem7 = new System.Windows.Forms.MenuItem();
             this.mnuAbout = new System.Windows.Forms.MenuItem();
@@ -939,6 +987,7 @@ namespace FSFormControls
             this.mnuForm.Index = 0;
             this.mnuForm.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.mnuConfPag,
+            this.menuItem1,
             this.mnuCalc,
             this.MenuItem7,
             this.mnuAbout,
@@ -952,31 +1001,37 @@ namespace FSFormControls
             this.mnuConfPag.Text = "&Configuración página";
             this.mnuConfPag.Click += new System.EventHandler(this.mnuConfigurarPagina_Click);
             // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 1;
+            this.menuItem1.Text = "Convertir formulario a ASPX";
+            this.menuItem1.Click += new System.EventHandler(this.menuItem1_Click);
+            // 
             // mnuCalc
             // 
-            this.mnuCalc.Index = 1;
+            this.mnuCalc.Index = 2;
             this.mnuCalc.Text = "Calculadora";
             this.mnuCalc.Click += new System.EventHandler(this.mnuCalculadora_Click);
             // 
             // MenuItem7
             // 
-            this.MenuItem7.Index = 2;
+            this.MenuItem7.Index = 3;
             this.MenuItem7.Text = "-";
             // 
             // mnuAbout
             // 
-            this.mnuAbout.Index = 3;
+            this.mnuAbout.Index = 4;
             this.mnuAbout.Text = "&Acerca de ...";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAcercaDe_Click);
             // 
             // MenuItem3
             // 
-            this.MenuItem3.Index = 4;
+            this.MenuItem3.Index = 5;
             this.MenuItem3.Text = "-";
             // 
             // mnuClose
             // 
-            this.mnuClose.Index = 5;
+            this.mnuClose.Index = 6;
             this.mnuClose.Text = "&Cerrar";
             this.mnuClose.Click += new System.EventHandler(this.mnuCerrar_Click);
             // 
@@ -996,7 +1051,7 @@ namespace FSFormControls
             // 
             // barraEstado
             // 
-            this.barraEstado.Location = new System.Drawing.Point(0, 281);
+            this.barraEstado.Location = new System.Drawing.Point(0, 176);
             this.barraEstado.Name = "barraEstado";
             this.barraEstado.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
             this.estado,
@@ -1071,7 +1126,7 @@ namespace FSFormControls
             // DBForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1154, 303);
+            this.ClientSize = new System.Drawing.Size(1154, 198);
             this.ContextMenuStrip = this.mnuContext;
             this.Controls.Add(this.barraEstado);
             this.Controls.Add(this.DbToolBar1);

@@ -1,11 +1,12 @@
-﻿using System;
+﻿using FSLibrary;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Threading;
 
-namespace FSLibrary
+namespace FSSystemInfo
 {
     /// <summary>
     /// Clase con utilidades relacionadas con los procesos

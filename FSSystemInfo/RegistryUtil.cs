@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
+using System;
 
-namespace FSLibrary
+namespace FSSystemInfo
 {
     /// <summary>
     /// Clase con utilidades para gestionar el registro
@@ -31,6 +32,8 @@ namespace FSLibrary
         }
 
         private readonly RegistryKey _Where = Registry.CurrentUser;
+
+
 
         /// <summary>
         /// Initializes a new instance of the <see cref="RegistryUtil"/> class.

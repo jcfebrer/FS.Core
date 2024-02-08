@@ -55,17 +55,13 @@ namespace FSFormControls
                 ErrorMessage = ErrorMessage + "\r\n" + "Email: " + txtEmail.Text;
                 ErrorMessage = ErrorMessage + "\r\n" + "Error: " + txtError.Text + "\r\n";
 
-                var dbm = new Mail(Global.MailUserName, txtEmail.Text, "Error en aplicación: " + txtName.Text,
-                    ErrorMessage);
-                dbm.SmtpServer = Global.MailServer;
-                dbm.UserName = Global.MailUserName;
-                dbm.Password = Global.MailPassword;
+                FSMail.SendMail mail = new FSMail.SendMail(Global.MailServer, Global.MailUserName, Global.MailPassword, Global.MailPort, Global.MailEnableSSL, Global.ProjectName);
 
-                dbm.Send();
+                if(mail.SendErrorMail(ErrorMessage))
+                    MessageBox.Show("Mensaje enviado.", "Envio correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Problemas en el envio del correo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                //http.PostHttp("http://www.febrersoftware.com/gestError.php",
-                //              "cliente=" + DBGlobal.ProjectName + "&error=" + ErrorMessage);
-                MessageBox.Show("Mensaje enviado.");
                 Close();
             }
             catch (ExceptionUtil ex)

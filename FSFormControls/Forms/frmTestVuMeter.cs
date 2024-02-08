@@ -14,6 +14,19 @@ namespace FSFormControls.Forms
         public frmTestVuMeter()
         {
             InitializeComponent();
+
+            vuMeter2.LevelChanged += VuMeter2_LevelChanged;
+            vuMeter11.LevelChanged += VuMeter11_LevelChanged;
+        }
+
+        private void VuMeter2_LevelChanged(object sender, int e)
+        {
+            lblNivel.Text = "Nivel: " + e.ToString();
+        }
+
+        private void VuMeter11_LevelChanged(object sender, int e)
+        {
+            vuMeter11.VuText = "Nivel: " + e.ToString();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

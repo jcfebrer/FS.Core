@@ -2520,7 +2520,9 @@ namespace FSFormControls
             foreach (Control ctr in frm)
                 if (FunctionsForms.IsContainer(ctr))
                 {
-                    return FindBDTextBoxByDBFieldName(ctr.Controls, fieldName);
+                    DBTextBox find = FindBDTextBoxByDBFieldName(ctr.Controls, fieldName);
+                    if (find != null)
+                        return find;
                 }
                 else
                 {
@@ -2541,7 +2543,9 @@ namespace FSFormControls
             foreach (Control ctr in frm)
                 if (FunctionsForms.IsContainer(ctr))
                 {
-                    return FindBDControl(ctr.Controls, name);
+                    DBControl find = FindBDControl(ctr.Controls, name);
+                    if (find != null)
+                        return find;
                 }
                 else
                 {

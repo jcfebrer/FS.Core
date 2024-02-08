@@ -52,7 +52,7 @@ namespace FSFormControls
         private int m_LastRowClicked = -1;
         private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         private int m_RowsInCaption = 2;
-        private bool m_ShowTotals;
+        private bool m_ShowTotals = false;
         internal PictureBox picRefrescar;
         private System.Drawing.Printing.PrintDocument printDocument1;
 
@@ -169,7 +169,7 @@ namespace FSFormControls
 
                 if (currentMouseOverRow >= 0)
                 {
-                    cmTotal.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
+                    //cmTotal.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
                 }
 
                 cmTotal.Show(dataGridViewTotal, new Point(e.X, e.Y));
@@ -209,7 +209,7 @@ namespace FSFormControls
 
                 if (currentMouseOverRow >= 0)
                 {
-                    cm.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
+                    //cm.MenuItems.Add(new MenuItem(string.Format("Do something to row {0}", currentMouseOverRow.ToString())));
                 }
 
                 cm.Show(datagrid, new Point(e.X, e.Y));
@@ -2195,6 +2195,9 @@ namespace FSFormControls
 
         private void UnCheckTotalMenu()
         {
+            if (dataGridViewTotal.ContextMenu == null)
+                return;
+
             var f = 0;
             for (f = 0; f <= dataGridViewTotal.ContextMenu.MenuItems.Count - 1; f++)
                 dataGridViewTotal.ContextMenu.MenuItems[f].Checked = false;

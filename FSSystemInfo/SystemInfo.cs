@@ -1,10 +1,14 @@
-﻿using FSException;
+﻿using FSDisk;
+using FSException;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Management;
 using System.Text;
+using System.Text.RegularExpressions;
 
-namespace FSLibrary
+namespace FSSystemInfo
 {
     /// <summary>
     /// Información del sistema por WMI
@@ -769,7 +773,7 @@ namespace FSLibrary
             {
                 if (managementObject["TotalVisibleMemorySize"] != null)
                 {
-                    return long.Parse(managementObject["TotalVisibleMemorySize"].ToString());
+                    return long.Parse(managementObject["TotalVisibleMemorySize"].ToString()) * 1024;
                 }
             }
 
@@ -787,7 +791,7 @@ namespace FSLibrary
             {
                 if (managementObject["FreePhysicalMemory"] != null)
                 {
-                    return long.Parse(managementObject["FreePhysicalMemory"].ToString());
+                    return long.Parse(managementObject["FreePhysicalMemory"].ToString()) * 1024;
                 }
             }
 
@@ -818,7 +822,7 @@ namespace FSLibrary
             string lcSize = "-1";
             string lcFreeSpace = "-1";
 
-            tcDrive = HardDisk.GetDrive(tcDrive.Trim()).ToUpper();
+            tcDrive = DiskUtil.GetDrive(tcDrive.Trim()).ToUpper();
 
             ManagementClass diskClass = new ManagementClass(GetScope(), new ManagementPath("Win32_LogicalDisk"), new ObjectGetOptions());
             ManagementObjectCollection disks = diskClass.GetInstances();
@@ -887,7 +891,7 @@ namespace FSLibrary
         {
             var nRetVal = -1;
 
-            tcDrive = HardDisk.GetDrive(tcDrive.Trim()).ToUpper();
+            tcDrive = DiskUtil.GetDrive(tcDrive.Trim()).ToUpper();
 
             var query = new SelectQuery(@"SELECT Name, DriveType, FreeSpace FROM Win32_LogicalDisk where Name = """ + tcDrive + @"  """);
             var searcher = new ManagementObjectSearcher(GetScope(), query);
@@ -973,6 +977,94 @@ namespace FSLibrary
             if (ret != 0)
                 throw new ExceptionUtil(string.Format("Error al parar el servicio con el código de error: {0}", ret));
             return ret;
+        }
+
+        /// <summary>
+        /// Devuelve un listado de los discos físicos.
+        /// </summary>
+        /// <returns></returns>
+        public List<string> GetPhysicalDisks()
+        {
+            List<string> result;
+            var query = new WqlObjectQuery("SELECT * FROM Win32_DiskDrive");
+            using (var searcher = new ManagementObjectSearcher(GetScope(), query))
+            {
+                result = searcher.Get()
+                                 .OfType<ManagementObject>()
+                                 .Select(o => o.Properties["DeviceID"].Value.ToString())
+                                 .ToList();
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Devuelve información de los disco físicos.
+        /// </summary>
+        /// <returns></returns>
+        public string GetHdInfo()
+        {
+            var query = new WqlObjectQuery("SELECT * FROM Win32_DiskDrive");
+            ManagementObjectSearcher searcher =
+                new ManagementObjectSearcher(GetScope(), query);
+
+            StringBuilder data = new StringBuilder();
+            foreach (ManagementObject info in searcher.Get())
+            {
+                data.AppendLine(String.Format("SerialNumber: {0}", info["SerialNumber"]));
+                data.AppendLine(String.Format("Signature: {0}", info["Signature"]));
+                data.AppendLine(String.Format("DeviceID: {0}", info["DeviceID"]));
+                data.AppendLine(String.Format("Model: {0}", info["Model"]));
+                data.AppendLine(String.Format("Interface: {0}", info["InterfaceType"]));
+                data.AppendLine(String.Format("Index: {0}", info["Index"]));
+                //data.AppendLine(String.Format("Bootable: {0}", info["Bootable"]));
+                //data.AppendLine(String.Format("BootPartition: {0}", info["BootPartition"]));
+            }
+
+            return data.ToString();
+        }
+
+        /// <summary>
+        /// Devuelve la información de las unidades lógicas.
+        /// </summary>
+        /// <returns></returns>
+        public string GetDrivesInfo()
+        {
+            var queryDrive = new WqlObjectQuery("SELECT * FROM Win32_LogicalDiskToPartition");
+            var queryDisk = new WqlObjectQuery("SELECT * FROM Win32_LogicalDisk");
+            var drives = new ManagementObjectSearcher(GetScope(), queryDrive).Get().Cast<ManagementObject>();
+            var disks = new ManagementObjectSearcher(GetScope(), queryDisk).Get().Cast<ManagementObject>();
+
+            StringBuilder data = new StringBuilder();
+            foreach (var drive in drives)
+            {
+                var driveLetter = Regex.Match((string)drive["Dependent"], @"DeviceID=""(.*)""").Groups[1].Value;
+                var driveNumber = Regex.Match((string)drive["Antecedent"], @"Disk #(\d*),").Groups[1].Value;
+
+                data.AppendLine("Drive Letter: " + driveLetter);
+                data.AppendLine("Drive Number: " + driveNumber);
+
+                // TODO: Enhance this to properly handle when the LINQ returns nothing.
+                //       Likely only an edge case, but BSTS.
+                var foundDisk = disks.Where((d) => d["Name"].ToString() == driveLetter).FirstOrDefault();
+
+                // In the event that Drive Letter is not available, try the disk path
+                if (foundDisk == null)
+                {
+                    foundDisk = disks.Where((d) => d.Path.ToString() == drive["Dependent"].ToString()).FirstOrDefault();
+                }
+
+                if (foundDisk == null)
+                {
+                    data.AppendLine("Drive Label: <Unknown>");
+                }
+                else
+                {
+                    data.AppendLine("Drive Label: " + foundDisk["VolumeName"]);
+                }
+            }
+
+            return data.ToString();
         }
     }
 }

@@ -10,69 +10,84 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace DBVuMeter
+namespace FSFormControls
 {
-    internal class VuMeterDesigner : ControlDesigner
-        
+    //public class DbVuMeterLibrary : ControlDesigner        
+    //{
+    //    protected override void PostFilterProperties(System.Collections.IDictionary properties)
+    //    {
+    //        properties.Remove("AccessibleDescription");
+    //        properties.Remove("AccessibleName");
+    //        properties.Remove("AccessibleRole");
+    //        properties.Remove("BackgroundImage");
+    //        //properties.Remove("BackgroundImageLayout");
+    //        properties.Remove("BorderStyle");
+    //        properties.Remove("Cursor");
+    //        properties.Remove("RightToLeft");
+    //        properties.Remove("UseWaitCursor");
+    //        properties.Remove("AllowDrop");
+    //        properties.Remove("AutoValidate");
+    //        properties.Remove("ContextMenuStrip");
+    //        properties.Remove("Enabled");
+    //        properties.Remove("ImeMode");
+    //        //properties.Remove("TabIndex"); // Don't remove this one or the designer will break
+    //        properties.Remove("TabStop");
+    //        //properties.Remove("Visible");
+    //        properties.Remove("ApplicationSettings");
+    //        properties.Remove("DataBindings");
+    //        properties.Remove("Tag");
+    //        properties.Remove("GenerateMember");
+    //        properties.Remove("Locked");
+    //        //properties.Remove("Modifiers");
+    //        properties.Remove("CausesValidation");
+    //        properties.Remove("Anchor");
+    //        properties.Remove("AutoSize");
+    //        properties.Remove("AutoSizeMode");
+    //        //properties.Remove("Location");
+    //        properties.Remove("Dock");
+    //        properties.Remove("Margin");
+    //        properties.Remove("MaximumSize");
+    //        properties.Remove("MinimumSize");
+    //        properties.Remove("Padding");
+    //        //properties.Remove("Size");
+    //        properties.Remove("DockPadding");
+    //        properties.Remove("AutoScrollMargin");
+    //        properties.Remove("AutoScrollMinSize");
+    //        properties.Remove("AutoScroll");
+    //        properties.Remove("ForeColor");
+    //        //properties.Remove("BackColor");
+    //        properties.Remove("Text");
+    //        //properties.Remove("Font");
+    //    }
+    //}
+
+    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBVuMeter.bmp")]
+    public class DBVuMeter : DBUserControl
     {
-        protected override void PostFilterProperties(System.Collections.IDictionary properties)
+        public enum MeterScaleEnum { Analog, Log10 };
+
+        /// <summary>
+        /// Se lanza cuando se cambia de nivel.
+        /// </summary>
+        public event EventHandler<int> LevelChanged;
+
+        /// <summary>
+        /// Se lanza cuando se cambia de nivel.
+        /// </summary>
+        protected void OnLevelChanged(int level)
         {
-            properties.Remove("AccessibleDescription");
-            properties.Remove("AccessibleName");
-            properties.Remove("AccessibleRole");
-            properties.Remove("BackgroundImage");
-            //properties.Remove("BackgroundImageLayout");
-            properties.Remove("BorderStyle");
-            properties.Remove("Cursor");
-            properties.Remove("RightToLeft");
-            properties.Remove("UseWaitCursor");
-            properties.Remove("AllowDrop");
-            properties.Remove("AutoValidate");
-            properties.Remove("ContextMenuStrip");
-            properties.Remove("Enabled");
-            properties.Remove("ImeMode");
-            //properties.Remove("TabIndex"); // Don't remove this one or the designer will break
-            properties.Remove("TabStop");
-            //properties.Remove("Visible");
-            properties.Remove("ApplicationSettings");
-            properties.Remove("DataBindings");
-            properties.Remove("Tag");
-            properties.Remove("GenerateMember");
-            properties.Remove("Locked");
-            //properties.Remove("Modifiers");
-            properties.Remove("CausesValidation");
-            properties.Remove("Anchor");
-            properties.Remove("AutoSize");
-            properties.Remove("AutoSizeMode");
-            //properties.Remove("Location");
-            properties.Remove("Dock");
-            properties.Remove("Margin");
-            properties.Remove("MaximumSize");
-            properties.Remove("MinimumSize");
-            properties.Remove("Padding");
-            //properties.Remove("Size");
-            properties.Remove("DockPadding");
-            properties.Remove("AutoScrollMargin");
-            properties.Remove("AutoScrollMinSize");
-            properties.Remove("AutoScroll");
-            properties.Remove("ForeColor");
-            //properties.Remove("BackColor");
-            properties.Remove("Text");
-            //properties.Remove("Font");
+            EventHandler<int> handler = LevelChanged;
+            if (null != handler)
+            {
+                handler(this, level);
+            }
         }
-    }
 
-    public enum MeterScale { Analog, Log10 };
-
-    [Designer(typeof(VuMeterDesigner))]
-    [System.Drawing.ToolboxBitmap(@"C:\Users\Kent\Documents\Visual Studio 2008\Projects\VU_MeterLibrary\VU_MeterLibrary\Vu_Meter.bmp")]
-
-    public partial class VuMeter : UserControl
-    {
         int CurrentLevel;
         int PeakLevel;
         int LedCount1 = 6, LedCount2 = 6, LedCount3 = 4;
         int calcValue, calcPeak;
+        int previousCalcValue;
         Color LedColorOn1 = Color.LimeGreen, LedColorOn2 = Color.Yellow, LedColorOn3 = Color.Red;
         Color LedColorOff1 = Color.DarkGreen, LedColorOff2 = Color.Olive, LedColorOff3 = Color.Maroon;
         Color BorderColor = Color.DimGray;
@@ -299,11 +314,11 @@ namespace DBVuMeter
         }
 
 
-        private MeterScale FormType = MeterScale.Log10;
+        private MeterScaleEnum FormType = DBVuMeter.MeterScaleEnum.Log10;
 
         [Category("VU Meter")]
         [Description("Display value in analog or logarithmic scale")]
-        public MeterScale MeterScale
+        public MeterScaleEnum MeterScale
         {
             get
             {
@@ -602,9 +617,9 @@ namespace DBVuMeter
             }
         }
 
-        public VuMeter()
+        public DBVuMeter()
         {
-            this.Name = "VuMeter";
+            this.Name = "DBVuMeter";
             CalcSize();
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             this.SetStyle(ControlStyles.UserPaint, true);
@@ -675,13 +690,13 @@ namespace DBVuMeter
             //Add code to draw "LED:s" by color in Dial (Analog and LED)
             if (UseLedLightInAnalog)
             {
-                if (FormType == MeterScale.Log10)
+                if (FormType == MeterScaleEnum.Log10)
                 {
                     calcValue = (int)(Math.Log10((double)CurrentLevel / (Max / 10) + 1) * (LedCount1 + LedCount2 + LedCount3));
                     if (ShowLedPeakInAnalog) calcPeak = (int)(Math.Log10((double)PeakLevel / (Max / 10) + 1) * (LedCount1 + LedCount2 + LedCount3));
                 }
 
-                if (FormType == MeterScale.Analog)
+                if (FormType == MeterScaleEnum.Analog)
                 {
                     calcValue = (int)(((double)CurrentLevel / Max) * (LedCount1 + LedCount2 + LedCount3) + 0.5);
                     if (ShowLedPeakInAnalog) calcPeak = (int)(((double)PeakLevel / Max) * (LedCount1 + LedCount2 + LedCount3) + 0.5);
@@ -719,13 +734,13 @@ namespace DBVuMeter
             }
             //End of code addition
 
-            if (FormType == MeterScale.Log10)
+            if (FormType == MeterScaleEnum.Log10)
             {
                 calcValue = (int)(Math.Log10((double)CurrentLevel / (Max / 10) + 1) * Max);
                 if (ShowPeak) calcPeak = (int)(Math.Log10((double)PeakLevel / (Max / 10) + 1) * Max);
             }
 
-            if (FormType == MeterScale.Analog)
+            if (FormType == MeterScaleEnum.Analog)
             {
                 calcValue = CurrentLevel;
                 if (ShowPeak) calcPeak = PeakLevel;
@@ -754,17 +769,19 @@ namespace DBVuMeter
                     (int)(DialRadiusHigh * CosP + this.Height * 0.9));
             }
             DialPen.Dispose();
+
+            CheckLevelChanged();
         }
 
         private void DrawLeds(Graphics g)
         {
-            if (FormType == MeterScale.Log10)
+            if (FormType == MeterScaleEnum.Log10)
             {
                 calcValue = (int)(Math.Log10((double)CurrentLevel / (Max / 10) + 1) * (LedCount1 + LedCount2 + LedCount3));
                 if (ShowPeak) calcPeak = (int)(Math.Log10((double)PeakLevel / (Max / 10) + 1) * (LedCount1 + LedCount2 + LedCount3));
             }
 
-            if (FormType == MeterScale.Analog)
+            if (FormType == MeterScaleEnum.Analog)
             {
                 calcValue = (int)(((double)CurrentLevel / Max) * (LedCount1 + LedCount2 + LedCount3) + 0.5);
                 if (ShowPeak) calcPeak = (int)(((double)PeakLevel / Max) * (LedCount1 + LedCount2 + LedCount3) + 0.5);
@@ -850,6 +867,24 @@ namespace DBVuMeter
 
                 }
 
+            }
+
+
+            CheckLevelChanged();
+        }
+
+        private void CheckLevelChanged()
+        {
+            if (calcValue != previousCalcValue)
+            {
+                if (calcValue < LedCount1)
+                    OnLevelChanged(1);
+                else if (calcValue < (LedCount1 + LedCount2))
+                    OnLevelChanged(2);
+                else
+                    OnLevelChanged(3);
+
+                previousCalcValue = calcValue;
             }
         }
 

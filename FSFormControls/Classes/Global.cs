@@ -53,6 +53,8 @@ namespace FSFormControls
         public static string MailServer = "mail.febrersoftware.com";
         public static string MailUserName = "juancarlos@febrersoftware.com";
         public static string MailPassword = "*******";
+        public static int MailPort = 25;
+        public static bool MailEnableSSL = true;
 
         //Application.OpenForms
         public static FormsCollection Forms = new FormsCollection();

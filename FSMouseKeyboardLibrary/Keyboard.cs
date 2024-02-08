@@ -1,12 +1,13 @@
 #region
 
+using FSLibrary;
 using System;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSMouseKeyboardLibrary
 {
     [ComVisible(false)]
     public class Keyboard
@@ -30,37 +31,20 @@ namespace FSFormControls
             set { SetKeyState(Convert.ToInt64(Keys.CapsLock), value); }
         }
 
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true,
-            CallingConvention = CallingConvention.Winapi)]
-        public static extern short GetKeyState(int keyCode);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true,
-            CallingConvention = CallingConvention.Winapi)]
-        public static extern bool SetKeyboardState(byte[] keys);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true,
-            CallingConvention = CallingConvention.Winapi)]
-        public static extern bool GetKeyboardState(byte[] keys);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true,
-            CallingConvention = CallingConvention.Winapi)]
-        private static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
-
         private void SetKeyState(long key, bool state)
         {
             var keys = new byte[257];
-            GetKeyboardState(keys);
+            Win32API.GetKeyboardState(keys);
 
             keys[Convert.ToInt32(key)] = Convert.ToByte(Math.Abs(Convert.ToInt32(state)));
-            SetKeyboardState(keys);
+            Win32API.SetKeyboardState(keys);
         }
 
 
         private bool GetKeyState2(long key)
         {
             var keys = new byte[257];
-            GetKeyboardState(keys);
+            Win32API.GetKeyboardState(keys);
 
             if (keys[Convert.ToInt32(key)] == 1)
                 return true;
@@ -71,19 +55,19 @@ namespace FSFormControls
         public void TroggleLed(LedKeys key, bool state)
         {
             var keys = new byte[257];
-            GetKeyboardState(keys);
+            Win32API.GetKeyboardState(keys);
 
             if (keys[Convert.ToInt32(key)] != Convert.ToInt32(!state) + 1)
             {
-                keybd_event(Convert.ToByte(key), 0, 0, 0);
-                keybd_event(Convert.ToByte(key), 0, KEYEVENTF_KEYUP, 0);
+                Win32API.keybd_event(Convert.ToByte(key), 0, 0, 0);
+                Win32API.keybd_event(Convert.ToByte(key), 0, KEYEVENTF_KEYUP, 0);
             }
         }
 
 
         private bool IsCapsLock()
         {
-            var state = GetKeyState(Convert.ToInt32(Keys.CapsLock));
+            var state = Win32API.GetKeyState(Convert.ToInt32(Keys.CapsLock));
 
             if (state == 1)
                 return true;

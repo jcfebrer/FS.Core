@@ -5,11 +5,10 @@ using System.Net.Sockets;
 using System.Text;
 using FSLibrary;
 using DateTime = System.DateTime;
-using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSMail
 {
     public class MailTcp
     {
@@ -75,22 +74,14 @@ namespace FSFormControls
 
         public void Open()
         {
-            try
-            {
-                client.Connect(SMTPServer, Port);
+            client.Connect(SMTPServer, Port);
 
-                ns = client.GetStream();
+            ns = client.GetStream();
 
-                var strMessage = "HELO TEST" + "\n";
+            var strMessage = "HELO TEST" + "\n";
 
-                var sendBytes = Encoding.ASCII.GetBytes(strMessage);
-                ns.Write(sendBytes, 0, sendBytes.Length);
-            }
-            catch (ExceptionUtil ex)
-            {
-                throw new ExceptionUtil(ex);
-                //errNumber = -2;
-            }
+            var sendBytes = Encoding.ASCII.GetBytes(strMessage);
+            ns.Write(sendBytes, 0, sendBytes.Length);
         }
 
 
