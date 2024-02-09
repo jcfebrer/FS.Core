@@ -55,8 +55,6 @@
     <Compile Include="Ftp.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Http.cs" />
-    <Compile Include="Impersionation.cs" />
-    <Compile Include="ImpersonateInteractiveUser.cs" />
     <Compile Include="NetworkConnection.cs" />
     <Compile Include="UPnP2.cs" />
     <Compile Include="Net.cs" />

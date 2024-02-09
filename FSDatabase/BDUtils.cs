@@ -17,7 +17,6 @@ using System.Data;
 using System.Data.Common;
 using System.Data.OleDb;
 using System.IO;
-using System.Security.Permissions;
 using System.Text;
 using System.Web;
 using FSDisk;
@@ -32,6 +31,7 @@ using System.Web.UI.WebControls;
 using FSQueryBuilder;
 using FSQueryBuilder.QueryParts.Where;
 using FSTrace;
+using FSSecurity;
 
 namespace FSDatabase
 {
@@ -2736,11 +2736,11 @@ namespace FSDatabase
             try
             {
                 var sb = new StringBuilder("");
-                //sb.Append("OdbcPermission: " + FSLibrary.Functions.TestPermission(new OdbcPermission(PermissionState.Unrestricted)));
+                //sb.Append("OdbcPermission: " + Permission.TestPermission(new OdbcPermission(PermissionState.Unrestricted)));
                 sb.Append("OleDbPermission: " +
-                          Functions.TestPermission(new OleDbPermission(PermissionState.Unrestricted)));
-                //sb.Append("DbPermission: " + FSLibrary.Functions.TestPermission(new permission(PermissionState.Unrestricted)));
-                //sb.Append("SqlClientPermission: " + FSLibrary.Functions.TestPermission(new SqlClientPermission(PermissionState.Unrestricted)));
+                          Permission.TestPermission(new OleDbPermission(System.Security.Permissions.PermissionState.Unrestricted)));
+                //sb.Append("DbPermission: " + Permission.TestPermission(new permission(PermissionState.Unrestricted)));
+                //sb.Append("SqlClientPermission: " + Permission.TestPermission(new SqlClientPermission(PermissionState.Unrestricted)));
                 return sb.ToString();
             }
             catch (ExceptionUtil e)

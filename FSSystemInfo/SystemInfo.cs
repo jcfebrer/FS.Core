@@ -818,58 +818,39 @@ namespace FSSystemInfo
         public long DiskSpace(string tcDrive, DiskDataType tnType)
         {
             long lnRetVal = -1;
-            bool llFoundDrive = false;
             string lcSize = "-1";
             string lcFreeSpace = "-1";
 
             tcDrive = DiskUtil.GetDrive(tcDrive.Trim()).ToUpper();
 
-            ManagementClass diskClass = new ManagementClass(GetScope(), new ManagementPath("Win32_LogicalDisk"), new ObjectGetOptions());
-            ManagementObjectCollection disks = diskClass.GetInstances();
+            var searcher = new ManagementObjectSearcher(GetScope(), new SelectQuery(@"SELECT Name, Size, FreeSpace FROM Win32_LogicalDisk WHERE Name = """ + tcDrive + @""""));
 
-            foreach (ManagementObject disk in disks)
+            foreach (ManagementObject disk in searcher.Get())
             {
-                llFoundDrive = (tcDrive.Trim().Length == 0) & (disk["DriveType"].ToString() == "3");
-
-                if (!llFoundDrive) llFoundDrive = disk["Name"].ToString() == tcDrive;
-
-
-                if (llFoundDrive)
+                var diskProperties = disk.Properties;
+                foreach (var diskProperty in diskProperties)
                 {
-                    var diskProperties = disk.Properties;
-                    foreach (var diskProperty in diskProperties)
-                    {
-                        if (diskProperty.Name == "Size")
-                            lcSize = disk[diskProperty.Name].ToString();
+                    if (diskProperty.Name == "Size")
+                        lcSize = disk[diskProperty.Name].ToString();
 
-                        if (diskProperty.Name == "FreeSpace")
-                            lcFreeSpace = disk[diskProperty.Name].ToString();
-                    }
-
-                    switch (tnType)
-                    {
-                        case DiskDataType.TotalSize:
-                            lnRetVal = long.Parse(lcSize);
-                            break;
-                        case DiskDataType.FreeSpace:
-                            lnRetVal = long.Parse(lcFreeSpace);
-                            break;
-                    }
-
-                    return lnRetVal;
+                    if (diskProperty.Name == "FreeSpace")
+                        lcFreeSpace = disk[diskProperty.Name].ToString();
                 }
+
+                switch (tnType)
+                {
+                    case DiskDataType.TotalSize:
+                        lnRetVal = long.Parse(lcSize);
+                        break;
+                    case DiskDataType.FreeSpace:
+                        lnRetVal = long.Parse(lcFreeSpace);
+                        break;
+                }
+
+                return lnRetVal;
             }
 
             return lnRetVal;
-        }
-
-        /// <summary>
-        /// Espacio en disco
-        /// </summary>
-        /// <returns></returns>
-        public long DiskSpace()
-        {
-            return DiskSpace("", DiskDataType.FreeSpace);
         }
 
         /// <summary>
@@ -893,7 +874,7 @@ namespace FSSystemInfo
 
             tcDrive = DiskUtil.GetDrive(tcDrive.Trim()).ToUpper();
 
-            var query = new SelectQuery(@"SELECT Name, DriveType, FreeSpace FROM Win32_LogicalDisk where Name = """ + tcDrive + @"  """);
+            var query = new SelectQuery(@"SELECT Name, DriveType, FreeSpace FROM Win32_LogicalDisk where Name = """ + tcDrive + @"""");
             var searcher = new ManagementObjectSearcher(GetScope(), query);
 
             foreach (var drive in searcher.Get())

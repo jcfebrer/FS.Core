@@ -87,6 +87,7 @@ namespace FSFormControls
         public event DataErrorEventHandler DataError;
         public event CellValueChangedEventHandler CellValueChanged;
         public event DataGridViewCellFormattingEventHandler CellFormatting;
+        public event DataGridViewCellMouseEventHandler ColumnHeaderMouseClick;
         public event RowsAddedEventHandler RowsAdded;
         public event CellEndEditEventHandler CellEndEdit;
         public event DataGridViewRowEventHandler InitializeRow;
@@ -134,6 +135,7 @@ namespace FSFormControls
             datagrid.DefaultValuesNeeded += DataGridView1_DefaultValuesNeeded;
             datagrid.UserDeletingRow += DataGridView1_UserDeletingRow;
             datagrid.CellFormatting += DataGridView1_CellFormatting;
+            datagrid.ColumnHeaderMouseClick += Datagrid_ColumnHeaderMouseClick;
             datagrid.RowEnter += DataGridView1_RowEnter;
             datagrid.RowStateChanged += DataGridView1_RowStateChanged;
             datagrid.MouseClick += Datagrid_MouseClick;
@@ -152,6 +154,12 @@ namespace FSFormControls
             datagrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             DoubleBuffered = true;
             datagrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+        }
+
+        private void Datagrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (ColumnHeaderMouseClick != null)
+                ColumnHeaderMouseClick(sender, e);
         }
 
         private void DataGridViewTotal_MouseClick(object sender, MouseEventArgs e)
@@ -341,6 +349,44 @@ namespace FSFormControls
         {
             get { return datagrid.SelectionMode; }
             set { datagrid.SelectionMode = value; }
+        }
+
+        public DataGridViewCellStyle ColumnHeadersDefaultCellStyle
+        {
+            get { return datagrid.ColumnHeadersDefaultCellStyle; }
+            set { datagrid.ColumnHeadersDefaultCellStyle = value; }
+        }
+
+        public DataGridViewCellStyle DefaultCellStyle
+        {
+            get { return datagrid.DefaultCellStyle; }
+            set { datagrid.DefaultCellStyle = value; }
+        }
+
+        public bool EnableHeadersVisualStyles
+        {
+            get { return datagrid.EnableHeadersVisualStyles; }
+            set { datagrid.EnableHeadersVisualStyles = value; }
+        }
+
+        public SortOrder SortOrder
+        {
+            get { return datagrid.SortOrder; }
+        }
+
+        public DataGridViewColumn SortedColumn
+        {
+            get { return datagrid.SortedColumn; }
+        }
+
+        public void Sort(DataGridViewColumn dataGridViewColumn, ListSortDirection direction)
+        {
+            datagrid.Sort(dataGridViewColumn, direction);
+        }
+
+        public void Sort(IComparer comparer)
+        {
+            datagrid.Sort(comparer);
         }
 
         public DataGridViewRow ActiveRow

@@ -12,6 +12,7 @@ using FSDatabase;
 using FSLibrary;
 using FSException;
 using FSFormControls.Forms;
+using FSSecurity;
 
 #endregion
 
@@ -179,7 +180,7 @@ namespace FSFormControls
             lvItem.SubItems.Add(Utils.GetMdacVersion().ToString());
 
             lvItem = ListView1.Items.Add("Permisos registro");
-            lvItem.SubItems.Add(Functions.Permissions());
+            lvItem.SubItems.Add(Permission.Permissions());
 
             lvItem = ListView1.Items.Add("StackTrace...");
             foreach (var s in Environment.StackTrace.Split(char.Parse(Global.Lf)))

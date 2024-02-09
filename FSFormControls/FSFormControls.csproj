@@ -978,6 +978,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FSSecurity\FSSecurity.csproj">
+      <Project>{8855FBF5-7AE4-4D21-A6B4-574F5A45EBCB}</Project>
+      <Name>FSSecurity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSDatabase\FSDatabase.csproj">
       <Project>{31743f95-0d43-4ab1-bd23-45d8a88f2635}</Project>
       <Name>FSDatabase</Name>

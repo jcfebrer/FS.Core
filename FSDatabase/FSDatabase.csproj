@@ -67,6 +67,10 @@
     <Compile Include="XML.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\FSSecurity\FSSecurity.csproj">
+      <Project>{8855FBF5-7AE4-4D21-A6B4-574F5A45EBCB}</Project>
+      <Name>FSSecurity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSDisk\FSDisk.csproj">
       <Project>{b9b3d9b8-8c7b-49a7-bbab-8321f04cc02c}</Project>
       <Name>FSDisk</Name>
