@@ -677,7 +677,7 @@ namespace FSFormControls
                 var j = 0;
                 for (j = 1; j <= DateTime.DaysInMonth(iYear, iMonth); j++)
                 {
-                    dayname = FSLibrary.DateTimeUtil.GetDayName(iYear, iMonth, j);
+                    dayname = FSLibrary.DateTimeUtil.GetFirstDayName(iYear, iMonth, j);
                     if (dayname == "L") week = !week;
 
                     if (week)

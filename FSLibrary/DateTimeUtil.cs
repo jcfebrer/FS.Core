@@ -76,36 +76,12 @@ namespace FSLibrary
         /// <param name="month">The month.</param>
         /// <param name="day">The day.</param>
         /// <returns></returns>
-        public static string GetDayName(int year, int month, int day)
+        public static string GetFirstDayName(int year, int month, int day)
         {
-            var retval = string.Empty;
-            var d = new System.DateTime(year, month, day);
-            switch (d.DayOfWeek)
-            {
-                case DayOfWeek.Monday:
-                    retval = "L";
-                    break;
-                case DayOfWeek.Tuesday:
-                    retval = "M";
-                    break;
-                case DayOfWeek.Wednesday:
-                    retval = "M";
-                    break;
-                case DayOfWeek.Thursday:
-                    retval = "J";
-                    break;
-                case DayOfWeek.Friday:
-                    retval = "V";
-                    break;
-                case DayOfWeek.Saturday:
-                    retval = "S";
-                    break;
-                case DayOfWeek.Sunday:
-                    retval = "D";
-                    break;
-            }
+            var dateTime = new System.DateTime(year, month, day);
 
-            return retval;
+            string dayName = DayName(dateTime.DayOfWeek);
+            return dayName.Substring(1);
         }
 
         /// <summary>
@@ -124,17 +100,6 @@ namespace FSLibrary
         }
 
 
-        //public static string ShortDateTime(System.DateTime date)
-        //{
-        //    var dat = date.ToShortDateString();
-
-        //    //if (BDType == FSLibrary.Enum.BDType.MySQL)
-        //    //    dat = date.ToString("yyyy-MM-dd");
-
-        //    return dat + " " + date.ToString("HH:mm:ss");
-        //}
-
-
         /// <summary>
         /// Devuelve la fecha en formato largo.
         /// </summary>
@@ -150,65 +115,6 @@ namespace FSLibrary
             return dat;
         }
 
-
-        //public static string SDate(string date)
-        //{
-        //    if (IsDate(date)) 
-        //        return TextUtil.Replace(date, ".", "/");
-        //    return date;
-        //}
-
-        //public static string TRDate(System.DateTime vDate)
-        //{
-        //    string tRDateReturn = null;
-        //    if (!IsDate(vDate.ToShortDateString()))
-        //    {
-        //        tRDateReturn = "...";
-        //        return tRDateReturn;
-        //    }
-
-        //    tRDateReturn = vDate.ToLongDateString();
-
-        //    return tRDateReturn;
-        //}
-
-        /// <summary>
-        /// Monthes the name.
-        /// </summary>
-        /// <param name="month">The month.</param>
-        /// <returns></returns>
-        public static string MonthName(int month)
-        {
-            switch (month)
-            {
-                case 1:
-                    return "Enero";
-                case 2:
-                    return "Febrero";
-                case 3:
-                    return "Marzo";
-                case 4:
-                    return "Abril";
-                case 5:
-                    return "Mayo";
-                case 6:
-                    return "Junio";
-                case 7:
-                    return "Julio";
-                case 8:
-                    return "Agosto";
-                case 9:
-                    return "Septiembre";
-                case 10:
-                    return "Octubre";
-                case 11:
-                    return "Noviembre";
-                case 12:
-                    return "Diciembre";
-            }
-
-            return "Enero";
-        }
 
         /// <summary>
         /// Días totales entre dos fechas.
@@ -343,28 +249,11 @@ namespace FSLibrary
         /// </summary>
         /// <param name="dia">Día de la semana</param>
         /// <returns></returns>
-        public static string NombreDia(DayOfWeek dia)
+        public static string DayName(DayOfWeek dia)
         {
-            switch (dia)
-            {
-                case DayOfWeek.Sunday:
-                    return "Domingo";
-                case DayOfWeek.Monday:
-                    return "Lunes";
-                case DayOfWeek.Tuesday:
-                    return "Martes";
-                case DayOfWeek.Wednesday:
-                    return "Miercoles";
-                case DayOfWeek.Thursday:
-                    return "Jueves";
-                case DayOfWeek.Friday:
-                    return "Viernes";
-                case DayOfWeek.Saturday:
-                    return "Sábado";
-            }
+            var day = CultureInfo.CurrentCulture.DateTimeFormat.GetDayName(dia);
 
-
-            return "error!";
+            return day;
         }
 
         /// <summary>
@@ -372,38 +261,21 @@ namespace FSLibrary
         /// </summary>
         /// <param name="mes">Número del mes.</param>
         /// <returns></returns>
-        public static string NombreMes(int mes)
+        public static string MonthName(int mes)
         {
-            switch (mes)
-            {
-                case 1:
-                    return "Enero";
-                case 2:
-                    return "Febrero";
-                case 3:
-                    return "Marzo";
-                case 4:
-                    return "Abril";
-                case 5:
-                    return "Mayo";
-                case 6:
-                    return "Junio";
-                case 7:
-                    return "Julio";
-                case 8:
-                    return "Agosto";
-                case 9:
-                    return "Septiembre";
-                case 10:
-                    return "Octubre";
-                case 11:
-                    return "Noviembre";
-                case 12:
-                    return "Diciembre";
-            }
+            string fullMonthName = new DateTime(2015, mes, 1).ToString("MMMM", CultureInfo.CurrentCulture);
+            return fullMonthName;
+        }
 
-
-            return "error!";
+        /// <summary>
+        /// Devuelve el nombre del mes en formato texto con 3 carácteres.
+        /// </summary>
+        /// <param name="mes">Número del mes.</param>
+        /// <returns></returns>
+        public static string ShortMonthName(int mes)
+        {
+            string shortMonthName = new DateTime(2015, mes, 1).ToString("MMM", CultureInfo.CurrentCulture);
+            return shortMonthName;
         }
 
 
@@ -540,90 +412,6 @@ namespace FSLibrary
         }
 
 
-        //		public static string SDate(string dtDateTime)
-        //		{
-        //			if (FSLibrary.DateTime.IsDate(dtDateTime)) {
-        //				return Text.Replace(dtDateTime, ".", "/");
-        //			}
-        //			return dtDateTime;
-        //		}
-
-        //		public static string TRDate(System.DateTime vDate)
-        //		{
-        //			string tRDateReturn = null;
-        //			if (!FSLibrary.DateTime.IsDate(vDate.ToShortDateString())) {
-        //				tRDateReturn = "...";
-        //				return tRDateReturn;
-        //			}
-        //
-        //			tRDateReturn = FSLibrary.DateTime.LongDate(vDate);
-        //
-        //			return tRDateReturn;
-        //		}
-
-        //		public static string cDate2(System.DateTime d, string dateFormat, string dateSep)
-        //		{
-        //			string cDate2Return = null;
-        //
-        //			switch (dateFormat) {
-        //				case "ddmmyyyy":
-        //					cDate2Return = d.Day + dateSep + d.Month + dateSep + d.Year;
-        //					break;
-        //				case "mmddyyyy":
-        //					cDate2Return = d.Month + dateSep + d.Day + dateSep + d.Year;
-        //					break;
-        //				case "yyyymmdd":
-        //					cDate2Return = d.Year + dateSep + d.Month + dateSep + d.Day;
-        //					break;
-        //			}
-        //
-        //			return cDate2Return;
-        //		}
-
-
-        //public static System.DateTime ToDate(string fecha)
-        //{
-        //    if (fecha + "" != "")
-        //    {
-        //        if (IsDate(fecha)) return System.DateTime.Parse(fecha);
-        //        return System.DateTime.Parse("1/1/2000");
-        //    }
-
-        //    return System.DateTime.Parse("1/1/2000");
-        //}
-
-
-        //public static string DateTimeNum(string strElement)
-        //{
-        //    var strDateElement = "";
-
-        //    switch (strElement)
-        //    {
-        //        case "Year":
-        //            strDateElement = Functions.Valor(System.DateTime.Now.Year);
-        //            break;
-        //        case "Month":
-        //            strDateElement = Functions.Valor(System.DateTime.Now.Month);
-        //            break;
-        //        case "Day":
-        //            strDateElement = Functions.Valor(System.DateTime.Now.Day);
-        //            break;
-        //        case "Hour":
-        //            strDateElement = Functions.Valor(System.DateTime.Now.Hour);
-        //            break;
-        //        case "Minute":
-        //            strDateElement = Functions.Valor(System.DateTime.Now.Minute);
-        //            break;
-        //        case "Second":
-        //            strDateElement = Functions.Valor(Functions.NumeroEntero(System.DateTime.Now.Second));
-        //            break;
-        //    }
-
-        //    if (double.Parse(strDateElement) < 10) strDateElement = "0" + strDateElement;
-
-        //    return strDateElement;
-        //}
-
         /// <summary>
         /// Devuelve la fecha en formato ISO8601 a DateTime
         /// </summary>
@@ -650,6 +438,24 @@ namespace FSLibrary
 
             return date.ToString("yyyyMMddTHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        /// <summary>
+        /// Diferencia en dias excluyendo los dias festivos (sábados y domingos).
+        /// </summary>
+        /// <param name="startD"></param>
+        /// <param name="endD"></param>
+        /// <returns></returns>
+        public static double DateDiffBusinessDays(DateTime startD, DateTime endD)
+        {
+            double calcBusinessDays =
+                1 + ((endD - startD).TotalDays * 5 -
+                (startD.DayOfWeek - endD.DayOfWeek) * 2) / 7;
+
+            if (endD.DayOfWeek == DayOfWeek.Saturday) calcBusinessDays--;
+            if (startD.DayOfWeek == DayOfWeek.Sunday) calcBusinessDays--;
+
+            return calcBusinessDays;
         }
     }
 }
