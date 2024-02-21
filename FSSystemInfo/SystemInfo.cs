@@ -487,16 +487,25 @@ namespace FSSystemInfo
             return sb.ToString();
         }
 
-
         /// <summary>
-        /// Devuelve el spope para realizar la conexión
+        /// Devuelve el scope por defecto para realizar la conexión.
         /// </summary>
         /// <returns></returns>
         public ManagementScope GetScope()
         {
+            return GetScope("root\\CIMV2");
+        }
+
+
+        /// <summary>
+        /// Devuelve el scope para realizar la conexión.
+        /// </summary>
+        /// <returns></returns>
+        public ManagementScope GetScope(string namespacePath)
+        {
             ConnectionOptions options = new ConnectionOptions();
             ManagementPath path = new ManagementPath();
-            path.NamespacePath = "root\\CIMV2";
+            path.NamespacePath = namespacePath;
 
             if (!String.IsNullOrEmpty(Ip))
             {
@@ -1046,6 +1055,30 @@ namespace FSSystemInfo
             }
 
             return data.ToString();
+        }
+
+        /// <summary>
+        /// Devuelve la temperatura de la CPU en grados celsius.
+        /// </summary>
+        /// <returns></returns>
+        public double CpuTemperature()
+        {
+            double temp = -1;
+            WqlObjectQuery query = new WqlObjectQuery("SELECT * FROM MSAcpi_ThermalZoneTemperature");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(GetScope("root\\WMI"), query);
+
+            ManagementObjectCollection collection = searcher.Get();
+
+            foreach (ManagementBaseObject tempObject in collection)
+            {
+                temp = Convert.ToDouble(tempObject["CurrentTemperature"]);
+            }
+
+            // kelvin = temp / 10;
+            // celsius = (temp / 10) - 273.15;
+            // fahrenheit = ((temp / 10) - 273.15) * 9 / 5 + 32;
+
+            return (temp / 10) - 273.15;
         }
     }
 }
