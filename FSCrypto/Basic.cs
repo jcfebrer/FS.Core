@@ -148,8 +148,8 @@ namespace FSCrypto
             new TripleDESCryptoServiceProvider();
 
             tdes.Key = keyArray;
-            tdes.Mode = CipherMode.ECB;
-            tdes.Padding = PaddingMode.PKCS7;
+            tdes.Mode = (System.Security.Cryptography.CipherMode)CipherMode.ECB;
+            tdes.Padding = (System.Security.Cryptography.PaddingMode)PaddingMode.PKCS7;
 
             //se empieza con la transformación de la cadena
             ICryptoTransform cTransform =
@@ -191,8 +191,8 @@ namespace FSCrypto
             new TripleDESCryptoServiceProvider();
 
             tdes.Key = keyArray;
-            tdes.Mode = CipherMode.ECB;
-            tdes.Padding = PaddingMode.PKCS7;
+            tdes.Mode = (System.Security.Cryptography.CipherMode)CipherMode.ECB;
+            tdes.Padding = (System.Security.Cryptography.PaddingMode)PaddingMode.PKCS7;
 
             ICryptoTransform cTransform =
              tdes.CreateDecryptor();

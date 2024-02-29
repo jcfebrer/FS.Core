@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
 namespace FSLibrary
@@ -289,17 +290,18 @@ namespace FSLibrary
         /// Byteses to string hex number.
         /// </summary>
         /// <param name="bytes">The bytes.</param>
+        /// <param name="separator">Separator</param>
         /// <returns></returns>
-        public static string BytesToStringHex(byte[] bytes)
+        public static string BytesToStringHex(byte[] bytes, char separator = ' ')
         {
             string output = string.Empty;
 
             foreach(byte b in bytes)
             {
-                output += b.ToString("X2") + " ";
+                output += b.ToString("X2") + separator;
             }
 
-            return output;
+            return output.Substring(0, output.Length - 1);
         }
 
         /// <summary>
@@ -551,6 +553,58 @@ namespace FSLibrary
             }
 
             return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
+        }
+
+        /// <summary>
+        /// Convierte una cadena de bytes separadas por 'separator' en un array de bytes.
+        /// </summary>
+        /// <param name="pairText"></param>
+        /// <returns></returns>
+        public static byte[] StringBytePairToBytes(string pairText)
+        {
+            pairText = GetNumbersAndLetters(pairText);
+            return StringBytePairToBytes(pairText, '-');
+        }
+
+        /// <summary>
+        /// Convierte una cadena de bytes separadas por 'separator' en un array de bytes.
+        /// </summary>
+        /// <param name="pairText"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static byte[] StringBytePairToBytes(string pairText, char separator)
+        {
+            //Si no se pescifica un separado de bytes, lo añadimos
+            if (pairText.IndexOf(separator) < 0)
+            {
+                var parts = TextUtil.SplitInParts(pairText, 2);
+                pairText = TextUtil.JoinParts(separator, parts);
+            }
+
+            //Convertimos la cadena separada por parejas de bytes en array de bytes.
+            var bytes = pairText.Split(separator)
+                 .Select(x => Convert.ToByte(x, 16))
+                 .ToArray();
+
+            return bytes;
+        }
+
+        /// <summary>
+        /// Devuelve una cadena unicamente con los numeros.
+        /// </summary>
+        /// <param name="input"></param>
+        public static string GetNumbers(string input)
+        {
+            return new string(input.Where(c => char.IsDigit(c)).ToArray());
+        }
+
+        /// <summary>
+        /// Devuelve una cadena unicamente con los numeros y letras.
+        /// </summary>
+        /// <param name="input"></param>
+        public static string GetNumbersAndLetters(string input)
+        {
+            return new string(input.Where(c => (char.IsDigit(c) || char.IsLetter(c))).ToArray());
         }
     }
 }

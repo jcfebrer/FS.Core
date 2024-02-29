@@ -33,6 +33,11 @@ namespace FSSystemInfo
         public string Ip { get; set; }
 
         /// <summary>
+        /// RootWMI
+        /// </summary>
+        public string RootWMI { get; set; }
+
+        /// <summary>
         /// Tipo de datos de disco
         /// </summary>
         public enum DiskDataType
@@ -56,6 +61,19 @@ namespace FSSystemInfo
             Domain = "";
             UserName = "";
             Password = "";
+            RootWMI = "root\\CIMV2";
+        }
+
+        /// <summary>
+        /// Información del sistema
+        /// </summary>
+        public SystemInfo(string rootWmi)
+        {
+            Ip = "";
+            Domain = "";
+            UserName = "";
+            Password = "";
+            RootWMI = rootWmi;
         }
 
         /// <summary>
@@ -71,6 +89,24 @@ namespace FSSystemInfo
             Domain = domain;
             UserName = username;
             Password = password;
+            RootWMI = "root\\CIMV2";
+        }
+
+        /// <summary>
+        /// Información del sistema
+        /// </summary>
+        /// <param name="ip"></param>
+        /// <param name="domain"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="rootWmi"></param>
+        public SystemInfo(string ip, string domain, string username, string password, string rootWmi)
+        {
+            Ip = ip;
+            Domain = domain;
+            UserName = username;
+            Password = password;
+            RootWMI = rootWmi;
         }
 
         /// <summary>
@@ -493,7 +529,7 @@ namespace FSSystemInfo
         /// <returns></returns>
         public ManagementScope GetScope()
         {
-            return GetScope("root\\CIMV2");
+            return GetScope(RootWMI);
         }
 
 
@@ -1040,18 +1076,12 @@ namespace FSSystemInfo
 
                 // In the event that Drive Letter is not available, try the disk path
                 if (foundDisk == null)
-                {
                     foundDisk = disks.Where((d) => d.Path.ToString() == drive["Dependent"].ToString()).FirstOrDefault();
-                }
 
                 if (foundDisk == null)
-                {
                     data.AppendLine("Drive Label: <Unknown>");
-                }
                 else
-                {
                     data.AppendLine("Drive Label: " + foundDisk["VolumeName"]);
-                }
             }
 
             return data.ToString();
@@ -1063,7 +1093,7 @@ namespace FSSystemInfo
         /// <returns></returns>
         public double CpuTemperature()
         {
-            double temp = -1;
+            double value = -1;
             WqlObjectQuery query = new WqlObjectQuery("SELECT * FROM MSAcpi_ThermalZoneTemperature");
             ManagementObjectSearcher searcher = new ManagementObjectSearcher(GetScope("root\\WMI"), query);
 
@@ -1071,14 +1101,52 @@ namespace FSSystemInfo
 
             foreach (ManagementBaseObject tempObject in collection)
             {
-                temp = Convert.ToDouble(tempObject["CurrentTemperature"]);
+                value = Convert.ToDouble(tempObject["CurrentTemperature"]);
+
+                // kelvin = temp / 10;
+                // celsius = (temp / 10) - 273.15;
+                // fahrenheit = ((temp / 10) - 273.15) * 9 / 5 + 32;
+                value = (value / 10) - 273.15;
             }
 
-            // kelvin = temp / 10;
-            // celsius = (temp / 10) - 273.15;
-            // fahrenheit = ((temp / 10) - 273.15) * 9 / 5 + 32;
+            return value;
+        }
 
-            return (temp / 10) - 273.15;
+        /// <summary>
+        /// Devuelve por cada procesador el uso en porcentaje.
+        /// </summary>
+        /// <returns></returns>
+        public List<KeyValuePair<string, int>> CpuUsage()
+        {
+            List<KeyValuePair<string, int>> results = new List<KeyValuePair<string, int>>();
+            WqlObjectQuery query = new WqlObjectQuery("select * from Win32_PerfFormattedData_PerfOS_Processor");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(GetScope(), query);
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                int value = Convert.ToInt32(obj["PercentProcessorTime"]);
+                string name = Convert.ToString(obj["Name"]);
+
+                results.Add(new KeyValuePair<string, int>(name, value));
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Devuelve el uso del procesador
+        /// </summary>
+        /// <returns></returns>
+        public int CpuUsageTotal()
+        {
+            int value = -1;
+            WqlObjectQuery query = new WqlObjectQuery("select * from Win32_PerfFormattedData_PerfOS_Processor where Name='_Total'");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(GetScope(), query);
+            foreach (ManagementObject obj in searcher.Get())
+            {
+                value = Convert.ToInt32(obj["PercentProcessorTime"]);
+            }
+
+            return value;
         }
     }
 }

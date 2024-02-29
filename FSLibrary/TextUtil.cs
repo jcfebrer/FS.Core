@@ -3187,5 +3187,33 @@ namespace FSLibrary
             Regex regex = new Regex(@"(?<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}?)");
             return regex.Matches(text).OfType<Match>().Select(m => m.Groups["ip"].Value);
         }
+
+        /// <summary>
+        /// Divide en partes de cadenas de longitud partLength.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="partLength"></param>
+        /// <returns></returns>
+        public static IEnumerable<String> SplitInParts(String s, int partLength)
+        {
+            if (s == null)
+                throw new ArgumentNullException(nameof(s));
+            if (partLength <= 0)
+                throw new ArgumentException("Part length has to be positive.", nameof(partLength));
+
+            for (var i = 0; i < s.Length; i += partLength)
+                yield return s.Substring(i, Math.Min(partLength, s.Length - i));
+        }
+
+        /// <summary>
+        /// Une un array de cadenas utilizando el separador indicado.
+        /// </summary>
+        /// <param name="separator"></param>
+        /// <param name="parts"></param>
+        /// <returns></returns>
+        public static string JoinParts(char separator, IEnumerable<String> parts)
+        {
+            return String.Join(separator.ToString(), parts);
+        }
     }
 }

@@ -23,7 +23,29 @@ using System.Reflection.Emit;
 using System.Linq;
 using System.Linq.Expressions;
 
-
+/// <summary>
+/// Ejemplo de Uso:
+///		FSOrm.Database db1 = new FSOrm.Database("NombreConexion");
+///		foreach (FSModel.Paginas pagina in db1.Query<FSModel.Paginas>("select * from Paginas"))
+///		{
+///			Console.write(pagina.idPagina);
+///		}
+///		
+///		Save an entity
+///		db.Save(article);
+///		db.Save(new Article { Title = "Super easy to use PetaPoco" });
+///		db.Save("Articles", "Id", { Title = "Super easy to use PetaPoco", Id = Guid.New() });
+///		
+///		Get an entity
+///		var article = db.Single<Article>(123);
+///		var article = db.Single<Article>("WHERE ArticleKey = @0", "ART-123");
+///		
+///		Delete an entity
+///		db.Delete(article);
+///		db.Delete<Article>(123);
+///		db.Delete("Articles", "Id", 123);
+///		db.Delete("Articles", "ArticleKey", "ART-123");
+/// </summary>
 namespace FSOrm
 {
 	// Poco's marked [Explicit] require all column properties to be marked
