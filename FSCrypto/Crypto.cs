@@ -81,13 +81,9 @@ namespace FSCrypto
     /// </summary>
     public class Crypto
     {
-        //public const string KeyDefault = "16055459x";
-        //public const string IvDefault = null;
-
         /// <summary>
         ///     Constructor
         /// </summary>
-        /// <param name="alg"></param>
         public Crypto()
         {
             cryptoProvider = CryptoProvider.TripleDES;
@@ -429,9 +425,10 @@ namespace FSCrypto
         /// <param name="inFileName"></param>
         /// <param name="outFileName"></param>
         /// <param name="action"></param>
-        public void CryptEncryptFile(string inFileName, string outFileName, CryptoAction action)
+        public void CryptFile(string inFileName, string outFileName, CryptoAction action)
         {
-            if (!File.Exists(inFileName)) throw new Exception("No se ha encontrado el archivo.");
+            if (!File.Exists(inFileName))
+                throw new Exception("No existe el fichero: " + inFileName);
 
             try
             {
@@ -448,8 +445,6 @@ namespace FSCrypto
                     long bytesProcesados = 0;
                     var cryptoProvider = new CryptoServiceProvider(this.cryptoProvider,
                         action, cipherMode, paddingMode);
-                    var transform = cryptoProvider.GetServiceProvider(key, iv);
-                    CryptoStream cryptoStream = null;
 
                     //si se requiere MD5 en la encriptación de la clave
                     if (EncKeyMD5)
@@ -459,15 +454,9 @@ namespace FSCrypto
                         key = md5.ComputeHash(hashByte, 0, hashByte.Length);
                     }
 
-                    switch (action)
-                    {
-                        case CryptoAction.Encrypt:
-                            cryptoStream = new CryptoStream(fsOut, transform, CryptoStreamMode.Write);
-                            break;
-                        case CryptoAction.Desencrypt:
-                            cryptoStream = new CryptoStream(fsOut, transform, CryptoStreamMode.Write);
-                            break;
-                    }
+                    var transform = cryptoProvider.GetServiceProvider(key, iv);
+
+                    CryptoStream cryptoStream = new CryptoStream(fsOut, transform, CryptoStreamMode.Write);
 
                     while (bytesProcesados < largoArchivo)
                     {

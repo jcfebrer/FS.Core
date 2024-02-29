@@ -25,7 +25,7 @@ namespace FSShell
 
 		private const int default_port = 1337;
 		private const String default_user = "FSServer";
-		private const String default_password = "16055459";
+		private const String default_password = "xxxxxxxx";
 
 
 		public Shell()
