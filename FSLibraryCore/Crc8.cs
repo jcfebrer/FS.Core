@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Clase para la obtención del código CRC8 de TicketBAI

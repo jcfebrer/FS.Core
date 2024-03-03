@@ -6,16 +6,16 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using FSLibrary;
+using FSLibraryCore;
 using DateTimeUtil = FSLibrary.DateTimeUtil;
 using FSException;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBTextBox.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBTextBox.bmp")]
     [DefaultEvent("KeyPress")]
     [Designer(typeof(DBTextBoxControlDesigner))]
     [ToolboxItem(true)]

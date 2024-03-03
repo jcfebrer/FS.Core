@@ -27,9 +27,9 @@ using System.Drawing.Drawing2D;
 using System.Diagnostics;
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBGauge.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBGauge.bmp")]
     [DefaultEvent("ValueInRangeChanged"), 
     Description("Displays a value on an analog gauge. Raises an event if the value enters one of the definable ranges.")]
     public partial class DBGauge : Control

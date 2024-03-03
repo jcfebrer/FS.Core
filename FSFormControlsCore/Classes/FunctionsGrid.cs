@@ -2,10 +2,10 @@
 using System.Drawing;
 using System.Windows.Forms;
 using FSDatabase;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class FunctionsGrid
     {

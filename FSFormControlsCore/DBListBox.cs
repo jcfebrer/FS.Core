@@ -6,15 +6,15 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBListBox.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBListBox.bmp")]
     [ToolboxItem(true)]
     public class DBListBox : DBUserControl
     {

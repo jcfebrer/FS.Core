@@ -7,15 +7,15 @@ using System.Drawing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBImage.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBImage.bmp")]
     [ToolboxItem(true)]
     public class DBImage
         : DBUserControl

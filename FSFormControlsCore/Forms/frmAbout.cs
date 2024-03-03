@@ -9,14 +9,14 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using FSDatabase;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
-using FSFormControls.Forms;
+using FSFormControlsCore.Forms;
 using FSSecurity;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class frmAbout : Form
     {

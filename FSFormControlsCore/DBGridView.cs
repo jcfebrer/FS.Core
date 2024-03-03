@@ -11,16 +11,16 @@ using System.Text;
 using System.Windows.Forms;
 using FSDatabase;
 using FSException;
-using FSFormControls.Properties;
-using FSFormControls.UserControls.DBGridView;
-using FSLibrary;
+using FSFormControlsCore.Properties;
+using FSFormControlsCore.UserControls.DBGridView;
+using FSLibraryCore;
 using DateTime = System.DateTime;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBGridView.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBGridView.bmp")]
     [DefaultEvent("Click")]
     [ToolboxItem(true)]
     public class DBGridView : DBUserControl, ISupportInitialize
@@ -2627,7 +2627,7 @@ namespace FSFormControls
             // 
             this.picRefrescar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.picRefrescar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.picRefrescar.Image = global::FSFormControls.Properties.Resources.DBGridViewRefresh;
+            this.picRefrescar.Image = global::FSFormControlsCore.Properties.Resources.DBGridViewRefresh;
             this.picRefrescar.Location = new System.Drawing.Point(337, 8);
             this.picRefrescar.Name = "picRefrescar";
             this.picRefrescar.Size = new System.Drawing.Size(16, 16);
@@ -2678,7 +2678,7 @@ namespace FSFormControls
             // 
             this.cmdPageNext.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdPageNext.BackColor = System.Drawing.Color.LightGray;
-            this.cmdPageNext.Image = global::FSFormControls.Properties.Resources.DBGridViewNext;
+            this.cmdPageNext.Image = global::FSFormControlsCore.Properties.Resources.DBGridViewNext;
             this.cmdPageNext.Location = new System.Drawing.Point(302, 8);
             this.cmdPageNext.Name = "cmdPageNext";
             this.cmdPageNext.Size = new System.Drawing.Size(16, 16);
@@ -2690,7 +2690,7 @@ namespace FSFormControls
             // 
             this.cmdPagePrevious.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdPagePrevious.BackColor = System.Drawing.Color.LightGray;
-            this.cmdPagePrevious.Image = global::FSFormControls.Properties.Resources.DBGridViewPrevious;
+            this.cmdPagePrevious.Image = global::FSFormControlsCore.Properties.Resources.DBGridViewPrevious;
             this.cmdPagePrevious.Location = new System.Drawing.Point(286, 8);
             this.cmdPagePrevious.Name = "cmdPagePrevious";
             this.cmdPagePrevious.Size = new System.Drawing.Size(16, 16);
@@ -2702,7 +2702,7 @@ namespace FSFormControls
             // 
             this.cmdPageFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdPageFirst.BackColor = System.Drawing.Color.LightGray;
-            this.cmdPageFirst.Image = global::FSFormControls.Properties.Resources.DBGridViewFirst;
+            this.cmdPageFirst.Image = global::FSFormControlsCore.Properties.Resources.DBGridViewFirst;
             this.cmdPageFirst.Location = new System.Drawing.Point(270, 8);
             this.cmdPageFirst.Name = "cmdPageFirst";
             this.cmdPageFirst.Size = new System.Drawing.Size(16, 16);
@@ -2714,7 +2714,7 @@ namespace FSFormControls
             // 
             this.cmdPageLast.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdPageLast.BackColor = System.Drawing.Color.LightGray;
-            this.cmdPageLast.Image = global::FSFormControls.Properties.Resources.DBGridViewLast;
+            this.cmdPageLast.Image = global::FSFormControlsCore.Properties.Resources.DBGridViewLast;
             this.cmdPageLast.Location = new System.Drawing.Point(318, 8);
             this.cmdPageLast.Name = "cmdPageLast";
             this.cmdPageLast.Size = new System.Drawing.Size(16, 16);

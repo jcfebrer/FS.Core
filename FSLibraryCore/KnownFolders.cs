@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     ///     Class containing methods to retrieve specific file system paths.

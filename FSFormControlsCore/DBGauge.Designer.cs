@@ -1,4 +1,4 @@
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     partial class DBGauge
     {

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     internal class frmGlobalEdit : Form
     {

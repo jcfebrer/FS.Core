@@ -1,4 +1,4 @@
-﻿namespace FSFormControls
+﻿namespace FSFormControlsCore
 {
     partial class DBOptionSet
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dbGroupBox1 = new FSFormControls.DBGroupBox();
+            this.dbGroupBox1 = new FSFormControlsCore.DBGroupBox();
             this.SuspendLayout();
             // 
             // dbGroupBox1

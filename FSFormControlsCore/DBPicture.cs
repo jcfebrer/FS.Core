@@ -9,9 +9,9 @@ using System.Windows.Forms;
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBPicture.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBPicture.bmp")]
     [ToolboxItem(true)]
     public class DBPicture : DBUserControl
     {

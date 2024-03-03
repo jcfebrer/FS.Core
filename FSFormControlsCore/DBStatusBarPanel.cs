@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBStatusBarPanel : ToolStripStatusLabel
     {

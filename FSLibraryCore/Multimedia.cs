@@ -3,7 +3,7 @@ using System.IO;
 using System.Media;
 using System.Runtime.InteropServices;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Librería multimedia

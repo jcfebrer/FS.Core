@@ -14,7 +14,7 @@ internal class resfinder
 {
 }
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     [Designer(typeof(DBControlDesigner))]
     [DesignTimeVisible(true)]

@@ -8,13 +8,13 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using FSFormControls.Properties;
+using FSFormControlsCore.Properties;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBControl.bmp")]
     [Designer(typeof(DBGroupBoxXPDesigner))]
     [DesignTimeVisibleAttribute(true)]
     [ToolboxItem(true)]

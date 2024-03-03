@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Clase con funciones para el uso de la API32 de windows

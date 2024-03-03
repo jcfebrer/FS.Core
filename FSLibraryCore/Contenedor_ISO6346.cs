@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Validate if Container number passes the DIN EN ISO 6346 validation Formula

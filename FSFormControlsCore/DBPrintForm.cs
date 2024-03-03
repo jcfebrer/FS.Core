@@ -8,13 +8,13 @@ using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Text;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using Encoder = System.Drawing.Imaging.Encoder;
 using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBFormPrint
     {
@@ -83,21 +83,21 @@ namespace FSFormControls
             AddDelegateToPrintControl("TextBox", PrintTextBox);
             AddDelegateToPrintControl("DBTextBox", PrintTextBox);
             AddDelegateToPrintControl("System.Windows.Forms.ToolBar", PrintSkipControl);
-            AddDelegateToPrintControl("FSFormControls.DBToolBar", PrintSkipControl);
+            AddDelegateToPrintControl("FSFormControlsCore.DBToolBar", PrintSkipControl);
             AddDelegateToPrintControl("System.Windows.Forms.Label", PrintLabel);
-            AddDelegateToPrintControl("FSFormControls.DBLabel", PrintLabel);
+            AddDelegateToPrintControl("FSFormControlsCore.DBLabel", PrintLabel);
             AddDelegateToPrintControl("System.Windows.Forms.CheckBox", PrintCheckBox);
-            AddDelegateToPrintControl("FSFormControls.DBCheckBox", PrintCheckBox);
+            AddDelegateToPrintControl("FSFormControlsCore.DBCheckBox", PrintCheckBox);
             AddDelegateToPrintControl("System.Windows.Forms.RadioButton", PrintRadioButton);
             AddDelegateToPrintControl("System.Windows.Forms.GroupBox", PrintGroupBox);
             AddDelegateToPrintControl("System.Windows.Forms.Panel", PrintPanel);
-            AddDelegateToPrintControl("FSFormControls.DBPanel", PrintPanel);
+            AddDelegateToPrintControl("FSFormControlsCore.DBPanel", PrintPanel);
             AddDelegateToPrintControl("System.Windows.Forms.TabControl", PrintTabControl);
             AddDelegateToPrintControl("System.Windows.Forms.PictureBox", PrintPictureBox);
             AddDelegateToPrintControl("System.Windows.Forms.ListBox", PrintListBox);
             AddDelegateToPrintControl("System.Windows.Forms.DataGrid", PrintDataGrid);
-            AddDelegateToPrintControl("FSFormControls.DBGrid", PrintDataGrid);
-            AddDelegateToPrintControl("FSFormControls.DBGridView", PrintDataGridView);
+            AddDelegateToPrintControl("FSFormControlsCore.DBGrid", PrintDataGrid);
+            AddDelegateToPrintControl("FSFormControlsCore.DBGridView", PrintDataGridView);
             AddDelegateToPrintControl("System.Windows.Forms.ListView", PrintListView);
         }
 

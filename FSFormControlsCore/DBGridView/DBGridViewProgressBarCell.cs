@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
 
-namespace FSFormControls.UserControls.DBGridView
+namespace FSFormControlsCore.UserControls.DBGridView
 {
     public class DBGridViewProgressBarCell : DataGridViewImageCell
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Clase para el mánejo de streams

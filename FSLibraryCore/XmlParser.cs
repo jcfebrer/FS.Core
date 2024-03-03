@@ -7,7 +7,7 @@ using System.Xml;
 
 #endregion
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Funciones para el manejo de XML.

@@ -1,4 +1,4 @@
-﻿namespace FSFormControls
+﻿namespace FSFormControlsCore
 {
     partial class DBFileExplorer
     {
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.cmbDrives = new System.Windows.Forms.ComboBox();
-            this.dbTreeView1 = new FSFormControls.DBTreeView();
+            this.dbTreeView1 = new FSFormControlsCore.DBTreeView();
             ((System.ComponentModel.ISupportInitialize)(this.dbTreeView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,8 +64,8 @@
             this.dbTreeView1.ShowRootLines = true;
             this.dbTreeView1.Size = new System.Drawing.Size(239, 167);
             this.dbTreeView1.TabIndex = 27;
-            this.dbTreeView1.NodeMouseClick += new FSFormControls.DBTreeView.TreeNodeMouseClickEventHandler(this.dbTreeView1_NodeMouseClick);
-            this.dbTreeView1.NodeMouseDoubleClick += new FSFormControls.DBTreeView.TreeNodeMouseDoubleClickEventHandler(this.dbTreeView1_NodeMouseDoubleClick);
+            this.dbTreeView1.NodeMouseClick += new FSFormControlsCore.DBTreeView.TreeNodeMouseClickEventHandler(this.dbTreeView1_NodeMouseClick);
+            this.dbTreeView1.NodeMouseDoubleClick += new FSFormControlsCore.DBTreeView.TreeNodeMouseDoubleClickEventHandler(this.dbTreeView1_NodeMouseDoubleClick);
             // 
             // DBFileExplorer
             // 

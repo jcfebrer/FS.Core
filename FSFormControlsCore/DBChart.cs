@@ -9,14 +9,14 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBChart.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBChart.bmp")]
     [ToolboxItem(true)]
     public class DBChart : DBUserControl, ISupportInitialize
     {

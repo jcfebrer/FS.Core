@@ -1,7 +1,7 @@
 #region
 
 using FSException;
-using FSLibrary;
+using FSLibraryCore;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -15,9 +15,9 @@ using System.Xml;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBTreeView.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBTreeView.bmp")]
     [DefaultEvent("Click")]
     [ToolboxItem(true)]
     public class DBTreeView : DBUserControl, ISupportInitialize
@@ -201,9 +201,9 @@ namespace FSFormControls
 
         private void trvDragDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent("FSFormControls.DBTreeView+DBTreeViewNode", false) && !(m_NodeMap == ""))
+            if (e.Data.GetDataPresent("FSFormControlsCore.DBTreeView+DBTreeViewNode", false) && !(m_NodeMap == ""))
             {
-                var MovingNode = (DBTreeViewNode) e.Data.GetData("FSFormControls.DBTreeView+DBTreeViewNode");
+                var MovingNode = (DBTreeViewNode) e.Data.GetData("FSFormControlsCore.DBTreeView+DBTreeViewNode");
                 var NodeIndexes = m_NodeMap.Split('|');
                 var InsertCollection = TreeView1.Nodes;
                 var i = 0;
@@ -226,7 +226,7 @@ namespace FSFormControls
         private void trvDragOver(object sender, DragEventArgs e)
         {
             var NodeOver = TreeView1.GetNodeAt(TreeView1.PointToClient(Cursor.Position));
-            var NodeMoving = (DBTreeViewNode) e.Data.GetData("FSFormControls.DBTreeView+DBTreeViewNode");
+            var NodeMoving = (DBTreeViewNode) e.Data.GetData("FSFormControlsCore.DBTreeView+DBTreeViewNode");
             if (!(NodeOver == null) &&
                 (!(NodeOver == NodeMoving) ||
                  !(NodeOver.Parent == null) && NodeOver.Index == NodeOver.Parent.Nodes.Count - 1))

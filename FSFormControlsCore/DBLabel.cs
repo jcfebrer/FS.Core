@@ -6,15 +6,15 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBLabel.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBLabel.bmp")]
     [DefaultEvent("Click")]
     [ToolboxItem(true)]
     public class DBLabel : DBUserControl

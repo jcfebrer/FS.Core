@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBDate.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBDate.bmp")]
     [ToolboxItem(true)]
     public class DBDateTimePicker : DateTimePicker
     {

@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Funciones para la manipulación de números

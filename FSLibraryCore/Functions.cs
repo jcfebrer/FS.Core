@@ -12,7 +12,7 @@ using System.Threading;
 
 #endregion
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Funciones de uso general

@@ -4,7 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     partial class DBPlanner : DBUserControl 
     { 
@@ -25,8 +25,8 @@ namespace FSFormControls
         [ System.Diagnostics.DebuggerStepThrough() ]
         private void InitializeComponent() 
         { 
-            this.DbPanel1 = new FSFormControls.DBPanel();
-            this.DbPanel2 = new FSFormControls.DBPanel();
+            this.DbPanel1 = new FSFormControlsCore.DBPanel();
+            this.DbPanel2 = new FSFormControlsCore.DBPanel();
             this.SplitContainer1 = new System.Windows.Forms.SplitContainer();
             this.SplitContainer1.Panel1.SuspendLayout();
             this.SplitContainer1.Panel2.SuspendLayout();
@@ -82,8 +82,8 @@ namespace FSFormControls
 
         } 
         
-        internal FSFormControls.DBPanel DbPanel1; 
-        internal FSFormControls.DBPanel DbPanel2; 
+        internal FSFormControlsCore.DBPanel DbPanel1; 
+        internal FSFormControlsCore.DBPanel DbPanel2; 
         internal System.Windows.Forms.SplitContainer SplitContainer1; 
         
     } 

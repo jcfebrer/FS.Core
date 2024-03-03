@@ -17,7 +17,7 @@ using FSException;
 
 #endregion
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     ///     Clase para la realización de cálculos matemáticos

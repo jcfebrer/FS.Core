@@ -1,4 +1,4 @@
-﻿namespace FSFormControls.Forms
+﻿namespace FSFormControlsCore.Forms
 {
     partial class frmTestVuMeter
     {
@@ -34,19 +34,19 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.vuMeter3 = new FSFormControls.DBVuMeter();
-            this.vuMeter13 = new FSFormControls.DBVuMeter();
-            this.vuMeter12 = new FSFormControls.DBVuMeter();
-            this.vuMeter11 = new FSFormControls.DBVuMeter();
-            this.vuMeter10 = new FSFormControls.DBVuMeter();
-            this.vuMeter9 = new FSFormControls.DBVuMeter();
-            this.vuMeter8 = new FSFormControls.DBVuMeter();
-            this.vuMeter7 = new FSFormControls.DBVuMeter();
-            this.vuMeter6 = new FSFormControls.DBVuMeter();
-            this.vuMeter5 = new FSFormControls.DBVuMeter();
-            this.vuMeter4 = new FSFormControls.DBVuMeter();
-            this.vuMeter2 = new FSFormControls.DBVuMeter();
-            this.vuMeter1 = new FSFormControls.DBVuMeter();
+            this.vuMeter3 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter13 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter12 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter11 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter10 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter9 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter8 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter7 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter6 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter5 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter4 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter2 = new FSFormControlsCore.DBVuMeter();
+            this.vuMeter1 = new FSFormControlsCore.DBVuMeter();
             this.lblNivel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
             this.SuspendLayout();
@@ -109,7 +109,7 @@
             this.vuMeter3.Level = 0;
             this.vuMeter3.LevelMax = 100;
             this.vuMeter3.Location = new System.Drawing.Point(5, 15);
-            this.vuMeter3.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Log10;
+            this.vuMeter3.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Log10;
             this.vuMeter3.Name = "vuMeter3";
             this.vuMeter3.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter3.PeakHold = true;
@@ -155,7 +155,7 @@
             this.vuMeter13.Level = 50;
             this.vuMeter13.LevelMax = 100;
             this.vuMeter13.Location = new System.Drawing.Point(345, 193);
-            this.vuMeter13.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Analog;
+            this.vuMeter13.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Analog;
             this.vuMeter13.Name = "vuMeter13";
             this.vuMeter13.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter13.PeakHold = false;
@@ -202,7 +202,7 @@
             this.vuMeter12.Level = 0;
             this.vuMeter12.LevelMax = 100;
             this.vuMeter12.Location = new System.Drawing.Point(314, 323);
-            this.vuMeter12.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Analog;
+            this.vuMeter12.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Analog;
             this.vuMeter12.Name = "vuMeter12";
             this.vuMeter12.NeedleColor = System.Drawing.Color.Blue;
             this.vuMeter12.PeakHold = false;
@@ -244,7 +244,7 @@
             this.vuMeter11.Level = 0;
             this.vuMeter11.LevelMax = 100;
             this.vuMeter11.Location = new System.Drawing.Point(-16, 216);
-            this.vuMeter11.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Log10;
+            this.vuMeter11.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Log10;
             this.vuMeter11.Name = "vuMeter11";
             this.vuMeter11.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter11.PeakHold = true;
@@ -290,7 +290,7 @@
             this.vuMeter10.Level = 0;
             this.vuMeter10.LevelMax = 100;
             this.vuMeter10.Location = new System.Drawing.Point(370, 108);
-            this.vuMeter10.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Analog;
+            this.vuMeter10.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Analog;
             this.vuMeter10.Name = "vuMeter10";
             this.vuMeter10.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter10.PeakHold = false;
@@ -335,7 +335,7 @@
             this.vuMeter9.Level = 0;
             this.vuMeter9.LevelMax = 100;
             this.vuMeter9.Location = new System.Drawing.Point(264, 107);
-            this.vuMeter9.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Log10;
+            this.vuMeter9.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Log10;
             this.vuMeter9.Name = "vuMeter9";
             this.vuMeter9.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter9.PeakHold = true;
@@ -380,7 +380,7 @@
             this.vuMeter8.Level = 0;
             this.vuMeter8.LevelMax = 100;
             this.vuMeter8.Location = new System.Drawing.Point(23, 179);
-            this.vuMeter8.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Analog;
+            this.vuMeter8.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Analog;
             this.vuMeter8.Name = "vuMeter8";
             this.vuMeter8.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter8.PeakHold = true;
@@ -425,7 +425,7 @@
             this.vuMeter7.Level = 0;
             this.vuMeter7.LevelMax = 100;
             this.vuMeter7.Location = new System.Drawing.Point(41, 168);
-            this.vuMeter7.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Analog;
+            this.vuMeter7.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Analog;
             this.vuMeter7.Name = "vuMeter7";
             this.vuMeter7.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter7.PeakHold = true;
@@ -470,7 +470,7 @@
             this.vuMeter6.Level = 0;
             this.vuMeter6.LevelMax = 100;
             this.vuMeter6.Location = new System.Drawing.Point(240, 33);
-            this.vuMeter6.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Log10;
+            this.vuMeter6.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Log10;
             this.vuMeter6.Name = "vuMeter6";
             this.vuMeter6.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter6.PeakHold = true;
@@ -515,7 +515,7 @@
             this.vuMeter5.Level = 0;
             this.vuMeter5.LevelMax = 100;
             this.vuMeter5.Location = new System.Drawing.Point(220, 33);
-            this.vuMeter5.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Log10;
+            this.vuMeter5.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Log10;
             this.vuMeter5.Name = "vuMeter5";
             this.vuMeter5.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter5.PeakHold = false;
@@ -560,7 +560,7 @@
             this.vuMeter4.Level = 0;
             this.vuMeter4.LevelMax = 100;
             this.vuMeter4.Location = new System.Drawing.Point(41, 15);
-            this.vuMeter4.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Analog;
+            this.vuMeter4.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Analog;
             this.vuMeter4.Name = "vuMeter4";
             this.vuMeter4.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter4.PeakHold = true;
@@ -606,7 +606,7 @@
             this.vuMeter2.Level = 0;
             this.vuMeter2.LevelMax = 100;
             this.vuMeter2.Location = new System.Drawing.Point(67, 116);
-            this.vuMeter2.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Analog;
+            this.vuMeter2.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Analog;
             this.vuMeter2.Name = "vuMeter2";
             this.vuMeter2.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter2.PeakHold = true;
@@ -651,7 +651,7 @@
             this.vuMeter1.Level = 0;
             this.vuMeter1.LevelMax = 100;
             this.vuMeter1.Location = new System.Drawing.Point(67, 142);
-            this.vuMeter1.MeterScale = FSFormControls.DBVuMeter.MeterScaleEnum.Log10;
+            this.vuMeter1.MeterScale = FSFormControlsCore.DBVuMeter.MeterScaleEnum.Log10;
             this.vuMeter1.Name = "vuMeter1";
             this.vuMeter1.NeedleColor = System.Drawing.Color.Black;
             this.vuMeter1.PeakHold = true;

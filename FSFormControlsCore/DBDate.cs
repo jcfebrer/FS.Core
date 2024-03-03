@@ -6,16 +6,16 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using FSLibrary;
+using FSLibraryCore;
 using DateTime = System.DateTime;
 using FSException;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBDate.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBDate.bmp")]
     [Designer(typeof(DBDateControlDesigner))]
     [ToolboxItem(true)]
     public class DBDate : DBUserControl, ISupportInitialize

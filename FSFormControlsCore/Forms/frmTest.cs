@@ -1,4 +1,4 @@
-﻿namespace FSFormControls.Forms
+﻿namespace FSFormControlsCore.Forms
 {
     public partial class frmTest : DBForm
     {

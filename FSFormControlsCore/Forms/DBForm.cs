@@ -9,14 +9,14 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 using FSGraphics;
 using FSSystemInfo;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBForm : Form
     {
@@ -947,12 +947,12 @@ namespace FSFormControls
             this.mnuContext = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tmrAutoSave = new System.Windows.Forms.Timer(this.components);
-            this.barraEstado = new FSFormControls.DBStatusBar();
+            this.barraEstado = new FSFormControlsCore.DBStatusBar();
             this.estado = new System.Windows.Forms.ToolStripStatusLabel();
             this.mensaje = new System.Windows.Forms.ToolStripStatusLabel();
             this.info = new System.Windows.Forms.ToolStripStatusLabel();
-            this.DbToolBar1 = new FSFormControls.DBToolBarEx();
-            this.DbTabOrderSchemeProvider1 = new FSFormControls.TabOrderSchemaProvider();
+            this.DbToolBar1 = new FSFormControlsCore.DBToolBarEx();
+            this.DbTabOrderSchemeProvider1 = new FSFormControlsCore.TabOrderSchemaProvider();
             ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.estado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.mensaje)).BeginInit();
@@ -1042,7 +1042,7 @@ namespace FSFormControls
             this.barraEstado.Size = new System.Drawing.Size(1154, 22);
             this.barraEstado.TabIndex = 2;
             this.barraEstado.Text = "dbStatusBar1";
-            this.barraEstado.ViewStyle = FSFormControls.DBStatusBar.ViewStyleEnum.Default;
+            this.barraEstado.ViewStyle = FSFormControlsCore.DBStatusBar.ViewStyleEnum.Default;
             this.barraEstado.WrapText = false;
             // 
             // estado

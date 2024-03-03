@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public abstract class DBHtmlNode
     {

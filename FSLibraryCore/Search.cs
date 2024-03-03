@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     ///     Métodos de búsqueda.

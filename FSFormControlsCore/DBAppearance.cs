@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     /// <summary>
     /// Compatibilidad con Infragistics

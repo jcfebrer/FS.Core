@@ -8,15 +8,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using FSDatabase;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBCombo.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBCombo.bmp")]
     [DefaultEvent("SelectedValueChanged")]
     [Designer(typeof(DBComboControlDesigner))]
     [ToolboxItem(true)]

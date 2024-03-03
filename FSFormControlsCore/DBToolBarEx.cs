@@ -1,7 +1,7 @@
 #region
 
 using FSException;
-using FSLibrary;
+using FSLibraryCore;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -11,9 +11,9 @@ using System.Windows.Forms;
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBToolBar.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBToolBar.bmp")]
     [ToolboxItem(true)]
     public class DBToolBarEx : DBUserControl
     {

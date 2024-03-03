@@ -12,7 +12,7 @@ using DateTimeUtil = FSLibrary.DateTimeUtil;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class ReportDocument : System.Drawing.Printing.PrintDocument
     {

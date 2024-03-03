@@ -3,12 +3,12 @@
 using System;
 using System.ComponentModel;
 using System.Text;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBHtmlDocument
     {

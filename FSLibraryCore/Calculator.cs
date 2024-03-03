@@ -6,7 +6,7 @@ using System.Collections;
 
 #endregion
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
 
     /// <summary>

@@ -1,4 +1,4 @@
-﻿using FSFormControls.Properties;
+﻿using FSFormControlsCore.Properties;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public static class InputBox
     {

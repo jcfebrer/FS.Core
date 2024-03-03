@@ -5,12 +5,12 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSSystemInfo;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class frmWizard : DBForm
     {

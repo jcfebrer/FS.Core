@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     ///     Servicios de validación de las cuentas bancarias españolas

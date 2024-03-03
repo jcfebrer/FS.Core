@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBTooltipManager
     {

@@ -1,4 +1,4 @@
-﻿namespace FSLibrary
+﻿namespace FSLibraryCore
 {
     /// <summary>
     /// Clase que realiza el efecto de mostrar una cadena del revés

@@ -1,7 +1,7 @@
 #region
 
 using FSException;
-using FSLibrary;
+using FSLibraryCore;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBCombo.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBCombo.bmp")]
     [ToolboxItem(true)]
     public class DBFontCombo : ComboBox
     {

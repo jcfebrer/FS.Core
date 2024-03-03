@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class frmCalculator : Form
     {
@@ -35,7 +35,7 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            this.DbCalculator1 = new FSFormControls.DBCalculator();
+            this.DbCalculator1 = new FSFormControlsCore.DBCalculator();
             this.SuspendLayout();
             // 
             // DbCalculator1

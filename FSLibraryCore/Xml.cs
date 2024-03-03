@@ -6,7 +6,7 @@ using System.Xml;
 
 #endregion
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Clase para la utilización de XML con ficheros.

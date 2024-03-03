@@ -1,13 +1,13 @@
 #region
 
-using FSFormControls.UserControls.DBGridView;
+using FSFormControlsCore.UserControls.DBGridView;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     [DesignTimeVisible(false)]
     [ToolboxItem(false)]

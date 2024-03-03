@@ -5,15 +5,15 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBScroll.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBScroll.bmp")]
     [ToolboxItem(true)]
     public class DBScroll : DBUserControl
     {
@@ -101,7 +101,7 @@ namespace FSFormControls
             {
                 frm = FindForm().ActiveMdiChild;
                 if (frm == null) frm = FindForm();
-                DataControl = (DBControl) FunctionsForms.FindControlType(frm.Controls, "FSFormControls.DBControl");
+                DataControl = (DBControl) FunctionsForms.FindControlType(frm.Controls, "FSFormControlsCore.DBControl");
             }
 
             if (DataControl == null) throw new ExceptionUtil("DataControl no especificado.");

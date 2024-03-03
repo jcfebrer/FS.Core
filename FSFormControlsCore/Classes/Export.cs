@@ -6,12 +6,12 @@ using System.IO;
 using System.Net.Mail;
 using System.Windows.Forms;
 using FSDatabase;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class Export
     {

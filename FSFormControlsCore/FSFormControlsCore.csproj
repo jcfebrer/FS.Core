@@ -87,18 +87,12 @@
     <Compile Update="DBGauge.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBFileExplorer.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBGridView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="DBFileExplorer.cs" />
+    <Compile Update="DBGridView.cs" />
     <Compile Update="DBGridView\DBGridViewPrintDocument.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBPage\DBPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="DBPage\DBPage.cs" />
     <Compile Update="DBSplitter.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -114,9 +108,7 @@
     <Compile Update="DBToolBarButton.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBOptionSet.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="DBOptionSet.cs" />
     <Compile Update="DBRadioButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -129,9 +121,7 @@
     <Compile Update="DBVuMeter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Forms\DBEtchedLine.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="Forms\DBEtchedLine.cs" />
     <Compile Update="DBPanel.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -141,120 +131,56 @@
     <Compile Update="DBTabPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBCalculator.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBCheckBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBCombo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBComm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBDate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="DBButton.cs" />
+    <Compile Update="DBCalculator.cs" />
+    <Compile Update="DBChart.cs" />
+    <Compile Update="DBCheckBox.cs" />
+    <Compile Update="DBCombo.cs" />
+    <Compile Update="DBComm.cs" />
+    <Compile Update="DBControl.cs" />
+    <Compile Update="DBDate.cs" />
     <Compile Update="DBDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBDocument.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBEditPicture.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBFile.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBFindTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="DBDocument.cs" />
+    <Compile Update="DBEditPicture.cs" />
+    <Compile Update="DBFile.cs" />
+    <Compile Update="DBFindTextBox.cs" />
     <Compile Update="DBFontCombo.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBFrame.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBFtp.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBGraphics.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="DBFrame.cs" />
+    <Compile Update="DBFtp.cs" />
+    <Compile Update="DBGraphics.cs" />
     <Compile Update="DBColumn.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="DBGroupBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBGroupBoxXP.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBGroupBoxXPList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBImage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBLabel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBListView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBLock.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBLopd.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBMarkControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBPicture.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBPlanner.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBPlannerObject.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBRecord.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBRichTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBScroll.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="DBShape.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="DBGroupBoxXP.cs" />
+    <Compile Update="DBGroupBoxXPList.cs" />
+    <Compile Update="DBImage.cs" />
+    <Compile Update="DBLabel.cs" />
+    <Compile Update="DBListBox.cs" />
+    <Compile Update="DBListView.cs" />
+    <Compile Update="DBLock.cs" />
+    <Compile Update="DBLopd.cs" />
+    <Compile Update="DBMarkControl.cs" />
+    <Compile Update="DBPicture.cs" />
+    <Compile Update="DBPlanner.cs" />
+    <Compile Update="DBPlannerObject.cs" />
+    <Compile Update="DBRecord.cs" />
+    <Compile Update="DBRichTextBox.cs" />
+    <Compile Update="DBScroll.cs" />
+    <Compile Update="DBShape.cs" />
     <Compile Update="DBStatusBar.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="DBTabControl.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="DBTextBox.cs" />
     <Compile Update="DBToolBarEx.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -332,7 +258,7 @@
     <ProjectReference Include="..\FSExcel\FSExcel.csproj" />
     <ProjectReference Include="..\FSException\FSException.csproj" />
     <ProjectReference Include="..\FSGraphics\FSGraphics.csproj" />
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
     <ProjectReference Include="..\FSMail\FSMail.csproj" />
     <ProjectReference Include="..\FSMouseKeyboardLibrary\FSMouseKeyboardLibrary.csproj" />
     <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />

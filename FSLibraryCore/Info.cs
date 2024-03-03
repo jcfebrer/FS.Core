@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Text;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     ///     Información de la aplicación

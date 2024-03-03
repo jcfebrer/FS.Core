@@ -5,7 +5,7 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class FormsCollection : CollectionBase
     {

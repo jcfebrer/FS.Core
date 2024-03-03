@@ -18,7 +18,7 @@ using System.Xml;
 
 #endregion
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     ///     Colección de líneas de RSS

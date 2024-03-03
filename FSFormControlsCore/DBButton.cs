@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBButton.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBButton.bmp")]
     [DefaultEvent("Click")]
     [ToolboxItem(true)]
     public class DBButton : DBUserControl, IButtonControl

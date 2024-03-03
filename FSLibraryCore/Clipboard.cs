@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Funciones relacionadas con el portapapeles

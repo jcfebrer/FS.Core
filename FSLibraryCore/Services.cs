@@ -6,7 +6,7 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Fucniones para el uso de los servicios de windows

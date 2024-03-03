@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     [ProvideProperty("TabScheme", typeof(Control))]
     [Description("Wrap the TabOrderManager class and supply extendee controls with a custom tab scheme")]

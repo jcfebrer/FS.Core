@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Clase que permite la serialización/deserialización de una clase en texto y viceversa

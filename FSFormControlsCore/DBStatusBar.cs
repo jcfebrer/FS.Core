@@ -7,9 +7,9 @@ using System.Windows.Forms;
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBStatusBar.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBStatusBar.bmp")]
     [ToolboxItem(true)]
     public class DBStatusBar : StatusStrip, ISupportInitialize
     {

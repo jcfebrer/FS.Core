@@ -1,6 +1,6 @@
 #region
 
-using FSFormControls.UserControls.DBGridView;
+using FSFormControlsCore.UserControls.DBGridView;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     [ToolboxItem(false)]
     public class frmPrintPreviewExport : frmPrintPreview

@@ -13,7 +13,7 @@ using System.Threading;
 using System.Windows.Forms;
 using FSDatabase;
 using FSNetwork;
-using FSLibrary;
+using FSLibraryCore;
 using FSQueryBuilder;
 using FSQueryBuilder.Enums;
 using FSQueryBuilder.QueryParts.Where;
@@ -24,9 +24,9 @@ using FSException;
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBControl.bmp")]
     [DesignTimeVisible(true)]
     [DefaultProperty("Selection")]
     [ToolboxItem(true)]
@@ -1981,7 +1981,7 @@ namespace FSFormControls
                                     if ((s != 0) & (s < Global.MAX_TEXT_LENGTH))
                                     {
                                         if (((DBGridView) ctr).Columns[f].ColumnType ==
-                                            FSFormControls.DBColumn.ColumnTypes.DateColumn)
+                                            FSFormControlsCore.DBColumn.ColumnTypes.DateColumn)
                                             s = Convert.ToInt32(Global.DATE_LENGTH);
                                         ((DBGridView) ctr).Columns[f].MaxLength = s;
                                     }

@@ -4,7 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     partial class frmFind : System.Windows.Forms.Form 
     { 

@@ -6,12 +6,12 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using FSDatabase;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     internal class frmFilter : Form
     {

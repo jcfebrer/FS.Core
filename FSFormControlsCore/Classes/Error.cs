@@ -6,12 +6,12 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
 using FSException;
-using FSLibrary;
+using FSLibraryCore;
 using DateTimeUtil = FSLibrary.DateTimeUtil;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class Error
     {

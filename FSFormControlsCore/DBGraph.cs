@@ -7,11 +7,11 @@ using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using FSGraphics;
-using FSLibrary;
+using FSLibraryCore;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     #region '"Bar"' 
 

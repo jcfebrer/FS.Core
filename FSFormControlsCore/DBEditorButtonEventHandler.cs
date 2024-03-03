@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public delegate void DBEditorButtonEventHandler(object sender, DBEditorButtonEventArgs e);
 

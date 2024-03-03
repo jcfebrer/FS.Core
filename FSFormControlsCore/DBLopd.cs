@@ -5,15 +5,15 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using FSDatabase;
-using FSLibrary;
+using FSLibraryCore;
 using StringConverter = System.ComponentModel.StringConverter;
 using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
     public class DBLopd : DBUserControl
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.ComponentModel;
-using FSLibrary;
+using FSLibraryCore;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBColumnCollection : CollectionBase, IBindingList
     {

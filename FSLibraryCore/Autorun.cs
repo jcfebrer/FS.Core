@@ -1,7 +1,7 @@
 ﻿using Microsoft.Win32;
 using System.Windows.Forms;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Funciones para la ejecución automática de la aplicación cuando se inicie el ordenador.

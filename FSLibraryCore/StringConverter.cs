@@ -35,7 +35,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     ///     Static class to convert strings to typed values

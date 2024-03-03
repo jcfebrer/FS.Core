@@ -4,7 +4,7 @@ using System;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public partial class frmFind
     {

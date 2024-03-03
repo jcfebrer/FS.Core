@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     [ToolboxItem(false)]
     public class frmPrintPreview : PrintPreviewDialog
@@ -146,8 +146,8 @@ namespace FSFormControls
 
             Text = "Vista Preliminar";
 
-            var meAssembly = Assembly.GetAssembly(Type.GetType("FSFormControls.frmPrintPreview"));
-            var rm = new ResourceManager("FSFormControls.frmPrintPreview", meAssembly);
+            var meAssembly = Assembly.GetAssembly(Type.GetType("FSFormControlsCore.frmPrintPreview"));
+            var rm = new ResourceManager("FSFormControlsCore.frmPrintPreview", meAssembly);
             Icon = (Icon) rm.GetObject("PrintPreview.Icon");
         }
 

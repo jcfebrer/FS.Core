@@ -10,7 +10,7 @@ using FSDatabase;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class frmShowTable : Form
     {

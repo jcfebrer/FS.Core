@@ -6,7 +6,7 @@ using System.Text;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBHtmlElement : DBHtmlNode
     {

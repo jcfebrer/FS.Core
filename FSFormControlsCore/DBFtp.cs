@@ -14,9 +14,9 @@ using FSException;
 
 #region '"FTP client class"' 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
     public partial class DBFtp : DBUserControl
     {

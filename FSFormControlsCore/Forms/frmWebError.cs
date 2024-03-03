@@ -6,11 +6,11 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using FSException;
-using FSLibrary;
+using FSLibraryCore;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class frmWebError : Form
     {

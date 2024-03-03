@@ -3,12 +3,12 @@
 using System;
 using System.Drawing.Printing;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class PageSetup
     {

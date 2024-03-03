@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Net;
 using System.Net.Sockets;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Clase para la utilización de WOL.

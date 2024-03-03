@@ -16,7 +16,7 @@ using System.Text.RegularExpressions;
 
 #endregion
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Clase para el manejo de fechas.

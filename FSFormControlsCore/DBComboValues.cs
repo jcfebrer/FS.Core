@@ -2,9 +2,9 @@
 using System.Collections;
 using System.ComponentModel;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBComboValues : CollectionBase, IBindingList
     {

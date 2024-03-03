@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace FSFormControls.UserControls.DBGridView
+namespace FSFormControlsCore.UserControls.DBGridView
 {
     public class DBGridViewDateTimePickerColumn : DataGridViewColumn
     {

@@ -5,7 +5,7 @@ using System.Text;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     internal class DBHtmlParser
     {

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using FSDisk;
 using System.IO;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
     public partial class DBFileExplorer : DBUserControl
     {

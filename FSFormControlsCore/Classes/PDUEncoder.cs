@@ -1,12 +1,12 @@
 #region
 
 using System;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class PDUEncoder
     {

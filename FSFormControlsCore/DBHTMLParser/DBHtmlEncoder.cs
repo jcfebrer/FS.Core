@@ -3,11 +3,11 @@
 using System;
 using System.IO;
 using System.Text;
-using FSLibrary;
+using FSLibraryCore;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBHtmlEncoder
     {

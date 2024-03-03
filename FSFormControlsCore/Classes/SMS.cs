@@ -2,13 +2,13 @@
 
 using System;
 using System.Text;
-using FSLibrary;
+using FSLibraryCore;
 
 //using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class SMS
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.ComponentModel;
-using FSLibrary;
+using FSLibraryCore;
 
-namespace FSFormControls.UserControls.DBGridView
+namespace FSFormControlsCore.UserControls.DBGridView
 {
     public class DBGridViewBandCollection : CollectionBase, IBindingList
     {

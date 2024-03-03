@@ -7,15 +7,15 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using FSGraphics;
-using FSLibrary;
+using FSLibraryCore;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     [Designer(typeof(ParentControlDesigner))]
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBFrame.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBFrame.bmp")]
     [ToolboxItem(true)]
     public class DBFrame : DBUserControl
     {

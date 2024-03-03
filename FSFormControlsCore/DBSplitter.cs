@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     [DesignTimeVisibleAttribute(true)]
     [ToolboxBitmap(typeof(Splitter))]

@@ -8,14 +8,14 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 using FSGraphics;
 
 #endregion
 
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public enum Shapes
     {
@@ -48,7 +48,7 @@ namespace FSFormControls
 
 
     [DefaultProperty("Shape")]
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBShape.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBShape.bmp")]
     [ToolboxItem(true)]
     public class DBShape : DBUserControl
     {

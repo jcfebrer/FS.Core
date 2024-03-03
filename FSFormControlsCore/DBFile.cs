@@ -7,7 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
-using FSLibrary;
+using FSLibraryCore;
 using DateTime = System.DateTime;
 using FSException;
 using FSDisk;
@@ -15,9 +15,9 @@ using FSSystemInfo;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBControl.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBControl.bmp")]
     [ToolboxItem(true)]
     public class DBFile : DBUserControl
     {

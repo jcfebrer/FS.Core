@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     ///     Description of MimeType.

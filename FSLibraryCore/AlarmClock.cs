@@ -9,7 +9,7 @@ using System.Timers;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace FSLibrary
+namespace FSLibraryCore
 {
     /// <summary>
     /// Clase que nos permite definir eventos de alarma.

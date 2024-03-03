@@ -10,7 +10,7 @@ using FSDatabase;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     [ToolboxItem(false)]
     public class PrintDocument : System.Drawing.Printing.PrintDocument

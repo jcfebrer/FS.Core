@@ -1,7 +1,7 @@
 ﻿using System.Windows.Forms;
 using static System.Windows.Forms.TabControl;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class DBTabPageCollection : TabPageCollection
     {

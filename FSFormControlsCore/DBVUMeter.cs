@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     //public class DbVuMeterLibrary : ControlDesigner        
     //{
@@ -61,7 +61,7 @@ namespace FSFormControls
     //    }
     //}
 
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBVuMeter.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBVuMeter.bmp")]
     public class DBVuMeter : DBUserControl
     {
         public enum MeterScaleEnum { Analog, Log10 };

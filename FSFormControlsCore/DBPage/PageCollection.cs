@@ -4,7 +4,7 @@ using System.Collections;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class PageCollection : CollectionBase
     {

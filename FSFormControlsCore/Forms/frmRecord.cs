@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
     public class frmRecord : DBForm
     {
@@ -80,7 +80,7 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            this.DbRecord1 = new FSFormControls.DBRecord();
+            this.DbRecord1 = new FSFormControlsCore.DBRecord();
             this.SuspendLayout();
             // 
             // DbToolBar1
@@ -109,13 +109,13 @@ namespace FSFormControls
             this.DbRecord1.AllowSearch = true;
             this.DbRecord1.AutoSizeColumns = true;
             this.DbRecord1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-                        this.DbRecord1.DateType = FSFormControls.DBRecord.t_date.Normal;
+                        this.DbRecord1.DateType = FSFormControlsCore.DBRecord.t_date.Normal;
             this.DbRecord1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.DbRecord1.DoubleHeightInLargeText = false;
             this.DbRecord1.LabelAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.DbRecord1.LabelYIncrement = 30;
             this.DbRecord1.Location = new System.Drawing.Point(0, 28);
-            this.DbRecord1.Mode = FSFormControls.Global.AccessMode.ReadMode;
+            this.DbRecord1.Mode = FSFormControlsCore.Global.AccessMode.ReadMode;
             this.DbRecord1.Name = "DbRecord1";
             this.DbRecord1.PosXLabel = 20;
             this.DbRecord1.PosYLabel = 20;
@@ -127,7 +127,7 @@ namespace FSFormControls
             this.DbRecord1.ShowEdit = true;
             this.DbRecord1.ShowFilter = true;
             this.DbRecord1.ShowList = true;
-            this.DbRecord1.ShowMode = FSFormControls.DBRecord.t_showmode.Vertical;
+            this.DbRecord1.ShowMode = FSFormControlsCore.DBRecord.t_showmode.Vertical;
             this.DbRecord1.ShowNavigate = true;
             this.DbRecord1.ShowPrint = true;
             this.DbRecord1.ShowRecord = true;

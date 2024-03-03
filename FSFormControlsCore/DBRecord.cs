@@ -5,15 +5,15 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using FSLibrary;
+using FSLibraryCore;
 using FSException;
 using FSGraphics;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControlsCore
 {
-    [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBToolbar.bmp")]
+    [ToolboxBitmap(typeof(resfinder), "FSFormControlsCore.Resources.DBToolbar.bmp")]
     [ToolboxItem(true)]
     public class DBRecord : DBUserControl
     {
@@ -729,7 +729,7 @@ namespace FSFormControls
         private void InitializeComponent()
         {
             this.panelRecord = new System.Windows.Forms.Panel();
-            this.DbToolBar1 = new FSFormControls.DBToolBarEx();
+            this.DbToolBar1 = new FSFormControlsCore.DBToolBarEx();
             this.SuspendLayout();
             // 
             // panelRecord
