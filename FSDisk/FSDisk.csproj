@@ -61,7 +61,6 @@
     <Compile Include="FileUtils.cs" />
     <Compile Include="Folder.cs" />
     <Compile Include="Folders.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="DiskInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

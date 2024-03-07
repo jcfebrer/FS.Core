@@ -1,6 +1,6 @@
 using System;
 
-namespace FSMail
+namespace FSMailCore
 {
 
     public class MimeConst

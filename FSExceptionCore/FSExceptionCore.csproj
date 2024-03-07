@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSException</AssemblyTitle>
@@ -14,9 +14,9 @@
     <OutputPath>bin\Debug Todo\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <ProjectReference Include="..\FSTraceCore\FSTraceCore.csproj" />
   </ItemGroup>
 </Project>

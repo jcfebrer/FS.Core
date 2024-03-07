@@ -17,14 +17,14 @@ using System.Data;
 using System.Data.OleDb;
 using System.Globalization;
 using System.IO;
-using FSLibrary;
+using FSLibraryCore;
 using DateTime = System.DateTime;
-using FSException;
-using FSTrace;
+using FSExceptionCore;
+using FSTraceCore;
 
 #endregion
 
-namespace FSDatabase
+namespace FSDatabaseCore
 {
     /// <summary>
     ///     Esta clase encapsula el uso de las operaciones habituales de acceso a datos mediante OleDb

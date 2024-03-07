@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Imap.cs" />
     <Compile Include="ImapBase.cs" />
     <Compile Include="ImapExpception.cs" />

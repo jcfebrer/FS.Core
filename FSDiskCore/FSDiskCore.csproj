@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSFile</AssemblyTitle>
@@ -14,12 +14,13 @@
     <OutputPath>bin\Debug Todo\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSCrypto\FSCrypto.csproj" />
-    <ProjectReference Include="..\FSException\FSException.csproj" />
-    <ProjectReference Include="..\FSFuzzyStrings\FSFuzzyStrings.csproj" />
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\FSCryptoCore\FSCryptoCore.csproj" />
+    <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
+    <ProjectReference Include="..\FSFuzzyStringsCore\FSFuzzyStringsCore.csproj" />
+    <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Security.Permissions" Version="8.0.0" />
   </ItemGroup>
 </Project>

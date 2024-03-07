@@ -1,6 +1,7 @@
-﻿using FSException;
-using FSLibrary;
-using FSSystemInfo;
+﻿using FSExceptionCore;
+using FSLibraryCore;
+using FSSystemInfoCore;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace FSDatabase
+namespace FSDatabaseCore
 {
     public static class Utils
     {
@@ -248,10 +249,12 @@ namespace FSDatabase
             {
                 if (frmCampos == null) return;
 
-                for (int f = 0; f <= frm.Form.Count - 1; f++)
+                var dict = frm.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+
+                foreach (var item in dict)
                 {
-                    string value = frm.Form.Get(f);
-                    string name = frm.Form.Keys[f];
+                    string value = item.Value;
+                    string name = item.Key;
 
                     Field field = frmCampos.Find(name);
 

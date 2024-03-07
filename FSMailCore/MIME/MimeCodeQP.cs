@@ -5,10 +5,10 @@ using System.Text.RegularExpressions;
 using System.Security;
 
 
-namespace FSMail
+namespace FSMailCore
 {
 
-    public class MimeCodeQP : FSMail.MimeCode
+    public class MimeCodeQP : FSMailCore.MimeCode
     {
         public MimeCodeQP()
         {

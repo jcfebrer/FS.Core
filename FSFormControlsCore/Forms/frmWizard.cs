@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using FSLibraryCore;
-using FSSystemInfo;
+using FSSystemInfoCore;
 
 #endregion
 

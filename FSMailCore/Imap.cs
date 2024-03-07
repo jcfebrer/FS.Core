@@ -6,7 +6,7 @@ using System.Text;
 using FSLibrary;
 using System.Collections.Generic;
 
-namespace FSMail
+namespace FSMailCore
 {
 	/// <summary>
 	/// Imap class implementes IMAP client API

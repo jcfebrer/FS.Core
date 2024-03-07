@@ -8,11 +8,11 @@ using System.Drawing;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using FSDatabase;
+using FSDatabaseCore;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 using FSFormControlsCore.Forms;
-using FSSecurity;
+using FSSecurityCore;
 
 #endregion
 

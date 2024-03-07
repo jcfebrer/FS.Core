@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <SccProjectName>
@@ -253,18 +253,18 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSDatabase\FSDatabase.csproj" />
-    <ProjectReference Include="..\FSDisk\FSDisk.csproj" />
+    <ProjectReference Include="..\FSDatabaseCore\FSDatabaseCore.csproj" />
+    <ProjectReference Include="..\FSDiskCore\FSDiskCore.csproj" />
     <ProjectReference Include="..\FSExcel\FSExcel.csproj" />
-    <ProjectReference Include="..\FSException\FSException.csproj" />
+    <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
     <ProjectReference Include="..\FSGraphics\FSGraphics.csproj" />
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
-    <ProjectReference Include="..\FSMail\FSMail.csproj" />
+    <ProjectReference Include="..\FSMailCore\FSMailCore.csproj" />
     <ProjectReference Include="..\FSMouseKeyboardLibrary\FSMouseKeyboardLibrary.csproj" />
-    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />
-    <ProjectReference Include="..\FSQueryBuilder\FSQueryBuilder.csproj" />
-    <ProjectReference Include="..\FSSecurity\FSSecurity.csproj" />
-    <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj" />
+    <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
+    <ProjectReference Include="..\FSQueryBuilderCore\FSQueryBuilderCore.csproj" />
+    <ProjectReference Include="..\FSSecurityCore\FSSecurityCore.csproj" />
+    <ProjectReference Include="..\FSSystemInfoCore\FSSystemInfoCore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\DBGauge.bmp" />

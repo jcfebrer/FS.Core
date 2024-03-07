@@ -1,6 +1,6 @@
 #region
 
-using FSException;
+using FSExceptionCore;
 using System;
 using System.Collections;
 using System.Data;

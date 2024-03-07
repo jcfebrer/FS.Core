@@ -87,7 +87,7 @@ namespace FSNetwork
             string getHTTPReturn = null;
 
             FSLibrary.TextUtil.Replace(url, "//", "/");
-            HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
+            HttpWebRequest myRequest = (HttpWebRequest)(WebRequest.Create(url));
             myRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
             myRequest.Headers.Add("XXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXX");
             myRequest.Headers.Add("Cache-control", "no-cache");

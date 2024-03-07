@@ -1,4 +1,4 @@
-﻿using FSException;
+﻿using FSExceptionCore;
 using System;
 using System.Globalization;
 using System.Net;

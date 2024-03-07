@@ -5,6 +5,10 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Xml.Serialization;
 
 namespace FSLibraryCore
 {
@@ -176,24 +180,6 @@ namespace FSLibraryCore
                     return false;
 
             return true;
-        }
-
-
-        /// <summary>
-        /// Objects to byte array.
-        /// </summary>
-        /// <param name="obj">The object.</param>
-        /// <returns></returns>
-        public static byte[] ObjectToByteArray(object obj)
-        {
-            if (obj == null)
-                return null;
-            var bf = new BinaryFormatter();
-            using (var ms = new MemoryStream())
-            {
-                bf.Serialize(ms, obj);
-                return ms.ToArray();
-            }
         }
 
         /// <summary>
@@ -605,6 +591,39 @@ namespace FSLibraryCore
         public static string GetNumbersAndLetters(string input)
         {
             return new string(input.Where(c => (char.IsDigit(c) || char.IsLetter(c))).ToArray());
+        }
+
+        /// <summary>
+        /// Convert an object to a Byte Array.
+        /// </summary>
+        public static byte[] ObjectToByteArray(object objData)
+        {
+            if (objData == null)
+                return default;
+
+            return Encoding.UTF8.GetBytes(JsonSerializer.Serialize(objData, GetJsonSerializerOptions()));
+        }
+
+        /// <summary>
+        /// Convert a byte array to an Object of T.
+        /// </summary>
+        public static T ByteArrayToObject<T>(byte[] byteArray)
+        {
+            if (byteArray == null || !byteArray.Any())
+                return default;
+
+            return JsonSerializer.Deserialize<T>(byteArray, GetJsonSerializerOptions());
+        }
+
+        private static JsonSerializerOptions GetJsonSerializerOptions()
+        {
+            return new JsonSerializerOptions()
+            {
+                PropertyNamingPolicy = null,
+                WriteIndented = true,
+                AllowTrailingCommas = true,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            };
         }
     }
 }

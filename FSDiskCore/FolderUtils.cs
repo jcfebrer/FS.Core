@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Security.Permissions;
 
-namespace FSDisk
+namespace FSDiskCore
 {
     public class FolderUtils
     {
@@ -41,11 +41,11 @@ namespace FSDisk
                 fol.FechaArchivo = f.CreationTime;
                 fol.Path = f.FullName;
 
-                FileIOPermission fileIOPermission = new FileIOPermission(PermissionState.Unrestricted);
-                fileIOPermission.AllLocalFiles = FileIOPermissionAccess.Read;
+                //FileIOPermission fileIOPermission = new FileIOPermission(System.Security.Permissions.PermissionState.Unrestricted);
+                //fileIOPermission.AllLocalFiles = FileIOPermissionAccess.Read;
                 try
                 {
-                    fileIOPermission.Demand();
+                    //fileIOPermission.Demand();
 
                     DirectoryInfo[] dir = f.GetDirectories();
                     if (dir != null && dir.Length > 0)
@@ -54,9 +54,9 @@ namespace FSDisk
                 catch (UnauthorizedAccessException)
                 {
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
 
                 carpetas.Add(fol);

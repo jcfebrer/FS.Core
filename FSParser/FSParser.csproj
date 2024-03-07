@@ -54,7 +54,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExpressionEvaluator.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HtmlRender.cs" />
     <Compile Include="ScriptEngine.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

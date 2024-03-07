@@ -59,7 +59,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalHook.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="KeyboardHook.cs" />
     <Compile Include="KeyboardScanCode.cs" />

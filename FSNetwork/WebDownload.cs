@@ -143,18 +143,14 @@ namespace FSNetwork
         
         
         public static void UploadFile(string fileSource, string urlDestFile)
-            //, string userName, string password, bool showGUI ) 
         {
             new WebClient().UploadFile(fileSource, urlDestFile);
-            //, userName, password, showGUI, 300, Microsoft.VisualBasic.FileIO.UICancelOption.ThrowException ); 
         }
 
 
 		public static void DownloadFile(string urlSourceFile, string destFile)
-            //, string userName, string password, bool showGUI ) 
         {
             new WebClient().DownloadFile(urlSourceFile, destFile);
-            //, userName, password, showGUI, 300, true, Microsoft.VisualBasic.FileIO.UICancelOption.ThrowException ); 
         }
     }
 

@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using FSException;
+using FSExceptionCore;
 using FSLibraryCore;
 
 #endregion
@@ -55,7 +55,7 @@ namespace FSFormControlsCore
                 ErrorMessage = ErrorMessage + "\r\n" + "Email: " + txtEmail.Text;
                 ErrorMessage = ErrorMessage + "\r\n" + "Error: " + txtError.Text + "\r\n";
 
-                FSMail.SendMail mail = new FSMail.SendMail(Global.MailServer, Global.MailUserName, Global.MailPassword, Global.MailPort, Global.MailEnableSSL, Global.ProjectName);
+                FSMailCore.SendMail mail = new FSMailCore.SendMail(Global.MailServer, Global.MailUserName, Global.MailPassword, Global.MailPort, Global.MailEnableSSL, Global.ProjectName);
 
                 if(mail.SendErrorMail(ErrorMessage))
                     MessageBox.Show("Mensaje enviado.", "Envio correcto", MessageBoxButtons.OK, MessageBoxIcon.Information);

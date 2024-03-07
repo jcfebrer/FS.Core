@@ -32,14 +32,14 @@
  * 
  */
 
-using FSLibrary;
+using FSLibraryCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
 
-namespace FSDatabase
+namespace FSDatabaseCore
 {
     /// <summary>
     ///     Read CSV-formatted data from a file or TextReader

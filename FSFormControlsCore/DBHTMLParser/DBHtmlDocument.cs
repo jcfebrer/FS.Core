@@ -4,7 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Text;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

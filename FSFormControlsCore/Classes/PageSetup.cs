@@ -4,7 +4,7 @@ using System;
 using System.Drawing.Printing;
 using System.Windows.Forms;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

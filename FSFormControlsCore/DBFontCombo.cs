@@ -1,6 +1,6 @@
 #region
 
-using FSException;
+using FSExceptionCore;
 using FSLibraryCore;
 using System;
 using System.ComponentModel;

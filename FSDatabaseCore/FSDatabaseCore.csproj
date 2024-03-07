@@ -7,7 +7,7 @@
     <OutputPath>bin\Debug Todo\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSDatabase</AssemblyTitle>
     <Product>FSDatabase</Product>
@@ -16,17 +16,25 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSDisk\FSDisk.csproj" />
-    <ProjectReference Include="..\FSException\FSException.csproj" />
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
-    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />
-    <ProjectReference Include="..\FSQueryBuilder\FSQueryBuilder.csproj" />
-    <ProjectReference Include="..\FSSecurity\FSSecurity.csproj" />
-    <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj" />
-    <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
+    <ProjectReference Include="..\FSDiskCore\FSDiskCore.csproj" />
+    <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
+    <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
+    <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
+    <ProjectReference Include="..\FSQueryBuilderCore\FSQueryBuilderCore.csproj" />
+    <ProjectReference Include="..\FSSecurityCore\FSSecurityCore.csproj" />
+    <ProjectReference Include="..\FSSystemInfoCore\FSSystemInfoCore.csproj" />
+    <ProjectReference Include="..\FSTraceCore\FSTraceCore.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Data.OleDb" Version="8.0.0" />
+    <PackageReference Include="System.Security.Permissions" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Web.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

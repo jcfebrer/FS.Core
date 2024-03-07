@@ -30,17 +30,17 @@ namespace FSFormControlsCore
             return DBColumn.ColumnTypes.TextColumn;
         }
 
-        public static DBColumn.ColumnTypes ConvertFieldTypeToColumnType(FSDatabase.Utils.FieldTypeEnum fieldType)
+        public static DBColumn.ColumnTypes ConvertFieldTypeToColumnType(FSDatabaseCore.Utils.FieldTypeEnum fieldType)
         {
             switch (fieldType)
             {
-                case FSDatabase.Utils.FieldTypeEnum.Number:
+                case FSDatabaseCore.Utils.FieldTypeEnum.Number:
                     return DBColumn.ColumnTypes.NumberColumn;
-                case FSDatabase.Utils.FieldTypeEnum.DateTime:
+                case FSDatabaseCore.Utils.FieldTypeEnum.DateTime:
                     return DBColumn.ColumnTypes.DateColumn;
-                case FSDatabase.Utils.FieldTypeEnum.String:
+                case FSDatabaseCore.Utils.FieldTypeEnum.String:
                     return DBColumn.ColumnTypes.TextColumn;
-                case FSDatabase.Utils.FieldTypeEnum.Boolean:
+                case FSDatabaseCore.Utils.FieldTypeEnum.Boolean:
                     return DBColumn.ColumnTypes.CheckColumn;
             }
 

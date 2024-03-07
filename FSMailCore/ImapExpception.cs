@@ -1,5 +1,5 @@
 ﻿using System;
-namespace FSMail
+namespace FSMailCore
 {
 	/// <summary>
 	/// Imap Exception class which implements Imap releted exceptions

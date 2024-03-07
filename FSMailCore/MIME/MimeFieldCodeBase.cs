@@ -1,9 +1,9 @@
 using System;
 using System.Text;
 
-namespace FSMail
+namespace FSMailCore
 {
-    public class MimeFieldCodeBase : FSMail.MimeCode
+    public class MimeFieldCodeBase : FSMailCore.MimeCode
     {
         public MimeFieldCodeBase()
         {
@@ -199,7 +199,7 @@ namespace FSMail
         }
     }
 
-    public class MimeFieldCodeAddress : FSMail.MimeFieldCodeBase
+    public class MimeFieldCodeAddress : FSMailCore.MimeFieldCodeBase
     {
         public MimeFieldCodeAddress()
         {
@@ -229,7 +229,7 @@ namespace FSMail
 
     }
 
-    public class MimeFieldCodeParameter : FSMail.MimeFieldCodeBase
+    public class MimeFieldCodeParameter : FSMailCore.MimeFieldCodeBase
     {
         public MimeFieldCodeParameter()
         {

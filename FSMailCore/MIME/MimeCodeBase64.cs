@@ -2,10 +2,10 @@ using System;
 using System.IO;
 using System.Text;
 
-namespace FSMail
+namespace FSMailCore
 {
 
-    public class MimeCodeBase64 : FSMail.MimeCode
+    public class MimeCodeBase64 : FSMailCore.MimeCode
     {
         public MimeCodeBase64()
         {

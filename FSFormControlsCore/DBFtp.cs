@@ -8,7 +8,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using DateTime = System.DateTime;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

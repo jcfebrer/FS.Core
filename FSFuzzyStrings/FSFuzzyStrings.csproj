@@ -56,7 +56,6 @@
   <ItemGroup>
     <Compile Include="DiceCoefficientExtensions.cs" />
     <Compile Include="DoubleMetaphoneExtensions.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="LevenshteinDistanceExtensions.cs" />
     <Compile Include="LongestCommonSubsequenceExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

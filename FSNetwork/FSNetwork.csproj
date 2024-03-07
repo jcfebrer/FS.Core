@@ -53,7 +53,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Ftp.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Http.cs" />
     <Compile Include="NetworkConnection.cs" />
     <Compile Include="UPnP2.cs" />

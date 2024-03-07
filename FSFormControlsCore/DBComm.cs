@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

@@ -2,7 +2,7 @@
 
 using System;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

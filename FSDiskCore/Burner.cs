@@ -3,12 +3,12 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using FSLibrary;
-using FSException;
+using FSLibraryCore;
+using FSExceptionCore;
 
 #endregion
 
-namespace FSDisk
+namespace FSDiskCore
 {
     public class Burner
     {

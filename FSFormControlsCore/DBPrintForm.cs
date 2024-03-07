@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using FSLibraryCore;
 using Encoder = System.Drawing.Imaging.Encoder;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

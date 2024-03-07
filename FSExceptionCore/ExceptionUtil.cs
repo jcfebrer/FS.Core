@@ -10,12 +10,12 @@
 
 #region
 
-using FSTrace;
+using FSTraceCore;
 using System;
 
 #endregion
 
-namespace FSException
+namespace FSExceptionCore
 {
     public class ExceptionUtil : Exception
     {

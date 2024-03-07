@@ -1,6 +1,6 @@
 #region
 
-using FSException;
+using FSExceptionCore;
 using FSMouseKeyboardLibrary;
 using System;
 using System.ComponentModel;

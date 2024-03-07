@@ -1,5 +1,5 @@
-﻿using FSException;
-using FSTrace;
+﻿using FSExceptionCore;
+using FSTraceCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

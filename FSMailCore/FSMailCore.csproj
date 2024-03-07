@@ -7,7 +7,7 @@
     <OutputPath>bin\Debug Todo\</OutputPath>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSMail</AssemblyTitle>
     <Product>FSMail</Product>
@@ -20,8 +20,5 @@
     <ProjectReference Include="..\FSCrypto\FSCrypto.csproj" />
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
     <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
   </ItemGroup>
 </Project>

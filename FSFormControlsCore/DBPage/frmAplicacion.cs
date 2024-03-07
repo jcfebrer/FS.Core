@@ -35,9 +35,9 @@ namespace FSFormControlsCore
         }
 
 
-        private void ToolBar1_ButtonClick(object sender, EventArgs e)
+        private void ToolBar1_ButtonClick(object sender, ToolStripItemClickedEventArgs e)
         {
-            ToolStripButton tsb = (ToolStripButton)sender;
+            ToolStripButton tsb = (ToolStripButton)e.ClickedItem;
             switch (Convert.ToString(tsb.Tag))
             {
                 case "SIGUIENTE":
@@ -143,7 +143,7 @@ namespace FSFormControlsCore
         {
             InitializeComponent();
 
-            ToolBar1.Click += ToolBar1_ButtonClick;
+            ToolBar1.ItemClicked += ToolBar1_ButtonClick;
 
             this.Load += FrmAplicacion_Load;
         }

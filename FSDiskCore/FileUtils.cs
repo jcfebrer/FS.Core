@@ -1,5 +1,5 @@
-﻿using FSCrypto;
-using FSLibrary;
+﻿using FSCryptoCore;
+using FSLibraryCore;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FSDisk
+namespace FSDiskCore
 {
     public class FileUtils
     {
@@ -91,7 +91,7 @@ namespace FSDisk
                 fil.FechaArchivo = f.CreationTime;
                 fil.Label = DriveLabel(f.Directory.Root.FullName);
                 fil.FullName = f.FullName;
-                fil.FullName83 = FSDisk.FileUtils.GetShortFileName(f.FullName);
+                fil.FullName83 = FSDiskCore.FileUtils.GetShortFileName(f.FullName);
 
                 if (calcSoundEx)
                     fil.SoundEx = FSFuzzyStrings.SoundExEsp.Do(f.Name);

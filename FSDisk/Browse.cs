@@ -7,7 +7,7 @@ using FSLibrary;
 
 #endregion
 
-namespace Fdisk
+namespace FSDisk
 {
     public class Browse
     {

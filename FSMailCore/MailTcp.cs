@@ -8,7 +8,7 @@ using DateTime = System.DateTime;
 
 #endregion
 
-namespace FSMail
+namespace FSMailCore
 {
     public class MailTcp
     {

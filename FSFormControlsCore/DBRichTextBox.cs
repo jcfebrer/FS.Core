@@ -12,7 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

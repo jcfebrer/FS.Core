@@ -44,7 +44,7 @@ namespace FSFormControlsCore
         public static DBControl.DbActionTypes Action = DBControl.DbActionTypes.None;
         public static ConnectionStringSettings ConnectionStringSetting;
         //public static DbConnection DBconnection;
-        //public static FSDatabase.Utils.TypeBd typeDb = FSDatabase.Utils.TypeBd.Oledb;
+        //public static FSDatabaseCore.Utils.TypeBd typeDb = FSDatabaseCore.Utils.TypeBd.Oledb;
         public static bool SaveErrorsOnEventLog = true;
         public static bool SaveErrorsOnFile = true;
         public static bool SilentError;

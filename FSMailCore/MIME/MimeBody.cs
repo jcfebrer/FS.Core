@@ -3,10 +3,10 @@ using System.IO;
 using System.Text;
 using System.Collections;
 
-namespace FSMail
+namespace FSMailCore
 {
 
-    public class MimeBody : FSMail.MimeHeader
+    public class MimeBody : FSMailCore.MimeHeader
     {
         protected MimeBody()
         {

@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-namespace FSDatabase
+namespace FSDatabaseCore
 {
     public class Json
     {

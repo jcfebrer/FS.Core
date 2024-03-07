@@ -13,7 +13,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml;
 
-namespace FSMail
+namespace FSMailCore
 {
 	/// <summary>
 	/// Librería para acceso a la cuenta de correo mediante pop3

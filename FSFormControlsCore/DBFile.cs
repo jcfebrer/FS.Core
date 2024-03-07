@@ -9,9 +9,9 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using FSLibraryCore;
 using DateTime = System.DateTime;
-using FSException;
-using FSDisk;
-using FSSystemInfo;
+using FSExceptionCore;
+using FSDiskCore;
+using FSSystemInfoCore;
 
 #endregion
 

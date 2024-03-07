@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-namespace FSMail
+namespace FSMailCore
 {
 
     public class MimeCodeManager

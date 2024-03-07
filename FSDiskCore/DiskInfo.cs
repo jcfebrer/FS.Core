@@ -1,12 +1,12 @@
 #region
 
-using FSLibrary;
+using FSLibraryCore;
 using System;
 using System.Runtime.InteropServices;
 
 #endregion
 
-namespace FSDisk
+namespace FSDiskCore
 {
     public class DiskInfo
     {

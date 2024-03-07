@@ -19,21 +19,23 @@ using System.Data.OleDb;
 using System.IO;
 using System.Text;
 using System.Web;
-using FSDisk;
-using FSNetwork;
-using FSLibrary;
-using FSQueryBuilder.Constants;
-using FSQueryBuilder.Enums;
+using FSDiskCore;
+using FSNetworkCore;
+using FSLibraryCore;
+using FSQueryBuilderCore.Constants;
+using FSQueryBuilderCore.Enums;
 using DateTime = System.DateTime;
-using FSException;
+using FSExceptionCore;
 using System.CodeDom;
 using System.Web.UI.WebControls;
-using FSQueryBuilder;
-using FSQueryBuilder.QueryParts.Where;
-using FSTrace;
-using FSSecurity;
+using FSQueryBuilderCore;
+using FSQueryBuilderCore.QueryParts.Where;
+using FSTraceCore;
+using FSSecurityCore;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
 
-namespace FSDatabase
+namespace FSDatabaseCore
 {
     public class BdUtils
     {
@@ -1906,28 +1908,30 @@ namespace FSDatabase
                 var sFields = "";
                 Field c = null;
 
-                for (var f = 0; f <= frm.Form.Count - 1; f++)
+                var dict = frm.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+
+                foreach (var item in dict)
                 {
-                    if (frmCampos != null) c = frmCampos.Find(frm.Form.Keys[f]);
+                    if (frmCampos != null) c = frmCampos.Find(item.Key);
 
                     if (c != null)
                         switch (c.Tipo)
                         {
                             case Utils.FieldTypeEnum.Number:
-                                sFields = sFields + "[" + frm.Form.Keys[f] + "] int NULL,";
+                                sFields = sFields + "[" + item.Key + "] int NULL,";
                                 break;
                             case Utils.FieldTypeEnum.String:
-                                sFields = sFields + "[" + frm.Form.Keys[f] + "] nvarchar(" + c.Tamano + ")" + " NULL,";
+                                sFields = sFields + "[" + item.Key + "] nvarchar(" + c.Tamano + ")" + " NULL,";
                                 break;
                             case Utils.FieldTypeEnum.Boolean:
-                                sFields = sFields + "[" + frm.Form.Keys[f] + "] bit NULL,";
+                                sFields = sFields + "[" + item.Key + "] bit NULL,";
                                 break;
                             case Utils.FieldTypeEnum.DateTime:
-                                sFields = sFields + "[" + frm.Form.Keys[f] + "] datetime NULL,";
+                                sFields = sFields + "[" + item.Key + "] datetime NULL,";
                                 break;
                         }
                     else
-                        sFields = sFields + "[" + frm.Form.Keys[f] + "] nvarchar(50)" + " NULL,";
+                        sFields = sFields + "[" + item.Key + "] nvarchar(50)" + " NULL,";
                 }
 
                 sFields = TextUtil.Substring(sFields, 0, TextUtil.Length(sFields) - 1);
@@ -1951,9 +1955,11 @@ namespace FSDatabase
 
                 var sch = GetSchemaTable(tableName);
 
-                for (var f = 0; f <= frm.Form.Count - 1; f++)
+                var dict = frm.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+
+                foreach (var item in dict)
                 {
-                    var campo = frm.Form.Keys[f];
+                    var campo = item.Key;
 
                     if (!IsControlField(campo))
                         if (TextUtil.Substring(campo, 0, 3) != "cmd")
@@ -1964,7 +1970,7 @@ namespace FSDatabase
 
                             sFields = sFields + "[" + campo + "]" + ",";
 
-                            var v = Functions.Valor(frm.Form.Get(f));
+                            var v = Functions.Valor(item.Value);
                             if (c != null)
                             {
                                 if (c.Valor != "") v = c.Valor;
@@ -1991,7 +1997,7 @@ namespace FSDatabase
                             }
                             else
                             {
-                                sData += "'" + frm.Form.Get(f).Trim() + "',";
+                                sData += "'" + item.Value.Trim() + "',";
                             }
                         }
                 }
@@ -2041,16 +2047,18 @@ namespace FSDatabase
 
                 var sch = GetSchemaTable(tableName);
 
-                for (var f = 0; f <= frm.Form.Count - 1; f++)
+                var dict = frm.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+
+                foreach (var item in dict)
                 {
-                    var campo = frm.Form.Keys[f];
+                    var campo = item.Key;
 
                     if (!IsControlField(campo))
                         if (TextUtil.Substring(campo, 0, 3) != "cmd")
                         {
                             if (frmCampos != null) c = frmCampos.Find(campo);
 
-                            var v = Functions.Valor(frm.Form.Get(f));
+                            var v = Functions.Valor(item.Value);
 
                             if (c == null) c = GetField(campo, sch);
 
@@ -2082,7 +2090,7 @@ namespace FSDatabase
                             }
                             else
                             {
-                                sFields = sFields + "[" + campo + "]='" + frm.Form.Get(f).Trim() + "',";
+                                sFields = sFields + "[" + campo + "]='" + item.Value.Trim() + "',";
                             }
                         }
                 }
@@ -2743,11 +2751,10 @@ namespace FSDatabase
             try
             {
                 var sb = new StringBuilder("");
-                //sb.Append("OdbcPermission: " + Permission.TestPermission(new OdbcPermission(PermissionState.Unrestricted)));
-                sb.Append("OleDbPermission: " +
-                          Permission.TestPermission(new OleDbPermission(System.Security.Permissions.PermissionState.Unrestricted)));
-                //sb.Append("DbPermission: " + Permission.TestPermission(new permission(PermissionState.Unrestricted)));
-                //sb.Append("SqlClientPermission: " + Permission.TestPermission(new SqlClientPermission(PermissionState.Unrestricted)));
+                //sb.Append("OdbcPermission: " + Permission.TestPermission(new OdbcPermission(System.Security.Permissions.PermissionState.Unrestricted)));
+                //sb.Append("OleDbPermission: " + Permission.TestPermission(new OleDbPermission(System.Security.Permissions.PermissionState.Unrestricted)));
+                //sb.Append("DbPermission: " + Permission.TestPermission(new permission(System.Security.Permissions.PermissionState.Unrestricted)));
+                //sb.Append("SqlClientPermission: " + Permission.TestPermission(new SqlClientPermission(System.Security.Permissions.PermissionState.Unrestricted)));
                 return sb.ToString();
             }
             catch (ExceptionUtil e)

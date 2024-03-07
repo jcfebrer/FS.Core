@@ -9,7 +9,7 @@ using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Windows.Forms;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 using FSGraphics;
 
 #endregion

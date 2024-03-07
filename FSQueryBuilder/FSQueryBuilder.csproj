@@ -112,7 +112,6 @@
     <Compile Include="Constants\DBMS.cs" />
     <Compile Include="Constants\Patterns.cs" />
     <Compile Include="Constants\WherePatterns.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Helpers\Composite.cs" />
     <Compile Include="Helpers\IComposite.cs" />
     <Compile Include="QueryParts\Assignments\AssignmentClause.cs" />

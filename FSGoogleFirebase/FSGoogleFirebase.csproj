@@ -75,7 +75,6 @@
   <ItemGroup>
     <Compile Include="Database.cs" />
     <Compile Include="Device.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Msg.cs" />
     <Compile Include="Push.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

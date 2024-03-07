@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Windows.Forms;
-using FSException;
+using FSExceptionCore;
 using FSLibraryCore;
 using DateTimeUtil = FSLibrary.DateTimeUtil;
 

@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Collections;
 
-namespace FSMail
+namespace FSMailCore
 {
     public class MimeHeader
     {

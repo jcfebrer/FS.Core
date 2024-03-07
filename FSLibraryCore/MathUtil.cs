@@ -13,7 +13,7 @@
 using System;
 using System.Collections;
 using System.Text.RegularExpressions;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

@@ -1,4 +1,4 @@
-﻿using FSException;
+﻿using FSExceptionCore;
 using System;
 using System.IO;
 using System.Runtime.Serialization;
@@ -182,9 +182,9 @@ namespace FSLibraryCore
                     }
                 }
             }
-            catch (ExceptionUtil Ex)
+            catch (ExceptionUtil)
             {
-                throw Ex;
+                throw;
             }
         }
 

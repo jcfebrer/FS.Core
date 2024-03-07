@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="CaptureScreen.cs" />
     <Compile Include="FontUtil.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GraphicsUtil.cs" />
     <Compile Include="ImageProcess.cs" />
     <Compile Include="PixelGrabber.cs" />

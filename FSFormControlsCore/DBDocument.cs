@@ -7,7 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

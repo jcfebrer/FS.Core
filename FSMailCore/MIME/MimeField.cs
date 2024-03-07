@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 
-namespace FSMail
+namespace FSMailCore
 {
     public class MimeField
     {

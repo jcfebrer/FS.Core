@@ -1,8 +1,9 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace FSFormControlsCore
 {
-    public class DBStatusBarPanel : ToolStripStatusLabel
+    public class DBStatusBarPanel : ToolStripStatusLabel, ISupportInitialize
     {
         public enum SizingModeEnum
         {
@@ -21,5 +22,13 @@ namespace FSFormControlsCore
         public ProgressBar ProgressBarInfo { get; set; }
 
         public bool Visible { get; set; }
+
+        public void BeginInit()
+        {
+        }
+
+        public void EndInit()
+        {
+        }
     }
 }

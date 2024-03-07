@@ -93,7 +93,6 @@
     <Compile Include="common\UnqualifiedDataTypeSchemaModule-2.0.cs" />
     <Compile Include="ComunicacionTradeShift.cs" />
     <Compile Include="CreateInvoice.cs" />
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="maindoc\UBL-ApplicationResponse-2.0.cs" />
     <Compile Include="maindoc\UBL-AttachedDocument-2.0.cs" />
     <Compile Include="maindoc\UBL-BaseDocument-2.0.cs" />

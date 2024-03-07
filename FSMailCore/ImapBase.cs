@@ -8,7 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using FSTrace;
 using FSLibrary;
 
-namespace FSMail
+namespace FSMailCore
 {
 	public class ImapBase
 	{

@@ -5,9 +5,9 @@ using System.Data;
 using System.IO;
 using System.Net.Mail;
 using System.Windows.Forms;
-using FSDatabase;
+using FSDatabaseCore;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

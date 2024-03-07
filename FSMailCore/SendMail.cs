@@ -24,7 +24,7 @@ using System.Reflection;
 
 #endregion
 
-namespace FSMail
+namespace FSMailCore
 {
 	public class SendMail
 	{
@@ -231,23 +231,23 @@ namespace FSMail
 			string sBody = "";
 
 
-			if (ex == null && HttpContext.Current != null && HttpContext.Current.Server != null)
-			{
-				ex = HttpContext.Current.Server.GetLastError();
-			}
+			//if (ex == null && HttpContext.Current != null && HttpContext.Current.Server != null)
+			//{
+			//	ex = HttpContext.Current.Server.GetLastError();
+			//}
 
-			if (HttpContext.Current != null && HttpContext.Current.Request != null)
-			{
-				sSubject = "Error en: " + HttpContext.Current.Request.Url + " - " +
-										HttpContext.Current.Request.FilePath;
-				sBody = "Se ha registrado un error en: " + HttpContext.Current.Request.Url + "\r\n" +
-										"\r\n";
-				sBody += "Fichero: " + HttpContext.Current.Request.FilePath + "\r\n";
-				sBody += "RawUrl: " + HttpContext.Current.Request.RawUrl + "\r\n";
-				sBody += "QueryString: " + HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.QueryString.ToString()) + "\r\n";
-				string ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-				sBody = sBody + "IP: <a href='https://www.whois.com/whois/" + ip + "'>" + ip + "</a>\r\n";
-			}
+			//if (HttpContext.Current != null && HttpContext.Current.Request != null)
+			//{
+			//	sSubject = "Error en: " + HttpContext.Current.Request.Url + " - " +
+			//							HttpContext.Current.Request.FilePath;
+			//	sBody = "Se ha registrado un error en: " + HttpContext.Current.Request.Url + "\r\n" +
+			//							"\r\n";
+			//	sBody += "Fichero: " + HttpContext.Current.Request.FilePath + "\r\n";
+			//	sBody += "RawUrl: " + HttpContext.Current.Request.RawUrl + "\r\n";
+			//	sBody += "QueryString: " + HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.QueryString.ToString()) + "\r\n";
+			//	string ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
+			//	sBody = sBody + "IP: <a href='https://www.whois.com/whois/" + ip + "'>" + ip + "</a>\r\n";
+			//}
 
 
 			if (ex != null)

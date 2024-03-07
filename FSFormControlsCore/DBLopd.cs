@@ -4,10 +4,10 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using FSDatabase;
+using FSDatabaseCore;
 using FSLibraryCore;
 using StringConverter = System.ComponentModel.StringConverter;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

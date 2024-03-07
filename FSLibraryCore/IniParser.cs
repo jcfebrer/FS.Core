@@ -77,9 +77,9 @@ namespace FSLibraryCore
                     }
 
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
                 finally
                 {

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using FSLibraryCore;
 using DateTime = System.DateTime;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

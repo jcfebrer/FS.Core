@@ -10,6 +10,7 @@
 
 #region
 
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -21,7 +22,7 @@ using System.Threading;
 
 #endregion
 
-namespace FSTrace
+namespace FSTraceCore
 {
     public class LogData
     {
@@ -140,7 +141,11 @@ namespace FSTrace
         /// </summary>
         private static string GetLogFile()
         {
-            string logFile = ConfigurationManager.AppSettings["LogFile"];
+            IConfiguration configurationBuilder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+
+            string logFile = configurationBuilder.GetValue<string>("appSettings:LogFile");
 
             if (String.IsNullOrEmpty(logFile))
                 return null;
@@ -279,19 +284,21 @@ namespace FSTrace
                 }
             }
 
-            using (EventLog eventLog = new EventLog("Application"))
-            {
-                EventLogEntryType eventType = EventLogEntryType.Information;
-                if (msgLog.TraceLevel == TraceLevel.Error) eventType = EventLogEntryType.Error;
-                if (msgLog.TraceLevel == TraceLevel.Warning) eventType = EventLogEntryType.Warning;
+            //if (OperatingSystem.IsWindows())
+            //{
+            //    using (EventLog eventLog = new EventLog("Application"))
+            //    {
+            //        EventLogEntryType eventType = EventLogEntryType.Information;
+            //        if (msgLog.TraceLevel == TraceLevel.Error) eventType = EventLogEntryType.Error;
+            //        if (msgLog.TraceLevel == TraceLevel.Warning) eventType = EventLogEntryType.Warning;
 
-                if (traceLevel == TraceLevel.Error || traceLevel == TraceLevel.Warning)
-                {
-                    eventLog.Source = "Application";
-                    eventLog.WriteEntry(msgLog.ToString(), eventType, 2117, 1);
-                }
-            }
-
+            //        if (traceLevel == TraceLevel.Error || traceLevel == TraceLevel.Warning)
+            //        {
+            //            eventLog.Source = "Application";
+            //            eventLog.WriteEntry(msgLog.ToString(), eventType, 2117, 1);
+            //        }
+            //    }
+            //}
 
             if (OnMessageLogText != null)
                 OnMessageLogText.Invoke(null, msgLog.ToString());

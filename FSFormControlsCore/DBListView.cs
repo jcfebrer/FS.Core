@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 
@@ -175,7 +175,7 @@ namespace FSFormControlsCore
                 {
                     var ha = HorizontalAlignment.Left;
 
-                    if (FSDatabase.Utils.ToDataBaseType(DataControl.DataTable.Columns[f].DataType) == "int")
+                    if (FSDatabaseCore.Utils.ToDataBaseType(DataControl.DataTable.Columns[f].DataType) == "int")
                         ha = HorizontalAlignment.Right;
 
                     AddField(DataControl.DataTable.Columns[f].ColumnName,

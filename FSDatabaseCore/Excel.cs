@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.OleDb;
 
-namespace FSDatabase
+namespace FSDatabaseCore
 {
     public class Excel
     {

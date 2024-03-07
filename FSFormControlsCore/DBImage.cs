@@ -8,7 +8,7 @@ using System.IO;
 using System.Text;
 using System.Windows.Forms;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

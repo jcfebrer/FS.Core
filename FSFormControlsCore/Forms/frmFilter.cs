@@ -5,9 +5,9 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using FSDatabase;
+using FSDatabaseCore;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

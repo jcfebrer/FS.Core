@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Zip45.cs" />
     <Compile Include="nQuant.Core\Box.cs" />
     <Compile Include="nQuant.Core\ColorData.cs" />

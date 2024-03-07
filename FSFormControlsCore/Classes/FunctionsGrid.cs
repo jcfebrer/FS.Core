@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using FSDatabase;
+using FSDatabaseCore;
 using FSLibraryCore;
-using FSException;
+using FSExceptionCore;
 
 namespace FSFormControlsCore
 {

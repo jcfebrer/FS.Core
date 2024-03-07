@@ -3,11 +3,11 @@
 using System;
 using System.Runtime.InteropServices;
 using System.Text;
-using FSLibrary;
+using FSLibraryCore;
 
 #endregion
 
-namespace Fdisk
+namespace FSDiskCore
 {
     public class Browse
     {

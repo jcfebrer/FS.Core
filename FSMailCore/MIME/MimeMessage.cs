@@ -2,9 +2,9 @@ using System;
 using System.Text;
 using System.Collections;
 
-namespace FSMail
+namespace FSMailCore
 {
-    public class MimeMessage : FSMail.MimeBody
+    public class MimeMessage : FSMailCore.MimeBody
     {
         public MimeMessage()
         {

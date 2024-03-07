@@ -11,15 +11,15 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Threading;
 using System.Windows.Forms;
-using FSDatabase;
-using FSNetwork;
+using FSDatabaseCore;
+using FSNetworkCore;
 using FSLibraryCore;
-using FSQueryBuilder;
-using FSQueryBuilder.Enums;
-using FSQueryBuilder.QueryParts.Where;
+using FSQueryBuilderCore;
+using FSQueryBuilderCore.Enums;
+using FSQueryBuilderCore.QueryParts.Where;
 using DateTime = System.DateTime;
 using StringConverter = System.ComponentModel.StringConverter;
-using FSException;
+using FSExceptionCore;
 
 #endregion
 

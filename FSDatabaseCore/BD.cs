@@ -15,7 +15,7 @@ using System.Collections;
 
 #endregion
 
-namespace FSDatabase
+namespace FSDatabaseCore
 {
     public class Field
     {
