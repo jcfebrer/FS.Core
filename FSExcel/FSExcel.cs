@@ -3,8 +3,6 @@ using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using DataTable = System.Data.DataTable;
-using FSLibrary;
-using FSException;
 
 namespace FSExcel
 {
@@ -26,15 +24,7 @@ namespace FSExcel
 
         public void Open(string fileName)
         {
-            try
-            {
-                m_WrkBk = m_Excel.Workbooks.Open(fileName);
-            }
-            catch (ExceptionUtil ex)
-            {
-                throw new ExceptionUtil(ex);
-            }
-
+            m_WrkBk = m_Excel.Workbooks.Open(fileName);
             m_Sht = (Worksheet) m_WrkBk.Worksheets[1];
         }
 

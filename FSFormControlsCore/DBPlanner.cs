@@ -646,7 +646,7 @@ namespace FSFormControlsCore
             dbpDias.FixedSize = true;
             dbpTitulo.FixedSize = true;
 
-            var months = Convert.ToInt32(FSLibrary.DateTimeUtil.DateDiffMonth(InitialDate, EndDate) + 1);
+            var months = Convert.ToInt32(FSLibraryCore.DateTimeUtil.DateDiffMonth(InitialDate, EndDate) + 1);
 
             var i = 0;
             for (i = 1; i <= months; i++)
@@ -659,7 +659,7 @@ namespace FSFormControlsCore
                     iYear = iYear + 1;
                 }
 
-                dbpTitulo.Blocks.Add("mes" + i, FSLibrary.DateTimeUtil.MonthName(iMonth),
+                dbpTitulo.Blocks.Add("mes" + i, FSLibraryCore.DateTimeUtil.MonthName(iMonth),
                     CellWidth * DateTime.DaysInMonth(iYear, iMonth), Color.White, new Font("Arial", 8),
                     Color.Blue, HorizontalAlignment.Center);
             }
@@ -677,7 +677,7 @@ namespace FSFormControlsCore
                 var j = 0;
                 for (j = 1; j <= DateTime.DaysInMonth(iYear, iMonth); j++)
                 {
-                    dayname = FSLibrary.DateTimeUtil.GetFirstDayName(iYear, iMonth, j);
+                    dayname = FSLibraryCore.DateTimeUtil.GetFirstDayName(iYear, iMonth, j);
                     if (dayname == "L") week = !week;
 
                     if (week)
@@ -726,13 +726,13 @@ namespace FSFormControlsCore
                         if (d.startDate < InitialDate)
                             startindex = 0;
                         else
-                            startindex = Convert.ToInt32(FSLibrary.DateTimeUtil.TotalDays(InitialDate, d.startDate));
+                            startindex = Convert.ToInt32(FSLibraryCore.DateTimeUtil.TotalDays(InitialDate, d.startDate));
 
 
                         if (d.endDate > EndDate)
-                            endindex = Convert.ToInt32(FSLibrary.DateTimeUtil.TotalDays(InitialDate, EndDate));
+                            endindex = Convert.ToInt32(FSLibraryCore.DateTimeUtil.TotalDays(InitialDate, EndDate));
                         else
-                            endindex = Convert.ToInt32(FSLibrary.DateTimeUtil.TotalDays(InitialDate, d.endDate));
+                            endindex = Convert.ToInt32(FSLibraryCore.DateTimeUtil.TotalDays(InitialDate, d.endDate));
 
                         dbpp.Blocks.Add("barspace" + f + g + "(" + (startindex - blIn) + ")",
                             CellWidth * (startindex - blIn), Color.White);
@@ -750,7 +750,7 @@ namespace FSFormControlsCore
                     }
 
                     dbpp.Blocks.Add("barend" + f + g,
-                        (int) (FSLibrary.DateTimeUtil.TotalDays(EndDate, InitialDate) - blIn + 1) * CellWidth,
+                        (int) (FSLibraryCore.DateTimeUtil.TotalDays(EndDate, InitialDate) - blIn + 1) * CellWidth,
                         Color.White);
 
                     f = f + 1;

@@ -1690,7 +1690,7 @@ namespace FSDatabaseCore
         //            }
         //            catch (System.Exception e)
         //            {
-        //                throw new FSLibrary.Exception(e);
+        //                throw new FSLibraryCore.Exception(e);
         //            }
         //        }
 
@@ -1987,7 +1987,7 @@ namespace FSDatabaseCore
                                         sData += Functions.ValorBool(v) + ",";
                                         break;
                                     case Utils.FieldTypeEnum.DateTime:
-                                        if (!FSLibrary.DateTimeUtil.IsDate(v))
+                                        if (!FSLibraryCore.DateTimeUtil.IsDate(v))
                                             sData += "Null,";
                                         else
                                             //DateTime.cDate2(DateTime.cDate3(v), DateFormat, DateSeparator)
@@ -2079,7 +2079,7 @@ namespace FSDatabaseCore
                                         sFields = sFields + "[" + campo + "]='" + Functions.ValorBool(v) + "',";
                                         break;
                                     case Utils.FieldTypeEnum.DateTime:
-                                        if (!FSLibrary.DateTimeUtil.IsDate(v))
+                                        if (!FSLibraryCore.DateTimeUtil.IsDate(v))
                                             sFields = sFields + "[" + campo + "]=Null,";
                                         else
                                             //DateTime.cDate2(DateTime.cDate3(v), DateFormat, DateSeparator)
@@ -2156,7 +2156,7 @@ namespace FSDatabaseCore
                                     sData += "false,";
                                 break;
                             case "system.datetime":
-                                if (FSLibrary.DateTimeUtil.IsDate(s))
+                                if (FSLibraryCore.DateTimeUtil.IsDate(s))
                                     //DateTime.cDate2(DateTime.cDate3(s), DateFormat, DateSeparator)
                                     sData += Utils.FormatShortDate(Convert.ToDateTime(s)) + ",";
                                 else
@@ -2231,7 +2231,7 @@ namespace FSDatabaseCore
                                 break;
                             case Utils.FieldTypeEnum.DateTime:
                                 var dateTime = registro.get_List(f).Valor;
-                                if (FSLibrary.DateTimeUtil.IsDate(dateTime))
+                                if (FSLibraryCore.DateTimeUtil.IsDate(dateTime))
                                 {
                                     if (dateTime.Contains(" ")) // si tiene separador de hora
                                         sData.Append(Utils.m_simbDate + dateTime + Utils.m_simbDate + ",");
@@ -2314,7 +2314,7 @@ namespace FSDatabaseCore
                                     sData += "[" + campo + "]=false,";
                                 break;
                             case "system.datetime":
-                                if (FSLibrary.DateTimeUtil.IsDate(s))
+                                if (FSLibraryCore.DateTimeUtil.IsDate(s))
                                     //DateTime.cDate2(DateTime.cDate3(s), DateFormat, DateSeparator)
                                     sData += "[" + campo + "]=" + Utils.FormatShortDate(Convert.ToDateTime(s)) + ",";
                                 else
@@ -2379,7 +2379,7 @@ namespace FSDatabaseCore
                                     sData += "[" + campo + "]=false,";
                                 break;
                             case Utils.FieldTypeEnum.DateTime:
-                                if (FSLibrary.DateTimeUtil.IsDate(registro.get_List(f).Valor))
+                                if (FSLibraryCore.DateTimeUtil.IsDate(registro.get_List(f).Valor))
                                     //DateTime.cDate2(DateTime.cDate3(registro.get_List(f).Valor), DateFormat, DateSeparator)
                                     sData += "[" + campo + "]=" +
                                             Utils.FormatShortDate(Convert.ToDateTime(registro.get_List(f).Valor)) + ",";

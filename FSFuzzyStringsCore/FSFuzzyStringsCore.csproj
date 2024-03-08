@@ -16,10 +16,10 @@
     <OutputPath>bin\Debug Todo\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
   </ItemGroup>
 </Project>

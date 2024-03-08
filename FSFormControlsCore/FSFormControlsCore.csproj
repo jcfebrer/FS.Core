@@ -255,12 +255,12 @@
   <ItemGroup>
     <ProjectReference Include="..\FSDatabaseCore\FSDatabaseCore.csproj" />
     <ProjectReference Include="..\FSDiskCore\FSDiskCore.csproj" />
-    <ProjectReference Include="..\FSExcel\FSExcel.csproj" />
+    <ProjectReference Include="..\FSExcelCore\FSExcelCore.csproj" />
     <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
-    <ProjectReference Include="..\FSGraphics\FSGraphics.csproj" />
+    <ProjectReference Include="..\FSGraphicsCore\FSGraphicsCore.csproj" />
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
     <ProjectReference Include="..\FSMailCore\FSMailCore.csproj" />
-    <ProjectReference Include="..\FSMouseKeyboardLibrary\FSMouseKeyboardLibrary.csproj" />
+    <ProjectReference Include="..\FSMouseKeyboardLibraryCore\FSMouseKeyboardLibraryCore.csproj" />
     <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
     <ProjectReference Include="..\FSQueryBuilderCore\FSQueryBuilderCore.csproj" />
     <ProjectReference Include="..\FSSecurityCore\FSSecurityCore.csproj" />

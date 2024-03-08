@@ -8,7 +8,7 @@ using System.Data;
 using System.Drawing;
 using System.Drawing.Design;
 using System.Drawing.Printing;
-using DateTimeUtil = FSLibrary.DateTimeUtil;
+using DateTimeUtil = FSLibraryCore.DateTimeUtil;
 
 #endregion
 

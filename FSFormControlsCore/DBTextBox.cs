@@ -7,7 +7,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 using FSLibraryCore;
-using DateTimeUtil = FSLibrary.DateTimeUtil;
+using DateTimeUtil = FSLibraryCore.DateTimeUtil;
 using FSExceptionCore;
 
 #endregion
@@ -1278,7 +1278,7 @@ namespace FSFormControlsCore
         //                         e.Value = "0";
         //                     }
         //                     e.Value = Convert.ToDouble(e.Value).ToString("c");
-        //                     if (FSLibrary.Functions.NumeroDecimal(e.Value) > m_MaxValue)
+        //                     if (FSLibraryCore.Functions.NumeroDecimal(e.Value) > m_MaxValue)
         //                     {
         //                         e.Value = m_MaxValue;
         //                     }
@@ -1293,7 +1293,7 @@ namespace FSFormControlsCore
         //                         e.Value = "0";
         //                     }
         //                     e.Value = Convert.ToDouble(e.Value).ToString("n" + Decimals);
-        //                     if (FSLibrary.Functions.NumeroDecimal(e.Value) > m_MaxValue)
+        //                     if (FSLibraryCore.Functions.NumeroDecimal(e.Value) > m_MaxValue)
         //                     {
         //                         e.Value = m_MaxValue;
         //                     }
@@ -1304,7 +1304,7 @@ namespace FSFormControlsCore
         //                         e.Value = "0";
         //                     }
         //                     e.Value = Convert.ToDouble(e.Value).ToString("n" + Decimals);
-        //                     if (FSLibrary.Functions.NumeroDecimal(e.Value) > m_MaxValue)
+        //                     if (FSLibraryCore.Functions.NumeroDecimal(e.Value) > m_MaxValue)
         //                     {
         //                         e.Value = m_MaxValue;
         //                     }
@@ -1325,7 +1325,7 @@ namespace FSFormControlsCore
         //                             e.Value = e.Value.ToString().ToLower();
         //                             break;
         //                         case TypeString.Capitalize:
-        //                             e.Value = FSLibrary.TextUtil.PCase(Convert.ToString(e.Value));
+        //                             e.Value = FSLibraryCore.TextUtil.PCase(Convert.ToString(e.Value));
         //                             break;
         //                         case TypeString.Normal:
         //                             break;
@@ -1389,7 +1389,7 @@ namespace FSFormControlsCore
         //                     {
         //                         if (Convert.ToString(e.Value) != "")
         //                         {
-        //                             e.Value = FSLibrary.DateTime.ShortDate(Convert.ToDateTime(e.Value));
+        //                             e.Value = FSLibraryCore.DateTime.ShortDate(Convert.ToDateTime(e.Value));
         //                         }
         //                         else
         //                         {

@@ -97,7 +97,7 @@ namespace FSNetworkCore
             bufferStreamWriter.Close();
             bufferStream.Close();
 
-			string str = FSLibrary.NumberUtils.BytesToString(bufferBytes);
+			string str = FSLibraryCore.NumberUtils.BytesToString(bufferBytes);
             return str;
         }
 

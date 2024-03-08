@@ -1,7 +1,7 @@
 #region
 
 using FSExceptionCore;
-using FSMouseKeyboardLibrary;
+using FSMouseKeyboardLibraryCore;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;

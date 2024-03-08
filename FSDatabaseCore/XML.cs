@@ -43,8 +43,8 @@ namespace FSDatabaseCore
             {
                 m_dataTable = new DataTable();
 
-                if (File.Exists(FSLibrary.TextUtil.Replace(m_fileName, ".xml", ".xsd")))
-                    m_dataTable.ReadXmlSchema(FSLibrary.TextUtil.Replace(m_fileName, ".xml", ".xsd"));
+                if (File.Exists(FSLibraryCore.TextUtil.Replace(m_fileName, ".xml", ".xsd")))
+                    m_dataTable.ReadXmlSchema(FSLibraryCore.TextUtil.Replace(m_fileName, ".xml", ".xsd"));
                 if (File.Exists(m_fileName))
                     m_dataTable.ReadXml(m_fileName);
                 else
@@ -138,7 +138,7 @@ namespace FSDatabaseCore
 
             //si hay fechas, las cambiamos al formato MM/dd/yyyy
             if (filter.IndexOf('#') > 0)
-                filter = FSLibrary.DateTimeUtil.ToISO_8601(filter);
+                filter = FSLibraryCore.DateTimeUtil.ToISO_8601(filter);
 
             DataRow[] rows = m_dataTable.Select(filter);
             if (rows.Length == 0)

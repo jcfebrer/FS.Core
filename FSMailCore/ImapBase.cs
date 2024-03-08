@@ -5,8 +5,8 @@ using System.Net.Sockets;
 using System.IO;
 using System.Security.Authentication;
 using System.Security.Cryptography.X509Certificates;
-using FSTrace;
-using FSLibrary;
+using FSTraceCore;
+using FSLibraryCore;
 
 namespace FSMailCore
 {

@@ -53,11 +53,11 @@ namespace FSNetworkCore
             string queryResponse = "";
             try
             {
-                string query = "M-SEARCH * HTTP/1.1" + FSLibrary.TextUtil.ControlChars.CrLf +
-                    "HOST: " + firewallIP + ":1900" + FSLibrary.TextUtil.ControlChars.CrLf +
-                    "ST: upnp:rootdevice" + FSLibrary.TextUtil.ControlChars.CrLf +
-                    "MAN: \"ssdp:discover\"" + FSLibrary.TextUtil.ControlChars.CrLf +
-                    "MX: 3" + FSLibrary.TextUtil.ControlChars.CrLf + FSLibrary.TextUtil.ControlChars.CrLf;
+                string query = "M-SEARCH * HTTP/1.1" + FSLibraryCore.TextUtil.ControlChars.CrLf +
+                    "HOST: " + firewallIP + ":1900" + FSLibraryCore.TextUtil.ControlChars.CrLf +
+                    "ST: upnp:rootdevice" + FSLibraryCore.TextUtil.ControlChars.CrLf +
+                    "MAN: \"ssdp:discover\"" + FSLibraryCore.TextUtil.ControlChars.CrLf +
+                    "MX: 3" + FSLibraryCore.TextUtil.ControlChars.CrLf + FSLibraryCore.TextUtil.ControlChars.CrLf;
 
                 // use sockets instead of UdpClient so we can set a timeout easier
                 Socket client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
@@ -164,7 +164,7 @@ namespace FSNetworkCore
             string ret = sr.ReadToEnd();
             sr.Close();
 
-            Debug.WriteLine("Setting port forwarding:" + portToForward.ToString() + FSLibrary.TextUtil.ControlChars.Cr + FSLibrary.TextUtil.ControlChars.Cr + ret);
+            Debug.WriteLine("Setting port forwarding:" + portToForward.ToString() + FSLibraryCore.TextUtil.ControlChars.Cr + FSLibraryCore.TextUtil.ControlChars.Cr + ret);
         }
     }
 }

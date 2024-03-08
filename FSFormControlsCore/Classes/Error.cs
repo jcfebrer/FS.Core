@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using FSExceptionCore;
 using FSLibraryCore;
-using DateTimeUtil = FSLibrary.DateTimeUtil;
+using DateTimeUtil = FSLibraryCore.DateTimeUtil;
 
 #endregion
 
@@ -18,7 +18,7 @@ namespace FSFormControlsCore
         public static void ErrorMessage(Form frm, object sender, string message, string title, MessageBoxIcon icon,
             Exception ex, bool Silent)
         {
-            if (FSException.ExceptionUtil.IsCritical(ex))
+            if (FSExceptionCore.ExceptionUtil.IsCritical(ex))
                 throw ex;
 
             try

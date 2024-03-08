@@ -1,0 +1,67 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <NoWin32Manifest>False</NoWin32Manifest>
+    <DelaySign>False</DelaySign>
+    <NoStdLib>False</NoStdLib>
+    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug Todo\</OutputPath>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|x86'">
+    <OutputPath>bin\x86\Debug Todo\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="common\CodeList_CurrencyCode_ISO_7_04.cs" />
+    <None Include="common\CodeList_LanguageCode_ISO_7_04.cs" />
+    <None Include="common\CodeList_MIMEMediaTypeCode_IANA_7_04.cs" />
+    <None Include="common\CodeList_UnitCode_UNECE_7_04.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="common\CodeList_CurrencyCode_ISO_7_04.cs" />
+    <Compile Remove="common\CodeList_LanguageCode_ISO_7_04.cs" />
+    <Compile Remove="common\CodeList_MIMEMediaTypeCode_IANA_7_04.cs" />
+    <Compile Remove="common\CodeList_UnitCode_UNECE_7_04.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
+    <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>On</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'x86' ">
+    <BaseAddress>4194304</BaseAddress>
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>FS.Ubl2</AssemblyTitle>
+    <Description>Oasis Ubl2 updated class Library</Description>
+    <Company>IT Larsen</Company>
+    <Product>UBL Larsen</Product>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <FileVersion>2.0.0.0</FileVersion>
+  </PropertyGroup>
+</Project>

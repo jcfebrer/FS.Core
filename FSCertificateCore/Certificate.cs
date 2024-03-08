@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 
-namespace FSCertificate
+namespace FSCertificateCore
 {
     /// <summary>
     ///     Funciones para la gestión de certificados.

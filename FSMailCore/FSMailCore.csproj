@@ -16,9 +16,9 @@
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSCertificate\FSCertificate.csproj" />
-    <ProjectReference Include="..\FSCrypto\FSCrypto.csproj" />
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
-    <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
+    <ProjectReference Include="..\FSCertificateCore\FSCertificateCore.csproj" />
+    <ProjectReference Include="..\FSCryptoCore\FSCryptoCore.csproj" />
+    <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
+    <ProjectReference Include="..\FSTraceCore\FSTraceCore.csproj" />
   </ItemGroup>
 </Project>

@@ -97,7 +97,7 @@ namespace FSFuzzyStrings
 			// Normalize input
 			text = text.ToUpper();
 			text = text.Replace(" ","");
-			text = FSLibrary.TextUtil.OnlyAlfaNumeric(text);
+			text = FSLibraryCore.TextUtil.OnlyAlfaNumeric(text);
 			if (text.Length == 0)
 				return text;
 

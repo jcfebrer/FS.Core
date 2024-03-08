@@ -1,9 +1,9 @@
-﻿using FSTrace;
+﻿using FSTraceCore;
 using System;
 using System.Collections;
 using System.Collections.Specialized;
 using System.Text;
-using FSLibrary;
+using FSLibraryCore;
 using System.Collections.Generic;
 
 namespace FSMailCore
@@ -1584,7 +1584,7 @@ namespace FSMailCore
 				{
 					if (part.Headers[IMAP_MESSAGE_CONTENT_TRANSFER_ENCODING].ToLower().IndexOf(IMAP_MESSAGE_BASE64_ENCODING) >= 0)
 					{
-						part.Data = FSCrypto.Base64.Decode(part.Data);
+						part.Data = FSCryptoCore.Base64.Decode(part.Data);
 					}
 					if (part.Headers["content-transfer-encoding"].ToLower().IndexOf(IMAP_MESSAGE_QUOTED_PRINTABLE_ENCODING) >= 0)
 					{

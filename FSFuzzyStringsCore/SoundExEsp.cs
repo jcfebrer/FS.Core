@@ -14,19 +14,19 @@ namespace FSFuzzyStrings
 			// eñe mayuscula seguido de vocales mayuscula con acentos
 			text = text.ToUpper();
 			text = text.Replace(" H"," ");
-			if(text.StartsWith("H"))text = FSLibrary.TextUtil.Substring(text, 1);
+			if(text.StartsWith("H"))text = FSLibraryCore.TextUtil.Substring(text, 1);
 			
-			text = FSLibrary.TextUtil.OnlyAlfaNumeric(text);
+			text = FSLibraryCore.TextUtil.OnlyAlfaNumeric(text);
 			
-			text = FSLibrary.TextUtil.Translate(text, "ÑÁÉÍÓÚÄËÏÖÜÀÈÌÒÙ", "NAEIOUAEIOUAEIOU");
+			text = FSLibraryCore.TextUtil.Translate(text, "ÑÁÉÍÓÚÄËÏÖÜÀÈÌÒÙ", "NAEIOUAEIOUAEIOU");
 			return text;
 		}
 
 		private static string LetrasSimilares(string text)
 		{
-			string pri_letra = FSLibrary.TextUtil.Substring(text, 0, 1);
-			string seg_letra = FSLibrary.TextUtil.Substring(text, 1, 1);
-			string resto = FSLibrary.TextUtil.Substring(text, 1);
+			string pri_letra = FSLibraryCore.TextUtil.Substring(text, 0, 1);
+			string seg_letra = FSLibraryCore.TextUtil.Substring(text, 1, 1);
+			string resto = FSLibraryCore.TextUtil.Substring(text, 1);
 			string letra_ret = pri_letra;
 
 			if (pri_letra == "V")
@@ -62,30 +62,30 @@ namespace FSFuzzyStrings
 
 		private static string QuitamosVocales(string text)
 		{
-			return FSLibrary.TextUtil.Translate(text, "@AEIOUHWY", "@");
+			return FSLibraryCore.TextUtil.Translate(text, "@AEIOUHWY", "@");
 		}
 
 		private static string AsignamosPesos(string text)
 		{
 			text=text.Replace(" ","");
-			return FSLibrary.TextUtil.Translate(text, "BPFVCGKSXZDTLMNRQJ", "111122222233455677");
+			return FSLibraryCore.TextUtil.Translate(text, "BPFVCGKSXZDTLMNRQJ", "111122222233455677");
 		}
 
 		private static string QuitamosNumerosIgualesAdyacentes(string text, int length)
 		{
-			string ant = FSLibrary.TextUtil.Substring(text, 0, 1);
+			string ant = FSLibraryCore.TextUtil.Substring(text, 0, 1);
 			string act = text;
 			string ret_num = ant;
   
 			if (text != null && text.Length > 1) {
 				for (int i = 1; i <= text.Length - 1; i++) {
-					act = FSLibrary.TextUtil.Substring(text, i, 1);
+					act = FSLibraryCore.TextUtil.Substring(text, i, 1);
 					if (act != ant) {
 						ret_num = ret_num + act;
 						ant = act;
 					}
 				}
-				ret_num = FSLibrary.TextUtil.Substring(ret_num, 0, length -1);
+				ret_num = FSLibraryCore.TextUtil.Substring(ret_num, 0, length -1);
 			} else if (text.Length == 1) {
 				ret_num = text;
 			} else {
@@ -107,9 +107,9 @@ namespace FSFuzzyStrings
 			// 3. simplificar combinaciones dobles
 			ret = CombinacionesDobles(ret);
 			// 4. retener la primera letra
-			pri = FSLibrary.TextUtil.Substring(ret, 0, 1);
+			pri = FSLibraryCore.TextUtil.Substring(ret, 0, 1);
 			// 5. tomar la subcadena derecha
-			subcadena = FSLibrary.TextUtil.Substring(ret, 1);
+			subcadena = FSLibraryCore.TextUtil.Substring(ret, 1);
 			// 6. eliminar vocales foneticas
 			subcadena = QuitamosVocales(subcadena);
 			// 7. mapeo letras foneticamente equivalentes a numeros

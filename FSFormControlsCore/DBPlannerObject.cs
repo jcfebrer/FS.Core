@@ -8,7 +8,7 @@ using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using FSLibraryCore;
 using FSExceptionCore;
-using FSGraphics;
+using FSGraphicsCore;
 
 #endregion
 

@@ -16,7 +16,7 @@ namespace FSDiskCore
             long TotalNumberOfBytes;
             long TotalNumberOfFreeBytes;
 
-            bool success = FSLibrary.Win32API.GetDiskFreeSpaceEx(uncPath,
+            bool success = FSLibraryCore.Win32API.GetDiskFreeSpaceEx(uncPath,
                                               out FreeBytesAvailable,
                                               out TotalNumberOfBytes,
                                               out TotalNumberOfFreeBytes);
@@ -32,7 +32,7 @@ namespace FSDiskCore
             long TotalNumberOfBytes;
             long TotalNumberOfFreeBytes;
 
-            bool success = FSLibrary.Win32API.GetDiskFreeSpaceEx(uncPath,
+            bool success = FSLibraryCore.Win32API.GetDiskFreeSpaceEx(uncPath,
                                               out FreeBytesAvailable,
                                               out TotalNumberOfBytes,
                                               out TotalNumberOfFreeBytes);

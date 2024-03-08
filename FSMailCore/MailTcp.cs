@@ -3,7 +3,7 @@
 using System;
 using System.Net.Sockets;
 using System.Text;
-using FSLibrary;
+using FSLibraryCore;
 using DateTime = System.DateTime;
 
 #endregion

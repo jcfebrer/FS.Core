@@ -36,10 +36,10 @@ namespace FSFormControlsCore
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
-            get { return FSLibrary.DateTimeUtil.ShortDate(DateTimePicker1.Value); }
+            get { return FSLibraryCore.DateTimeUtil.ShortDate(DateTimePicker1.Value); }
             set
             {
-                if (FSLibrary.DateTimeUtil.IsDate(value)) DateTimePicker1.Value = DateTime.Parse(value);
+                if (FSLibraryCore.DateTimeUtil.IsDate(value)) DateTimePicker1.Value = DateTime.Parse(value);
             }
         }
 
@@ -275,7 +275,7 @@ namespace FSFormControlsCore
         {
             if (AllowNullValue)
             {
-                if (!FSLibrary.DateTimeUtil.IsDate(Text + "")) HideDate();
+                if (!FSLibraryCore.DateTimeUtil.IsDate(Text + "")) HideDate();
                 if (IsNull) HideDate();
             }
 

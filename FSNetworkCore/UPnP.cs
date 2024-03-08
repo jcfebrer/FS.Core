@@ -1,5 +1,5 @@
 ﻿using FSExceptionCore;
-using FSTrace;
+using FSTraceCore;
 using NATUPNPLib;
 using System;
 using System.Collections.Generic;

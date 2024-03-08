@@ -276,7 +276,7 @@ namespace FSDatabaseCore
                         switch (field.Tipo)
                         {
                             case FieldTypeEnum.DateTime:
-                                if (!FSLibrary.DateTimeUtil.IsDate(value) && value != "")
+                                if (!FSLibraryCore.DateTimeUtil.IsDate(value) && value != "")
                                     throw new ExceptionUtil("El valor: [" + value + "], no es una fecha valida.",
                                         ExceptionUtil.ExceptionType.Information);
                                 break;

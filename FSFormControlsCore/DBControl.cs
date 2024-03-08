@@ -2238,7 +2238,7 @@ namespace FSFormControlsCore
         private string reemplazaMacros(string cad)
         {
             var cadR = cad;
-            var date = FSLibrary.DateTimeUtil.ShortDate(DateTime.Now);
+            var date = FSLibraryCore.DateTimeUtil.ShortDate(DateTime.Now);
             cadR = TextUtil.Replace(cadR, "%fecha%", date);
             var time = DateTime.Now.ToShortTimeString();
             cadR = TextUtil.Replace(cadR, "%hora%", time);

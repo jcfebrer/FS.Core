@@ -10,7 +10,7 @@ using System.Globalization;
 using System.Windows.Forms;
 using FSLibraryCore;
 using FSExceptionCore;
-using FSGraphics;
+using FSGraphicsCore;
 
 #endregion
 

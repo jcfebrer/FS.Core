@@ -18,7 +18,7 @@ using System.Web;
 using System.Collections.Generic;
 using System.Net.Mime;
 using System.IO;
-using FSTrace;
+using FSTraceCore;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -167,7 +167,7 @@ namespace FSMailCore
 
             if (Firmar)
             {
-                Mail.Body = FSCertificate.Certificate.SignMessage(sBody, Certificado);
+                Mail.Body = FSCertificateCore.Certificate.SignMessage(sBody, Certificado);
             }
             else
             {
@@ -182,7 +182,7 @@ namespace FSMailCore
 					attachment.ContentDisposition.Inline = true;
 					attachment.ContentDisposition.DispositionType = DispositionTypeNames.Inline;
 					attachment.ContentId = Guid.NewGuid().ToString();
-					attachment.ContentType.MediaType = FSLibrary.MimeType.GetMimeType(attachmentPath);
+					attachment.ContentType.MediaType = FSLibraryCore.MimeType.GetMimeType(attachmentPath);
 					attachment.ContentType.Name = Path.GetFileName(attachmentPath);
 
 					Mail.Attachments.Add(attachment);

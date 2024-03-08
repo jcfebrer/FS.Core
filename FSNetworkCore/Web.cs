@@ -304,10 +304,10 @@ namespace FSNetworkCore
             string[] datos = dato.ToString().Split(',');
             dato = datos[datos.Length - 1];
 
-            if (!FSLibrary.DateTimeUtil.IsDate(dato.ToString()))
+            if (!FSLibraryCore.DateTimeUtil.IsDate(dato.ToString()))
 				return "";
 
-			return FSLibrary.DateTimeUtil.ShortDate(Convert.ToDateTime(dato));
+			return FSLibraryCore.DateTimeUtil.ShortDate(Convert.ToDateTime(dato));
 		}
 
 

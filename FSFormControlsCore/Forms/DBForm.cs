@@ -11,7 +11,7 @@ using System.IO;
 using System.Windows.Forms;
 using FSLibraryCore;
 using FSExceptionCore;
-using FSGraphics;
+using FSGraphicsCore;
 using FSSystemInfoCore;
 
 #endregion

@@ -60,7 +60,7 @@ namespace FSNetworkCore
         {
             string postHttpReturn = null;
 
-            FSLibrary.TextUtil.Replace(url, "//", "/");
+            FSLibraryCore.TextUtil.Replace(url, "//", "/");
             HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
             myRequest.ContentType = "application/x-www-form-urlencoded";
             myRequest.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
@@ -87,7 +87,7 @@ namespace FSNetworkCore
         {
             string getHTTPReturn = null;
 
-            FSLibrary.TextUtil.Replace(url, "//", "/");
+            FSLibraryCore.TextUtil.Replace(url, "//", "/");
             HttpWebRequest myRequest = (HttpWebRequest)(WebRequest.Create(url));
             myRequest.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
             myRequest.Headers.Add("XXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXX");
@@ -132,7 +132,7 @@ namespace FSNetworkCore
         {
             string postHttpReturn = null;
 
-            FSLibrary.TextUtil.Replace(url, "//", "/");
+            FSLibraryCore.TextUtil.Replace(url, "//", "/");
             HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
             myRequest.ContentType = "application/x-www-form-urlencoded";
             myRequest.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
@@ -163,7 +163,7 @@ namespace FSNetworkCore
         {
             string loginHttpReturn = null;
 
-            FSLibrary.TextUtil.Replace(url, "//", "/");
+            FSLibraryCore.TextUtil.Replace(url, "//", "/");
             HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
             myRequest.ContentType = "application/x-www-form-urlencoded";
             myRequest.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
@@ -206,7 +206,7 @@ namespace FSNetworkCore
                 c.Value = transTemp15.Split('=')[1];
                 c.Path = "/";
                 c.Domain = "untoldoblivion.com";
-                string transTemp18 = s.Substring(FSLibrary.TextUtil.IndexOf(s, ";") + 1);
+                string transTemp18 = s.Substring(FSLibraryCore.TextUtil.IndexOf(s, ";") + 1);
                 string transTemp19 = ";";
                 foreach (string s2 in transTemp18.Split(transTemp19.Split("".ToCharArray()), StringSplitOptions.None))
                 {
@@ -564,19 +564,19 @@ namespace FSNetworkCore
         //public static bool IsLocalhost()
         //{
         //    string host = HttpContext.Current.Request.Url.Host;
-        //    return (host == null || FSLibrary.TextUtil.Substring(host, 0, 9) == "localhost" ||
-        //        FSLibrary.TextUtil.Substring(host, 0, 9) == "127.0.0.1" || FSLibrary.TextUtil.Substring(host, 0, 3) == "10." ||
-        //        FSLibrary.TextUtil.Substring(host, 0, 4) == "192.");
+        //    return (host == null || FSLibraryCore.TextUtil.Substring(host, 0, 9) == "localhost" ||
+        //        FSLibraryCore.TextUtil.Substring(host, 0, 9) == "127.0.0.1" || FSLibraryCore.TextUtil.Substring(host, 0, 3) == "10." ||
+        //        FSLibraryCore.TextUtil.Substring(host, 0, 4) == "192.");
         //}
 
         //public static string IpAddress()
         //{
         //    string strIp = null;
         //    HttpContext context = new HttpContext();
-        //    strIp = FSLibrary.Functions.Valor(context.GetServerVariable("HTTP_X_FORWARDED_FOR"));
+        //    strIp = FSLibraryCore.Functions.Valor(context.GetServerVariable("HTTP_X_FORWARDED_FOR"));
         //    if (strIp == "")
         //    {
-        //        strIp = FSLibrary.Functions.Valor(context.GetServerVariable("REMOTE_ADDR"));
+        //        strIp = FSLibraryCore.Functions.Valor(context.GetServerVariable("REMOTE_ADDR"));
         //    }
         //    if (strIp == "::1") strIp = "127.0.0.1";
         //    return strIp;

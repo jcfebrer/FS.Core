@@ -975,7 +975,7 @@ namespace FSFormControlsCore
                                 //errorText = "No es una cuenta de correo válida. Columna: [" + col.HeaderCaption + "] Valor: [" + e.FormattedValue.ToString() + "]";
                                 break;
                             case DBColumn.ColumnTypes.DateColumn:
-                                check = FSLibrary.DateTimeUtil.IsDate(e.FormattedValue.ToString());
+                                check = FSLibraryCore.DateTimeUtil.IsDate(e.FormattedValue.ToString());
                                 errorText = "No es una fecha válida. Columna: [" + col.HeaderCaption + "] Valor: [" + e.FormattedValue.ToString() + "]";
                                 break;
                         }
@@ -1568,7 +1568,7 @@ namespace FSFormControlsCore
                     }
                 }
 
-                FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
+                FSLibraryCore.Clipboard.SetDataObject(sb.ToString(), true);
             }
             catch (ExceptionUtil e)
             {
@@ -1598,7 +1598,7 @@ namespace FSFormControlsCore
                 iMaxColIndex = GetMaxColumnIndex();
                 sb.Append(GetGridRow(iRow, iMaxColIndex));
 
-                FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
+                FSLibraryCore.Clipboard.SetDataObject(sb.ToString(), true);
             }
             catch (ExceptionUtil e)
             {
@@ -1638,7 +1638,7 @@ namespace FSFormControlsCore
                     }
                 }
 
-                FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
+                FSLibraryCore.Clipboard.SetDataObject(sb.ToString(), true);
             }
             catch (ExceptionUtil e)
             {

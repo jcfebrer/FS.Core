@@ -1,0 +1,74 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <OutputType>Library</OutputType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release</OutputPath>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug Todo\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug Todo\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Update="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="FSReport.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CrystalReports.AxShockwaveFlashObjects" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.Engine" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.ClientDoc" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.CommLayer" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.CommonControls" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.CommonObjectModel" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.Controllers" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.CubeDefModel" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.DataDefModel" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.DataSetConversion" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.ObjectFactory" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.Prompting" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.ReportDefModel" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportAppServer.XmlSerialize" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ReportSource" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.Shared" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.ShockwaveFlashObjects" Version="13.0.4003" />
+    <PackageReference Include="CrystalReports.Windows.Forms" Version="13.0.4003" />
+    <PackageReference Include="log4net" Version="2.0.16" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
+    <ProjectReference Include="..\FSFormControlsCore\FSFormControlsCore.csproj" />
+    <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
+  </ItemGroup>
+</Project>
