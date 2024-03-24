@@ -257,11 +257,11 @@ namespace FSFormControls
                 ctr is SplitContainer | ctr is SplitterPanel | ctr is DBFrame)
                 return true;
 
-            if (ctr is Control)
-            {
-                if (((Control)ctr).Controls != null && ((Control)ctr).Controls.Count > 0)
-                    return true;
-            }
+            //if (ctr is Control)
+            //{
+            //    if (((Control)ctr).Controls != null && ((Control)ctr).Controls.Count > 0)
+            //        return true;
+            //}
 
             return false;
         }

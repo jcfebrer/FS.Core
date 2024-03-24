@@ -715,8 +715,6 @@ namespace FSFormControlsCore
                 return;
 
 
-            PutDBConnection(frm);
-
             foreach (Control ctr in frm)
                 if (FunctionsForms.IsContainer(ctr))
                 {
@@ -768,24 +766,6 @@ namespace FSFormControlsCore
                         ((DBGridView)ctr).Fill();
                 }
         }
-
-        private void PutDBConnection(Control.ControlCollection frm)
-        {
-            if (frm == null) return;
-
-            foreach (Control ctr in frm)
-                if (FunctionsForms.IsContainer(ctr))
-                {
-                    PutDBConnection(ctr.Controls);
-                }
-                //else
-                //{
-                //    if (ctr is DBControl)
-                //        if (((DBControl) ctr).DBConnection == null)
-                //            ((DBControl) ctr).DBConnection = DBConnection;
-                //}
-        }
-
 
         private void mnuConfigurarPagina_Click(object sender, EventArgs e)
         {

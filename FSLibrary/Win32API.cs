@@ -3304,13 +3304,13 @@ namespace FSLibrary
         public delegate int EnumWindowsProc(IntPtr hwnd, int lParam);
 
         /// <summary>
-        /// Función que devuelve la ventana en x,y
+        /// Función que llama a lpEnumFunc con los parametros lParam para enumerar las ventanas activas.
         /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
+        /// <param name="lpEnumFunc"></param>
+        /// <param name="lParam"></param>
         /// <returns></returns>
         [DllImport("user32.Dll")]
-        public static extern int EnumWindows(EnumWindowsProc x, int y);
+        public static extern int EnumWindows(EnumWindowsProc lpEnumFunc, int lParam);
 
         /// <summary>
         /// Devuelve los hijos de una ventana
