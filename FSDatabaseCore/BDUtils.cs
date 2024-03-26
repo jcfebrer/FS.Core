@@ -112,33 +112,48 @@ namespace FSDatabaseCore
 
         public BdUtils(string connectionString, string providerName)
         {
-            ConnString = connectionString;
-            ProviderName = providerName;
+            if (String.IsNullOrEmpty(connectionString) || String.IsNullOrEmpty(providerName))
+                throw new Exception("Nombre de conexión incorrecta o nombre de proveedor incorrecto.");
+            else
+            {
+                ConnString = connectionString;
+                ProviderName = providerName;
 
-            SetVariables();
-            SetBDType();
-            SetDBMSType();
+                SetVariables();
+                SetBDType();
+                SetDBMSType();
+            }
         }
 
 
         public BdUtils(ConnectionStringSettings connectionString)
         {
-            ConnString = connectionString.ConnectionString;
-            ProviderName = connectionString.ProviderName;
+            if (connectionString != null)
+            {
+                ConnString = connectionString.ConnectionString;
+                ProviderName = connectionString.ProviderName;
 
-            SetVariables();
-            SetBDType();
-            SetDBMSType();
+                SetVariables();
+                SetBDType();
+                SetDBMSType();
+            }
+            else
+                throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabase.Contants");
         }
 
 
         public BdUtils(string connectionString, Utils.ServerTypeEnum typeBd)
         {
-            ConnString = connectionString;
-            Utils.ServerType = typeBd;
+            if (!String.IsNullOrEmpty(connectionString))
+            {
+                ConnString = connectionString;
+                Utils.ServerType = typeBd;
 
-            SetVariables();
-            SetDBMSType();
+                SetVariables();
+                SetDBMSType();
+            }
+            else
+                throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabase.Contants");
         }
 
         public BdUtils(string connStringEntryName)
