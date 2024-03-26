@@ -438,7 +438,7 @@ namespace FSFormControls
             set
             {
                 if (value == null)
-                    m_CollapsedImage = new Bitmap(GetType(), "DBGroupBoxXPCollapse.jpg");
+                    m_CollapsedImage = Resources.DBGroupBoxXPCollapse;
                 else
                     m_CollapsedImage = value;
                 Invalidate();
@@ -454,7 +454,7 @@ namespace FSFormControls
             set
             {
                 if (value == null)
-                    m_ExpandedImage = new Bitmap(GetType(), "DBGroupBoxXPExpand.jpg");
+                    m_ExpandedImage = Resources.DBGroupBoxXPExpand;
                 else
                     m_ExpandedImage = value;
                 Invalidate();
@@ -470,7 +470,7 @@ namespace FSFormControls
             set
             {
                 if (value == null)
-                    m_CollapsedHImage = new Bitmap(GetType(), "DBGroupBoxXPCollapse_h.jpg");
+                    m_CollapsedHImage = Resources.DBGroupBoxXPCollapse_h;
                 else
                     m_CollapsedHImage = value;
                 Invalidate();
@@ -486,7 +486,7 @@ namespace FSFormControls
             set
             {
                 if (value == null)
-                    m_ExpandedHImage = new Bitmap(GetType(), "DBGroupBoxXPExpand_h.jpg");
+                    m_ExpandedHImage = Resources.DBGroupBoxXPExpand_h;
                 else
                     m_ExpandedHImage = value;
                 Invalidate();
