@@ -30,9 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTest));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewRow dataGridViewRow1 = new System.Windows.Forms.DataGridViewRow();
             this.dbTabControl1 = new FSFormControls.DBTabControl();
             this.tabPage1 = new FSFormControls.DBTabPage();
+            this.dbButton19 = new FSFormControls.DBButton();
             this.dbButton18 = new FSFormControls.DBButton();
             this.dbCombo9 = new FSFormControls.DBCombo();
             this.dbTextBox4 = new FSFormControls.DBTextBox();
@@ -68,11 +71,11 @@
             this.dbButton2 = new FSFormControls.DBButton();
             this.dbButton3 = new FSFormControls.DBButton();
             this.dbChart1 = new FSFormControls.DBChart();
-            this.cValue1 = new FSFormControls.cValue();
-            this.cValue2 = new FSFormControls.cValue();
-            this.cValue3 = new FSFormControls.cValue();
-            this.cValue4 = new FSFormControls.cValue();
-            this.cValue5 = new FSFormControls.cValue();
+            this.cValue1 = new FSFormControls.ChartValue();
+            this.cValue2 = new FSFormControls.ChartValue();
+            this.cValue3 = new FSFormControls.ChartValue();
+            this.cValue4 = new FSFormControls.ChartValue();
+            this.cValue5 = new FSFormControls.ChartValue();
             this.dbRadioButton1 = new FSFormControls.DBRadioButton();
             this.dbListBox1 = new FSFormControls.DBListBox();
             this.dbListView1 = new FSFormControls.DBListView();
@@ -109,7 +112,6 @@
             this.statusBarPanel1 = new System.Windows.Forms.StatusBarPanel();
             this.statusBarPanel2 = new System.Windows.Forms.StatusBarPanel();
             this.dbStatusBar3 = new FSFormControls.DBStatusBar();
-            this.dbButton19 = new FSFormControls.DBButton();
             ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTabControl1)).BeginInit();
             this.dbTabControl1.SuspendLayout();
@@ -207,6 +209,35 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Controles básicos";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // dbButton19
+            // 
+            this.dbButton19.About = "";
+            this.dbButton19.Appearance = null;
+            this.dbButton19.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
+            this.dbButton19.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.dbButton19.DropDownMenu = null;
+            this.dbButton19.FillColorEnd = System.Drawing.Color.White;
+            this.dbButton19.FillColorStart = System.Drawing.Color.LightGray;
+            this.dbButton19.FillHoverColorEnd = System.Drawing.Color.Beige;
+            this.dbButton19.FillHoverColorStart = System.Drawing.Color.Beige;
+            this.dbButton19.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
+            this.dbButton19.Gradient = false;
+            this.dbButton19.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
+            this.dbButton19.Image = null;
+            this.dbButton19.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.dbButton19.Key = "Button1";
+            this.dbButton19.Location = new System.Drawing.Point(820, 229);
+            this.dbButton19.Name = "dbButton19";
+            this.dbButton19.Size = new System.Drawing.Size(95, 25);
+            this.dbButton19.TabIndex = 55;
+            this.dbButton19.Text = "Test DBVuMeter";
+            this.dbButton19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.dbButton19.TextColorEnd = System.Drawing.Color.Black;
+            this.dbButton19.TextColorStart = System.Drawing.Color.Blue;
+            this.dbButton19.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dbButton19.ToolTip = "";
+            this.dbButton19.Click += new System.EventHandler(this.dbButton19_Click);
             // 
             // dbButton18
             // 
@@ -1426,7 +1457,7 @@
             this.dbChart1.ShowChartLegends = true;
             this.dbChart1.Size = new System.Drawing.Size(113, 110);
             this.dbChart1.TabIndex = 10;
-            this.dbChart1.Values.AddRange(new FSFormControls.cValue[] {
+            this.dbChart1.Values.AddRange(new FSFormControls.ChartValue[] {
             this.cValue1,
             this.cValue2,
             this.cValue3,
@@ -1761,13 +1792,30 @@
             this.dbGridView1.AutoSave = true;
             this.dbGridView1.AutoSizeColumns = true;
             this.dbGridView1.CaptionText = null;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dbGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dbGridView1.DataControl = null;
             this.dbGridView1.DataSource = null;
             this.dbGridView1.DBField = null;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dbGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dbGridView1.DefaultDecimals = 2;
             this.dbGridView1.DefaultHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dbGridView1.DisplayLayout = null;
             this.dbGridView1.Editable = true;
+            this.dbGridView1.EnableHeadersVisualStyles = true;
             this.dbGridView1.FirstDisplayedScrollingRowIndex = -1;
             this.dbGridView1.Location = new System.Drawing.Point(6, 6);
             this.dbGridView1.Mode = FSFormControls.Global.AccessMode.ReadMode;
@@ -2114,35 +2162,6 @@
             this.dbStatusBar3.ViewStyle = FSFormControls.DBStatusBar.ViewStyleEnum.Default;
             this.dbStatusBar3.WrapText = false;
             // 
-            // dbButton19
-            // 
-            this.dbButton19.About = "";
-            this.dbButton19.Appearance = null;
-            this.dbButton19.ButtonStyle = FSFormControls.DBButton.ButtonStyleType.Normal;
-            this.dbButton19.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.dbButton19.DropDownMenu = null;
-            this.dbButton19.FillColorEnd = System.Drawing.Color.White;
-            this.dbButton19.FillColorStart = System.Drawing.Color.LightGray;
-            this.dbButton19.FillHoverColorEnd = System.Drawing.Color.Beige;
-            this.dbButton19.FillHoverColorStart = System.Drawing.Color.Beige;
-            this.dbButton19.FlatStyle = System.Windows.Forms.FlatStyle.Standard;
-            this.dbButton19.Gradient = false;
-            this.dbButton19.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Horizontal;
-            this.dbButton19.Image = null;
-            this.dbButton19.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.dbButton19.Key = "Button1";
-            this.dbButton19.Location = new System.Drawing.Point(820, 229);
-            this.dbButton19.Name = "dbButton19";
-            this.dbButton19.Size = new System.Drawing.Size(95, 25);
-            this.dbButton19.TabIndex = 55;
-            this.dbButton19.Text = "Test DBVuMeter";
-            this.dbButton19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.dbButton19.TextColorEnd = System.Drawing.Color.Black;
-            this.dbButton19.TextColorStart = System.Drawing.Color.Blue;
-            this.dbButton19.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dbButton19.ToolTip = "";
-            this.dbButton19.Click += new System.EventHandler(this.dbButton19_Click);
-            // 
             // frmTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2211,11 +2230,11 @@
         private FSFormControls.DBTabPage tabPage2;
         private FSFormControls.DBTabPage tabPage3;
         private DBChart dbChart1;
-        private cValue cValue1;
-        private cValue cValue2;
-        private cValue cValue3;
-        private cValue cValue4;
-        private cValue cValue5;
+        private ChartValue cValue1;
+        private ChartValue cValue2;
+        private ChartValue cValue3;
+        private ChartValue cValue4;
+        private ChartValue cValue5;
         private DBButton dbButton1;
         private DBDate dbDate1;
         private DBLabel dbLabel1;
