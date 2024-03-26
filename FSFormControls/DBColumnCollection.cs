@@ -47,13 +47,15 @@ namespace FSFormControls
         {
             var f = 0;
 
-            if (fieldName == "") return -1;
+            if (string.IsNullOrEmpty(fieldName)) 
+                return -1;
 
             if (fieldName.Substring(0, 1) == "_") fieldName = TextUtil.Replace(fieldName, "_", "");
 
             foreach (DBColumn dbcol in List)
             {
-                if (dbcol.FieldDB.ToLower() == fieldName.ToLower()) return f;
+                if (dbcol.FieldDB.ToLower() == fieldName.ToLower())
+                    return f;
                 f = f + 1;
             }
 
