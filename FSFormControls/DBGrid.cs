@@ -2977,28 +2977,20 @@ namespace FSFormControls
         public void HideColumn(int column)
         {
             Columns[column].Hidden = true;
-            try
-            {
+
+            if (dgTableStyle.GridColumnStyles.Contains(Columns[column].FieldDB))
                 dgTableStyle.GridColumnStyles[Columns[column].FieldDB].MappingName =
                     "hidden_" + Columns[column].FieldDB;
-            }
-            catch
-            {
-            }
         }
 
 
         public void ShowColumn(int column)
         {
             Columns[column].Hidden = false;
-            try
-            {
+
+            if (dgTableStyle.GridColumnStyles.Contains("hidden_" + Columns[column].FieldDB))
                 dgTableStyle.GridColumnStyles["hidden_" + Columns[column].FieldDB].MappingName =
                     Columns[column].FieldDB;
-            }
-            catch
-            {
-            }
         }
 
 
