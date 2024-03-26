@@ -1695,6 +1695,10 @@ namespace FSFormControls
         private LinearGradientMode m_GradiantStyle;
         private Color m_StartColor;
 
+        public BorderProperties()
+        {
+        }
+
         public BorderProperties(short Border_Width, Color Border_Color, bool Border_Gradiant,
             DashStyle Border_DashStyle, Border3DStyle Border_Style, Color Start_Color,
             Color End_Color, LinearGradientMode Gradiant_Style)
