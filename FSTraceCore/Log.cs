@@ -345,7 +345,7 @@ namespace FSTraceCore
         /// <param name="message">Mensaje que se escribirá</param>
         /// <param name="args">Parametros de sustitución que se usan si la cadena tiene indicadores de formato.</param>
         /// <remarks>
-        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch PrismaLogSwitch tiene un valor de 3 o
+        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch DefaultSwitch tiene un valor de 3 o
         ///     más establecido en web.config o app.config
         /// </remarks>
         public static void TraceInfo(string message, params object[] args)
@@ -356,7 +356,7 @@ namespace FSTraceCore
         /// <summary>Escribe una traza de nivel error en el archivo de log. </summary>
         /// <param name="exception">Excepción que queremos logear</param>
         /// <remarks>
-        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch PrismaLogSwitch tiene un valor de 3 o
+        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch DefaultSwitch tiene un valor de 3 o
         ///     más establecido en web.config o app.config
         /// </remarks>
         public static void TraceInfo(Exception exception)
@@ -374,7 +374,7 @@ namespace FSTraceCore
         /// <param name="message">Mensaje que se escribirá</param>
         /// <param name="args">Parametros de sustitución que se usan si la cadena tiene indicadores de formato.</param>
         /// <remarks>
-        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch PrismaLogSwitch tiene un valor de 2 o
+        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch DefaultSwitch tiene un valor de 2 o
         ///     más establecido en web.config o app.config
         /// </remarks>
         public static void TraceWarning(string message, params object[] args)
@@ -385,7 +385,7 @@ namespace FSTraceCore
         /// <summary>Escribe una traza de nivel error en el archivo de log y en trace.axd. </summary>
         /// <param name="exception">Excepción que queremos logear</param>
         /// <remarks>
-        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch PrismaLogSwitch tiene un valor de 2 o
+        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch DefaultSwitch tiene un valor de 2 o
         ///     más establecido en web.config o app.config
         /// </remarks>
         public static void TraceWarning(Exception exception)
@@ -402,7 +402,7 @@ namespace FSTraceCore
         /// <param name="message">Mensaje que se escribirá</param>
         /// <param name="args">Parametros de sustitución que se usan si la cadena tiene indicadores de formato.</param>
         /// <remarks>
-        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch PrismaLogSwitch tiene un valor de 1 o
+        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch DefaultSwitch tiene un valor de 1 o
         ///     más establecido en web.config o app.config
         /// </remarks>
         public static void TraceError(string message, params object[] args)
@@ -413,7 +413,7 @@ namespace FSTraceCore
         /// <summary>Escribe una traza de nivel error en el archivo de log y en trace.axd. </summary>
         /// <param name="exception">Excepción que queremos logear</param>
         /// <remarks>
-        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch PrismaLogSwitch tiene un valor de 1 o
+        ///     Las trazas lanzadas con esta función solo se escriben si el trace switch DefaultSwitch tiene un valor de 1 o
         ///     más establecido en web.config o app.config
         /// </remarks>
         public static void TraceError(Exception exception)
