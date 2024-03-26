@@ -172,6 +172,10 @@
     <Compile Include="Classes\InputBox.cs" />
     <Compile Include="Classes\SMS.cs" />
     <Compile Include="Classes\SortableBindingList.cs" />
+    <Compile Include="DBParam.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DBParamCollection.cs" />
     <Compile Include="DBGauge.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -591,6 +595,10 @@
   <ItemGroup>
     <EmbeddedResource Include="Classes\DBGlobal.resx">
       <DependentUpon>Global.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DBParam.resx">
+      <DependentUpon>DBParam.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="DBFileExplorer.resx">
