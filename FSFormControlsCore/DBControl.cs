@@ -132,6 +132,7 @@ namespace FSFormControlsCore
         private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
         private int m_Page;
         private string m_Selection = "";
+        private string m_LastSelection = "";
         private string m_tableName = "";
         private string m_xmlFile = "";
         private string m_XMLName = "";
@@ -160,6 +161,8 @@ namespace FSFormControlsCore
         public string VersionableDateField { get; set; } = "";
         public DBColumnCollection ColumnMapping { get; set; }
         public PageSettings PageSettings { get; set; }
+
+        public DBParamCollection Parameters { get; set; }
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
@@ -261,6 +264,15 @@ namespace FSFormControlsCore
             {
                 m_Selection = value;
                 Text = "SQL: " + m_Selection;
+            }
+        }
+
+        public string LastSelection
+        {
+            get { return m_LastSelection; }
+            set
+            {
+                m_LastSelection = value;
             }
         }
 
@@ -503,9 +515,10 @@ namespace FSFormControlsCore
         {
             var findForm = FindForm();
 
-            if(!reconnect)
+            if (!reconnect)
                 if (Connected && TypeDB != DbType.Data)
-                    return;
+                    if (m_LastSelection == m_Selection)
+                        return;
 
             var strSQL = reemplazaMacros(m_Selection);
 
@@ -606,10 +619,14 @@ namespace FSFormControlsCore
                 case DbType.SQLServer:
                     var db = new BdUtils(Global.ConnectionStringSetting);
 
-                    if(Paging)
-                        DataTable = db.Execute(Selection, m_Page, PagingSize);
+                    string sql = ReplaceParameters(Selection);
+
+                    if (Paging)
+                        DataTable = db.Execute(sql, m_Page, PagingSize);
                     else
-                        DataTable = db.Execute(Selection);
+                        DataTable = db.Execute(sql);
+
+                    LastSelection = sql;
 
                     DataTable.TableName = "Dt" + Name;
                     DataView = new DataView(DataTable);
@@ -659,6 +676,19 @@ namespace FSFormControlsCore
             DataTable.AcceptChanges();
 
             ConnectError = false;
+        }
+
+        private string ReplaceParameters(string sql)
+        {
+            if (Parameters is null)
+                return sql;
+
+            foreach(DBParam param in Parameters)
+            {
+                if (sql.IndexOf(param.Name) > 0)
+                    sql = sql.Replace(param.Name, param.Value.ToString());
+            }
+            return sql;
         }
 
         public bool RelationSaveError(ControlCollection frm)
@@ -1232,11 +1262,11 @@ namespace FSFormControlsCore
         {
             if (pos == -1) pos = DBPosition;
             if (pos == -1) pos = 0;
-            if (isEOF | (fieldName == ""))
+            if (isEOF || string.IsNullOrEmpty(fieldName))
                 return string.Empty;
             try
             {
-                if (pos > DataTable.DefaultView.Count)
+                if (pos > DataTable.DefaultView.Count - 1)
                     pos = DataTable.DefaultView.Count - 1;
                 return DataTable.DefaultView[pos][fieldName];
             }
@@ -2059,7 +2089,7 @@ namespace FSFormControlsCore
                             if (((DBControl) ctr).RelationDataControl.NameControl() == Name)
                                 if (!string.IsNullOrEmpty(((DBControl) ctr).RelationDBField))
                                 {
-                                    if (((DBControl) ctr).RelationSQL == "")
+                                    if (string.IsNullOrEmpty(((DBControl) ctr).RelationSQL))
                                     {
                                         sel = ((DBControl) ctr).Selection;
                                         ((DBControl) ctr).RelationSQL = sel;
@@ -2075,7 +2105,8 @@ namespace FSFormControlsCore
                                         ((DBControl) ctr).RelationDataControl.GetField(
                                             ((DBControl) ctr).RelationParentDBField).ToString();
 
-                                    if (value == "") value = "-1";
+                                    if (string.IsNullOrEmpty(value))
+                                        value = "-1";
 
                                     if (FieldValue != null) value = Convert.ToString(FieldValue);
 
@@ -2871,6 +2902,9 @@ namespace FSFormControlsCore
 
             if (ColumnMapping == null)
                 ColumnMapping = new DBColumnCollection();
+
+            if (Parameters == null)
+                Parameters = new DBParamCollection();
 
             Visible = false;
             TabStop = false;
