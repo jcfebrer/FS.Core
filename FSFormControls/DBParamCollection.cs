@@ -4,17 +4,25 @@ using FSLibrary;
 
 namespace FSFormControls
 {
-    public class DBColumnCollection : CollectionBase, IBindingList
+    public class DBParamCollection : CollectionBase, IBindingList
     {
         private ListChangedEventHandler onListChanged;
 
-        public DBColumn this[int index]
+        public DBParam this[int index]
         {
-            get { return (DBColumn) List[index]; }
+            get { return (DBParam) List[index]; }
             set { List[index] = value; }
         }
 
-        public DBColumn this[string name] => Find(name);
+        public DBParam this[string name] => Find(name);
+
+        public DBParam Find(string paramName)
+        {
+            foreach (DBParam dbcol in List)
+                if (dbcol.Name.ToLower() == paramName.ToLower())
+                    return dbcol;
+            return null;
+        }
 
         public bool AllowEdit => false;
 
@@ -34,27 +42,17 @@ namespace FSFormControls
 
         public bool SupportsSorting => false;
 
-        public DBColumn Find(string fieldName)
-        {
-            foreach (DBColumn dbcol in List)
-                if (dbcol.FieldDB.ToLower() == fieldName.ToLower())
-                    return dbcol;
-            return null;
-        }
 
-
-        public int GetColumnOrdinal(string fieldName)
+        public int GetParamOrdinal(string paramName)
         {
             var f = 0;
 
-            if (string.IsNullOrEmpty(fieldName)) 
+            if (string.IsNullOrEmpty(paramName)) 
                 return -1;
 
-            if (fieldName.Substring(0, 1) == "_") fieldName = TextUtil.Replace(fieldName, "_", "");
-
-            foreach (DBColumn dbcol in List)
+            foreach (DBParam dbcol in List)
             {
-                if (dbcol.FieldDB.ToLower() == fieldName.ToLower())
+                if (dbcol.Name.ToLower() == paramName.ToLower())
                     return f;
                 f = f + 1;
             }
@@ -63,90 +61,63 @@ namespace FSFormControls
         }
 
 
-        public DBColumn FindByHeaderCaption(string headerCaption)
+        public void Add(string name, object value)
         {
-            foreach (DBColumn dbcol in List)
-                if (dbcol.HeaderCaption == headerCaption)
-                    return dbcol;
-            return null;
+            int pos = GetParamOrdinal(name);
+            if (pos != -1)
+                ((DBParam)List[pos]).Value = value;
+            else
+                List.Add(new DBParam(name, value));
         }
 
-
-        public void Add(string strFieldDB, string strHeaderCaption)
+        public void Set(string name, object value)
         {
-            List.Add(new DBColumn(strFieldDB, strHeaderCaption));
+            int pos = GetParamOrdinal(name);
+            if (pos != -1)
+                ((DBParam)List[pos]).Value = value;
+            else
+                throw new System.Exception("Parámetro inexistente. Debes añadirlo con Add.");
         }
 
-        public void Add(DBColumn column, bool descendent)
-        {
-            //TODO: Permitir ordenar columnas
-            column.SortIndicator =
-                descendent ? DBColumn.SortIndicatorEnum.Descending : DBColumn.SortIndicatorEnum.Ascending;
-            List.Add(column);
-        }
+        //public DBParam Add(DBParam param)
+        //{
+        //    int pos = GetParamOrdinal(param.Name);
+        //    if (pos != -1)
+        //        List[pos] = param.Value;
+        //    else
+        //        List.Add(param);
 
-        public void Add(string fieldName, bool descendent)
-        {
-            var column = Find(fieldName);
-            //TODO: Permitir ordenar columnas
-            column.SortIndicator =
-                descendent ? DBColumn.SortIndicatorEnum.Descending : DBColumn.SortIndicatorEnum.Ascending;
-            List.Add(column);
-        }
+        //    return param;
+        //}
 
 
-        public void Add(string strFieldDB, string strHeaderCaption, bool bolHidden)
-        {
-            List.Add(new DBColumn(strFieldDB, strHeaderCaption, bolHidden));
-        }
-
-
-        public void Add(string strFieldDB, string strHeaderCaption, DBControl dbcColumnDBControl)
-        {
-            List.Add(new DBColumn(strFieldDB, strHeaderCaption, dbcColumnDBControl));
-        }
-
-
-        public void Add(string strFieldDB, string strHeaderCaption, DBColumn.ColumnTypes tColumnType)
-        {
-            List.Add(new DBColumn(strFieldDB, strHeaderCaption, tColumnType));
-        }
-
-
-        public DBColumn Add(DBColumn Value)
-        {
-            List.Add(Value);
-
-            return Value;
-        }
-
-
-        public void AddRange(DBColumn[] Values)
+        public void AddRange(DBParam[] parameters)
         {
             var f = 0;
-            for (f = 0; f <= Values.Length - 1; f++) List.Add(Values[f]);
+            for (f = 0; f <= parameters.Length - 1; f++) 
+                List.Add(parameters[f]);
         }
 
 
-        public void Remove(DBColumn Value)
+        public void Remove(DBParam param)
         {
-            List.Remove(Value);
+            List.Remove(param);
         }
 
 
-        public void Insert(int index, DBColumn Value)
+        public void Insert(int index, DBParam Value)
         {
             List.Insert(index, Value);
         }
 
 
-        public bool Contains(DBColumn Value)
+        public bool Contains(DBParam Value)
         {
             return List.Contains(Value);
         }
 
 
-        public int IndexOf(DBColumn Value)
+        public int IndexOf(DBParam Value)
         {
             return List.IndexOf(Value);
         }
@@ -193,10 +164,10 @@ namespace FSFormControls
         {
         }
 
-        public bool Exists(string fieldName)
+        public bool Exists(string name)
         {
-            foreach (DBColumn dbcol in List)
-                if (dbcol.FieldDB.ToLower() == fieldName.ToLower())
+            foreach (DBParam dbcol in List)
+                if (dbcol.Name.ToLower() == name.ToLower())
                     return true;
             return false;
         }

@@ -139,7 +139,7 @@ namespace FSFormControls
             datagrid.RowEnter += DataGridView1_RowEnter;
             datagrid.RowStateChanged += DataGridView1_RowStateChanged;
             datagrid.MouseClick += Datagrid_MouseClick;
-
+            
             if (Columns == null)
                 Columns = new DBColumnCollection();
 
@@ -586,30 +586,12 @@ namespace FSFormControls
 
         private void DataGridView1_SelectionChanged(object sender, EventArgs e)
         {
+            if(DataControl != null && datagrid.CurrentRow != null)
+                DataControl.Go(datagrid.CurrentRow.Index);
+
             if (ShowExpand)
             {
-                if (DataControl == null)
-                    return;
-
-                // seleccionamos los elementos del grid de detalle en función del row seleccionado
-                if (datagrid.CurrentRow == null) 
-                    return;
-
-                var formatFilter = "{0}='{1}'";
-                var column = 0;
-
-                if (Columns[column].ColumnType == DBColumn.ColumnTypes.CheckColumn)
-                    column = 1;
-
-                if (DataControl.DataSet.Tables[0].Columns[column].DataType == typeof(int)
-                    || DataControl.DataSet.Tables[0].Columns[column].DataType == typeof(double)
-                    || DataControl.DataSet.Tables[0].Columns[column].DataType == typeof(decimal))
-                    formatFilter = "{0}={1}";
-
-                if (datagrid.RowCount != 0)
-                    // Establecemos el filtro al grid de detalle
-                    ((DataView) m_childView.DataSource).RowFilter = string.Format(formatFilter, Columns[column].FieldDB,
-                        datagrid.Rows[datagrid.CurrentRow.Index].Cells[0].Value);
+                SetExpand();
             }
 
             if (SelectionChanged != null)
@@ -619,70 +601,101 @@ namespace FSFormControls
                 AfterRowActivate(sender, e);
         }
 
-        private void DataGridView1_Scroll(object sender, ScrollEventArgs e)
+        private void SetExpand()
         {
-            if (!ShowExpand)
+            if (DataControl == null)
                 return;
 
-            if (m_rowCurrent.Count != 0)
+            // seleccionamos los elementos del grid de detalle en función del row seleccionado
+            if (datagrid.CurrentRow == null)
+                return;
+
+            var formatFilter = "{0}='{1}'";
+            var column = 0;
+
+            if (Columns[column].ColumnType == DBColumn.ColumnTypes.CheckColumn)
+                column = 1;
+
+            if (DataControl.DataSet.Tables[0].Columns[column].DataType == typeof(int)
+                || DataControl.DataSet.Tables[0].Columns[column].DataType == typeof(double)
+                || DataControl.DataSet.Tables[0].Columns[column].DataType == typeof(decimal))
+                formatFilter = "{0}={1}";
+
+            if (datagrid.RowCount != 0)
+                // Establecemos el filtro al grid de detalle
+                ((DataView)m_childView.DataSource).RowFilter = string.Format(formatFilter, Columns[column].FieldDB,
+                    datagrid.Rows[datagrid.CurrentRow.Index].Cells[0].Value);
+        }
+
+        private void DataGridView1_Scroll(object sender, ScrollEventArgs e)
+        {
+            if (ShowExpand)
             {
-                m_collapseRow = true;
-                datagrid.ClearSelection();
-                datagrid.Rows[m_rowCurrent[0]].Selected = true;
+                if (m_rowCurrent.Count != 0)
+                {
+                    m_collapseRow = true;
+                    datagrid.ClearSelection();
+                    datagrid.Rows[m_rowCurrent[0]].Selected = true;
+                }
             }
         }
 
         private void DataGridView1_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            var grid = (DataGridView) sender;
+            var grid = (DataGridView)sender;
 
             if (ShowExpand)
             {
-                var rect = new Rectangle(e.RowBounds.X
+                DrawExpand(grid, e.Graphics, e.RowBounds, e.RowIndex);
+            }
+
+            DrawCounterOnRowHeader(grid, e);
+        }
+
+        private void DrawExpand(DataGridView grid, Graphics graphics, Rectangle rowBounds, int rowIndex)
+        {
+            var rect = new Rectangle(rowBounds.X
                                          + (m_rowDefaultHeight - 16)
-                                         / 2, e.RowBounds.Y
+                                         / 2, rowBounds.Y
                                               + (m_rowDefaultHeight - 16)
                                               / 2, 16, 16);
 
-                if (m_collapseRow)
+            if (m_collapseRow)
+            {
+                if (m_rowCurrent.Contains(rowIndex))
                 {
-                    if (m_rowCurrent.Contains(e.RowIndex))
-                    {
-                        grid.Rows[e.RowIndex].DividerHeight = grid.Rows[e.RowIndex].Height - m_rowDefaultHeight;
-                        e.Graphics.DrawImage(Resources.DBGridViewCollapse, rect);
-                        m_childView.Location = new Point(e.RowBounds.Left + grid.RowHeadersWidth,
-                            e.RowBounds.Top + m_rowDefaultHeight + 5);
-                        // childView.Width = e.RowBounds.Right - grid.rowheaderswidth
-                        m_childView.Width = Width;
-                        m_childView.Height = grid.Rows[e.RowIndex].DividerHeight - 10;
-                        m_childView.Visible = true;
-                    }
-                    else
-                    {
-                        m_childView.Visible = false;
-                        e.Graphics.DrawImage(Resources.DBGridViewExpand, rect);
-                    }
-
-                    m_collapseRow = false;
-                }
-                else if (m_rowCurrent.Contains(e.RowIndex))
-                {
-                    grid.Rows[e.RowIndex].DividerHeight = grid.Rows[e.RowIndex].Height - m_rowDefaultHeight;
-                    e.Graphics.DrawImage(Resources.DBGridViewCollapse, rect);
-                    m_childView.Location = new Point(e.RowBounds.Left + grid.RowHeadersWidth,
-                        e.RowBounds.Top + m_rowDefaultHeight + 5);
-                    // childView.Width = e.RowBounds.Right - grid.rowheaderswidth
+                    grid.Rows[rowIndex].DividerHeight = grid.Rows[rowIndex].Height - m_rowDefaultHeight;
+                    graphics.DrawImage(Resources.DBGridViewCollapse, rect);
+                    m_childView.Location = new Point(rowBounds.Left + grid.RowHeadersWidth,
+                        rowBounds.Top + m_rowDefaultHeight + 5);
+                    // childView.Width = rowBounds.Right - grid.rowheaderswidth
                     m_childView.Width = Width;
-                    m_childView.Height = grid.Rows[e.RowIndex].DividerHeight - 10;
+                    m_childView.Height = grid.Rows[rowIndex].DividerHeight - 10;
                     m_childView.Visible = true;
                 }
                 else
                 {
-                    e.Graphics.DrawImage(Resources.DBGridViewExpand, rect);
+                    m_childView.Visible = false;
+                    graphics.DrawImage(Resources.DBGridViewExpand, rect);
                 }
-            }
 
-            DrawCounterOnRowHeader(grid, e);
+                m_collapseRow = false;
+            }
+            else if (m_rowCurrent.Contains(rowIndex))
+            {
+                grid.Rows[rowIndex].DividerHeight = grid.Rows[rowIndex].Height - m_rowDefaultHeight;
+                graphics.DrawImage(Resources.DBGridViewCollapse, rect);
+                m_childView.Location = new Point(rowBounds.Left + grid.RowHeadersWidth,
+                    rowBounds.Top + m_rowDefaultHeight + 5);
+                // childView.Width = e.RowBounds.Right - grid.rowheaderswidth
+                m_childView.Width = Width;
+                m_childView.Height = grid.Rows[rowIndex].DividerHeight - 10;
+                m_childView.Visible = true;
+            }
+            else
+            {
+                graphics.DrawImage(Resources.DBGridViewExpand, rect);
+            }
         }
 
         /// <summary>
@@ -692,20 +705,25 @@ namespace FSFormControls
         /// <param name="e"></param>
         private void DataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (!ShowExpand)
-                return;
-
-            var rect = new Rectangle((m_rowDefaultHeight - 16)
-                                     / 2, (m_rowDefaultHeight - 16)
-                                          / 2, 16, 16);
-
-            if (rect.Contains(e.Location))
+            if (ShowExpand)
             {
-                if (m_rowCurrent.Contains(e.RowIndex))
+                SetExpandHeight(e.Location, e.RowIndex);
+            }
+        }
+
+        private void SetExpandHeight(Point location, int rowIndex)
+        {
+            var rect = new Rectangle((m_rowDefaultHeight - 16)
+                                         / 2, (m_rowDefaultHeight - 16)
+                                              / 2, 16, 16);
+
+            if (rect.Contains(location))
+            {
+                if (m_rowCurrent.Contains(rowIndex))
                 {
                     m_rowCurrent.Clear();
-                    Rows[e.RowIndex].Height = m_rowDefaultHeight;
-                    Rows[e.RowIndex].DividerHeight = m_rowDefaultDivider;
+                    Rows[rowIndex].Height = m_rowDefaultHeight;
+                    Rows[rowIndex].DividerHeight = m_rowDefaultDivider;
                 }
                 else
                 {
@@ -719,9 +737,9 @@ namespace FSFormControls
                         m_collapseRow = true;
                     }
 
-                    m_rowCurrent.Add(e.RowIndex);
-                    datagrid.Rows[e.RowIndex].Height = m_rowExpandedHeight;
-                    datagrid.Rows[e.RowIndex].DividerHeight = m_rowExpandedDivider;
+                    m_rowCurrent.Add(rowIndex);
+                    datagrid.Rows[rowIndex].Height = m_rowExpandedHeight;
+                    datagrid.Rows[rowIndex].DividerHeight = m_rowExpandedDivider;
                 }
 
                 datagrid.ClearSelection();
@@ -825,7 +843,11 @@ namespace FSFormControls
             if (VisibleRowCount() == 0) return null;
             try
             {
-                return datagrid.Rows[row].Cells[column].Value;
+                object value = datagrid.Rows[row].Cells[column].Value;
+                if(value is DBNull) 
+                    return null;
+                else
+                    return value;
             }
             catch (ExceptionUtil e)
             {
@@ -1822,6 +1844,7 @@ namespace FSFormControls
             Resize();
         }
 
+
         private void GenerateColumns()
         {
             FunctionsGrid.GenerateColumns(DataControl, Columns, 2, AutoSizeColumns, datagrid.CreateGraphics(), datagrid.Font);
@@ -1898,7 +1921,8 @@ namespace FSFormControls
                 if (DataControl.Action == DBControl.DbActionTypes.Change) return;
                 DataControl.Action = DBControl.DbActionTypes.Change;
 
-                if (null != RowChanged) RowChanged(this, e);
+                if (null != RowChanged)
+                    RowChanged(this, e);
             }
             catch (ExceptionUtil ex)
             {

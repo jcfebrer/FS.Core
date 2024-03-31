@@ -104,13 +104,14 @@ namespace FSFormControls
 
                 float internalX = 0, internalY = 0;
                 internalX =
-                    Convert.ToSingle(NumberUtils.NumberDecimal(Convert.ToDouble(x) / Values.Xscale_units) *
+                    Convert.ToSingle((Convert.ToDouble(x) / Values.Xscale_units) *
                                      Values.Xaxis_scale +
                                      Values.MarginX);
                 internalY =
                     Convert.ToSingle(
-                        NumberUtils.NumberDecimal(Convert.ToDouble(Values.Yscale_Max - y) / Values.Yscale_units) *
-                        Values.Yaxis_scale);
+                        (Convert.ToDouble(Values.Yscale_Max - y) / Values.Yscale_units) *
+                        Values.Yaxis_scale +
+                        Values.MarginY);
 
                 internalX -= pointSize / 2;
                 internalY -= pointSize / 2;
@@ -131,19 +132,20 @@ namespace FSFormControls
             return DrawPoint(x, y, color, 6);
         }
 
-        public bool DrawGraph(bool bMarkPoints)
+        public bool DrawGraph()
         {
             try
             {
-                if (!bInitializedSheet) InitializeGraphSheet();
+                bool bMarkPoints = true;
+
+                if (!bInitializedSheet)
+                    InitializeGraphSheet();
 
                 if (Values == null)
                     throw new ExceptionUtil("Debes inicializar los valores.");
-                //return false;
 
                 if (Values.Count == 0)
                     throw new ExceptionUtil("Debes añadir valores.");
-                //return false;
 
                 var p = Values.Points();
 
@@ -185,7 +187,7 @@ namespace FSFormControls
                 {
                     float internalX = 0, internalY = 0;
 
-                    foreach (var item in Values.Points())
+                    foreach (Point item in Values.Points())
                     {
                         internalX = item.X;
                         internalY = item.Y;
@@ -207,26 +209,19 @@ namespace FSFormControls
             return true;
         }
 
-
-        public bool DrawGraph()
-        {
-            return DrawGraph(true);
-        }
-
-
         private void DrawBar()
         {
-            var f = 0;
-            for (f = 0; f <= Values.Count - 1; f++)
+            for (int f = 0; f <= Values.Count - 1; f++)
             {
                 var r = new Rectangle(Values.Points()[f].X, Values.Points()[f].Y,
-                    Convert.ToInt32(Convert.ToDouble(Values.Xaxis_scale) / 2),
-                    pictureMain.Height - Values.Points()[f].Y - Values.MarginY);
+                    (int)((pictureMain.Width / Values.Count) / 2),
+                    (int)(pictureMain.Height - Values.Points()[f].Y - Values.MarginY));
 
                 oG.FillRectangle(new SolidBrush(Color.Gray), r.X + 5, r.Y + 5, r.Width, r.Height);
 
                 Brush br = new LinearGradientBrush(r, getLightColor(Values[f].Color, 55),
                     getDarkColor(Values[f].Color, 55), LinearGradientMode.ForwardDiagonal);
+                
                 oG.FillRectangle(br, r);
                 oG.DrawRectangle(new Pen(Color.Black), r);
 
@@ -246,8 +241,7 @@ namespace FSFormControls
 
         public bool InitializeGraphSheet()
         {
-            var iTemp = 0;
-            short XPoints = 0, YPoints = 0;
+            double XPoints = 0, YPoints = 0;
 
             try
             {
@@ -267,11 +261,11 @@ namespace FSFormControls
                 pictureMain.Width = Width;
                 pictureMain.Height = Height;
 
-                XPoints = Convert.ToInt16(Values.Xscale_Max / Values.Xscale_units);
-                YPoints = Convert.ToInt16(Values.Yscale_Max / Values.Yscale_units);
+                XPoints = (Values.Xscale_Max / Values.Xscale_units);
+                YPoints = (Values.Yscale_Max / Values.Yscale_units);
 
-                Values.Xaxis_scale = NumberUtils.NumberDecimal((pictureMain.Width - Values.MarginX) / XPoints);
-                Values.Yaxis_scale = NumberUtils.NumberDecimal((pictureMain.Height - Values.MarginY) / YPoints);
+                Values.Xaxis_scale = (pictureMain.Width - Values.MarginX) / XPoints;
+                Values.Yaxis_scale = (pictureMain.Height - Values.MarginY) / YPoints;
 
                 if (ShowBorder) pictureMain.BorderStyle = BorderStyle.FixedSingle;
 
@@ -280,27 +274,30 @@ namespace FSFormControls
                     float tempX = 0, tempY = 0;
                     var br = new Pen(new SolidBrush(Color.LightSkyBlue));
 
-                    for (iTemp = 1; iTemp <= XPoints; iTemp++)
+                    for (int iTemp = 0; iTemp <= XPoints; iTemp++)
                     {
-                        oG.DrawLine(br, Convert.ToSingle(iTemp * Values.Xaxis_scale + Values.MarginX),
+                        oG.DrawLine(br, (float)(iTemp * Values.Xaxis_scale + Values.MarginX),
                             pictureMain.Height - Values.MarginY,
-                            Convert.ToSingle(iTemp * Values.Xaxis_scale + Values.MarginX), 0);
+                            (float)(iTemp * Values.Xaxis_scale + Values.MarginX), 
+                            0);
 
-                        tempX = Convert.ToSingle(iTemp * Values.Xaxis_scale + Values.MarginX);
-                        tempY = pictureMain.Height - Values.MarginY - 20;
+                        tempX = (float)(iTemp * Values.Xaxis_scale + Values.MarginX);
+                        tempY = pictureMain.Height + Values.MarginY;
                         if (DisplayUnits)
                             oG.DrawString(Convert.ToString(iTemp * Values.Xscale_units),
                                 new Font("Verdana", FontSize, FontStyle.Regular), new SolidBrush(Color.Black),
                                 tempX, tempY);
                     }
 
-                    for (iTemp = 1; iTemp <= YPoints; iTemp++)
+                    for (int iTemp = 0; iTemp <= YPoints; iTemp++)
                     {
-                        oG.DrawLine(br, 0 + Values.MarginX, Convert.ToSingle(iTemp * Values.Yaxis_scale),
-                            pictureMain.Width, Convert.ToSingle(iTemp * Values.Yaxis_scale));
+                        oG.DrawLine(br, 0 + Values.MarginX, 
+                            Convert.ToSingle(iTemp * Values.Yaxis_scale + Values.MarginY),
+                            pictureMain.Width - Values.MarginY, 
+                            (float)(iTemp * Values.Yaxis_scale + Values.MarginY));
 
-                        tempX = 0 + Values.MarginX + 2;
-                        tempY = Convert.ToSingle(iTemp * Values.Yaxis_scale);
+                        tempX = 0 + Values.MarginX;
+                        tempY = (float)(iTemp * Values.Yaxis_scale + Values.MarginY);
                         if (DisplayUnits)
                             oG.DrawString(Convert.ToString(Values.Yscale_Max - iTemp * Values.Yscale_units),
                                 new Font("Verdana", FontSize, FontStyle.Regular), new SolidBrush(Color.Black),
@@ -344,6 +341,11 @@ namespace FSFormControls
                 lblDesc.Text = "DBChart Control - " + "\r\n" + "\r\n" + "Gráfico no inicializado o sin datos";
                 lblDesc.TextAlign = ContentAlignment.MiddleCenter;
                 lblDesc.Visible = true;
+            }
+            else
+            {
+                bInitializedSheet = false;
+                DrawGraph();
             }
         }
 
@@ -390,7 +392,7 @@ namespace FSFormControls
                 rect = new Rectangle(10, 10, Convert.ToInt32(Width / 2), Convert.ToInt32(Height / 2));
             else
                 rect = new Rectangle(10, 10, Width - 20, Height - 30);
-            var i = 0;
+
             var myfont = new Font("Verdana", 8, FontStyle.Regular);
             mybrush = new SolidBrush(Color.Black);
             var imgHeight = Height;
@@ -403,7 +405,7 @@ namespace FSFormControls
 
             int imgwidth = 0, tempNamesWidth = 0, tempValsWidth = 0;
             imgwidth = 200;
-            for (i = 0; i <= elements - 1; i++)
+            for (int i = 0; i <= elements - 1; i++)
             {
                 tempValsWidth = Convert.ToInt32(gtemp.MeasureString(Values[i].Value.ToString(), myfont).Width);
                 tempNamesWidth = Convert.ToInt32(gtemp.MeasureString(Values[i].Legend, myfont).Width);
@@ -421,7 +423,7 @@ namespace FSFormControls
             var yMovePie = 0;
             while (j > 0)
             {
-                for (i = 0; i <= elements - 1; i++)
+                for (int i = 0; i <= elements - 1; i++)
                     if (Values[i].MovePie)
                     {
                         var selectVal = Values[i].StartAngle;
@@ -461,7 +463,7 @@ namespace FSFormControls
                 j = j - 1;
             }
 
-            for (i = 0; i <= elements - 1; i++)
+            for (int i = 0; i <= elements - 1; i++)
             {
                 if (Values[i].MovePie)
                 {
@@ -504,7 +506,9 @@ namespace FSFormControls
             var i = 0;
             float totalval = 0;
             float total = 0;
-            for (i = 0; i <= arrsize - 1; i++) totalval = totalval + Values[i].Value;
+            for (i = 0; i <= arrsize - 1; i++) 
+                totalval = totalval + Values[i].Value;
+
             for (i = 0; i <= arrsize - 1; i++)
             {
                 Values[i].StartAngle = total;
@@ -565,7 +569,7 @@ namespace FSFormControls
             bInitializedSheet = false;
             PlotType = plotTypeEnum.Bar;
             Color = Color.Blue;
-            DrawGraph(true);
+            DrawGraph();
 
             ClearChecks();
 
@@ -578,7 +582,7 @@ namespace FSFormControls
             bInitializedSheet = false;
             PlotType = plotTypeEnum.Line;
             Color = Color.Blue;
-            DrawGraph(true);
+            DrawGraph();
 
             ClearChecks();
 
@@ -591,7 +595,7 @@ namespace FSFormControls
             bInitializedSheet = false;
             PlotType = plotTypeEnum.Point;
             Color = Color.Blue;
-            DrawGraph(true);
+            DrawGraph();
 
             ClearChecks();
 
@@ -604,7 +608,7 @@ namespace FSFormControls
             bInitializedSheet = false;
             PlotType = plotTypeEnum.Chart;
             Color = Color.Blue;
-            DrawGraph(true);
+            DrawGraph();
 
             ClearChecks();
 
@@ -617,7 +621,7 @@ namespace FSFormControls
             bInitializedSheet = false;
             PlotType = plotTypeEnum.Curve;
             Color = Color.Blue;
-            DrawGraph(true);
+            DrawGraph();
 
             ClearChecks();
 
@@ -797,7 +801,7 @@ namespace FSFormControls
 
     [DesignTimeVisible(false)]
     [ToolboxItem(false)]
-    public class cValue : Component
+    public class ChartValue : Component
     {
         public Color m_Color = Color.Blue;
         public string m_Legend = "";
@@ -808,29 +812,29 @@ namespace FSFormControls
         public float m_StartAngle;
         public int m_Value;
 
-        public cValue()
+        public ChartValue()
         {
         }
 
-        public cValue(int value)
+        public ChartValue(int value)
         {
             m_Value = value;
         }
 
-        public cValue(int value, Color color)
+        public ChartValue(int value, Color color)
         {
             m_Value = value;
             m_Color = color;
         }
 
-        public cValue(int value, Color color, string legend)
+        public ChartValue(int value, Color color, string legend)
         {
             m_Value = value;
             m_Color = color;
             m_Legend = legend;
         }
 
-        public cValue(int value, string legend)
+        public ChartValue(int value, string legend)
         {
             m_Value = value;
             m_Legend = legend;
@@ -884,26 +888,26 @@ namespace FSFormControls
     {
         public int MarginX;
         public int MarginY;
-        public decimal Xaxis_scale;
+        public double Xaxis_scale;
         public long Xscale_Max = 10;
         public int Xscale_units = 1;
-        public decimal Yaxis_scale;
+        public double Yaxis_scale;
         public long Yscale_Max = 10;
         public int Yscale_units = 1;
 
-        public cValue this[int index]
+        public ChartValue this[int index]
         {
-            get { return (cValue) List[index]; }
+            get { return (ChartValue) List[index]; }
             set { List[index] = value; }
         }
 
         public void Add()
         {
-            List.Add(new cValue());
+            List.Add(new ChartValue());
         }
 
 
-        public void Add(cValue cV)
+        public void Add(ChartValue cV)
         {
             List.Add(cV);
         }
@@ -911,54 +915,54 @@ namespace FSFormControls
 
         public void Add(int value)
         {
-            List.Add(new cValue(value));
+            List.Add(new ChartValue(value));
         }
 
 
         public void Add(int value, Color color)
         {
-            List.Add(new cValue(value, color));
+            List.Add(new ChartValue(value, color));
         }
 
 
         public void Add(int value, Color color, string legend)
         {
-            List.Add(new cValue(value, color, legend));
+            List.Add(new ChartValue(value, color, legend));
         }
 
 
         public void Add(int value, string legend)
         {
-            List.Add(new cValue(value, legend));
+            List.Add(new ChartValue(value, legend));
         }
 
 
-        public void AddRange(cValue[] Values)
+        public void AddRange(ChartValue[] Values)
         {
             var f = 0;
             for (f = 0; f <= Values.Length - 1; f++) List.Add(Values[f]);
         }
 
 
-        public void Remove(cValue Value)
+        public void Remove(ChartValue Value)
         {
             List.Remove(Value);
         }
 
 
-        public void Insert(int index, cValue Value)
+        public void Insert(int index, ChartValue Value)
         {
             List.Insert(index, Value);
         }
 
 
-        public bool Contains(cValue Value)
+        public bool Contains(ChartValue Value)
         {
             return List.Contains(Value);
         }
 
 
-        public int IndexOf(cValue Value)
+        public int IndexOf(ChartValue Value)
         {
             return List.IndexOf(Value);
         }
@@ -966,16 +970,11 @@ namespace FSFormControls
 
         public Point[] Points()
         {
-            Point[] p = null;
-            var f = 0;
-
-            p = new Point[List.Count - 1];
-            for (f = 0; f <= List.Count - 1; f++)
+            Point[] p = new Point[List.Count];
+            for (int f = 0; f < List.Count; f++)
             {
-                p[f].X = Convert.ToInt32(f * Xaxis_scale + MarginX);
-                p[f].Y =
-                    Convert.ToInt32(NumberUtils.NumberDecimal((Yscale_Max - ((cValue) List[f]).Value) / Yscale_units) *
-                                    Yaxis_scale);
+                p[f].X = (int)(f * Xaxis_scale + MarginX);
+                p[f].Y = (int)(((Yscale_Max - ((ChartValue)List[f]).Value) / Yscale_units) * Yaxis_scale);
             }
 
             return p;
