@@ -172,6 +172,7 @@
     <Compile Include="Classes\InputBox.cs" />
     <Compile Include="Classes\SMS.cs" />
     <Compile Include="Classes\SortableBindingList.cs" />
+    <Compile Include="Classes\ConvertToXaml.cs" />
     <Compile Include="DBGauge.cs">
       <SubType>Component</SubType>
     </Compile>

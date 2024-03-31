@@ -10,7 +10,7 @@ namespace FSFormControls
 	/// <summary>
 	/// Class that converts a Windows Forms form or control to an ASP.NET Web Forms page or control.
 	/// </summary>
-	public class Convert2Aspx
+	public class ConvertToAspx
 	{
 		/// <summary>
 		/// Enum desgnating the desired output type.
@@ -158,7 +158,7 @@ namespace FSFormControls
 		/// <summary>
 		/// Constructor
 		/// </summary>
-		public Convert2Aspx()
+		public ConvertToAspx()
 		{
 			this.AspxType = AspxTypes.Page;
 			this.SourceLanguage = SourceLanguages.C_Sharp;
@@ -168,7 +168,7 @@ namespace FSFormControls
 		/// Constructor
 		/// </summary>
 		/// <param name="aspxType"></param>
-		public Convert2Aspx(AspxTypes aspxType)
+		public ConvertToAspx(AspxTypes aspxType)
 		{
 			this.AspxType = aspxType;
 			this.SourceLanguage = SourceLanguages.C_Sharp;

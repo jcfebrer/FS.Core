@@ -54,6 +54,7 @@ namespace FSFormControls
             mnuContext.Items.Add("&Vista Preliminar", null, PrintPreview);
             mnuContext.Items.Add("&Guardar como HTML", null, SaveAsHTML);
             mnuContext.Items.Add("&Guardar como ASPX", null, SaveAsASPX);
+            mnuContext.Items.Add("&Guardar como XAML", null, SaveAsXAML);
             mnuContext.Items.Add("&Refrescar", null, MnuRefresh);
             mnuContext.Items.Add("-");
             mnuContext.Items.Add("&Filtro", null, MnuFilter);
@@ -699,8 +700,28 @@ namespace FSFormControls
                 var fic = SaveFileDialog1.FileName;
                 if (fic == "") return;
 
-                var dbform2aspx = new Convert2Aspx(Convert2Aspx.AspxTypes.Page);
+                var dbform2aspx = new ConvertToAspx(ConvertToAspx.AspxTypes.Page);
                 dbform2aspx.Convert(this, Path.GetDirectoryName(fic));
+                ProcessUtil.OpenDocument(fic);
+            }
+            catch (ExceptionUtil ex)
+            {
+                throw new ExceptionUtil("Errores en la exportación.", ex);
+            }
+        }
+
+        private void SaveAsXAML(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog1.ShowDialog();
+                var fic = SaveFileDialog1.FileName;
+                if (fic == "") return;
+                var tw = new StreamWriter(fic);
+
+                tw.Write(ConvertToXaml.Convert(this));
+                tw.Close();
+                tw = null;
                 ProcessUtil.OpenDocument(fic);
             }
             catch (ExceptionUtil ex)
@@ -800,17 +821,17 @@ namespace FSFormControls
                 try
                 {
                     //Convert the form to an ASP.NET Web Form
-                    Convert2Aspx convert2Aspx = new Convert2Aspx();
-                    convert2Aspx.AspxType = Convert2Aspx.AspxTypes.Page;
-                    convert2Aspx.SourceLanguage = Convert2Aspx.SourceLanguages.C_Sharp;
-                    convert2Aspx.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
+                    ConvertToAspx convertToAspx = new ConvertToAspx();
+                    convertToAspx.AspxType = ConvertToAspx.AspxTypes.Page;
+                    convertToAspx.SourceLanguage = ConvertToAspx.SourceLanguages.C_Sharp;
+                    convertToAspx.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
 
                     //Convert the form to an ASP.NET user control
-                    Convert2Aspx convert2AspxUC = new Convert2Aspx();
-                    convert2AspxUC.AspxType = Convert2Aspx.AspxTypes.UserControl;
-                    convert2AspxUC.SourceLanguage = Convert2Aspx.SourceLanguages.C_Sharp;
-                    convert2AspxUC.RootName = this.Name + "UC";
-                    convert2AspxUC.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
+                    ConvertToAspx convertToAspxUC = new ConvertToAspx();
+                    convertToAspxUC.AspxType = ConvertToAspx.AspxTypes.UserControl;
+                    convertToAspxUC.SourceLanguage = ConvertToAspx.SourceLanguages.C_Sharp;
+                    convertToAspxUC.RootName = this.Name + "UC";
+                    convertToAspxUC.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
                 }
                 catch (Exception ex)
                 {
