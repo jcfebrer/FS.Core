@@ -239,6 +239,8 @@ namespace FSFormControls
                 //Borramos las clumans si estuvieran definidas
                 datagrid.Columns.Clear();
                 Columns.Clear();
+
+                Fill();
             }
         }
 
