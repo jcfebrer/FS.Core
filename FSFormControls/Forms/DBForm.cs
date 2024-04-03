@@ -68,8 +68,8 @@ namespace FSFormControls
             mnuContext.Items.Add("-");
             mnuContext.Items.Add("&Acerca de ...", null, MnuAcercade);
 
-            ((ToolStripMenuItem)mnuContext.Items[12]).Checked = false;
-            ((ToolStripMenuItem)mnuContext.Items[13]).Checked = true;
+            ((ToolStripMenuItem)mnuContext.Items[13]).Checked = false;
+            ((ToolStripMenuItem)mnuContext.Items[14]).Checked = true;
 
 
             //Guardamos la referencia al formulario en una variable global para poder consultarlo despues.
@@ -675,6 +675,7 @@ namespace FSFormControls
         {
             try
             {
+                SaveFileDialog1.Filter = "Archivos HTML|*.htm*|Todos los archivos|*.*";
                 SaveFileDialog1.ShowDialog();
                 var fic = SaveFileDialog1.FileName;
                 if (fic == "") return;
@@ -696,6 +697,7 @@ namespace FSFormControls
         {
             try
             {
+                SaveFileDialog1.Filter = "Archivos ASPX|*.aspx|Todos los archivos|*.*";
                 SaveFileDialog1.ShowDialog();
                 var fic = SaveFileDialog1.FileName;
                 if (fic == "") return;
@@ -714,6 +716,7 @@ namespace FSFormControls
         {
             try
             {
+                SaveFileDialog1.Filter = "Archivos XAML|*.xaml|Todos los archivos|*.*";
                 SaveFileDialog1.ShowDialog();
                 var fic = SaveFileDialog1.FileName;
                 if (fic == "") return;

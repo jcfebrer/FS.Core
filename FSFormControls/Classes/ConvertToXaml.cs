@@ -4,7 +4,6 @@
 // here's moar code:http://wf2wpf.codeplex.com/SourceControl/latest but it converts source files, not actual controls.
 // Here's a site that does code too http://www.win2wpf.com/
 // http://www.codeproject.com/Articles/25795/Creating-the-Same-Program-in-Windows-Forms-and-WPF
-//  ReSharper disable SpecifyACultureInStringConversionExplicitly
 
 
 using System;
@@ -82,32 +81,24 @@ namespace FSFormControls
             wpfBuilder.AppendLine("d:DesignHeight=\"" + windowsControl.Size.Width +
                                "\" d:DesignWidth=\"" + windowsControl.Size.Height + "\"");
 
-            // ReSharper disable SpecifyACultureInStringConversionExplicitly
             WriteBrushAttribute("Background", windowsControl.BackColor, "0");
             WriteBrushAttribute("Foreground", windowsControl.ForeColor, "ControlText");
             WriteAttribute("Width", windowsControl.Size.Width.ToString(), "0");
             WriteAttribute("Height", windowsControl.Size.Height.ToString(), "0");
-            // ReSharper restore SpecifyACultureInStringConversionExplicitly
 
             WriteEvents<Control>(windowsControl);
 
             wpfBuilder.AppendLine(">");
             wpfBuilder.AppendLine("  <StackPanel>");
-            wpfBuilder.AppendLine("  <StackPanel>"); // I can explain...wait, no. It's to do with the Regex replacement below.
-
-
             WalkControls(windowsControl);
             wpfBuilder.AppendLine("  </StackPanel>");
-            wpfBuilder.AppendLine("  </StackPanel>"); // I can explain...wait, no.
             wpfBuilder.AppendLine("</Page>");
 
             string xaml = wpfBuilder.ToString();
 
-            string xamlWithoutEmptyStackPanels = Regex.Replace(xaml, @"<StackPanel>\W+</StackPanel>", "", RegexOptions.IgnoreCase);
+            if (_copyXamlToClipboard) Clipboard.SetData(DataFormats.Text, xaml);
 
-            if (_copyXamlToClipboard) Clipboard.SetData(DataFormats.Text, xamlWithoutEmptyStackPanels);
-
-            return xamlWithoutEmptyStackPanels;
+            return xaml;
         }
 
 
@@ -122,7 +113,7 @@ namespace FSFormControls
             {
                 if (control.HasChildren) wpfBuilder.AppendLine("  </StackPanel>"); // ungrouped controls on a WinForm need a container
 
-                wpfBuilder.Append("  <" + controlsTranslator[control.GetType().Name].ToList().FirstOrDefault());
+                wpfBuilder.Append("  <" + WpfControlName(control));
 
                 WriteAttribute("Name", control.Name, "");
 
@@ -145,8 +136,16 @@ namespace FSFormControls
 
 
                 string tag = string.Empty;
-                // ReSharper disable once EmptyGeneralCatchClause
-                try { tag = control.Tag.ToString(); } catch (Exception) {/*meh, no Tag*/ }
+
+                try
+                {
+                    if (control.Tag != null)
+                        tag = control.Tag.ToString();
+                }
+                catch (Exception)
+                {
+                }
+
                 if (tag.Length > 0) WriteAttribute("Tag", tag, "");
 
                 if (_toolTipProvider != null)
@@ -168,6 +167,16 @@ namespace FSFormControls
                 }
                 else wpfBuilder.AppendLine("  />");
             }
+        }
+
+        private static string WpfControlName(Control control)
+        {
+            List<string> list = controlsTranslator[control.GetType().Name].ToList();
+            if (list.Count > 0)
+            {
+                return list.FirstOrDefault();
+            }
+            else return control.GetType().Name;
         }
 
         /// <summary> Writes a XAML attribute. </summary>
@@ -364,7 +373,10 @@ namespace FSFormControls
 
         private static Lookup<string, string> eventsTranslator
         {
-            get { return (Lookup<string, string>)eventsTxList.ToLookup(p => p.winformsName, p => p.wpfName); }
+            get {
+                Lookup<string, string> conver = (Lookup<string, string>)eventsTxList.ToLookup(p => p.winformsName, p => p.wpfName);
+                return conver;
+            }
         }
         #region EventsTranslations
         private static List<WinFormsToWpfTranslator> eventsTxList = new List<WinFormsToWpfTranslator>
@@ -545,7 +557,11 @@ namespace FSFormControls
 
         private static Lookup<string, string> controlsTranslator
         {
-            get { return (Lookup<string, string>)controlsTxList.ToLookup(p => p.winformsName, p => p.wpfName); }
+            get
+            {
+                Lookup<string, string> conver = (Lookup<string, string>)controlsTxList.ToLookup(p => p.winformsName, p => p.wpfName);
+                return conver;
+            }
         }
 
         #region ControlsTypeTranslations
@@ -611,13 +627,21 @@ namespace FSFormControls
            new WinFormsToWpfTranslator("TreeView"                    , "TreeView"                             ),
            new WinFormsToWpfTranslator("UserControl"                 , "UserControl"                          ),
            new WinFormsToWpfTranslator("Form"                        , "Window"                               ),
-           new WinFormsToWpfTranslator("FlowLayoutPanel"             , "WrapPanel or StackPanel"              )
-
+           new WinFormsToWpfTranslator("FlowLayoutPanel"             , "WrapPanel or StackPanel"              ),
+           new WinFormsToWpfTranslator("DBLabel"                     , "Label"                                ),
+           new WinFormsToWpfTranslator("DBControl"                   , "Label"                                ),
+           new WinFormsToWpfTranslator("DBCombo"                     , "ComboBox"                             ),
+           new WinFormsToWpfTranslator("DBButton"                    , "Button"                               ),
+           new WinFormsToWpfTranslator("DBGrid"                      , "DataGrid"                             ),
+           new WinFormsToWpfTranslator("DBGridView"                  , "DataGrid"                             ),
+           new WinFormsToWpfTranslator("DBTextBox"                   , "TextBox"                              ),
+           new WinFormsToWpfTranslator("DBPicture"                   , "Image"                                ),
+           new WinFormsToWpfTranslator("DBStatusBar"                 , "StatusBar"                            ),
+           new WinFormsToWpfTranslator("DBToolBar"                   , "ToolBar"                              ),
+           new WinFormsToWpfTranslator("DBToolBarEx"                 , "ToolBar"                              )
          };
         #endregion
 
 
     }
-    // ReSharper restore SpecifyACultureInStringConversionExplicitly
-    // 
 }
