@@ -79,8 +79,10 @@ namespace FSDiskCore
             {
                 resultList.AddRange(directory.GetDirectories());
             }
-            catch
+            catch (UnauthorizedAccessException) { }
+            catch (Exception)
             {
+                throw;
             }
 
             if (recursive)
