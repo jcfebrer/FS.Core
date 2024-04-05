@@ -11,6 +11,7 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using FSLibrary;
 using FSException;
+using System.Collections.Generic;
 
 #endregion
 
@@ -50,13 +51,25 @@ namespace FSFormControls
         public bool ShowBorder = true;
         public bool ShowGridLines = true;
 
+        public int MarginLeft;
+        public int MarginBottom;
+        public int MarginRight;
+        public int MarginTop;
+
+        public float Xaxis_scale;
+        public long Xscale_Max = 10;
+        public int Xscale_units = 1;
+        public float Yaxis_scale;
+        public long Yscale_Max = 10;
+        public int Yscale_units = 1;
+
         public plotTypeEnum PlotType { get; set; } = plotTypeEnum.Chart;
 
         public Color Color { get; set; } = Color.Blue;
 
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public DataValue Values { get; set; }
+        public DataValueCollection Values { get; set; }
 
 
         public bool DisplayUnits { get; set; }
@@ -77,8 +90,34 @@ namespace FSFormControls
                 _dataTable = value;
                 Values.Clear();
                 if (_dataTable != null)
-                    foreach (DataRow row in _dataTable.Rows)
-                        Values.Add((int) row[0], (Color) row[1], row[2].ToString());
+                {
+                    Random rnd = new Random();
+                    int maxValue = 0;
+
+                    for (int f = 0; f <= _dataTable.Rows.Count - 1; f++)
+                    {    
+                        for (int g = 0; g <= _dataTable.Columns.Count - 2; g++)
+                        {
+                            int dataValue = Convert.ToInt32(_dataTable.Rows[f][g + 1]);
+                            dataValue = dataValue / pictureMain.Height;
+
+                            if (dataValue > maxValue)
+                                maxValue = dataValue;
+
+                            Color rndColor = Color.FromArgb(rnd.Next(0,255), rnd.Next(0, 255), rnd.Next(0, 255));
+
+                            Values.Add(dataValue, rndColor, _dataTable.Columns[g + 1].ColumnName);
+                        }
+
+                    }
+
+                    Xscale_Max = maxValue;
+                    Yscale_Max = _dataTable.Columns.Count;
+                    Xscale_units = 1;
+                    Yscale_units = 1;
+
+                    DrawGraph();
+                }
             }
         }
 
@@ -96,22 +135,17 @@ namespace FSFormControls
         }
 
 
-        public bool DrawPoint(decimal x, decimal y, Color color, float pointSize)
+        public bool DrawPoint(float x, float y, Color color, float pointSize)
         {
             try
             {
-                if (!bInitializedSheet) InitializeGraphSheet();
+                if (!bInitializedSheet)
+                    if (!InitializeGraphSheet())
+                        return false;
 
                 float internalX = 0, internalY = 0;
-                internalX =
-                    Convert.ToSingle((Convert.ToDouble(x) / Values.Xscale_units) *
-                                     Values.Xaxis_scale +
-                                     Values.MarginX);
-                internalY =
-                    Convert.ToSingle(
-                        (Convert.ToDouble(Values.Yscale_Max - y) / Values.Yscale_units) *
-                        Values.Yaxis_scale +
-                        Values.MarginY);
+                internalX = (((x / Xscale_units) * Xaxis_scale) + MarginLeft);
+                internalY = (((Yscale_Max - y) / Yscale_units) * Yaxis_scale + MarginBottom);
 
                 internalX -= pointSize / 2;
                 internalY -= pointSize / 2;
@@ -127,7 +161,7 @@ namespace FSFormControls
             return true;
         }
 
-        public bool DrawPoint(decimal x, decimal y, Color color)
+        public bool DrawPoint(float x, float y, Color color)
         {
             return DrawPoint(x, y, color, 6);
         }
@@ -139,7 +173,8 @@ namespace FSFormControls
                 bool bMarkPoints = true;
 
                 if (!bInitializedSheet)
-                    InitializeGraphSheet();
+                    if(!InitializeGraphSheet())
+                        return false;
 
                 if (Values == null)
                     throw new ExceptionUtil("Debes inicializar los valores.");
@@ -147,7 +182,7 @@ namespace FSFormControls
                 if (Values.Count == 0)
                     throw new ExceptionUtil("Debes añadir valores.");
 
-                var p = Values.Points();
+                Point[] points = ConvertValuesToPoints(Values);
 
                 ClearChecks();
 
@@ -159,12 +194,12 @@ namespace FSFormControls
                         mnuModePoint.Checked = true;
                         break;
                     case plotTypeEnum.Curve:
-                        oG.DrawCurve(new Pen(Color), p);
+                        oG.DrawCurve(new Pen(Color), points);
 
                         mnuModeCurve.Checked = true;
                         break;
                     case plotTypeEnum.Line:
-                        oG.DrawLines(new Pen(Color), p);
+                        oG.DrawLines(new Pen(Color), points);
 
                         mnuModeLine.Checked = true;
                         break;
@@ -187,7 +222,7 @@ namespace FSFormControls
                 {
                     float internalX = 0, internalY = 0;
 
-                    foreach (Point item in Values.Points())
+                    foreach (Point item in points)
                     {
                         internalX = item.X;
                         internalY = item.Y;
@@ -211,11 +246,13 @@ namespace FSFormControls
 
         private void DrawBar()
         {
+            var points = ConvertValuesToPoints(Values);
+
             for (int f = 0; f <= Values.Count - 1; f++)
-            {
-                var r = new Rectangle(Values.Points()[f].X, Values.Points()[f].Y,
+            {    
+                var r = new Rectangle(points[f].X, points[f].Y,
                     (int)((pictureMain.Width / Values.Count) / 2),
-                    (int)(pictureMain.Height - Values.Points()[f].Y - Values.MarginY));
+                    (int)(pictureMain.Height - points[f].Y - MarginBottom));
 
                 oG.FillRectangle(new SolidBrush(Color.Gray), r.X + 5, r.Y + 5, r.Width, r.Height);
 
@@ -241,10 +278,13 @@ namespace FSFormControls
 
         public bool InitializeGraphSheet()
         {
-            double XPoints = 0, YPoints = 0;
+            float XPoints = 0, YPoints = 0;
 
             try
             {
+                if(Width == 0 && Height == 0)
+                    return false;
+
                 oGraph = new Bitmap(Width, Height, PixelFormat.Format32bppArgb);
                 oG = Graphics.FromImage(oGraph);
 
@@ -261,11 +301,11 @@ namespace FSFormControls
                 pictureMain.Width = Width;
                 pictureMain.Height = Height;
 
-                XPoints = (Values.Xscale_Max / Values.Xscale_units);
-                YPoints = (Values.Yscale_Max / Values.Yscale_units);
+                XPoints = (Xscale_Max / Xscale_units);
+                YPoints = (Yscale_Max / Yscale_units);
 
-                Values.Xaxis_scale = (pictureMain.Width - Values.MarginX) / XPoints;
-                Values.Yaxis_scale = (pictureMain.Height - Values.MarginY) / YPoints;
+                Xaxis_scale = (pictureMain.Width - MarginLeft) / XPoints;
+                Yaxis_scale = (pictureMain.Height - MarginBottom) / YPoints;
 
                 if (ShowBorder) pictureMain.BorderStyle = BorderStyle.FixedSingle;
 
@@ -276,30 +316,30 @@ namespace FSFormControls
 
                     for (int iTemp = 0; iTemp <= XPoints; iTemp++)
                     {
-                        oG.DrawLine(br, (float)(iTemp * Values.Xaxis_scale + Values.MarginX),
-                            pictureMain.Height - Values.MarginY,
-                            (float)(iTemp * Values.Xaxis_scale + Values.MarginX), 
+                        oG.DrawLine(br, (iTemp * Xaxis_scale + MarginLeft),
+                            pictureMain.Height - MarginBottom,
+                            (iTemp * Xaxis_scale + MarginLeft), 
                             0);
 
-                        tempX = (float)(iTemp * Values.Xaxis_scale + Values.MarginX);
-                        tempY = pictureMain.Height + Values.MarginY;
+                        tempX = (iTemp * Xaxis_scale + MarginLeft);
+                        tempY = pictureMain.Height + MarginBottom;
                         if (DisplayUnits)
-                            oG.DrawString(Convert.ToString(iTemp * Values.Xscale_units),
+                            oG.DrawString(Convert.ToString(iTemp * Xscale_units),
                                 new Font("Verdana", FontSize, FontStyle.Regular), new SolidBrush(Color.Black),
                                 tempX, tempY);
                     }
 
                     for (int iTemp = 0; iTemp <= YPoints; iTemp++)
                     {
-                        oG.DrawLine(br, 0 + Values.MarginX, 
-                            Convert.ToSingle(iTemp * Values.Yaxis_scale + Values.MarginY),
-                            pictureMain.Width - Values.MarginY, 
-                            (float)(iTemp * Values.Yaxis_scale + Values.MarginY));
+                        oG.DrawLine(br, 0 + MarginLeft, 
+                            (iTemp * Yaxis_scale + MarginBottom),
+                            pictureMain.Width - MarginBottom, 
+                            (iTemp * Yaxis_scale + MarginBottom));
 
-                        tempX = 0 + Values.MarginX;
-                        tempY = (float)(iTemp * Values.Yaxis_scale + Values.MarginY);
+                        tempX = 0 + MarginLeft;
+                        tempY = (iTemp * Yaxis_scale + MarginBottom);
                         if (DisplayUnits)
-                            oG.DrawString(Convert.ToString(Values.Yscale_Max - iTemp * Values.Yscale_units),
+                            oG.DrawString(Convert.ToString(Yscale_Max - iTemp * Yscale_units),
                                 new Font("Verdana", FontSize, FontStyle.Regular), new SolidBrush(Color.Black),
                                 tempX, tempY);
                     }
@@ -483,10 +523,10 @@ namespace FSFormControls
 
                 if (ShowChartLegends)
                 {
-                    oG.DrawString("" + Values[i].Percent + "%", myfont, new SolidBrush(Color.Blue),
-                        Convert.ToSingle(Width / 2 + 35 + maxValsWidth + maxNamesWidth), i * 15 + 10);
+                    oG.DrawString(Math.Round(Values[i].Percent,2) + "%", myfont, new SolidBrush(Color.Blue),
+                        (Width / 2 + 35 + maxValsWidth + maxNamesWidth), i * 15 + 10);
                     oG.DrawString(Values[i].Value.ToString(), myfont, mybrush, Width / 2 + 35, i * 15 + 10);
-                    oG.DrawString(Values[i].Legend, myfont, mybrush, Convert.ToSingle(Width / 2 + 35 + maxValsWidth),
+                    oG.DrawString(Values[i].Legend, myfont, mybrush, (Width / 2 + 35 + maxValsWidth),
                         i * 15 + 10);
                     var recLegend = new Rectangle(Convert.ToInt32(Width / 2 + 20), i * 15 + 10, 10, 10);
                     Brush br2 = new LinearGradientBrush(recLegend, getLightColor(Values[i].Color, 55),
@@ -513,8 +553,7 @@ namespace FSFormControls
             {
                 Values[i].StartAngle = total;
                 Values[i].Span = Values[i].Value * 360 / totalval;
-                Values[i].Percent =
-                    Convert.ToSingle(Convert.ToDouble(Convert.ToInt32(Values[i].Value * 10000 / totalval)) / 100);
+                Values[i].Percent = ((Values[i].Value * 10000 / totalval) / 100);
                 total = total + Values[i].Value * 360 / totalval;
             }
         }
@@ -638,6 +677,18 @@ namespace FSFormControls
             mnuModePoint.Checked = false;
         }
 
+        public Point[] ConvertValuesToPoints(DataValueCollection values)
+        {
+            Point[] p = new Point[values.Count];
+            for (int f = 0; f < values.Count; f++)
+            {
+                p[f].X = (int)(f * Xaxis_scale + MarginLeft);
+                p[f].Y = (int)(((Yscale_Max - ((ChartValue)values[f]).Value) / Yscale_units) * Yaxis_scale);
+            }
+
+            return p;
+        }
+
 
         private void pictureMain_MouseDown(object sender, MouseEventArgs e)
         {
@@ -681,7 +732,7 @@ namespace FSFormControls
             pictureMain.MouseDown += pictureMain_MouseDown;
             pictureMain.MouseUp += pictureMain_MouseUp;
 
-            if (Values == null) Values = new DataValue();
+            if (Values == null) Values = new DataValueCollection();
         }
 
         protected override void Dispose(bool disposing)
@@ -884,17 +935,8 @@ namespace FSFormControls
     }
 
 
-    public class DataValue : CollectionBase
+    public class DataValueCollection : CollectionBase
     {
-        public int MarginX;
-        public int MarginY;
-        public double Xaxis_scale;
-        public long Xscale_Max = 10;
-        public int Xscale_units = 1;
-        public double Yaxis_scale;
-        public long Yscale_Max = 10;
-        public int Yscale_units = 1;
-
         public ChartValue this[int index]
         {
             get { return (ChartValue) List[index]; }
@@ -965,19 +1007,6 @@ namespace FSFormControls
         public int IndexOf(ChartValue Value)
         {
             return List.IndexOf(Value);
-        }
-
-
-        public Point[] Points()
-        {
-            Point[] p = new Point[List.Count];
-            for (int f = 0; f < List.Count; f++)
-            {
-                p[f].X = (int)(f * Xaxis_scale + MarginX);
-                p[f].Y = (int)(((Yscale_Max - ((ChartValue)List[f]).Value) / Yscale_units) * Yaxis_scale);
-            }
-
-            return p;
         }
     }
 }
