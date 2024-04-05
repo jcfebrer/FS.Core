@@ -5,6 +5,10 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Linq;
+using System.Collections.Generic;
+using System.Security.AccessControl;
+using FSSecurity;
 
 namespace FSFormControls
 {
@@ -12,13 +16,13 @@ namespace FSFormControls
 	/// Summary description for ExplorerTree.
 	/// </summary>
 	/// 
-	[ToolboxBitmapAttribute(typeof(FSFormControls.DBExplorerTree), "tree.gif"),DefaultEvent("PathChanged")	]
+	[ToolboxBitmapAttribute(typeof(FSFormControls.DBExplorerTree), "tree.gif"), DefaultEvent("PathChanged")]
 	public class DBExplorerTree : System.Windows.Forms.UserControl
 	{
 		private System.Windows.Forms.TreeView tvwMain;
 		private System.ComponentModel.IContainer components;
 
-		private bool goflag = false ;
+		private bool goflag = false;
 		private bool showMyDocuments = true;
 		private bool showMyFavorites = true;
 		private bool showMyNetwork = true;
@@ -27,18 +31,6 @@ namespace FSFormControls
 		private bool showToolbar = true;
 
 
-
-		private bool GoFlag
-		{
-			get
-			{
-				return goflag;
-			}
-			set
-			{
-				goflag=value;
-			}
-		}
 		public bool ShowAddressbar
 		{
 			get
@@ -47,7 +39,7 @@ namespace FSFormControls
 			}
 			set
 			{
-				showAddressbar=value;
+				showAddressbar = value;
 			}
 		}
 		public bool ShowToolbar
@@ -58,7 +50,7 @@ namespace FSFormControls
 			}
 			set
 			{
-				showToolbar=value;
+				showToolbar = value;
 			}
 		}
 		public bool ShowMyDocuments
@@ -69,8 +61,8 @@ namespace FSFormControls
 			}
 			set
 			{
-				showMyDocuments=value;
-				this.Refresh(); 
+				showMyDocuments = value;
+				this.Refresh();
 			}
 		}
 
@@ -82,7 +74,7 @@ namespace FSFormControls
 			}
 			set
 			{
-				showMyFavorites=value;
+				showMyFavorites = value;
 				this.Refresh();
 			}
 		}
@@ -95,20 +87,22 @@ namespace FSFormControls
 			}
 			set
 			{
-				showMyNetwork=value;
+				showMyNetwork = value;
 				this.Refresh();
 			}
 		}
 
-		
+		public string Pattern { get; set; } = "*.*";
+
+
 		TreeNode node;
-		TreeNode TreeNodeMyComputer ;
-		TreeNode TreeNodeRootNode ;
+		TreeNode TreeNodeMyComputer;
+		TreeNode TreeNodeRootNode;
 
 
 		//ListViewItem comunalItem;
 		private System.Windows.Forms.Button btnGo;
-		
+
 		//SHFILEINFO [] iconList = new SHFILEINFO[1];	//used icons
 		public delegate void PathChangedEventHandler(object sender, EventArgs e);
 		private PathChangedEventHandler PathChangedEvent;
@@ -116,36 +110,47 @@ namespace FSFormControls
 		{
 			add
 			{
-				PathChangedEvent = (PathChangedEventHandler) System.Delegate.Combine(PathChangedEvent, value);
+				PathChangedEvent = (PathChangedEventHandler)System.Delegate.Combine(PathChangedEvent, value);
 			}
 			remove
 			{
-				PathChangedEvent = (PathChangedEventHandler) System.Delegate.Remove(PathChangedEvent, value);
+				PathChangedEvent = (PathChangedEventHandler)System.Delegate.Remove(PathChangedEvent, value);
 			}
 		}
-		private System.Windows.Forms.ToolTip toolTip1;
-		private System.Windows.Forms.ListView listView1;
-		private System.Windows.Forms.ColumnHeader Path;
-		private System.Windows.Forms.ColumnHeader Status;
-		private System.Windows.Forms.ImageList imageList1;
+		private System.Windows.Forms.ToolTip toolTip;
+		private System.Windows.Forms.ImageList imageList;
 		private System.Windows.Forms.ContextMenu cMShortcut;
 		private System.Windows.Forms.MenuItem mnuShortcut;
 		private System.Windows.Forms.TextBox txtPath;
-        private ToolStrip toolStrip1;
-        private ToolStripButton toolStripAdd;
-        private ToolStripButton toolStripBack;
-        private ToolStripButton toolStripNext;
-        private ToolStripButton toolStripUp;
-        private ToolStripButton toolStripRefresh;
-        private ToolStripButton toolStripHome;
-        private ToolStripButton toolStripInfo;
-        private string selectedPath ="home";
-		
+		private ToolStrip toolStrip;
+		private ToolStripButton toolStripAdd;
+		private ToolStripButton toolStripBack;
+		private ToolStripButton toolStripNext;
+		private ToolStripButton toolStripUp;
+		private ToolStripButton toolStripRefresh;
+		private ToolStripButton toolStripHome;
+		private ToolStripButton toolStripInfo;
+		private Panel panel;
+		private string selectedPath = "home";
+		private string[] selectedPathFiles;
+        private string[] selectedPathFolders;
+        private List<NavigationPath> navigationPaths = new List<NavigationPath>();
 
-		
+		private class NavigationPath
+		{
+			public NavigationPath(string path, bool selected)
+			{
+				Path = path;
+				Selected = selected;
+			}
+
+			public string Path { get; set; }
+            public bool Selected { get; set; }
+        }
+
 		[
 		Category("Appearance"),
-		Description("Selected Path of Image")
+		Description("Selected Path files")
 		]
 		public string SelectedPath
 		{
@@ -156,12 +161,50 @@ namespace FSFormControls
 			set
 			{
 				this.selectedPath = value;
+
+				GetFiles(selectedPath);
+                GetFolders(selectedPath);
+
+                this.Invalidate();
+			}
+		}
+
+		[
+		Category("Appearance"),
+		Description("Selected files of path")
+		]
+		public string[] SelectedPathFiles
+		{
+			get
+			{
+				return this.selectedPathFiles;
+			}
+			set
+			{
+				this.selectedPathFiles = value;
 				this.Invalidate();
 			}
 		}
 
-		
-		public DBExplorerTree()
+        [
+        Category("Appearance"),
+        Description("Selected path folders")
+        ]
+        public string[] SelectedPathFolders
+        {
+            get
+            {
+                return this.selectedPathFolders;
+            }
+            set
+            {
+                this.selectedPathFolders = value;
+                this.Invalidate();
+            }
+        }
+
+
+        public DBExplorerTree()
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
@@ -172,16 +215,16 @@ namespace FSFormControls
 		/// <summary> 
 		/// Clean up any resources being used.
 		/// </summary>
-		protected override void Dispose( bool disposing )
+		protected override void Dispose(bool disposing)
 		{
-			if( disposing )
+			if (disposing)
 			{
-				if(components != null)
+				if (components != null)
 				{
 					components.Dispose();
 				}
 			}
-			base.Dispose( disposing );
+			base.Dispose(disposing);
 		}
 
 		#region Component Designer generated code
@@ -196,33 +239,32 @@ namespace FSFormControls
             this.txtPath = new System.Windows.Forms.TextBox();
             this.btnGo = new System.Windows.Forms.Button();
             this.tvwMain = new System.Windows.Forms.TreeView();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.Path = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Status = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.cMShortcut = new System.Windows.Forms.ContextMenu();
             this.mnuShortcut = new System.Windows.Forms.MenuItem();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripAdd = new System.Windows.Forms.ToolStripButton();
+            this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripHome = new System.Windows.Forms.ToolStripButton();
             this.toolStripBack = new System.Windows.Forms.ToolStripButton();
             this.toolStripNext = new System.Windows.Forms.ToolStripButton();
             this.toolStripUp = new System.Windows.Forms.ToolStripButton();
             this.toolStripRefresh = new System.Windows.Forms.ToolStripButton();
-            this.toolStripHome = new System.Windows.Forms.ToolStripButton();
             this.toolStripInfo = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripAdd = new System.Windows.Forms.ToolStripButton();
+            this.panel = new System.Windows.Forms.Panel();
+            this.toolStrip.SuspendLayout();
+            this.panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtPath
             // 
             this.txtPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPath.Location = new System.Drawing.Point(0, 28);
+            this.txtPath.Location = new System.Drawing.Point(8, 3);
             this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(220, 20);
+            this.txtPath.Size = new System.Drawing.Size(438, 20);
             this.txtPath.TabIndex = 61;
-            this.toolTip1.SetToolTip(this.txtPath, "Current directory");
+            this.toolTip.SetToolTip(this.txtPath, "Current directory");
             this.txtPath.TextChanged += new System.EventHandler(this.txtPath_TextChanged);
             this.txtPath.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPath_KeyPress);
             this.txtPath.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPath_KeyUp);
@@ -234,11 +276,11 @@ namespace FSFormControls
             this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGo.ForeColor = System.Drawing.Color.White;
             this.btnGo.Image = ((System.Drawing.Image)(resources.GetObject("btnGo.Image")));
-            this.btnGo.Location = new System.Drawing.Point(216, 26);
+            this.btnGo.Location = new System.Drawing.Point(443, 1);
             this.btnGo.Name = "btnGo";
             this.btnGo.Size = new System.Drawing.Size(24, 22);
             this.btnGo.TabIndex = 60;
-            this.toolTip1.SetToolTip(this.btnGo, "Go to the directory");
+            this.toolTip.SetToolTip(this.btnGo, "Go to the directory");
             this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // tvwMain
@@ -250,69 +292,52 @@ namespace FSFormControls
             this.tvwMain.BackColor = System.Drawing.Color.White;
             this.tvwMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tvwMain.ImageIndex = 0;
-            this.tvwMain.ImageList = this.imageList1;
-            this.tvwMain.Location = new System.Drawing.Point(0, 54);
+            this.tvwMain.ImageList = this.imageList;
+            this.tvwMain.Location = new System.Drawing.Point(3, 29);
             this.tvwMain.Name = "tvwMain";
             this.tvwMain.SelectedImageIndex = 2;
             this.tvwMain.ShowLines = false;
             this.tvwMain.ShowRootLines = false;
-            this.tvwMain.Size = new System.Drawing.Size(240, 307);
+            this.tvwMain.Size = new System.Drawing.Size(464, 346);
             this.tvwMain.TabIndex = 59;
             this.tvwMain.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvwMain_AfterExpand);
             this.tvwMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwMain_AfterSelect);
             this.tvwMain.DoubleClick += new System.EventHandler(this.tvwMain_DoubleClick);
             this.tvwMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tvwMain_MouseUp);
             // 
-            // imageList1
+            // imageList
             // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "");
-            this.imageList1.Images.SetKeyName(1, "");
-            this.imageList1.Images.SetKeyName(2, "");
-            this.imageList1.Images.SetKeyName(3, "");
-            this.imageList1.Images.SetKeyName(4, "");
-            this.imageList1.Images.SetKeyName(5, "");
-            this.imageList1.Images.SetKeyName(6, "");
-            this.imageList1.Images.SetKeyName(7, "");
-            this.imageList1.Images.SetKeyName(8, "");
-            this.imageList1.Images.SetKeyName(9, "");
-            this.imageList1.Images.SetKeyName(10, "");
-            this.imageList1.Images.SetKeyName(11, "");
-            this.imageList1.Images.SetKeyName(12, "");
-            this.imageList1.Images.SetKeyName(13, "");
-            this.imageList1.Images.SetKeyName(14, "");
-            this.imageList1.Images.SetKeyName(15, "");
-            this.imageList1.Images.SetKeyName(16, "");
-            this.imageList1.Images.SetKeyName(17, "");
-            this.imageList1.Images.SetKeyName(18, "");
-            this.imageList1.Images.SetKeyName(19, "");
-            this.imageList1.Images.SetKeyName(20, "");
-            this.imageList1.Images.SetKeyName(21, "");
-            this.imageList1.Images.SetKeyName(22, "");
-            this.imageList1.Images.SetKeyName(23, "");
-            this.imageList1.Images.SetKeyName(24, "");
-            this.imageList1.Images.SetKeyName(25, "");
-            this.imageList1.Images.SetKeyName(26, "");
-            this.imageList1.Images.SetKeyName(27, "");
-            this.imageList1.Images.SetKeyName(28, "");
-            // 
-            // listView1
-            // 
-            this.listView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Path,
-            this.Status});
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(8, 208);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(224, 75);
-            this.listView1.TabIndex = 68;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
-            this.listView1.Visible = false;
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "");
+            this.imageList.Images.SetKeyName(1, "");
+            this.imageList.Images.SetKeyName(2, "");
+            this.imageList.Images.SetKeyName(3, "");
+            this.imageList.Images.SetKeyName(4, "");
+            this.imageList.Images.SetKeyName(5, "");
+            this.imageList.Images.SetKeyName(6, "");
+            this.imageList.Images.SetKeyName(7, "");
+            this.imageList.Images.SetKeyName(8, "");
+            this.imageList.Images.SetKeyName(9, "");
+            this.imageList.Images.SetKeyName(10, "");
+            this.imageList.Images.SetKeyName(11, "");
+            this.imageList.Images.SetKeyName(12, "");
+            this.imageList.Images.SetKeyName(13, "");
+            this.imageList.Images.SetKeyName(14, "");
+            this.imageList.Images.SetKeyName(15, "");
+            this.imageList.Images.SetKeyName(16, "");
+            this.imageList.Images.SetKeyName(17, "");
+            this.imageList.Images.SetKeyName(18, "");
+            this.imageList.Images.SetKeyName(19, "");
+            this.imageList.Images.SetKeyName(20, "");
+            this.imageList.Images.SetKeyName(21, "");
+            this.imageList.Images.SetKeyName(22, "");
+            this.imageList.Images.SetKeyName(23, "");
+            this.imageList.Images.SetKeyName(24, "");
+            this.imageList.Images.SetKeyName(25, "");
+            this.imageList.Images.SetKeyName(26, "");
+            this.imageList.Images.SetKeyName(27, "");
+            this.imageList.Images.SetKeyName(28, "");
             // 
             // cMShortcut
             // 
@@ -325,9 +350,9 @@ namespace FSFormControls
             this.mnuShortcut.Text = "Remove Shortcut";
             this.mnuShortcut.Click += new System.EventHandler(this.mnuShortcut_Click);
             // 
-            // toolStrip1
+            // toolStrip
             // 
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripHome,
             this.toolStripBack,
             this.toolStripNext,
@@ -335,22 +360,21 @@ namespace FSFormControls
             this.toolStripRefresh,
             this.toolStripInfo,
             this.toolStripAdd});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(240, 25);
-            this.toolStrip1.TabIndex = 72;
-            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip.Name = "toolStrip";
+            this.toolStrip.Size = new System.Drawing.Size(471, 25);
+            this.toolStrip.TabIndex = 72;
+            this.toolStrip.Text = "toolStrip1";
             // 
-            // toolStripAdd
+            // toolStripHome
             // 
-            this.toolStripAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAdd.Image")));
-            this.toolStripAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAdd.Name = "toolStripAdd";
-            this.toolStripAdd.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAdd.Text = "toolStripButton1";
-            this.toolStripAdd.Visible = false;
-            this.toolStripAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.toolStripHome.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripHome.Image = ((System.Drawing.Image)(resources.GetObject("toolStripHome.Image")));
+            this.toolStripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripHome.Name = "toolStripHome";
+            this.toolStripHome.Size = new System.Drawing.Size(23, 22);
+            this.toolStripHome.Text = "Casa";
+            this.toolStripHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // toolStripBack
             // 
@@ -359,7 +383,7 @@ namespace FSFormControls
             this.toolStripBack.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripBack.Name = "toolStripBack";
             this.toolStripBack.Size = new System.Drawing.Size(23, 22);
-            this.toolStripBack.Text = "toolStripButton2";
+            this.toolStripBack.Text = "Anterior";
             this.toolStripBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // toolStripNext
@@ -369,7 +393,7 @@ namespace FSFormControls
             this.toolStripNext.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripNext.Name = "toolStripNext";
             this.toolStripNext.Size = new System.Drawing.Size(23, 22);
-            this.toolStripNext.Text = "toolStripButton3";
+            this.toolStripNext.Text = "Siguiente";
             this.toolStripNext.Click += new System.EventHandler(this.btnNext_Click);
             // 
             // toolStripUp
@@ -379,7 +403,7 @@ namespace FSFormControls
             this.toolStripUp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripUp.Name = "toolStripUp";
             this.toolStripUp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripUp.Text = "toolStripButton4";
+            this.toolStripUp.Text = "Nivel superior";
             this.toolStripUp.Click += new System.EventHandler(this.btnUp_Click);
             // 
             // toolStripRefresh
@@ -389,18 +413,8 @@ namespace FSFormControls
             this.toolStripRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripRefresh.Name = "toolStripRefresh";
             this.toolStripRefresh.Size = new System.Drawing.Size(23, 22);
-            this.toolStripRefresh.Text = "toolStripButton5";
+            this.toolStripRefresh.Text = "Actualizar";
             this.toolStripRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // toolStripHome
-            // 
-            this.toolStripHome.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripHome.Image = ((System.Drawing.Image)(resources.GetObject("toolStripHome.Image")));
-            this.toolStripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripHome.Name = "toolStripHome";
-            this.toolStripHome.Size = new System.Drawing.Size(23, 22);
-            this.toolStripHome.Text = "toolStripButton6";
-            this.toolStripHome.Click += new System.EventHandler(this.btnHome_Click);
             // 
             // toolStripInfo
             // 
@@ -409,23 +423,44 @@ namespace FSFormControls
             this.toolStripInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripInfo.Name = "toolStripInfo";
             this.toolStripInfo.Size = new System.Drawing.Size(23, 22);
-            this.toolStripInfo.Text = "toolStripButton7";
+            this.toolStripInfo.Text = "Información";
             this.toolStripInfo.Visible = false;
             this.toolStripInfo.Click += new System.EventHandler(this.btnInfo_Click);
+            // 
+            // toolStripAdd
+            // 
+            this.toolStripAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAdd.Image")));
+            this.toolStripAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripAdd.Name = "toolStripAdd";
+            this.toolStripAdd.Size = new System.Drawing.Size(23, 22);
+            this.toolStripAdd.Text = "Acceso directo";
+            this.toolStripAdd.Visible = false;
+            this.toolStripAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // panel
+            // 
+            this.panel.Controls.Add(this.txtPath);
+            this.panel.Controls.Add(this.btnGo);
+            this.panel.Controls.Add(this.tvwMain);
+            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel.Location = new System.Drawing.Point(0, 25);
+            this.panel.Name = "panel";
+            this.panel.Size = new System.Drawing.Size(471, 378);
+            this.panel.TabIndex = 73;
             // 
             // DBExplorerTree
             // 
             this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.toolStrip1);
-            this.Controls.Add(this.btnGo);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.txtPath);
-            this.Controls.Add(this.tvwMain);
+            this.Controls.Add(this.panel);
+            this.Controls.Add(this.toolStrip);
             this.Name = "DBExplorerTree";
-            this.Size = new System.Drawing.Size(240, 363);
+            this.Size = new System.Drawing.Size(471, 403);
             this.Load += new System.EventHandler(this.ExplorerTree_Load);
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStrip.ResumeLayout(false);
+            this.toolStrip.PerformLayout();
+            this.panel.ResumeLayout(false);
+            this.panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,73 +470,71 @@ namespace FSFormControls
 		private void ExplorerTree_Load(object sender, System.EventArgs e)
 		{
 			GetDirectory();
-			
+
 			if (Directory.Exists(selectedPath))
 			{
-				setCurrentPath(selectedPath);
-				
+				SetCurrentPath(selectedPath);
 			}
 			else
 			{
-				setCurrentPath("home");
+				SetCurrentPath("home");
 			}
-			btnGo_Click(this,e); 
 
-			refreshView();
+            Go(txtPath.Text);
+
+            RefreshView();
 
 		}
-		public void refreshView()
+		public void RefreshView()
 		{
-			if ((!showAddressbar )&& (!showToolbar ))
+			if ((!showAddressbar) && (!showToolbar))
 			{
 				tvwMain.Top = 0;
 				txtPath.Visible = false;
-				btnGo.Visible = false ; 
-				toolStrip1.Visible = false; 
+				btnGo.Visible = false;
+				toolStrip.Visible = false;
 				tvwMain.Height = this.Height;
 			}
 			else
 			{
-				if (showToolbar&&(!showAddressbar))
+				if (showToolbar && (!showAddressbar))
 				{
 					tvwMain.Top = 20;
 					txtPath.Visible = false;
-					btnGo.Visible = false; 
-					tvwMain.Height = this.Height- 20;
-					toolStrip1.Visible = true; 
+					btnGo.Visible = false;
+					tvwMain.Height = this.Height - 20;
+					toolStrip.Visible = true;
 				}
-				else if (showAddressbar&&(!showToolbar))
+				else if (showAddressbar && (!showToolbar))
 				{
 					tvwMain.Top = 20;
 					txtPath.Top = 1;
 					btnGo.Top = -2;
 					txtPath.Visible = true;
-					btnGo.Visible = true ; 
+					btnGo.Visible = true;
 					tvwMain.Height = this.Height - 20;
-					toolStrip1.Visible = false; 
+					toolStrip.Visible = false;
 				}
-				else 
+				else
 				{
 					tvwMain.Top = 40;
 					txtPath.Visible = true;
-					btnGo.Visible = true ; 
+					btnGo.Visible = true;
 					txtPath.Top = 19;
 					btnGo.Top = 16;
-					toolStrip1.Visible = true; 
-					tvwMain.Height = this.Height- 40;
+					toolStrip.Visible = true;
+					tvwMain.Height = this.Height - 40;
 				}
 			}
 		}
 
 		public void GetDirectory()
 		{
-			tvwMain.Nodes.Clear();  
-			
-		
-			string [] drives = Environment.GetLogicalDrives();
+			tvwMain.Nodes.Clear();
+
+
+			string[] drives = Environment.GetLogicalDrives();
 			TreeNode nodeD;
-			//Environment.UserDomainName .GetFolderPath( 
-			//Environment.GetFolderPath (Environment.SystemDirectory);
 
 			TreeNode nodemd;
 			TreeNode nodemf;
@@ -512,7 +545,7 @@ namespace FSFormControls
 
 			TreeNode nodeEN;
 			TreeNode nodeNN;
-			
+
 			nodeD = new TreeNode();
 			nodeD.Tag = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 			nodeD.Text = "Desktop";
@@ -520,19 +553,18 @@ namespace FSFormControls
 			nodeD.SelectedImageIndex = 10;
 
 			tvwMain.Nodes.Add(nodeD);
-			TreeNodeRootNode = nodeD ;
-			
-			
-			if (ShowMyDocuments) 
+			TreeNodeRootNode = nodeD;
+
+
+			if (ShowMyDocuments)
 			{
-				//Add My Documents and Desktop folder outside
 				nodemd = new TreeNode();
 				nodemd.Tag = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
 				nodemd.Text = "My Documents";
 				nodemd.ImageIndex = 9;
 				nodemd.SelectedImageIndex = 9;
 				nodeD.Nodes.Add(nodemd);
-				FillFilesandDirs(nodemd);
+				GetDirectories(nodemd);
 			}
 
 			nodemyC = new TreeNode();
@@ -541,22 +573,22 @@ namespace FSFormControls
 			nodemyC.ImageIndex = 12;
 			nodemyC.SelectedImageIndex = 12;
 			nodeD.Nodes.Add(nodemyC);
-			nodemyC.EnsureVisible(); 
+			nodemyC.EnsureVisible();
 
-			TreeNodeMyComputer = nodemyC ;
+			TreeNodeMyComputer = nodemyC;
 
 			nodemNc = new TreeNode();
-							nodemNc.Tag = "my Node";
-							nodemNc.Text = "my Node";//dir.Substring(dir.LastIndexOf(@"\") + 1);
-							nodemNc.ImageIndex = 12;
-							nodemNc.SelectedImageIndex = 12;
-							nodemyC.Nodes.Add(nodemNc);
-						
+			nodemNc.Tag = "my Node";
+			nodemNc.Text = "my Node";
+			nodemNc.ImageIndex = 12;
+			nodemNc.SelectedImageIndex = 12;
+			nodemyC.Nodes.Add(nodemNc);
 
-			
-			if (ShowMyNetwork) 
+
+
+			if (ShowMyNetwork)
 			{
-				
+
 				nodemyN = new TreeNode();
 				nodemyN.Tag = "My Network Places";
 				nodemyN.Text = "My Network Places";
@@ -578,11 +610,11 @@ namespace FSFormControls
 				nodeNN.ImageIndex = 15;
 				nodeNN.SelectedImageIndex = 15;
 				nodeEN.Nodes.Add(nodeNN);
-				
+
 				nodeEN.EnsureVisible();
 			}
-			
-			if (ShowMyFavorites) 
+
+			if (ShowMyFavorites)
 			{
 				nodemf = new TreeNode();
 				nodemf.Tag = Environment.GetFolderPath(Environment.SpecialFolder.Favorites);
@@ -590,204 +622,194 @@ namespace FSFormControls
 				nodemf.ImageIndex = 26;
 				nodemf.SelectedImageIndex = 26;
 				nodeD.Nodes.Add(nodemf);
-				FillFilesandDirs(nodemf);
+				GetDirectories(nodemf);
 			}
 			ExploreTreeNode(nodeD);
-			
+
 		}
 		private void ExploreTreeNode(TreeNode n)
 		{
 			Cursor.Current = Cursors.WaitCursor;
 
-			try
+			GetDirectories(n);
+
+			foreach (TreeNode node in n.Nodes)
 			{
-				//get dirs
-				FillFilesandDirs(n);
-				
-				//get dirs one more level deep in current dir so user can see there is
-				//more dirs underneath current dir
-				foreach(TreeNode node in n.Nodes)
+				if (String.Compare(n.Text, "Desktop") == 0)
 				{
-					if (String.Compare(n.Text,"Desktop")==0) 
+					if (!(
+						(String.Compare(node.Text, "My Documents") == 0) ||
+						(String.Compare(node.Text, "My Computer") == 0) ||
+						(String.Compare(node.Text, "Microsoft Windows Network") == 0) ||
+						(String.Compare(node.Text, "My Network Places") == 0)
+						))
 					{
-						if ((String.Compare(node.Text ,"My Documents")==0) ||(String.Compare(node.Text ,"My Computer")==0) ||(String.Compare(node.Text ,"Microsoft Windows Network")==0)|| (String.Compare(node.Text ,"My Network Places")==0))
-						{}
-						else
-						{
-							FillFilesandDirs(node);
-						}
-					}
-					else
-					{
-						FillFilesandDirs(node);
+						GetDirectories(node);
 					}
 				}
+				else
+				{
+					GetDirectories(node);
+				}
 			}
-			
-			catch
-			{}
-			finally
-			{
-				Cursor.Current = Cursors.Default;
-			}
+
+			Cursor.Current = Cursors.Default;
 		}
 
 		private void GetDirectories(TreeNode parentNode)
 		{
-// added after suggestion
 			string[] dirList;
+
+			if (!Security.HasAccessFolder(parentNode.Tag.ToString(), FileSystemRights.ListDirectory))
+				return;
 
 			dirList = Directory.GetDirectories(parentNode.Tag.ToString());
 			Array.Sort(dirList);
 
-			//check if dir already exists in case click same dir twice
 			if (dirList.Length == parentNode.Nodes.Count)
 				return;
-			//add each dir in selected dir
+
 			for (int i = 0; i < dirList.Length; i++)
 			{
 				node = new TreeNode();
-				node.Tag = dirList[i]; //store path in tag
+				node.Tag = dirList[i];
 				node.Text = dirList[i].Substring(dirList[i].LastIndexOf(@"\") + 1);
 				node.ImageIndex = 1;
 				parentNode.Nodes.Add(node);
 			}
-
-// old code
-//			bool check = false;
-//
-//			//add each dir in selected dir
-//			foreach(string dir in Directory.GetDirectories(parentNode.Tag.ToString()))
-//			{
-//				check = false;
-//
-//				//check if dir already exists in case click same dir twice
-//				if(Directory.GetDirectories(parentNode.Tag.ToString()).Length == parentNode.Nodes.Count)
-//					check = true;
-//
-//				if(!check)	//if not there add
-//				{
-//					node = new TreeNode();
-//					node.Tag = dir;	//store path in tag
-//					node.Text = dir.Substring(dir.LastIndexOf(@"\") + 1);
-//					node.ImageIndex = 1;
-//					parentNode.Nodes.Add(node);
-//				}
-//			}
-			
 		}
 
-		
-		private void FillFilesandDirs(TreeNode comunalNode)
-		{
-			try 
-			{
-				GetDirectories(comunalNode);
-			}
-			catch(Exception)
-			{
-				return;
-			}
-		}
+        private void GetFiles(string path)
+        {
+			DirectoryInfo di = new DirectoryInfo(path);
 
-		public void setCurrentPath(string strPath)
+			if (di.Exists && Security.HasAccessFolder(path, FileSystemRights.ListDirectory))
+				selectedPathFiles = di.GetFiles(Pattern).Select(o => o.Name).ToArray();
+			else
+				selectedPathFiles = null;
+        }
+
+        private void GetFolders(string path)
+        {
+            DirectoryInfo di = new DirectoryInfo(path);
+
+            if (di.Exists && Security.HasAccessFolder(path, FileSystemRights.ListDirectory))
+                selectedPathFolders = di.GetDirectories(Pattern).Select(o => o.Name).ToArray();
+            else
+                selectedPathFolders = null;
+        }
+
+        public void SetCurrentPath(string strPath)
 		{
-			SelectedPath = strPath;
-			
-			if (String.Compare(strPath,"home")==0)
+			if (String.Compare(strPath, "home") == 0)
 			{
 				txtPath.Text = Application.StartupPath;
 			}
 			else
 			{
 				DirectoryInfo inf = new DirectoryInfo(strPath);
-				if(inf.Exists)
+				if (inf.Exists)
 				{
-					txtPath.Text =  strPath;
-				
+					txtPath.Text = strPath;
 				}
 				else
 					txtPath.Text = Application.StartupPath;
 			}
-			
 
-		}
+			SelectedTreeNode(tvwMain.Nodes, txtPath.Text);
 
-		private void tvwMain_AfterExpand(object sender, System.Windows.Forms.TreeViewEventArgs e)
+            SelectedPath = txtPath.Text;
+        }
+
+        private bool SelectedTreeNode(TreeNodeCollection nodes, string path)
+        {
+			foreach (TreeNode node in nodes)
+			{
+				if (node.Tag.ToString() == path)
+				{
+                    node.TreeView.SelectedNode = node;
+					return true;
+				}
+
+				if (node.Nodes.Count > 0)
+				{
+					if (SelectedTreeNode(node.Nodes, path))
+						return true;
+				}
+			}
+
+			return false;
+        }
+
+        private void tvwMain_AfterExpand(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
-			string [] drives = Environment.GetLogicalDrives();
-			string dir2 ="";
+			string[] drives = Environment.GetLogicalDrives();
 
-			Cursor.Current = Cursors.WaitCursor;   
+			Cursor.Current = Cursors.WaitCursor;
 			TreeNode n;
 			TreeNode nodeNN;
 			TreeNode nodemN;
 			TreeNode nodemyC;
 			TreeNode nodeNNode;
 			TreeNode nodeDrive;
-			nodemyC = e.Node;   
+			nodemyC = e.Node;
 
 			n = e.Node;
-			
-			if (n.Text.IndexOf(":",1)>0)   
+
+			if (n.Text.IndexOf(":", 1) > 0)
 			{
 				ExploreTreeNode(n);
 			}
 			else
-			{//(String.Compare(n.Text ,"My Documents")==0) || (String.Compare(n.Text,"Desktop")==0) || 
-
-				if ((String.Compare(n.Text,"Desktop" )==0)||(String.Compare(n.Text,"Microsoft Windows Network" )==0)||(String.Compare(n.Text ,"My Computer")==0) || (String.Compare(n.Text ,"My Network Places")==0)|| (String.Compare(n.Text ,"Entire Network")==0)||((n.Parent!=null)&&(String.Compare(n.Parent.Text,"Microsoft Windows Network")==0)) )
+			{
+				if ((String.Compare(n.Text, "Desktop") == 0) || (String.Compare(n.Text, "Microsoft Windows Network") == 0) || (String.Compare(n.Text, "My Computer") == 0) || (String.Compare(n.Text, "My Network Places") == 0) || (String.Compare(n.Text, "Entire Network") == 0) || ((n.Parent != null) && (String.Compare(n.Parent.Text, "Microsoft Windows Network") == 0)))
 				{
-					if((String.Compare(n.Text ,"My Computer")==0)&&(nodemyC.GetNodeCount(true) <2))
-						///////////
-						//add each drive and files and dirs
+					if ((String.Compare(n.Text, "My Computer") == 0) && (nodemyC.GetNodeCount(true) < 2))
 					{
 						nodemyC.FirstNode.Remove();
- 
-					foreach(string drive in drives)
-					{
-				
-						nodeDrive = new TreeNode();
-						nodeDrive.Tag = drive;
-					
-						nodeDrive.Text = drive ;
-					
-						//Determine icon to display by drive
-						switch(Win32.GetDriveType(drive))
+
+						foreach (string drive in drives)
 						{
-							case 2:
-								nodeDrive.ImageIndex = 17;
-								nodeDrive.SelectedImageIndex  = 17;
-								break;
-							case 3:
-								nodeDrive.ImageIndex = 0;
-								nodeDrive.SelectedImageIndex  = 0;
-								break;
-							case 4:
-								nodeDrive.ImageIndex = 8;
-								nodeDrive.SelectedImageIndex = 8;
-								break;
-							case 5:
-								nodeDrive.ImageIndex = 7;
-								nodeDrive.SelectedImageIndex = 7;
-								break;
-							default:
-								nodeDrive.ImageIndex = 0;
-								nodeDrive.SelectedImageIndex = 0;
-								break;
-						}
-					
-						nodemyC.Nodes.Add(nodeDrive);
-						nodeDrive.EnsureVisible();
-						tvwMain.Refresh(); 
-						try
-						{
-							//add dirs under drive
-							if (Directory.Exists (drive))
+
+							nodeDrive = new TreeNode();
+							nodeDrive.Tag = drive;
+
+							nodeDrive.Text = drive;
+
+							//Determine icon to display by drive
+							switch (Win32.GetDriveType(drive))
 							{
-								foreach(string dir in Directory.GetDirectories(drive))
+								case 2:
+									nodeDrive.ImageIndex = 17;
+									nodeDrive.SelectedImageIndex = 17;
+									break;
+								case 3:
+									nodeDrive.ImageIndex = 0;
+									nodeDrive.SelectedImageIndex = 0;
+									break;
+								case 4:
+									nodeDrive.ImageIndex = 8;
+									nodeDrive.SelectedImageIndex = 8;
+									break;
+								case 5:
+									nodeDrive.ImageIndex = 7;
+									nodeDrive.SelectedImageIndex = 7;
+									break;
+								default:
+									nodeDrive.ImageIndex = 0;
+									nodeDrive.SelectedImageIndex = 0;
+									break;
+							}
+
+							nodemyC.Nodes.Add(nodeDrive);
+							nodeDrive.EnsureVisible();
+							tvwMain.Refresh();
+
+							//add dirs under drive
+							if (Directory.Exists(drive))
+							{
+								foreach (string dir in Directory.GetDirectories(drive))
 								{
-									dir2 = dir;
 									node = new TreeNode();
 									node.Tag = dir;
 									node.Text = dir.Substring(dir.LastIndexOf(@"\") + 1);
@@ -795,46 +817,29 @@ namespace FSFormControls
 									nodeDrive.Nodes.Add(node);
 								}
 							}
-				
-							//fill those dirs
-							//					foreach(TreeNode curNode in 
-							//						tvwMain.Nodes[tvwMain.Nodes.Count - 1].Nodes)
-							//					{
-							//						FillFilesandDirs(curNode);
-							//					}
+
+							nodemyC.Expand();
 						}
-						catch(Exception)	//error just add blank dir
-						{
-							// MessageBox.Show ("Error while Filling the Explorer:" + ex.Message );
-							//					node = new TreeNode();
-							//					node.Tag = dir2;
-							//					node.Text = dir2.Substring(dir2.LastIndexOf(@"\") + 1);
-							//					node.ImageIndex = 1;
-							//					tvwMain.Nodes.Add(node);
-						}
-						nodemyC.Expand(); 
-						}
-					
-					}				
-					if((String.Compare(n.Text ,"Entire Network")==0))
+
+					}
+					if ((String.Compare(n.Text, "Entire Network") == 0))
 					{
 						if (n.FirstNode.Text == "Network Node")
 						{
 							n.FirstNode.Remove();
-							//NETRESOURCE netRoot = new NETRESOURCE();
-			
-							ServerEnum servers = new ServerEnum(ResourceScope.RESOURCE_GLOBALNET, ResourceType.RESOURCETYPE_DISK, ResourceUsage.RESOURCEUSAGE_ALL, ResourceDisplayType.RESOURCEDISPLAYTYPE_NETWORK,"" );
-							
-							foreach	(string	s1 in servers)
+
+							ServerEnum servers = new ServerEnum(ResourceScope.RESOURCE_GLOBALNET, ResourceType.RESOURCETYPE_DISK, ResourceUsage.RESOURCEUSAGE_ALL, ResourceDisplayType.RESOURCEDISPLAYTYPE_NETWORK, "");
+
+							foreach (string s1 in servers)
 							{
-								string s2="";
-								s2 = s1.Substring(0,s1.IndexOf("|",1));
-									
-								if(s1.IndexOf("NETWORK",1) > 0 ) 
+								string s2 = "";
+								s2 = s1.Substring(0, s1.IndexOf("|", 1));
+
+								if (s1.IndexOf("NETWORK", 1) > 0)
 								{
 									nodeNN = new TreeNode();
-									nodeNN.Tag =  s2;
-									nodeNN.Text = s2;//dir.Substring(dir.LastIndexOf(@"\") + 1);
+									nodeNN.Tag = s2;
+									nodeNN.Text = s2;
 									nodeNN.ImageIndex = 15;
 									nodeNN.SelectedImageIndex = 15;
 									n.Nodes.Add(nodeNN);
@@ -843,15 +848,15 @@ namespace FSFormControls
 								{
 									TreeNode nodemNc;
 									nodemN = new TreeNode();
-									nodemN.Tag = s2;//"my Node";
-									nodemN.Text = s2;//"my Node";//dir.Substring(dir.LastIndexOf(@"\") + 1);
+									nodemN.Tag = s2;
+									nodemN.Text = s2;
 									nodemN.ImageIndex = 16;
 									nodemN.SelectedImageIndex = 16;
 									n.LastNode.Nodes.Add(nodemN);
 
 									nodemNc = new TreeNode();
 									nodemNc.Tag = "my netNode";
-									nodemNc.Text = "my netNode";//dir.Substring(dir.LastIndexOf(@"\") + 1);
+									nodemNc.Text = "my netNode";
 									nodemNc.ImageIndex = 12;
 									nodemNc.SelectedImageIndex = 12;
 									nodemN.Nodes.Add(nodemNc);
@@ -859,59 +864,50 @@ namespace FSFormControls
 							}
 						}
 					}
-					if ((n.Parent!=null)&&(String.Compare(n.Parent.Text,"Microsoft Windows Network")==0))
-
+					if ((n.Parent != null) && (String.Compare(n.Parent.Text, "Microsoft Windows Network") == 0))
 					{
 						if (n.FirstNode.Text == "my netNode")
 						{
 							n.FirstNode.Remove();
-							
-							string pS=n.Text ;
-							
-							//NETRESOURCE netRoot = new NETRESOURCE();
-			
+
+							string pS = n.Text;
+
 							ServerEnum servers = new ServerEnum(ResourceScope.RESOURCE_GLOBALNET,
-								ResourceType.RESOURCETYPE_DISK, 
-								ResourceUsage.RESOURCEUSAGE_ALL, 
-								ResourceDisplayType.RESOURCEDISPLAYTYPE_SERVER,pS);
+								ResourceType.RESOURCETYPE_DISK,
+								ResourceUsage.RESOURCEUSAGE_ALL,
+								ResourceDisplayType.RESOURCEDISPLAYTYPE_SERVER, pS);
 
-
-							foreach	(string	s1 in servers)
+							foreach (string s1 in servers)
 							{
-								string s2="";
+								string s2 = "";
 
 
-								if((s1.Length <6)||(String.Compare(s1.Substring(s1.Length-6,6),"-share")!=0))
+								if ((s1.Length < 6) || (String.Compare(s1.Substring(s1.Length - 6, 6), "-share") != 0))
 								{
-									s2 = s1;//.Substring(s1.IndexOf("\\",2));
+									s2 = s1;
 									nodeNN = new TreeNode();
-									nodeNN.Tag =  s2;
-									nodeNN.Text = s2.Substring(2) ;
+									nodeNN.Tag = s2;
+									nodeNN.Text = s2.Substring(2);
 									nodeNN.ImageIndex = 12;
 									nodeNN.SelectedImageIndex = 12;
 									n.Nodes.Add(nodeNN);
-									foreach	(string	s1node in servers)
+									foreach (string s1node in servers)
 									{
-										if (s1node.Length >6)
+										if (s1node.Length > 6)
 										{
-											if(String.Compare(s1node.Substring(s1node.Length-6,6),"-share")==0)
+											if (String.Compare(s1node.Substring(s1node.Length - 6, 6), "-share") == 0)
 											{
-												if (s2.Length <=s1node.Length )
+												if (s2.Length <= s1node.Length)
 												{
-													try
+													if (String.Compare(s1node.Substring(0, s2.Length + 1), s2 + @"\") == 0)
 													{
-														if (String.Compare(s1node.Substring(0,s2.Length+1),s2 + @"\")==0)  
-														{
-															nodeNNode = new TreeNode();
-															nodeNNode.Tag =  s1node.Substring(0,s1node.Length -6);
-															nodeNNode.Text = s1node.Substring(s2.Length+1,s1node.Length -s2.Length-7) ;
-															nodeNNode.ImageIndex = 28;
-															nodeNNode.SelectedImageIndex = 28;
-															nodeNN.Nodes.Add(nodeNNode);
-														}
+														nodeNNode = new TreeNode();
+														nodeNNode.Tag = s1node.Substring(0, s1node.Length - 6);
+														nodeNNode.Text = s1node.Substring(s2.Length + 1, s1node.Length - s2.Length - 7);
+														nodeNNode.ImageIndex = 28;
+														nodeNNode.SelectedImageIndex = 28;
+														nodeNN.Nodes.Add(nodeNNode);
 													}
-													catch(Exception)
-													{}
 												}
 											}
 										}
@@ -924,8 +920,8 @@ namespace FSFormControls
 					}
 				}
 				else
-				{	
-					ExploreTreeNode(n); 
+				{
+					ExploreTreeNode(n);
 				}
 			}
 			Cursor.Current = Cursors.Default;
@@ -934,94 +930,77 @@ namespace FSFormControls
 		private void tvwMain_AfterSelect(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
 			TreeNode n;
-			n =  e.Node ;
-				
-			try
+			n = e.Node;
+
+			if (String.Compare(n.Text, "My Computer") != 0 && String.Compare(n.Text, "My Network Places") != 0 && String.Compare(n.Text, "Entire Network") != 0)
 			{
-				if ((String.Compare(n.Text ,"My Computer")==0) ||(String.Compare(n.Text ,"My Network Places")==0)||(String.Compare(n.Text ,"Entire Network")==0) )
-				{
-				}
-				else
-				{
-					txtPath.Text = n.Tag.ToString() ; 
-					
-			
-				}
+				SetCurrentPath(n.Tag.ToString());
 			}
-			catch{}
 		}
 
 		private void tvwMain_DoubleClick(object sender, System.EventArgs e)
 		{
-			
+
 			TreeNode n;
-			n = tvwMain.SelectedNode ;
-			
-			if (!tvwMain.SelectedNode.IsExpanded) 
+			n = tvwMain.SelectedNode;
+
+			if (!tvwMain.SelectedNode.IsExpanded)
 				tvwMain.SelectedNode.Collapse();
 			else
 			{
-					ExploreTreeNode(n);
+				ExploreTreeNode(n);
 			}
 		}
-		public void refreshFolders()
+
+		public void RefreshFolders()
 		{
-			listView1.Items.Clear();   
+			navigationPaths.Clear();
 			tvwMain.Nodes.Clear();
-			setCurrentPath(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
+			SetCurrentPath(Environment.GetFolderPath(Environment.SpecialFolder.Personal));
 			GetDirectory();
 		}
 
 		private void btnRefresh_Click(object sender, System.EventArgs e)
 		{
-			Cursor.Current = Cursors.WaitCursor;   
-			refreshView();
-			
-			try
-			{
-				refreshFolders();
-			}
-			catch(Exception e1)
-			{
-				MessageBox.Show ("Error: " + e1.Message); 
-			}
-			finally
-			{
-				setCurrentPath("home");
-				Cursor.Current = Cursors.Default;
-				ExploreMyComputer();
-			}
+			Cursor.Current = Cursors.WaitCursor;
+			RefreshView();
 
+			RefreshFolders();
+
+			SetCurrentPath("home");
+			Cursor.Current = Cursors.Default;
+			ExploreMyComputer();
 		}
+
 		private void ExploreMyComputer()
 		{
-			
-			string [] drives = Environment.GetLogicalDrives();
-			string dir2 ="";
 
-			Cursor.Current = Cursors.WaitCursor;   
+			string[] drives = Environment.GetLogicalDrives();
+			string dir2 = "";
+
+			Cursor.Current = Cursors.WaitCursor;
 			TreeNode nodeDrive;
 
-			if(TreeNodeMyComputer.GetNodeCount(true) <2)
+			if (TreeNodeMyComputer.GetNodeCount(true) < 2)
 			{
 				TreeNodeMyComputer.FirstNode.Remove();
- 
-				foreach(string drive in drives)
+
+				foreach (string drive in drives)
 				{
 					nodeDrive = new TreeNode();
 					nodeDrive.Tag = drive;
-				
-					nodeDrive.Text = drive ;
-					
-					switch(Win32.GetDriveType(drive))
+
+					nodeDrive.Text = drive;
+
+					switch (Win32.GetDriveType(drive))
 					{
 						case 2:
 							nodeDrive.ImageIndex = 17;
-							nodeDrive.SelectedImageIndex  = 17;
+							nodeDrive.SelectedImageIndex = 17;
 							break;
 						case 3:
 							nodeDrive.ImageIndex = 0;
-							nodeDrive.SelectedImageIndex  = 0;
+							nodeDrive.SelectedImageIndex = 0;
 							break;
 						case 4:
 							nodeDrive.ImageIndex = 8;
@@ -1036,14 +1015,13 @@ namespace FSFormControls
 							nodeDrive.SelectedImageIndex = 0;
 							break;
 					}
-						
+
 					TreeNodeMyComputer.Nodes.Add(nodeDrive);
-					try
-					{
+
 						//add dirs under drive
-						if (Directory.Exists (drive))
+						if (Directory.Exists(drive))
 						{
-							foreach(string dir in Directory.GetDirectories(drive))
+							foreach (string dir in Directory.GetDirectories(drive))
 							{
 								dir2 = dir;
 								node = new TreeNode();
@@ -1053,366 +1031,290 @@ namespace FSFormControls
 								nodeDrive.Nodes.Add(node);
 							}
 						}
-					
-					
-					}
-					catch(Exception ex)	//error just add blank dir
-					{
-						 MessageBox.Show ("Error while Filling the Explorer:" + ex.Message );
-					}
 				}
 			}
-			
+
 			TreeNodeMyComputer.Expand();
 		}
 
 		private void UpdateListAddCurrent()
 		{
-			int i =0;
-			int j =0;
-			
-			int icount =0;
-            icount = listView1.Items.Count + 1;
-
-				for (i = 0;i< listView1.Items.Count-1;i++)
-				{
-					if (String.Compare(listView1.Items[i].SubItems[1].Text,"Selected")==0)
-					{
-						for (j = listView1.Items.Count-1;j> i + 1;j--)
-     						listView1.Items[j].Remove();
-						break;	
-					}				  
-					
-				}		
-		}
-		private void UpdateListGoBack() 
-		{	
-			if ((listView1.Items.Count >0)&&(String.Compare(listView1.Items[0].SubItems[1].Text,"Selected")==0))
-				return;
- 			int i=0;
-			for (i = 0;i< listView1.Items.Count;i++)
+			for (int i = 0; i < navigationPaths.Count - 1; i++)
 			{
-				if (String.Compare(listView1.Items[i].SubItems[1].Text,"Selected")==0)
+				if (navigationPaths[i].Selected)
+				{
+					//navigationPaths.RemoveAt(i);
+
+					//for (int j = navigationPaths.Count - 1; j > i + 1; j--)
+					//	navigationPaths.RemoveAt(j);
+					//break;
+				}
+
+			}
+		}
+		private void UpdateListGoBack()
+		{
+			if ((navigationPaths.Count > 0) && (navigationPaths[0].Selected))
+				return;
+
+			for (int i = 0; i < navigationPaths.Count; i++)
+			{
+				if (navigationPaths[i].Selected)
 				{
 					if (i != 0)
 					{
-						listView1.Items[i - 1].SubItems[1].Text = "Selected";
-						txtPath.Text =listView1.Items[i - 1].Text;
+                        navigationPaths[i - 1].Selected = true;
+						SetCurrentPath(navigationPaths[i - 1].Path);
 					}
 				}
 				if (i != 0)
 				{
-					listView1.Items[i].SubItems[1].Text = " -/- ";
+                    navigationPaths[i].Selected = false;
 				}
 			}
-			}
+		}
 		private void UpdateListGoFwd()
 		{
-			if ((listView1.Items.Count >0)&&(String.Compare(listView1.Items[listView1.Items.Count -1 ].SubItems[1].Text,"Selected")==0))
+			if ((navigationPaths.Count > 0) && (navigationPaths[navigationPaths.Count - 1].Selected))
 				return;
-			int i=0;
-			for (i = listView1.Items.Count-1;i >= 0;i--)
+			
+			for (int i = navigationPaths.Count - 1; i >= 0; i--)
 			{
-				if (String.Compare(listView1.Items[i].SubItems[1].Text,"Selected")==0)
+				if (navigationPaths[i].Selected)
 				{
-					if (i != listView1.Items.Count) 
+					if (i != navigationPaths.Count)
 					{
-						listView1.Items[i + 1].SubItems[1].Text = "Selected";
-						txtPath.Text =listView1.Items[i + 1].Text;   
+                        navigationPaths[i + 1].Selected = true;
+						SetCurrentPath(navigationPaths[i + 1].Path);
 					}
 				}
 
-				if (i != listView1.Items.Count-1) listView1.Items[i].SubItems[1].Text = " -/- ";
+				if (i != navigationPaths.Count - 1)
+                    navigationPaths[i].Selected = false;
 			}
 		}
-		private void updateList(string f)
-{
-	int i=0;
-	ListViewItem listviewitem;		// Used for creating listview items.
-
-	int icount =0;
-	UpdateListAddCurrent();
-	icount = listView1.Items.Count + 1;
-	try
-	{
-		if (listView1.Items.Count> 0)
-		{    
-			if (String.Compare(listView1.Items[listView1.Items.Count-1].Text, f)==0)
-			{
-				return;
-			}
-		}
-	
-		for (i = 0;i<listView1.Items.Count;i++)
+		private void UpdateList(string path)
 		{
-			listView1.Items[i].SubItems[1].Text = " -/- ";
+			UpdateListAddCurrent();
+
+			//if (navigationPaths.Count > 0)
+			//{
+			//	if (navigationPaths[navigationPaths.Count - 1].Selected)
+			//	{
+			//		return;
+			//	}
+			//}
+
+			for (int i = 0; i < navigationPaths.Count; i++)
+			{
+				navigationPaths[i].Selected = false;
+			}
+
+			if (navigationPaths.Exists(p => p.Path == path))
+				navigationPaths.Find(p => p.Path == path).Selected = true;
+			else
+				navigationPaths.Add(new NavigationPath(path, true));
 		}
-		listviewitem = new ListViewItem(f);
-		listviewitem.SubItems.Add("Selected");
-		listviewitem.Tag = f;
-		this.listView1.Items.Add(listviewitem);
-	}
-	catch(Exception e)
-	{
-	MessageBox.Show(e.Message);   
-	}
-}
-		public void btnGo_Click(object sender, System.EventArgs e)
+
+		private void btnGo_Click(object sender, System.EventArgs e)
+        {
+            Go(txtPath.Text);
+        }
+
+		public void Go(string path)
 		{
-			Cursor.Current = Cursors.WaitCursor;   
-			try
-			{
-				ExploreMyComputer(); 
-				string myString ="";
-				int h=1;
-				myString = txtPath.Text.ToLower()  ;
-				//if (String.Compare(myString.Substring(myString.Length-1,1),@"\")==0)
-				//{
-				//	myString = myString.Substring(0,myString.Length-1);
-				//	txtPath.Text = myString	;
+            Cursor.Current = Cursors.WaitCursor;
 
-				//}
-				TreeNode tn = TreeNodeMyComputer  ;
+            ExploreMyComputer();
+            SetCurrentPath(path);
 
-			StartAgain:
-			
-				do
-				{
-					//Strom = (tvwMain.GetNodeCount(true)).ToString() ;	
-					
-					foreach(TreeNode t in tn.Nodes) 
-					{
-						string mypath =  t.Tag.ToString()  ;
-						//mypath =  mypath.Replace("Desktop\\","") ;
-						//mypath =  mypath.Replace("My Computer\\","") ;
-						//mypath =  mypath.Replace(@"\\",@"\") ;
+            Cursor.Current = Cursors.Default;
 
-						//mypath =  mypath.Replace("My Documents\\",Environment.GetFolderPath(Environment.SpecialFolder.Personal) + "\\") ;
-						mypath=mypath.ToLower();
-						string mypathf =mypath;
-						if (!mypath.EndsWith(@"\"))  
-						{
-						if (myString.Length > mypathf.Length )	mypathf  =mypath + @"\";
-						}
+            //         Cursor.Current = Cursors.WaitCursor;
+            //         ExploreMyComputer();
+            //         TreeNode myComputerNode = TreeNodeMyComputer;
 
-						if (myString.StartsWith(mypathf))
-						{
-							t.TreeView.Focus(); 
-							t.TreeView.SelectedNode =  t; 
-							t.EnsureVisible(); 
-							t.Expand();
-							if (t.Nodes.Count>=1)
-							{
-								t.Expand();
-								tn = t;
-							}
-							else
-							{
-								if (String.Compare (myString,mypath)==0)
-								{
-									h = -1;
-									break;
-								}
-								else
-								{
-									continue;  
-								}
-							}
+            //do
+            //{
+            //	foreach (TreeNode node in myComputerNode.Nodes)
+            //	{
+            //		string mypath = node.Tag.ToString().ToLower();
 
-							if (mypathf.StartsWith(myString))
-							{
-								h = -1;
-								break;
-							}
-							else
-							{
-								goto  StartAgain;
-								//return;
-							}
-						}
-					}
-				
-					try
-					{
-						tn = tn.NextNode;
-					}
-					catch(Exception)
-					{}
- 
-				}while(h>=0);
+            //		string mypathf = mypath;
+            //		if (!mypath.EndsWith(@"\"))
+            //		{
+            //			if (path.ToLower().Length > mypathf.Length)
+            //				mypathf = mypath + @"\";
+            //		}
 
-			}
-			catch(Exception e1)
-			{
-				MessageBox.Show ("Error: " + e1.Message); 
-			}
-			finally
-			{
-				Cursor.Current = Cursors.Default;
-			}
-		}
+            //		if (path.ToLower().StartsWith(mypathf))
+            //		{
+            //			node.TreeView.Focus();
+            //			node.TreeView.SelectedNode = node;
+            //			node.EnsureVisible();
+            //			node.Expand();
+            //			if (node.Nodes.Count >= 1)
+            //			{
+            //				node.Expand();
+            //				myComputerNode = node;
+            //			}
+            //			else
+            //			{
+            //				if (String.Compare(path.ToLower(), mypath) == 0)
+            //				{
+            //					break;
+            //				}
+            //				else
+            //				{
+            //					continue;
+            //				}
+            //			}
 
-		private void btnHome_Click(object sender, System.EventArgs e)
+            //			if (mypathf.StartsWith(path.ToLower()))
+            //			{
+            //				break;
+            //			}
+            //		}
+            //	}
+
+            //	myComputerNode = myComputerNode.NextNode;
+
+            //} while (myComputerNode != null);
+
+            //         Cursor.Current = Cursors.Default;
+        }
+
+        private void btnHome_Click(object sender, System.EventArgs e)
 		{
-			setCurrentPath("home"); 
-			ExploreMyComputer(); 
-			btnGo_Click(sender,e); 
-			
-		}
+			SetCurrentPath("home");
+			ExploreMyComputer();
+
+            Go(txtPath.Text);
+        }
 
 
 		private void btnNext_Click(object sender, System.EventArgs e)
 		{
-			GoFlag = true;
-			string cpath = txtPath.Text ; 
-			UpdateListGoFwd();  
-			
-			if (String.Compare( cpath,txtPath.Text)==0)
-			{}
-			else
-			{
-				btnGo_Click(sender,e); 
-			}
-			GoFlag = false;
+			string cpath = txtPath.Text;
+			UpdateListGoFwd();
+
+            if (String.Compare(cpath, txtPath.Text) != 0)
+            {
+                Go(txtPath.Text);
+            }
 		}
 
 		private void btnBack_Click(object sender, System.EventArgs e)
 		{
-			GoFlag = true;
-			string cpath = txtPath.Text ; 
-			UpdateListGoBack();  
-			
-			if (String.Compare( cpath,txtPath.Text)==0)
-			{}
-			else
-			{
-				btnGo_Click(sender,e); 
-			}
-			GoFlag = false;
+			string cpath = txtPath.Text;
+			UpdateListGoBack();
+
+            if (String.Compare(cpath, txtPath.Text) != 0)
+            {
+                Go(txtPath.Text);
+            }
 		}
 
 		private void tvwMain_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
 		{
-			updateList(txtPath.Text);   
+			UpdateList(txtPath.Text);
 			if (tvwMain.SelectedNode != null)
 			{
 
-				if ((tvwMain.SelectedNode.ImageIndex == 18)&&(e.Button==MouseButtons.Right))
-					cMShortcut.Show(tvwMain ,new Point(e.X,e.Y)); 
+				if ((tvwMain.SelectedNode.ImageIndex == 18) && (e.Button == MouseButtons.Right))
+					cMShortcut.Show(tvwMain, new Point(e.X, e.Y));
 			}
 		}
 
 		private void btnUp_Click(object sender, System.EventArgs e)
 		{
-			try
-			{
-				DirectoryInfo MYINFO = new DirectoryInfo(txtPath.Text);
-				
-				if (MYINFO.Parent.Exists)
-					txtPath.Text = MYINFO.Parent.FullName;
-				updateList( txtPath.Text);
-				btnGo_Click(sender,e); 
-			}
-			catch(Exception)
-			{
-				//MessageBox.Show ("Parent directory does not exists","Directory Not Found",MessageBoxButtons.OK,MessageBoxIcon.Information ); 
-			}
-		}
+			DirectoryInfo directoryInfo = new DirectoryInfo(txtPath.Text);
+
+			if (directoryInfo.Parent == null)
+				return;
+
+			if (directoryInfo.Parent.Exists)
+				SetCurrentPath(directoryInfo.Parent.FullName);
+			UpdateList(txtPath.Text);
+
+            Go(txtPath.Text);
+        }
 
 		private void btnAdd_Click(object sender, System.EventArgs e)
 		{
-			string myname="";
-			string mypath="";
-
+			string myname = "";
+			string mypath = "";
 
 			FolderBrowserDialog dialog = new FolderBrowserDialog();
 			dialog.Description = "Add Folder in Explorer Tree";
 			dialog.ShowNewFolderButton = true;
-			dialog.SelectedPath = txtPath.Text  ;
+			dialog.SelectedPath = txtPath.Text;
 
 			if (dialog.ShowDialog() == DialogResult.OK)
 			{
 				mypath = dialog.SelectedPath;
-				myname = mypath.Substring(mypath.LastIndexOf("\\")+1);
-				
-				AddFolderNode(myname,mypath);
-				
+				myname = mypath.Substring(mypath.LastIndexOf("\\") + 1);
+
+				AddFolderNode(myname, mypath);
+
 			}
 		}
 		private void AddFolderNode(string name, string path)
 		{
+			TreeNode nodemyC = new TreeNode();
 
-			try
+			nodemyC.Tag = path;
+			nodemyC.Text = name;
+
+			nodemyC.ImageIndex = 18;
+			nodemyC.SelectedImageIndex = 18;
+
+			TreeNodeRootNode.Nodes.Add(nodemyC);
+
+			//add dirs under drive
+			if (Directory.Exists(path))
 			{
-				TreeNode nodemyC = new TreeNode();
-			
-				nodemyC.Tag = path;
-				nodemyC.Text = name;
-
-				nodemyC.ImageIndex = 18;
-				nodemyC.SelectedImageIndex = 18;
-
-				TreeNodeRootNode.Nodes.Add(nodemyC); 
-
-				try
+				foreach (string dir in Directory.GetDirectories(path))
 				{
-					//add dirs under drive
-					if (Directory.Exists (path))
-					{
-						foreach(string dir in Directory.GetDirectories(path))
-						{
-							TreeNode node = new TreeNode();
-							node.Tag = dir;
-							node.Text = dir.Substring(dir.LastIndexOf(@"\") + 1);
-							node.ImageIndex = 1;
-							nodemyC.Nodes.Add(node);
-						}
-					}
+					TreeNode node = new TreeNode();
+					node.Tag = dir;
+					node.Text = dir.Substring(dir.LastIndexOf(@"\") + 1);
+					node.ImageIndex = 1;
+					nodemyC.Nodes.Add(node);
 				}
-				catch(Exception ex)	//error just add blank dir
-				{
-					MessageBox.Show ("Error while Filling the Explorer:" + ex.Message );
-				}
-			}
-			catch(Exception e)
-			{
-				MessageBox.Show (e.Message);  
 			}
 		}
 
 		private void mnuShortcut_Click(object sender, System.EventArgs e)
 		{
-			if (tvwMain.SelectedNode.ImageIndex ==18)  
+			if (tvwMain.SelectedNode.ImageIndex == 18)
 				tvwMain.SelectedNode.Remove();
 		}
 
 		private void txtPath_TextChanged(object sender, System.EventArgs e)
 		{
-			try
+			if (Directory.Exists(txtPath.Text))
 			{
-				if( Directory.Exists(txtPath.Text))
-				{
-					SelectedPath = txtPath.Text;
-					PathChangedEvent(this,EventArgs.Empty); 
-				}
+				SelectedPath = txtPath.Text;
+
+				if(PathChangedEvent != null)
+					PathChangedEvent(this, EventArgs.Empty);
 			}
-			catch(Exception)
-			{}
 		}
 
 		public void AboutExplorerTree()
 		{
-			frmDBExplorerTreeOptions form = new frmDBExplorerTreeOptions(showMyDocuments,showMyFavorites,showMyNetwork,showAddressbar,showToolbar   );
+			frmDBExplorerTreeOptions form = new frmDBExplorerTreeOptions(showMyDocuments, showMyFavorites, showMyNetwork, showAddressbar, showToolbar);
 			if (form.ShowDialog() == DialogResult.OK)
 			{
 				showMyDocuments = form.myDocument;
-				showMyNetwork  = form.myNetwork;
+				showMyNetwork = form.myNetwork;
 				ShowMyFavorites = form.myFavorite;
 				ShowAddressbar = form.myAddressbar;
 				ShowToolbar = form.myToolbar;
-  
-				btnRefresh_Click(this,null); 
- 			}
+
+				btnRefresh_Click(this, null);
+			}
 		}
 
 		private void txtPath_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
@@ -1422,46 +1324,39 @@ namespace FSFormControls
 
 		private void txtPath_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
-			if(	e.KeyValue ==13)
+			if (e.KeyValue == 13)
 			{
-				btnGo_Click(sender,e); 
-				txtPath.Focus();
+                Go(txtPath.Text);
+                txtPath.Focus();
 			}
-  
 		}
 
 		private void btnInfo_Click(object sender, System.EventArgs e)
 		{
 			AboutExplorerTree();
-		
+
 		}
 
 		private void grptoolbar_Enter(object sender, System.EventArgs e)
-		{		
+		{
 		}
-
 	}
-	/// <summary>
-	/// Summary description for Form1.
-	/// </summary>
-	/// 
-	
-									
-	[StructLayout(LayoutKind.Sequential, Pack=1)]
+
+	[StructLayout(LayoutKind.Sequential, Pack = 1)]
 	public struct SHQUERYRBINFO
 	{
-		public uint cbSize;     
+		public uint cbSize;
 		public ulong i64Size;
 		public ulong i64NumItems;
 	};
-								
+
 	//Shell functions
 	public class Win32
 	{
 		public const uint SHGFI_ICON = 0x100;
 		//public const uint SHGFI_LARGEICON = 0x0;    // 'Large icon
 		public const uint SHGFI_SMALLICON = 0x1;    // 'Small icon
-								
+
 		[DllImport("shell32.dll")]
 		public static extern IntPtr SHGetFileInfo(
 			string pszPath,
@@ -1469,25 +1364,25 @@ namespace FSFormControls
 			ref SHFILEINFO psfi,
 			uint cbSizeFileInfo,
 			uint uFlags);
-		
+
 		[DllImport("kernel32")]
 		public static extern uint GetDriveType(
 			string lpRootPathName);
 
 		[DllImport("shell32.dll")]
-		public static extern bool SHGetDiskFreeSpaceEx(          
+		public static extern bool SHGetDiskFreeSpaceEx(
 			string pszVolume,
 			ref ulong pqwFreeCaller,
 			ref ulong pqwTot,
 			ref ulong pqwFree);
 
 		[DllImport("shell32.Dll")]
-		public static extern int SHQueryRecycleBin(          
+		public static extern int SHQueryRecycleBin(
 			string pszRootPath,
 			ref SHQUERYRBINFO pSHQueryRBInfo);
 
 		[StructLayout(LayoutKind.Sequential)]
-			public struct SHFILEINFO 
+		public struct SHFILEINFO
 		{
 			public IntPtr hIcon;
 			public IntPtr iIcon;
@@ -1498,9 +1393,9 @@ namespace FSFormControls
 			public string szTypeName;
 		};
 
-	
 
-		[StructLayout( LayoutKind.Sequential )]
+
+		[StructLayout(LayoutKind.Sequential)]
 		public class BITMAPINFO
 		{
 			public Int32 biSize;
@@ -1517,15 +1412,15 @@ namespace FSFormControls
 			public Int32 colors;
 		};
 		[DllImport("comctl32.dll")]
-		public static extern bool ImageList_Add( IntPtr hImageList, IntPtr hBitmap, IntPtr hMask );
+		public static extern bool ImageList_Add(IntPtr hImageList, IntPtr hBitmap, IntPtr hMask);
 		[DllImport("kernel32.dll")]
-		private static extern bool RtlMoveMemory( IntPtr dest, IntPtr source, int dwcount );
+		private static extern bool RtlMoveMemory(IntPtr dest, IntPtr source, int dwcount);
 		[DllImport("shell32.dll")]
-		public static extern IntPtr DestroyIcon( IntPtr hIcon );
+		public static extern IntPtr DestroyIcon(IntPtr hIcon);
 		[DllImport("gdi32.dll")]
-		public static extern IntPtr CreateDIBSection( IntPtr hdc, [In, MarshalAs(UnmanagedType.LPStruct)]BITMAPINFO pbmi, uint iUsage, out IntPtr ppvBits, IntPtr hSection, uint dwOffset );
+		public static extern IntPtr CreateDIBSection(IntPtr hdc, [In, MarshalAs(UnmanagedType.LPStruct)] BITMAPINFO pbmi, uint iUsage, out IntPtr ppvBits, IntPtr hSection, uint dwOffset);
 
-		
+
 	}
 
 	public enum ResourceScope
@@ -1547,14 +1442,14 @@ namespace FSFormControls
 
 	public enum ResourceUsage
 	{
-		RESOURCEUSAGE_CONNECTABLE   = 0x00000001,
-		RESOURCEUSAGE_CONTAINER     = 0x00000002,
+		RESOURCEUSAGE_CONNECTABLE = 0x00000001,
+		RESOURCEUSAGE_CONTAINER = 0x00000002,
 		RESOURCEUSAGE_NOLOCALDEVICE = 0x00000004,
-		RESOURCEUSAGE_SIBLING       = 0x00000008,
-		RESOURCEUSAGE_ATTACHED      = 0x00000010,
-		RESOURCEUSAGE_ALL           = (RESOURCEUSAGE_CONNECTABLE | RESOURCEUSAGE_CONTAINER | RESOURCEUSAGE_ATTACHED),
+		RESOURCEUSAGE_SIBLING = 0x00000008,
+		RESOURCEUSAGE_ATTACHED = 0x00000010,
+		RESOURCEUSAGE_ALL = (RESOURCEUSAGE_CONNECTABLE | RESOURCEUSAGE_CONTAINER | RESOURCEUSAGE_ATTACHED),
 	};
-	
+
 	public enum ResourceDisplayType
 	{
 		RESOURCEDISPLAYTYPE_GENERIC,
@@ -1580,119 +1475,119 @@ namespace FSFormControls
 		};
 
 		[StructLayout(LayoutKind.Sequential)]
-			private class NETRESOURCE 
+		private class NETRESOURCE
 		{
-			public ResourceScope       dwScope = 0;
-			public ResourceType        dwType = 0;
+			public ResourceScope dwScope = 0;
+			public ResourceType dwType = 0;
 			public ResourceDisplayType dwDisplayType = 0;
-			public ResourceUsage       dwUsage = 0;
-			public string              lpLocalName = null;
-			public string              lpRemoteName = null;
-			public string              lpComment = null;
-			public string              lpProvider = null;
+			public ResourceUsage dwUsage = 0;
+			public string lpLocalName = null;
+			public string lpRemoteName = null;
+			public string lpComment = null;
+			public string lpProvider = null;
 		};
-	
+
 
 		private ArrayList aData = new ArrayList();
-		
+
 
 		public int Count
 		{
 			get { return aData.Count; }
 		}
-	
-		[DllImport("Mpr.dll", EntryPoint="WNetOpenEnumA", CallingConvention=CallingConvention.Winapi)]
+
+		[DllImport("Mpr.dll", EntryPoint = "WNetOpenEnumA", CallingConvention = CallingConvention.Winapi)]
 		private static extern ErrorCodes WNetOpenEnum(ResourceScope dwScope, ResourceType dwType, ResourceUsage dwUsage, NETRESOURCE p, out IntPtr lphEnum);
 
-		[DllImport("Mpr.dll", EntryPoint="WNetCloseEnum", CallingConvention=CallingConvention.Winapi)]
+		[DllImport("Mpr.dll", EntryPoint = "WNetCloseEnum", CallingConvention = CallingConvention.Winapi)]
 		private static extern ErrorCodes WNetCloseEnum(IntPtr hEnum);
 
-		[DllImport("Mpr.dll", EntryPoint="WNetEnumResourceA", CallingConvention=CallingConvention.Winapi)]
+		[DllImport("Mpr.dll", EntryPoint = "WNetEnumResourceA", CallingConvention = CallingConvention.Winapi)]
 		private static extern ErrorCodes WNetEnumResource(IntPtr hEnum, ref uint lpcCount, IntPtr buffer, ref uint lpBufferSize);
 
-	
-		private	void EnumerateServers(NETRESOURCE pRsrc, ResourceScope scope, ResourceType type, ResourceUsage usage, ResourceDisplayType displayType,string kPath)
-		{
-		uint		bufferSize = 16384;
-		IntPtr		buffer	= Marshal.AllocHGlobal((int) bufferSize);
-		IntPtr		handle = IntPtr.Zero;
-		ErrorCodes	result;
-		uint		cEntries = 1;
-		bool serverenum = false;
 
-		result = WNetOpenEnum(scope, type, usage, pRsrc, out handle);
-
-		if (result == ErrorCodes.NO_ERROR)
+		private void EnumerateServers(NETRESOURCE pRsrc, ResourceScope scope, ResourceType type, ResourceUsage usage, ResourceDisplayType displayType, string kPath)
 		{
-			do
+			uint bufferSize = 16384;
+			IntPtr buffer = Marshal.AllocHGlobal((int)bufferSize);
+			IntPtr handle = IntPtr.Zero;
+			ErrorCodes result;
+			uint cEntries = 1;
+			bool serverenum = false;
+
+			result = WNetOpenEnum(scope, type, usage, pRsrc, out handle);
+
+			if (result == ErrorCodes.NO_ERROR)
 			{
-				result = WNetEnumResource(handle, ref cEntries,	buffer,	ref	bufferSize);
-
-				if ((result == ErrorCodes.NO_ERROR))
+				do
 				{
-					Marshal.PtrToStructure(buffer, pRsrc);
+					result = WNetEnumResource(handle, ref cEntries, buffer, ref bufferSize);
 
-					if(String.Compare(kPath,"")==0)
+					if ((result == ErrorCodes.NO_ERROR))
 					{
-						if ((pRsrc.dwDisplayType	== displayType) || (pRsrc.dwDisplayType	== ResourceDisplayType.RESOURCEDISPLAYTYPE_DOMAIN))
-							aData.Add(pRsrc.lpRemoteName + "|" + pRsrc.dwDisplayType );
+						Marshal.PtrToStructure(buffer, pRsrc);
 
-						if ((pRsrc.dwUsage & ResourceUsage.RESOURCEUSAGE_CONTAINER )== ResourceUsage.RESOURCEUSAGE_CONTAINER )
-						{	
-							if ((pRsrc.dwDisplayType	== displayType))
-							{
-								EnumerateServers(pRsrc,	scope, type, usage,	displayType,kPath);
-								
-							}
-								
-						}
-					}
-					else
-					{
-						if (pRsrc.dwDisplayType	== displayType)
+						if (String.Compare(kPath, "") == 0)
 						{
-							aData.Add(pRsrc.lpRemoteName);
-							EnumerateServers(pRsrc,	scope, type, usage,	displayType,kPath);
-							//return;
-							serverenum = true;
-						}
-						if (!serverenum)
-						{
-							if (pRsrc.dwDisplayType	== ResourceDisplayType.RESOURCEDISPLAYTYPE_SHARE)
+							if ((pRsrc.dwDisplayType == displayType) || (pRsrc.dwDisplayType == ResourceDisplayType.RESOURCEDISPLAYTYPE_DOMAIN))
+								aData.Add(pRsrc.lpRemoteName + "|" + pRsrc.dwDisplayType);
+
+							if ((pRsrc.dwUsage & ResourceUsage.RESOURCEUSAGE_CONTAINER) == ResourceUsage.RESOURCEUSAGE_CONTAINER)
 							{
-								aData.Add(pRsrc.lpRemoteName + "-share");
+								if ((pRsrc.dwDisplayType == displayType))
+								{
+									EnumerateServers(pRsrc, scope, type, usage, displayType, kPath);
+
+								}
+
 							}
 						}
 						else
 						{
-							serverenum =false;
+							if (pRsrc.dwDisplayType == displayType)
+							{
+								aData.Add(pRsrc.lpRemoteName);
+								EnumerateServers(pRsrc, scope, type, usage, displayType, kPath);
+								//return;
+								serverenum = true;
+							}
+							if (!serverenum)
+							{
+								if (pRsrc.dwDisplayType == ResourceDisplayType.RESOURCEDISPLAYTYPE_SHARE)
+								{
+									aData.Add(pRsrc.lpRemoteName + "-share");
+								}
+							}
+							else
+							{
+								serverenum = false;
+							}
+							if ((kPath.IndexOf(pRsrc.lpRemoteName) >= 0) || (String.Compare(pRsrc.lpRemoteName, "Microsoft Windows Network") == 0))
+							{
+								EnumerateServers(pRsrc, scope, type, usage, displayType, kPath);
+								//return;
+
+							}
+							//}
 						}
-						if((kPath.IndexOf(pRsrc.lpRemoteName)>=0)||(String.Compare(pRsrc.lpRemoteName,"Microsoft Windows Network")==0))
-						{
-							EnumerateServers(pRsrc,	scope, type, usage,	displayType,kPath);
-							//return;
-							
-						}
-						//}
+
 					}
-				
-				}
-				else if	(result	!= ErrorCodes.ERROR_NO_MORE_ITEMS)
-					break;
-			} while	(result	!= ErrorCodes.ERROR_NO_MORE_ITEMS);
+					else if (result != ErrorCodes.ERROR_NO_MORE_ITEMS)
+						break;
+				} while (result != ErrorCodes.ERROR_NO_MORE_ITEMS);
 
-			WNetCloseEnum(handle);
+				WNetCloseEnum(handle);
+			}
+
+			Marshal.FreeHGlobal((IntPtr)buffer);
 		}
 
-		Marshal.FreeHGlobal((IntPtr) buffer);
-		}
-
-		public ServerEnum(ResourceScope scope, ResourceType type, ResourceUsage usage, ResourceDisplayType displayType,string kPath)
+		public ServerEnum(ResourceScope scope, ResourceType type, ResourceUsage usage, ResourceDisplayType displayType, string kPath)
 		{
-			
+
 			NETRESOURCE netRoot = new NETRESOURCE();
-			EnumerateServers(netRoot, scope, type, usage, displayType,kPath);
-		
+			EnumerateServers(netRoot, scope, type, usage, displayType, kPath);
+
 		}
 		#region IEnumerable Members
 
