@@ -86,7 +86,7 @@ namespace FSBarcodeCore
 			}
 		}
 
-		private static void SaveQRToFile(string qrText, int width, int height, string fileName)
+		public static void SaveQRToFile(string qrText, int width, int height, string fileName)
 		{
 			using (Bitmap bitMap = Generate(qrText, width, height, CodeFormat.QR))
 			{
@@ -94,7 +94,7 @@ namespace FSBarcodeCore
 			}
 		}
 
-		private static Bitmap GetQRBitmap(string qrText, int width, int height)
+        public static Bitmap GetQRBitmap(string qrText, int width, int height)
 		{
 			using (Bitmap bitMap = Generate(qrText, width, height, CodeFormat.QR))
 			{
@@ -102,7 +102,7 @@ namespace FSBarcodeCore
 			}
 		}
 
-		private static byte[] GetQRBytes(string qrText, int width, int height)
+        public static byte[] GetQRBytes(string qrText, int width, int height)
 		{
 			using (Bitmap bitMap = Generate(qrText, width, height, CodeFormat.QR))
 			{
