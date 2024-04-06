@@ -30,8 +30,8 @@ namespace FSCertificate
         /// <returns></returns>
         public static X509Certificate2 GetCertificateByName(string name)
         {
-            X509Certificate2 certificate = new X509Certificate2();
-            X509Store Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            X509Certificate2 certificate = null;
+            X509Store Store = new X509Store(StoreName.AddressBook, StoreLocation.LocalMachine);
             Store.Open(OpenFlags.ReadOnly);
             foreach (var cert in Store.Certificates)
                 if (cert.FriendlyName == name)
@@ -42,7 +42,10 @@ namespace FSCertificate
 
             Store.Close();
 
-            return certificate;
+            if(certificate == null)
+                throw new Exception("Certificado: " +  name + ", no encontrado en el almacen.");
+            else
+                return certificate;
         }
 
         /// <summary>
@@ -52,11 +55,11 @@ namespace FSCertificate
         /// <returns></returns>
         public static X509Certificate2 GetCertificateBySerialNumber(string serialNumber)
         {
-            X509Certificate2 certificate = new X509Certificate2();
+            X509Certificate2 certificate = null;
             X509Store Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
             Store.Open(OpenFlags.ReadOnly);
             foreach (var cert in Store.Certificates)
-                if (cert.SerialNumber == serialNumber)
+                if (cert.SerialNumber.ToLower() == serialNumber.ToLower())
                 {
                     certificate = cert;
                     break;
@@ -64,7 +67,49 @@ namespace FSCertificate
 
             Store.Close();
 
-            return certificate;
+            if (certificate == null)
+                throw new Exception("Certificado: " + serialNumber + ", no encontrado en el almacen.");
+            else
+                return certificate;
+        }
+
+        /// <summary>
+        /// Obtiene el certificado del almacen indicando su editor.
+        /// </summary>
+        /// <param issuerName="editor"></param>
+        /// <returns></returns>
+        public static X509Certificate2 GetCertificateByIssuer(StoreLocation location, string issuerName)
+        {
+            X509Store Store = new X509Store(location);
+            Store.Open(OpenFlags.ReadOnly);
+            X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindByIssuerName, issuerName, true);
+            return certs.OfType<X509Certificate2>().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Obtiene el certificado del almacen indicando su número de serie.
+        /// </summary>
+        /// <param serialNumber="número de serie"></param>
+        /// <returns></returns>
+        public static X509Certificate2 GetCertificateBySerialNumber(StoreLocation location, string serialNumber)
+        {
+            X509Store Store = new X509Store(location);
+            Store.Open(OpenFlags.ReadOnly);
+            X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true);
+            return certs.OfType<X509Certificate2>().FirstOrDefault();
+        }
+
+        /// <summary>
+        /// Obtiene el certificado del almacen indicando su nombre.
+        /// </summary>
+        /// <param name="nombre"></param>
+        /// <returns></returns>
+        public static X509Certificate2 GetCertificateByName(StoreLocation location, string name)
+        {
+            X509Store Store = new X509Store(location);
+            Store.Open(OpenFlags.ReadOnly);
+            X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindBySubjectName, name, true);
+            return certs.OfType<X509Certificate2>().FirstOrDefault();
         }
 
         /// <summary>
@@ -203,6 +248,16 @@ namespace FSCertificate
             xmlDocument.Load(fileName);
 
             return VerifyXml(xmlDocument, cert);
+        }
+
+        public static bool IsSelfSigned(X509Certificate2 cert)
+        {
+            return cert.SubjectName.RawData.SequenceEqual(cert.IssuerName.RawData);
+        }
+
+        public static bool CheckIfHasPrivateKey(X509Certificate2 cert)
+        {
+            return cert.PrivateKey == null;
         }
     }
 }
