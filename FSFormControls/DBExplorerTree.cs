@@ -133,8 +133,8 @@ namespace FSFormControls
 		private Panel panel;
 		private string selectedPath = "home";
 		private string[] selectedPathFiles;
-        private string[] selectedPathFolders;
-        private List<NavigationPath> navigationPaths = new List<NavigationPath>();
+		private string[] selectedPathFolders;
+		private List<NavigationPath> navigationPaths = new List<NavigationPath>();
 
 		private class NavigationPath
 		{
@@ -145,8 +145,8 @@ namespace FSFormControls
 			}
 
 			public string Path { get; set; }
-            public bool Selected { get; set; }
-        }
+			public bool Selected { get; set; }
+		}
 
 		[
 		Category("Appearance"),
@@ -163,9 +163,9 @@ namespace FSFormControls
 				this.selectedPath = value;
 
 				GetFiles(selectedPath);
-                GetFolders(selectedPath);
+				GetFolders(selectedPath);
 
-                this.Invalidate();
+				this.Invalidate();
 			}
 		}
 
@@ -186,25 +186,25 @@ namespace FSFormControls
 			}
 		}
 
-        [
-        Category("Appearance"),
-        Description("Selected path folders")
-        ]
-        public string[] SelectedPathFolders
-        {
-            get
-            {
-                return this.selectedPathFolders;
-            }
-            set
-            {
-                this.selectedPathFolders = value;
-                this.Invalidate();
-            }
-        }
+		[
+		Category("Appearance"),
+		Description("Selected path folders")
+		]
+		public string[] SelectedPathFolders
+		{
+			get
+			{
+				return this.selectedPathFolders;
+			}
+			set
+			{
+				this.selectedPathFolders = value;
+				this.Invalidate();
+			}
+		}
 
 
-        public DBExplorerTree()
+		public DBExplorerTree()
 		{
 			// This call is required by the Windows.Forms Form Designer.
 			InitializeComponent();
@@ -234,235 +234,235 @@ namespace FSFormControls
 		/// </summary>
 		private void InitializeComponent()
 		{
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBExplorerTree));
-            this.txtPath = new System.Windows.Forms.TextBox();
-            this.btnGo = new System.Windows.Forms.Button();
-            this.tvwMain = new System.Windows.Forms.TreeView();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.cMShortcut = new System.Windows.Forms.ContextMenu();
-            this.mnuShortcut = new System.Windows.Forms.MenuItem();
-            this.toolStrip = new System.Windows.Forms.ToolStrip();
-            this.toolStripHome = new System.Windows.Forms.ToolStripButton();
-            this.toolStripBack = new System.Windows.Forms.ToolStripButton();
-            this.toolStripNext = new System.Windows.Forms.ToolStripButton();
-            this.toolStripUp = new System.Windows.Forms.ToolStripButton();
-            this.toolStripRefresh = new System.Windows.Forms.ToolStripButton();
-            this.toolStripInfo = new System.Windows.Forms.ToolStripButton();
-            this.toolStripAdd = new System.Windows.Forms.ToolStripButton();
-            this.panel = new System.Windows.Forms.Panel();
-            this.toolStrip.SuspendLayout();
-            this.panel.SuspendLayout();
-            this.SuspendLayout();
-            // 
-            // txtPath
-            // 
-            this.txtPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPath.Location = new System.Drawing.Point(8, 3);
-            this.txtPath.Name = "txtPath";
-            this.txtPath.Size = new System.Drawing.Size(438, 20);
-            this.txtPath.TabIndex = 61;
-            this.toolTip.SetToolTip(this.txtPath, "Current directory");
-            this.txtPath.TextChanged += new System.EventHandler(this.txtPath_TextChanged);
-            this.txtPath.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPath_KeyPress);
-            this.txtPath.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPath_KeyUp);
-            // 
-            // btnGo
-            // 
-            this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGo.ForeColor = System.Drawing.Color.White;
-            this.btnGo.Image = ((System.Drawing.Image)(resources.GetObject("btnGo.Image")));
-            this.btnGo.Location = new System.Drawing.Point(443, 1);
-            this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(24, 22);
-            this.btnGo.TabIndex = 60;
-            this.toolTip.SetToolTip(this.btnGo, "Go to the directory");
-            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
-            // 
-            // tvwMain
-            // 
-            this.tvwMain.AllowDrop = true;
-            this.tvwMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tvwMain.BackColor = System.Drawing.Color.White;
-            this.tvwMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tvwMain.ImageIndex = 0;
-            this.tvwMain.ImageList = this.imageList;
-            this.tvwMain.Location = new System.Drawing.Point(3, 29);
-            this.tvwMain.Name = "tvwMain";
-            this.tvwMain.SelectedImageIndex = 2;
-            this.tvwMain.ShowLines = false;
-            this.tvwMain.ShowRootLines = false;
-            this.tvwMain.Size = new System.Drawing.Size(464, 346);
-            this.tvwMain.TabIndex = 59;
-            this.tvwMain.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvwMain_AfterExpand);
-            this.tvwMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwMain_AfterSelect);
-            this.tvwMain.DoubleClick += new System.EventHandler(this.tvwMain_DoubleClick);
-            this.tvwMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tvwMain_MouseUp);
-            // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "");
-            this.imageList.Images.SetKeyName(1, "");
-            this.imageList.Images.SetKeyName(2, "");
-            this.imageList.Images.SetKeyName(3, "");
-            this.imageList.Images.SetKeyName(4, "");
-            this.imageList.Images.SetKeyName(5, "");
-            this.imageList.Images.SetKeyName(6, "");
-            this.imageList.Images.SetKeyName(7, "");
-            this.imageList.Images.SetKeyName(8, "");
-            this.imageList.Images.SetKeyName(9, "");
-            this.imageList.Images.SetKeyName(10, "");
-            this.imageList.Images.SetKeyName(11, "");
-            this.imageList.Images.SetKeyName(12, "");
-            this.imageList.Images.SetKeyName(13, "");
-            this.imageList.Images.SetKeyName(14, "");
-            this.imageList.Images.SetKeyName(15, "");
-            this.imageList.Images.SetKeyName(16, "");
-            this.imageList.Images.SetKeyName(17, "");
-            this.imageList.Images.SetKeyName(18, "");
-            this.imageList.Images.SetKeyName(19, "");
-            this.imageList.Images.SetKeyName(20, "");
-            this.imageList.Images.SetKeyName(21, "");
-            this.imageList.Images.SetKeyName(22, "");
-            this.imageList.Images.SetKeyName(23, "");
-            this.imageList.Images.SetKeyName(24, "");
-            this.imageList.Images.SetKeyName(25, "");
-            this.imageList.Images.SetKeyName(26, "");
-            this.imageList.Images.SetKeyName(27, "");
-            this.imageList.Images.SetKeyName(28, "");
-            // 
-            // cMShortcut
-            // 
-            this.cMShortcut.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuShortcut});
-            // 
-            // mnuShortcut
-            // 
-            this.mnuShortcut.Index = 0;
-            this.mnuShortcut.Text = "Remove Shortcut";
-            this.mnuShortcut.Click += new System.EventHandler(this.mnuShortcut_Click);
-            // 
-            // toolStrip
-            // 
-            this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripHome,
-            this.toolStripBack,
-            this.toolStripNext,
-            this.toolStripUp,
-            this.toolStripRefresh,
-            this.toolStripInfo,
-            this.toolStripAdd});
-            this.toolStrip.Location = new System.Drawing.Point(0, 0);
-            this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(471, 25);
-            this.toolStrip.TabIndex = 72;
-            this.toolStrip.Text = "toolStrip1";
-            // 
-            // toolStripHome
-            // 
-            this.toolStripHome.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripHome.Image = ((System.Drawing.Image)(resources.GetObject("toolStripHome.Image")));
-            this.toolStripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripHome.Name = "toolStripHome";
-            this.toolStripHome.Size = new System.Drawing.Size(23, 22);
-            this.toolStripHome.Text = "Casa";
-            this.toolStripHome.Click += new System.EventHandler(this.btnHome_Click);
-            // 
-            // toolStripBack
-            // 
-            this.toolStripBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripBack.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBack.Image")));
-            this.toolStripBack.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripBack.Name = "toolStripBack";
-            this.toolStripBack.Size = new System.Drawing.Size(23, 22);
-            this.toolStripBack.Text = "Anterior";
-            this.toolStripBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
-            // toolStripNext
-            // 
-            this.toolStripNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripNext.Image = ((System.Drawing.Image)(resources.GetObject("toolStripNext.Image")));
-            this.toolStripNext.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripNext.Name = "toolStripNext";
-            this.toolStripNext.Size = new System.Drawing.Size(23, 22);
-            this.toolStripNext.Text = "Siguiente";
-            this.toolStripNext.Click += new System.EventHandler(this.btnNext_Click);
-            // 
-            // toolStripUp
-            // 
-            this.toolStripUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripUp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripUp.Image")));
-            this.toolStripUp.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripUp.Name = "toolStripUp";
-            this.toolStripUp.Size = new System.Drawing.Size(23, 22);
-            this.toolStripUp.Text = "Nivel superior";
-            this.toolStripUp.Click += new System.EventHandler(this.btnUp_Click);
-            // 
-            // toolStripRefresh
-            // 
-            this.toolStripRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolStripRefresh.Image")));
-            this.toolStripRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripRefresh.Name = "toolStripRefresh";
-            this.toolStripRefresh.Size = new System.Drawing.Size(23, 22);
-            this.toolStripRefresh.Text = "Actualizar";
-            this.toolStripRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // toolStripInfo
-            // 
-            this.toolStripInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripInfo.Image = ((System.Drawing.Image)(resources.GetObject("toolStripInfo.Image")));
-            this.toolStripInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripInfo.Name = "toolStripInfo";
-            this.toolStripInfo.Size = new System.Drawing.Size(23, 22);
-            this.toolStripInfo.Text = "Información";
-            this.toolStripInfo.Visible = false;
-            this.toolStripInfo.Click += new System.EventHandler(this.btnInfo_Click);
-            // 
-            // toolStripAdd
-            // 
-            this.toolStripAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAdd.Image")));
-            this.toolStripAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripAdd.Name = "toolStripAdd";
-            this.toolStripAdd.Size = new System.Drawing.Size(23, 22);
-            this.toolStripAdd.Text = "Acceso directo";
-            this.toolStripAdd.Visible = false;
-            this.toolStripAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // panel
-            // 
-            this.panel.Controls.Add(this.txtPath);
-            this.panel.Controls.Add(this.btnGo);
-            this.panel.Controls.Add(this.tvwMain);
-            this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel.Location = new System.Drawing.Point(0, 25);
-            this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(471, 378);
-            this.panel.TabIndex = 73;
-            // 
-            // DBExplorerTree
-            // 
-            this.BackColor = System.Drawing.Color.White;
-            this.Controls.Add(this.panel);
-            this.Controls.Add(this.toolStrip);
-            this.Name = "DBExplorerTree";
-            this.Size = new System.Drawing.Size(471, 403);
-            this.Load += new System.EventHandler(this.ExplorerTree_Load);
-            this.toolStrip.ResumeLayout(false);
-            this.toolStrip.PerformLayout();
-            this.panel.ResumeLayout(false);
-            this.panel.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+			this.components = new System.ComponentModel.Container();
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBExplorerTree));
+			this.txtPath = new System.Windows.Forms.TextBox();
+			this.btnGo = new System.Windows.Forms.Button();
+			this.tvwMain = new System.Windows.Forms.TreeView();
+			this.imageList = new System.Windows.Forms.ImageList(this.components);
+			this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+			this.cMShortcut = new System.Windows.Forms.ContextMenu();
+			this.mnuShortcut = new System.Windows.Forms.MenuItem();
+			this.toolStrip = new System.Windows.Forms.ToolStrip();
+			this.toolStripHome = new System.Windows.Forms.ToolStripButton();
+			this.toolStripBack = new System.Windows.Forms.ToolStripButton();
+			this.toolStripNext = new System.Windows.Forms.ToolStripButton();
+			this.toolStripUp = new System.Windows.Forms.ToolStripButton();
+			this.toolStripRefresh = new System.Windows.Forms.ToolStripButton();
+			this.toolStripInfo = new System.Windows.Forms.ToolStripButton();
+			this.toolStripAdd = new System.Windows.Forms.ToolStripButton();
+			this.panel = new System.Windows.Forms.Panel();
+			this.toolStrip.SuspendLayout();
+			this.panel.SuspendLayout();
+			this.SuspendLayout();
+			// 
+			// txtPath
+			// 
+			this.txtPath.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.txtPath.Location = new System.Drawing.Point(8, 3);
+			this.txtPath.Name = "txtPath";
+			this.txtPath.Size = new System.Drawing.Size(438, 20);
+			this.txtPath.TabIndex = 61;
+			this.toolTip.SetToolTip(this.txtPath, "Current directory");
+			this.txtPath.TextChanged += new System.EventHandler(this.txtPath_TextChanged);
+			this.txtPath.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPath_KeyPress);
+			this.txtPath.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtPath_KeyUp);
+			// 
+			// btnGo
+			// 
+			this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+			this.btnGo.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.btnGo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.btnGo.ForeColor = System.Drawing.Color.White;
+			this.btnGo.Image = ((System.Drawing.Image)(resources.GetObject("btnGo.Image")));
+			this.btnGo.Location = new System.Drawing.Point(443, 1);
+			this.btnGo.Name = "btnGo";
+			this.btnGo.Size = new System.Drawing.Size(24, 22);
+			this.btnGo.TabIndex = 60;
+			this.toolTip.SetToolTip(this.btnGo, "Go to the directory");
+			this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
+			// 
+			// tvwMain
+			// 
+			this.tvwMain.AllowDrop = true;
+			this.tvwMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+			| System.Windows.Forms.AnchorStyles.Left)
+			| System.Windows.Forms.AnchorStyles.Right)));
+			this.tvwMain.BackColor = System.Drawing.Color.White;
+			this.tvwMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.tvwMain.ImageIndex = 0;
+			this.tvwMain.ImageList = this.imageList;
+			this.tvwMain.Location = new System.Drawing.Point(3, 29);
+			this.tvwMain.Name = "tvwMain";
+			this.tvwMain.SelectedImageIndex = 2;
+			this.tvwMain.ShowLines = false;
+			this.tvwMain.ShowRootLines = false;
+			this.tvwMain.Size = new System.Drawing.Size(464, 346);
+			this.tvwMain.TabIndex = 59;
+			this.tvwMain.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.tvwMain_AfterExpand);
+			this.tvwMain.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvwMain_AfterSelect);
+			this.tvwMain.DoubleClick += new System.EventHandler(this.tvwMain_DoubleClick);
+			this.tvwMain.MouseUp += new System.Windows.Forms.MouseEventHandler(this.tvwMain_MouseUp);
+			// 
+			// imageList
+			// 
+			this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+			this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+			this.imageList.Images.SetKeyName(0, "");
+			this.imageList.Images.SetKeyName(1, "");
+			this.imageList.Images.SetKeyName(2, "");
+			this.imageList.Images.SetKeyName(3, "");
+			this.imageList.Images.SetKeyName(4, "");
+			this.imageList.Images.SetKeyName(5, "");
+			this.imageList.Images.SetKeyName(6, "");
+			this.imageList.Images.SetKeyName(7, "");
+			this.imageList.Images.SetKeyName(8, "");
+			this.imageList.Images.SetKeyName(9, "");
+			this.imageList.Images.SetKeyName(10, "");
+			this.imageList.Images.SetKeyName(11, "");
+			this.imageList.Images.SetKeyName(12, "");
+			this.imageList.Images.SetKeyName(13, "");
+			this.imageList.Images.SetKeyName(14, "");
+			this.imageList.Images.SetKeyName(15, "");
+			this.imageList.Images.SetKeyName(16, "");
+			this.imageList.Images.SetKeyName(17, "");
+			this.imageList.Images.SetKeyName(18, "");
+			this.imageList.Images.SetKeyName(19, "");
+			this.imageList.Images.SetKeyName(20, "");
+			this.imageList.Images.SetKeyName(21, "");
+			this.imageList.Images.SetKeyName(22, "");
+			this.imageList.Images.SetKeyName(23, "");
+			this.imageList.Images.SetKeyName(24, "");
+			this.imageList.Images.SetKeyName(25, "");
+			this.imageList.Images.SetKeyName(26, "");
+			this.imageList.Images.SetKeyName(27, "");
+			this.imageList.Images.SetKeyName(28, "");
+			// 
+			// cMShortcut
+			// 
+			this.cMShortcut.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+			this.mnuShortcut});
+			// 
+			// mnuShortcut
+			// 
+			this.mnuShortcut.Index = 0;
+			this.mnuShortcut.Text = "Remove Shortcut";
+			this.mnuShortcut.Click += new System.EventHandler(this.mnuShortcut_Click);
+			// 
+			// toolStrip
+			// 
+			this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+			this.toolStripHome,
+			this.toolStripBack,
+			this.toolStripNext,
+			this.toolStripUp,
+			this.toolStripRefresh,
+			this.toolStripInfo,
+			this.toolStripAdd});
+			this.toolStrip.Location = new System.Drawing.Point(0, 0);
+			this.toolStrip.Name = "toolStrip";
+			this.toolStrip.Size = new System.Drawing.Size(471, 25);
+			this.toolStrip.TabIndex = 72;
+			this.toolStrip.Text = "toolStrip1";
+			// 
+			// toolStripHome
+			// 
+			this.toolStripHome.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripHome.Image = ((System.Drawing.Image)(resources.GetObject("toolStripHome.Image")));
+			this.toolStripHome.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripHome.Name = "toolStripHome";
+			this.toolStripHome.Size = new System.Drawing.Size(23, 22);
+			this.toolStripHome.Text = "Casa";
+			this.toolStripHome.Click += new System.EventHandler(this.btnHome_Click);
+			// 
+			// toolStripBack
+			// 
+			this.toolStripBack.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripBack.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBack.Image")));
+			this.toolStripBack.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripBack.Name = "toolStripBack";
+			this.toolStripBack.Size = new System.Drawing.Size(23, 22);
+			this.toolStripBack.Text = "Anterior";
+			this.toolStripBack.Click += new System.EventHandler(this.btnBack_Click);
+			// 
+			// toolStripNext
+			// 
+			this.toolStripNext.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripNext.Image = ((System.Drawing.Image)(resources.GetObject("toolStripNext.Image")));
+			this.toolStripNext.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripNext.Name = "toolStripNext";
+			this.toolStripNext.Size = new System.Drawing.Size(23, 22);
+			this.toolStripNext.Text = "Siguiente";
+			this.toolStripNext.Click += new System.EventHandler(this.btnNext_Click);
+			// 
+			// toolStripUp
+			// 
+			this.toolStripUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripUp.Image = ((System.Drawing.Image)(resources.GetObject("toolStripUp.Image")));
+			this.toolStripUp.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripUp.Name = "toolStripUp";
+			this.toolStripUp.Size = new System.Drawing.Size(23, 22);
+			this.toolStripUp.Text = "Nivel superior";
+			this.toolStripUp.Click += new System.EventHandler(this.btnUp_Click);
+			// 
+			// toolStripRefresh
+			// 
+			this.toolStripRefresh.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripRefresh.Image = ((System.Drawing.Image)(resources.GetObject("toolStripRefresh.Image")));
+			this.toolStripRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripRefresh.Name = "toolStripRefresh";
+			this.toolStripRefresh.Size = new System.Drawing.Size(23, 22);
+			this.toolStripRefresh.Text = "Actualizar";
+			this.toolStripRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+			// 
+			// toolStripInfo
+			// 
+			this.toolStripInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripInfo.Image = ((System.Drawing.Image)(resources.GetObject("toolStripInfo.Image")));
+			this.toolStripInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripInfo.Name = "toolStripInfo";
+			this.toolStripInfo.Size = new System.Drawing.Size(23, 22);
+			this.toolStripInfo.Text = "Información";
+			this.toolStripInfo.Visible = false;
+			this.toolStripInfo.Click += new System.EventHandler(this.btnInfo_Click);
+			// 
+			// toolStripAdd
+			// 
+			this.toolStripAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripAdd.Image = ((System.Drawing.Image)(resources.GetObject("toolStripAdd.Image")));
+			this.toolStripAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripAdd.Name = "toolStripAdd";
+			this.toolStripAdd.Size = new System.Drawing.Size(23, 22);
+			this.toolStripAdd.Text = "Acceso directo";
+			this.toolStripAdd.Visible = false;
+			this.toolStripAdd.Click += new System.EventHandler(this.btnAdd_Click);
+			// 
+			// panel
+			// 
+			this.panel.Controls.Add(this.txtPath);
+			this.panel.Controls.Add(this.btnGo);
+			this.panel.Controls.Add(this.tvwMain);
+			this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.panel.Location = new System.Drawing.Point(0, 25);
+			this.panel.Name = "panel";
+			this.panel.Size = new System.Drawing.Size(471, 378);
+			this.panel.TabIndex = 73;
+			// 
+			// DBExplorerTree
+			// 
+			this.BackColor = System.Drawing.Color.White;
+			this.Controls.Add(this.panel);
+			this.Controls.Add(this.toolStrip);
+			this.Name = "DBExplorerTree";
+			this.Size = new System.Drawing.Size(471, 403);
+			this.Load += new System.EventHandler(this.ExplorerTree_Load);
+			this.toolStrip.ResumeLayout(false);
+			this.toolStrip.PerformLayout();
+			this.panel.ResumeLayout(false);
+			this.panel.PerformLayout();
+			this.ResumeLayout(false);
+			this.PerformLayout();
 
 		}
 		#endregion
@@ -480,9 +480,9 @@ namespace FSFormControls
 				SetCurrentPath("home");
 			}
 
-            Go(txtPath.Text);
+			Go(txtPath.Text);
 
-            RefreshView();
+			RefreshView();
 
 		}
 		public void RefreshView()
@@ -679,27 +679,27 @@ namespace FSFormControls
 			}
 		}
 
-        private void GetFiles(string path)
-        {
+		private void GetFiles(string path)
+		{
 			DirectoryInfo di = new DirectoryInfo(path);
 
 			if (di.Exists && Security.HasAccessFolder(path, FileSystemRights.ListDirectory))
 				selectedPathFiles = di.GetFiles(Pattern).Select(o => o.Name).ToArray();
 			else
 				selectedPathFiles = null;
-        }
+		}
 
-        private void GetFolders(string path)
-        {
-            DirectoryInfo di = new DirectoryInfo(path);
+		private void GetFolders(string path)
+		{
+			DirectoryInfo di = new DirectoryInfo(path);
 
-            if (di.Exists && Security.HasAccessFolder(path, FileSystemRights.ListDirectory))
-                selectedPathFolders = di.GetDirectories(Pattern).Select(o => o.Name).ToArray();
-            else
-                selectedPathFolders = null;
-        }
+			if (di.Exists && Security.HasAccessFolder(path, FileSystemRights.ListDirectory))
+				selectedPathFolders = di.GetDirectories(Pattern).Select(o => o.Name).ToArray();
+			else
+				selectedPathFolders = null;
+		}
 
-        public void SetCurrentPath(string strPath)
+		public void SetCurrentPath(string strPath)
 		{
 			if (String.Compare(strPath, "home") == 0)
 			{
@@ -718,16 +718,16 @@ namespace FSFormControls
 
 			SelectedTreeNode(tvwMain.Nodes, txtPath.Text);
 
-            SelectedPath = txtPath.Text;
-        }
+			SelectedPath = txtPath.Text;
+		}
 
-        private bool SelectedTreeNode(TreeNodeCollection nodes, string path)
-        {
+		private bool SelectedTreeNode(TreeNodeCollection nodes, string path)
+		{
 			foreach (TreeNode node in nodes)
 			{
 				if (node.Tag.ToString() == path)
 				{
-                    node.TreeView.SelectedNode = node;
+					node.TreeView.SelectedNode = node;
 					return true;
 				}
 
@@ -739,9 +739,9 @@ namespace FSFormControls
 			}
 
 			return false;
-        }
+		}
 
-        private void tvwMain_AfterExpand(object sender, System.Windows.Forms.TreeViewEventArgs e)
+		private void tvwMain_AfterExpand(object sender, System.Windows.Forms.TreeViewEventArgs e)
 		{
 			string[] drives = Environment.GetLogicalDrives();
 
@@ -1018,19 +1018,19 @@ namespace FSFormControls
 
 					TreeNodeMyComputer.Nodes.Add(nodeDrive);
 
-						//add dirs under drive
-						if (Directory.Exists(drive))
+					//add dirs under drive
+					if (Directory.Exists(drive))
+					{
+						foreach (string dir in Directory.GetDirectories(drive))
 						{
-							foreach (string dir in Directory.GetDirectories(drive))
-							{
-								dir2 = dir;
-								node = new TreeNode();
-								node.Tag = dir;
-								node.Text = dir.Substring(dir.LastIndexOf(@"\") + 1);
-								node.ImageIndex = 1;
-								nodeDrive.Nodes.Add(node);
-							}
+							dir2 = dir;
+							node = new TreeNode();
+							node.Tag = dir;
+							node.Text = dir.Substring(dir.LastIndexOf(@"\") + 1);
+							node.ImageIndex = 1;
+							nodeDrive.Nodes.Add(node);
 						}
+					}
 				}
 			}
 
@@ -1063,13 +1063,13 @@ namespace FSFormControls
 				{
 					if (i != 0)
 					{
-                        navigationPaths[i - 1].Selected = true;
+						navigationPaths[i - 1].Selected = true;
 						SetCurrentPath(navigationPaths[i - 1].Path);
 					}
 				}
 				if (i != 0)
 				{
-                    navigationPaths[i].Selected = false;
+					navigationPaths[i].Selected = false;
 				}
 			}
 		}
@@ -1077,20 +1077,20 @@ namespace FSFormControls
 		{
 			if ((navigationPaths.Count > 0) && (navigationPaths[navigationPaths.Count - 1].Selected))
 				return;
-			
+
 			for (int i = navigationPaths.Count - 1; i >= 0; i--)
 			{
 				if (navigationPaths[i].Selected)
 				{
 					if (i != navigationPaths.Count)
 					{
-                        navigationPaths[i + 1].Selected = true;
+						navigationPaths[i + 1].Selected = true;
 						SetCurrentPath(navigationPaths[i + 1].Path);
 					}
 				}
 
 				if (i != navigationPaths.Count - 1)
-                    navigationPaths[i].Selected = false;
+					navigationPaths[i].Selected = false;
 			}
 		}
 		private void UpdateList(string path)
@@ -1117,80 +1117,80 @@ namespace FSFormControls
 		}
 
 		private void btnGo_Click(object sender, System.EventArgs e)
-        {
-            Go(txtPath.Text);
-        }
+		{
+			Go(txtPath.Text);
+		}
 
 		public void Go(string path)
 		{
-            Cursor.Current = Cursors.WaitCursor;
+			Cursor.Current = Cursors.WaitCursor;
 
-            ExploreMyComputer();
-            SetCurrentPath(path);
+			ExploreMyComputer();
+			SetCurrentPath(path);
 
-            Cursor.Current = Cursors.Default;
+			Cursor.Current = Cursors.Default;
 
-            //         Cursor.Current = Cursors.WaitCursor;
-            //         ExploreMyComputer();
-            //         TreeNode myComputerNode = TreeNodeMyComputer;
+			//         Cursor.Current = Cursors.WaitCursor;
+			//         ExploreMyComputer();
+			//         TreeNode myComputerNode = TreeNodeMyComputer;
 
-            //do
-            //{
-            //	foreach (TreeNode node in myComputerNode.Nodes)
-            //	{
-            //		string mypath = node.Tag.ToString().ToLower();
+			//do
+			//{
+			//	foreach (TreeNode node in myComputerNode.Nodes)
+			//	{
+			//		string mypath = node.Tag.ToString().ToLower();
 
-            //		string mypathf = mypath;
-            //		if (!mypath.EndsWith(@"\"))
-            //		{
-            //			if (path.ToLower().Length > mypathf.Length)
-            //				mypathf = mypath + @"\";
-            //		}
+			//		string mypathf = mypath;
+			//		if (!mypath.EndsWith(@"\"))
+			//		{
+			//			if (path.ToLower().Length > mypathf.Length)
+			//				mypathf = mypath + @"\";
+			//		}
 
-            //		if (path.ToLower().StartsWith(mypathf))
-            //		{
-            //			node.TreeView.Focus();
-            //			node.TreeView.SelectedNode = node;
-            //			node.EnsureVisible();
-            //			node.Expand();
-            //			if (node.Nodes.Count >= 1)
-            //			{
-            //				node.Expand();
-            //				myComputerNode = node;
-            //			}
-            //			else
-            //			{
-            //				if (String.Compare(path.ToLower(), mypath) == 0)
-            //				{
-            //					break;
-            //				}
-            //				else
-            //				{
-            //					continue;
-            //				}
-            //			}
+			//		if (path.ToLower().StartsWith(mypathf))
+			//		{
+			//			node.TreeView.Focus();
+			//			node.TreeView.SelectedNode = node;
+			//			node.EnsureVisible();
+			//			node.Expand();
+			//			if (node.Nodes.Count >= 1)
+			//			{
+			//				node.Expand();
+			//				myComputerNode = node;
+			//			}
+			//			else
+			//			{
+			//				if (String.Compare(path.ToLower(), mypath) == 0)
+			//				{
+			//					break;
+			//				}
+			//				else
+			//				{
+			//					continue;
+			//				}
+			//			}
 
-            //			if (mypathf.StartsWith(path.ToLower()))
-            //			{
-            //				break;
-            //			}
-            //		}
-            //	}
+			//			if (mypathf.StartsWith(path.ToLower()))
+			//			{
+			//				break;
+			//			}
+			//		}
+			//	}
 
-            //	myComputerNode = myComputerNode.NextNode;
+			//	myComputerNode = myComputerNode.NextNode;
 
-            //} while (myComputerNode != null);
+			//} while (myComputerNode != null);
 
-            //         Cursor.Current = Cursors.Default;
-        }
+			//         Cursor.Current = Cursors.Default;
+		}
 
-        private void btnHome_Click(object sender, System.EventArgs e)
+		private void btnHome_Click(object sender, System.EventArgs e)
 		{
 			SetCurrentPath("home");
 			ExploreMyComputer();
 
-            Go(txtPath.Text);
-        }
+			Go(txtPath.Text);
+		}
 
 
 		private void btnNext_Click(object sender, System.EventArgs e)
@@ -1198,10 +1198,10 @@ namespace FSFormControls
 			string cpath = txtPath.Text;
 			UpdateListGoFwd();
 
-            if (String.Compare(cpath, txtPath.Text) != 0)
-            {
-                Go(txtPath.Text);
-            }
+			if (String.Compare(cpath, txtPath.Text) != 0)
+			{
+				Go(txtPath.Text);
+			}
 		}
 
 		private void btnBack_Click(object sender, System.EventArgs e)
@@ -1209,10 +1209,10 @@ namespace FSFormControls
 			string cpath = txtPath.Text;
 			UpdateListGoBack();
 
-            if (String.Compare(cpath, txtPath.Text) != 0)
-            {
-                Go(txtPath.Text);
-            }
+			if (String.Compare(cpath, txtPath.Text) != 0)
+			{
+				Go(txtPath.Text);
+			}
 		}
 
 		private void tvwMain_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
@@ -1237,8 +1237,8 @@ namespace FSFormControls
 				SetCurrentPath(directoryInfo.Parent.FullName);
 			UpdateList(txtPath.Text);
 
-            Go(txtPath.Text);
-        }
+			Go(txtPath.Text);
+		}
 
 		private void btnAdd_Click(object sender, System.EventArgs e)
 		{
@@ -1297,7 +1297,7 @@ namespace FSFormControls
 			{
 				SelectedPath = txtPath.Text;
 
-				if(PathChangedEvent != null)
+				if (PathChangedEvent != null)
 					PathChangedEvent(this, EventArgs.Empty);
 			}
 		}
@@ -1326,8 +1326,8 @@ namespace FSFormControls
 		{
 			if (e.KeyValue == 13)
 			{
-                Go(txtPath.Text);
-                txtPath.Focus();
+				Go(txtPath.Text);
+				txtPath.Focus();
 			}
 		}
 
@@ -1342,14 +1342,6 @@ namespace FSFormControls
 		}
 	}
 
-	[StructLayout(LayoutKind.Sequential, Pack = 1)]
-	public struct SHQUERYRBINFO
-	{
-		public uint cbSize;
-		public ulong i64Size;
-		public ulong i64NumItems;
-	};
-
 	//Shell functions
 	public class Win32
 	{
@@ -1357,7 +1349,15 @@ namespace FSFormControls
 		//public const uint SHGFI_LARGEICON = 0x0;    // 'Large icon
 		public const uint SHGFI_SMALLICON = 0x1;    // 'Small icon
 
-		[DllImport("shell32.dll")]
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        public struct SHQUERYRBINFO
+        {
+            public uint cbSize;
+            public ulong i64Size;
+            public ulong i64NumItems;
+        };
+
+        [DllImport("shell32.dll")]
 		public static extern IntPtr SHGetFileInfo(
 			string pszPath,
 			uint dwFileAttributes,
@@ -1419,8 +1419,6 @@ namespace FSFormControls
 		public static extern IntPtr DestroyIcon(IntPtr hIcon);
 		[DllImport("gdi32.dll")]
 		public static extern IntPtr CreateDIBSection(IntPtr hdc, [In, MarshalAs(UnmanagedType.LPStruct)] BITMAPINFO pbmi, uint iUsage, out IntPtr ppvBits, IntPtr hSection, uint dwOffset);
-
-
 	}
 
 	public enum ResourceScope
@@ -1589,6 +1587,7 @@ namespace FSFormControls
 			EnumerateServers(netRoot, scope, type, usage, displayType, kPath);
 
 		}
+
 		#region IEnumerable Members
 
 		public IEnumerator GetEnumerator()

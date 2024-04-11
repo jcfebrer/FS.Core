@@ -1342,6 +1342,13 @@ namespace FSFormControlsCore
         }
     }
 
+	//Shell functions
+	public class Win32
+	{
+		public const uint SHGFI_ICON = 0x100;
+		//public const uint SHGFI_LARGEICON = 0x0;    // 'Large icon
+		public const uint SHGFI_SMALLICON = 0x1;    // 'Small icon
+
     [StructLayout(LayoutKind.Sequential, Pack = 1)]
     public struct SHQUERYRBINFO
     {
@@ -1349,13 +1356,6 @@ namespace FSFormControlsCore
         public ulong i64Size;
         public ulong i64NumItems;
     };
-
-    //Shell functions
-    public class Win32
-    {
-        public const uint SHGFI_ICON = 0x100;
-        //public const uint SHGFI_LARGEICON = 0x0;    // 'Large icon
-        public const uint SHGFI_SMALLICON = 0x1;    // 'Small icon
 
         [DllImport("shell32.dll")]
         public static extern IntPtr SHGetFileInfo(
@@ -1419,8 +1419,6 @@ namespace FSFormControlsCore
         public static extern IntPtr DestroyIcon(IntPtr hIcon);
         [DllImport("gdi32.dll")]
         public static extern IntPtr CreateDIBSection(IntPtr hdc, [In, MarshalAs(UnmanagedType.LPStruct)] BITMAPINFO pbmi, uint iUsage, out IntPtr ppvBits, IntPtr hSection, uint dwOffset);
-
-
     }
 
     public enum ResourceScope
@@ -1589,6 +1587,7 @@ namespace FSFormControlsCore
             EnumerateServers(netRoot, scope, type, usage, displayType, kPath);
 
         }
+
         #region IEnumerable Members
 
         public IEnumerator GetEnumerator()
