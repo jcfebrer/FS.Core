@@ -15,7 +15,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace FSPdfCore
 {
-    class SignFile
+    public class SignFile
     {
         /// <summary>
         /// Firma un documento
@@ -43,13 +43,30 @@ namespace FSPdfCore
 
             if (addVisibleSign)
             {
-                signatureAppearance.SetVisibleSignature(
-                new Rectangle(100, 100, 300, 200),
-                reader.NumberOfPages,
-                "Signature");
+                int page = 1; //reader.NumberOfPages
+                int posx = 100;
+                int posy = 100;
+                float width = 300;
+                float height = 300;
 
-                if (imageUrl != null)
-                    signatureAppearance.SignatureGraphic = Image.GetInstance(imageUrl);
+                Image imageSignature = null;
+                if (!String.IsNullOrEmpty(imageUrl))
+                {
+                    imageSignature = Image.GetInstance(imageUrl);
+
+                    if (imageSignature != null)
+                    {
+                        //width = imageSignature.Width;
+                        //height = imageSignature.Height;
+                        imageSignature.Transparency = new int[] { 5 };
+                        signatureAppearance.SignatureGraphic = imageSignature;
+                    }
+                }
+
+                signatureAppearance.SetVisibleSignature(
+                new Rectangle(posx, posy, width, height),
+                page,
+                "Signature");
             }
 
             var keyPair = Org.BouncyCastle.Security.DotNetUtilities.GetKeyPair(certificate.PrivateKey).Private;

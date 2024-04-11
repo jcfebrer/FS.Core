@@ -22,7 +22,7 @@ namespace FSPdfCore
 		
        
 		
-		public static void Generate(Microsoft.AspNetCore.Http.HttpContext context, string html, bool landscape)
+		public static void Generate(Microsoft.AspNetCore.Http.HttpContext context, string html, bool landscape, string fileName)
 		{
 			PdfGenerateConfig pdfConfig = new PdfGenerateConfig();
         	pdfConfig.PageSize = PdfSharp.PageSize.A4;
@@ -36,24 +36,25 @@ namespace FSPdfCore
 			
 			html = Web.ReplaceUrlRes(html);
 			html = FSLibraryCore.TextUtil.RemoveLinks(html);
-			
-			//string tmpFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".pdf";
-            //doc.Save(tmpFile);
-            
-            using (MemoryStream ms = new MemoryStream())
-		    {
-		        PdfDocument doc = PdfGenerator.GeneratePdf(html, pdfConfig, null, null, null);
-		        doc.Save(ms);
-		        
-	            context.Response.ContentType = "application/pdf";
-	            context.Response.AddHeader("content-length", ms.ToArray().Length.ToString());
-	            context.Response.BinaryWrite(ms.ToArray());
-	 			context.Response.Flush();
-	 			context.Response.Close();
-            }
 
-//            context.Response.AppendHeader("Content-Disposition", 
-//                                          "inline; filename=" + tmpFile);
+			//string tmpFile = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".pdf";
+			//doc.Save(tmpFile);
+
+			using (MemoryStream ms = new MemoryStream())
+			{
+				PdfDocument doc = PdfGenerator.GeneratePdf(html, pdfConfig, null, null, null);
+				doc.Save(ms);
+
+				//context.Response.ContentType = "application/pdf";
+				//context.Response.AddHeader("content-length", ms.ToArray().Length.ToString());
+				//context.Response.BinaryWrite(ms.ToArray());
+				//context.Response.Flush();
+				//context.Response.Close();
+				context.Response.SendFileAsync(fileName);
+			}
+
+			//            context.Response.AppendHeader("Content-Disposition", 
+			//                                          "inline; filename=" + tmpFile);
 
 		}
 	}
