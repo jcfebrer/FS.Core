@@ -22,10 +22,25 @@ namespace FSLibraryCore
         /// </summary>
         public enum TypeMsg
         {
+            /// <summary>
+            /// Informativo
+            /// </summary>
             Information,
+            /// <summary>
+            /// Critico
+            /// </summary>
             Critical,
+            /// <summary>
+            /// Pregunta
+            /// </summary>
             Question,
+            /// <summary>
+            /// Exclamación
+            /// </summary>
             Exclamation,
+            /// <summary>
+            /// Error
+            /// </summary>
             Error
         }
 
@@ -34,9 +49,21 @@ namespace FSLibraryCore
         /// </summary>
         public enum TypeButton
         {
+            /// <summary>
+            /// Si y No
+            /// </summary>
             YesNo,
+            /// <summary>
+            /// Si,no y cancel
+            /// </summary>
             YesNoCancel,
+            /// <summary>
+            /// Ok
+            /// </summary>
             Ok,
+            /// <summary>
+            /// Ok y cancel
+            /// </summary>
             OkCancel
         }
 
@@ -76,7 +103,7 @@ namespace FSLibraryCore
         /// <param name="text"></param>
         /// <param name="typeMsg"></param>
         /// <param name="caption"></param>
-        /// <param name="button"></param>
+        /// <param name="typeButton"></param>
         public static DialogResult MsgBox(string text, TypeMsg typeMsg, string caption, TypeButton typeButton)
         {
             MessageBoxIcon icon = MessageBoxIcon.Information;

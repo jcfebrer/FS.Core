@@ -27,7 +27,8 @@ namespace FSFormControlsCore
 
         public void CloseAll()
         {
-            foreach (DBForm f in Global.Forms) f.Close();
+            foreach (DBForm f in Global.Forms) 
+                f.Close();
         }
 
         public void RemoveAll()

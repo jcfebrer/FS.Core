@@ -141,6 +141,11 @@ namespace FSFormControlsCore
             var f = 0;
             DBColumn column = null;
 
+            if(dataControl != null)
+            {
+                throw new Exception("DBControl es null.");
+            }
+
             if (columns.Count == 0)
             {
                 if (dataControl.ColumnMapping.Count == 0)
