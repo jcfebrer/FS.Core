@@ -562,6 +562,9 @@ namespace FSNetwork
 
         public static bool IsLocalhost()
         {
+            if (HttpContext.Current == null)
+                return false;
+
             string host = HttpContext.Current.Request.Url.Host;
             return (host == null || FSLibrary.TextUtil.Substring(host, 0, 9) == "localhost" ||
                 FSLibrary.TextUtil.Substring(host, 0, 9) == "127.0.0.1" || FSLibrary.TextUtil.Substring(host, 0, 3) == "10." ||
