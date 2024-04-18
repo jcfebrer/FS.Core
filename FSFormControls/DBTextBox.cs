@@ -380,11 +380,11 @@ namespace FSFormControls
             {
                 m_MultiLine = value;
                 textbox.Multiline = value;
-                if (value) textbox.Height = Height;
+                //if (value) textbox.Height = Height;
                 if (Shadow)
                     Height = textbox.Height + m_ShadowSize;
-                else
-                    Height = textbox.Height;
+                //else
+                    //Height = textbox.Height;
             }
         }
 
@@ -766,7 +766,7 @@ namespace FSFormControls
         {
             textbox.Location = new Point(0, 0);
             textbox.Size = new Size(this.Width - (16 * ButtonsRight.Count), textbox.Height);
-            this.Height = textbox.Height;
+            //this.Height = textbox.Height;
             
             ResizeButtons();
         }
