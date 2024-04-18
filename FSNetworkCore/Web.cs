@@ -232,6 +232,9 @@ namespace FSNetworkCore
 		
 		public static string Request(string name)
 		{
+			if (HttpContext.Current == null)
+                return "";
+                
             object dato = null;
             if (HttpContext.Current.Request.HasFormContentType)
                 dato = HttpContext.Current.Request.Form[name];
@@ -251,6 +254,9 @@ namespace FSNetworkCore
 
 		public static int RequestInt(string name)
 		{
+			if (HttpContext.Current == null)
+                return 0;
+                
 			object dato = null;
             if (HttpContext.Current.Request.HasFormContentType)
                 dato = HttpContext.Current.Request.Form[name];
@@ -270,6 +276,9 @@ namespace FSNetworkCore
 
         public static bool RequestBool(string name)
 		{
+			if (HttpContext.Current == null)
+                return false;
+                
             object dato = null;
             if (HttpContext.Current.Request.HasFormContentType)
                 dato = HttpContext.Current.Request.Form[name];
@@ -290,6 +299,9 @@ namespace FSNetworkCore
 		
 		public static string RequestDate(string date)
 		{
+			if (HttpContext.Current == null)
+                return "";
+                
             object dato = null;
             if (HttpContext.Current.Request.HasFormContentType)
                 dato = HttpContext.Current.Request.Form[date];

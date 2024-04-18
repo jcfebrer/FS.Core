@@ -28,7 +28,12 @@ namespace FSNetwork
 			{
 				if (_virtualPath == null)
 				{
-					string url = HttpContext.Current.Request.ApplicationPath;
+					string url;
+					if(HttpContext.Current == null)
+						url = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+					else
+						url = HttpContext.Current.Request.ApplicationPath;
+
 					if (url != "/") url += "/";
 					_virtualPath = url;
 				}
@@ -244,7 +249,10 @@ namespace FSNetwork
 		
 		public static string Request(string name)
 		{
-			object dato = HttpContext.Current.Request.Form[name];
+            if (HttpContext.Current == null)
+                return "";
+
+            object dato = HttpContext.Current.Request.Form[name];
 			if (dato == null) dato = HttpContext.Current.Request.QueryString[name];
 			if (dato == null) return "";
 
@@ -260,7 +268,10 @@ namespace FSNetwork
 
 		public static int RequestInt(string name)
 		{
-			object dato = HttpContext.Current.Request.Form[name];
+            if (HttpContext.Current == null)
+                return 0;
+
+            object dato = HttpContext.Current.Request.Form[name];
 			if (dato == null) dato = HttpContext.Current.Request.QueryString[name];
 			if (dato == null) return 0;
 			if (dato + "" == "") return 0;
@@ -275,6 +286,9 @@ namespace FSNetwork
 
 		public static bool RequestBool(string name)
 		{
+			if (HttpContext.Current == null)
+				return false;
+
 			object dato = HttpContext.Current.Request.Form[name];
 			if (dato == null) dato = HttpContext.Current.Request.QueryString[name];
 			if (dato == null)
@@ -292,7 +306,10 @@ namespace FSNetwork
 		
 		public static string RequestDate(string date)
 		{
-			object dato = HttpContext.Current.Request.Form[date];
+            if (HttpContext.Current == null)
+                return "";
+
+            object dato = HttpContext.Current.Request.Form[date];
 			if (dato == null) dato = HttpContext.Current.Request.QueryString[date];
 			if (dato == null)
 			{
