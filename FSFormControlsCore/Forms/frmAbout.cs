@@ -179,6 +179,9 @@ namespace FSFormControlsCore
             lvItem = ListView1.Items.Add("MDAC Version");
             lvItem.SubItems.Add(Utils.GetMdacVersion().ToString());
 
+            lvItem = ListView1.Items.Add("Compilation Size");
+            lvItem.SubItems.Add(NumberUtils.CompilationSize());
+
             lvItem = ListView1.Items.Add("Permisos registro");
             lvItem.SubItems.Add(Permission.Permissions());
 
