@@ -2804,5 +2804,18 @@ namespace FSDatabase
                 throw new ExceptionUtil(e);
             }
         }
+
+        public List<string> GetOleDbProviders()
+        {
+            List<string> providers = new List<string>();
+            var oleEnum = new OleDbEnumerator();
+            var elems = oleEnum.GetElements();
+            if (elems != null && elems.Rows != null)
+                foreach (System.Data.DataRow row in elems.Rows)
+                    if (!row.IsNull("SOURCES_NAME") && row["SOURCES_NAME"] is string)
+                        providers.Add("(" + row["SOURCES_NAME"].ToString() + ") - " + row["SOURCES_DESCRIPTION"].ToString());
+
+            return providers;
+        }
     }
 }
