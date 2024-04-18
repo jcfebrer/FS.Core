@@ -221,7 +221,15 @@ namespace FSLibrary
         /// <returns></returns>
         public static string CompilationSize()
         {
-            if (IntPtr.Size == 4)
+            if (IntPtr.Size == 1)
+            {
+                return "8-Bit";
+            }
+            else if (IntPtr.Size == 2)
+            {
+                return "16-Bit";
+            }
+            else if (IntPtr.Size == 4)
             {
                 return "32-Bit";
             }
@@ -553,6 +561,46 @@ namespace FSLibrary
             }
 
             return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
+        }
+
+
+        /// <summary>
+        /// Convierte una cadena con B MB KB GB TB en bytes.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static long ToBytes(string value)
+        {
+            value = value.Trim();
+            value = value.Replace(" ", "");
+            value = value.ToLower();
+
+            if (value.IndexOf("tb") > 0)
+            {
+                value = value.Replace("tb", "");
+                return Convert.ToInt64(value) * 1024 * 1024 * 1024 * 1024;
+            }
+            if (value.IndexOf("gb") > 0)
+            {
+                value = value.Replace("gb", "");
+                return Convert.ToInt64(value) * 1024 * 1024 * 1024;
+            }
+            if (value.IndexOf("mb") > 0)
+            {
+                value = value.Replace("mb", "");
+                return Convert.ToInt64(value) * 1024 * 1024;
+            }
+            if (value.IndexOf("kb") > 0)
+            {
+                value = value.Replace("kb", "");
+                return Convert.ToInt64(value) * 1024;
+            }
+            if (value.IndexOf("b") > 0)
+            {
+                value = value.Replace("b", "");
+                return Convert.ToInt64(value);
+            }
+            return Convert.ToInt64(value);
         }
 
         /// <summary>

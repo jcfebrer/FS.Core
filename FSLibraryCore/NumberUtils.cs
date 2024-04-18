@@ -182,6 +182,24 @@ namespace FSLibraryCore
             return true;
         }
 
+
+        /// <summary>
+        /// Objects to byte array.
+        /// </summary>
+        /// <param name="obj">The object.</param>
+        /// <returns></returns>
+        public static byte[] ObjectToByteArray(object obj)
+        {
+            if (obj == null)
+                return null;
+            var bf = new BinaryFormatter();
+            using (var ms = new MemoryStream())
+            {
+                bf.Serialize(ms, obj);
+                return ms.ToArray();
+            }
+        }
+
         /// <summary>
         /// Reads all bytes.
         /// </summary>
@@ -207,7 +225,15 @@ namespace FSLibraryCore
         /// <returns></returns>
         public static string CompilationSize()
         {
-            if (IntPtr.Size == 4)
+            if (IntPtr.Size == 1)
+            {
+                return "8-Bit";
+            }
+            else if (IntPtr.Size == 2)
+            {
+                return "16-Bit";
+            }
+            else if (IntPtr.Size == 4)
             {
                 return "32-Bit";
             }
@@ -541,6 +567,46 @@ namespace FSLibraryCore
             return String.Format("{0:0.##} {1}", dblSByte, Suffix[i]);
         }
 
+
+        /// <summary>
+        /// Convierte una cadena con B MB KB GB TB en bytes.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static long ToBytes(string value)
+        {
+            value = value.Trim();
+            value = value.Replace(" ", "");
+            value = value.ToLower();
+
+            if (value.IndexOf("tb") > 0)
+            {
+                value = value.Replace("tb", "");
+                return Convert.ToInt64(value) * 1024 * 1024 * 1024 * 1024;
+            }
+            if (value.IndexOf("gb") > 0)
+            {
+                value = value.Replace("gb", "");
+                return Convert.ToInt64(value) * 1024 * 1024 * 1024;
+            }
+            if (value.IndexOf("mb") > 0)
+            {
+                value = value.Replace("mb", "");
+                return Convert.ToInt64(value) * 1024 * 1024;
+            }
+            if (value.IndexOf("kb") > 0)
+            {
+                value = value.Replace("kb", "");
+                return Convert.ToInt64(value) * 1024;
+            }
+            if (value.IndexOf("b") > 0)
+            {
+                value = value.Replace("b", "");
+                return Convert.ToInt64(value);
+            }
+            return Convert.ToInt64(value);
+        }
+
         /// <summary>
         /// Convierte una cadena de bytes separadas por 'separator' en un array de bytes.
         /// </summary>
@@ -591,39 +657,6 @@ namespace FSLibraryCore
         public static string GetNumbersAndLetters(string input)
         {
             return new string(input.Where(c => (char.IsDigit(c) || char.IsLetter(c))).ToArray());
-        }
-
-        /// <summary>
-        /// Convert an object to a Byte Array.
-        /// </summary>
-        public static byte[] ObjectToByteArray(object objData)
-        {
-            if (objData == null)
-                return default;
-
-            return Encoding.UTF8.GetBytes(JsonSerializer.Serialize(objData, GetJsonSerializerOptions()));
-        }
-
-        /// <summary>
-        /// Convert a byte array to an Object of T.
-        /// </summary>
-        public static T ByteArrayToObject<T>(byte[] byteArray)
-        {
-            if (byteArray == null || !byteArray.Any())
-                return default;
-
-            return JsonSerializer.Deserialize<T>(byteArray, GetJsonSerializerOptions());
-        }
-
-        private static JsonSerializerOptions GetJsonSerializerOptions()
-        {
-            return new JsonSerializerOptions()
-            {
-                PropertyNamingPolicy = null,
-                WriteIndented = true,
-                AllowTrailingCommas = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            };
         }
     }
 }
