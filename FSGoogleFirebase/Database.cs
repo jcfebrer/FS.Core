@@ -16,7 +16,7 @@ namespace FSGoogleFirebase
     /// </summary>
     public class Database
     {
-        IFirebaseClient client;
+        private IFirebaseClient client { get; set; }
 
         public Database()
         { }
@@ -37,97 +37,65 @@ namespace FSGoogleFirebase
             client = new FirebaseClient(config);
         }
 
-        public async void SetAsync(string path)
+        public async Task<T> SetAsync<T>(string path, T data)
         {
-            var register = new Register
-            {
-                name = "Execute SET",
-                value = "2"
-            };
-            SetResponse response = await client.SetAsync(path, register);
-            Register result = response.ResultAs<Register>(); //The response will contain the data written
+            SetResponse response = await client.SetAsync(path, data);
+            return response.ResultAs<T>();
         }
 
-        public async void PushAsync(string path)
+        public async void PushAsync<T>(string path, T data)
         {
-            var register = new Register
-            {
-                name = "Execute PUSH",
-                value = "2"
-            };
-            PushResponse response = await client.PushAsync(path, register);
-            Console.WriteLine(response.Result.name); //The result will contain the child name of the new data that was added
+            PushResponse response = await client.PushAsync(path, data);
+            Console.WriteLine(response.Result.name);
         }
 
-        public async Task<Register> GetAsync(string path)
+        public async Task<T> GetAsync<T>(string path)
         {
             FirebaseResponse response = await client.GetAsync(path);
-            return response.ResultAs<Register>(); //The response will contain the data being retreived
+            return response.ResultAs<T>();
         }
 
-        public async void UpdateAsync(string path)
+        public async Task<T> UpdateAsync<T>(string path, T data)
         {
-            var register = new Register
-            {
-                name = "Execute UPDATE!",
-                value = "1"
-            };
-
-            FirebaseResponse response = await client.UpdateAsync(path, register);
-            register = response.ResultAs<Register>(); //The response will contain the data written
+            FirebaseResponse response = await client.UpdateAsync(path, data);
+            return response.ResultAs<T>();
         }
 
-        public async void DeleteAsync(string path)
+        public async Task<HttpStatusCode> DeleteAsync(string path)
         {
-            FirebaseResponse response = await client.DeleteAsync(path); //Deletes todos collection
-            Console.WriteLine(response.StatusCode);
+            FirebaseResponse response = await client.DeleteAsync(path);
+            return response.StatusCode;
         }
 
 
-        public void Set(string path)
+        public T Set<T>(string path, T data)
         {
-            var register = new Register
-            {
-                name = "Execute SET",
-                value = "2"
-            };
-            SetResponse response = client.Set(path, register);
-            Register result = response.ResultAs<Register>(); //The response will contain the data written
+            SetResponse response = client.Set(path, data);
+            return response.ResultAs<T>();
         }
 
-        public void Push(string path)
+        public string Push<T>(string path, T data)
         {
-            var register = new Register
-            {
-                name = "Execute PUSH",
-                value = "2"
-            };
-            PushResponse response = client.Push(path, register);
-            Console.WriteLine(response.Result.name); //The result will contain the child name of the new data that was added
+            PushResponse response = client.Push(path, data);
+            return response.Result.name;
         }
 
-        public Register Get(string path)
+        public virtual T Get<T>(string path)
         {
             FirebaseResponse response = client.Get(path);
-            return response.ResultAs<Register>(); //The response will contain the data being retreived
+            return response.ResultAs<T>();
         }
 
-        public void Update(string path)
+        public T Update<T>(string path, T data)
         {
-            var register = new Register
-            {
-                name = "Execute UPDATE!",
-                value = "1"
-            };
-
-            FirebaseResponse response = client.Update(path, register);
-            register = response.ResultAs<Register>(); //The response will contain the data written
+            FirebaseResponse response = client.Update(path, data);
+            return response.ResultAs<T>();
         }
 
-        public void Delete(string path)
+        public HttpStatusCode Delete(string path)
         {
-            FirebaseResponse response = client.Delete(path); //Deletes todos collection
-            Console.WriteLine(response.StatusCode);
+            FirebaseResponse response = client.Delete(path);
+            return response.StatusCode;
         }
 
         public async void Listen(string path)
@@ -136,14 +104,7 @@ namespace FSGoogleFirebase
                 System.Console.WriteLine(args.Data);
             });
 
-            //Call dispose to stop listening for events
             response.Dispose();
         }
-    }
-
-    public class Register
-    {
-        public string name { get; set; }
-        public string value { get; set; }
     }
 }
