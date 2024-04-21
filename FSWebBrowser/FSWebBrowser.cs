@@ -881,7 +881,7 @@ namespace FSWebBrowser
             if (ValidPages.Contains(url)) return true;
 
             Resolver resolver1 = new Resolver();
-            resolver1.DnsServer = "208.67.222.123";
+            resolver1.DnsServer = "208.67.222.123";  //OpenDNS
 
             Response response = resolver1.Query(url, QType.A, QClass.IN);
             foreach (RR rr in response.Answers)
