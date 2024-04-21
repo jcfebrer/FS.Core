@@ -13,6 +13,7 @@ namespace FSGoogleFirebase
 		public String app;
 		public Boolean online;
 		public String regId;
+		public string token;
 
 		public String separatorId = ":v:";
 
@@ -48,12 +49,12 @@ namespace FSGoogleFirebase
 
 		public override String ToString()
 		{
-			return androidid + separatorId + email + separatorId + app + separatorId + regId; // + separatorId + online;
+			return androidid + separatorId + email + separatorId + app + separatorId + regId;
 		}
 
 		public String ToStringId()
 		{
-			return androidid + separatorId + email + separatorId + app; // + separatorId + regId + separatorId + online;
+			return androidid + separatorId + app;
 		}
 
 
@@ -67,7 +68,6 @@ namespace FSGoogleFirebase
 			if (device.Length >= 2) email = device[1];
 			if (device.Length >= 3) app = device[2];
 			if (device.Length >= 4) regId = device[3];
-			//if (device.Length >= 5)online = Boolean.parseBoolean(device[4]);
 
 			return this;
 		}
