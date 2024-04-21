@@ -7,7 +7,7 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Runtime.Remoting.Messaging;
+//using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -674,32 +674,32 @@ namespace FSDnsCore
             return g.BeginInvoke(ip, requestCallback, stateObject);
         }
 
-        ///<summary>
-        ///  Ends an asynchronous request for DNS information.
-        ///</summary>
-        ///<param name = "asyncResult">
-        ///  An System.IAsyncResult instance returned by a call to an 
-        ///  Overload:FSFormControls.FSDns.Resolver.BeginGetHostEntry method.
-        ///</param>
-        ///<returns>
-        ///  An System.Net.IPHostEntry instance that contains address information about
-        ///  the host. 
-        ///</returns>
-        public IPHostEntry EndGetHostEntry(IAsyncResult asyncResult)
-        {
-            AsyncResult aResult = (AsyncResult) asyncResult;
-            if (aResult.AsyncDelegate is GetHostEntryDelegate)
-            {
-                GetHostEntryDelegate g = (GetHostEntryDelegate) aResult.AsyncDelegate;
-                return g.EndInvoke(asyncResult);
-            }
-            if (aResult.AsyncDelegate is GetHostEntryViaIPDelegate)
-            {
-                GetHostEntryViaIPDelegate g = (GetHostEntryViaIPDelegate) aResult.AsyncDelegate;
-                return g.EndInvoke(asyncResult);
-            }
-            return null;
-        }
+        /////<summary>
+        /////  Ends an asynchronous request for DNS information.
+        /////</summary>
+        /////<param name = "asyncResult">
+        /////  An System.IAsyncResult instance returned by a call to an 
+        /////  Overload:FSFormControls.FSDns.Resolver.BeginGetHostEntry method.
+        /////</param>
+        /////<returns>
+        /////  An System.Net.IPHostEntry instance that contains address information about
+        /////  the host. 
+        /////</returns>
+        //public IPHostEntry EndGetHostEntry(IAsyncResult asyncResult)
+        //{
+        //    AsyncResult aResult = (AsyncResult) asyncResult;
+        //    if (aResult.AsyncDelegate is GetHostEntryDelegate)
+        //    {
+        //        GetHostEntryDelegate g = (GetHostEntryDelegate) aResult.AsyncDelegate;
+        //        return g.EndInvoke(asyncResult);
+        //    }
+        //    if (aResult.AsyncDelegate is GetHostEntryViaIPDelegate)
+        //    {
+        //        GetHostEntryViaIPDelegate g = (GetHostEntryViaIPDelegate) aResult.AsyncDelegate;
+        //        return g.EndInvoke(asyncResult);
+        //    }
+        //    return null;
+        //}
 
         public void LoadRootFile(string strPath)
         {
@@ -799,20 +799,20 @@ namespace FSDnsCore
             return g.BeginInvoke(hostNameOrAddress, requestCallback, stateObject);
         }
 
-        ///<summary>
-        ///  Ends an asynchronous request for DNS information.
-        ///</summary>
-        ///<param name = "AsyncResult">
-        ///  An System.IAsyncResult instance returned by a call to the FSFormControls.FSDns.Resolver.BeginGetHostAddresses(System.String,System.AsyncCallback,System.Object)
-        ///  method.
-        ///</param>
-        ///<returns></returns>
-        public IPAddress[] EndGetHostAddresses(IAsyncResult AsyncResult)
-        {
-            AsyncResult aResult = (AsyncResult) AsyncResult;
-            GetHostAddressesDelegate g = (GetHostAddressesDelegate) aResult.AsyncDelegate;
-            return g.EndInvoke(AsyncResult);
-        }
+        /////<summary>
+        /////  Ends an asynchronous request for DNS information.
+        /////</summary>
+        /////<param name = "AsyncResult">
+        /////  An System.IAsyncResult instance returned by a call to the FSFormControls.FSDns.Resolver.BeginGetHostAddresses(System.String,System.AsyncCallback,System.Object)
+        /////  method.
+        /////</param>
+        /////<returns></returns>
+        //public IPAddress[] EndGetHostAddresses(IAsyncResult AsyncResult)
+        //{
+        //    AsyncResult aResult = (AsyncResult) AsyncResult;
+        //    GetHostAddressesDelegate g = (GetHostAddressesDelegate) aResult.AsyncDelegate;
+        //    return g.EndInvoke(AsyncResult);
+        //}
 
         ///<summary>
         ///  Creates an System.Net.IPHostEntry instance from the specified System.Net.IPAddress.
@@ -860,20 +860,20 @@ namespace FSDnsCore
             return g.BeginInvoke(hostName, requestCallback, stateObject);
         }
 
-        ///<summary>
-        ///  Ends an asynchronous request for DNS information.
-        ///</summary>
-        ///<param name = "AsyncResult">
-        ///  An System.IAsyncResult instance returned by a call to an 
-        ///  FSFormControls.FSDns.Resolver.BeginGetHostByName method.
-        ///</param>
-        ///<returns></returns>
-        public IPHostEntry EndGetHostByName(IAsyncResult AsyncResult)
-        {
-            AsyncResult aResult = (AsyncResult) AsyncResult;
-            GetHostByNameDelegate g = (GetHostByNameDelegate) aResult.AsyncDelegate;
-            return g.EndInvoke(AsyncResult);
-        }
+        /////<summary>
+        /////  Ends an asynchronous request for DNS information.
+        /////</summary>
+        /////<param name = "AsyncResult">
+        /////  An System.IAsyncResult instance returned by a call to an 
+        /////  FSFormControls.FSDns.Resolver.BeginGetHostByName method.
+        /////</param>
+        /////<returns></returns>
+        //public IPHostEntry EndGetHostByName(IAsyncResult AsyncResult)
+        //{
+        //    AsyncResult aResult = (AsyncResult) AsyncResult;
+        //    GetHostByNameDelegate g = (GetHostByNameDelegate) aResult.AsyncDelegate;
+        //    return g.EndInvoke(AsyncResult);
+        //}
 
         ///<summary>
         ///  Resolves a host name or IP address to an System.Net.IPHostEntry instance.
@@ -906,20 +906,20 @@ namespace FSDnsCore
             return g.BeginInvoke(hostName, requestCallback, stateObject);
         }
 
-        ///<summary>
-        ///  Ends an asynchronous request for DNS information.
-        ///</summary>
-        ///<param name = "AsyncResult">
-        ///  An System.IAsyncResult instance that is returned by a call to the System.Net.Dns.BeginResolve(System.String,System.AsyncCallback,System.Object)
-        ///  method.
-        ///</param>
-        ///<returns>An System.Net.IPHostEntry object that contains DNS information about a host.</returns>
-        public IPHostEntry EndResolve(IAsyncResult AsyncResult)
-        {
-            AsyncResult aResult = (AsyncResult) AsyncResult;
-            ResolveDelegate g = (ResolveDelegate) aResult.AsyncDelegate;
-            return g.EndInvoke(AsyncResult);
-        }
+        /////<summary>
+        /////  Ends an asynchronous request for DNS information.
+        /////</summary>
+        /////<param name = "AsyncResult">
+        /////  An System.IAsyncResult instance that is returned by a call to the System.Net.Dns.BeginResolve(System.String,System.AsyncCallback,System.Object)
+        /////  method.
+        /////</param>
+        /////<returns>An System.Net.IPHostEntry object that contains DNS information about a host.</returns>
+        //public IPHostEntry EndResolve(IAsyncResult AsyncResult)
+        //{
+        //    AsyncResult aResult = (AsyncResult) AsyncResult;
+        //    ResolveDelegate g = (ResolveDelegate) aResult.AsyncDelegate;
+        //    return g.EndInvoke(AsyncResult);
+        //}
 
         #region Nested type: GetHostAddressesDelegate
 
