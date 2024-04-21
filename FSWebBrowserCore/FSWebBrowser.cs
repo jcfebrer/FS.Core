@@ -13,9 +13,9 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.Net.NetworkInformation;
 using mshtml;
-using FSLibrary;
-using FSException;
-using FSDns;
+using FSLibraryCore;
+using FSExceptionCore;
+using FSDnsCore;
 
 #endregion
 
@@ -614,7 +614,7 @@ namespace FSWebBrowserCore
             if (WebBrowser1.Document != null)
                 if (WebBrowser1.Document.Body != null)
                 {
-				string docText = FSLibrary.TextUtil.RemoveExpressionSignals(FSLibrary.TextUtil.RemoveHtmlTags(WebBrowser1.DocumentText));
+				string docText = FSLibraryCore.TextUtil.RemoveExpressionSignals(FSLibraryCore.TextUtil.RemoveHtmlTags(WebBrowser1.DocumentText));
 
                     foreach (string badWord in BadWords)
                     {
@@ -657,7 +657,7 @@ namespace FSWebBrowserCore
                             //if (!(src.StartsWith("?") || src.StartsWith("/") || src.StartsWith("#")))
                             if (src.ToLower().StartsWith("http"))
                             {
-								if (FSNetwork.Net.IsUri(src))
+								if (FSNetworkCore.Net.IsUri(src))
                                 {
                                     Uri url = new Uri(src);
 
@@ -688,7 +688,7 @@ namespace FSWebBrowserCore
                         if(src.ToLower().StartsWith("http"))
                         {
                             //si es una Url valida
-							if (FSNetwork.Net.IsUri(src))
+							if (FSNetworkCore.Net.IsUri(src))
                             {
                                 Uri url = new Uri(src);
 
@@ -729,7 +729,7 @@ namespace FSWebBrowserCore
 
         private void CheckNudeImages()
         {
-			FSGraphics.ImageProcess skin = new FSGraphics.ImageProcess();
+			FSGraphicsCore.ImageProcess skin = new FSGraphicsCore.ImageProcess();
             Bitmap bm;
 
             //leemos todos los links
@@ -782,7 +782,7 @@ namespace FSWebBrowserCore
 
         private void CheckNudeImages2()
         {
-            FSGraphics.ImageProcess skin = new FSGraphics.ImageProcess();
+            FSGraphicsCore.ImageProcess skin = new FSGraphicsCore.ImageProcess();
 
             //leemos todas las imagenes a traves del portapapeles
             if (WebBrowser1.Document != null)
@@ -798,7 +798,7 @@ namespace FSWebBrowserCore
 
                     imgRange.execCommand("Copy", false, null);
 
-                    using (Bitmap bmp = (Bitmap)FSLibrary.Clipboard.GetDataObject().GetData(DataFormats.Bitmap))
+                    using (Bitmap bmp = (Bitmap)FSLibraryCore.Clipboard.GetDataObject().GetData(DataFormats.Bitmap))
                     {
 
                         if (bmp != null)
@@ -881,7 +881,7 @@ namespace FSWebBrowserCore
             if (ValidPages.Contains(url)) return true;
 
             Resolver resolver1 = new Resolver();
-            resolver1.DnsServer = "208.67.222.123";
+            resolver1.DnsServer = "208.67.222.123";  //OpenDNS
 
             Response response = resolver1.Query(url, QType.A, QClass.IN);
             foreach (RR rr in response.Answers)
