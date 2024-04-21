@@ -37,7 +37,9 @@
     <Reference Include="Microsoft.DirectX.DirectSound">
       <HintPath>..\dll\Microsoft.DirectX.DirectSound.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualC" />
+    <Reference Include="Microsoft.VisualC">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v2.0.50727\Microsoft.VisualC.Dll</HintPath>
+    </Reference>
     <Reference Update="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>

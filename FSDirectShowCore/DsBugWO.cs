@@ -6,6 +6,7 @@ using System.Collections;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Security.Permissions;
 
 namespace FSDirectShowCore
 {
@@ -22,14 +23,15 @@ namespace FSDirectShowCore
             
             Guid iu = new Guid( "00000000-0000-0000-C000-000000000046" ); 
             IntPtr ptrXX = new System.IntPtr(); 
-            hr = Marshal.QueryInterface( ptrIf, ref iu, out ptrXX ); 
-            
-            object ooo = System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject( ptrIf ); 
+            hr = Marshal.QueryInterface( ptrIf, ref iu, out ptrXX );
+
+            // REVISAR
+            // object ooo = System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject( ptrIf ); 
+            object ooo = null;
             int ct = Marshal.Release( ptrIf ); 
             return ooo; 
-        } 
-        
-        
+        }
+
         [ DllImport( "ole32.dll" ) ]
         private static extern int CoCreateInstance( Guid clsid, IntPtr pUnkOuter, CLSCTX dwClsContext, Guid iid, IntPtr ptrIf );
     } 
