@@ -13,7 +13,7 @@ namespace FSTestsCore
         [TestMethod()]
         public void Flip()
         {
-            string flip = FSLibrary.Flip.FlipString("esto es una prueba");
+            string flip = FSLibraryCore.Flip.FlipString("esto es una prueba");
 
             Assert.AreEqual("ɐqәnɹd ɐun sә oʇsә", flip, "Función 'Flip' incorrecta: " + flip);
         }
