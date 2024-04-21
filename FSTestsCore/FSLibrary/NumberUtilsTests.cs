@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace FSLibrary.Tests
+namespace FSLibraryCore.Tests
 {
     [TestClass]
     public class NumberUtils
@@ -10,7 +10,7 @@ namespace FSLibrary.Tests
         public void Packet()
         {
             byte[] dataToSend = new byte[] { 0x8B, 0xB9, 0x00, 0x03, 0x05, 0x01, 0x09 };
-            foreach (byte[] bytes in FSLibrary.NumberUtils.BytePackets(dataToSend, dataToSend.Length))
+            foreach (byte[] bytes in FSLibraryCore.NumberUtils.BytePackets(dataToSend, dataToSend.Length))
             {
                 foreach (byte b in bytes)
                 {

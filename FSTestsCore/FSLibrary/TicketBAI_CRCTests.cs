@@ -1,12 +1,12 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FSLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FSLibraryCore;
 
-namespace FSLibrary.Tests
+namespace FSLibraryCore.Tests
 {
     [TestClass]
     public class TicketBAI_CRCTests

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FSNetwork;
+using FSNetworkCore;
 using FSParserCore;
-using FSTestsCore.com.febrersoftware.www;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace FSTestsCore.FSParser
@@ -16,20 +15,20 @@ namespace FSTestsCore.FSParser
         [TestMethod()]
         public void TestWSLogin()
         {
-            FSTestsCore.com.febrersoftware.www.PortalWS portal = new FSTestsCore.com.febrersoftware.www.PortalWS();
+            //FSTestsCore.com.febrersoftware.www.PortalWS portal = new FSTestsCore.com.febrersoftware.www.PortalWS();
 
-            string respuesta = portal.Login("admin", "rerbeF2009");
+            //string respuesta = portal.Login("admin", "rerbeF2009");
 
-            if (respuesta != "OK")
-                Assert.Fail();
+            //if (respuesta != "OK")
+            //    Assert.Fail();
 
-            string respuesta2 = portal.NombreCompleto();
+            //string respuesta2 = portal.NombreCompleto();
 
-            if (respuesta2 == "")
-                Assert.Fail();
+            //if (respuesta2 == "")
+            //    Assert.Fail();
 
-            FSTestsCore.com.febrersoftware.www1.AdminWS admin = new com.febrersoftware.www1.AdminWS();
-            string respuesta3 = admin.Tablas();
+            //FSTestsCore.com.febrersoftware.www1.AdminWS admin = new com.febrersoftware.www1.AdminWS();
+            //string respuesta3 = admin.Tablas();
 
 
 

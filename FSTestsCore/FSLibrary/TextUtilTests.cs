@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FSLibrary;
+using FSLibraryCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Reflection;
 
-namespace FSLibrary.Tests
+namespace FSLibraryCore.Tests
 {
     [TestClass()]
     public class TextUtilTests

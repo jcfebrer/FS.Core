@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSLibrary.Tests
+namespace FSLibraryCore.Tests
 {
     [TestClass]
     public class Serializer
@@ -20,7 +20,7 @@ namespace FSLibrary.Tests
             miclase.Add("prueba3");
             miclase.Add("prueba4");
 
-            string result = FSLibrary.Serializer.Serialize(miclase);
+            string result = FSLibraryCore.Serializer.Serialize(miclase);
 
             Assert.AreEqual("<![Capacity=4][Count=4][Item=prueba1][Item=prueba2][Item=prueba3][Item=prueba4]!>", result, "Clase serializada: " + result);
         }
@@ -30,7 +30,7 @@ namespace FSLibrary.Tests
         {
             Rectangle rectangle = new Rectangle(10, 10, 100, 100);
 
-            string result = FSLibrary.Serializer.Serialize(rectangle);
+            string result = FSLibraryCore.Serializer.Serialize(rectangle);
 
             Assert.AreEqual("<![Location={X=10,Y=10}][Size={Width=100, Height=100}][X=10][Y=10][Width=100][Height=100][Left=10][Top=10][Right=110][Bottom=110][IsEmpty=False]!>", result, "Clase serializada: " + result);
         }
@@ -39,7 +39,7 @@ namespace FSLibrary.Tests
         public void Deserialize()
         {
             string data = "<![Capacity=4][Count=4][Item=prueba1][Item=prueba2][Item=prueba3][Item=prueba4]!>";
-            List<string> miclase = FSLibrary.Serializer.DeSerialize<List<string>>(data, new List<string>());
+            List<string> miclase = FSLibraryCore.Serializer.DeSerialize<List<string>>(data, new List<string>());
 
             Assert.AreEqual("prueba1", miclase[0], "Clase deserializada: " + miclase.ToString());
         }
@@ -48,7 +48,7 @@ namespace FSLibrary.Tests
         public void DeserializeRectangle()
         {
             string data = "<![Location={X=10,Y=10}][Size={Width=100, Height=100}][X=10][Y=10][Width=100][Height=100][Left=10][Top=10][Right=110][Bottom=110][IsEmpty=False]!>";
-            Rectangle miclase = FSLibrary.Serializer.DeSerialize<Rectangle>(data, new Rectangle());
+            Rectangle miclase = FSLibraryCore.Serializer.DeSerialize<Rectangle>(data, new Rectangle());
 
             Assert.AreEqual("10", miclase.X, "Clase deserializada: " + miclase.ToString());
         }
