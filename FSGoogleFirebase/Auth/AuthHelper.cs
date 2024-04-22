@@ -19,11 +19,10 @@ namespace FSGoogleFirebase.Auth
         //{
         //    using (var stream = new FileStream(jsonKeyFilePath, FileMode.Open, FileAccess.Read))
         //    {
-        //        var result = GoogleCredential.FromStream(stream); // Loads key file
-        //        var result2 = result.CreateScoped(scopes); // Gathers scopes requested
-        //        var result3 = result2.UnderlyingCredential; // Gets the credentials
-        //        var result4 = result3.GetAccessTokenForRequestAsync(); // Gets the Access Token
-        //        return await result4;
+        //        return await GoogleCredential.FromStream(stream) // Loads key file
+        //          .CreateScoped(scopes) // Gathers scopes requested
+        //          .UnderlyingCredential // Gets the credentials
+        //          .GetAccessTokenForRequestAsync(); // Gets the Access Token
         //    }
         //}
 
@@ -31,11 +30,10 @@ namespace FSGoogleFirebase.Auth
         {
             using (var stream = new FileStream(jsonKeyFilePath, FileMode.Open, FileAccess.Read))
             {
-                var result = GoogleCredential.FromStream(stream); // Loads key file
-                var result2 = result.CreateScoped(scopes); // Gathers scopes requested
-                var result3 = result2.UnderlyingCredential; // Gets the credentials
-                var result4 = result3.GetAccessTokenForRequestAsync(); // Gets the Access Token
-                return result4.Result;
+                return GoogleCredential.FromStream(stream) // Loads key file
+                    .CreateScoped(scopes) // Gathers scopes requested
+                    .UnderlyingCredential // Gets the credentials
+                    .GetAccessTokenForRequestAsync().Result; // Gets the Access Token
             }
         }
 
