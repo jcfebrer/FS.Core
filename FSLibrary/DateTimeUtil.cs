@@ -457,5 +457,16 @@ namespace FSLibrary
 
             return calcBusinessDays;
         }
+
+        /// <summary>
+        /// Convierte del formato Date de Android a c#
+        /// </summary>
+        /// <param name="unixTimeMillis"></param>
+        /// <returns></returns>
+        public static DateTime FromUnixTime(long unixTimeMillis)
+        {
+            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+            return epoch.AddMilliseconds(unixTimeMillis);
+        }
     }
 }

@@ -51,10 +51,10 @@ namespace FSGoogleFirebase.Auth
 
         public static void RefreshToken()
         {
-            if (!string.IsNullOrEmpty(ACCESS_TOKEN))
-                ACCESS_TOKEN = GetAccessTokenFromJSONKeyAsync(jsonKeyFilePath, scopes);
-            else
+            if (string.IsNullOrEmpty(ACCESS_TOKEN))
                 throw new InvalidOperationException("Unauthorised! Generate a token first.");
+            else
+                ACCESS_TOKEN = GetAccessTokenFromJSONKeyAsync(jsonKeyFilePath, scopes);
         }
     }
 }

@@ -8,11 +8,21 @@ namespace FSGoogleFirebase
 {
 	public class Device
 	{
-		public String androidid;
-		public String email;
-		public String app;
-		public Boolean online;
-		public String regId;
+		public string androidid;
+		public string email;
+		public string app;
+		public bool online;
+
+		private long _heartbeat;
+        public long heartbeat {
+			get { return _heartbeat; }
+			set { 
+				_heartbeat = value;
+                heartbeatdate = FSLibrary.DateTimeUtil.FromUnixTime(value);
+            }
+		}
+
+        public DateTime heartbeatdate;
 		public string token;
 
 		public String separatorId = ":v:";
@@ -21,35 +31,39 @@ namespace FSGoogleFirebase
 		{
 		}
 
-		public Device(String androidid, String email, String app, String regId, Boolean online)
+		public Device(string androidid, string app, string token, string email, bool online, long heartbeat)
 		{
 			this.androidid = androidid;
 			this.email = email;
 			this.app = app;
-			this.regId = regId;
+			this.token = token;
 			this.online = online;
-		}
+            this.heartbeat = heartbeat;
+        }
 
-		public Device(String androidid, String app, String regId)
+		public Device(String androidid, String app, String token)
 		{
 			this.androidid = androidid;
 			this.app = app;
-			this.regId = regId;
+			this.token = token;
+			this.email = "";
 			this.online = false;
-		}
+            this.heartbeat = 0;
+        }
 
-		public Device(String androidid, String email, String app, String regId)
+		public Device(String androidid, String email, String app, String token)
 		{
 			this.androidid = androidid;
 			this.email = email;
 			this.app = app;
-			this.regId = regId;
+			this.token = token;
 			this.online = false;
-		}
+            this.heartbeat = 0;
+        }
 
 		public override String ToString()
 		{
-			return androidid + separatorId + email + separatorId + app + separatorId + regId;
+            return androidid + separatorId + app + separatorId + token + separatorId + email + separatorId + online + separatorId + heartbeat;
 		}
 
 		public String ToStringId()
@@ -65,11 +79,16 @@ namespace FSGoogleFirebase
 			String[] device = deviceData.Split(separatorId.ToCharArray());
 
 			if (device.Length >= 1) androidid = device[0];
-			if (device.Length >= 2) email = device[1];
-			if (device.Length >= 3) app = device[2];
-			if (device.Length >= 4) regId = device[3];
+			if (device.Length >= 2) app = device[1];
+			if (device.Length >= 3) token = device[2];
+			if (device.Length >= 4) email = device[3];
+            if (device.Length >= 5) online = Convert.ToBoolean(device[4]);
+            if (device.Length >= 6)
+            {
+                heartbeat = Convert.ToInt64(device[5]);
+            }
 
-			return this;
+            return this;
 		}
 	}
 }
