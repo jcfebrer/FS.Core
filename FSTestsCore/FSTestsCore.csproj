@@ -123,6 +123,7 @@
     <ProjectReference Include="..\FSMailCore\FSMailCore.csproj" />
     <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
     <ProjectReference Include="..\FSParserCore\FSParserCore.csproj" />
+    <ProjectReference Include="..\FSSepaLibraryCore\FSSepaLibraryCore.csproj" />
     <ProjectReference Include="..\FSSystemInfoCore\FSSystemInfoCore.csproj" />
   </ItemGroup>
   <ItemGroup>

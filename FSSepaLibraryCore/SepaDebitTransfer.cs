@@ -89,11 +89,7 @@ namespace FSSepaLibraryCore
         /// <returns></returns>
         protected override void LoadXml(string xmlFile)
         {
-            var xml = new XmlDocument();
-            xml.Load(xmlFile);
-
-            // Part 1: Group Header
-            var grpHdr = XmlUtils.GetFirstElement(xml, "CstmrDrctDbtInitn").NewElement("GrpHdr");
+            throw new Exception("Copiar de LoadXml de SepaCreditTransfer y adptar a SepaDebitTransfer");
         }
 
         /// <summary>
