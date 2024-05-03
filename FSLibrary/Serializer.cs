@@ -7,6 +7,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Reflection;
 using System.Text;
 
@@ -230,7 +231,11 @@ namespace FSLibrary
                             else
                             {
                                 string _value = property.Value;
-                                propInfo?.SetValue(target, Convert.ChangeType(_value, propInfo.PropertyType), null);
+                                //si no pasamos por una variable intermedia object, los cambios de las propiedades no se aplican.
+                                object boxed = target;
+                                propInfo?.SetValue(boxed, Convert.ChangeType(_value, propInfo.PropertyType), null);
+
+                                target = (T)boxed;
                             }
                         }
                     }
