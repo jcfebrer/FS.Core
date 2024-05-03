@@ -31,8 +31,8 @@ namespace FSSepaLibraryCore
             get { return SepaIban; }
             set
             {
-                if (!value.IsValid)
-                    throw new SepaRuleException("Debtor IBAN data are invalid.");
+                //if (!value.IsValid)
+                //    throw new SepaRuleException("Debtor IBAN data are invalid.");
                 SepaIban = value;
                 
             }

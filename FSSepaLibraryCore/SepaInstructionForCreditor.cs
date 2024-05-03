@@ -13,5 +13,10 @@
         public SepaInstructionForCreditorCode Code { get; set; }
 
         public string Comment { get; set; }
+
+        public override string ToString()
+        { 
+            return Code.ToString() + " " + Comment;
+        }
     }
 }

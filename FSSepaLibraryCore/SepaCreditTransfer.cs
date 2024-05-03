@@ -70,6 +70,21 @@ namespace FSSepaLibraryCore
         }
 
         /// <summary>
+        ///     Debtor IBAN data for ultimate debtor
+        /// </summary>
+        /// <exception cref="SepaRuleException">If debtor to set is not valid.</exception>
+        public SepaIbanData UltimateDebtor
+        {
+            get { return UltimateSepaIban; }
+            set
+            {
+                //if (!value.IsValid || value.UnknownBic)
+                //    throw new SepaRuleException("Debtor IBAN data are invalid.");
+                UltimateSepaIban = value;
+            }
+        }
+
+        /// <summary>
         ///     Is Mandatory data are set ? In other case a SepaRuleException will be thrown
         /// </summary>
         /// <exception cref="SepaRuleException">If mandatory data is missing.</exception>
@@ -105,109 +120,124 @@ namespace FSSepaLibraryCore
             xml.Load(xmlReader);
 
             // Part 1: Group Header
-            var cstmrCdtTrfInitn = XmlUtils.GetFirstElement(xml, "CstmrCdtTrfInitn");
+            var cstmrCdtTrfInitn = xml.SelectSingleNode("//CstmrCdtTrfInitn");
             if (cstmrCdtTrfInitn == null)
                 throw new Exception("CstmrCdtTrfInitn is Null");
-            var grpHdr = XmlUtils.GetFirstElement(cstmrCdtTrfInitn, "GrpHdr");
+            var grpHdr = cstmrCdtTrfInitn.SelectSingleNode("GrpHdr");
             if (grpHdr == null)
                 throw new Exception("GrpHdr is Null");
 
-            if(XmlUtils.GetFirstElement(grpHdr, "MsgId") != null)
-                MessageIdentification = XmlUtils.GetFirstElement(grpHdr, "MsgId").InnerText;
+            if(grpHdr.SelectSingleNode("MsgId") != null)
+                MessageIdentification = grpHdr.SelectSingleNode("MsgId").InnerText;
 
-            if(XmlUtils.GetFirstElement(grpHdr, "CreDtTm") != null) 
-                CreationDate = Convert.ToDateTime(XmlUtils.GetFirstElement(grpHdr, "CreDtTm").InnerText);
+            if(grpHdr.SelectSingleNode("CreDtTm") != null) 
+                CreationDate = Convert.ToDateTime(grpHdr.SelectSingleNode("CreDtTm").InnerText);
 
-            if(XmlUtils.GetFirstElement(grpHdr, "NbOfTxs") != null)
-                numberOfTransactions = Convert.ToInt32(XmlUtils.GetFirstElement(grpHdr, "NbOfTxs").InnerText);
+            if(grpHdr.SelectSingleNode("NbOfTxs") != null)
+                numberOfTransactions = Convert.ToInt32(grpHdr.SelectSingleNode("NbOfTxs").InnerText);
 
-            if(XmlUtils.GetFirstElement(grpHdr, "CtrlSum") != null)
-                headerControlSum = Convert.ToDecimal(XmlUtils.GetFirstElement(grpHdr, "CtrlSum").InnerText.Replace(".",","));
+            if(grpHdr.SelectSingleNode("CtrlSum") != null)
+                headerControlSum = Convert.ToDecimal(grpHdr.SelectSingleNode("CtrlSum").InnerText.Replace(".",","));
 
-            var initgPty = XmlUtils.GetFirstElement(grpHdr, "InitgPty");
+            var initgPty = grpHdr.SelectSingleNode("InitgPty");
             if (initgPty == null)
                 throw new Exception("InitgPty is Null");
 
-            if(XmlUtils.GetFirstElement(initgPty, "Nm") != null)
-                InitiatingPartyName = XmlUtils.GetFirstElement(initgPty, "Nm").InnerText;
+            if(initgPty.SelectSingleNode("Nm") != null)
+                InitiatingPartyName = initgPty.SelectSingleNode("Nm").InnerText;
 
-            if(XmlUtils.GetFirstElement(initgPty, "Id/OrgId/Othr/Id") != null)
-                InitiatingPartyId = XmlUtils.GetFirstElement(initgPty, "Id/OrgId/Othr/Id").InnerText;
+            if(initgPty.SelectSingleNode("Id/OrgId/Othr/Id") != null)
+                InitiatingPartyId = initgPty.SelectSingleNode("Id/OrgId/Othr/Id").InnerText;
 
             // Part 2: Payment Information
-            var pmtInf = XmlUtils.GetFirstElement(xml, "CstmrCdtTrfInitn/PmtInf");
+            var pmtInf = xml.SelectSingleNode("//CstmrCdtTrfInitn/PmtInf");
             if (pmtInf == null)
                 throw new Exception("CstmrCdtTrfInitn/PmtInf is Null");
 
-            if(XmlUtils.GetFirstElement(pmtInf, "PmtInfId")!= null)
-                PaymentInfoId = XmlUtils.GetFirstElement(pmtInf, "PmtInfId").InnerText;
+            if(pmtInf.SelectSingleNode("PmtInfId") != null)
+                PaymentInfoId = pmtInf.SelectSingleNode("PmtInfId").InnerText;
 
             if (PaymentInfoId == null)
                 PaymentInfoId = MessageIdentification;
 
-            //Constant.CreditTransfertPaymentMethod = XmlUtils.GetFirstElement(pmtInf, "PmtMtd").InnerText;
+            //Constant.CreditTransfertPaymentMethod = XmlUtils.SelectSingleNode(pmtInf, "PmtMtd").InnerText;
 
-            if(XmlUtils.GetFirstElement(pmtInf, "NbOfTxs") != null)
-                numberOfTransactions = Convert.ToInt32(XmlUtils.GetFirstElement(pmtInf, "NbOfTxs").InnerText);
+            if(pmtInf.SelectSingleNode("NbOfTxs") != null)
+                numberOfTransactions = Convert.ToInt32(pmtInf.SelectSingleNode("NbOfTxs").InnerText);
 
-            if(XmlUtils.GetFirstElement(pmtInf, "CtrlSum") != null)
-                paymentControlSum = Convert.ToDecimal(XmlUtils.GetFirstElement(pmtInf, "CtrlSum").InnerText);
+            if(pmtInf.SelectSingleNode("CtrlSum") != null)
+                paymentControlSum = Convert.ToDecimal(pmtInf.SelectSingleNode("CtrlSum").InnerText);
 
-            var pmtTpInf = XmlUtils.GetFirstElement(pmtInf, "PmtTpInf");
-            if (pmtTpInf == null)
-                throw new Exception("PmtTpInf is Null");
+            var pmtTpInf = pmtInf.SelectSingleNode("PmtTpInf");
+            if (pmtTpInf != null)
+            {
 
-            if (XmlUtils.GetFirstElement(pmtTpInf, "InstrPrty") != null && XmlUtils.GetFirstElement(pmtTpInf, "InstrPrty").InnerText == "NORM")
-                IsInternational = true;
+                if (pmtTpInf.SelectSingleNode("InstrPrty") != null && pmtTpInf.SelectSingleNode("InstrPrty").InnerText == "NORM")
+                    IsInternational = true;
 
-            if (XmlUtils.GetFirstElement(pmtTpInf, "SvcLvl/Cd") != null && XmlUtils.GetFirstElement(pmtTpInf, "SvcLvl/Cd").InnerText == "SEPA")
-                IsInternational = false;
+                if (pmtTpInf.SelectSingleNode("SvcLvl/Cd") != null && pmtTpInf.SelectSingleNode("SvcLvl/Cd").InnerText == "SEPA")
+                    IsInternational = false;
 
-            if (XmlUtils.GetFirstElement(pmtTpInf, "LclInstr/Cd") != null)
-                LocalInstrumentCode = XmlUtils.GetFirstElement(pmtTpInf, "LclInstr/Cd").InnerText;
+                if (pmtTpInf.SelectSingleNode("LclInstr/Cd") != null)
+                    LocalInstrumentCode = pmtTpInf.SelectSingleNode("LclInstr/Cd").InnerText;
 
-            if(XmlUtils.GetFirstElement(pmtTpInf, "CtgyPurp/Cd") != null)
-                CategoryPurposeCode = XmlUtils.GetFirstElement(pmtTpInf, "CtgyPurp/Cd").InnerText;
+                if (pmtTpInf.SelectSingleNode("CtgyPurp/Cd") != null)
+                    CategoryPurposeCode = pmtTpInf.SelectSingleNode("CtgyPurp/Cd").InnerText;
+            }
 
-            if (XmlUtils.GetFirstElement(pmtInf, "ReqdExctnDt") != null)
-                RequestedExecutionDate = Convert.ToDateTime(XmlUtils.GetFirstElement(pmtInf, "ReqdExctnDt").InnerText);
+            if (pmtInf.SelectSingleNode("ReqdExctnDt") != null)
+                RequestedExecutionDate = Convert.ToDateTime(pmtInf.SelectSingleNode("ReqdExctnDt").InnerText);
 
-            var dbtr = XmlUtils.GetFirstElement(pmtInf, "Dbtr");
+            var dbtr = pmtInf.SelectSingleNode("Dbtr");
             if (dbtr == null)
                 throw new Exception("Dbtr is Null");
 
             Debtor = new SepaIbanData();
             Debtor.Address = new SepaPostalAddress();
 
-            if(XmlUtils.GetFirstElement(dbtr, "Nm") != null)
-                Debtor.Name = XmlUtils.GetFirstElement(dbtr, "Nm").InnerText;
+            if(dbtr.SelectSingleNode("Nm") != null)
+                Debtor.Name = dbtr.SelectSingleNode("Nm").InnerText;
 
             ReadSepaPostalAddress(dbtr, Debtor.Address);
 
-            if (XmlUtils.GetFirstElement(pmtInf, "Dbtr/Id/OrgId/Othr/Id") != null)
-                InitiatingPartyId = XmlUtils.GetFirstElement(pmtInf, "Dbtr/Id/OrgId/Othr/Id").InnerText;
 
-            if (XmlUtils.GetFirstElement(pmtInf, "DbtrAcct/Id/IBAN") != null)
-                Debtor.Iban = XmlUtils.GetFirstElement(pmtInf, "DbtrAcct/Id/IBAN").InnerText;
+            var ultimatedbtr = pmtInf.SelectSingleNode("UltmtDbtr");
+            if (ultimatedbtr == null)
+                throw new Exception("UltmtDbtr is Null");
 
-            if (XmlUtils.GetFirstElement(pmtInf, "DbtrAcct/Id/IBAN/Ccy") != null)
-                DebtorAccountCurrency = XmlUtils.GetFirstElement(pmtInf, "DbtrAcct/Id/IBAN/Ccy").InnerText;
+            UltimateDebtor = new SepaIbanData();
+            UltimateDebtor.Address = new SepaPostalAddress();
 
-            var finInstnId = XmlUtils.GetFirstElement(pmtInf, "DbtrAgt/FinInstnId");
+            if (ultimatedbtr.SelectSingleNode("Nm") != null)
+                UltimateDebtor.Name = ultimatedbtr.SelectSingleNode("Nm").InnerText;
+
+            ReadSepaPostalAddress(ultimatedbtr, UltimateDebtor.Address);
+
+
+            if (pmtInf.SelectSingleNode("Dbtr/Id/OrgId/Othr/Id") != null)
+                InitiatingPartyId = pmtInf.SelectSingleNode("Dbtr/Id/OrgId/Othr/Id").InnerText;
+
+            if (pmtInf.SelectSingleNode("DbtrAcct/Id/IBAN") != null)
+                Debtor.Iban = pmtInf.SelectSingleNode("DbtrAcct/Id/IBAN").InnerText;
+
+            if (pmtInf.SelectSingleNode("DbtrAcct/Id/IBAN/Ccy") != null)
+                DebtorAccountCurrency = pmtInf.SelectSingleNode("DbtrAcct/Id/IBAN/Ccy").InnerText;
+
+            var finInstnId = pmtInf.SelectSingleNode("DbtrAgt/FinInstnId");
             if (finInstnId == null)
                 throw new Exception("DbtrAgt/FinInstnId is Null");
 
-            if(XmlUtils.GetFirstElement(finInstnId, "BIC") != null)
-                Debtor.Bic = XmlUtils.GetFirstElement(finInstnId, "BIC").InnerText;
+            if(finInstnId.SelectSingleNode("BIC") != null)
+                Debtor.Bic = finInstnId.SelectSingleNode("BIC").InnerText;
 
             Debtor.AgentAddress = new SepaPostalAddress();
             ReadSepaPostalAddress(finInstnId, Debtor.AgentAddress);
 
             if (IsInternational)
             {
-                if (XmlUtils.GetFirstElement(pmtInf, "ChrgBr") != null)
+                if (pmtInf.SelectSingleNode("ChrgBr") != null)
                 {
-                    Enum.TryParse(XmlUtils.GetFirstElement(pmtInf, "ChrgBr").InnerText, out SepaChargeBearer chargeBearer);
+                    Enum.TryParse(pmtInf.SelectSingleNode("ChrgBr").InnerText, out SepaChargeBearer chargeBearer);
                     ChargeBearer = chargeBearer;
                 }
             }
@@ -220,72 +250,73 @@ namespace FSSepaLibraryCore
                 {
                     SepaCreditTransferTransaction transfer = new SepaCreditTransferTransaction();
 
-                    if (XmlUtils.GetFirstElement(node, "PmtId/InstrId") != null)
-                        transfer.Id = XmlUtils.GetFirstElement(node, "PmtId/InstrId").InnerText;
+                    if (node.SelectSingleNode("PmtId/InstrId") != null)
+                        transfer.Id = node.SelectSingleNode("PmtId/InstrId").InnerText;
 
-                    if (XmlUtils.GetFirstElement(node, "EndToEndId") != null)
-                        transfer.EndToEndId = XmlUtils.GetFirstElement(node, "EndToEndId").InnerText;
+                    if (node.SelectSingleNode("EndToEndId") != null)
+                        transfer.EndToEndId = node.SelectSingleNode("EndToEndId").InnerText;
 
-                    if(XmlUtils.GetFirstElement(node, "Amt/InstdAmt") != null)
-                        transfer.Amount = Convert.ToDecimal(XmlUtils.GetFirstElement(node, "Amt/InstdAmt").InnerText.Replace(".", ","));
+                    if(node.SelectSingleNode("Amt/InstdAmt") != null)
+                        transfer.Amount = Convert.ToDecimal(node.SelectSingleNode("Amt/InstdAmt").InnerText.Replace(".", ","));
 
-                    if(XmlUtils.GetFirstElement(node, "Amt/InstdAmt") != null)
-                        transfer.Currency = XmlUtils.GetFirstElement(node, "Amt/InstdAmt").GetAttribute("Ccy");
+                    if(node.SelectSingleNode("Amt/InstdAmt") != null)
+                        if(node.SelectSingleNode("Amt/InstdAmt").Attributes["Ccy"] != null)
+                            transfer.Currency = node.SelectSingleNode("Amt/InstdAmt").Attributes["Ccy"].Value;
 
                     transfer.Creditor = new SepaIbanData();
-                    var cdtrAgt = XmlUtils.GetFirstElement(node, "CdtrAgt");
+                    var cdtrAgt = node.SelectSingleNode("CdtrAgt");
                     if (cdtrAgt == null)
                         throw new Exception("CdtrAgt is Null");
 
-                    if(XmlUtils.GetFirstElement(cdtrAgt, "FinInstnId/BIC") != null)
-                        transfer.Creditor.Bic = XmlUtils.GetFirstElement(cdtrAgt, "FinInstnId/BIC").InnerText;
+                    if(cdtrAgt.SelectSingleNode("FinInstnId/BIC") != null)
+                        transfer.Creditor.Bic = cdtrAgt.SelectSingleNode("FinInstnId/BIC").InnerText;
                     
-                    var cdtr = XmlUtils.GetFirstElement(node, "Cdtr");
+                    var cdtr = node.SelectSingleNode("Cdtr");
                     if (cdtr == null)
                         throw new Exception("Cdtr is Null");
 
-                    if(XmlUtils.GetFirstElement(cdtr, "Nm") != null)
-                        transfer.Creditor.Name = XmlUtils.GetFirstElement(cdtr, "Nm").InnerText;
+                    if(cdtr.SelectSingleNode("Nm") != null)
+                        transfer.Creditor.Name = cdtr.SelectSingleNode("Nm").InnerText;
 
                     transfer.Creditor.Address = new SepaPostalAddress();
                     ReadSepaPostalAddress(cdtr, transfer.Creditor.Address);
 
-                    var cdtrAcct = XmlUtils.GetFirstElement(node, "CdtrAcct");
+                    var cdtrAcct = node.SelectSingleNode("CdtrAcct");
                     if (cdtrAcct == null)
                         throw new Exception("CdtrAcct is Null");
 
-                    if(XmlUtils.GetFirstElement(cdtrAcct, "Id/IBAN") != null)
-                        transfer.Creditor.Iban = XmlUtils.GetFirstElement(cdtrAcct, "Id/IBAN").InnerText;
+                    if(cdtrAcct.SelectSingleNode("Id/IBAN") != null)
+                        transfer.Creditor.Iban = cdtrAcct.SelectSingleNode("Id/IBAN").InnerText;
 
                     if (IsInternational)
                     {
-                        var instr = XmlUtils.GetFirstElement(node, "InstrForCdtrAgt");
+                        var instr = node.SelectSingleNode("InstrForCdtrAgt");
                         if (instr != null)
                         {
-                            if (XmlUtils.GetFirstElement(instr, "Cd") != null)
+                            if (instr.SelectSingleNode("Cd") != null)
                             {
-                                Enum.TryParse(XmlUtils.GetFirstElement(instr, "Cd").InnerText, out SepaInstructionForCreditorCode code);
+                                Enum.TryParse(instr.SelectSingleNode("Cd").InnerText, out SepaInstructionForCreditorCode code);
                                 transfer.SepaInstructionForCreditor.Code = code;
                             }
 
-                            if(XmlUtils.GetFirstElement(instr, "InstrInf") != null)
-                                transfer.SepaInstructionForCreditor.Comment = XmlUtils.GetFirstElement(instr, "InstrInf").InnerText;
+                            if(instr.SelectSingleNode("InstrInf") != null)
+                                transfer.SepaInstructionForCreditor.Comment = instr.SelectSingleNode("InstrInf").InnerText;
                         }
                     }
 
-                    if(XmlUtils.GetFirstElement(node, "Purp/Cd") != null)
-                        transfer.Purpose = XmlUtils.GetFirstElement(node, "Purp/Cd").InnerText;
+                    if(node.SelectSingleNode("Purp/Cd") != null)
+                        transfer.Purpose = node.SelectSingleNode("Purp/Cd").InnerText;
                     
                     if (IsInternational)
                     {
-                        if(XmlUtils.GetFirstElement(node, "RgltryRptg/Dtls/Cd") != null)
-                            transfer.RegulatoryReportingCode = XmlUtils.GetFirstElement(node, "RgltryRptg/Dtls/Cd").InnerText;
+                        if(node.SelectSingleNode("RgltryRptg/Dtls/Cd") != null)
+                            transfer.RegulatoryReportingCode = node.SelectSingleNode("RgltryRptg/Dtls/Cd").InnerText;
                     }
 
-                    if(XmlUtils.GetFirstElement(node, "RmtInf/Ustrd")!= null)
-                        transfer.RemittanceInformation = XmlUtils.GetFirstElement(node, "RmtInf/Ustrd").InnerText;
+                    if(node.SelectSingleNode("RmtInf/Ustrd") != null)
+                        transfer.RemittanceInformation = node.SelectSingleNode("RmtInf/Ustrd").InnerText;
 
-                    transactions.Add(transfer);
+                    AddCreditTransfer(transfer);
                 }
             }
         }
@@ -307,7 +338,7 @@ namespace FSSepaLibraryCore
             el.NewElement("CstmrCdtTrfInitn");
 
             // Part 1: Group Header
-            var grpHdr = XmlUtils.GetFirstElement(xml, "CstmrCdtTrfInitn").NewElement("GrpHdr");
+            var grpHdr = (el.SelectSingleNode("CstmrCdtTrfInitn") as XmlElement).NewElement("GrpHdr");
             grpHdr.NewElement("MsgId", MessageIdentification);
             grpHdr.NewElement("CreDtTm", StringUtils.FormatDateTime(CreationDate));
             grpHdr.NewElement("NbOfTxs", numberOfTransactions);
@@ -330,7 +361,7 @@ namespace FSSepaLibraryCore
             }
 
             // Part 2: Payment Information
-            var pmtInf = XmlUtils.GetFirstElement(xml, "CstmrCdtTrfInitn").NewElement("PmtInf");
+            var pmtInf = (el.SelectSingleNode("CstmrCdtTrfInitn") as XmlElement).NewElement("PmtInf");
             pmtInf.NewElement("PmtInfId", PaymentInfoId ?? MessageIdentification);
 
             pmtInf.NewElement("PmtMtd", Constant.CreditTransfertPaymentMethod);
@@ -345,27 +376,37 @@ namespace FSSepaLibraryCore
                 pmtInf.NewElement("PmtTpInf").NewElement("SvcLvl").NewElement("Cd", "SEPA");
             }
             if (LocalInstrumentCode != null)
-                XmlUtils.GetFirstElement(pmtInf, "PmtTpInf").NewElement("LclInstr")
+                (pmtInf.SelectSingleNode("PmtTpInf") as XmlElement).NewElement("LclInstr")
                         .NewElement("Cd", LocalInstrumentCode);
 
 			if (CategoryPurposeCode != null) {
-				 XmlUtils.GetFirstElement(pmtInf, "PmtTpInf").
+                (pmtInf.SelectSingleNode("PmtTpInf") as XmlElement).
 					 NewElement("CtgyPurp").
 					 NewElement("Cd", CategoryPurposeCode);
 			}
 			
 			pmtInf.NewElement("ReqdExctnDt", StringUtils.FormatDate(RequestedExecutionDate));
+
             var dbtr = pmtInf.NewElement("Dbtr");
             dbtr.NewElement("Nm", Debtor.Name);
             if (Debtor.Address != null)
             {
                 AddPostalAddressElements(dbtr, Debtor.Address);
             }
-			if (InitiatingPartyId != null) {
-				XmlUtils.GetFirstElement(pmtInf, "Dbtr").
-					NewElement("Id").NewElement("OrgId").
-					NewElement("Othr").NewElement("Id", InitiatingPartyId);
-			}
+
+            var ultimatedbtr = pmtInf.NewElement("UltmtDbtr");
+            ultimatedbtr.NewElement("Nm", UltimateDebtor.Name);
+            if (UltimateDebtor.Address != null)
+            {
+                AddPostalAddressElements(ultimatedbtr, UltimateDebtor.Address);
+            }
+
+            if (InitiatingPartyId != null)
+            {
+                (pmtInf.SelectSingleNode("Dbtr") as XmlElement).
+                    NewElement("Id").NewElement("OrgId").
+                    NewElement("Othr").NewElement("Id", InitiatingPartyId);
+            }
 
             var dbtrAcct = pmtInf.NewElement("DbtrAcct");
             dbtrAcct.NewElement("Id").NewElement("IBAN", Debtor.Iban);

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Xml;
 using FSSepaLibraryCore.Utils;
+using static FSSepaLibraryCore.SepaInstructionForCreditor;
 
 namespace FSSepaLibraryCore
 {
@@ -14,6 +16,7 @@ namespace FSSepaLibraryCore
         protected decimal headerControlSum;
         protected decimal paymentControlSum;
         protected SepaIbanData SepaIban;
+        protected SepaIbanData UltimateSepaIban;
         protected readonly List<T> transactions = new List<T>();
 
         protected SepaSchema schema;
@@ -179,35 +182,44 @@ namespace FSSepaLibraryCore
                     pstlAdr.NewElement("AdrLine", line);
         }
 
-        public void ReadSepaPostalAddress(XmlElement xmlElement, SepaPostalAddress address)
+        public void ReadSepaPostalAddress(XmlNode xmlNode, SepaPostalAddress address)
         {
             address.AdrLine = new List<string>();
 
-            var pstlAdr = XmlUtils.GetFirstElement(xmlElement, "PstlAdr");
-            //Debtor.Address.AddressType = XmlUtils.GetFirstElement(pstlAdr, "AdrTp").InnerText;
-            if (XmlUtils.GetFirstElement(pstlAdr, "Dept") != null)
-                address.Dept = XmlUtils.GetFirstElement(pstlAdr, "Dept").InnerText;
+            var pstlAdr = xmlNode.SelectSingleNode("PstlAdr");
 
-            if (XmlUtils.GetFirstElement(pstlAdr, "SubDept") != null)
-                address.SubDept = XmlUtils.GetFirstElement(pstlAdr, "SubDept").InnerText;
+            if (pstlAdr == null)
+                return;
 
-            if (XmlUtils.GetFirstElement(pstlAdr, "StrtNm") != null)
-                address.StrtNm = XmlUtils.GetFirstElement(pstlAdr, "StrtNm").InnerText;
+            if (pstlAdr.SelectSingleNode("AdrTp") != null)
+            {
+                Enum.TryParse(pstlAdr.SelectSingleNode("AdrTp").InnerText, out PostalAddressType postalAddressType);
+                address.AddressType = postalAddressType;
+            }
 
-            if (XmlUtils.GetFirstElement(pstlAdr, "BldgNb") != null)
-                address.BldgNb = XmlUtils.GetFirstElement(pstlAdr, "BldgNb").InnerText;
+            if (pstlAdr.SelectSingleNode("Dept") != null)
+                address.Dept = pstlAdr.SelectSingleNode("Dept").InnerText;
 
-            if (XmlUtils.GetFirstElement(pstlAdr, "PstCd") != null)
-                address.PstCd = XmlUtils.GetFirstElement(pstlAdr, "PstCd").InnerText;
+            if (pstlAdr.SelectSingleNode("SubDept") != null)
+                address.SubDept = pstlAdr.SelectSingleNode("SubDept").InnerText;
 
-            if (XmlUtils.GetFirstElement(pstlAdr, "TwnNm") != null)
-                address.TwnNm = XmlUtils.GetFirstElement(pstlAdr, "TwnNm").InnerText;
+            if (pstlAdr.SelectSingleNode("StrtNm") != null)
+                address.StrtNm = pstlAdr.SelectSingleNode("StrtNm").InnerText;
 
-            if (XmlUtils.GetFirstElement(pstlAdr, "CtrySubDvsn") != null)
-                address.CtrySubDvsn = XmlUtils.GetFirstElement(pstlAdr, "CtrySubDvsn").InnerText;
+            if (pstlAdr.SelectSingleNode("BldgNb") != null)
+                address.BldgNb = pstlAdr.SelectSingleNode("BldgNb").InnerText;
 
-            if (XmlUtils.GetFirstElement(pstlAdr, "Ctry") != null)
-                address.Ctry = XmlUtils.GetFirstElement(pstlAdr, "Ctry").InnerText;
+            if (pstlAdr.SelectSingleNode("PstCd") != null)
+                address.PstCd = pstlAdr.SelectSingleNode("PstCd").InnerText;
+
+            if (pstlAdr.SelectSingleNode("TwnNm") != null)
+                address.TwnNm = pstlAdr.SelectSingleNode("TwnNm").InnerText;
+
+            if (pstlAdr.SelectSingleNode("CtrySubDvsn") != null)
+                address.CtrySubDvsn = pstlAdr.SelectSingleNode("CtrySubDvsn").InnerText;
+
+            if (pstlAdr.SelectSingleNode("Ctry") != null)
+                address.Ctry = pstlAdr.SelectSingleNode("Ctry").InnerText;
 
             var adrLine = pstlAdr.SelectNodes("AdrLine");
             if (adrLine != null)
@@ -252,6 +264,11 @@ namespace FSSepaLibraryCore
         public List<T> GetTransactions()
         {
             return transactions;
+        }
+
+        public BindingList<T> GetTransactionsBinding()
+        {
+            return new BindingList<T>(transactions);
         }
     }
 }

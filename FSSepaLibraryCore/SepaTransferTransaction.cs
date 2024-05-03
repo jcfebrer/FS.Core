@@ -76,7 +76,7 @@ namespace FSSepaLibraryCore
             get { return amount; }
             set
             {
-                if (value < new decimal(0.01) || value > new decimal(999999999.99))
+                if (value < new decimal(0.00) || value > new decimal(999999999.99))
                     throw new SepaRuleException("Invalid amount value: " + value);
 
                 if (Math.Round(value, 2) != value)

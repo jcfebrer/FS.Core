@@ -13,10 +13,13 @@ namespace FSSepaLibraryCore.Utils
         /// <param name="document">The Xml Document</param>
         /// <param name="nodeName">The name of the node</param>
         /// <returns></returns>
-        public static XmlElement GetFirstElement(XmlNode document, string nodeName)
+        public static XmlElement SelectSingleNode(XmlNode document, string nodeName)
         {
-            return document.SelectSingleNode("//" + nodeName) as XmlElement; 
+            if (document == null)
+                throw new Exception("Document is null");
+            return document.SelectSingleNode(nodeName) as XmlElement;
         }
+
         /// <summary>
         ///     Create a BIC
         /// </summary>

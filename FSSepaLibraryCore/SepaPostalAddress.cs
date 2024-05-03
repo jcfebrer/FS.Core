@@ -143,9 +143,12 @@ namespace FSSepaLibraryCore
         public override string ToString()
         {
             string address = "";
-            foreach(string s in AdrLine)
-                address += " / " + s;
-            return Dept + " - " + address;
+            if (AdrLine != null)
+            {
+                foreach (string line in AdrLine)
+                    address += Environment.NewLine + line;
+            }
+            return Dept + Environment.NewLine + address;
         }
     }
 }

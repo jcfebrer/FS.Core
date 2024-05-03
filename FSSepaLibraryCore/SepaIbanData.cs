@@ -113,7 +113,10 @@ namespace FSSepaLibraryCore
 
         public override string ToString()
         {
-            return Name + " / " + Iban + " - " + Bic + Address;
+            return Name + Environment.NewLine + 
+                Iban + Environment.NewLine + 
+                Bic + Environment.NewLine + 
+                Address;
         }
     }
 
