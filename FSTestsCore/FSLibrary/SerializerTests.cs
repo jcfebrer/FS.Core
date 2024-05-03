@@ -50,7 +50,7 @@ namespace FSLibraryCore.Tests
             string data = "<![Location={X=10,Y=10}][Size={Width=100, Height=100}][X=10][Y=10][Width=100][Height=100][Left=10][Top=10][Right=110][Bottom=110][IsEmpty=False]!>";
             Rectangle miclase = FSLibraryCore.Serializer.DeSerialize<Rectangle>(data, new Rectangle());
 
-            Assert.AreEqual("10", miclase.X, "Clase deserializada: " + miclase.ToString());
+            Assert.AreEqual(10, miclase.X, "Clase deserializada: " + miclase.ToString());
         }
     }
 }
