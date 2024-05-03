@@ -240,7 +240,8 @@ namespace FSFormControls
                 datagrid.Columns.Clear();
                 Columns.Clear();
 
-                Fill();
+                if (value != null)
+                    Fill();
             }
         }
 
@@ -369,6 +370,12 @@ namespace FSFormControls
         {
             get { return datagrid.EnableHeadersVisualStyles; }
             set { datagrid.EnableHeadersVisualStyles = value; }
+        }
+
+        public bool AutoGenerateColumns
+        {
+            get { return datagrid.AutoGenerateColumns; }
+            set { datagrid.AutoGenerateColumns = value; }
         }
 
         public SortOrder SortOrder
@@ -549,6 +556,22 @@ namespace FSFormControls
         { 
             get { return datagrid.RowTemplate; } 
             set { datagrid.RowTemplate = value; }
+        }
+
+        public DataGridViewColumnHeadersHeightSizeMode ColumnHeadersHeightSizeMode {
+            get { return datagrid.ColumnHeadersHeightSizeMode; } 
+            set { datagrid.ColumnHeadersHeightSizeMode = value; } 
+        }
+
+        public DataGridViewSelectedRowCollection SelectedRows 
+        { 
+            get { return datagrid.SelectedRows; }
+        }
+
+        public DataGridViewAutoSizeRowsMode AutoSizeRowsMode 
+        { 
+            get { return datagrid.AutoSizeRowsMode; }
+            set { datagrid.AutoSizeRowsMode = value; }
         }
 
         public void BeginInit()
@@ -1758,8 +1781,8 @@ namespace FSFormControls
         {
             var f = 0;
 
-            if (m_DBControl == null) 
-                throw new ExceptionUtil("[" + Name + "] DBGrid sin DBControl asociado.");
+            if (m_DBControl == null)
+                return;
 
             m_DBControl.DataTable.ColumnChanging += ColumnChangingEvt;
             m_DBControl.DataTable.RowChanging += RowChangingEvt;
