@@ -34,11 +34,11 @@ namespace FSTestsCore
 
             string c = crypto.Crypt("prueba");
 
-            Assert.AreEqual("WipZhqB3yIo=", c, "Cálculo de CRYPT incorrecto: " + c);
+            Assert.AreEqual("tDtOPAUOILk=", c, "Cálculo de CRYPT incorrecto: " + c);
 
-            string r = crypto.Decryp("WipZhqB3yIo=");
+            string r = crypto.Decryp("tDtOPAUOILk=");
 
-            Assert.AreEqual("prueba", r, "Decript CRYPT incorrecto: " + r);
+            Assert.AreEqual("prueba", r, "Decrypt CRYPT incorrecto: " + r);
         }
 
         [TestMethod()]
