@@ -141,7 +141,7 @@ namespace FSFormControlsCore
             var f = 0;
             DBColumn column = null;
 
-            if(dataControl != null)
+            if(dataControl == null)
             {
                 throw new Exception("DBControl es null.");
             }
