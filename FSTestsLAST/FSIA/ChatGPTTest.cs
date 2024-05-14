@@ -20,6 +20,16 @@ namespace FSTests.FSIA
         }
 
         [TestMethod()]
+        public void TestChat2GPT()
+        {
+            ChatGPT2 chatGPT2 = new ChatGPT2(ConfigurationManager.AppSettings["ChatGPTKey"], ConfigurationManager.AppSettings["ChatGPTOrganization"]);
+
+            Task<string> respuesta = chatGPT2.Question("Cual es la capital de Nueva York?", "Actua como un reconocido filosofo de la antigua grecia.");
+
+            Assert.IsNotNull(respuesta);
+        }
+
+        [TestMethod()]
         public async Task TestAIApiAsync()
         {
             var openAIApiClient = new OpenAIApiClient(ConfigurationManager.AppSettings["ChatGPTKey"], ConfigurationManager.AppSettings["ChatGPTOrganization"]);
