@@ -7,6 +7,7 @@ using OpenAI;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Runtime.Remoting.Messaging;
+using System.Net;
 
 namespace FSAi
 {
@@ -45,7 +46,7 @@ namespace FSAi
                     Messages.Add(ChatMessage.FromAssistant(question));
                     break;
                 case ChatQuestionType.Function:
-                    Messages.Add(ChatMessage.FromFunction(question));
+                    Messages.Add(ChatMessage.FromTool(question, null));
                     break;
                 case ChatQuestionType.System:
                     Messages.Add(ChatMessage.FromSystem(question));
@@ -72,6 +73,9 @@ namespace FSAi
 
             try
             {
+                //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+                //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+
                 var completionResult = await openAiService.ChatCompletion.CreateCompletion(chatCompletionCreateRequest);
 
                 if (completionResult.Successful)
