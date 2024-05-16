@@ -119,6 +119,8 @@
     <ProjectReference Include="..\FSDatabaseCore\FSDatabaseCore.csproj" />
     <ProjectReference Include="..\FSDiskCore\FSDiskCore.csproj" />
     <ProjectReference Include="..\FSFuzzyStringsCore\FSFuzzyStringsCore.csproj" />
+    <ProjectReference Include="..\FSGoogleAuthenticatorCore\FSGoogleAuthenticatorCore.csproj" />
+    <ProjectReference Include="..\FSIACore\FSIACore.csproj" />
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
     <ProjectReference Include="..\FSMailCore\FSMailCore.csproj" />
     <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
