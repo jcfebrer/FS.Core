@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 
-namespace FSAiCore
+namespace FSIACore
 {
     public class ChatGPT
     {

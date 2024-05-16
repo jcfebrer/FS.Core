@@ -9,7 +9,7 @@ using OpenAI.Managers;
 using OpenAI;
 using System.IO;
 
-namespace FSAiCore
+namespace FSIACore
 {
     public class Whisper
     {

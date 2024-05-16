@@ -4,7 +4,7 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace FSAiCore
+namespace FSIACore
 {
     public class OpenAIApiClient
     {

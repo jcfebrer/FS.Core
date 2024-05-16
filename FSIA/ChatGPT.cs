@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Runtime.Remoting.Messaging;
 using System.Net;
 
-namespace FSAi
+namespace FSIA
 {
     public class ChatGPT
     {

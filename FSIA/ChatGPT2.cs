@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FSAi
+namespace FSIA
 {
     public class ChatGPT2
     {
@@ -70,7 +70,7 @@ namespace FSAi
                     frequency_penalty = 0,
                     max_tokens = 2000,
                     messages = messages,
-                    model = "gpt-3.5-turbo",
+                    model = "gpt-4o", // "gpt-3.5-turbo",
                     n = 1,
                     presence_penalty = 0,
                     stream = false,
@@ -85,7 +85,7 @@ namespace FSAi
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new Exception($"Error en la llamada a la API: {response.StatusCode}");
+                    throw new Exception($"Error en la llamada a la API: {response.StatusCode}, Reason: {response.ReasonPhrase}");
                 }
 
                 var responseString = await response.Content.ReadAsStringAsync();

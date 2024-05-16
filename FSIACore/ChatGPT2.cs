@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace FSAiCore
+namespace FSIACore
 {
     public class ChatGPT2
     {
@@ -85,7 +85,7 @@ namespace FSAiCore
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    throw new Exception($"Error en la llamada a la API: {response.StatusCode}");
+                    throw new Exception($"Error en la llamada a la API: {response.StatusCode}, Reason: {response.ReasonPhrase}");
                 }
 
                 var responseString = await response.Content.ReadAsStringAsync();

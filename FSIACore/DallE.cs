@@ -7,7 +7,7 @@ using OpenAI.ObjectModels.ResponseModels.ImageResponseModel;
 using System.Threading.Tasks;
 using System;
 
-namespace FSAiCore
+namespace FSIACore
 {
     [CLSCompliant(false)]
     public class DallE

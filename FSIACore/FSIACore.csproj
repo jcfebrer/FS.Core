@@ -2,11 +2,11 @@
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>FSAi</RootNamespace>
-    <AssemblyName>FSAi</AssemblyName>
+    <RootNamespace>FSIA</RootNamespace>
+    <AssemblyName>FSIA</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <AssemblyTitle>FSAi</AssemblyTitle>
-    <Product>FSAi</Product>
+    <AssemblyTitle>FSIA</AssemblyTitle>
+    <Product>FSIA</Product>
     <Copyright>Copyright ©  2023</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
