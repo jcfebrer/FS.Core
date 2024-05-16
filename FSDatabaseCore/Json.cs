@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -6,31 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
 
 namespace FSDatabaseCore
 {
     public class Json
     {
-        static JavaScriptSerializer serializer = new JavaScriptSerializer();
-
-        /// <summary>
-        /// Longitud máxima de la cadena Json generada
-        /// </summary>
-        public static int MaxJsonLength
-        {
-            get { return serializer.MaxJsonLength; }
-            set { serializer.MaxJsonLength = value; }
-        }
-
         public static string ObjectToJson(object obj)
         {
-            return serializer.Serialize(obj);
+            return JsonConvert.SerializeObject(obj);
         }
 
         public static object JsonToObject(string json, Type targetType)
         {
-            return serializer.Deserialize(json, targetType);
+            return JsonConvert.DeserializeObject(json, targetType);
         }
 
         /// <summary>
@@ -51,7 +40,7 @@ namespace FSDatabaseCore
                 }
                 rows.Add(row);
             }
-            return serializer.Serialize(rows);
+            return JsonConvert.SerializeObject(rows);
         }
 
         /// <summary>
@@ -103,7 +92,7 @@ namespace FSDatabaseCore
             using (StreamReader r = new StreamReader(fileName))
             {
                 string json = r.ReadToEnd();
-                Dictionary<string, object> json_Dictionary = (new JavaScriptSerializer()).Deserialize<Dictionary<string, object>>(json);
+                Dictionary<string, object> json_Dictionary = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
 
                 return json_Dictionary;
             }
