@@ -126,10 +126,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSAi\FSIA.csproj">
-      <Project>{76444524-db7e-4762-ad1f-e816aeabde09}</Project>
-      <Name>FSIA</Name>
-    </ProjectReference>
     <ProjectReference Include="..\FSCrypto\FSCrypto.csproj">
       <Project>{5DDE5624-1823-435D-8C88-46EB601106A4}</Project>
       <Name>FSCrypto</Name>
@@ -149,6 +145,10 @@
     <ProjectReference Include="..\FSGoogleAuthenticator\FSGoogleAuthenticator.csproj">
       <Project>{028d5a7a-4e5d-4457-9b43-ed9ae2cec63d}</Project>
       <Name>FSGoogleAuthenticator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSIA\FSIA.csproj">
+      <Project>{76444524-db7e-4762-ad1f-e816aeabde09}</Project>
+      <Name>FSIA</Name>
     </ProjectReference>
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
       <Project>{7E0ADEF9-BCB8-48CD-99B6-68BF862F7083}</Project>

@@ -1,9 +1,12 @@
 ﻿using Newtonsoft.Json;
+using OpenAI.ObjectModels.RequestModels;
 using System;
 using System.Data;
 using System.Net;
 using System.Net.Http;
+using System.Runtime.Serialization;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -23,13 +26,88 @@ namespace FSIA
             public string content;
         }
 
+        public class ChatResponseError : ChatResponse
+        {
+            public string Message { get; set; }
+            public string Type { get; set; }
+            public object Param { get; set; }
+            public string Code { get; set; }
+        }
+
+        [DataContract]
+        public class ChatResponseSuccess : ChatResponse
+        {
+            [DataMember(Name = "id")]
+            [JsonPropertyName("id")]
+            public string Id { get; set; }
+
+            [DataMember(Name = "object")]
+            [JsonPropertyName("object")]
+            public string Object { get; set; }
+
+            [DataMember(Name = "created")]
+            [JsonPropertyName("created")]
+            public int Created { get; set; }
+
+            [DataMember(Name = "model")]
+            [JsonPropertyName("model")]
+            public string Model { get; set; }
+
+            [DataMember(Name = "choices")]
+            [JsonPropertyName("choices")]
+            public ChatChoice[] Choices { get; set; }
+
+            [DataMember(Name = "usage")]
+            [JsonPropertyName("usage")]
+            public ChatUsage Usage { get; set; }
+        }
+
+        [DataContract]
+        public class ChatChoice
+        {
+            [DataMember(Name = "message")]
+            [JsonPropertyName("message")]
+            public ChatMessage Message { get; set; }
+
+            [DataMember(Name = "index")]
+            [JsonPropertyName("index")]
+            public int Index { get; set; }
+
+            [DataMember(Name = "logprobs")]
+            [JsonPropertyName("logprobs")]
+            public object Logprobs { get; set; }
+
+            [DataMember(Name = "finish_reason")]
+            [JsonPropertyName("finish_reason")]
+            public string FinishReason { get; set; }
+        }
+
+        [DataContract]
+        public class ChatUsage
+        {
+            [DataMember(Name = "prompt_tokens")]
+            [JsonPropertyName("prompt_tokens")]
+            public int PromptTokens { get; set; }
+
+            [DataMember(Name = "completion_tokens")]
+            [JsonPropertyName("completion_tokens")]
+            public int CompletionTokens { get; set; }
+
+            [DataMember(Name = "total_tokens")]
+            [JsonPropertyName("total_tokens")]
+            public int TotalTokens { get; set; }
+        }
+        public abstract class ChatResponse
+        {
+        }
+
         public ChatGPT2(string key, string organization)
         {
             Key = key;
             Organization = organization;
         }
 
-        async public Task<string> Question(string prompt, string system)
+        async public Task<ChatResponse> Question(string prompt, string system)
         {
             GptMessage message = new GptMessage();
             message.content = prompt;
@@ -41,7 +119,7 @@ namespace FSIA
             return await Question(new GptMessage[] { systemMsg, message });
         }
 
-        async public Task<string> Question(string prompt)
+        async public Task<ChatResponse> Question(string prompt)
         { 
             GptMessage message = new GptMessage();
             message.content = prompt;
@@ -49,7 +127,7 @@ namespace FSIA
             return await Question(new GptMessage[] { message });
         }
 
-        async public Task<string> Question(GptMessage[] messages)
+        async public Task<ChatResponse> Question(GptMessage[] messages)
         {
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
@@ -90,9 +168,25 @@ namespace FSIA
 
                 var responseString = await response.Content.ReadAsStringAsync();
 
-                var responseObject = JsonConvert.DeserializeObject<dynamic>(responseString);
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.Unauthorized:
+                    //case HttpStatusCode.TooManyRequests:
+                    case HttpStatusCode.InternalServerError:
+                    case HttpStatusCode.NotFound:
+                    case HttpStatusCode.BadRequest:
+                        {
+                            return JsonConvert.DeserializeObject<ChatResponseError>(responseString);
+                        }
+                }
 
-                return responseObject.choices[0].text.ToString();
+                if (response.StatusCode != HttpStatusCode.OK)
+                {
+                    return null;
+                }
+
+                // Return the response data
+                return  JsonConvert.DeserializeObject<ChatResponseSuccess>(responseString);
             }
         }
     }

@@ -401,7 +401,8 @@ namespace FSFormControlsCore
 
         private void ToolbarOptions(object sender, EventArgs e)
         {
-            ToolStripItem tsi = (ToolStripItem)sender;
+            ToolStripItemClickedEventArgs button = (ToolStripItemClickedEventArgs)e;
+            ToolStripItem tsi = button.ClickedItem;
             if (tsi != null && tsi.Tag != null)
                 switch (tsi.Tag.ToString().ToUpper())
                 {
