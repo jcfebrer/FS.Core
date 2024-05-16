@@ -19,7 +19,7 @@ namespace FSTests.Properties {
     // a través de una herramienta como ResGen o Visual Studio.
     // Para agregar o quitar un miembro, edite el archivo .ResX y, a continuación, vuelva a ejecutar ResGen
     // con la opción /str o recompile su proyecto de VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -71,9 +71,9 @@ namespace FSTests.Properties {
         ///    &lt;!-- TITULO --&gt;
         ///    &lt;h2 style=&quot;font-weight: bold; font-family: Arial, Helvetica, sans-serif;&quot;&gt;📃 {DocumentoTipo} {SerieFactura} - {NumFactura}&lt;/h2&gt;
         ///    &lt;!-- LOGO --&gt;
-        ///    &lt;img src=&quot;C:\Datos\FS\Proyectos\TicketBai_Batuz\Batuz.Test\Resources\logo-irene-solutions-transparent.png&quot; width=&quot;256px&quot; style=&quot;top:-2rem; right:-2rem;&quot;/&gt;
+        ///    &lt;img src=&quot;d:\FS\Proyectos\TicketBai_Batuz\Batuz.Test\Resources\logo-irene-solutions-transparent.png&quot; width=&quot;256px&quot; style=&quot;top:-2rem; right:-2rem;&quot;/&gt;
         ///    &lt;!-- DOCUMENTO --&gt;
-        ///    &lt;ta [resto de la cadena truncado]&quot;;.
+        ///    &lt;table st [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string factura {
             get {
