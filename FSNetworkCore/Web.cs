@@ -182,15 +182,18 @@ namespace FSNetworkCore
 				nvc.Add(name, HttpContext.Current.Request.Query[name]);
 			}
 
-			foreach (string keyForm in HttpContext.Current.Request.Form.Keys)
+			if (HttpContext.Current.Request.ContentType != null && HttpContext.Current.Request.Form != null)
 			{
-				foreach (string value in HttpContext.Current.Request.Form[keyForm])
+				foreach (string keyForm in HttpContext.Current.Request.Form.Keys)
 				{
-					//si exite un parametro en la colleccion nvc de querystring, lo borramos, y añadimos el del form.
-					if (nvc.Get(keyForm) != null)
-						nvc.Remove(keyForm);
+					foreach (string value in HttpContext.Current.Request.Form[keyForm])
+					{
+						//si exite un parametro en la colleccion nvc de querystring, lo borramos, y añadimos el del form.
+						if (nvc.Get(keyForm) != null)
+							nvc.Remove(keyForm);
 
-					nvc.Add(keyForm, value);
+						nvc.Add(keyForm, value);
+					}
 				}
 			}
 
