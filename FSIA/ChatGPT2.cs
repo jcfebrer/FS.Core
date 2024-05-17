@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using OpenAI.ObjectModels.RequestModels;
 using System;
 using System.Data;
 using System.Net;
@@ -17,8 +16,11 @@ namespace FSIA
         public string Key { get; set; }
         public string Organization { get; set; }
 
-        public string User = "user";
-        public string System = "system";
+        public enum Roles
+        {
+            user,
+            system
+        }
 
         public class GptMessage
         {
@@ -26,11 +28,31 @@ namespace FSIA
             public string content;
         }
 
+        [DataContract]
         public class ChatResponseError : ChatResponse
         {
+            [DataMember(Name = "error")]
+            [JsonPropertyName("error")]
+            public ChatError Error { get; set; }
+        }
+
+        [DataContract]
+        public class ChatError
+        {
+            [DataMember(Name = "message")]
+            [JsonPropertyName("message")]
             public string Message { get; set; }
+
+            [DataMember(Name = "type")]
+            [JsonPropertyName("type")]
             public string Type { get; set; }
+
+            [DataMember(Name = "param")]
+            [JsonPropertyName("param")]
             public object Param { get; set; }
+
+            [DataMember(Name = "code")]
+            [JsonPropertyName("code")]
             public string Code { get; set; }
         }
 
@@ -83,6 +105,38 @@ namespace FSIA
         }
 
         [DataContract]
+        public class ChatMessage
+        {
+            [DataMember(Name = "role")]
+            [JsonPropertyName("role")]
+            public string Role { get; set; }
+
+            [DataMember(Name = "content")]
+            [JsonPropertyName("content")]
+            public string Content { get; set; }
+
+            [DataMember(Name = "name")]
+            [JsonPropertyName("name")]
+            public string Name { get; set; }
+
+            [DataMember(Name = "function_call")]
+            [JsonPropertyName("function_call")]
+            public ChatMessageFunctionCall FunctionCall { get; set; }
+        }
+
+        [DataContract]
+        public class ChatMessageFunctionCall
+        {
+            [DataMember(Name = "name")]
+            [JsonPropertyName("name")]
+            public string Name { get; set; }
+
+            [DataMember(Name = "arguments")]
+            [JsonPropertyName("arguments")]
+            public string Arguments { get; set; }
+        }
+
+        [DataContract]
         public class ChatUsage
         {
             [DataMember(Name = "prompt_tokens")]
@@ -107,27 +161,27 @@ namespace FSIA
             Organization = organization;
         }
 
-        async public Task<ChatResponse> Question(string prompt, string system)
+        public async Task<ChatResponse> Question(string prompt, string system, CancellationToken token)
         {
             GptMessage message = new GptMessage();
             message.content = prompt;
-            message.role = User;
+            message.role = nameof(Roles.user);
             GptMessage systemMsg = new GptMessage();
             systemMsg.content = system;
-            systemMsg.role = System;
+            systemMsg.role = nameof(Roles.system);
 
-            return await Question(new GptMessage[] { systemMsg, message });
+            return await Question(new GptMessage[] { systemMsg, message }, token);
         }
 
-        async public Task<ChatResponse> Question(string prompt)
+        public async Task<ChatResponse> Question(string prompt, CancellationToken token)
         { 
             GptMessage message = new GptMessage();
             message.content = prompt;
-            message.role = User;
-            return await Question(new GptMessage[] { message });
+            message.role = nameof(Roles.user);
+            return await Question(new GptMessage[] { message }, token);
         }
 
-        async public Task<ChatResponse> Question(GptMessage[] messages)
+        public async Task<ChatResponse> Question(GptMessage[] messages, CancellationToken token)
         {
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
@@ -148,7 +202,7 @@ namespace FSIA
                     frequency_penalty = 0,
                     max_tokens = 2000,
                     messages = messages,
-                    model = "gpt-4o", // "gpt-3.5-turbo",
+                    model = "gpt-3.5-turbo",
                     n = 1,
                     presence_penalty = 0,
                     stream = false,
@@ -161,22 +215,17 @@ namespace FSIA
 
                 var response = await httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
 
-                if (!response.IsSuccessStatusCode)
-                {
-                    throw new Exception($"Error en la llamada a la API: {response.StatusCode}, Reason: {response.ReasonPhrase}");
-                }
-
-                var responseString = await response.Content.ReadAsStringAsync();
+                var responseBody = await response.Content.ReadAsStringAsync();
 
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.Unauthorized:
-                    //case HttpStatusCode.TooManyRequests:
+                    case (HttpStatusCode)429: //HttpStatusCode.TooManyRequests:
                     case HttpStatusCode.InternalServerError:
                     case HttpStatusCode.NotFound:
                     case HttpStatusCode.BadRequest:
                         {
-                            return JsonConvert.DeserializeObject<ChatResponseError>(responseString);
+                            return JsonConvert.DeserializeObject<ChatResponseError>(responseBody);
                         }
                 }
 
@@ -186,7 +235,7 @@ namespace FSIA
                 }
 
                 // Return the response data
-                return  JsonConvert.DeserializeObject<ChatResponseSuccess>(responseString);
+                return  JsonConvert.DeserializeObject<ChatResponseSuccess>(responseBody);
             }
         }
     }

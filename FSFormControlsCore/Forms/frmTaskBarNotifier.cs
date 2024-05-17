@@ -474,7 +474,7 @@ namespace FSFormControlsCore
             Controls.Add(groupBox1);
             Name = "frmTaskBarNotifier";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "VB.NET TaskBarNotifier Demo";
+            Text = "C# .NET TaskBarNotifier Demo";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
