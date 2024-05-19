@@ -55,6 +55,33 @@ namespace FSNetwork
             return responseText;
         }
 
+        public static string GetFileContents(string fileName)
+        {
+            string sContents = string.Empty;
+            string me = string.Empty;
+            try
+            {
+                if (fileName.ToLower().StartsWith("http"))
+                {
+                    using (System.Net.WebClient wc = new System.Net.WebClient())
+                    {
+                        byte[] response = wc.DownloadData(fileName);
+                        sContents = System.Text.Encoding.ASCII.GetString(response);
+                    }
+                }
+                else
+                {
+                    using (System.IO.StreamReader sr = new System.IO.StreamReader(fileName))
+                    {
+                        sContents = sr.ReadToEnd();
+                        sr.Close();
+                    }
+                }
+            }
+            catch(Exception e) { sContents = e.Message; }
+            return sContents;
+        }
+
         public static string PostHttp(string url, string postdata)
         {
             string postHttpReturn = null;

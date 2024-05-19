@@ -373,5 +373,25 @@ namespace FSLibrary
 
             return false;
         }
+
+        /// <summary>
+        /// Devuelve la distancia por aire entre dos coordenadas dadas en longitud, latitud.
+        /// </summary>
+        /// <param name="latA"></param>
+        /// <param name="longA"></param>
+        /// <param name="latB"></param>
+        /// <param name="longB"></param>
+        /// <returns></returns>
+        public static decimal CalcAirDistance(double latA, double longA, double latB, double longB)
+        {
+
+            double theDistance = (Math.Sin(Functions.DegreesToRadians(latA)) *
+                    Math.Sin(Functions.DegreesToRadians(latB)) +
+                    Math.Cos(Functions.DegreesToRadians(latA)) *
+                    Math.Cos(Functions.DegreesToRadians(latB)) *
+                    Math.Cos(Functions.DegreesToRadians(longA - longB)));
+
+            return Convert.ToDecimal((Functions.RadiansToDegrees(Math.Acos(theDistance)))) * 69.09M * 1.6093M;
+        }
     }
 }
