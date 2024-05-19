@@ -18,6 +18,9 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Library.cs~RFdd6957d.TMP" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="Google.Apis">
       <HintPath>..\dll\Google.Apis.dll</HintPath>
     </Reference>
@@ -39,10 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
+    <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 </Project>

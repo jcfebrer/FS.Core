@@ -9,8 +9,8 @@ namespace FSGoogleFirebase.Database
     using System;
     using System.Net.Http;
     using System.Text;
+    using System.Text.Json;
     using System.Threading.Tasks;
-    using Newtonsoft.Json.Linq;
     using FSGoogleFirebase.Auth;
 
     /// <summary>
@@ -59,7 +59,8 @@ namespace FSGoogleFirebase.Database
         {
             try
             {
-                JToken parsedJSON = JToken.Parse(inJSON);
+                JsonTokenType parsedJSON;
+                JsonTokenType.TryParse<JsonTokenType>(inJSON, out parsedJSON);
                 output = parsedJSON.ToString();
                 return true;
             }

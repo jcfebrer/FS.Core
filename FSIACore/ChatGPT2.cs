@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Data;
-using System.Net;
+﻿using System.Net;
 using System.Net.Http;
 using System.Runtime.Serialization;
 using System.Text;
@@ -15,6 +12,7 @@ namespace FSIACore
     {
         public string Key { get; set; }
         public string Organization { get; set; }
+        public string Url { get; set; }
 
         public enum Roles
         {
@@ -155,10 +153,11 @@ namespace FSIACore
         {
         }
 
-        public ChatGPT2(string key, string organization)
+        public ChatGPT2(string key, string organization, string url)
         {
             Key = key;
             Organization = organization;
+            Url = url;
         }
 
         public async Task<ChatResponse?> Question(string prompt, string system, CancellationToken token)
@@ -210,10 +209,10 @@ namespace FSIACore
                     top_p = 1.0,
                 };
 
-                var jsonRequestBody = JsonConvert.SerializeObject(requestBody);
+                var jsonRequestBody = System.Text.Json.JsonSerializer.Serialize(requestBody);
                 var content = new StringContent(jsonRequestBody, Encoding.UTF8, "application/json");
 
-                var response = await httpClient.PostAsync("https://api.openai.com/v1/chat/completions", content);
+                var response = await httpClient.PostAsync(Url, content);
 
 #if NETFRAMEWORK
                 var responseBody = await response.Content.ReadAsStringAsync();
@@ -231,7 +230,7 @@ namespace FSIACore
                     case HttpStatusCode.NotFound:
                     case HttpStatusCode.BadRequest:
                         {
-                            return JsonConvert.DeserializeObject<ChatResponseError>(responseBody);
+                            return System.Text.Json.JsonSerializer.Deserialize<ChatResponseError>(responseBody);
                         }
                 }
 
@@ -241,7 +240,7 @@ namespace FSIACore
                 }
 
                 // Return the response data
-                return  JsonConvert.DeserializeObject<ChatResponseSuccess>(responseBody);
+                return  System.Text.Json.JsonSerializer.Deserialize<ChatResponseSuccess>(responseBody);
             }
         }
     }

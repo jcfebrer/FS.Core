@@ -10,8 +10,8 @@ namespace FSGoogleFirebaseCore.Database
     using System.Net.Http;
     using System.Text;
     using System.Threading.Tasks;
-    using Newtonsoft.Json.Linq;
     using FSGoogleFirebaseCore.Auth;
+    using Newtonsoft.Json;
 
     /// <summary>
     /// Utility Helper Class
@@ -59,7 +59,8 @@ namespace FSGoogleFirebaseCore.Database
         {
             try
             {
-                JToken parsedJSON = JToken.Parse(inJSON);
+                JsonToken parsedJSON;
+                JsonToken.TryParse(inJSON, out parsedJSON);
                 output = parsedJSON.ToString();
                 return true;
             }

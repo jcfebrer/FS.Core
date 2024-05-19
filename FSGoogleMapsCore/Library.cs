@@ -13,80 +13,94 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using FSNetworkCore;
+using FSLibraryCore;
+using System.Text.Json.Nodes;
+using System.Net.Http;
 
 namespace FSGoogleMapsCore
 {
 
-	public static class Library
-	{
-        public static string googleMapsKey = "AIzaSyBv6ixS_tpSfxCRlIAiU7IhQ8UtS8RbyA0";
+    public class Library
+    {
+        public string ApiKey { get; set; }
 
-        public static int GetDistance(string origin, string destination)
+        public Library(string apiKey)
         {
-            int distance = 0;
-            //string from = origin.Text;
-            //string to = destination.Text;
-            string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&sensor=false&key=" + googleMapsKey;
-            //string requesturl = @"https://maps.googleapis.com/maps/api/directions/json?origin=" + from + "&alternatives=false&units=imperial&destination=" + to + "&sensor=false";
-            string content = FileGetContents(url);
-            JObject o = JObject.Parse(content);
-            try
-            {
-                distance = (int)o.SelectToken("routes[0].legs[0].distance.value");
-                return distance / 1000;
-            }
-            catch
-            {
-                return -1;
-            }
+            ApiKey = apiKey;
         }
 
-        public static string FileGetContents(string fileName)
-        {
-            string sContents = string.Empty;
-            string me = string.Empty;
-            try
-            {
-                if (fileName.ToLower().IndexOf("http:") > -1 || fileName.ToLower().IndexOf("https:") > -1)
-                {
-                    System.Net.WebClient wc = new System.Net.WebClient();
-                    byte[] response = wc.DownloadData(fileName);
-                    sContents = System.Text.Encoding.ASCII.GetString(response);
+        //public static int GetDistance(string origin, string destination)
+        //{
+        //    int distance = 0;
+        //    //string from = origin.Text;
+        //    //string to = destination.Text;
+        //    string url = "https://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&sensor=false&key=" + googleMapsKey;
+        //    //string requesturl = @"https://maps.googleapis.com/maps/api/directions/json?origin=" + from + "&alternatives=false&units=imperial&destination=" + to + "&sensor=false";
+        //    string content = Http.GetFileContents(url);
+        //    JObject o = JObject.Parse(content);
+        //    try
+        //    {
+        //        distance = (int)o.SelectToken("routes[0].legs[0].distance.value");
+        //        return distance / 1000;
+        //    }
+        //    catch
+        //    {
+        //        return -1;
+        //    }
+        //}
 
+        public async Task<double> GetDistanceAsync(string origin, string destination)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                string url = $"https://maps.googleapis.com/maps/api/distancematrix/json?origins={origin}&destinations={destination}&key={ApiKey}";
+
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                string responseBody = await response.Content.ReadAsStringAsync();
+                var distanceMatrixResponse = JsonSerializer.Deserialize<DistanceMatrixResponse>(responseBody);
+
+                if (distanceMatrixResponse.rows.Length > 0 && distanceMatrixResponse.rows[0].elements.Length > 0)
+                {
+                    var element = distanceMatrixResponse.rows[0].elements[0];
+                    if (element.status == "OK")
+                    {
+                        return element.distance.value; // Distancia en metros
+                    }
+                    else
+                    {
+                        throw new Exception($"Error en la respuesta de la API: {element.status}");
+                    }
                 }
                 else
                 {
-                    System.IO.StreamReader sr = new System.IO.StreamReader(fileName);
-                    sContents = sr.ReadToEnd();
-                    sr.Close();
+                    throw new Exception("No se encontraron resultados en la respuesta de la API.");
                 }
             }
-            catch { sContents = "Unable to connect to server"; }
-            return sContents;
+        }
+        private class DistanceMatrixResponse
+        {
+            public string status { get; set; }
+            public Row[] rows { get; set; }
         }
 
-
-        public static decimal CalcAirDistance(double latA, double longA, double latB, double longB)
+        private class Row
         {
-
-            double theDistance = (Math.Sin(DegreesToRadians(latA)) *
-                    Math.Sin(DegreesToRadians(latB)) +
-                    Math.Cos(DegreesToRadians(latA)) *
-                    Math.Cos(DegreesToRadians(latB)) *
-                    Math.Cos(DegreesToRadians(longA - longB)));
-
-            return Convert.ToDecimal((RadiansToDegrees(Math.Acos(theDistance)))) * 69.09M * 1.6093M;
+            public Element[] elements { get; set; }
         }
 
-        public static double DegreesToRadians(double degrees)
+        private class Element
         {
-            return (degrees * Math.PI) / 180;
+            public Distance distance { get; set; }
+            public string status { get; set; }
         }
 
-        public static double RadiansToDegrees(double radians)
+        private class Distance
         {
-            return radians * (180 / Math.PI);
+            public double value { get; set; }
         }
     }
 }
