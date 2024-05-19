@@ -25,7 +25,7 @@ namespace FSDirectShowCore
             IntPtr ptrXX = new System.IntPtr(); 
             hr = Marshal.QueryInterface( ptrIf, ref iu, out ptrXX );
 
-            // REVISAR
+            //TODO: REVISAR
             // object ooo = System.Runtime.Remoting.Services.EnterpriseServicesHelper.WrapIUnknownWithComObject( ptrIf ); 
             object ooo = null;
             int ct = Marshal.Release( ptrIf ); 
