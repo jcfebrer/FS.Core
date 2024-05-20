@@ -3173,7 +3173,7 @@ namespace FSLibrary
         /// <returns></returns>
         public static IEnumerable<string> SearchDateValues(string text)
         {
-            Regex regex = new Regex(@"(?<date>\d{1,2}\/\d{1,2}\/\d{4}?)");
+            Regex regex = new Regex(@"(?<date>\d{1,2}\/\d{1,2}\/\d{4})");
             return regex.Matches(text).OfType<Match>().Select(m => m.Groups["date"].Value);
         }
 
@@ -3184,7 +3184,7 @@ namespace FSLibrary
         /// <returns></returns>
         public static IEnumerable<string> SearchIpValues(string text)
         {
-            Regex regex = new Regex(@"(?<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}?)");
+            Regex regex = new Regex(@"(?<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})");
             return regex.Matches(text).OfType<Match>().Select(m => m.Groups["ip"].Value);
         }
 

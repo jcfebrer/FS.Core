@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
-using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
@@ -25,12 +24,12 @@ namespace FSDatabase
 
         public static string ObjectToJson(object obj)
         {
-            return System.Text.Json.JsonSerializer.Serialize(obj);
+            return serializer.Serialize(obj);
         }
 
         public static object JsonToObject(string json, Type targetType)
         {
-            return System.Text.Json.JsonSerializer.Deserialize(json, targetType);
+            return serializer.Deserialize(json, targetType);
         }
 
         /// <summary>
@@ -51,7 +50,7 @@ namespace FSDatabase
                 }
                 rows.Add(row);
             }
-            return System.Text.Json.JsonSerializer.Serialize(rows);
+            return serializer.Serialize(rows);
         }
 
         /// <summary>
@@ -100,24 +99,20 @@ namespace FSDatabase
 
         public static Dictionary<string, object> Load(string fileName)
         {
+            Dictionary<string, object> json_Dictionary = null;
+
             using (StreamReader r = new StreamReader(fileName))
             {
                 string json = r.ReadToEnd();
-                Dictionary<string, object> json_Dictionary = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(json);
-
-                return json_Dictionary;
+                json_Dictionary = serializer.Deserialize<Dictionary<string, object>>(json);
+                r.Close();
             }
+            return json_Dictionary;
         }
 
         public static string StripControlChars(string s)
         {
             return Regex.Replace(s, @"[^\x20-\x7F]", "");
-        }
-
-        public static string JsonPrettify(string json)
-        {
-            using var jDoc = JsonDocument.Parse(json);
-            return JsonSerializer.Serialize(jDoc, new JsonSerializerOptions { WriteIndented = true });
         }
     }
 }

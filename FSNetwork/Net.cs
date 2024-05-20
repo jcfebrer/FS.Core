@@ -140,18 +140,19 @@ namespace FSNetwork
             return context.Request.ServerVariables["REMOTE_ADDR"];
         }
 
-        public static string GetPublicAddress()
+        public static string GetPublicAddress2()
         {
             //https://ipinfo.io/ip --> añadir: .Replace("\n","");
-            //https://ipv4.icanhazip.com
+            //https://ipv4.icanhazip.com --> añadir: .Replace("\n","");
             //http://bot.whatismyipaddress.com
             //http://www.serport.biz:8002/ip.aspx
             //http://ipecho.net/plain
+            //http://checkip.dyndns.org
             string externalip = new WebClient().DownloadString("https://ipv4.icanhazip.com");
-            return externalip;
+            return externalip.Replace("\n", "");
         }
 
-        public static string GetPublicAddress2()
+        public static string GetPublicAddress()
         {
             WebRequest req = WebRequest.Create("http://checkip.dyndns.org");
             using (WebResponse resp = req.GetResponse())
