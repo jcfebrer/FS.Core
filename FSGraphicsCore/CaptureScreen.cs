@@ -180,7 +180,7 @@ namespace FSGraphicsCore
             // select the bitmap object
             IntPtr hOld = Win32API.SelectObject(hdcDest, hBitmap);
             // bitblt over
-            Win32API.BitBlt(hdcDest, 0, 0, width, height, hdcSrc, 0, 0, Win32API.SRCCOPY);
+            Win32API.BitBlt(hdcDest, 0, 0, width, height, hdcSrc, 0, 0, Win32APIEnums.SRCCOPY);
             // restore selection
             Win32API.SelectObject(hdcDest, hOld);
             // clean up 

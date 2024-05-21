@@ -304,7 +304,7 @@ namespace FSMouseKeyboardLibrary
 
         public static void KeyUp(Keys key)
         {
-            Win32API.keybd_event(ParseKey(key), 0, Win32API.KEYEVENTF_KEYUP, 0);
+            Win32API.keybd_event(ParseKey(key), 0, Win32APIEnums.KEYEVENTF_KEYUP, 0);
         }
 
 

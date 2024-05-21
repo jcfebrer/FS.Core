@@ -56,11 +56,11 @@ namespace FSSecurity
         public static int LaunchCommand(string command, string domain, string account, string password)
         {
             var ProcessId = -1;
-            var processInfo = new Win32API.PROCESS_INFORMATION();
-            var startInfo = new Win32API.STARTUPINFO();
+            var processInfo = new Win32APIEnums.PROCESS_INFORMATION();
+            var startInfo = new Win32APIEnums.STARTUPINFO();
             var bResult = false;
 
-            var uiResultWait = Win32API.INFINITE;
+            var uiResultWait = Win32APIEnums.INFINITE;
 
             var token = ValidateParametersAndGetFirstLoginToken(domain, account, password);
 
@@ -70,9 +70,9 @@ namespace FSSecurity
                 startInfo.cb = Marshal.SizeOf(startInfo);
                 //  startInfo.lpDesktop = "winsta0\\default";
 
-                var sa = new Win32API.SECURITY_ATTRIBUTES();
+                var sa = new Win32APIEnums.SECURITY_ATTRIBUTES();
                 sa.Length = Marshal.SizeOf(sa);
-                var si = new Win32API.STARTUPINFO();
+                var si = new Win32APIEnums.STARTUPINFO();
                 si.cb = Marshal.SizeOf(si);
                 si.lpDesktop = string.Empty;
 
@@ -93,11 +93,11 @@ namespace FSSecurity
                 if (!bResult) throw new ExceptionUtil("CreateProcessAsUser error #" + Marshal.GetLastWin32Error());
 
                 // Wait for process to end
-                uiResultWait = Win32API.WaitForSingleObject(processInfo.hProcess, Win32API.INFINITE);
+                uiResultWait = Win32API.WaitForSingleObject(processInfo.hProcess, Win32APIEnums.INFINITE);
 
                 ProcessId = processInfo.dwProcessID;
 
-                if (uiResultWait == Win32API.INFINITE)
+                if (uiResultWait == Win32APIEnums.INFINITE)
                     throw new ExceptionUtil("WaitForSingleObject error #" + Marshal.GetLastWin32Error());
             }
             finally
@@ -126,8 +126,8 @@ namespace FSSecurity
 
             var result = Win32API.LogonUser(domain, username,
                 password,
-                Win32API.LogonSessionType.NewCredentials,
-                Win32API.LogonProvider.Default,
+                Win32APIEnums.LogonSessionType.NewCredentials,
+                Win32APIEnums.LogonProvider.Default,
                 out token);
             if (!result)
             {

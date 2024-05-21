@@ -126,7 +126,7 @@ namespace FSMouseKeyboardLibrary
                 using (ProcessModule curModule = Process.GetCurrentProcess().MainModule)
                 {
                     hMouseHook = Win32API.SetWindowsHookEx(
-                        Win32API.WH_MOUSE_LL,
+                        Win32APIEnums.WH_MOUSE_LL,
                         MouseHookProcedure,
                         Win32API.GetModuleHandle(curModule.ModuleName),
                         0);
@@ -152,7 +152,7 @@ namespace FSMouseKeyboardLibrary
                 using (ProcessModule curModule = Process.GetCurrentProcess().MainModule)
                 {
                     hKeyboardHook = Win32API.SetWindowsHookEx(
-                        Win32API.WH_KEYBOARD_LL,
+                        Win32APIEnums.WH_KEYBOARD_LL,
                         KeyboardHookProcedure,
                         Win32API.GetModuleHandle(curModule.ModuleName),
                         0);
@@ -255,25 +255,25 @@ namespace FSMouseKeyboardLibrary
             if ((nCode >= 0) && (MouseMove != null))
             {
                 //Marshall the data from callback.
-                Win32API.MouseLLHookStruct mouseHookStruct =
-                    (Win32API.MouseLLHookStruct) Marshal.PtrToStructure(lParam, typeof (Win32API.MouseLLHookStruct));
+                Win32APIEnums.MouseLLHookStruct mouseHookStruct =
+                    (Win32APIEnums.MouseLLHookStruct) Marshal.PtrToStructure(lParam, typeof (Win32APIEnums.MouseLLHookStruct));
 
                 //detect button clicked
                 MouseButtons button = MouseButtons.None;
                 short mouseDelta = 0;
                 switch (wParam)
                 {
-                    case Win32API.WM_LBUTTONDOWN:
+                    case Win32APIEnums.WM_LBUTTONDOWN:
                         //case WM_LBUTTONUP: 
                         //case WM_LBUTTONDBLCLK: 
                         button = MouseButtons.Left;
                         break;
-                    case Win32API.WM_RBUTTONDOWN:
+                    case Win32APIEnums.WM_RBUTTONDOWN:
                         //case WM_RBUTTONUP: 
                         //case WM_RBUTTONDBLCLK: 
                         button = MouseButtons.Right;
                         break;
-                    case Win32API.WM_MOUSEWHEEL:
+                    case Win32APIEnums.WM_MOUSEWHEEL:
                         //If the message is WM_MOUSEWHEEL, the high-order word of mouseData member is the wheel delta. 
                         //One wheel click is defined as WHEEL_DELTA, which is 120. 
                         //(value >> 16) & 0xffff; retrieves the high-order word from the given 32-bit value
@@ -289,7 +289,7 @@ namespace FSMouseKeyboardLibrary
                 //double clicks
                 int clickCount = 0;
                 if (button != MouseButtons.None)
-                    if (wParam == Win32API.WM_LBUTTONDBLCLK || wParam == Win32API.WM_RBUTTONDBLCLK) clickCount = 2;
+                    if (wParam == Win32APIEnums.WM_LBUTTONDBLCLK || wParam == Win32APIEnums.WM_RBUTTONDBLCLK) clickCount = 2;
                     else clickCount = 1;
 
                 int totalTime = (int)(System.DateTime.Now - lastClickTime).TotalMilliseconds;
@@ -473,12 +473,12 @@ namespace FSMouseKeyboardLibrary
             if ((nCode >= 0) && (KeyDown != null || KeyUp != null || KeyPress != null))
             {
                 //read structure KeyboardHookStruct at lParam
-                Win32API.KeyboardHookStruct MyKeyboardHookStruct =
-                    (Win32API.KeyboardHookStruct) Marshal.PtrToStructure(lParam, typeof (Win32API.KeyboardHookStruct));
+                Win32APIEnums.KeyboardHookStruct MyKeyboardHookStruct =
+                    (Win32APIEnums.KeyboardHookStruct) Marshal.PtrToStructure(lParam, typeof (Win32APIEnums.KeyboardHookStruct));
                 
                 
                 //raise KeyDown
-                if (KeyDown != null && (wParam == Win32API.WM_KEYDOWN || wParam == Win32API.WM_SYSKEYDOWN))
+                if (KeyDown != null && (wParam == Win32APIEnums.WM_KEYDOWN || wParam == Win32APIEnums.WM_SYSKEYDOWN))
                 {
                     Keys keyData = (Keys) MyKeyboardHookStruct.vkCode;
                     KeyEventArgs e = new KeyEventArgs(keyData);
@@ -487,7 +487,7 @@ namespace FSMouseKeyboardLibrary
                 }
 
                 // raise KeyPress
-                if (KeyPress != null && wParam == Win32API.WM_KEYDOWN)
+                if (KeyPress != null && wParam == Win32APIEnums.WM_KEYDOWN)
                 {
                     //bool isDownShift = ((GetKeyState(VK_SHIFT) & 0x80) == 0x80 ? true : false);
                     //bool isDownCapslock = (GetKeyState(VK_CAPITAL) != 0 ? true : false);
@@ -542,8 +542,8 @@ namespace FSMouseKeyboardLibrary
                     //}
 
                     string key = VKCodeToString((int)Marshal.ReadInt32(lParam),
-                        (wParam == Win32API.WM_KEYDOWN ||
-                        wParam == Win32API.WM_SYSKEYDOWN));
+                        (wParam == Win32APIEnums.WM_KEYDOWN ||
+                        wParam == Win32APIEnums.WM_SYSKEYDOWN));
                     if (key != "")
                     {
                         KeyPressEventArgs e = new KeyPressEventArgs(key.ToCharArray()[0]);
@@ -553,7 +553,7 @@ namespace FSMouseKeyboardLibrary
                 }
 
                 // raise KeyUp
-                if (KeyUp != null && (wParam == Win32API.WM_KEYUP || wParam == Win32API.WM_SYSKEYUP))
+                if (KeyUp != null && (wParam == Win32APIEnums.WM_KEYUP || wParam == Win32APIEnums.WM_SYSKEYUP))
                 {
                     Keys keyData = (Keys) MyKeyboardHookStruct.vkCode;
                     KeyEventArgs e = new KeyEventArgs(keyData);

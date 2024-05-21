@@ -18,11 +18,11 @@ namespace FSNetworkCore
         {
             _networkName = networkName;
 
-            var netResource = new Win32API.NetResource()
+            var netResource = new Win32APIEnums.NetResource()
             {
-                Scope = Win32API.ResourceScope.GlobalNetwork,
-                ResourceType = Win32API.ResourceType.Disk,
-                DisplayType = Win32API.ResourceDisplaytype.Share,
+                Scope = Win32APIEnums.ResourceScope.GlobalNetwork,
+                ResourceType = Win32APIEnums.ResourceType.Disk,
+                DisplayType = Win32APIEnums.ResourceDisplaytype.Share,
                 RemoteName = networkName
             };
 

@@ -41,8 +41,8 @@ namespace FSDiskCore
             var getHDDataReturn = false;
             var hFile = 0;
             var lReturnSize = 0;
-            var sci = new Win32API.SENDCMDINPARAMS();
-            var sco = new Win32API.SENDCMDOUTPARAMS();
+            var sci = new Win32APIEnums.SENDCMDINPARAMS();
+            var sco = new Win32APIEnums.SENDCMDOUTPARAMS();
 
             if (Environment.OSVersion.Platform == PlatformID.Win32NT)
                 hFile = Win32API.CreateFile(physicalDriveName, GENERIC_READ | GENERIC_WRITE,

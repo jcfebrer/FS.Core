@@ -44,7 +44,7 @@ namespace FSMouseKeyboardLibraryCore
         public MouseHook()
         {
 
-            hookType = Win32API.WH_MOUSE_LL;
+            hookType = Win32APIEnums.WH_MOUSE_LL;
 
         }
 
@@ -58,8 +58,8 @@ namespace FSMouseKeyboardLibraryCore
             if (nCode > -1 && (MouseDown != null || MouseUp != null || MouseMove != null))
             {
 
-                Win32API.MouseLLHookStruct mouseHookStruct =
-                    (Win32API.MouseLLHookStruct)Marshal.PtrToStructure(lParam, typeof(Win32API.MouseLLHookStruct));
+                Win32APIEnums.MouseLLHookStruct mouseHookStruct =
+                    (Win32APIEnums.MouseLLHookStruct)Marshal.PtrToStructure(lParam, typeof(Win32APIEnums.MouseLLHookStruct));
 
                 MouseButtons button = GetButton(wParam);
                 MouseEventType eventType = GetEventType(wParam);
@@ -129,17 +129,17 @@ namespace FSMouseKeyboardLibraryCore
             switch (wParam)
             {
 
-                case Win32API.WM_LBUTTONDOWN:
-                case Win32API.WM_LBUTTONUP:
-                case Win32API.WM_LBUTTONDBLCLK:
+                case Win32APIEnums.WM_LBUTTONDOWN:
+                case Win32APIEnums.WM_LBUTTONUP:
+                case Win32APIEnums.WM_LBUTTONDBLCLK:
                     return MouseButtons.Left;
-                case Win32API.WM_RBUTTONDOWN:
-                case Win32API.WM_RBUTTONUP:
-                case Win32API.WM_RBUTTONDBLCLK:
+                case Win32APIEnums.WM_RBUTTONDOWN:
+                case Win32APIEnums.WM_RBUTTONUP:
+                case Win32APIEnums.WM_RBUTTONDBLCLK:
                     return MouseButtons.Right;
-                case Win32API.WM_MBUTTONDOWN:
-                case Win32API.WM_MBUTTONUP:
-                case Win32API.WM_MBUTTONDBLCLK:
+                case Win32APIEnums.WM_MBUTTONDOWN:
+                case Win32APIEnums.WM_MBUTTONUP:
+                case Win32APIEnums.WM_MBUTTONDBLCLK:
                     return MouseButtons.Middle;
                 default:
                     return MouseButtons.None;
@@ -154,21 +154,21 @@ namespace FSMouseKeyboardLibraryCore
             switch (wParam)
             {
 
-                case Win32API.WM_LBUTTONDOWN:
-                case Win32API.WM_RBUTTONDOWN:
-                case Win32API.WM_MBUTTONDOWN:
+                case Win32APIEnums.WM_LBUTTONDOWN:
+                case Win32APIEnums.WM_RBUTTONDOWN:
+                case Win32APIEnums.WM_MBUTTONDOWN:
                     return MouseEventType.MouseDown;
-                case Win32API.WM_LBUTTONUP:
-                case Win32API.WM_RBUTTONUP:
-                case Win32API.WM_MBUTTONUP:
+                case Win32APIEnums.WM_LBUTTONUP:
+                case Win32APIEnums.WM_RBUTTONUP:
+                case Win32APIEnums.WM_MBUTTONUP:
                     return MouseEventType.MouseUp;
-                case Win32API.WM_LBUTTONDBLCLK:
-                case Win32API.WM_RBUTTONDBLCLK:
-                case Win32API.WM_MBUTTONDBLCLK:
+                case Win32APIEnums.WM_LBUTTONDBLCLK:
+                case Win32APIEnums.WM_RBUTTONDBLCLK:
+                case Win32APIEnums.WM_MBUTTONDBLCLK:
                     return MouseEventType.DoubleClick;
-                case Win32API.WM_MOUSEWHEEL:
+                case Win32APIEnums.WM_MOUSEWHEEL:
                     return MouseEventType.MouseWheel;
-                case Win32API.WM_MOUSEMOVE:
+                case Win32APIEnums.WM_MOUSEMOVE:
                     return MouseEventType.MouseMove;
                 default:
                     return MouseEventType.None;

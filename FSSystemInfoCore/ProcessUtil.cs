@@ -119,11 +119,11 @@ namespace FSSystemInfoCore
 
             if (handle != IntPtr.Zero)
             {
-                int style = Win32API.GetWindowLong(handle, Win32API.GWL_STYLE);
+                int style = Win32API.GetWindowLong(handle, Win32APIEnums.GWL_STYLE);
 
-                if ((style & Win32API.WS_VISIBLE) != 0)
+                if ((style & Win32APIEnums.WS_VISIBLE) != 0)
                 {
-                    Win32API.ShowWindow(handle, Win32API.SW_HIDE);
+                    Win32API.ShowWindow(handle, Win32APIEnums.SW_HIDE);
                 }
             }
         }
@@ -150,7 +150,7 @@ namespace FSSystemInfoCore
 
             if (handle != IntPtr.Zero)
             {
-                Win32API.ShowWindow(handle, Win32API.SW_SHOW);
+                Win32API.ShowWindow(handle, Win32APIEnums.SW_SHOW);
             }
         }
 
@@ -164,11 +164,11 @@ namespace FSSystemInfoCore
 
             if (handle != IntPtr.Zero)
             {
-                int style = Win32API.GetWindowLong(handle, Win32API.GWL_STYLE);
+                int style = Win32API.GetWindowLong(handle, Win32APIEnums.GWL_STYLE);
 
-                if ((style & Win32API.WS_VISIBLE) != 0)
+                if ((style & Win32APIEnums.WS_VISIBLE) != 0)
                 {
-                    Win32API.ShowWindow(handle, Win32API.SW_HIDE);
+                    Win32API.ShowWindow(handle, Win32APIEnums.SW_HIDE);
                 }
             }
         }
@@ -209,7 +209,7 @@ namespace FSSystemInfoCore
         {
             IntPtr hWnd = Win32API.FindWindow(null, windowName);
             if (Win32API.IsIconic(hWnd))
-                Win32API.ShowWindow(hWnd, Win32API.WindowShowStyle.Restore);
+                Win32API.ShowWindow(hWnd, Win32APIEnums.WindowShowStyle.Restore);
             Win32API.SetForegroundWindow(hWnd);
         }
 
@@ -222,7 +222,7 @@ namespace FSSystemInfoCore
         {
             IntPtr hWnd = process.MainWindowHandle;
             if (Win32API.IsIconic(hWnd))
-                Win32API.ShowWindow(hWnd, Win32API.WindowShowStyle.Restore);
+                Win32API.ShowWindow(hWnd, Win32APIEnums.WindowShowStyle.Restore);
             Win32API.SetForegroundWindow(hWnd);
         }
 

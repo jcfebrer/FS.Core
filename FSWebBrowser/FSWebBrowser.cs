@@ -856,11 +856,11 @@ namespace FSWebBrowser
             if (webHandle != IntPtr.Zero)
             {
                 Thread.Sleep(500);
-                Win32API.PostMessage(webHandle, Win32API.WM_MOUSEMOVE, new IntPtr(Win32API.MOUSEEVENTF_MOVE),
+                Win32API.PostMessage(webHandle, Win32APIEnums.WM_MOUSEMOVE, new IntPtr(Win32APIEnums.MOUSEEVENTF_MOVE),
                             MakeLParam(17, 376)); //boton de play
-                Win32API.PostMessage(webHandle, Win32API.WM_LBUTTONDOWN, new IntPtr(Win32API.MOUSEEVENTF_MOVE),
+                Win32API.PostMessage(webHandle, Win32APIEnums.WM_LBUTTONDOWN, new IntPtr(Win32APIEnums.MOUSEEVENTF_MOVE),
                             MakeLParam(17, 376));
-                Win32API.PostMessage(webHandle, Win32API.WM_LBUTTONUP, new IntPtr(Win32API.MOUSEEVENTF_MOVE),
+                Win32API.PostMessage(webHandle, Win32APIEnums.WM_LBUTTONUP, new IntPtr(Win32APIEnums.MOUSEEVENTF_MOVE),
                             MakeLParam(17, 376));
             }
         }

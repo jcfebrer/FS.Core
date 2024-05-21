@@ -26,7 +26,7 @@ namespace FSMouseKeyboardLibraryCore
         public KeyboardHook()
         {
 
-            hookType = Win32API.WH_KEYBOARD_LL;
+            hookType = Win32APIEnums.WH_KEYBOARD_LL;
 
         }
 
@@ -42,23 +42,23 @@ namespace FSMouseKeyboardLibraryCore
             if (nCode > -1 && (KeyDown != null || KeyUp != null || KeyPress != null))
             {
 
-                Win32API.KeyboardHookStruct keyboardHookStruct =
-                    (Win32API.KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(Win32API.KeyboardHookStruct));
+                Win32APIEnums.KeyboardHookStruct keyboardHookStruct =
+                    (Win32APIEnums.KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(Win32APIEnums.KeyboardHookStruct));
 
                 // Is Control being held down?
-                bool control = ((Win32API.GetKeyState(Win32API.VK_LCONTROL) & 0x80) != 0) ||
-                               ((Win32API.GetKeyState(Win32API.VK_RCONTROL) & 0x80) != 0);
+                bool control = ((Win32API.GetKeyState(Win32APIEnums.VK_LCONTROL) & 0x80) != 0) ||
+                               ((Win32API.GetKeyState(Win32APIEnums.VK_RCONTROL) & 0x80) != 0);
 
                 // Is Shift being held down?
-                bool shift = ((Win32API.GetKeyState(Win32API.VK_LSHIFT) & 0x80) != 0) ||
-                             ((Win32API.GetKeyState(Win32API.VK_RSHIFT) & 0x80) != 0);
+                bool shift = ((Win32API.GetKeyState(Win32APIEnums.VK_LSHIFT) & 0x80) != 0) ||
+                             ((Win32API.GetKeyState(Win32APIEnums.VK_RSHIFT) & 0x80) != 0);
 
                 // Is Alt being held down?
-                bool alt = ((Win32API.GetKeyState(Win32API.VK_LALT) & 0x80) != 0) ||
-                           ((Win32API.GetKeyState(Win32API.VK_RALT) & 0x80) != 0);
+                bool alt = ((Win32API.GetKeyState(Win32APIEnums.VK_LALT) & 0x80) != 0) ||
+                           ((Win32API.GetKeyState(Win32APIEnums.VK_RALT) & 0x80) != 0);
 
                 // Is CapsLock on?
-                bool capslock = (Win32API.GetKeyState(Win32API.VK_CAPITAL) != 0);
+                bool capslock = (Win32API.GetKeyState(Win32APIEnums.VK_CAPITAL) != 0);
 
                 // Create event using keycode and control/shift/alt values found above
                 KeyEventArgs e = new KeyEventArgs(
@@ -73,16 +73,16 @@ namespace FSMouseKeyboardLibraryCore
                 switch (wParam)
                 {
 
-                    case Win32API.WM_KEYDOWN:
-                    case Win32API.WM_SYSKEYDOWN:
+                    case Win32APIEnums.WM_KEYDOWN:
+                    case Win32APIEnums.WM_SYSKEYDOWN:
                         if (KeyDown != null)
                         {
                             KeyDown(this, e);
                             handled = handled || e.Handled;
                         }
                         break;
-                    case Win32API.WM_KEYUP:
-                    case Win32API.WM_SYSKEYUP:
+                    case Win32APIEnums.WM_KEYUP:
+                    case Win32APIEnums.WM_SYSKEYUP:
                         if (KeyUp != null)
                         {
                             KeyUp(this, e);
@@ -93,7 +93,7 @@ namespace FSMouseKeyboardLibraryCore
                 }
 
                 // Handle KeyPress event
-                if (wParam == Win32API.WM_KEYDOWN &&
+                if (wParam == Win32APIEnums.WM_KEYDOWN &&
                    !handled &&
                    !e.SuppressKeyPress &&
                     KeyPress != null)

@@ -41,7 +41,7 @@ namespace FSDisk
         #region '" Local Variables "'
 
         private bool flgInit;
-        private Win32API.BROWSEINFO stcBrowseInfo;
+        private Win32APIEnums.BROWSEINFO stcBrowseInfo;
 
         #endregion
 
@@ -122,7 +122,7 @@ namespace FSDisk
         public string BrowseForComputers()
         {
             var transTemp4 = stcBrowseInfo.pidlRoot;
-            Win32API.SHGetSpecialFolderLocation(stcBrowseInfo.hOwner, Convert.ToInt32(Win32API.CSIDL.NETWORK), ref transTemp4);
+            Win32API.SHGetSpecialFolderLocation(stcBrowseInfo.hOwner, Convert.ToInt32(Win32APIEnums.CSIDL.NETWORK), ref transTemp4);
             stcBrowseInfo.ulFlags = BIF_BROWSEFORCOMPUTER;
             return DoBrowse("");
         }
@@ -147,7 +147,7 @@ namespace FSDisk
         }
 
 
-        public string BrowseForFolder(Win32API.CSIDL StartLocation)
+        public string BrowseForFolder(Win32APIEnums.CSIDL StartLocation)
         {
             var transTemp3 = stcBrowseInfo.pidlRoot;
             Win32API.SHGetSpecialFolderLocation(stcBrowseInfo.hOwner, Convert.ToInt32(StartLocation), ref transTemp3);
@@ -175,7 +175,7 @@ namespace FSDisk
         }
 
 
-        public string BrowseForFiles(Win32API.CSIDL StartLocation)
+        public string BrowseForFiles(Win32APIEnums.CSIDL StartLocation)
         {
             var transTemp2 = stcBrowseInfo.pidlRoot;
             Win32API.SHGetSpecialFolderLocation(stcBrowseInfo.hOwner, Convert.ToInt32(StartLocation), ref transTemp2);

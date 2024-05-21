@@ -151,6 +151,7 @@
     <Compile Include="Vb.cs" />
     <Compile Include="WakeOnLan.cs" />
     <Compile Include="Win32API.cs" />
+    <Compile Include="Win32APIEnums.cs" />
     <Compile Include="Xml.cs" />
     <Compile Include="XmlParser.cs" />
     <Compile Include="XmlUtil.cs" />

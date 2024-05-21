@@ -75,14 +75,14 @@ namespace FSNetwork
 
             Win32API.RevertToSelf();
 
-            if (Win32API.OpenProcessToken(proc.Handle, Win32API.TokenPrivilege.TOKEN_ALL_ACCESS, ref hToken) != 0)
+            if (Win32API.OpenProcessToken(proc.Handle, Win32APIEnums.TokenPrivilege.TOKEN_ALL_ACCESS, ref hToken) != 0)
             {
                 try
                 {
-                    var sa = new Win32API.SECURITY_ATTRIBUTES();
+                    var sa = new Win32APIEnums.SECURITY_ATTRIBUTES();
                     sa.Length = Marshal.SizeOf(sa);
-                    var result = Win32API.DuplicateTokenEx(hToken, Win32API.GENERIC_ALL_ACCESS, ref sa,
-                        (int)Win32API.SECURITY_IMPERSONATION_LEVEL.SecurityIdentification, (int)Win32API.TOKEN_TYPE.TokenPrimary,
+                    var result = Win32API.DuplicateTokenEx(hToken, Win32APIEnums.GENERIC_ALL_ACCESS, ref sa,
+                        (int)Win32APIEnums.SECURITY_IMPERSONATION_LEVEL.SecurityIdentification, (int)Win32APIEnums.TOKEN_TYPE.TokenPrimary,
                         ref _userTokenHandle);
                     if (IntPtr.Zero == _userTokenHandle)
                     {
@@ -126,12 +126,12 @@ namespace FSNetwork
                 _impersonatedUser = newId.Impersonate();
             }
 
-            _hWinSta = Win32API.OpenWindowStation("WinSta0", false, Win32API.MAXIMUM_ALLOWED);
+            _hWinSta = Win32API.OpenWindowStation("WinSta0", false, Win32APIEnums.MAXIMUM_ALLOWED);
             if (_hWinSta == IntPtr.Zero)
                 return false;
             if (!Win32API.SetProcessWindowStation(_hWinSta))
                 return false;
-            HDesktop = Win32API.OpenDesktop("Default", 0, true, Win32API.MAXIMUM_ALLOWED);
+            HDesktop = Win32API.OpenDesktop("Default", 0, true, Win32APIEnums.MAXIMUM_ALLOWED);
 
             if (HDesktop == IntPtr.Zero)
             {
@@ -147,12 +147,12 @@ namespace FSNetwork
 
         public int CreateProcessAsUser(string app, string cmd)
         {
-            var pi = new Win32API.PROCESS_INFORMATION();
+            var pi = new Win32APIEnums.PROCESS_INFORMATION();
             try
             {
-                var sa = new Win32API.SECURITY_ATTRIBUTES();
+                var sa = new Win32APIEnums.SECURITY_ATTRIBUTES();
                 sa.Length = Marshal.SizeOf(sa);
-                var si = new Win32API.STARTUPINFO();
+                var si = new Win32APIEnums.STARTUPINFO();
                 si.cb = Marshal.SizeOf(si);
                 si.lpDesktop = string.Empty;
                 if (app != null && app.Length == 0)
