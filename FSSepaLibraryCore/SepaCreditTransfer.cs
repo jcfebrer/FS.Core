@@ -133,11 +133,11 @@ namespace FSSepaLibraryCore
             if(grpHdr.SelectSingleNode("CreDtTm") != null) 
                 CreationDate = Convert.ToDateTime(grpHdr.SelectSingleNode("CreDtTm").InnerText);
 
-            if(grpHdr.SelectSingleNode("NbOfTxs") != null)
-                numberOfTransactions = Convert.ToInt32(grpHdr.SelectSingleNode("NbOfTxs").InnerText);
+            //if(grpHdr.SelectSingleNode("NbOfTxs") != null)
+            //    numberOfTransactions = Convert.ToInt32(grpHdr.SelectSingleNode("NbOfTxs").InnerText);
 
-            if(grpHdr.SelectSingleNode("CtrlSum") != null)
-                headerControlSum = Convert.ToDecimal(grpHdr.SelectSingleNode("CtrlSum").InnerText.Replace(".",","));
+            //if(grpHdr.SelectSingleNode("CtrlSum") != null)
+            //    headerControlSum = Convert.ToDecimal(grpHdr.SelectSingleNode("CtrlSum").InnerText.Replace(".",","));
 
             var initgPty = grpHdr.SelectSingleNode("InitgPty");
             if (initgPty == null)
@@ -162,11 +162,11 @@ namespace FSSepaLibraryCore
 
             //Constant.CreditTransfertPaymentMethod = XmlUtils.SelectSingleNode(pmtInf, "PmtMtd").InnerText;
 
-            if(pmtInf.SelectSingleNode("NbOfTxs") != null)
-                numberOfTransactions = Convert.ToInt32(pmtInf.SelectSingleNode("NbOfTxs").InnerText);
+            //if(pmtInf.SelectSingleNode("NbOfTxs") != null)
+            //    numberOfTransactions = Convert.ToInt32(pmtInf.SelectSingleNode("NbOfTxs").InnerText);
 
-            if(pmtInf.SelectSingleNode("CtrlSum") != null)
-                paymentControlSum = Convert.ToDecimal(pmtInf.SelectSingleNode("CtrlSum").InnerText);
+            //if(pmtInf.SelectSingleNode("CtrlSum") != null)
+            //    paymentControlSum = Convert.ToDecimal(pmtInf.SelectSingleNode("CtrlSum").InnerText);
 
             var pmtTpInf = pmtInf.SelectSingleNode("PmtTpInf");
             if (pmtTpInf != null)
@@ -253,8 +253,8 @@ namespace FSSepaLibraryCore
                     if (node.SelectSingleNode("PmtId/InstrId") != null)
                         transfer.Id = node.SelectSingleNode("PmtId/InstrId").InnerText;
 
-                    if (node.SelectSingleNode("EndToEndId") != null)
-                        transfer.EndToEndId = node.SelectSingleNode("EndToEndId").InnerText;
+                    if (node.SelectSingleNode("PmtId/EndToEndId") != null)
+                        transfer.EndToEndId = node.SelectSingleNode("PmtId/EndToEndId").InnerText;
 
                     if(node.SelectSingleNode("Amt/InstdAmt") != null)
                         transfer.Amount = Convert.ToDecimal(node.SelectSingleNode("Amt/InstdAmt").InnerText.Replace(".", ","));
@@ -393,19 +393,18 @@ namespace FSSepaLibraryCore
             {
                 AddPostalAddressElements(dbtr, Debtor.Address);
             }
+            
+            if (InitiatingPartyId != null)
+            {
+                dbtr.NewElement("Id").NewElement("OrgId").
+                    NewElement("Othr").NewElement("Id", InitiatingPartyId);
+            }
 
             var ultimatedbtr = pmtInf.NewElement("UltmtDbtr");
             ultimatedbtr.NewElement("Nm", UltimateDebtor.Name);
             if (UltimateDebtor.Address != null)
             {
                 AddPostalAddressElements(ultimatedbtr, UltimateDebtor.Address);
-            }
-
-            if (InitiatingPartyId != null)
-            {
-                (pmtInf.SelectSingleNode("Dbtr") as XmlElement).
-                    NewElement("Id").NewElement("OrgId").
-                    NewElement("Othr").NewElement("Id", InitiatingPartyId);
             }
 
             var dbtrAcct = pmtInf.NewElement("DbtrAcct");

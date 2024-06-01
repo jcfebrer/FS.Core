@@ -33,7 +33,18 @@ namespace FSGoogleFirebaseCore
         /// <returns></returns>
         public string SendData(string regFB, string data)
         {
-            return SendMenssage(regFB, data, "", PushType.Data);
+            return SendMessage(regFB, data, "", PushType.Data);
+        }
+
+        /// <summary>
+        /// Envio de mensajes prush a través de la plataforma Firebase de Google
+        /// </summary>
+        /// <param name="regFB"></param>
+        /// <param name="message"></param>
+        /// <returns></returns>
+        public string SendMessage(string regFB, string message)
+        {
+            return SendMessage(regFB, message, "", PushType.Data);
         }
 
         /// <summary>
@@ -44,7 +55,7 @@ namespace FSGoogleFirebaseCore
         /// <returns></returns>
         public string SendNotification(string regFB, string message, string title)
         {
-            return SendMenssage(regFB, message, title, PushType.Notification);
+            return SendMessage(regFB, message, title, PushType.Notification);
         }
 
         /// <summary>
@@ -53,7 +64,7 @@ namespace FSGoogleFirebaseCore
         /// <param name="regFB"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        public string SendMenssage(string regFB, string message, string title, PushType pushType)
+        public string SendMessage(string regFB, string message, string title, PushType pushType)
         {
             try
             {

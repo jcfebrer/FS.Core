@@ -123,11 +123,11 @@ namespace FSSepaLibraryCore
             if (grpHdr.SelectSingleNode("CreDtTm") != null)
                 CreationDate = Convert.ToDateTime(grpHdr.SelectSingleNode("CreDtTm").InnerText);
 
-            if (grpHdr.SelectSingleNode("NbOfTxs") != null)
-                numberOfTransactions = Convert.ToInt32(grpHdr.SelectSingleNode("NbOfTxs").InnerText);
+            //if (grpHdr.SelectSingleNode("NbOfTxs") != null)
+            //    numberOfTransactions = Convert.ToInt32(grpHdr.SelectSingleNode("NbOfTxs").InnerText);
 
-            if (grpHdr.SelectSingleNode("CtrlSum") != null)
-                headerControlSum = Convert.ToDecimal(grpHdr.SelectSingleNode("CtrlSum").InnerText.Replace(".", ","));
+            //if (grpHdr.SelectSingleNode("CtrlSum") != null)
+            //    headerControlSum = Convert.ToDecimal(grpHdr.SelectSingleNode("CtrlSum").InnerText.Replace(".", ","));
 
             var initgPty = grpHdr.SelectSingleNode("InitgPty");
             if (initgPty == null)
@@ -156,11 +156,11 @@ namespace FSSepaLibraryCore
             //if (XmlUtils.SelectSingleNode(pmtInf, "PmtMtd") != null)
             //    Constant.DebitTransfertPaymentMethod = XmlUtils.SelectSingleNode(pmtInf, "PmtMtd").InnerText;
 
-            if (pmtInf.SelectSingleNode("NbOfTxs") != null)
-                numberOfTransactions = Convert.ToInt32(pmtInf.SelectSingleNode("NbOfTxs").InnerText);
+            //if (pmtInf.SelectSingleNode("NbOfTxs") != null)
+            //    numberOfTransactions = Convert.ToInt32(pmtInf.SelectSingleNode("NbOfTxs").InnerText);
 
-            if (pmtInf.SelectSingleNode("CtrlSum") != null)
-                paymentControlSum = Convert.ToDecimal(pmtInf.SelectSingleNode("CtrlSum").InnerText);
+            //if (pmtInf.SelectSingleNode("CtrlSum") != null)
+            //    paymentControlSum = Convert.ToDecimal(pmtInf.SelectSingleNode("CtrlSum").InnerText);
 
             if(pmtInf.SelectSingleNode("CdtrSchmeId/Id/PrvtId/Othr/Id") != null)
                 PersonId = pmtInf.SelectSingleNode("CdtrSchmeId/Id/PrvtId/Othr/Id").InnerText;

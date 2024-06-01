@@ -650,7 +650,7 @@ namespace FSLibraryCore
             if (objData == null)
                 return default;
 
-            return Encoding.UTF8.GetBytes(JsonSerializer.Serialize(objData, GetJsonSerializerOptions()));
+            return Encoding.UTF8.GetBytes(JsonSerializer.Serialize<object>(objData, GetJsonSerializerOptions()));
         }
 
         /// <summary>

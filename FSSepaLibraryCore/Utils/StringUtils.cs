@@ -34,7 +34,7 @@ namespace FSSepaLibraryCore.Utils
         /// <returns></returns>
         public static string FormatAmount(decimal amount)
         {
-            return string.Format(CultureInfo.InvariantCulture, "{0:0.##}", amount);
+            return string.Format(CultureInfo.InvariantCulture, "{0:0.00}", amount);
         }
 
         /// <summary>

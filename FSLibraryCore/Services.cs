@@ -37,7 +37,7 @@ namespace FSLibraryCore
             else
                 ctl = ServiceController.GetServices(machineName);
 
-            ServiceController sc = ctl.FirstOrDefault(s => s.ServiceName == serviceName);
+            ServiceController sc = ctl.FirstOrDefault(s => s.ServiceName.ToLower() == serviceName.ToLower());
             if (sc == null)
                 return false;
             else
