@@ -83,20 +83,19 @@ namespace FSGoogleFirebase.Database
             if (!string.IsNullOrEmpty(AuthHelper.ACCESS_TOKEN))
                 uri = new Uri($"{uri}?access_token={AuthHelper.ACCESS_TOKEN}");
 
-            using (HttpClient client = new HttpClient())
-            {
-                var msg = new HttpRequestMessage(method, uri);
-                msg.Headers.Add("user-agent", USER_AGENT);
-                if (json != null)
-                {
-                    msg.Content = new StringContent(
-                        json,
-                        UnicodeEncoding.UTF8,
-                        "application/json");
-                }
+            HttpClient client = new HttpClient();
 
-                return client.SendAsync(msg);
+            var msg = new HttpRequestMessage(method, uri);
+            msg.Headers.Add("user-agent", USER_AGENT);
+            if (json != null)
+            {
+                msg.Content = new StringContent(
+                    json,
+                    UnicodeEncoding.UTF8,
+                    "application/json");
             }
+
+            return client.SendAsync(msg);
         }
     }
 }

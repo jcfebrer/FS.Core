@@ -8,16 +8,16 @@ namespace FSGoogleFirebaseCore
 {
 	public class Msg
 	{
-		public Device sourceId;
-		public String mensaje;
-		public Device destId;
-		public String codeMsg;
-		public DateTime dateTime;
-		public Boolean fileHttp;
-		public Msg referenceMsg;
-		public String parameter;
+		public Device sourceId { get; set; }
+		public String mensaje { get; set; }
+        public Device destId { get; set; }
+        public String codeMsg { get; set; }
+        public DateTime dateTime { get; set; }
+        public Boolean fileHttp { get; set; }
+        public Msg referenceMsg { get; set; }
+        public String parameter { get; set; }
 
-		public String separatorDat = ":#:";
+        public String separatorDat = ":#:";
 
 		public Msg()
 		{

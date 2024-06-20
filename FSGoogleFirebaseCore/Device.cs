@@ -8,10 +8,10 @@ namespace FSGoogleFirebaseCore
 {
 	public class Device
 	{
-		public string androidid;
-		public string email;
-		public string app;
-		public bool online;
+		public string androidid { get; set; }
+		public string email { get; set; }
+		public string app { get; set; }
+		public bool online { get; set; }
 
 		private long _heartbeat;
         public long heartbeat {
@@ -23,7 +23,7 @@ namespace FSGoogleFirebaseCore
 		}
 
         public DateTime heartbeatdate;
-		public string token;
+		public string token { get; set; }
 
 		public String separatorId = ":v:";
 

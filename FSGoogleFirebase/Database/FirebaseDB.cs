@@ -9,6 +9,7 @@ namespace FSGoogleFirebase.Database
     using FSGoogleFirebase.Auth;
     using System;
     using System.Net.Http;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// FirebasDB Class is reference of a Firebase Database

@@ -1,9 +1,6 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FSGoogleFirebase.Auth
 {
