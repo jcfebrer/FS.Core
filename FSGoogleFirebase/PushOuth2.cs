@@ -45,6 +45,10 @@ namespace FSGoogleFirebase
             this.ClientSecret = clientSecret;
         }
 
+        public async Task SendMessage(string deviceToken, string message)
+        {
+            await SendMessage(deviceToken, "", message);
+        }
 
         public async Task SendMessage(string deviceToken, string title, string body)
         {
@@ -81,8 +85,13 @@ namespace FSGoogleFirebase
             }
             else
             {
-                AuthHelper.GenenateAccessToken(JsonKeyFilePath, scopes);
-                token = AuthHelper.ACCESS_TOKEN;
+                using (var stream = new FileStream(JsonKeyFilePath, FileMode.Open, FileAccess.Read))
+                {
+                    token = await GoogleCredential.FromStream(stream)
+                        .CreateScoped(scopes)
+                        .UnderlyingCredential
+                        .GetAccessTokenForRequestAsync();
+                }
             }
 
             var message = new
