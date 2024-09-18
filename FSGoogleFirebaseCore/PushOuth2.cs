@@ -72,10 +72,11 @@ namespace FSGoogleFirebaseCore
                 else
                 {
                     var stream = new FileStream(this.JsonSecretsKeyFilePath, FileMode.Open, FileAccess.Read);
-                    clientSecrets = GoogleClientSecrets.Load(stream).Secrets;
+                    GoogleClientSecrets googleClientSecrets = GoogleClientSecrets.Load(stream);
+                    clientSecrets = googleClientSecrets.Secrets;
                 }
 
-                var credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
+                UserCredential credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                     clientSecrets,
                     scopes,
                     "user",
