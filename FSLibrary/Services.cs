@@ -3,6 +3,8 @@ using FSTrace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Management;
 using System.ServiceProcess;
 using System.Text;
 
@@ -239,10 +241,38 @@ namespace FSLibrary
             serviceInfo.Status = (ServiceInfo.ServiceStatus)sc.Status;
             serviceInfo.DisplayName = sc.DisplayName;
             serviceInfo.MachineName = sc.MachineName;
+            serviceInfo.Description = GetServiceDescription(serviceName);
             serviceInfo.ServiceType = sc.ServiceType.ToString();
             return serviceInfo;
         }
+
+        /// <summary>
+        /// Devuelve la descripción de un servicio
+        /// </summary>
+        /// <param name="serviceName">Nombre del servicio</param>
+        /// <returns></returns>
+        public static string GetServiceDescription(string serviceName)
+        {
+            try
+            {
+                using (ManagementObject service = new ManagementObject(new ManagementPath(string.Format("Win32_Service.Name='{0}'", serviceName))))
+                {
+                    object description = service["Description"];
+                    if (description != null)
+                    {
+                        return description.ToString();
+                    }
+                    else
+                        return null;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
     }
+
 
     /// <summary>
     /// Información del servicio
@@ -292,6 +322,10 @@ namespace FSLibrary
         /// Estado del servicio
         /// </summary>
         public ServiceStatus Status { get; set; }
+        /// <summary>
+        /// Descripción del servicio
+        /// </summary>
+        public string Description { get; set; }
         /// <summary>
         /// Nombre para mostrar
         /// </summary>
