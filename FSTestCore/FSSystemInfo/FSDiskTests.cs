@@ -1,8 +1,8 @@
-﻿using FSSystemInfo;
+﻿using FSSystemInfoCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace FSTests
+namespace FSTestsCore.FSSystemInfo
 {
     [TestClass()]
     public class FSDiskTests
@@ -13,7 +13,7 @@ namespace FSTests
             SystemInfo sysInfo = new SystemInfo();
             List<string> phiscalDisk = sysInfo.GetPhysicalDisks();
 
-            FSDisk.DiskInfo diskInfo = new FSDisk.DiskInfo();
+            FSDiskCore.DiskInfo diskInfo = new FSDiskCore.DiskInfo();
 
             string sSerial = "";
             string sModel = "";

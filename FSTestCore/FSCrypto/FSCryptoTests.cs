@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTestsCore
+namespace FSCryptoCore.Tests
 {
     [TestClass()]
     public class FSCryptoTests
@@ -44,7 +44,7 @@ namespace FSTestsCore
         [TestMethod()]
         public void Encode64()
         {
-            string base64 = FSCryptoCore.Base64.Encode("81354", true);
+            string base64 = Base64.Encode("81354", true);
 
             Assert.AreEqual("ODEzNTQ=", base64, "Encode error");
         }
@@ -52,7 +52,7 @@ namespace FSTestsCore
         [TestMethod()]
         public void Decode64()
         {
-            string base64 = FSCryptoCore.Base64.Decode("ODEzNTQ=", true);
+            string base64 = Base64.Decode("ODEzNTQ=", true);
 
             Assert.AreEqual("81354", base64, "Decode error");
         }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Net.Sockets;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -39,19 +40,37 @@ namespace FSNetworkCore
 
         public static string GetFromUrl(string url, Encoding enc, string user, string password)
         {
-            HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
-            myRequest.Method = "GET";
+            string responseText;
 
-            if (!String.IsNullOrEmpty(user))
-                myRequest.Credentials = new NetworkCredential(user, password);
+            using (var handler = new HttpClientHandler())
+            {
+                if (!String.IsNullOrEmpty(user))
+                    handler.Credentials = new NetworkCredential(user, password);
 
-            HttpWebResponse myResponse = ((HttpWebResponse)(myRequest.GetResponse()));
-            Stream receiveStream = myResponse.GetResponseStream();
-            StreamReader readStream = new StreamReader(receiveStream, enc);
-            string responseText = readStream.ReadToEnd();
+                using (HttpClient httpClient = new HttpClient(handler))
+                {
+                    HttpResponseMessage response = httpClient.PostAsync(url, null).Result;
+                    responseText = response.Content.ReadAsStringAsync().Result;
+                    responseText = enc.GetString(Encoding.ASCII.GetBytes(responseText));
+                }
+            }
 
-            myResponse.Close();
-            readStream.Close();
+            //WebClient webCLient = new WebClient();
+            //string responseText = webCLient.DownloadString(url);
+
+            //HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
+            //myRequest.Method = "GET";
+
+            //if (!String.IsNullOrEmpty(user))
+            //    myRequest.Credentials = new NetworkCredential(user, password);
+
+            //HttpWebResponse myResponse = ((HttpWebResponse)(myRequest.GetResponse()));
+            //Stream receiveStream = myResponse.GetResponseStream();
+            //StreamReader readStream = new StreamReader(receiveStream, enc);
+            //responseText = readStream.ReadToEnd();
+
+            //myResponse.Close();
+            //readStream.Close();
 
             return responseText;
         }

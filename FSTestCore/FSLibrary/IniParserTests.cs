@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTestsCore
+namespace FSLibraryCore.Tests
 {
     [TestClass]
     public class IniParserTests

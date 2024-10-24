@@ -288,25 +288,29 @@ namespace FSSepaLibraryCore
         {
             CheckMandatoryData();
 
-            var xml = new XmlDocument();
+            XmlDocument xml = new XmlDocument();
             xml.AppendChild(xml.CreateXmlDeclaration("1.0", Encoding.UTF8.BodyName, "yes"));
-            var el = (XmlElement)xml.AppendChild(xml.CreateElement("Document"));
-            el.SetAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
-            el.SetAttribute("xmlns", "urn:iso:std:iso:20022:tech:xsd:" + SepaSchemaUtils.SepaSchemaToString(schema));
-            el.NewElement("CstmrDrctDbtInitn");
+            XmlElement el = (XmlElement)xml.AppendChild(xml.CreateElement("Document"));
+            if (el != null)
+            {
+                el.SetAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+                el.SetAttribute("xmlns", "urn:iso:std:iso:20022:tech:xsd:" + SepaSchemaUtils.SepaSchemaToString(schema));
+                el.NewElement("CstmrDrctDbtInitn");
 
-            // Part 1: Group Header
-            var grpHdr = (el.SelectSingleNode("CstmrDrctDbtInitn") as XmlElement).NewElement("GrpHdr");
-            grpHdr.NewElement("MsgId", MessageIdentification);
-            grpHdr.NewElement("CreDtTm", StringUtils.FormatDateTime(CreationDate));
-            grpHdr.NewElement("NbOfTxs", numberOfTransactions);
-            grpHdr.NewElement("CtrlSum", StringUtils.FormatAmount(headerControlSum));
-            grpHdr.NewElement("InitgPty").NewElement("Nm", InitiatingPartyName);
-			if (InitiatingPartyId != null) {
-                (grpHdr.SelectSingleNode("InitgPty") as XmlElement).
-					NewElement("Id").NewElement("OrgId").
-					NewElement("Othr").NewElement("Id", InitiatingPartyId);
-			}
+                // Part 1: Group Header
+                XmlElement grpHdr = (el.SelectSingleNode("CstmrDrctDbtInitn") as XmlElement).NewElement("GrpHdr");
+                grpHdr.NewElement("MsgId", MessageIdentification);
+                grpHdr.NewElement("CreDtTm", StringUtils.FormatDateTime(CreationDate));
+                grpHdr.NewElement("NbOfTxs", numberOfTransactions);
+                grpHdr.NewElement("CtrlSum", StringUtils.FormatAmount(headerControlSum));
+                grpHdr.NewElement("InitgPty").NewElement("Nm", InitiatingPartyName);
+                if (InitiatingPartyId != null)
+                {
+                    (grpHdr.SelectSingleNode("InitgPty") as XmlElement).
+                        NewElement("Id").NewElement("OrgId").
+                        NewElement("Othr").NewElement("Id", InitiatingPartyId);
+                }
+            }
 
             // Part 2: Payment Information for each Sequence Type.
             foreach (SepaSequenceType seqTp in Enum.GetValues(typeof(SepaSequenceType)))

@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTests
+namespace FSLibrary.Tests
 {
     [TestClass()]
-    public class Varios
+    public class FlipTests
     {
         [TestMethod()]
         public void Flip()

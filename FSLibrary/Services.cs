@@ -266,7 +266,7 @@ namespace FSLibrary
                         return null;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }

@@ -25,7 +25,7 @@ namespace FSSepaLibraryCore.Utils
         /// <param name="name">The new element name</param>
         /// <param name="value">The new element value</param>
         /// <returns></returns>
-        public static XmlElement NewElement(this XmlElement parent, string name, object value)
+        public static XmlElement NewElement(this XmlElement parent, string name, object? value)
         {
             var e = parent.OwnerDocument.CreateElement(name);
             if (value != null)

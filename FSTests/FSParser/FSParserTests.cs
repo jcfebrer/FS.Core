@@ -1,4 +1,4 @@
-﻿using FSParserCore;
+﻿using FSParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTestsCore
+namespace FSTests.FSParser
 {
     [TestClass()]
     public class FSParserTests

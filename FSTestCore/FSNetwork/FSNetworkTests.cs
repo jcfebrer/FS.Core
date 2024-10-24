@@ -1,4 +1,4 @@
-﻿using FSNetwork;
+﻿using FSNetworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTests
+namespace FSTestsCore.FSNetwork
 {
     [TestClass()]
     public class FSNetworkTests
@@ -22,6 +22,14 @@ namespace FSTests
             {
                 Directory.CreateDirectory("\\\\192.168.0.107\\FileShare1\\DatosGT\\SRP\\DocumentosGt\\Servicios\\2030");
             }
+        }
+
+        [TestMethod()]
+        public void GetFromUrl()
+        {
+            string result = Http.GetFromUrl("http://www.febrersoftware.com");
+
+            Assert.IsNull(result);
         }
     }
 }

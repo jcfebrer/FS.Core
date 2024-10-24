@@ -81,9 +81,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="FSDiskTests.cs" />
+    <Compile Include="FSSystemInfo\FSDiskTests.cs" />
     <Compile Include="FSDatabase\UtilsTests.cs" />
-    <Compile Include="FSCryptoTests.cs" />
+    <Compile Include="FSCrypto\FSCryptoTests.cs" />
     <Compile Include="FSGoogle\GoogleAuthenticatorTests.cs" />
     <Compile Include="FSIA\ChatGPTTest.cs" />
     <Compile Include="FSLibrary\DniTests.cs" />
@@ -96,8 +96,8 @@
     <Compile Include="FSMail\ImapTests.cs" />
     <Compile Include="FSMail\MimeTests.cs" />
     <Compile Include="FSMail\Pop3Tests.cs" />
-    <Compile Include="FSParserTests.cs" />
-    <Compile Include="FSNetworkTests.cs" />
+    <Compile Include="FSParser\FSParserTests.cs" />
+    <Compile Include="FSNetwork\FSNetworkTests.cs" />
     <Compile Include="FSParser\HtmlRenderTest.cs" />
     <Compile Include="FSPortalNET\PortalWSTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -113,7 +113,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Varios.cs" />
+    <Compile Include="FSLibrary\FlipTests.cs" />
     <Compile Include="Web References\com.febrersoftware.www1\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
