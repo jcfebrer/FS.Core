@@ -38,7 +38,7 @@ namespace FSSepaLibraryCore
 
         public string InitiatingPartyId { get; set; }
 
-        public string InitiatingPartyName { get; set; }
+        public string? InitiatingPartyName { get; set; }
 
         /// <summary>
         ///     Local service instrument code
@@ -48,12 +48,12 @@ namespace FSSepaLibraryCore
         /// <summary>
         ///     The Message identifier
         /// </summary>
-        public string MessageIdentification { get; set; }
+        public string? MessageIdentification { get; set; }
 
         /// <summary>
         ///     The single Payment information identifier (uses Message identifier if not defined)
         /// </summary>
-        public string PaymentInfoId { get; set; }
+        public string? PaymentInfoId { get; set; }
 
         /// <summary>
         ///     Requested Execution Date (default is object creation date)

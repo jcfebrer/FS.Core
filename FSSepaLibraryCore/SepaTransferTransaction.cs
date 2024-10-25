@@ -30,7 +30,7 @@ namespace FSSepaLibraryCore
         /// <summary>
         ///     Payment Identifier
         /// </summary>
-        public string Id { get; set; }
+        public string? Id { get; set; }
         
         /// <summary>
         ///     The Unique Identifier (if not defined, it's defined as "MessageIdentification/PositionInTransactionsList" by the

@@ -704,7 +704,7 @@ namespace FSMailCore
 			}
 			catch (Exception e)
 			{
-				throw e;
+				throw;
 			}
 		}
 

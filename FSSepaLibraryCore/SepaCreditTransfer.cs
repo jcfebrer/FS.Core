@@ -103,7 +103,7 @@ namespace FSSepaLibraryCore
         /// </summary>
         /// <param name="transfer"></param>
         /// <exception cref="ArgumentNullException">If transfert is null.</exception>
-        public void AddCreditTransfer(SepaCreditTransferTransaction transfer)
+        public void AddCreditTransfer(SepaCreditTransferTransaction? transfer)
         {
             AddTransfer(transfer);
         }

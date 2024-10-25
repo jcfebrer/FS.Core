@@ -18,14 +18,11 @@
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Api.Gax" Version="3.2.0" />
-    <PackageReference Include="Google.Api.Gax.Rest" Version="3.2.0" />
-    <PackageReference Include="Google.Apis" Version="1.49.0" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.49.0" />
-    <PackageReference Include="Google.Apis.Core" Version="1.49.0" />
-    <PackageReference Include="Microsoft.Bcl" Version="1.1.10" />
-    <PackageReference Include="Microsoft.Bcl.Async" Version="1.0.168" />
-    <PackageReference Include="Microsoft.Bcl.Build" Version="1.0.14" />
+    <PackageReference Include="Google.Api.Gax" Version="4.9.0" />
+    <PackageReference Include="Google.Api.Gax.Rest" Version="4.9.0" />
+    <PackageReference Include="Google.Apis" Version="1.68.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
+    <PackageReference Include="Google.Apis.Core" Version="1.68.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="8.0.0" />

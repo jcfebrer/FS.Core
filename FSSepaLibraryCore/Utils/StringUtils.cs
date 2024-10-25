@@ -18,7 +18,7 @@ namespace FSSepaLibraryCore.Utils
         /// <param name="value">The string to check</param>
         /// <param name="allowedLength">The max allowed length</param>
         /// <returns></returns>
-        public static string GetLimitedString(string value, int allowedLength)
+        public static string GetLimitedString(string? value, int allowedLength)
         {
             if (value != null && value.Length > allowedLength)
             {
