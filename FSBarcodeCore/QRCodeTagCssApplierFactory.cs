@@ -1,6 +1,7 @@
 ﻿using iText.Html2pdf.Css.Apply;
 using iText.Html2pdf.Css.Apply.Impl;
 using iText.StyledXmlParser.Node;
+using System;
 
 namespace FSBarcodeCore
 {
@@ -9,6 +10,7 @@ namespace FSBarcodeCore
     /// Example of a custom CssApplier factory for pdfHTML
     /// The tag qr is mapped on a BlockCssApplier. Every other tag is mapped to the default.
     /// </summary>
+    [CLSCompliant(false)]
     public class QRCodeTagCssApplierFactory : DefaultCssApplierFactory
     {
 

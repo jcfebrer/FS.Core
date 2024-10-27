@@ -96,7 +96,7 @@ namespace FSTestsCore.FSMail
             aMimeMessage.GetBodyPartList(bodylist);
             for (int i = 0; i < bodylist.Count; i++)
             {
-                MimeBody ab = (MimeBody)bodylist[i];
+                MimeBody? ab = (MimeBody?)bodylist[i];
                 if (ab.IsText())
                 {
                     string m = ab.GetText();

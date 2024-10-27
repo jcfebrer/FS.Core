@@ -954,9 +954,9 @@ namespace FSGraphicsCore
                 // Copy data from pointer to array
                 Marshal.Copy(Iptr, Pixels, 0, Pixels.Length);
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -973,9 +973,9 @@ namespace FSGraphicsCore
                 // Unlock bitmap data
                 source.UnlockBits(bitmapData);
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
         }
 

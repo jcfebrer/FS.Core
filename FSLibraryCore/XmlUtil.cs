@@ -145,9 +145,9 @@ namespace FSLibraryCore
                     }
                 }
             }
-            catch (ExceptionUtil exception)
+            catch (ExceptionUtil)
             {
-                throw exception;
+                throw;
             }
         }
 
@@ -206,9 +206,9 @@ namespace FSLibraryCore
                     return objectFromXml;
                 }
             }
-            catch (ExceptionUtil Ex)
+            catch (ExceptionUtil)
             {
-                throw Ex;
+                throw;
             }
         }
 
@@ -230,9 +230,9 @@ namespace FSLibraryCore
                     return objectFromXml;
                 }
             }
-            catch (ExceptionUtil Ex)
+            catch (ExceptionUtil)
             {
-                throw Ex;
+                throw;
             }
         }
 

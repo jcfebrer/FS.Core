@@ -19,31 +19,79 @@ namespace FSLibrary
     [SuppressUnmanagedCodeSecurity]
     public static class Win32API
     {
-
+        /// <summary>
+        /// SetWindowsHookEx
+        /// </summary>
+        /// <param name="idHook"></param>
+        /// <param name="lpfn"></param>
+        /// <param name="hMod"></param>
+        /// <param name="dwThreadId"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr SetWindowsHookEx(int idHook, LowLevelKeyboardProcDelegate lpfn, IntPtr hMod, Int32 dwThreadId);
 
+        /// <summary>
+        /// UnhookWindowsHookEx
+        /// </summary>
+        /// <param name="hhk"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool UnhookWindowsHookEx(IntPtr hhk);
 
+        /// <summary>
+        /// CallNextHookEx
+        /// </summary>
+        /// <param name="hhk"></param>
+        /// <param name="nCode"></param>
+        /// <param name="wParam"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, KBDLLHOOKSTRUCT lParam);
 
+        /// <summary>
+        /// RegisterWindowMessage
+        /// </summary>
+        /// <param name="lpString"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr RegisterWindowMessage(string lpString);
 
+        /// <summary>
+        /// GetGUIThreadInfo
+        /// </summary>
+        /// <param name="idThread"></param>
+        /// <param name="lpgui"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetGUIThreadInfo(Int32 idThread, GUITHREADINFO lpgui);
 
+        /// <summary>
+        /// GetAsyncKeyState
+        /// </summary>
+        /// <param name="vKey"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern Int16 GetAsyncKeyState(Int32 vKey);
 
+        /// <summary>
+        /// GetAncestor
+        /// </summary>
+        /// <param name="hwnd"></param>
+        /// <param name="gaFlags"></param>
+        /// <returns></returns>
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern IntPtr GetAncestor(IntPtr hwnd, UInt32 gaFlags);
+        public static extern IntPtr GetAncestor(IntPtr hwnd, Int32 gaFlags);
 
-
+        /// <summary>
+        /// LowLevelKeyboardProcDelegate
+        /// </summary>
+        /// <param name="nCode"></param>
+        /// <param name="wParam"></param>
+        /// <param name="lParam"></param>
+        /// <returns></returns>
         public delegate IntPtr LowLevelKeyboardProcDelegate(Int32 nCode, IntPtr wParam, KBDLLHOOKSTRUCT lParam);
 
 

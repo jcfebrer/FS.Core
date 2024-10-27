@@ -134,8 +134,7 @@ namespace FSCryptoCore
             //se utilizan las clases de encriptación
             //provistas por el Framework
             //Algoritmo MD5
-            MD5CryptoServiceProvider hashmd5 =
-            new MD5CryptoServiceProvider();
+            var hashmd5 = MD5.Create();
             //se guarda la llave para que se le realice
             //hashing
             keyArray = hashmd5.ComputeHash(
@@ -144,8 +143,7 @@ namespace FSCryptoCore
             hashmd5.Clear();
 
             //Algoritmo 3DAS
-            TripleDESCryptoServiceProvider tdes =
-            new TripleDESCryptoServiceProvider();
+            var tdes = TripleDES.Create();
 
             tdes.Key = keyArray;
             tdes.Mode = (System.Security.Cryptography.CipherMode)CipherMode.ECB;
@@ -179,16 +177,14 @@ namespace FSCryptoCore
             //se llama a las clases que tienen los algoritmos
             //de encriptación se le aplica hashing
             //algoritmo MD5
-            MD5CryptoServiceProvider hashmd5 =
-            new MD5CryptoServiceProvider();
+            var hashmd5 = MD5.Create();
 
             keyArray = hashmd5.ComputeHash(
             UTF8Encoding.UTF8.GetBytes(key));
 
             hashmd5.Clear();
 
-            TripleDESCryptoServiceProvider tdes =
-            new TripleDESCryptoServiceProvider();
+            var tdes = TripleDES.Create();
 
             tdes.Key = keyArray;
             tdes.Mode = (System.Security.Cryptography.CipherMode)CipherMode.ECB;

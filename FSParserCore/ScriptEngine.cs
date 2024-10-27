@@ -712,11 +712,6 @@ namespace FSParserCore
         {
         }
 
-        protected ScriptException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-        }
-
         public string Description { get; internal set; }
         public int Line { get; internal set; }
         public int Column { get; internal set; }

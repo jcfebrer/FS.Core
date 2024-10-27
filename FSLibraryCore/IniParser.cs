@@ -201,9 +201,9 @@ namespace FSLibraryCore
                 tw.Write(strToSave);
                 tw.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 

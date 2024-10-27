@@ -215,8 +215,8 @@ namespace FSShellCore
 					Console.WriteLine("Cancelando conexión...");
 				shell.Close();
 				shell.Dispose();
-				if(shellThread != null)
-					shellThread.Abort();
+				//if(shellThread != null)
+				//	shellThread.Abort();
 				shellThread = null;
 				inStream.Dispose();
 				outStream.Dispose();

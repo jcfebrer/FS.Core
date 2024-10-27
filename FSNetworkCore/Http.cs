@@ -591,21 +591,21 @@ namespace FSNetworkCore
             }
         }
 
-        public static string GetRequest(string url)
-        {
-            Encoding enc = Encoding.GetEncoding("UTF-8");
+        //public static string GetRequest(string url)
+        //{
+        //    Encoding enc = Encoding.GetEncoding("UTF-8");
 
-            WebRequest req = WebRequest.Create(url);
-            WebResponse res = req.GetResponse();
+        //    WebRequest req = WebRequest.Create(url);
+        //    WebResponse res = req.GetResponse();
 
-            Stream st = res.GetResponseStream();
-            StreamReader sr = new StreamReader(st, enc);
-            string html = sr.ReadToEnd();
-            sr.Close();
-            st.Close();
+        //    Stream st = res.GetResponseStream();
+        //    StreamReader sr = new StreamReader(st, enc);
+        //    string html = sr.ReadToEnd();
+        //    sr.Close();
+        //    st.Close();
 
-            return html;
-        }
+        //    return html;
+        //}
 
         //public static bool IsLocalhost()
         //{

@@ -396,24 +396,26 @@ namespace FSPdfCore
 		{
 			try
 			{
-				//------------------------------------------------------
-				// peticion web al recurso con el codigo HTML/ASPX
-				// Crear una peticion a una URL            
-				HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-				// obtener la respuesta del recurso solicitado
-				HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+				////------------------------------------------------------
+				//// peticion web al recurso con el codigo HTML/ASPX
+				//// Crear una peticion a una URL            
+				//HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+				//// obtener la respuesta del recurso solicitado
+				//HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
-				// obtener el stream del recurso
-				Stream dataStream = response.GetResponseStream();
-				// Crear un reader para leer del stream
-				StreamReader reader = new StreamReader(dataStream, Encoding.Default);
-				// Leer el contenido
-				string responseFromServer = reader.ReadToEnd();
+				//// obtener el stream del recurso
+				//Stream dataStream = response.GetResponseStream();
+				//// Crear un reader para leer del stream
+				//StreamReader reader = new StreamReader(dataStream, Encoding.Default);
+				//// Leer el contenido
+				//string responseFromServer = reader.ReadToEnd();
 
-				// Limpiar recursos utilizados
-				reader.Close();
-				dataStream.Close();
-				response.Close();
+				string responseFromServer = FSNetworkCore.Http.GetFromUrl(url);
+
+				//// Limpiar recursos utilizados
+				//reader.Close();
+				//dataStream.Close();
+				//response.Close();
 
 				//------------------------------------------------------
 				// Generar el archivo PDF

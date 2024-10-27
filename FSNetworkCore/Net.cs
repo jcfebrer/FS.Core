@@ -148,22 +148,15 @@ namespace FSNetworkCore
             //http://www.serport.biz:8002/ip.aspx
             //http://ipecho.net/plain
             //http://checkip.dyndns.org
-            string externalip = new WebClient().DownloadString("https://ipv4.icanhazip.com");
+            string externalip = Http.GetFromUrl("https://ipv4.icanhazip.com");
             return externalip.Replace("\n", "");
         }
 
         public static string GetPublicAddress()
         {
-            WebRequest req = WebRequest.Create("http://checkip.dyndns.org");
-            using (WebResponse resp = req.GetResponse())
-            {
-
-                System.IO.StreamReader sr = new System.IO.StreamReader(resp.GetResponseStream());
-                string result = sr.ReadToEnd();
-                result = TextUtil.SearchIpValues(result).First();
-                
-                return result;
-            }
+            string result = Http.GetFromUrl("http://checkip.dyndns.org");
+            result = TextUtil.SearchIpValues(result).First();
+            return result;
         }
 
         public static bool IsUrl(string Url)

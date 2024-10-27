@@ -527,7 +527,7 @@ namespace FSFtpCore
             }
         }
 
-        private SslProtocols m_SslProtocols = SslProtocols.Default;
+        private SslProtocols m_SslProtocols = SslProtocols.Tls12;
         /// <summary>
         /// Encryption protocols to use. Only valid if EncryptionMode property is not equal to FtpSslMode.None.
         /// Default value is .NET Framework defaults from SslStream class.

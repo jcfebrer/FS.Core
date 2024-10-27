@@ -57,7 +57,7 @@ namespace FSMailCore
 			{
 				Login(sHost, IMAP_DEFAULT_PORT, sUserId, sPassword);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -127,7 +127,7 @@ namespace FSMailCore
 				}
 				else return;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -148,7 +148,7 @@ namespace FSMailCore
 				else throw e_login;
 
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -170,7 +170,7 @@ namespace FSMailCore
 				{
 					eImapResponse = SendAndReceive(sCommand, ref asResultArray);
 				}
-				catch (Exception e)
+				catch (Exception)
 				{
 					Disconnect();
 					IsLoggedIn = false;
@@ -240,7 +240,7 @@ namespace FSMailCore
 				}
 				else throw e_examine;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -356,7 +356,7 @@ namespace FSMailCore
 				}
 				else throw e_select;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -444,7 +444,7 @@ namespace FSMailCore
 					else SelectFolder(MailboxName);
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -471,7 +471,7 @@ namespace FSMailCore
 				else
 					return false;
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				throw;
 			}
@@ -589,7 +589,7 @@ namespace FSMailCore
 					}
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -669,7 +669,7 @@ namespace FSMailCore
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -716,7 +716,7 @@ namespace FSMailCore
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -790,7 +790,7 @@ namespace FSMailCore
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -842,7 +842,7 @@ namespace FSMailCore
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -929,7 +929,7 @@ namespace FSMailCore
 				return size;
 
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}
@@ -1044,7 +1044,7 @@ namespace FSMailCore
 				else
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				LogOut();
 				throw;
@@ -1100,7 +1100,7 @@ namespace FSMailCore
 			{
 				sData = GetBody(sMessageUID, sMessagePart);
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				throw;
 			}
@@ -1152,7 +1152,7 @@ namespace FSMailCore
 			{
 				return GetHeader(sMessageUID, sMessagePart);
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				throw;
 			}
@@ -1234,7 +1234,7 @@ namespace FSMailCore
 
 				return imapEmail;
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				throw;
 			}
@@ -1305,7 +1305,7 @@ namespace FSMailCore
 				}
 
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				LogOut();
 				throw;
@@ -1663,7 +1663,7 @@ namespace FSMailCore
 				else
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_FETCHMSG, sCommandSuffix);
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				LogOut();
 				throw;
@@ -1751,7 +1751,7 @@ namespace FSMailCore
 				else
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_FETCHMSG, sCommandSuffix);
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				LogOut();
 				throw;

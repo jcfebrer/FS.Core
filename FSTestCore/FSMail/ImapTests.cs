@@ -66,7 +66,7 @@ namespace FSTestsCore.FSMail
                 mimeMessage.GetBodyPartList(bodylist);
                 for (int i = 0; i < bodylist.Count; i++)
                 {
-                    MimeBody ab = (MimeBody)bodylist[i];
+                    MimeBody? ab = (MimeBody?)bodylist[i];
                     if (ab.IsText())
                     {
                         string m = ab.GetText();
@@ -83,7 +83,7 @@ namespace FSTestsCore.FSMail
                 saSearchData[0] = "repsol";
                 ArrayList saArray = imap.SearchMessage(saSearchData);
 
-                string suid = saArray[0].ToString();
+                string? suid = saArray[0].ToString();
 
                 //Savel XML
                 //string sFileName = suid + ".xml";

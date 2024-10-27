@@ -72,7 +72,7 @@ namespace FSGoogleFirebaseCore
                 else
                 {
                     var stream = new FileStream(this.JsonSecretsKeyFilePath, FileMode.Open, FileAccess.Read);
-                    GoogleClientSecrets googleClientSecrets = GoogleClientSecrets.Load(stream);
+                    GoogleClientSecrets googleClientSecrets = GoogleClientSecrets.FromStream(stream);
                     clientSecrets = googleClientSecrets.Secrets;
                 }
 

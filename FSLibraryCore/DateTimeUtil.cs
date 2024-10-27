@@ -56,7 +56,8 @@ namespace FSLibraryCore
         /// <returns></returns>
         public static string ToRFC_822(System.DateTime date)
         {
-            var offset = TimeZone.CurrentTimeZone.GetUtcOffset(System.DateTime.Now).Hours;
+            //var offset = TimeZone.CurrentTimeZone.GetUtcOffset(System.DateTime.Now).Hours;
+            var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Hours;
             var timeZone = "+" + offset.ToString().PadLeft(2, '0');
 
             if (offset < 0)
@@ -433,8 +434,8 @@ namespace FSLibraryCore
         /// <returns></returns>
         public static string DateTimeToISO8601(DateTime date)
         {
-            if (date == null)
-                date = DateTime.MinValue;
+            //if (date == null)
+            //    date = DateTime.MinValue;
 
             return date.ToString("yyyyMMddTHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture);

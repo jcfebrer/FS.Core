@@ -24,11 +24,5 @@ namespace FSSepaLibraryCore
             : base(message, innerException)
         {
         }
-
-        protected SepaRuleException(SerializationInfo info, StreamingContext context)
-            : base(info, context)
-        {
-            
-        }
     }
 }

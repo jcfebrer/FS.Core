@@ -21,7 +21,7 @@ namespace FSFormControlsCore
 
         public Shortcut Shortcut { get; set; }
 
-        public bool Checked { get; set; }
+        public new bool Checked { get; set; }
 
         public string Key
         {

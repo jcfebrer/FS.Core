@@ -17,7 +17,7 @@ namespace FSSepaLibraryCore.Test.Utils
         {
             var document = new XmlDocument();
             document.AppendChild(document.CreateXmlDeclaration("1.0", Encoding.UTF8.BodyName, "yes"));
-            return (XmlElement) document.AppendChild(document.CreateElement("Document"));
+            return (XmlElement?) document.AppendChild(document.CreateElement("Document"));
         }
 
         [TestMethod]

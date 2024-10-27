@@ -6,7 +6,6 @@ using DataTable = System.Data.DataTable;
 
 namespace FSExcelCore
 {
-    [CLSCompliant(false)]
     public class Excel
     {
         public Application m_Excel;

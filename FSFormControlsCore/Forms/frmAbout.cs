@@ -182,8 +182,8 @@ namespace FSFormControlsCore
             lvItem = ListView1.Items.Add("Compilation Size");
             lvItem.SubItems.Add(NumberUtils.CompilationSize());
 
-            lvItem = ListView1.Items.Add("Permisos registro");
-            lvItem.SubItems.Add(Permission.Permissions());
+            //lvItem = ListView1.Items.Add("Permisos registro");
+            //lvItem.SubItems.Add(Permission.Permissions());
 
             lvItem = ListView1.Items.Add("StackTrace...");
             foreach (var s in Environment.StackTrace.Split(char.Parse(Global.Lf)))

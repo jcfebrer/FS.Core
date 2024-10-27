@@ -702,7 +702,7 @@ namespace FSMailCore
 				if (eImapResponse != ImapResponseEnum.IMAP_SUCCESS_RESPONSE)
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_CAPABILITY);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
 				throw;
 			}

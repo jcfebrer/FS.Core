@@ -2181,32 +2181,83 @@ namespace FSLibrary
             ForceMinimized = 11
         }
 
+        /// <summary>
+        /// KBDLLHOOKSTRUCT
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public class KBDLLHOOKSTRUCT
         {
+            /// <summary>
+            /// vkCode
+            /// </summary>
             public Int32 vkCode;
+            /// <summary>
+            /// scanCode
+            /// </summary>
             public Int32 scanCode;
+            /// <summary>
+            /// flags
+            /// </summary>
             public Int32 flags;
+            /// <summary>
+            /// time
+            /// </summary>
             public Int32 time;
+            /// <summary>
+            /// dwExtraInfo
+            /// </summary>
             public IntPtr dwExtraInfo;
         };
 
+        /// <summary>
+        /// GUITHREADINFO
+        /// </summary>
         [StructLayout(LayoutKind.Sequential)]
         public class GUITHREADINFO
         {
+            /// <summary>
+            /// GUITHREADINFO
+            /// </summary>
             public GUITHREADINFO()
             {
                 cbSize = Convert.ToInt32(Marshal.SizeOf(this));
             }
 
+            /// <summary>
+            /// cbSize
+            /// </summary>
             public Int32 cbSize;
+            /// <summary>
+            /// flags
+            /// </summary>
             public Int32 flags;
+            /// <summary>
+            /// hwndActive
+            /// </summary>
             public IntPtr hwndActive;
+            /// <summary>
+            /// hwndFocus
+            /// </summary>
             public IntPtr hwndFocus;
+            /// <summary>
+            /// hwndCapture
+            /// </summary>
             public IntPtr hwndCapture;
+            /// <summary>
+            /// hwndMenuOwner
+            /// </summary>
             public IntPtr hwndMenuOwner;
+            /// <summary>
+            /// hwndMoveSize
+            /// </summary>
             public IntPtr hwndMoveSize;
+            /// <summary>
+            /// hwndCaret
+            /// </summary>
             public IntPtr hwndCaret;
+            /// <summary>
+            /// rcCaret
+            /// </summary>
             public RECT rcCaret;
         }
 
@@ -3762,10 +3813,22 @@ namespace FSLibrary
         [Flags]
         public enum SPIF
         {
+            /// <summary>
+            /// None
+            /// </summary>
             None = 0x00,
-            SPIF_UPDATEINIFILE = 0x01, // Writes the new system-wide parameter setting to the user profile.
-            SPIF_SENDCHANGE = 0x02, // Broadcasts the WM_SETTINGCHANGE message after updating the user profile.
-            SPIF_SENDWININICHANGE = 0x02 // Same as SPIF_SENDCHANGE.
+            /// <summary>
+            /// SPIF_UPDATEINIFILE. Writes the new system-wide parameter setting to the user profile.
+            /// </summary>
+            SPIF_UPDATEINIFILE = 0x01,
+            /// <summary>
+            /// SPIF_SENDCHANGE. Broadcasts the WM_SETTINGCHANGE message after updating the user profile.
+            /// </summary>
+            SPIF_SENDCHANGE = 0x02,
+            /// <summary>
+            /// SPIF_SENDWININICHANGE. Same as SPIF_SENDCHANGE.
+            /// </summary>
+            SPIF_SENDWININICHANGE = 0x02
         }
 
         /// <summary>
@@ -3800,6 +3863,9 @@ namespace FSLibrary
             /// </summary>
             private int iMinAnimate;
 
+            /// <summary>
+            /// IMinAnimate
+            /// </summary>
             public bool IMinAnimate
             {
                 get
@@ -3814,6 +3880,10 @@ namespace FSLibrary
                 }
             }
 
+            /// <summary>
+            /// GetSize
+            /// </summary>
+            /// <returns></returns>
             public static int GetSize()
             {
                 return (int)Marshal.SizeOf(typeof(ANIMATIONINFO));

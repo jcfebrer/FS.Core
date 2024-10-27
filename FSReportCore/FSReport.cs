@@ -5,19 +5,16 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Windows.Forms;
-using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 using CrystalDecisions.Windows.Forms;
-using FSLibraryCore;
 using FSExceptionCore;
 using FSFormControlsCore;
-using System.IO;
 
 #endregion
 
 namespace FSReportCore
 {
-	public class Report : DBUserControl
+    public class Report : DBUserControl
     {
         #region '" Código generado por el Diseñador de Windows Forms "' 
 

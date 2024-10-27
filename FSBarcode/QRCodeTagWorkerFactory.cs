@@ -1,6 +1,7 @@
 ﻿using iText.Html2pdf.Attach;
 using iText.Html2pdf.Attach.Impl;
 using iText.StyledXmlParser.Node;
+using System;
 
 namespace FSBarcode
 {
@@ -8,6 +9,7 @@ namespace FSBarcode
     /// <summary>
     /// Custom tagworkerfactory for pdfHTML for tag qr.
     /// </summary>
+    [CLSCompliant(false)]
     public class QRCodeTagWorkerFactory : DefaultTagWorkerFactory
     {
 

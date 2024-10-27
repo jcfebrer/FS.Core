@@ -69,7 +69,7 @@ namespace FSPdfCore
                 "Signature");
             }
 
-            var keyPair = Org.BouncyCastle.Security.DotNetUtilities.GetKeyPair(certificate.PrivateKey).Private;
+            var keyPair = Org.BouncyCastle.Security.DotNetUtilities.GetKeyPair(certificate.GetRSAPrivateKey()).Private;
             Org.BouncyCastle.X509.X509Certificate bcCert = Org.BouncyCastle.Security.DotNetUtilities.FromX509Certificate(certificate);
             var chain = new List<Org.BouncyCastle.X509.X509Certificate> { bcCert };
             IExternalSignature signature = new PrivateKeySignature(keyPair, "SHA-256");

@@ -31,8 +31,12 @@ namespace FSGoogleFirebaseCore
 			String dateT = "";
 			String filehttp = "false";
 			String reference = "";
-			if (dateTime != null)
-				dateT = DateTime.Now.ToShortDateString();
+
+			//if (dateTime != null)
+				dateT = dateTime.ToShortDateString();
+			//else
+			//	dateT = DateTime.Now.ToShortDateString();
+
 			if (fileHttp)
 				filehttp = fileHttp.ToString();
 

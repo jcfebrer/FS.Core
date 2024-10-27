@@ -22,7 +22,7 @@ namespace FSFormControlsCore
         private System.Windows.Forms.TreeView tvwMain;
         private System.ComponentModel.IContainer components;
 
-        private bool goflag = false;
+        //private bool goflag = false;
         private bool showMyDocuments = true;
         private bool showMyFavorites = true;
         private bool showMyNetwork = true;

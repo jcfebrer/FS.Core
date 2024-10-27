@@ -44,24 +44,6 @@
     <Compile Update="FSReport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CrystalReports.AxShockwaveFlashObjects" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.Engine" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.ClientDoc" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.CommLayer" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.CommonControls" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.CommonObjectModel" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.Controllers" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.CubeDefModel" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.DataDefModel" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.DataSetConversion" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.ObjectFactory" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.Prompting" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.ReportDefModel" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportAppServer.XmlSerialize" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ReportSource" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.Shared" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.ShockwaveFlashObjects" Version="13.0.4003" />
-    <PackageReference Include="CrystalReports.Windows.Forms" Version="13.0.4003" />
     <PackageReference Include="log4net" Version="3.0.2" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
@@ -70,5 +52,16 @@
     <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
     <ProjectReference Include="..\FSFormControlsCore\FSFormControlsCore.csproj" />
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine">
+      <HintPath>C:\Windows\assembly\GAC_MSIL\CrystalDecisions.CrystalReports.Engine\13.0.3500.0__692fbea5521e1304\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared">
+      <HintPath>C:\windows\assembly\GAC_MSIL\CrystalDecisions.Shared\13.0.3500.0__692fbea5521e1304\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Windows.Forms">
+      <HintPath>C:\windows\assembly\GAC_MSIL\CrystalDecisions.Windows.Forms\13.0.3500.0__692fbea5521e1304\CrystalDecisions.Windows.Forms.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

@@ -22,7 +22,7 @@ namespace FSFormControls
 		private System.Windows.Forms.TreeView tvwMain;
 		private System.ComponentModel.IContainer components;
 
-		private bool goflag = false;
+		//private bool goflag = false;
 		private bool showMyDocuments = true;
 		private bool showMyFavorites = true;
 		private bool showMyNetwork = true;
@@ -1345,36 +1345,36 @@ namespace FSFormControls
 	//Shell functions
 	public class Win32
 	{
-		public const uint SHGFI_ICON = 0x100;
-		//public const uint SHGFI_LARGEICON = 0x0;    // 'Large icon
-		public const uint SHGFI_SMALLICON = 0x1;    // 'Small icon
+		public const int SHGFI_ICON = 0x100;
+		//public const int SHGFI_LARGEICON = 0x0;    // 'Large icon
+		public const int SHGFI_SMALLICON = 0x1;    // 'Small icon
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         public struct SHQUERYRBINFO
         {
-            public uint cbSize;
-            public ulong i64Size;
-            public ulong i64NumItems;
+            public int cbSize;
+            public long i64Size;
+            public long i64NumItems;
         };
 
         [DllImport("shell32.dll")]
 		public static extern IntPtr SHGetFileInfo(
 			string pszPath,
-			uint dwFileAttributes,
+			int dwFileAttributes,
 			ref SHFILEINFO psfi,
-			uint cbSizeFileInfo,
-			uint uFlags);
+			int cbSizeFileInfo,
+			int uFlags);
 
 		[DllImport("kernel32")]
-		public static extern uint GetDriveType(
+		public static extern int GetDriveType(
 			string lpRootPathName);
 
 		[DllImport("shell32.dll")]
 		public static extern bool SHGetDiskFreeSpaceEx(
 			string pszVolume,
-			ref ulong pqwFreeCaller,
-			ref ulong pqwTot,
-			ref ulong pqwFree);
+			ref long pqwFreeCaller,
+			ref long pqwTot,
+			ref long pqwFree);
 
 		[DllImport("shell32.Dll")]
 		public static extern int SHQueryRecycleBin(
@@ -1386,7 +1386,7 @@ namespace FSFormControls
 		{
 			public IntPtr hIcon;
 			public IntPtr iIcon;
-			public uint dwAttributes;
+			public int dwAttributes;
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
 			public string szDisplayName;
 			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
@@ -1418,7 +1418,7 @@ namespace FSFormControls
 		[DllImport("shell32.dll")]
 		public static extern IntPtr DestroyIcon(IntPtr hIcon);
 		[DllImport("gdi32.dll")]
-		public static extern IntPtr CreateDIBSection(IntPtr hdc, [In, MarshalAs(UnmanagedType.LPStruct)] BITMAPINFO pbmi, uint iUsage, out IntPtr ppvBits, IntPtr hSection, uint dwOffset);
+		public static extern IntPtr CreateDIBSection(IntPtr hdc, [In, MarshalAs(UnmanagedType.LPStruct)] BITMAPINFO pbmi, int iUsage, out IntPtr ppvBits, IntPtr hSection, int dwOffset);
 	}
 
 	public enum ResourceScope

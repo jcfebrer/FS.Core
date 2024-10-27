@@ -290,7 +290,7 @@ namespace FSSepaLibraryCore
 
             XmlDocument xml = new XmlDocument();
             xml.AppendChild(xml.CreateXmlDeclaration("1.0", Encoding.UTF8.BodyName, "yes"));
-            XmlElement el = (XmlElement)xml.AppendChild(xml.CreateElement("Document"));
+            XmlElement? el = (XmlElement?)xml.AppendChild(xml.CreateElement("Document"));
             if (el != null)
             {
                 el.SetAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");

@@ -31,7 +31,7 @@ namespace FSIACore
         {
             [DataMember(Name = "error")]
             [JsonPropertyName("error")]
-            public ChatError? Error { get; set; }
+            public ChatError Error { get; set; }
         }
 
         [DataContract]
@@ -39,19 +39,19 @@ namespace FSIACore
         {
             [DataMember(Name = "message")]
             [JsonPropertyName("message")]
-            public string? Message { get; set; }
+            public string Message { get; set; }
 
             [DataMember(Name = "type")]
             [JsonPropertyName("type")]
-            public string? Type { get; set; }
+            public string Type { get; set; }
 
             [DataMember(Name = "param")]
             [JsonPropertyName("param")]
-            public object? Param { get; set; }
+            public object Param { get; set; }
 
             [DataMember(Name = "code")]
             [JsonPropertyName("code")]
-            public string? Code { get; set; }
+            public string Code { get; set; }
         }
 
         [DataContract]
@@ -59,11 +59,11 @@ namespace FSIACore
         {
             [DataMember(Name = "id")]
             [JsonPropertyName("id")]
-            public string? Id { get; set; }
+            public string Id { get; set; }
 
             [DataMember(Name = "object")]
             [JsonPropertyName("object")]
-            public string? Object { get; set; }
+            public string Object { get; set; }
 
             [DataMember(Name = "created")]
             [JsonPropertyName("created")]
@@ -71,15 +71,15 @@ namespace FSIACore
 
             [DataMember(Name = "model")]
             [JsonPropertyName("model")]
-            public string? Model { get; set; }
+            public string Model { get; set; }
 
             [DataMember(Name = "choices")]
             [JsonPropertyName("choices")]
-            public ChatChoice[]? Choices { get; set; }
+            public ChatChoice[] Choices { get; set; }
 
             [DataMember(Name = "usage")]
             [JsonPropertyName("usage")]
-            public ChatUsage? Usage { get; set; }
+            public ChatUsage Usage { get; set; }
         }
 
         [DataContract]
@@ -87,7 +87,7 @@ namespace FSIACore
         {
             [DataMember(Name = "message")]
             [JsonPropertyName("message")]
-            public ChatMessage? Message { get; set; }
+            public ChatMessage Message { get; set; }
 
             [DataMember(Name = "index")]
             [JsonPropertyName("index")]
@@ -95,11 +95,11 @@ namespace FSIACore
 
             [DataMember(Name = "logprobs")]
             [JsonPropertyName("logprobs")]
-            public object? Logprobs { get; set; }
+            public object Logprobs { get; set; }
 
             [DataMember(Name = "finish_reason")]
             [JsonPropertyName("finish_reason")]
-            public string? FinishReason { get; set; }
+            public string FinishReason { get; set; }
         }
 
         [DataContract]
@@ -107,19 +107,19 @@ namespace FSIACore
         {
             [DataMember(Name = "role")]
             [JsonPropertyName("role")]
-            public string? Role { get; set; }
+            public string Role { get; set; }
 
             [DataMember(Name = "content")]
             [JsonPropertyName("content")]
-            public string? Content { get; set; }
+            public string Content { get; set; }
 
             [DataMember(Name = "name")]
             [JsonPropertyName("name")]
-            public string? Name { get; set; }
+            public string Name { get; set; }
 
             [DataMember(Name = "function_call")]
             [JsonPropertyName("function_call")]
-            public ChatMessageFunctionCall? FunctionCall { get; set; }
+            public ChatMessageFunctionCall FunctionCall { get; set; }
         }
 
         [DataContract]
@@ -127,11 +127,11 @@ namespace FSIACore
         {
             [DataMember(Name = "name")]
             [JsonPropertyName("name")]
-            public string? Name { get; set; }
+            public string Name { get; set; }
 
             [DataMember(Name = "arguments")]
             [JsonPropertyName("arguments")]
-            public string? Arguments { get; set; }
+            public string Arguments { get; set; }
         }
 
         [DataContract]
@@ -160,7 +160,7 @@ namespace FSIACore
             Url = url;
         }
 
-        public async Task<ChatResponse?> Question(string prompt, string system, CancellationToken token)
+        public async Task<ChatResponse> Question(string prompt, string system, CancellationToken token)
         {
             GptMessage message = new GptMessage();
             message.content = prompt;
@@ -172,7 +172,7 @@ namespace FSIACore
             return await Question(new GptMessage[] { systemMsg, message }, token);
         }
 
-        public async Task<ChatResponse?> Question(string prompt, CancellationToken token)
+        public async Task<ChatResponse> Question(string prompt, CancellationToken token)
         { 
             GptMessage message = new GptMessage();
             message.content = prompt;
@@ -180,7 +180,7 @@ namespace FSIACore
             return await Question(new GptMessage[] { message }, token);
         }
 
-        public async Task<ChatResponse?> Question(GptMessage[] messages, CancellationToken token)
+        public async Task<ChatResponse> Question(GptMessage[] messages, CancellationToken token)
         {
             //ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             //ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };

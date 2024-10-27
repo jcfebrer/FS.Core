@@ -598,9 +598,9 @@ namespace FSFormControlsCore
                         break;
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -665,9 +665,9 @@ namespace FSFormControlsCore
 
                 g.DrawString(TextOptions.Text, TextOptions.TextFont, _TextBrush, StartPosition, Topposition);
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -699,9 +699,9 @@ namespace FSFormControlsCore
                         break;
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -739,9 +739,9 @@ namespace FSFormControlsCore
                         break;
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -782,9 +782,9 @@ namespace FSFormControlsCore
                             break;
                     }
                 }
-                catch (ExceptionUtil ex)
+                catch (ExceptionUtil)
                 {
-                    throw ex;
+                    throw;
                 }
                 finally
                 {
@@ -823,9 +823,9 @@ namespace FSFormControlsCore
                         break;
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -854,9 +854,9 @@ namespace FSFormControlsCore
                             break;
                     }
                 }
-                catch (ExceptionUtil ex)
+                catch (ExceptionUtil)
                 {
-                    throw ex;
+                    throw;
                 }
         }
 
@@ -889,9 +889,9 @@ namespace FSFormControlsCore
                         break;
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -918,9 +918,9 @@ namespace FSFormControlsCore
                 Tri_Points[2] = new Point(_Width + Rect.X, _Height + Rect.Y);
                 return Tri_Points;
             }
-            catch (ExceptionUtil ex)
+            catch (ExceptionUtil)
             {
-                throw ex;
+                throw;
             }
         }
 

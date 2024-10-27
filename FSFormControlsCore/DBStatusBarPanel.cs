@@ -21,7 +21,7 @@ namespace FSFormControlsCore
 
         public ProgressBar ProgressBarInfo { get; set; }
 
-        public bool Visible { get; set; }
+        public new bool Visible { get; set; }
 
         public void BeginInit()
         {

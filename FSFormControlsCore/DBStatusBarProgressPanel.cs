@@ -324,7 +324,7 @@ namespace FSFormControlsCore
         /// </summary>
         public void StopAnimation()
         {
-            if (_animationThread.IsAlive) _animationThread.Abort();
+            if (_animationThread.IsAlive) _animationThread.Interrupt();
         }
 
         /// <summary>
@@ -351,7 +351,7 @@ namespace FSFormControlsCore
 
         public ProgressBar ProgressBarInfo { get; set; }
 
-        public bool Visible { get; set; }
+        public new bool Visible { get; set; }
 
         private void InitializeAnimationThread()
         {
