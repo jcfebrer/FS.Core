@@ -71,6 +71,7 @@
     <Compile Include="WebService.cs" />
     <Compile Include="Whois.cs" />
     <Compile Include="Wininet.cs" />
+    <Compile Include="WOL.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSCrypto\FSCrypto.csproj">
