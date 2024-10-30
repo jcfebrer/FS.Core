@@ -132,6 +132,7 @@
     <Compile Include="Clipboard.cs" />
     <Compile Include="Contenedor_ISO6346.cs" />
     <Compile Include="Dni.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="Flip.cs" />
     <Compile Include="Info.cs" />
     <Compile Include="IniParser.cs" />
