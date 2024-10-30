@@ -61,14 +61,13 @@ namespace FSFormControls
 
         private void FillEnvironment()
         {
-            var transTemp1 = ListView1;
-            transTemp1.View = View.Details;
-            transTemp1.FullRowSelect = true;
-            transTemp1.GridLines = true;
-            transTemp1.LabelEdit = false;
-            transTemp1.Columns.Clear();
-            transTemp1.Columns.Add("Propiedad", 170, HorizontalAlignment.Left);
-            transTemp1.Columns.Add("Valor", 300, HorizontalAlignment.Left);
+            ListView1.View = View.Details;
+            ListView1.FullRowSelect = true;
+            ListView1.GridLines = true;
+            ListView1.LabelEdit = false;
+            ListView1.Columns.Clear();
+            ListView1.Columns.Add("Propiedad", 170, HorizontalAlignment.Left);
+            ListView1.Columns.Add("Valor", 300, HorizontalAlignment.Left);
 
 
             ListViewItem lvItem = null;
@@ -300,7 +299,7 @@ namespace FSFormControls
             this.logoFebrerSoftware.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logoFebrerSoftware.ForeColor = System.Drawing.Color.Black;
             this.logoFebrerSoftware.Image = ((System.Drawing.Image)(resources.GetObject("logoFebrerSoftware.Image")));
-            this.logoFebrerSoftware.Location = new System.Drawing.Point(16, 8);
+            this.logoFebrerSoftware.Location = new System.Drawing.Point(19, 9);
             this.logoFebrerSoftware.Name = "logoFebrerSoftware";
             this.logoFebrerSoftware.Size = new System.Drawing.Size(240, 63);
             this.logoFebrerSoftware.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -314,9 +313,9 @@ namespace FSFormControls
             this.Label2.BackColor = System.Drawing.Color.White;
             this.Label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.Label2.Location = new System.Drawing.Point(16, 309);
+            this.Label2.Location = new System.Drawing.Point(16, 439);
             this.Label2.Name = "Label2";
-            this.Label2.Size = new System.Drawing.Size(156, 13);
+            this.Label2.Size = new System.Drawing.Size(208, 17);
             this.Label2.TabIndex = 11;
             this.Label2.Text = "juancarlos@febrersoftware.com";
             // 
@@ -325,9 +324,9 @@ namespace FSFormControls
             this.LinkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.LinkLabel1.AutoSize = true;
             this.LinkLabel1.BackColor = System.Drawing.Color.White;
-            this.LinkLabel1.Location = new System.Drawing.Point(16, 293);
+            this.LinkLabel1.Location = new System.Drawing.Point(19, 419);
             this.LinkLabel1.Name = "LinkLabel1";
-            this.LinkLabel1.Size = new System.Drawing.Size(155, 13);
+            this.LinkLabel1.Size = new System.Drawing.Size(183, 16);
             this.LinkLabel1.TabIndex = 9;
             this.LinkLabel1.TabStop = true;
             this.LinkLabel1.Text = "http://www.febrersoftware.com";
@@ -337,9 +336,9 @@ namespace FSFormControls
             this.Label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label1.AutoSize = true;
             this.Label1.Font = new System.Drawing.Font("Arial Narrow", 8.25F);
-            this.Label1.Location = new System.Drawing.Point(313, 40);
+            this.Label1.Location = new System.Drawing.Point(408, 46);
             this.Label1.Name = "Label1";
-            this.Label1.Size = new System.Drawing.Size(98, 15);
+            this.Label1.Size = new System.Drawing.Size(118, 17);
             this.Label1.TabIndex = 14;
             this.Label1.Text = "Bº Marusas Nº5 Lonja";
             // 
@@ -348,9 +347,9 @@ namespace FSFormControls
             this.Label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label4.AutoSize = true;
             this.Label4.Font = new System.Drawing.Font("Arial Narrow", 8.25F);
-            this.Label4.Location = new System.Drawing.Point(305, 56);
+            this.Label4.Location = new System.Drawing.Point(398, 65);
             this.Label4.Name = "Label4";
-            this.Label4.Size = new System.Drawing.Size(113, 15);
+            this.Label4.Size = new System.Drawing.Size(132, 17);
             this.Label4.TabIndex = 15;
             this.Label4.Text = "48610 - Urduliz (Vizcaya)";
             // 
@@ -359,19 +358,19 @@ namespace FSFormControls
             this.Label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.Label5.AutoSize = true;
             this.Label5.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label5.Location = new System.Drawing.Point(297, 24);
+            this.Label5.Location = new System.Drawing.Point(421, 29);
             this.Label5.Name = "Label5";
-            this.Label5.Size = new System.Drawing.Size(133, 15);
+            this.Label5.Size = new System.Drawing.Size(89, 17);
             this.Label5.TabIndex = 16;
-            this.Label5.Text = "Tfno: 94 6764972 - 629237109";
+            this.Label5.Text = "Tfno: 629237109";
             // 
             // cmdClose
             // 
             this.cmdClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdClose.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdClose.Location = new System.Drawing.Point(479, 293);
+            this.cmdClose.Location = new System.Drawing.Point(607, 428);
             this.cmdClose.Name = "cmdClose";
-            this.cmdClose.Size = new System.Drawing.Size(72, 24);
+            this.cmdClose.Size = new System.Drawing.Size(86, 28);
             this.cmdClose.TabIndex = 17;
             this.cmdClose.Text = "Cerrar";
             this.cmdClose.UseVisualStyleBackColor = false;
@@ -389,10 +388,10 @@ namespace FSFormControls
             this.lstAssemblies.GridLines = true;
             this.lstAssemblies.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.lstAssemblies.HideSelection = false;
-            this.lstAssemblies.Location = new System.Drawing.Point(16, 88);
+            this.lstAssemblies.Location = new System.Drawing.Point(19, 102);
             this.lstAssemblies.MultiSelect = false;
             this.lstAssemblies.Name = "lstAssemblies";
-            this.lstAssemblies.Size = new System.Drawing.Size(537, 149);
+            this.lstAssemblies.Size = new System.Drawing.Size(677, 244);
             this.lstAssemblies.TabIndex = 18;
             this.lstAssemblies.UseCompatibleStateImageBehavior = false;
             this.lstAssemblies.View = System.Windows.Forms.View.Details;
@@ -411,9 +410,9 @@ namespace FSFormControls
             // 
             this.cmdInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdInfo.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdInfo.Location = new System.Drawing.Point(327, 293);
+            this.cmdInfo.Location = new System.Drawing.Point(424, 428);
             this.cmdInfo.Name = "cmdInfo";
-            this.cmdInfo.Size = new System.Drawing.Size(144, 24);
+            this.cmdInfo.Size = new System.Drawing.Size(173, 28);
             this.cmdInfo.TabIndex = 19;
             this.cmdInfo.Text = "Información del Sistema";
             this.cmdInfo.UseVisualStyleBackColor = false;
@@ -425,7 +424,7 @@ namespace FSFormControls
             // 
             // ColumnHeader2
             // 
-            this.ColumnHeader2.Text = "Versi?n";
+            this.ColumnHeader2.Text = "Versión";
             this.ColumnHeader2.Width = 80;
             // 
             // ListView1
@@ -441,10 +440,10 @@ namespace FSFormControls
             this.ListView1.GridLines = true;
             this.ListView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
             this.ListView1.HideSelection = false;
-            this.ListView1.Location = new System.Drawing.Point(16, 88);
+            this.ListView1.Location = new System.Drawing.Point(19, 102);
             this.ListView1.MultiSelect = false;
             this.ListView1.Name = "ListView1";
-            this.ListView1.Size = new System.Drawing.Size(537, 149);
+            this.ListView1.Size = new System.Drawing.Size(677, 261);
             this.ListView1.TabIndex = 20;
             this.ListView1.UseCompatibleStateImageBehavior = false;
             this.ListView1.View = System.Windows.Forms.View.Details;
@@ -453,9 +452,9 @@ namespace FSFormControls
             // 
             this.cmdEntorno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cmdEntorno.BackColor = System.Drawing.SystemColors.Control;
-            this.cmdEntorno.Location = new System.Drawing.Point(239, 293);
+            this.cmdEntorno.Location = new System.Drawing.Point(319, 428);
             this.cmdEntorno.Name = "cmdEntorno";
-            this.cmdEntorno.Size = new System.Drawing.Size(80, 24);
+            this.cmdEntorno.Size = new System.Drawing.Size(96, 28);
             this.cmdEntorno.TabIndex = 21;
             this.cmdEntorno.Text = "Entorno";
             this.cmdEntorno.UseVisualStyleBackColor = false;
@@ -464,7 +463,7 @@ namespace FSFormControls
             // 
             this.logoNET.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.logoNET.Image = ((System.Drawing.Image)(resources.GetObject("logoNET.Image")));
-            this.logoNET.Location = new System.Drawing.Point(449, 16);
+            this.logoNET.Location = new System.Drawing.Point(571, 18);
             this.logoNET.Name = "logoNET";
             this.logoNET.Size = new System.Drawing.Size(112, 60);
             this.logoNET.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -477,17 +476,17 @@ namespace FSFormControls
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Label3.Font = new System.Drawing.Font("Arial Narrow", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label3.Location = new System.Drawing.Point(16, 237);
+            this.Label3.Location = new System.Drawing.Point(19, 349);
             this.Label3.Name = "Label3";
-            this.Label3.Size = new System.Drawing.Size(537, 48);
+            this.Label3.Size = new System.Drawing.Size(677, 70);
             this.Label3.TabIndex = 23;
             this.Label3.Text = resources.GetString("Label3.Text");
             // 
             // frmAbout
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
+            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(569, 323);
+            this.ClientSize = new System.Drawing.Size(715, 463);
             this.Controls.Add(this.Label3);
             this.Controls.Add(this.logoNET);
             this.Controls.Add(this.cmdEntorno);
@@ -503,6 +502,7 @@ namespace FSFormControls
             this.Controls.Add(this.ListView1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(733, 510);
             this.Name = "frmAbout";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
