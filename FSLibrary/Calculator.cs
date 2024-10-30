@@ -142,7 +142,7 @@ namespace FSLibrary
 
                 return level0(ref symbols);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("Invalid expression.", ex);
             }

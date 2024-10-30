@@ -67,7 +67,7 @@ namespace FSFormControls
             {
                 SelectedRow = DbGrid1.DataControl.DataTable.DefaultView[DbGrid1.RowSel].Row;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

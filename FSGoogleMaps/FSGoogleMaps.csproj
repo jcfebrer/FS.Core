@@ -105,6 +105,10 @@
     <Compile Include="Library.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FSException\FSException.csproj">
+      <Project>{2A366B72-70B3-4700-B962-5920A0EEE074}</Project>
+      <Name>FSException</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
       <Project>{7e0adef9-bcb8-48cd-99b6-68bf862f7083}</Project>
       <Name>FSLibrary</Name>

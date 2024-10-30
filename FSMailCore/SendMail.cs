@@ -21,6 +21,7 @@ using System.IO;
 using FSTraceCore;
 using System.Diagnostics;
 using System.Reflection;
+using FSExceptionCore;
 
 #endregion
 
@@ -104,13 +105,13 @@ namespace FSMailCore
 			if (!String.IsNullOrEmpty(sTo))
 				Mail.To.Add(new MailAddress(sTo));
 			else
-				throw new Exception("Destinatario del mensaje 'sTo', no especificado.");
+				throw new ExceptionUtil("Destinatario del mensaje 'sTo', no especificado.");
 
 			
 			if (!String.IsNullOrEmpty(User))
 				Mail.From = new MailAddress(User);
 			else
-				throw new Exception("Usuario de correo, no especificado.");
+				throw new ExceptionUtil("Usuario de correo, no especificado.");
 
 
 			if (!String.IsNullOrEmpty(sCCO)) {

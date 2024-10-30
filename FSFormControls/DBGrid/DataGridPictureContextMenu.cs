@@ -187,7 +187,7 @@ namespace FSFormControls
                         var Newbm = Image.FromFile(openFileDialog1.FileName);
                         Image = Newbm;
                     }
-                    catch (ExceptionUtil ex)
+                    catch (Exception ex)
                     {
                         throw new ExceptionUtil(ex);
                     }

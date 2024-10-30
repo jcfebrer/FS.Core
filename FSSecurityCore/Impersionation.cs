@@ -19,7 +19,7 @@ namespace FSSecurityCore
         /// <param name="password">user's domain password</param>
         public Impersonation(string domain, string username, string password)
         {
-            throw new Exception("Función CORE no implementada.");
+            throw new ExceptionUtil("Función CORE no implementada.");
             //var token = ValidateParametersAndGetFirstLoginToken(username, domain, password);
 
             //var duplicateToken = IntPtr.Zero;

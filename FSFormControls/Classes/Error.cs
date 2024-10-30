@@ -106,7 +106,7 @@ namespace FSFormControls
                 else
                     Global.Errors.Add(ex);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 MessageBox.Show("Imposible gestionar error. Función: ErrorMessage. Error: " + e, "Febrer Software");
             }
@@ -207,7 +207,7 @@ namespace FSFormControls
                 SW.Flush();
                 SW.Close();
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Imposible guardar log de errores. Error: " + ex.Message, "Febrer Software",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -224,7 +224,7 @@ namespace FSFormControls
                 log.Source = "Application";
                 log.WriteEntry(message, EventLogEntryType.Error);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Imposible guardar log de errores. Error: " + ex.Message, "Febrer Software",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);

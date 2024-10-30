@@ -52,7 +52,7 @@ namespace FSFormControlsCore
 
                 FillEnvironment();
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }

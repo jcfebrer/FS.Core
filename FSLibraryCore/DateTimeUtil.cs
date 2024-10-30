@@ -10,6 +10,7 @@
 
 #region
 
+using FSExceptionCore;
 using System;
 using System.Globalization;
 using System.Text.RegularExpressions;
@@ -408,7 +409,7 @@ namespace FSLibraryCore
             }
             else
             {
-                throw new Exception("Formato de fecha no válido.");
+                throw new ExceptionUtil("Formato de fecha no válido.");
             }
         }
 

@@ -692,7 +692,7 @@ namespace FSFormControlsCore
                 tmpxmldoc.Load(filename);
                 FillTreeXML(tmpxmldoc.DocumentElement, TreeView1.Nodes);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -793,7 +793,7 @@ namespace FSFormControlsCore
             {
                 SaveXML(SaveFileDialog1.FileName);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -808,7 +808,7 @@ namespace FSFormControlsCore
             {
                 LoadXML(OpenFileDialog1.FileName);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }

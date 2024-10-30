@@ -292,12 +292,12 @@ namespace FSCrypto
                 }
                 else
                 {
-                    throw new Exception("Error: Clave no definida.");
+                    throw new ExceptionUtil("Error: Clave no definida.");
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new ExceptionUtil(e.Message);
             }
         }
 
@@ -352,12 +352,12 @@ namespace FSCrypto
                 }
                 else
                 {
-                    throw new Exception("Error: Clave no definida.");
+                    throw new ExceptionUtil("Error: Clave no definida.");
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new ExceptionUtil(e.Message);
             }
         }
         
@@ -428,7 +428,7 @@ namespace FSCrypto
         public void CryptFile(string inFileName, string outFileName, CryptoAction action)
         {
             if (!File.Exists(inFileName))
-                throw new Exception("No existe el fichero: " + inFileName);
+                throw new ExceptionUtil("No existe el fichero: " + inFileName);
 
             try
             {
@@ -472,12 +472,12 @@ namespace FSCrypto
                 }
                 else
                 {
-                    throw new Exception("Error: Clave no definida.");
+                    throw new ExceptionUtil("Error: Clave no definida.");
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
-                throw new Exception(e.Message);
+                throw new ExceptionUtil(e.Message);
             }
         }
     }

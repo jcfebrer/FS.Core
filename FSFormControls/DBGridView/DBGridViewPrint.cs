@@ -89,7 +89,7 @@ namespace FSFormControls.UserControls.DBGridView
                 printDoc.BeginPrint -= PrintDoc_BeginPrint;
                 printDoc.PrintPage -= PrintDoc_PrintPage;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -136,7 +136,7 @@ namespace FSFormControls.UserControls.DBGridView
                 NewPage = true;
                 RowPos = 0;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -335,7 +335,7 @@ namespace FSFormControls.UserControls.DBGridView
 
                 e.HasMorePages = false;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

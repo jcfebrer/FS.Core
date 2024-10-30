@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using FSGoogleFirebase.Auth;
 using System.Security.Policy;
 using System.IO;
+using FSException;
 
 namespace FSGoogleFirebase
 {
@@ -120,7 +121,7 @@ namespace FSGoogleFirebase
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
                     var responseString = await response.Content.ReadAsStringAsync();
-                    throw new Exception("Error: " + responseString);
+                    throw new ExceptionUtil("Error: " + responseString);
                 }
             }
         }

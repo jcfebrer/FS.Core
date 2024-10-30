@@ -81,12 +81,12 @@ namespace FSNetworkCore
                             builder.Append(InputStream.ReadLine() + "\r\n");
                         }
                     }
-                    catch (ExceptionUtil Err)
+                    catch (Exception Err)
                     {
                         throw new ExceptionUtil("Error geting whois data from whois server", Err);
                     }
                 }
-                catch (ExceptionUtil Err)
+                catch (Exception Err)
                 {
                     throw new ExceptionUtil("Error sending whois request to whois server", Err);
                 }

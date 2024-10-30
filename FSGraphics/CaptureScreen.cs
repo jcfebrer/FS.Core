@@ -36,7 +36,7 @@ namespace FSGraphics
 
                 return desktopImage;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 Log.TraceError(e);
                 return null;
@@ -106,7 +106,7 @@ namespace FSGraphics
                 //LogUtil.TraceInfo("Screen capture method 1 done in: " + t.ElapsedMilliseconds + "ms. Size: " + bitmap.Size.ToString());
                 return bitmap;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 Log.TraceError(ex);
                 Thread.Sleep(200);
@@ -247,7 +247,7 @@ namespace FSGraphics
 
                         return (Image)bmpScreenshot;
                     }
-                    catch (ExceptionUtil e)
+                    catch (Exception e)
                     {
                         throw new ExceptionUtil("Error al realizar la captura", e);
                     }

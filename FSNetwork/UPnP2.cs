@@ -5,6 +5,7 @@ using System.Net;
 using System.Xml;
 using System.IO;
 using System.Threading;
+using FSException;
 
 namespace FSNetwork
 {
@@ -207,7 +208,7 @@ namespace FSNetwork
         public static void ForwardPort(DeviceUPnP device, int port, ProtocolType protocol, string description)
         {
             if (device == null || string.IsNullOrEmpty(device.ServiceUrl))
-                throw new Exception("No UPnP service available or Discover() has not been called");
+                throw new ExceptionUtil("No UPnP service available or Discover() has not been called");
             XmlDocument xdoc = SOAPRequest(device.ServiceUrl, "<u:AddPortMapping xmlns:u=\"urn:schemas-upnp-org:service:" + ConnectionType.ToString() + ":1\">" +
                 "<NewRemoteHost></NewRemoteHost><NewExternalPort>" + port.ToString() + "</NewExternalPort><NewProtocol>" + protocol.ToString().ToUpper() + "</NewProtocol>" +
                 "<NewInternalPort>" + port.ToString() + "</NewInternalPort><NewInternalClient>" + Dns.GetHostAddresses(Dns.GetHostName())[0].ToString() +
@@ -218,7 +219,7 @@ namespace FSNetwork
         public static void DeleteForwardingRule(DeviceUPnP device, int port, ProtocolType protocol)
         {
             if (device == null || string.IsNullOrEmpty(device.ServiceUrl))
-                throw new Exception("No UPnP service available or Discover() has not been called");
+                throw new ExceptionUtil("No UPnP service available or Discover() has not been called");
             XmlDocument xdoc = SOAPRequest(device.ServiceUrl,
             "<u:DeletePortMapping xmlns:u=\"urn:schemas-upnp-org:service:" + ConnectionType.ToString() + ":1\">" +
             "<NewRemoteHost>" +
@@ -231,7 +232,7 @@ namespace FSNetwork
         public static IPAddress GetExternalIP(DeviceUPnP device)
         {
             if (device == null || string.IsNullOrEmpty(device.ServiceUrl))
-                throw new Exception("No UPnP service available or Discover() has not been called");
+                throw new ExceptionUtil("No UPnP service available or Discover() has not been called");
             XmlDocument xdoc = SOAPRequest(device.ServiceUrl, "<u:GetExternalIPAddress xmlns:u=\"urn:schemas-upnp-org:service:" + ConnectionType.ToString() + ":1\">" + "\r\n" +
             "</u:GetExternalIPAddress>", "GetExternalIPAddress");
             XmlNamespaceManager nsMgr = new XmlNamespaceManager(xdoc.NameTable);

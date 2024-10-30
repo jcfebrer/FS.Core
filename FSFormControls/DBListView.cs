@@ -130,7 +130,7 @@ namespace FSFormControls
                                 }
                             }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -224,7 +224,7 @@ namespace FSFormControls
 
                 DataControl.Go(0);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }

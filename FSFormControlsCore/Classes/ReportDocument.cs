@@ -43,7 +43,7 @@ namespace FSFormControlsCore
 
                 return prop.GetValue(obj, null).ToString();
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 return ex.Message;
             }

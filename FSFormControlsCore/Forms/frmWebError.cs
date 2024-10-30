@@ -64,7 +64,7 @@ namespace FSFormControlsCore
 
                 Close();
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

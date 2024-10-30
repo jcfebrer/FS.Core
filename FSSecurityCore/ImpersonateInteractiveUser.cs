@@ -174,7 +174,7 @@ namespace FSNetwork
                     throw new ApplicationException(message, ex);
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 Log.TraceError(ex);
                 throw;

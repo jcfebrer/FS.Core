@@ -441,7 +441,7 @@ namespace FSGraphics
                 image2.UnlockBits(bmData2);
                 bmpRes.UnlockBits(bmDataRes);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 Log.TraceError(ex);
             }
@@ -597,7 +597,7 @@ namespace FSGraphics
                 image2.UnlockBits(bmData2);
                 bmpRes.UnlockBits(bmDataRes);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 Log.TraceError(ex);
             }
@@ -794,7 +794,7 @@ namespace FSGraphics
                     }
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 Log.TraceError(ex);
                 return null;
@@ -954,7 +954,7 @@ namespace FSGraphics
                 // Copy data from pointer to array
                 Marshal.Copy(Iptr, Pixels, 0, Pixels.Length);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -973,7 +973,7 @@ namespace FSGraphics
                 // Unlock bitmap data
                 source.UnlockBits(bitmapData);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

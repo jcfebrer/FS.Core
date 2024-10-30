@@ -112,7 +112,7 @@ namespace FSDatabase
         public BdUtils(string connectionString, string providerName)
         {
             if (String.IsNullOrEmpty(connectionString) || String.IsNullOrEmpty(providerName))
-                throw new Exception("Nombre de conexión incorrecta o nombre de proveedor incorrecto.");
+                throw new ExceptionUtil("Nombre de conexión incorrecta o nombre de proveedor incorrecto.");
             else
             {
                 ConnString = connectionString;
@@ -158,12 +158,12 @@ namespace FSDatabase
         public BdUtils(string connStringEntryName)
         {
             if (String.IsNullOrEmpty(connStringEntryName))
-                throw new Exception("Nombre de conexión incorrecta.");
+                throw new ExceptionUtil("Nombre de conexión incorrecta.");
             else
                 ConnStringEntryName = connStringEntryName;
 
             if (ConfigurationManager.ConnectionStrings.Count == 0)
-                throw new Exception("No ay entradas ConnectionStrings en el fichero web.config");
+                throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
             if (ConfigurationManager.ConnectionStrings[ConnStringEntryName] == null)
                 throw new ExceptionUtil("No se ha encontrado la entrada: " + ConnStringEntryName + ", en web.config.");
 
@@ -183,7 +183,7 @@ namespace FSDatabase
             ConnStringEntryName = Utils.GetConnectionName(ConnStringEntryId);
 
             if (ConfigurationManager.ConnectionStrings.Count == 0)
-                throw new Exception("No ay entradas ConnectionStrings en el fichero web.config");
+                throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
             if (ConfigurationManager.ConnectionStrings[ConnStringEntryName] == null)
                 throw new ExceptionUtil("No se ha encontrado la entrada: " + ConnStringEntryName + ", en web.config.");
 
@@ -356,7 +356,7 @@ namespace FSDatabase
                 if (Transaction == null)
                     Transaction = conn.BeginTransaction();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -401,7 +401,7 @@ namespace FSDatabase
                     return true;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -468,7 +468,7 @@ namespace FSDatabase
                     return conn.ServerVersion;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -566,7 +566,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -608,7 +608,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -652,7 +652,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -696,7 +696,7 @@ namespace FSDatabase
                 Web.SetCacheValue("cacheSchemaForeignKeys_ID" + ConnStringEntryId, dt);
                 return dt;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -730,7 +730,7 @@ namespace FSDatabase
                 Web.SetCacheValue("cacheSchemaForeignKeysSql_ID" + ConnStringEntryId, dt);
                 return dt;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -777,7 +777,7 @@ namespace FSDatabase
                 Web.SetCacheValue("cacheSchemaForeignKeysOracle_ID" + ConnStringEntryId, dt);
                 return dt;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -801,7 +801,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -822,7 +822,7 @@ namespace FSDatabase
                         return r["ColumnName"].ToString();
                 return "<Sin key>";
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -843,7 +843,7 @@ namespace FSDatabase
                         return r["ColumnName"].ToString();
                 return "<Sin desc>";
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -881,7 +881,7 @@ namespace FSDatabase
                     return schemas.ToArray();
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -929,7 +929,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -957,7 +957,7 @@ namespace FSDatabase
                     return dt;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -977,7 +977,7 @@ namespace FSDatabase
                     return conn.ConnectionString;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1019,7 +1019,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1077,7 +1077,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1175,7 +1175,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1264,7 +1264,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1304,7 +1304,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1322,7 +1322,7 @@ namespace FSDatabase
                     return ExecuteScalar("select @@IDENTITY").ToString();
                 return null;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1341,7 +1341,7 @@ namespace FSDatabase
                     return ExecuteScalar("select SCOPE_IDENTITY()").ToString();
                 return null;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1386,7 +1386,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1425,7 +1425,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1461,7 +1461,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1492,7 +1492,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1538,7 +1538,7 @@ namespace FSDatabase
                 var ssql = "select count(*) from " + tableName;
                 return Convert.ToInt32(ExecuteScalar(ssql));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1589,7 +1589,7 @@ namespace FSDatabase
                 else
                     return -1;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1609,7 +1609,7 @@ namespace FSDatabase
                 //    max = max2;
                 //}
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1631,7 +1631,7 @@ namespace FSDatabase
                 //    min = min2;
                 //}
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1646,7 +1646,7 @@ namespace FSDatabase
             {
                 sum = NumberUtils.NumberDouble(ExecuteScalar("select sum(" + column + ") from " + tableName));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1662,7 +1662,7 @@ namespace FSDatabase
             {
                 avg = NumberUtils.NumberDouble(ExecuteScalar("select avg(" + column + ") from " + tableName));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1716,7 +1716,7 @@ namespace FSDatabase
 
                 return dtSchema.Rows[colPos]["ColumnName"].ToString();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1732,7 +1732,7 @@ namespace FSDatabase
                     return true;
                 return false;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1767,7 +1767,7 @@ namespace FSDatabase
 
                 return null;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1832,7 +1832,7 @@ namespace FSDatabase
                         return true;
                 return false;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1864,7 +1864,7 @@ namespace FSDatabase
                         return schema + row["PK_TABLE_NAME"];
                 return string.Empty;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1908,7 +1908,7 @@ namespace FSDatabase
 
                 return s;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1950,7 +1950,7 @@ namespace FSDatabase
 
                 return "CREATE TABLE [" + table + "] (" + sFields + ")";
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2036,7 +2036,7 @@ namespace FSDatabase
 
                 return "INSERT into [" + tableName + "] (" + sFields + ") VALUES (" + sData + ")";
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2117,7 +2117,7 @@ namespace FSDatabase
 
                 return "UPDATE [" + tableName + "] SET " + sFields + " WHERE " + condicion;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2201,7 +2201,7 @@ namespace FSDatabase
 
                 return "INSERT into [" + tableName + "] (" + sFields + ") VALUES (" + sData + ")";
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2279,7 +2279,7 @@ namespace FSDatabase
 
                 return "INSERT into [" + tableName + "] (" + sFields + ") VALUES (" + sData + ")";
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2352,7 +2352,7 @@ namespace FSDatabase
 
                 return "UPDATE [" + tableName + "] SET " + sData + " WHERE " + condition;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2412,7 +2412,7 @@ namespace FSDatabase
 
                 return "UPDATE [" + tableName + "] SET " + sData + " WHERE " + condition;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2598,7 +2598,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2629,7 +2629,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2655,7 +2655,7 @@ namespace FSDatabase
                 fs.Write(b, 0, b.Length);
                 fs.Close();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2693,7 +2693,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2725,7 +2725,7 @@ namespace FSDatabase
                 cmd.ExecuteNonQuery();
                 cn.Close();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2747,7 +2747,7 @@ namespace FSDatabase
 
                 return sb.ToString();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2766,7 +2766,7 @@ namespace FSDatabase
                 //sb.Append("SqlClientPermission: " + Permission.TestPermission(new SqlClientPermission(PermissionState.Unrestricted)));
                 return sb.ToString();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -2799,7 +2799,7 @@ namespace FSDatabase
 
                 return string.Empty;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

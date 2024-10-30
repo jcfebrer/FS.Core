@@ -116,7 +116,7 @@ namespace FSNetwork
 
                         Log.TraceInfo("UPnP Map " + port + " Removed");
                     }
-                    catch (ExceptionUtil ex)
+                    catch (Exception ex)
                     {
                         Log.TraceError("Failed to remove UPnP Map " + port + ": " + ex.ToString());
                     }

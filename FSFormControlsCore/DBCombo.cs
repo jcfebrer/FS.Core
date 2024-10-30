@@ -715,7 +715,7 @@ namespace FSFormControlsCore
 
                 filled = true;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e.Message);
             }
@@ -740,7 +740,7 @@ namespace FSFormControlsCore
                 if (null != KeyDown) 
                     KeyDown(this, e);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }

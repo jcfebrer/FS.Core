@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using OpenAI.Managers;
 using OpenAI;
 using System.IO;
+using FSException;
 
 namespace FSIA
 {
@@ -50,7 +51,7 @@ namespace FSIA
             {
                 if (audioResult.Error == null)
                 {
-                    throw new Exception("Unknown Error");
+                    throw new ExceptionUtil("Unknown Error");
                 }
                 Console.WriteLine($"{audioResult.Error.Code}: {audioResult.Error.Message}");
             }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Net.Http.Json;
 using System.IO;
 using System.DirectoryServices;
+using FSExceptionCore;
 
 namespace FSNetworkCore
 {
@@ -78,7 +79,7 @@ namespace FSNetworkCore
                 }
                 else
                 {
-                    throw new Exception(String.Format("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase));
+                    throw new ExceptionUtil(String.Format("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase));
                 }
             }
         }
@@ -113,7 +114,7 @@ namespace FSNetworkCore
                 }
                 else
                 {
-                    throw new Exception(String.Format("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase));
+                    throw new ExceptionUtil(String.Format("{0} ({1})", (int)response.StatusCode, response.ReasonPhrase));
                 }
             }
         }

@@ -145,7 +145,7 @@ namespace FSLibraryCore
                     }
                 }
             }
-            catch (ExceptionUtil)
+            catch (Exception)
             {
                 throw;
             }
@@ -182,7 +182,7 @@ namespace FSLibraryCore
                     }
                 }
             }
-            catch (ExceptionUtil)
+            catch (Exception)
             {
                 throw;
             }
@@ -206,7 +206,7 @@ namespace FSLibraryCore
                     return objectFromXml;
                 }
             }
-            catch (ExceptionUtil)
+            catch (Exception)
             {
                 throw;
             }
@@ -230,7 +230,7 @@ namespace FSLibraryCore
                     return objectFromXml;
                 }
             }
-            catch (ExceptionUtil)
+            catch (Exception)
             {
                 throw;
             }

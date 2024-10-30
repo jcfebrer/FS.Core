@@ -104,7 +104,7 @@ namespace FSNetwork
                 // return services
                 return ret;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 Debug.WriteLine(ex.Message);
             }

@@ -648,7 +648,7 @@ namespace FSFormControlsCore
 
                 return s;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -689,7 +689,7 @@ namespace FSFormControlsCore
                 PictureBox1.SendToBack();
                 Redraw();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -748,7 +748,7 @@ namespace FSFormControlsCore
 
                 DrawObjects.Add(drw);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

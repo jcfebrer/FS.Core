@@ -162,7 +162,7 @@ namespace FSDatabaseCore
 
                 return true;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -182,7 +182,7 @@ namespace FSDatabaseCore
 
                 return dataTable.Rows.Count == 0;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -196,7 +196,7 @@ namespace FSDatabaseCore
                 dv.Sort = field + (ascendent ? " asc" : " desc");
                 return dv.ToTable();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -237,7 +237,7 @@ namespace FSDatabaseCore
                 dv.Sort = "rndSortId";
                 return dv.ToTable();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -304,7 +304,7 @@ namespace FSDatabaseCore
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -331,7 +331,7 @@ namespace FSDatabaseCore
 
                 return sWhere;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -343,7 +343,7 @@ namespace FSDatabaseCore
             {
                 ds.WriteXml(fileName);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -388,7 +388,7 @@ namespace FSDatabaseCore
                 sw.WriteLine("</html>");
                 sw.Close();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -439,7 +439,7 @@ namespace FSDatabaseCore
                 {
                     c = c + dataTable.Columns[f].ColumnName + "-";
                 }
-                catch (ExceptionUtil e)
+                catch (Exception e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -453,7 +453,7 @@ namespace FSDatabaseCore
                     {
                         c = c + dataTable.Rows[f][g] + "-";
                     }
-                    catch (ExceptionUtil ex)
+                    catch (Exception ex)
                     {
                         throw new ExceptionUtil(ex);
                     }
@@ -473,7 +473,7 @@ namespace FSDatabaseCore
                 foreach (var dr in rows) dtNew.ImportRow(dr);
                 return dtNew;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -487,7 +487,7 @@ namespace FSDatabaseCore
             {
                 total = NumberUtils.NumberDouble(dataTable.Compute("Sum(" + column + ")", ""));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -503,7 +503,7 @@ namespace FSDatabaseCore
             {
                 max = NumberUtils.NumberDouble(dataTable.Compute("Max(" + column + ")", ""));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -520,7 +520,7 @@ namespace FSDatabaseCore
             {
                 min = NumberUtils.NumberDouble(dataTable.Compute("Min(" + column + ")", ""));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -536,7 +536,7 @@ namespace FSDatabaseCore
             {
                 avg = NumberUtils.NumberDouble(dataTable.Compute("Avg(" + column + ")", ""));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -712,9 +712,9 @@ namespace FSDatabaseCore
         public static string GetConnectionName(int entryId)
         {
             if (ConfigurationManager.ConnectionStrings.Count == 0)
-                throw new Exception("No ay entradas ConnectionStrings en el fichero web.config");
+                throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
             if (ConfigurationManager.ConnectionStrings[entryId] == null)
-                throw new Exception("Entrada de ConnectionString inexistente en web.config (" + entryId + ")");
+                throw new ExceptionUtil("Entrada de ConnectionString inexistente en web.config (" + entryId + ")");
             return ConfigurationManager.ConnectionStrings[entryId].Name;
         }
 
@@ -728,7 +728,7 @@ namespace FSDatabaseCore
                 return new Version(int.Parse(verTokens[0]), int.Parse(verTokens[1]), int.Parse(verTokens[2]),
                     int.Parse(verTokens[3]));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

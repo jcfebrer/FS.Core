@@ -136,7 +136,7 @@ namespace FSFormControls
                     pd.Print();
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -204,7 +204,7 @@ namespace FSFormControls
                     Convert.ToByte(Convert.ToInt64(EncoderValue.Flush)));
                 bitmapAllPages.SaveAdd(eps);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
             }
@@ -358,7 +358,7 @@ namespace FSFormControls
                         extendedHeight += ChildControlsExtendedHeight;
                     }
                 }
-                catch (ExceptionUtil ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show("Error printing control of type " + c.GetType() + Environment.NewLine +
                                     Environment.NewLine + ex);

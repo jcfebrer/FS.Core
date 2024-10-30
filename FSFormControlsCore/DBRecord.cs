@@ -327,7 +327,7 @@ namespace FSFormControlsCore
 
                     lastWidth = Convert.ToInt32(Columns[f].Width);
                 }
-                catch (ExceptionUtil e)
+                catch (Exception e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -671,7 +671,7 @@ namespace FSFormControlsCore
                     if (ctr != null) 
                         ((UserControl)ctr).Width = Columns[f].Width;
                 }
-                catch (ExceptionUtil e)
+                catch (Exception e)
                 {
                     throw new ExceptionUtil(e);
                 }

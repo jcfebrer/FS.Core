@@ -49,7 +49,7 @@ namespace FSDatabaseCore
                     m_dataTable.ReadXml(m_fileName);
                 else
                 {
-                    throw new Exception("Fichero: " + m_fileName + ", no existe.");
+                    throw new ExceptionUtil("Fichero: " + m_fileName + ", no existe.");
                 }
 
                 Web.SetCacheValue(m_fileName, m_dataTable);
@@ -76,7 +76,7 @@ namespace FSDatabaseCore
                 m_dataTable.Rows.Add(row);
                 return true;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -92,7 +92,7 @@ namespace FSDatabaseCore
                 m_dataTable.WriteXml(m_fileName);
                 return true;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }

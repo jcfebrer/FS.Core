@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Runtime.Remoting.Messaging;
 using System.Net;
+using FSException;
 
 namespace FSIA
 {
@@ -85,7 +86,7 @@ namespace FSIA
             }
             catch(Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new ExceptionUtil(ex.Message);
             }
         }
     }

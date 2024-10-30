@@ -579,7 +579,7 @@ namespace FSFormControls
                     }
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -596,7 +596,7 @@ namespace FSFormControls
         //            if (ctr is DBUserControl) ((DBUserControl) ctr).Track = mode;
         //        }
         //    }
-        //    catch (ExceptionUtil ex)
+        //    catch (Exception ex)
         //    {
         //        throw new ExceptionUtil(ex);
         //    }
@@ -658,7 +658,7 @@ namespace FSFormControls
                 var s = new frmAbout();
                 s.ShowDialog();
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -687,7 +687,7 @@ namespace FSFormControls
                 tw = null;
                 ProcessUtil.OpenDocument(fic);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("Errores en la exportación.", ex);
             }
@@ -706,7 +706,7 @@ namespace FSFormControls
                 dbform2aspx.Convert(this, Path.GetDirectoryName(fic));
                 ProcessUtil.OpenDocument(fic);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("Errores en la exportación.", ex);
             }
@@ -727,7 +727,7 @@ namespace FSFormControls
                 tw = null;
                 ProcessUtil.OpenDocument(fic);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("Errores en la exportación.", ex);
             }
@@ -906,7 +906,7 @@ namespace FSFormControls
                 var s = new frmAbout();
                 s.ShowDialog();
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }

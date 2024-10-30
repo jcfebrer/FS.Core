@@ -201,7 +201,7 @@ namespace FSFormControls
                 rc = new Bitmap(ms);
                 ms.Close();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

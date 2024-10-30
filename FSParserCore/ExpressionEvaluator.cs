@@ -1142,7 +1142,7 @@ namespace FSParserCore
                     {
                         lastResult = ScriptEvaluate(tryStatementsList[0][0], ref isReturn, ref isBreak, ref isContinue);
                     }
-                    catch (ExceptionUtil exception)
+                    catch (Exception exception)
                     {
                         bool atLeasOneCatch = false;
 
@@ -1970,7 +1970,7 @@ namespace FSParserCore
                         {
                             throw;
                         }
-                        catch (ExceptionUtil ex)
+                        catch (Exception ex)
                         {
                             //Transport the exception in stack.
                             stack.Push(new BubbleExceptionContainer()
@@ -2212,7 +2212,7 @@ namespace FSParserCore
                         {
                             throw;
                         }
-                        catch (ExceptionUtil ex)
+                        catch (Exception ex)
                         {
                             //Transport the exception in stack.
                             stack.Push(new BubbleExceptionContainer()
@@ -2543,7 +2543,7 @@ namespace FSParserCore
             string s = expression.Substring(i, 1);
 
             if (s.Equals(")"))
-                throw new Exception($"To much ')' characters are defined in expression : [{expression}] : no corresponding '(' fund.");
+                throw new ExceptionUtil($"To much ')' characters are defined in expression : [{expression}] : no corresponding '(' fund.");
 
             if (s.Equals("("))
             {
@@ -2629,7 +2629,7 @@ namespace FSParserCore
                 if (bracketCount > 0)
                 {
                     string beVerb = bracketCount == 1 ? "is" : "are";
-                    throw new Exception($"{bracketCount} ']' character {beVerb} missing in expression : [{expression}]");
+                    throw new ExceptionUtil($"{bracketCount} ']' character {beVerb} missing in expression : [{expression}]");
                 }
 
                 dynamic left = stack.Pop();
@@ -2799,7 +2799,7 @@ namespace FSParserCore
                             if (bracketCount > 0)
                             {
                                 string beVerb = bracketCount == 1 ? "is" : "are";
-                                throw new Exception($"{bracketCount} '}}' character {beVerb} missing in expression : [{expression}]");
+                                throw new ExceptionUtil($"{bracketCount} '}}' character {beVerb} missing in expression : [{expression}]");
                             }
                             resultString.Append(Evaluate(innerExp.ToString()));
                         }
@@ -2871,7 +2871,7 @@ namespace FSParserCore
                                 {
                                     list[i] = operatorEvalutationsDict[eOp](null, (dynamic)list[i - 1]);
                                 }
-                                catch (ExceptionUtil ex)
+                                catch (Exception ex)
                                 {
                                     var right = (dynamic)list[i - 1];
                                     if (right is BubbleExceptionContainer)
@@ -2892,7 +2892,7 @@ namespace FSParserCore
                                 {
                                     list[i] = operatorEvalutationsDict[eOp]((dynamic)list[i + 1], null);
                                 }
-                                catch (ExceptionUtil ex)
+                                catch (Exception ex)
                                 {
                                     var left = (dynamic)list[i + 1];
                                     if (left is BubbleExceptionContainer)
@@ -2913,7 +2913,7 @@ namespace FSParserCore
                                 {
                                     list[i] = operatorEvalutationsDict[eOp]((dynamic)list[i + 1], (dynamic)list[i - 1]);
                                 }
-                                catch (ExceptionUtil ex)
+                                catch (Exception ex)
                                 {
                                     var left = (dynamic)list[i + 1];
                                     var right = (dynamic)list[i - 1];
@@ -3317,7 +3317,7 @@ namespace FSParserCore
             if (bracketCount > 0)
             {
                 string beVerb = bracketCount == 1 ? "is" : "are";
-                throw new Exception($"{bracketCount} '" + "}" + $"' character {beVerb} missing in script at : [{index}]");
+                throw new ExceptionUtil($"{bracketCount} '" + "}" + $"' character {beVerb} missing in script at : [{index}]");
             }
 
             return currentScript;
@@ -3400,7 +3400,7 @@ namespace FSParserCore
             if (bracketCount > 0)
             {
                 string beVerb = bracketCount == 1 ? "is" : "are";
-                throw new Exception($"{bracketCount} '{endChar}' character {beVerb} missing in expression : [{expression}]");
+                throw new ExceptionUtil($"{bracketCount} '{endChar}' character {beVerb} missing in expression : [{expression}]");
             }
 
             return expressionsList;

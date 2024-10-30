@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\FSCertificateCore\FSCertificateCore.csproj" />
     <ProjectReference Include="..\FSCryptoCore\FSCryptoCore.csproj" />
+    <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
     <ProjectReference Include="..\FSTraceCore\FSTraceCore.csproj" />
   </ItemGroup>

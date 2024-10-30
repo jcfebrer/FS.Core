@@ -125,7 +125,7 @@ namespace FSFormControlsCore
                         col[iCurrCol].Width = iWidth + 1;
                     }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -143,7 +143,7 @@ namespace FSFormControlsCore
 
             if(dataControl == null)
             {
-                throw new Exception("DBControl es null.");
+                throw new ExceptionUtil("DBControl es null.");
             }
 
             if (columns.Count == 0)

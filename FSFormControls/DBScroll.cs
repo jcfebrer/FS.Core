@@ -38,7 +38,7 @@ namespace FSFormControls
                         }
                     }
                 }
-                catch (ExceptionUtil e)
+                catch (Exception e)
                 {
                     throw new ExceptionUtil(e);
                 }

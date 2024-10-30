@@ -874,7 +874,7 @@ namespace FSFormControls
                 else
                     return value;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -907,7 +907,7 @@ namespace FSFormControls
                 {
                     return datagrid[row, i];
                 }
-                catch (ExceptionUtil e)
+                catch (Exception e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -938,7 +938,7 @@ namespace FSFormControls
             {
                 return DataControl.DataTable.Rows[row][Columns[column].FieldDB];
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -971,7 +971,7 @@ namespace FSFormControls
             {
                 return DataControl.DataTable.Rows[row][columnName];
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1521,7 +1521,7 @@ namespace FSFormControls
                         var dtcol = DataControl.DataTable.Columns[column.FieldDB];
                         if (dtcol != null) dtcol.Unique = column.Unique;
                     }
-                    catch (ExceptionUtil e)
+                    catch (Exception e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -1531,7 +1531,7 @@ namespace FSFormControls
                     HideColumn(column.FieldDB);
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil("Error al Añadir la columna: " + column.FieldDB, e);
             }
@@ -1561,7 +1561,7 @@ namespace FSFormControls
             {
                 GridViewPrint.PrintDataGridView(datagrid, false);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1574,7 +1574,7 @@ namespace FSFormControls
             {
                 GridViewPrint.PrintDataGridView(datagrid, true);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1617,7 +1617,7 @@ namespace FSFormControls
 
                 FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1647,7 +1647,7 @@ namespace FSFormControls
 
                 FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1687,7 +1687,7 @@ namespace FSFormControls
 
                 FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -1909,7 +1909,7 @@ namespace FSFormControls
 
                 if (null != ColumnChanging) ColumnChanging(this, e);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1930,7 +1930,7 @@ namespace FSFormControls
 
                 if (null != RowChanging) RowChanging(this, e);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1949,7 +1949,7 @@ namespace FSFormControls
                 if (null != RowChanged)
                     RowChanged(this, e);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1975,7 +1975,7 @@ namespace FSFormControls
 
                 if (null != ColumnChanged) ColumnChanged(this, e);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -2195,7 +2195,7 @@ namespace FSFormControls
                                         }
                                 }
                     }
-                    catch (ExceptionUtil e)
+                    catch (Exception e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -2247,7 +2247,7 @@ namespace FSFormControls
                                 }
                             }
                     }
-                    catch (ExceptionUtil e)
+                    catch (Exception e)
                     {
                         throw new ExceptionUtil(e);
                     }
@@ -2506,7 +2506,7 @@ namespace FSFormControls
                         DataControl.DataTable.Columns[Columns[f].FieldDB].AutoIncrementSeed =
                             Convert.ToInt64(Utils.MaxColumn(DataControl.DataTable, Columns[f].FieldDB) + 1);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

@@ -3,6 +3,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using FSExceptionCore;
 using FSSepaLibraryCore.Utils;
 using static FSSepaLibraryCore.SepaInstructionForCreditor;
 
@@ -122,10 +123,10 @@ namespace FSSepaLibraryCore
             // Part 1: Group Header
             var cstmrCdtTrfInitn = xml.SelectSingleNode("//CstmrCdtTrfInitn");
             if (cstmrCdtTrfInitn == null)
-                throw new Exception("CstmrCdtTrfInitn is Null");
+                throw new ExceptionUtil("CstmrCdtTrfInitn is Null");
             var grpHdr = cstmrCdtTrfInitn.SelectSingleNode("GrpHdr");
             if (grpHdr == null)
-                throw new Exception("GrpHdr is Null");
+                throw new ExceptionUtil("GrpHdr is Null");
 
             if(grpHdr.SelectSingleNode("MsgId") != null)
                 MessageIdentification = grpHdr.SelectSingleNode("MsgId").InnerText;
@@ -141,7 +142,7 @@ namespace FSSepaLibraryCore
 
             var initgPty = grpHdr.SelectSingleNode("InitgPty");
             if (initgPty == null)
-                throw new Exception("InitgPty is Null");
+                throw new ExceptionUtil("InitgPty is Null");
 
             if(initgPty.SelectSingleNode("Nm") != null)
                 InitiatingPartyName = initgPty.SelectSingleNode("Nm").InnerText;
@@ -152,7 +153,7 @@ namespace FSSepaLibraryCore
             // Part 2: Payment Information
             var pmtInf = xml.SelectSingleNode("//CstmrCdtTrfInitn/PmtInf");
             if (pmtInf == null)
-                throw new Exception("CstmrCdtTrfInitn/PmtInf is Null");
+                throw new ExceptionUtil("CstmrCdtTrfInitn/PmtInf is Null");
 
             if(pmtInf.SelectSingleNode("PmtInfId") != null)
                 PaymentInfoId = pmtInf.SelectSingleNode("PmtInfId").InnerText;
@@ -190,7 +191,7 @@ namespace FSSepaLibraryCore
 
             var dbtr = pmtInf.SelectSingleNode("Dbtr");
             if (dbtr == null)
-                throw new Exception("Dbtr is Null");
+                throw new ExceptionUtil("Dbtr is Null");
 
             Debtor = new SepaIbanData();
             Debtor.Address = new SepaPostalAddress();
@@ -203,7 +204,7 @@ namespace FSSepaLibraryCore
 
             var ultimatedbtr = pmtInf.SelectSingleNode("UltmtDbtr");
             if (ultimatedbtr == null)
-                throw new Exception("UltmtDbtr is Null");
+                throw new ExceptionUtil("UltmtDbtr is Null");
 
             UltimateDebtor = new SepaIbanData();
             UltimateDebtor.Address = new SepaPostalAddress();
@@ -225,7 +226,7 @@ namespace FSSepaLibraryCore
 
             var finInstnId = pmtInf.SelectSingleNode("DbtrAgt/FinInstnId");
             if (finInstnId == null)
-                throw new Exception("DbtrAgt/FinInstnId is Null");
+                throw new ExceptionUtil("DbtrAgt/FinInstnId is Null");
 
             if(finInstnId.SelectSingleNode("BIC") != null)
                 Debtor.Bic = finInstnId.SelectSingleNode("BIC").InnerText;
@@ -266,14 +267,14 @@ namespace FSSepaLibraryCore
                     transfer.Creditor = new SepaIbanData();
                     var cdtrAgt = node.SelectSingleNode("CdtrAgt");
                     if (cdtrAgt == null)
-                        throw new Exception("CdtrAgt is Null");
+                        throw new ExceptionUtil("CdtrAgt is Null");
 
                     if(cdtrAgt.SelectSingleNode("FinInstnId/BIC") != null)
                         transfer.Creditor.Bic = cdtrAgt.SelectSingleNode("FinInstnId/BIC").InnerText;
                     
                     var cdtr = node.SelectSingleNode("Cdtr");
                     if (cdtr == null)
-                        throw new Exception("Cdtr is Null");
+                        throw new ExceptionUtil("Cdtr is Null");
 
                     if(cdtr.SelectSingleNode("Nm") != null)
                         transfer.Creditor.Name = cdtr.SelectSingleNode("Nm").InnerText;
@@ -283,7 +284,7 @@ namespace FSSepaLibraryCore
 
                     var cdtrAcct = node.SelectSingleNode("CdtrAcct");
                     if (cdtrAcct == null)
-                        throw new Exception("CdtrAcct is Null");
+                        throw new ExceptionUtil("CdtrAcct is Null");
 
                     if(cdtrAcct.SelectSingleNode("Id/IBAN") != null)
                         transfer.Creditor.Iban = cdtrAcct.SelectSingleNode("Id/IBAN").InnerText;

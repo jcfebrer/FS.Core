@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSExceptionCore;
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -42,7 +43,7 @@ namespace FSIACore
             }
             else
             {
-                throw new Exception("Error: " + response.ReasonPhrase + " (" + response.StatusCode.ToString() + ")" );
+                throw new ExceptionUtil("Error: " + response.ReasonPhrase + " (" + response.StatusCode.ToString() + ")" );
             }
 
             return responseBody;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSExceptionCore;
+using System;
 namespace FSMailCore
 {
 	/// <summary>
@@ -276,7 +277,7 @@ namespace FSMailCore
 				case ImapErrorEnum.IMAP_ERR_FETCHBODYSTRUCT:
 					return "Failure bodystructure command";
 				default:
-					throw new Exception("UnKnow Exception");
+					throw new ExceptionUtil("UnKnow Exception");
 			}
 		}
 	}

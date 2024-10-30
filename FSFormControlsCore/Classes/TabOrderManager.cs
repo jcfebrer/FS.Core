@@ -73,7 +73,7 @@ namespace FSFormControlsCore
 
                 return curTabIndex;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 Debug.Assert(false, "Exception in TabOrderManager.SetTabOrder:  " + e.Message);
                 return 0;

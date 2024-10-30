@@ -494,7 +494,7 @@ namespace FSNetwork
                         return response.ToString();
                     }
                 }
-                catch (ExceptionUtil ex)
+                catch (Exception ex)
                 {
                     request.Abort();
                     return "Error: " + ex.Message;

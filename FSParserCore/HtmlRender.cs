@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSExceptionCore;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
@@ -288,7 +289,7 @@ namespace FSParserCore
                     if (currentObj == null)
                         break;
                 }
-                else throw new Exception("Propiedad inexistente en documento HTML: " + path);
+                else throw new ExceptionUtil("Propiedad inexistente en documento HTML: " + path);
             }
 
             string rendered = $"{currentObj}";

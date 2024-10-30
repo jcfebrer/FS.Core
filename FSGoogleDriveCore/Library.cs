@@ -232,7 +232,7 @@ namespace FSGoogleDriveCore
 				
 				return file.Name;
 				
-			} catch (ExceptionUtil ex) {
+			} catch (Exception ex) {
 				throw new ExceptionUtil("Request Files.Get failed.", ex);
 			}
 		}
@@ -251,7 +251,7 @@ namespace FSGoogleDriveCore
 				
 				return file.Parents;
 				
-			} catch (ExceptionUtil ex) {
+			} catch (Exception ex) {
 				throw new ExceptionUtil("Request Files.Get failed.", ex);
 			}
 		}
@@ -265,7 +265,7 @@ namespace FSGoogleDriveCore
 				// Requesting data.
 				request.Execute();
 				
-			} catch (ExceptionUtil ex) {
+			} catch (Exception ex) {
 				throw new ExceptionUtil("Request Files.Delete failed.", ex);
 			}
 		}
@@ -275,7 +275,7 @@ namespace FSGoogleDriveCore
 			try {
 				// Make the request.
 				driveService.Files.EmptyTrash().Execute();
-			} catch (ExceptionUtil ex) {
+			} catch (Exception ex) {
 				throw new ExceptionUtil("Request Files.EmptyTrash failed.", ex);
 			}
 		}
@@ -302,7 +302,7 @@ namespace FSGoogleDriveCore
 			
 				var file = request.ResponseBody;
 				fileId = file.Id;
-			} catch (ExceptionUtil ex) {
+			} catch (Exception ex) {
 				throw new ExceptionUtil("Failed to upload file.", ex);
 			}
 			return fileId;
@@ -334,7 +334,7 @@ namespace FSGoogleDriveCore
 			
 				var file = request.ResponseBody;
 				fileId = file.Id;
-			} catch (ExceptionUtil ex) {
+			} catch (Exception ex) {
 				throw new ExceptionUtil("Failed to upload file.", ex);
 			}
 			return fileId;
@@ -368,7 +368,7 @@ namespace FSGoogleDriveCore
 				
 				var file = request.ResponseBody;
 				fileId = file.Id;
-			} catch (ExceptionUtil ex) {
+			} catch (Exception ex) {
 				throw new ExceptionUtil("Failed to upload file.", ex);
 			}
 			return fileId;

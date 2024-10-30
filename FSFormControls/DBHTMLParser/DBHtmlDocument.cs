@@ -23,7 +23,7 @@ namespace FSFormControls
             {
                 mNodes = parser.Parse(html);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

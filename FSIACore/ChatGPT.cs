@@ -7,6 +7,7 @@ using OpenAI;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
+using FSExceptionCore;
 
 namespace FSIACore
 {
@@ -84,7 +85,7 @@ namespace FSIACore
             }
             catch(Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new ExceptionUtil(ex.Message);
             }
         }
     }

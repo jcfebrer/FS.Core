@@ -146,7 +146,7 @@ namespace FSLibrary
                     }
                 }
             }
-            catch (ExceptionUtil exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -183,7 +183,7 @@ namespace FSLibrary
                     }
                 }
             }
-            catch (ExceptionUtil Ex)
+            catch (Exception Ex)
             {
                 throw Ex;
             }
@@ -207,7 +207,7 @@ namespace FSLibrary
                     return objectFromXml;
                 }
             }
-            catch (ExceptionUtil Ex)
+            catch (Exception Ex)
             {
                 throw Ex;
             }
@@ -231,7 +231,7 @@ namespace FSLibrary
                     return objectFromXml;
                 }
             }
-            catch (ExceptionUtil Ex)
+            catch (Exception Ex)
             {
                 throw Ex;
             }
@@ -258,7 +258,7 @@ namespace FSLibrary
                     objectFromSoap = formatter.Deserialize(memStream);
                 }
             }
-            catch (ExceptionUtil exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -283,7 +283,7 @@ namespace FSLibrary
                     objectFromSoap = formatter.Deserialize(fileStream);
                 }
             }
-            catch (ExceptionUtil exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -310,7 +310,7 @@ namespace FSLibrary
                     strObject = Encoding.UTF8.GetString(memStream.GetBuffer(), 0, (int) memStream.Position);
                 }
             }
-            catch (ExceptionUtil exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -335,7 +335,7 @@ namespace FSLibrary
                     formatter.Serialize(fileStream, objToSoap);
                 }
             }
-            catch (ExceptionUtil exception)
+            catch (Exception exception)
             {
                 throw exception;
             }
@@ -360,7 +360,7 @@ namespace FSLibrary
                     objectFromSoap = formatter.Deserialize(fileStream);
                 }
             }
-            catch (ExceptionUtil exception)
+            catch (Exception exception)
             {
                 throw exception;
             }

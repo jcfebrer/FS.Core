@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSException;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -154,7 +155,7 @@ namespace FSLibrary
         /// <exception cref="Exception"></exception>
         public static string InputBox(string question, string title = "")
         {
-            throw new Exception("Función no implementada. Utiliza FSFormControls.InputBox().");
+            throw new ExceptionUtil("Función no implementada. Utiliza FSFormControls.InputBox().");
         }
 
         /// <summary>

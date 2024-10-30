@@ -85,7 +85,7 @@ namespace FSFormControls
                 {
                     SetColumnValueAtRow(m_source, m_rowNum, v);
                 }
-                catch (ExceptionUtil ex)
+                catch (Exception ex)
                 {
                     throw new ExceptionUtil(ex);
                 }
@@ -140,7 +140,7 @@ namespace FSFormControls
 
                 ColumnFile.Focus();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

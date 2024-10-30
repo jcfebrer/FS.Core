@@ -161,7 +161,7 @@ namespace FSDatabase
 
                 return true;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -181,7 +181,7 @@ namespace FSDatabase
 
                 return dataTable.Rows.Count == 0;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -195,7 +195,7 @@ namespace FSDatabase
                 dv.Sort = field + (ascendent ? " asc" : " desc");
                 return dv.ToTable();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -236,7 +236,7 @@ namespace FSDatabase
                 dv.Sort = "rndSortId";
                 return dv.ToTable();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -301,7 +301,7 @@ namespace FSDatabase
                     }
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -328,7 +328,7 @@ namespace FSDatabase
 
                 return sWhere;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -340,7 +340,7 @@ namespace FSDatabase
             {
                 ds.WriteXml(fileName);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -385,7 +385,7 @@ namespace FSDatabase
                 sw.WriteLine("</html>");
                 sw.Close();
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -436,7 +436,7 @@ namespace FSDatabase
                 {
                     c = c + dataTable.Columns[f].ColumnName + "-";
                 }
-                catch (ExceptionUtil e)
+                catch (Exception e)
                 {
                     throw new ExceptionUtil(e);
                 }
@@ -450,7 +450,7 @@ namespace FSDatabase
                     {
                         c = c + dataTable.Rows[f][g] + "-";
                     }
-                    catch (ExceptionUtil ex)
+                    catch (Exception ex)
                     {
                         throw new ExceptionUtil(ex);
                     }
@@ -470,7 +470,7 @@ namespace FSDatabase
                 foreach (var dr in rows) dtNew.ImportRow(dr);
                 return dtNew;
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -484,7 +484,7 @@ namespace FSDatabase
             {
                 total = NumberUtils.NumberDouble(dataTable.Compute("Sum(" + column + ")", ""));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -500,7 +500,7 @@ namespace FSDatabase
             {
                 max = NumberUtils.NumberDouble(dataTable.Compute("Max(" + column + ")", ""));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -517,7 +517,7 @@ namespace FSDatabase
             {
                 min = NumberUtils.NumberDouble(dataTable.Compute("Min(" + column + ")", ""));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -533,7 +533,7 @@ namespace FSDatabase
             {
                 avg = NumberUtils.NumberDouble(dataTable.Compute("Avg(" + column + ")", ""));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -709,9 +709,9 @@ namespace FSDatabase
         public static string GetConnectionName(int entryId)
         {
             if (ConfigurationManager.ConnectionStrings.Count == 0)
-                throw new Exception("No ay entradas ConnectionStrings en el fichero web.config");
+                throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
             if (ConfigurationManager.ConnectionStrings[entryId] == null)
-                throw new Exception("Entrada de ConnectionString inexistente en web.config (" + entryId + ")");
+                throw new ExceptionUtil("Entrada de ConnectionString inexistente en web.config (" + entryId + ")");
             return ConfigurationManager.ConnectionStrings[entryId].Name;
         }
 
@@ -725,7 +725,7 @@ namespace FSDatabase
                 return new Version(int.Parse(verTokens[0]), int.Parse(verTokens[1]), int.Parse(verTokens[2]),
                     int.Parse(verTokens[3]));
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }

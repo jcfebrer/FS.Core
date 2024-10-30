@@ -26,7 +26,7 @@ namespace FSCompress.Zlib
                         {
                             StreamUtil.CopyTo(fileToBeZippedAsStream, zipStream);
                         }
-                        catch (ExceptionUtil ex)
+                        catch (Exception ex)
                         {
                             Console.WriteLine(ex.Message);
                         }
@@ -48,7 +48,7 @@ namespace FSCompress.Zlib
                         {
                             StreamUtil.CopyTo(decompressionStream, decompressedStream);
                         }
-                        catch (ExceptionUtil ex)
+                        catch (Exception ex)
                         {
                             Console.WriteLine(ex.Message);
                         }

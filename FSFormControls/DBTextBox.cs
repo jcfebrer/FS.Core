@@ -527,7 +527,7 @@ namespace FSFormControls
                 for (f = 0; f <= m_MaskInput.Length - 1; f++)
                     m_aMskMask.SetValue(char.Parse(m_MaskInput.Substring(f, 1)), f);
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -648,7 +648,7 @@ namespace FSFormControls
                     textbox.Width = Width;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -689,7 +689,7 @@ namespace FSFormControls
                     textbox.Width = Width;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -717,7 +717,7 @@ namespace FSFormControls
                     textbox.Width = Width;
                 }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil(e);
             }
@@ -981,7 +981,7 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1106,7 +1106,7 @@ namespace FSFormControls
                     }
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -1234,7 +1234,7 @@ namespace FSFormControls
                         }
                     }
             }
-            catch (ExceptionUtil e)
+            catch (Exception e)
             {
                 throw new ExceptionUtil("Campo: " + DBField, e);
             }

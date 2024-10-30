@@ -25,7 +25,7 @@ namespace FSFormControlsCore
 
                 PageSettings = psDlg.PageSettings;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("An error occurred.", ex);
             }

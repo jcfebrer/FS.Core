@@ -29,7 +29,7 @@ namespace FSFormControlsCore
                     else
                         Utils.ExportHtml(objSaveFileDialog.FileName, ds);
                 }
-                catch (ExceptionUtil ex)
+                catch (Exception ex)
                 {
                     throw new ExceptionUtil("Error en la exportación del fichero.", ex);
                 }
@@ -60,7 +60,7 @@ namespace FSFormControlsCore
                 smtp.Send(mail);
                 File.Delete(fileName);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("Error en el envio del correo.", ex);
             }

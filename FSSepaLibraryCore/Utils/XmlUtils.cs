@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using FSExceptionCore;
+using System.Xml;
 
 namespace FSSepaLibraryCore.Utils
 {
@@ -16,7 +17,7 @@ namespace FSSepaLibraryCore.Utils
         public static XmlElement SelectSingleNode(XmlNode document, string nodeName)
         {
             if (document == null)
-                throw new Exception("Document is null");
+                throw new ExceptionUtil("Document is null");
             return document.SelectSingleNode(nodeName) as XmlElement;
         }
 

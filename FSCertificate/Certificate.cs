@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSException;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Security;
@@ -43,7 +44,7 @@ namespace FSCertificate
             Store.Close();
 
             if(certificate == null)
-                throw new Exception("Certificado: " +  name + ", no encontrado en el almacen.");
+                throw new ExceptionUtil("Certificado: " +  name + ", no encontrado en el almacen.");
             else
                 return certificate;
         }
@@ -68,7 +69,7 @@ namespace FSCertificate
             Store.Close();
 
             if (certificate == null)
-                throw new Exception("Certificado: " + serialNumber + ", no encontrado en el almacen.");
+                throw new ExceptionUtil("Certificado: " + serialNumber + ", no encontrado en el almacen.");
             else
                 return certificate;
         }

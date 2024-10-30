@@ -843,7 +843,7 @@ namespace FSFormControls
                         sr.Write(strText);
                         sr.Close();
                     }
-                    catch (ExceptionUtil ex)
+                    catch (Exception ex)
                     {
                         throw new ExceptionUtil(
                             "Ocurrió un problema al guardar el fichero: " + OpenFileDialog1.FileName, ex);
@@ -878,7 +878,7 @@ namespace FSFormControls
                     }
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("Ocurrió un problema al cargar el fichero: " + OpenFileDialog1.FileName, ex);
             }
@@ -2106,7 +2106,7 @@ namespace FSFormControls
                     }
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }

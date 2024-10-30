@@ -205,7 +205,7 @@ namespace FSFormControlsCore.UserControls.DBGridView
                 DrawVerticalGridLines(g, TheLinePen, lastRowBottom);
                 return false;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
@@ -265,7 +265,7 @@ namespace FSFormControlsCore.UserControls.DBGridView
                 var bContinue = DrawRows(g);
                 return bContinue;
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;

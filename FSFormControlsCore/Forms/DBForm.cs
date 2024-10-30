@@ -558,7 +558,7 @@ namespace FSFormControlsCore
                     }
                 }
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -575,7 +575,7 @@ namespace FSFormControlsCore
         //            if (ctr is DBUserControl) ((DBUserControl) ctr).Track = mode;
         //        }
         //    }
-        //    catch (ExceptionUtil ex)
+        //    catch (Exception ex)
         //    {
         //        throw new ExceptionUtil(ex);
         //    }
@@ -637,7 +637,7 @@ namespace FSFormControlsCore
                 var s = new frmAbout();
                 s.ShowDialog();
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }
@@ -667,7 +667,7 @@ namespace FSFormControlsCore
                 tw = null;
                 ProcessUtil.OpenDocument(fic);
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("Errores en la exportación.", ex);
             }
@@ -684,9 +684,9 @@ namespace FSFormControlsCore
                 //var dbform2aspx = new Convert2Aspx(Convert2Aspx.AspxTypes.Page);
                 //dbform2aspx.Convert(this, Path.GetDirectoryName(fic));
                 //ProcessUtil.OpenDocument(fic);
-                throw new Exception("Funcionalidad no implementada.");
+                throw new ExceptionUtil("Funcionalidad no implementada.");
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil("Errores en la exportación.", ex);
             }
@@ -791,7 +791,7 @@ namespace FSFormControlsCore
                     //convert2AspxUC.SourceLanguage = Convert2Aspx.SourceLanguages.C_Sharp;
                     //convert2AspxUC.RootName = this.Name + "UC";
                     //convert2AspxUC.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
-                    throw new Exception("Funcionalidad no implementada.");
+                    throw new ExceptionUtil("Funcionalidad no implementada.");
                 }
                 catch (Exception ex)
                 {
@@ -863,7 +863,7 @@ namespace FSFormControlsCore
                 var s = new frmAbout();
                 s.ShowDialog();
             }
-            catch (ExceptionUtil ex)
+            catch (Exception ex)
             {
                 throw new ExceptionUtil(ex);
             }

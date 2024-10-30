@@ -1,4 +1,5 @@
-﻿using FSLibraryCore;
+﻿using FSExceptionCore;
+using FSLibraryCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -228,7 +229,7 @@ namespace FSMailCore
 
 			if (!IsResponseOk(SendCommand("USER " + recent + Email))
 			|| !IsResponseOk(SendCommand("PASS " + Password)))
-				throw new Exception("User/password not accepted");
+				throw new ExceptionUtil("User/password not accepted");
 		}
 
 		protected void Logout()
@@ -267,7 +268,7 @@ namespace FSMailCore
 				return true;
 			if (response.StartsWith("-ERR"))
 				return false;
-			throw new Exception("Cannot understand server response: " +
+			throw new ExceptionUtil("Cannot understand server response: " +
 						response);
 		}
 	}

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Windows.Forms;
+using FSExceptionCore;
 using Microsoft.DirectX.DirectSound;
 
 namespace FSDirectShowCore
@@ -22,7 +23,7 @@ namespace FSDirectShowCore
 			}
 			catch (SoundException se)
 			{
-				throw new Exception("Imposible inicializar DirectSound. Error: " + se.Message);
+				throw new ExceptionUtil("Imposible inicializar DirectSound. Error: " + se.Message);
 			}
 		}
 
@@ -34,7 +35,7 @@ namespace FSDirectShowCore
 			}
 			catch (SoundException se)
 			{
-				throw new Exception("Imposible inicializar DirectSound. Error: " + se.Message);
+				throw new ExceptionUtil("Imposible inicializar DirectSound. Error: " + se.Message);
 			}
 		}
 
@@ -47,7 +48,7 @@ namespace FSDirectShowCore
 			}
 			catch (SoundException se)
 			{
-				throw new Exception("Imposible inicializar DirectSound. Error: " + se.Message);
+				throw new ExceptionUtil("Imposible inicializar DirectSound. Error: " + se.Message);
 			}
 		}
 
@@ -109,7 +110,7 @@ namespace FSDirectShowCore
 			}
 			catch (SoundException se)
 			{
-				throw new Exception("Imposible cargar fichero (" + fileName + "). Error: " + se.Message);
+				throw new ExceptionUtil("Imposible cargar fichero (" + fileName + "). Error: " + se.Message);
 			}
 		}
 

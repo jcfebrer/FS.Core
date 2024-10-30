@@ -18,6 +18,7 @@ using FSNetworkCore;
 using FSLibraryCore;
 using System.Text.Json.Nodes;
 using System.Net.Http;
+using FSExceptionCore;
 
 namespace FSGoogleMapsCore
 {
@@ -72,12 +73,12 @@ namespace FSGoogleMapsCore
                     }
                     else
                     {
-                        throw new Exception($"Error en la respuesta de la API: {element.status}");
+                        throw new ExceptionUtil($"Error en la respuesta de la API: {element.status}");
                     }
                 }
                 else
                 {
-                    throw new Exception("No se encontraron resultados en la respuesta de la API.");
+                    throw new ExceptionUtil("No se encontraron resultados en la respuesta de la API.");
                 }
             }
         }

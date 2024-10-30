@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSException;
+using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
@@ -376,7 +377,7 @@ namespace FSFormControls
 						codeDomProvider = CodeDomProvider.CreateProvider("CSharp");
 					}
 					else
-						throw new Exception("Imposible crear el proveedor para: CSharp.");
+						throw new ExceptionUtil("Imposible crear el proveedor para: CSharp.");
 					break;
 				case SourceLanguages.VbNet:
 					if (CodeDomProvider.IsDefinedLanguage("VB"))
@@ -384,7 +385,7 @@ namespace FSFormControls
 						codeDomProvider = CodeDomProvider.CreateProvider("VB");
 					}
 					else
-						throw new Exception("Imposible crear el proveedor para: VB.NET.");
+						throw new ExceptionUtil("Imposible crear el proveedor para: VB.NET.");
 					break;
 			}
 

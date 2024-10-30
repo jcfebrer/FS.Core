@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Xml;
+using FSExceptionCore;
 using FSSepaLibraryCore.Utils;
 
 namespace FSSepaLibraryCore
@@ -112,10 +113,10 @@ namespace FSSepaLibraryCore
             // Part 1: Group Header
             var cstmrDrctDbtInitn = xml.SelectSingleNode("//CstmrDrctDbtInitn");
             if (cstmrDrctDbtInitn == null)
-                throw new Exception("CstmrDrctDbtInitn is Null");
+                throw new ExceptionUtil("CstmrDrctDbtInitn is Null");
             var grpHdr = cstmrDrctDbtInitn.SelectSingleNode("GrpHdr");
             if (grpHdr == null)
-                throw new Exception("GrpHdr is Null");
+                throw new ExceptionUtil("GrpHdr is Null");
 
             if (grpHdr.SelectSingleNode("MsgId") != null)
                 MessageIdentification = grpHdr.SelectSingleNode("MsgId").InnerText;
@@ -131,7 +132,7 @@ namespace FSSepaLibraryCore
 
             var initgPty = grpHdr.SelectSingleNode("InitgPty");
             if (initgPty == null)
-                throw new Exception("InitgPty is Null");
+                throw new ExceptionUtil("InitgPty is Null");
 
             if (initgPty.SelectSingleNode("Nm") != null)
                 InitiatingPartyName = initgPty.SelectSingleNode("Nm").InnerText;
@@ -142,7 +143,7 @@ namespace FSSepaLibraryCore
             // Part 2: Payment Information
             var pmtInf = xml.SelectSingleNode("//CstmrDrctDbtInitn/PmtInf");
             if (pmtInf == null)
-                throw new Exception("CstmrDrctDbtInitn/PmtInf is Null");
+                throw new ExceptionUtil("CstmrDrctDbtInitn/PmtInf is Null");
 
             if (pmtInf.SelectSingleNode("PmtInfId") != null)
                 PaymentInfoId = pmtInf.SelectSingleNode("PmtInfId").InnerText;
@@ -180,7 +181,7 @@ namespace FSSepaLibraryCore
 
             var cdtr = pmtInf.SelectSingleNode("Cdtr");
             if (cdtr == null)
-                throw new Exception("Cdtr is Null");
+                throw new ExceptionUtil("Cdtr is Null");
 
             Creditor = new SepaIbanData();
             Creditor.Address = new SepaPostalAddress();
@@ -193,7 +194,7 @@ namespace FSSepaLibraryCore
 
             var ultimatecdtr = pmtInf.SelectSingleNode("UltimateCdtr");
             if (ultimatecdtr == null)
-                throw new Exception("UltimateCdtr is Null");
+                throw new ExceptionUtil("UltimateCdtr is Null");
 
             UltimateCreditor = new SepaIbanData();
             UltimateCreditor.Address = new SepaPostalAddress();
@@ -215,7 +216,7 @@ namespace FSSepaLibraryCore
 
             var finInstnId = pmtInf.SelectSingleNode("CdtrAgt/FinInstnId");
             if (finInstnId == null)
-                throw new Exception("CdtrAgt/FinInstnId is Null");
+                throw new ExceptionUtil("CdtrAgt/FinInstnId is Null");
 
             if (finInstnId.SelectSingleNode("BIC") != null)
                 Creditor.Bic = finInstnId.SelectSingleNode("BIC").InnerText;
@@ -247,14 +248,14 @@ namespace FSSepaLibraryCore
                     transfer.Debtor = new SepaIbanData();
                     var cdtrAgt = node.SelectSingleNode("//CdtrAgt");
                     if (cdtrAgt == null)
-                        throw new Exception("CdtrAgt is Null");
+                        throw new ExceptionUtil("CdtrAgt is Null");
 
                     if (cdtrAgt.SelectSingleNode("FinInstnId/BIC") != null)
                         transfer.Debtor.Bic = cdtrAgt.SelectSingleNode("FinInstnId/BIC").InnerText;
 
                     var dbtr = node.SelectSingleNode("Dbtr");
                     if (dbtr == null)
-                        throw new Exception("Dbtr is Null");
+                        throw new ExceptionUtil("Dbtr is Null");
 
                     if (dbtr.SelectSingleNode("Nm") != null)
                         transfer.Debtor.Name = dbtr.SelectSingleNode("Nm").InnerText;
@@ -264,7 +265,7 @@ namespace FSSepaLibraryCore
 
                     var dbtrAcct = node.SelectSingleNode("DbtrAcct");
                     if (dbtrAcct == null)
-                        throw new Exception("DbtrAcct is Null");
+                        throw new ExceptionUtil("DbtrAcct is Null");
 
                     if (dbtrAcct.SelectSingleNode("Id/IBAN") != null)
                         transfer.Debtor.Iban = dbtrAcct.SelectSingleNode("Id/IBAN").InnerText;

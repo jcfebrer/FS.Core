@@ -116,7 +116,7 @@ namespace FSMouseKeyboardLibraryCore
                     MouseActionsEntry entries = (MouseActionsEntry)ser.Deserialize(fs);
                     return entries;
                 }
-                catch (ExceptionUtil ex)
+                catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Abrir XML", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return null;

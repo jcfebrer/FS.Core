@@ -1,5 +1,6 @@
 ﻿using System; 
 using System.Collections;
+using FSExceptionCore;
 using NetFwTypeLib; /* c:\windows\system32\FirewallAPI.dll */
 
 
@@ -64,7 +65,7 @@ namespace FSFirewallCore
         public static void RemoveRule(string name)
         {
             if (!ExistsRule(name))
-                throw new Exception("Regla no existente.");
+                throw new ExceptionUtil("Regla no existente.");
 
             INetFwPolicy2 firewallPolicy = (INetFwPolicy2)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwPolicy2"));
             firewallPolicy.Rules.Remove(name);
