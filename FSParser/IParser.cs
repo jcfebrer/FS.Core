@@ -7,6 +7,7 @@ namespace FSParser
         NameValueCollection Memory { get; set; }
 
         void Abort();
+        void Clear();
         void Process(string code);
         void Stop();
         void ThreadReset();
