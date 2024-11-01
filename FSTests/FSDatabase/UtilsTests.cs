@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
+using FSDatabase;
+using System.IO;
 
 namespace FSLibrary.BD.Tests
 {
@@ -25,6 +28,40 @@ namespace FSLibrary.BD.Tests
             string where = FSDatabase.Utils.GetWhere("select * from noticias where noticiaId = 45");
 
             Assert.AreEqual("noticiaId = 45", where, "Select incorrecta.");
+        }
+
+        [TestMethod()]
+        public void CsvReaderTest()
+        {
+            string data = "\"esto es una \"prueba\", con comillas y coma dentro de la cadena.\",\"123456\",12345";
+            CsvReader csvReader = new CsvReader(data);
+
+            DataTable table = csvReader.CreateDataTable(false);
+
+            Assert.AreEqual("4", table.Columns.Count.ToString(), "Numero de columnas incorrectas: " + table.Columns.Count);
+        }
+
+        [TestMethod()]
+        public void CsvArrayTest()
+        {
+            string data = "\"esto es una \"prueba\", con comillas y coma dentro de la cadena.\",\"123456\",12345";
+
+            string[] table = Csv.ConvertCSVtoArray(data);
+
+            Assert.AreEqual("3", table.Length.ToString(), "Numero de columnas incorrectas: " + table.Length);
+        }
+
+        [TestMethod()]
+        public void CsvDataTableTest()
+        {
+            string data = "columna1,columna2,columna3";
+            data += Environment.NewLine + "\"esto es una \"prueba\", con comillas y coma dentro de la cadena.\",\"123456\",12345";
+            string fileName = System.IO.Path.GetTempPath() + Guid.NewGuid().ToString() + ".csv";
+            File.WriteAllText(fileName, data);
+
+            DataTable table = Csv.ConvertCSVtoDataTable(fileName);
+
+            Assert.AreEqual("3", table.Columns.Count.ToString(), "Numero de columnas incorrectas: " + table.Columns.Count);
         }
     }
 }

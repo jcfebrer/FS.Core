@@ -13,6 +13,22 @@ namespace FSTestsCore.FSParser
     public class FSParserTests
     {
         [TestMethod()]
+        public void CsvParser()
+        {
+            string data = "\"esto es una \"prueba\", con comillas y coma dentro de la cadena.\",\"123456\",12345";
+            CsvParser csv = new CsvParser(data);
+
+            int f = 0;
+            foreach (var item in csv)
+            {
+                Console.WriteLine(item);
+                f++;
+            }
+
+            Assert.AreEqual("3", f.ToString(), "Numero de tokens: " + f.ToString());
+        }
+
+        [TestMethod()]
         public void CalcJS()
         {
             object res = ScriptEngine.Eval("jscript", "1+2/3");

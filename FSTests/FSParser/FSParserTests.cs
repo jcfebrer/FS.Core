@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,22 @@ namespace FSTests.FSParser
     [TestClass()]
     public class FSParserTests
     {
+        [TestMethod()]
+        public void CsvParser()
+        {
+            string data = "\"esto es una \"prueba\", con comillas y coma dentro de la cadena.\",\"123456\",12345";
+            CsvParser csv = new CsvParser(data);
+
+            int f = 0;
+            foreach (var item in csv)
+            {
+                Console.WriteLine(item);
+                f++;
+            }
+
+            Assert.AreEqual("3", f.ToString(), "Numero de tokens: " + f.ToString());
+        }
+
         [TestMethod()]
         public void CalcJS()
         {
