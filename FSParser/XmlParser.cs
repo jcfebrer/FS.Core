@@ -1,16 +1,13 @@
 #region
 
-using Microsoft.VisualBasic.ApplicationServices;
 using System.IO;
 using System.Net;
-using System.Net.Http;
-using System.Security.Policy;
 using System.Text;
 using System.Xml;
 
 #endregion
 
-namespace FSLibraryCore
+namespace FSParser
 {
     /// <summary>
     /// Funciones para el manejo de XML.
@@ -60,27 +57,17 @@ namespace FSLibraryCore
         /// <param name="enc">The enc.</param>
         public void LoadFromUrl(string Url, Encoding enc)
         {
-            //HttpWebRequest myRequest = null;
+            HttpWebRequest myRequest = null;
             var responseText = "";
 
-            //myRequest = (HttpWebRequest) WebRequest.Create(Url);
-            //var MyResponse = (HttpWebResponse) myRequest.GetResponse();
-            //var receiveStream = MyResponse.GetResponseStream();
-            //var readStream = new StreamReader(receiveStream, enc);
-            //responseText = readStream.ReadToEnd();
+            myRequest = (HttpWebRequest) WebRequest.Create(Url);
+            var MyResponse = (HttpWebResponse) myRequest.GetResponse();
+            var receiveStream = MyResponse.GetResponseStream();
+            var readStream = new StreamReader(receiveStream, enc);
+            responseText = readStream.ReadToEnd();
 
-            //MyResponse.Close();
-            //readStream.Close();
-
-            using (var handler = new HttpClientHandler())
-            {
-                using (HttpClient httpClient = new HttpClient(handler))
-                {
-                    HttpResponseMessage response = httpClient.PostAsync(Url, null).Result;
-                    responseText = response.Content.ReadAsStringAsync().Result;
-                    responseText = enc.GetString(Encoding.ASCII.GetBytes(responseText));
-                }
-            }
+            MyResponse.Close();
+            readStream.Close();
 
             Document.LoadXml(responseText);
         }

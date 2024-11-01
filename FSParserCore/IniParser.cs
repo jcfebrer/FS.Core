@@ -3,7 +3,7 @@ using System.IO;
 using System.Collections;
 using System.Reflection;
 
-namespace FSLibraryCore
+namespace FSParserCore
 {
     /// <summary>
     /// Parsea ficheros INI

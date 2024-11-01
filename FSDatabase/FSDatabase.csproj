@@ -56,7 +56,6 @@
     <Compile Include="BD.cs" />
     <Compile Include="BDUtils.cs" />
     <Compile Include="Csv.cs" />
-    <Compile Include="CsvParser.cs" />
     <Compile Include="CsvReader.cs" />
     <Compile Include="DAL.cs" />
     <Compile Include="Excel.cs" />
