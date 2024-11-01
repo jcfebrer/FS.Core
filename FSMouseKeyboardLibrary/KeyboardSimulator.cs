@@ -77,6 +77,7 @@ namespace FSMouseKeyboardLibrary
             text = text.Replace("{left}", "^l");
             text = text.Replace("{right}", "^r");
             text = text.Replace("{down}", "^d");
+            text = text.Replace("{tab}", "^t");
 
             for (int f = 0; f< text.Length; f++)
             {
@@ -149,6 +150,9 @@ namespace FSMouseKeyboardLibrary
                                 break;
                             case 'h':
                                 k = Keys.Home;
+                                break;
+                            case 't':
+                                k = Keys.Tab;
                                 break;
                             case '1':
                                 k = Keys.F1;
