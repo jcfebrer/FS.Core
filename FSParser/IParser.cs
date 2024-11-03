@@ -9,6 +9,8 @@ namespace FSParser
         void Abort();
         void Clear();
         void EjecuteScript(string code);
+        string MemoryRequest(string name);
+        void MemorySave(string name, string value);
         void Stop();
         void ThreadReset();
         void ThreadSet();
