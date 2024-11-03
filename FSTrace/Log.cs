@@ -346,6 +346,16 @@ namespace FSTrace
             Trace(TraceLevel.Info, message, args);
         }
 
+        public static void Trace(string message)
+        {
+            Trace(TraceLevel.Info, message);
+        }
+
+        public static void Trace(Exception exception)
+        {
+            Trace(exception);
+        }
+
         /// <summary>Escribe una traza de nivel error en el archivo de log. </summary>
         /// <param name="exception">Excepción que queremos logear</param>
         /// <remarks>
