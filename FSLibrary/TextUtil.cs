@@ -2344,6 +2344,16 @@ namespace FSLibrary
         }
 
         /// <summary>
+        /// Elimina las comillas de una cadena.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string RemoveQuotes(string str)
+        {
+            return Regex.Replace(str, "^\"(.*)\"$", "$1");
+        }
+
+        /// <summary>
         /// Lasts the index of.
         /// </summary>
         /// <param name="str">The string.</param>
