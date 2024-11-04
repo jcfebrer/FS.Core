@@ -244,16 +244,12 @@ namespace FSTrace
             //Aseguramos que el listener esta inicializado
             IntializeTraceListener();
 
-            if (m_firstSection)
-            {
-                message += FirstSection();
-            }
-
             LogMessage msgLog = GetMessageLog(traceLevel, message);
 
 
             if (m_traceListener != null)
             {
+                if(m_firstSection) m_traceListener.WriteLine(FirstSection());
                 m_traceListener.WriteLine(msgLog.ToString());
                 m_traceListener.Flush();
             }
@@ -262,11 +258,14 @@ namespace FSTrace
                 //Creamos la traza, si tenemos nuestro listener configurado
                 System.Diagnostics.Trace.AutoFlush = true;
                 System.Diagnostics.Trace.IndentSize = 4;
+
+                if (m_firstSection) System.Diagnostics.Trace.WriteLine(FirstSection());
                 System.Diagnostics.Trace.WriteLine(msgLog.ToString());
             }
 
             if (m_saveLogData)
             {
+                // Si esta la opción de agrupar, y existe el evento, actualizamos la información del evento.
                 if (m_groupData && logData.Exists(e => e.Message == msgLog.Message))
                 {
                     LogData logUpdate = logData.Find(e => e.Message == msgLog.Message);
@@ -275,6 +274,7 @@ namespace FSTrace
                 }
                 else
                 {
+                    // Creamos una nueva entrada
                     logData.Add(new LogData(msgLog.Time, msgLog.Message, msgLog.TraceLevel));
                 }
             }
@@ -288,6 +288,7 @@ namespace FSTrace
                 if (traceLevel == TraceLevel.Error || traceLevel == TraceLevel.Warning)
                 {
                     eventLog.Source = "Application";
+                    if (m_firstSection) eventLog.WriteEntry(FirstSection());
                     eventLog.WriteEntry(msgLog.ToString(), eventType, 2117, 1);
                 }
             }
