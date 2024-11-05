@@ -350,7 +350,7 @@ namespace FSDisk
             name = TextUtil.Remove("www", "es", name);
             name = TextUtil.Remove("www", "org", name);
 
-            name = TextUtil.RemoveSpace(name);
+            name = TextUtil.RemoveRepeatSpaces(name);
 
             name = name.Replace(" (", "(");
             name = name.Replace("(", " (");
@@ -374,7 +374,7 @@ namespace FSDisk
 
             name = name.Replace("-.", ".");
 
-            name = TextUtil.RemoveSpace(name);
+            name = TextUtil.RemoveRepeatSpaces(name);
 
             return name;
         }
