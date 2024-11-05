@@ -1901,13 +1901,24 @@ namespace FSLibraryCore
         }
 
         /// <summary>
-        /// Removes the spaces.
+        /// Eliminamos los espacios repetidos.
         /// </summary>
         /// <param name="str">The string.</param>
         /// <returns></returns>
-        public static string RemoveSpace(string str)
+        public static string RemoveRepeatSpaces(string str)
         {
-            return Regex.Replace(str, @"\s+\s+", " ");
+            return Regex.Replace(str, @"\s+", " ");
+        }
+
+        /// <summary>
+        /// Eliminamos el carácter repetido.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <param name="chr">El caracter a procesar</param>
+        /// <returns></returns>
+        public static string RemoveRepeat(string str, char chr)
+        {
+            return Regex.Replace(str, @"[" + chr.ToString() + "]{2,}", chr.ToString());
         }
 
         /// <summary>
@@ -2341,6 +2352,16 @@ namespace FSLibraryCore
             str = str.Replace(",", " ");
 
             return str;
+        }
+
+        /// <summary>
+        /// Elimina las comillas de una cadena.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string RemoveQuotes(string str)
+        {
+            return Regex.Replace(str, "^\"(.*)\"$", "$1");
         }
 
         /// <summary>
