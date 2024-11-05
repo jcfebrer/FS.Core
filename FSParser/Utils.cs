@@ -11,8 +11,15 @@ namespace FSParser
         public static bool EvaluatorExpressionIf(string condition)
         {
             string exprIf = "if(" + condition + ")\r\nreturn true;\r\nelse\r\nreturn false;";
-            ExpressionEvaluator evaluator = new ExpressionEvaluator();
-            return Convert.ToBoolean(evaluator.ScriptEvaluate(exprIf));
+            try {
+                ExpressionEvaluator evaluator = new ExpressionEvaluator();
+                return Convert.ToBoolean(evaluator.ScriptEvaluate(exprIf));
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            
         }
     }
 }
