@@ -81,6 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="FSParser\CSharpParserTest.cs" />
     <Compile Include="FSSystemInfo\FSDiskTests.cs" />
     <Compile Include="FSDatabase\UtilsTests.cs" />
     <Compile Include="FSCrypto\FSCryptoTests.cs" />

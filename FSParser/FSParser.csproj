@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsharpParser.cs" />
     <Compile Include="CsvParser.cs" />
     <Compile Include="ExpressionEvaluator.cs" />
     <Compile Include="HtmlRender.cs" />
