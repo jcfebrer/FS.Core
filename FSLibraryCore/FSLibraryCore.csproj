@@ -85,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
-    <ProjectReference Include="..\FSParserCore\FSParserCore.csproj" />
     <ProjectReference Include="..\FSTraceCore\FSTraceCore.csproj" />
   </ItemGroup>
   <ProjectExtensions>

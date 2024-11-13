@@ -10,7 +10,7 @@
 
 #region
 
-using FSParserCore;
+using FSParser;
 using System;
 using System.Collections;
 using System.Net;
@@ -19,7 +19,7 @@ using System.Xml;
 
 #endregion
 
-namespace FSLibraryCore
+namespace FSDatabase
 {
     /// <summary>
     ///     Colección de líneas de RSS

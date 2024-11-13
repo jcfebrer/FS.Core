@@ -23,6 +23,7 @@
     <ProjectReference Include="..\FSExceptionCore\FSExceptionCore.csproj" />
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />
     <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
+    <ProjectReference Include="..\FSParserCore\FSParserCore.csproj" />
     <ProjectReference Include="..\FSQueryBuilderCore\FSQueryBuilderCore.csproj" />
     <ProjectReference Include="..\FSSecurityCore\FSSecurityCore.csproj" />
     <ProjectReference Include="..\FSSystemInfoCore\FSSystemInfoCore.csproj" />

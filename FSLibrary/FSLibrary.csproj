@@ -157,7 +157,6 @@
     <Compile Include="TextUtil.cs" />
     <Compile Include="Bank.cs" />
     <Compile Include="DateTimeUtil.cs" />
-    <Compile Include="Rss.cs" />
     <Compile Include="Calculator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -181,10 +180,6 @@
     <ProjectReference Include="..\FSException\FSException.csproj">
       <Project>{2a366b72-70b3-4700-b962-5920a0eee074}</Project>
       <Name>FSException</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSParser\FSParser.csproj">
-      <Project>{7c38ee9f-9765-44bb-9477-7e59e3122aac}</Project>
-      <Name>FSParser</Name>
     </ProjectReference>
     <ProjectReference Include="..\FSTrace\FSTrace.csproj">
       <Project>{2ea3b2cc-791c-430c-8135-79d270be20b4}</Project>
