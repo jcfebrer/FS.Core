@@ -1,4 +1,5 @@
-﻿using FSParser;
+﻿using FSLibrary;
+using FSParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,43 @@ namespace FSTests.FSParser
         public void CSharpParser()
         {
             var parser = new CSharpParser();
+
+            parser.CustomCommands["Print"] = args =>
+            {
+                Console.WriteLine(string.Join(" ", args));
+                return null;
+            };
+
+            parser.CustomCommands["Concat"] = args =>
+            {
+                return string.Join(" ", args);
+            };
+
+            parser.CustomCommands["Contains"] = args =>
+            {
+                return args[0].ToString().Contains(args[1].ToString());
+            };
+
+            parser.CustomCommands["Replace"] = args =>
+            {
+                return args[0].ToString().Replace(args[1].ToString(), args[2].ToString());
+            };
+
+            parser.CustomCommands["Replacereg"] = args =>
+            {
+                return TextUtil.ReplaceREG(args[0].ToString(), args[1].ToString(), args[2].ToString());
+            };
+
+            parser.CustomCommands["Help"] = args =>
+            {
+                return string.Join(" ", parser.CustomCommands.Keys.ToArray());
+            };
+
             var code = new List<string>
             {
                 "x = 10;",
-                "if (x > 5) {",
+                "if (x > 5)",
+                " {",
                 "    y = x + 5;",
                 "    if (y > 10) {",
                 "        z = y * 2;",
@@ -29,22 +63,33 @@ namespace FSTests.FSParser
                 "}"
             };
 
-            string code2 = 
-                "x = 10;" + Environment.NewLine +
-                "if (x > 5) {" + Environment.NewLine +
-                "      y = x + 5;" + Environment.NewLine +
-                "      if (y > 10) {" + Environment.NewLine +
-                "           z = y * 2;" + Environment.NewLine +
-                "      }" + Environment.NewLine +
-                "}" + Environment.NewLine +
-                "while (x > 0) {" + Environment.NewLine +
-                "   x = x - 1;" + Environment.NewLine +
-                "}";
+            string code2 = @"
+                x = 10;
+                if (x > 5) 
+                {
+                      y = x + 5;
+                      if (y > 10) {
+                           z = y * 2;
+                      }
+                }
+                while (x > 0) {
+                   x = x - 1;
+                }
+            ";
 
             string code3 = @"
                 function Suma(a, b) {
                     return a + b;
                 }
+                extension = "".cs"";
+                if(extension == "".cs"") {
+                    help = Help();
+                    }
+                var1 = ""esto es una prueba"";
+                if(Contains(var1, ""una"")) {
+                    var2 = Replace(""Contiene"", ""nti"", ""mto"");
+                }
+                var3=Replacereg(""esto es una prueba"", ""una"", ""dos"");
                 x = Suma(5, 10);
                 Print(x);
             ";
@@ -69,42 +114,49 @@ namespace FSTests.FSParser
                 "function Multiply(a, b) {",
                 "    return a * b;",
                 "}",
-                "x = Add(10, 5);",
+                "r = Concat(\"hola\",\"ad,ios\", \"gabon\");",
+                "x = Add(10, Multiply(3,2));",
                 "y = Multiply(x, 2);",
-                "if (y > 20) {",
+                "if (y > Multiply(10,2)) {",
                 "    z = y - 10;",
                 "}"
             };
 
             parser.Parse(code);
 
-            Assert.AreEqual(parser.Variables["x"], 0);
-            Assert.AreEqual(parser.Variables["y"], 15);
-            Assert.AreEqual(parser.Variables["z"], 30);
+            Assert.AreEqual(parser.Variables["x"], 0.0);
+            Assert.AreEqual(parser.Variables["y"], 15.0);
+            Assert.AreEqual(parser.Variables["z"], 30.0);
 
             parser.Parse(code2);
 
-            Assert.AreEqual(parser.Variables["x"] , 0);
-            Assert.AreEqual(parser.Variables["y"], 15);
-            Assert.AreEqual(parser.Variables["z"], 30);
+            Assert.AreEqual(parser.Variables["x"] , 0.0);
+            Assert.AreEqual(parser.Variables["y"], 15.0);
+            Assert.AreEqual(parser.Variables["z"], 30.0);
 
             parser.Parse(code3);
 
-            Assert.AreEqual(parser.Variables["x"], 15);
+            Assert.AreEqual(parser.Variables["x"], 15.0);
+            Assert.AreEqual(parser.Variables["y"], 15.0);
+            Assert.AreEqual(parser.Variables["z"], 30.0);
+            Assert.AreEqual(parser.Variables["var1"], "esto es una prueba");
+            Assert.AreEqual(parser.Variables["var2"], "Comtoene");
+            Assert.AreEqual(parser.Variables["var3"], "esto es dos prueba");
 
             parser.Parse(code4);
 
-            Assert.AreEqual(parser.Variables["x"], 1);
-            Assert.AreEqual(parser.Variables["y"], 1);
-            Assert.AreEqual(parser.Variables["z"], 30);
-            Assert.AreEqual(parser.Variables["result"], 1);
+            Assert.AreEqual(parser.Variables["x"], 0.893996663600558d);
+            Assert.AreEqual(parser.Variables["y"], 1.0);
+            Assert.AreEqual(parser.Variables["z"], 30.0);
+            Assert.AreEqual(parser.Variables["result"], 0.893996663600558d);
 
             parser.Parse(code5);
 
-            Assert.AreEqual(parser.Variables["x"], 15);
-            Assert.AreEqual(parser.Variables["y"], 30);
-            Assert.AreEqual(parser.Variables["z"], 20);
-            Assert.AreEqual(parser.Variables["result"], 1);
+            Assert.AreEqual(parser.Variables["x"], 16.0);
+            Assert.AreEqual(parser.Variables["y"], 32.0);
+            Assert.AreEqual(parser.Variables["z"], 22.0);
+            Assert.AreEqual(parser.Variables["result"], 0.893996663600558d);
+            Assert.AreEqual(parser.Variables["r"], "hola ad,ios gabon");
         }
     }
 }

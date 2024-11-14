@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FSLibrary;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -13,84 +14,117 @@ namespace FSParser
         private readonly Dictionary<string, (List<string> Parameters, List<string> Body)> functions = new Dictionary<string, (List<string> Parameters, List<string> Body)>();
         private readonly Dictionary<string, Func<List<object>, object>> customCommands = new Dictionary<string, Func<List<object>, object>>();
 
-        // Expresiones regulares para identificar instrucciones de C#
-        private readonly Regex assignmentRegex = new Regex(@"^\s*(\w+)\s*=\s*(.+);$", RegexOptions.Compiled);
-        private readonly Regex ifRegex = new Regex(@"^\s*if\s*\((.+)\)\s*{?$", RegexOptions.Compiled);
-        private readonly Regex whileRegex = new Regex(@"^\s*while\s*\((.+)\)\s*{?$", RegexOptions.Compiled);
-        private readonly Regex functionDefRegex = new Regex(@"^\s*function\s+(\w+)\s*\((.*?)\)\s*{?$", RegexOptions.Compiled);
-        private readonly Regex functionCallRegex = new Regex(@"(\w+)\s*\((.*?)\)");
+        private readonly Regex assignmentRegex = new Regex(@"^\s*(\w+)\s*=\s*(.+);$", RegexOptions.Compiled | RegexOptions.Multiline);
+        private readonly Regex ifRegex = new Regex(@"^\s*if\s*\((.+)\)\s*{?$", RegexOptions.Compiled | RegexOptions.Multiline);
+        private readonly Regex whileRegex = new Regex(@"^\s*while\s*\((.+)\)\s*{?$", RegexOptions.Compiled | RegexOptions.Multiline);
+        private readonly Regex functionDefRegex = new Regex(@"^\s*function\s+(\w+)\s*\((.*?)\)\s*{?$", RegexOptions.Compiled | RegexOptions.Multiline);
+        private readonly Regex functionCallRegex = new Regex(@"(\w+)\s*\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)", RegexOptions.Compiled | RegexOptions.Multiline);
 
         public Dictionary<string, object> Variables => variables;
 
+        public Dictionary<string, Func<List<object>, object>> CustomCommands => customCommands;
+
         public CSharpParser()
         {
-            customCommands["Print"] = args =>
+        }
+
+        // Nuevo método para dividir argumentos teniendo en cuenta paréntesis anidados
+        private List<string> SplitArguments(string arguments)
+        {
+            var result = new List<string>();
+            var currentArg = "";
+            int parenthesesBalance = 0;
+            bool insideString = false;
+
+            foreach (char c in arguments)
             {
-                Console.WriteLine(string.Join(" ", args));
-                return null;
-            };
+                if (c == ',' && parenthesesBalance == 0 && !insideString)
+                {
+                    result.Add(TextUtil.RemoveQuotes(currentArg.Trim()));
+                    currentArg = "";
+                }
+                else
+                {
+                    if (c == '(' && !insideString) parenthesesBalance++;
+                    if (c == ')' && !insideString) parenthesesBalance--;
+                    if (c == '\"') insideString = !insideString; // Toggle insideString on encountering "
+
+                    currentArg += c;
+                }
+            }
+
+            if (!string.IsNullOrWhiteSpace(currentArg))
+                result.Add(TextUtil.RemoveQuotes(currentArg.Trim()));
+
+            return result;
         }
 
         private object EvaluateExpression(string expression, Dictionary<string, object> localVariables = null)
         {
             var variablesToUse = localVariables ?? variables;
 
+            // Reemplaza variables en la expresión
             foreach (var variable in variablesToUse)
             {
-                expression = Regex.Replace(expression, $@"\b{variable.Key}\b", variable.Value.ToString());
+                var v = variable.Value.ToString();
+                if (NumberUtils.IsNumeric(v))
+                    v = v.Replace(",", ".");
+                else
+                    v = "\"" + v + "\"";
+
+                expression = Regex.Replace(expression, $@"\b{variable.Key}\b", v);
             }
 
+            // Evalúa llamadas a funciones dentro de la expresión de manera recursiva
             var match = functionCallRegex.Match(expression);
             while (match.Success)
             {
                 string functionName = match.Groups[1].Value;
                 string argumentList = match.Groups[2].Value;
 
-                List<string> arguments = new List<string>(argumentList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+                // Divide y evalúa cada argumento, permitiendo funciones como argumentos
+                List<object> evaluatedArgs = SplitArguments(argumentList)
+                    .Select(arg => EvaluateExpression(arg.Trim(), localVariables))
+                    .ToList();
 
+                object result;
                 if (functions.ContainsKey(functionName))
                 {
-                    object functionResult = CallFunction(functionName, arguments);
-                    expression = expression.Replace(match.Value, functionResult.ToString());
+                    // Llama a una función definida en el parser
+                    result = CallFunction(functionName, evaluatedArgs);
                 }
                 else if (IsSystemFunction(functionName, out MethodInfo methodInfo))
                 {
-                    object functionResult = CallSystemFunction(methodInfo, arguments);
-
-                    // Si el resultado es de tipo double, convierte a string usando formato invariante
-                    if (functionResult is double doubleResult)
-                    {
-                        // Convierte el resultado a una cadena con punto decimal
-                        functionResult = doubleResult.ToString(System.Globalization.CultureInfo.InvariantCulture);
-                    }
-                    
-                    expression = expression.Replace(match.Value, functionResult.ToString());
+                    // Llama a una función del sistema
+                    result = CallSystemFunction(methodInfo, evaluatedArgs);
                 }
                 else if (customCommands.ContainsKey(functionName))
                 {
-                    List<object> evaluatedArgs = arguments.ConvertAll(arg => EvaluateExpression(arg, localVariables));
-                    object result = customCommands[functionName](evaluatedArgs);
-                    expression = expression.Replace(match.Value, result?.ToString() ?? string.Empty);
+                    // Llama a un comando personalizado
+                    result = customCommands[functionName](evaluatedArgs);
                 }
                 else
                 {
                     throw new Exception($"Función '{functionName}' no definida.");
                 }
 
+                // Reemplaza la llamada de la función en la expresión original
+                var v = result.ToString();
+                if (NumberUtils.IsNumeric(v))
+                    v = v.Replace(",", ".");
+
+                expression = expression.Replace(match.Value, v);
                 match = functionCallRegex.Match(expression);
             }
 
+            // Evalúa la expresión final en caso de que sea una operación matemática simple
             try
             {
-                if (int.TryParse(expression, out int numericResult))
-                    return numericResult;
-
-                var result = new DataTable().Compute(expression, null);
-                return Convert.ToInt32(result);
+                return SimpleExpressionEvaluator.Evaluate(expression);
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception($"No se pudo evaluar la expresión: {expression}");
+                throw new Exception($"No se pudo evaluar la expresión: {expression}. Error: " + ex.Message);
             }
         }
 
@@ -121,9 +155,10 @@ namespace FSParser
                     string parameterList = functionDefMatch.Groups[2].Value;
 
                     List<string> parameters = new List<string>(parameterList.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
-                    int closingIndex = FindClosingBracket(lines, i);
 
                     if (!line.Contains("{") && lines[i + 1].Trim() == "{") i++;
+
+                    int closingIndex = FindClosingBracket(lines, i);
 
                     List<string> body = lines.GetRange(i + 1, closingIndex - i - 1);
                     functions[functionName] = (parameters, body);
@@ -143,9 +178,10 @@ namespace FSParser
                 {
                     string condition = ifMatch.Groups[1].Value;
                     bool conditionResult = Convert.ToBoolean(EvaluateExpression(condition, localVariables));
-                    int closingIndex = FindClosingBracket(lines, i);
 
                     if (!line.Contains("{") && lines[i + 1].Trim() == "{") i++;
+
+                    int closingIndex = FindClosingBracket(lines, i);
 
                     if (conditionResult)
                         i = ParseBlock(lines, i + 1, closingIndex, localVariables);
@@ -158,9 +194,10 @@ namespace FSParser
                 if (whileMatch.Success)
                 {
                     string condition = whileMatch.Groups[1].Value;
-                    int closingIndex = FindClosingBracket(lines, i);
 
                     if (!line.Contains("{") && lines[i + 1].Trim() == "{") i++;
+
+                    int closingIndex = FindClosingBracket(lines, i);
 
                     while (Convert.ToBoolean(EvaluateExpression(condition, localVariables)))
                         ParseBlock(lines, i + 1, closingIndex, localVariables);
@@ -169,14 +206,12 @@ namespace FSParser
                     continue;
                 }
 
-                // Verifica si la línea es una llamada a un comando personalizado
                 var customCommandMatch = functionCallRegex.Match(line);
                 if (customCommandMatch.Success)
                 {
                     string commandName = customCommandMatch.Groups[1].Value;
                     string argumentList = customCommandMatch.Groups[2].Value;
 
-                    // Si el comando existe en customCommands, lo ejecuta
                     if (customCommands.ContainsKey(commandName))
                     {
                         List<object> evaluatedArgs = argumentList
@@ -218,7 +253,7 @@ namespace FSParser
             variablesToUse[variableName] = EvaluateExpression(value, localVariables);
         }
 
-        private object CallFunction(string functionName, List<string> arguments)
+        private object CallFunction(string functionName, List<object> arguments)
         {
             var function = functions[functionName];
             var parameters = function.Parameters;
@@ -230,7 +265,7 @@ namespace FSParser
             var localVariables = new Dictionary<string, object>();
             for (int i = 0; i < parameters.Count; i++)
             {
-                localVariables[parameters[i].Trim()] = EvaluateExpression(arguments[i].Trim());
+                localVariables[parameters[i].Trim()] = arguments[i];
             }
 
             return ExecuteFunctionBody(body, localVariables);
@@ -263,14 +298,14 @@ namespace FSParser
             return methodInfo != null;
         }
 
-        private object CallSystemFunction(MethodInfo method, List<string> arguments)
+        private object CallSystemFunction(MethodInfo method, List<object> arguments)
         {
-            var parameterValues = new List<object>();
-            foreach (string arg in arguments)
+            List<object> doubleArgs = new List<object>();
+            foreach (object arg in arguments)
             {
-                parameterValues.Add(Convert.ToDouble(EvaluateExpression(arg)));
+                doubleArgs.Add(Convert.ToDouble(arg));
             }
-            return method.Invoke(null, parameterValues.ToArray());
+            return method.Invoke(null, doubleArgs.ToArray());
         }
     }
 }
