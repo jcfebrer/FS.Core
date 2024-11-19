@@ -24,6 +24,7 @@ namespace FSParserCore
         private readonly static string whilePattern = @"^\s*while\s*\((.+)\)\s*{?$";
         private readonly static string functionDefPattern = @"^\s*function\s+(\w+)\s*\((.*?)\)\s*{?$";
         private readonly static string functionCallPattern = @"(\w+)\s*\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)";
+        private readonly static string functionCallProtectPattern = @"(\#\w+\#)\s*\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)";
         private readonly static string allowedTextInLine = @"(\{|\}|/\*|\*/)";
 
         private readonly Regex singleLineCommentRegex = new Regex(singleLineCommentPattern, RegexOptions.Compiled | RegexOptions.Multiline);
@@ -34,6 +35,7 @@ namespace FSParserCore
         private readonly Regex whileRegex = new Regex(whilePattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionDefRegex = new Regex(functionDefPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionCallRegex = new Regex(functionCallPattern, RegexOptions.Compiled | RegexOptions.Multiline);
+        private readonly Regex functionCallProtectRegex = new Regex(functionCallProtectPattern, RegexOptions.Compiled | RegexOptions.Multiline);
 
         public Dictionary<string, object> Variables => variables;
         public Dictionary<string, Func<List<string>, object>> CustomCommands => customCommands;
