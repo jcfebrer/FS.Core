@@ -91,17 +91,15 @@ namespace FSParserCore
         /// <returns></returns>
         public string ProtectData(string code)
         {
-            var match = functionCallRegex.Match(code);
-            while (match.Success)
+            // Usa un Regex para realizar un reemplazo eficiente
+            return functionCallRegex.Replace(code, match =>
             {
                 string functionName = match.Groups[1].Value;
                 string arguments = match.Groups[2].Value;
 
-                code = code.Replace(match.Value, "#" + functionName + "#" + "(" + arguments + ")");
-                match = functionCallRegex.Match(code);
-            }
-
-            return code;
+                // Construye el nuevo formato de la función
+                return $"#{functionName}#({arguments})";
+            });
         }
 
         /// <summary>
@@ -112,17 +110,12 @@ namespace FSParserCore
         /// <returns></returns>
         public string UnProtectData(string code)
         {
-            var match = functionCallProtectRegex.Match(code);
-            while (match.Success)
+            return functionCallProtectRegex.Replace(code, match =>
             {
-                string functionName = match.Groups[1].Value;
+                string functionName = match.Groups[1].Value.Replace("#", "");
                 string arguments = match.Groups[2].Value;
-
-                code = code.Replace(match.Value, functionName.Replace("#", "") + "(" + arguments + ")");
-                match = functionCallProtectRegex.Match(code);
-            }
-
-            return code;
+                return $"{functionName}({arguments})";
+            });
         }
 
         private List<string> ApplyVariables(List<string> arguments)
@@ -209,33 +202,28 @@ namespace FSParserCore
         {
             var variablesToUse = localVariables ?? variables;
 
-            // Evalúa llamadas a funciones dentro de la expresión de manera recursiva
-            var match = functionCallRegex.Match(expression);
-            while (match.Success)
+            // Evalúa funciones recursivamente utilizando functionCallRegex.Replace
+            expression = functionCallRegex.Replace(expression, match =>
             {
                 string functionName = match.Groups[1].Value;
                 string argumentList = match.Groups[2].Value;
 
-                // Divide y evalúa cada argumento, permitiendo funciones como argumentos
-                List<string> evaluatedArgs = SplitArguments(argumentList);
+                // Evalúa los argumentos
+                var evaluatedArgs = ApplyVariables(SplitArguments(argumentList));
 
                 object result;
+
+                // Usa un bloque `switch` tradicional
                 if (functions.ContainsKey(functionName))
                 {
-                    evaluatedArgs = ApplyVariables(evaluatedArgs);
-                    // Llama a una función definida en el parser
                     result = CallFunction(functionName, evaluatedArgs);
                 }
                 else if (IsSystemFunction(functionName, out MethodInfo methodInfo))
                 {
-                    evaluatedArgs = ApplyVariables(evaluatedArgs);
-                    // Llama a una función del sistema
                     result = CallSystemFunction(methodInfo, evaluatedArgs);
                 }
                 else if (customCommands.ContainsKey(functionName))
                 {
-                    evaluatedArgs = ApplyVariables(evaluatedArgs);
-                    // Llama a un comando personalizado
                     result = customCommands[functionName](evaluatedArgs);
                 }
                 else
@@ -243,36 +231,47 @@ namespace FSParserCore
                     throw new Exception($"Función '{functionName}' no definida.");
                 }
 
-                // Reemplaza la llamada de la función en la expresión original
-                string v = result.ToString();
-                if (NumberUtils.IsNumeric(v))
-                    v = v.Replace(",", ".");
+                // Devuelve el resultado formateado
+                return FormatResult(result);
+            });
 
-                expression = expression.Replace(match.Value, v);
-                match = functionCallRegex.Match(expression);
+            // Evalúa la expresión final si es una operación matemática simple
+            return EvaluateFinalExpression(expression, variablesToUse);
+        }
+
+        private string FormatResult(object result)
+        {
+            string value = result.ToString();
+            if (NumberUtils.IsNumeric(value))
+            {
+                return value.Replace(",", ".");
             }
+            return value;
+        }
 
-            // Evalúa la expresión final en caso de que sea una operación matemática simple
+        private object EvaluateFinalExpression(string expression, Dictionary<string, object> variablesToUse)
+        {
             try
             {
                 if (IsSimpleMathExpression(expression))
                 {
                     return SimpleExpressionEvaluator.Evaluate(expression, variablesToUse);
                 }
+                else if (NumberUtils.IsNumeric(expression))
+                {
+                    return Convert.ToDouble(expression.Replace(".", ","));
+                }
                 else
                 {
-                    if (NumberUtils.IsNumeric(expression))
-                    {
-                        return Convert.ToDouble(expression.Replace(".", ","));
-                    }
                     return TextUtil.RemoveQuotes(expression);
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"No se pudo evaluar la expresión: {expression}. Error: " + ex.Message);
+                throw new Exception($"No se pudo evaluar la expresión: {expression}. Error: {ex.Message}");
             }
         }
+
 
         // Validación de la sintaxis completa del bloque de código
         private bool IsBlockSyntaxValid(string codeBlock)
