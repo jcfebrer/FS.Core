@@ -380,6 +380,20 @@ namespace FSLibraryCore
             return result;
         }
 
+        /// <summary>
+        /// Reemplazamos las cadenas entre comillas, dentro de una cadena
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="replace"></param>
+        /// <returns></returns>
+        public static string ReplaceStrings(string input, string replace = "")
+        {
+            // Expresión regular para detectar cadenas entre comillas dobles
+            string stringPattern = @"""[^""\\]*(?:\\.[^""\\]*)*""";
+
+            // Reemplaza las cadenas por una cadena vacía
+            return Regex.Replace(input, stringPattern, replace);
+        }
 
         /// <summary>
         /// Cuenta la cadena search dentro de str, empezando por start.
