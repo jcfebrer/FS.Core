@@ -1,25 +1,58 @@
-﻿using System;
+﻿using FSLibraryCore;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace FSParserCore
 {
     public class SimpleExpressionEvaluator
     {
-        public static object Evaluate(string expression)
+        // Evalúa una expresión matemática o lógica, reemplazando las variables con sus valores.
+        public static object Evaluate(string expression, Dictionary<string, object> localVariables = null)
         {
-            var tokens = Tokenize(expression);
+            var tokens = Tokenize(expression, localVariables);
+
+            // Si hay solo un token, significa que es una constante o variable, retornamos directamente.
+            if (tokens.Count == 1)
+                return expression;
+
+            // Convierte la expresión infija a notación polaca inversa (RPN).
             var rpn = InfixToRPN(tokens);
 
-            if(rpn.Count == 0)
+            // Si la conversión a RPN es vacía, retornamos la expresión original.
+            if (rpn.Count == 0)
                 return expression;
             else
-            return EvaluateRPN(rpn);
+                // Evalúa la expresión en RPN.
+            	return EvaluateRPN(rpn);
         }
 
-        // Tokeniza la expresión en números, cadenas y operadores
-        private static List<string> Tokenize(string expression)
+        // Aplica las variables locales a la expresión.
+        private static string ApplyVariables(string expression, Dictionary<string, object> localVariables = null)
+        {
+            if (localVariables == null)
+                return expression;
+
+            // Reemplaza variables en la expresión
+            foreach (var variable in localVariables)
+            {
+                var v = variable.Value.ToString();
+                if (double.TryParse(v, out _))
+                    v = v.Replace(",", "."); // Asegura que los números sean válidos con punto como separador decimal.
+                else if (!(v.StartsWith("\"") && v.EndsWith("\"")))
+                    v = $"\"{v}\""; // Si no es un string, lo convierte a string entre comillas.
+
+                // Reemplaza las ocurrencias de las variables en la expresión.
+                expression = Regex.Replace(expression, $@"\[{Regex.Escape(variable.Key)}\]", v);
+            }
+
+            return expression;
+        }
+
+        // Tokeniza la expresión en componentes: números, operadores y variables.
+        private static List<string> Tokenize(string expression, Dictionary<string, object> localVariables)
         {
             var tokens = new List<string>();
             var currentToken = "";
@@ -43,20 +76,23 @@ namespace FSParserCore
                     currentToken = "";
                 }
                 // Si es una letra (parte de un identificador o nombre de función)
-                else if (char.IsLetter(c) || c == '_')
+                else if (char.IsLetter(c) || c == '_' || c == '[')
                 {
                     currentToken += c;
                     i++;
-                    while (i < expression.Length && (char.IsLetterOrDigit(expression[i]) || expression[i] == '_'))
+                    while (i < expression.Length && (char.IsLetterOrDigit(expression[i]) || expression[i] == '_' || expression[i] == ']'))
                     {
                         currentToken += expression[i];
                         i++;
                     }
+
+                    currentToken = ApplyVariables(currentToken, localVariables);
+
                     tokens.Add(currentToken);
                     currentToken = "";
                 }
-                // Manejo de operadores de dos caracteres (==, !=, <=, >=)
-                else if (i + 1 < expression.Length && (expression[i] == '=' || expression[i] == '!' || expression[i] == '<' || expression[i] == '>'))
+                // Si se encuentra un operador de dos caracteres (==, !=, <=, >=).
+                else if (i + 1 < expression.Length && (c == '=' || c == '!' || c == '<' || c == '>'))
                 {
                     string doubleCharOperator = expression.Substring(i, 2);
                     if (doubleCharOperator == "==" || doubleCharOperator == "!=" || doubleCharOperator == "<=" || doubleCharOperator == ">=")
@@ -70,13 +106,13 @@ namespace FSParserCore
                     i++;
                 }
                 }
-                // Si es un operador de un solo carácter (como +, -, *, /)
-                else if ("+-*/%^()".Contains(c))
+                // Si es un operador de un solo carácter (como !, +, -, *, etc.).
+                else if ("!+-*/%^()".Contains(c))
                 {
                     tokens.Add(c.ToString());
                     i++;
                 }
-                // Si es una cadena de texto
+                // Si es una cadena de texto.
                 else if (c == '"')
                 {
                     currentToken += c;
@@ -91,7 +127,7 @@ namespace FSParserCore
                     currentToken = "";
                     i++;  // Avanza después de la comilla final
                 }
-                // Espacios y otros caracteres no significativos
+                // Si es un espacio o carácter no significativo, lo ignoramos.
                 else if (char.IsWhiteSpace(c))
                 {
                     i++;
@@ -105,7 +141,7 @@ namespace FSParserCore
             return tokens;
         }
 
-        // Convierte la expresión infija a notación polaca inversa (RPN)
+        // Convierte la expresión infija a notación polaca inversa (RPN).
         private static List<string> InfixToRPN(List<string> tokens)
         {
             var output = new List<string>();
@@ -113,27 +149,35 @@ namespace FSParserCore
 
             foreach (var token in tokens)
             {
-                if (double.TryParse(token, out _))  // Si el token es un número
+                if (double.TryParse(token, out _))  // Si el token es un número.
                 {
                     output.Add(token);
                 }
-                else if (token.StartsWith("\"") && token.EndsWith("\""))  // Si es una cadena
+                else if (token.StartsWith("\"") && token.EndsWith("\""))  // Si es una cadena.
                 {
                     output.Add(token);
                 }
-                else if (token == "(")  // Si es un paréntesis de apertura
+                else if (token.ToLower() == "true" || token.ToLower() == "false")  // Si es un valor booleano.
+                {
+                    output.Add(token.ToLower());
+                }
+                else if (token == "(")  // Si es un paréntesis de apertura.
                 {
                     operators.Push(token);
                 }
-                else if (token == ")")  // Si es un paréntesis de cierre
+                else if (token == ")")  // Si es un paréntesis de cierre.
                 {
                     while (operators.Count > 0 && operators.Peek() != "(")
                     {
                         output.Add(operators.Pop());
                     }
-                    operators.Pop();  // Eliminar el '('
+                    operators.Pop(); // Eliminar el '('.
                 }
-                else if ("+-*/<>!==<=>=&&||".Contains(token))  // Si es un operador
+                else if (token == "!")  // Si es el operador unario de negación.
+                {
+                    operators.Push(token); // Se maneja con mayor precedencia.
+                }
+                else if ("+-*/<>!==<=>=&&||".Contains(token))  // Si es un operador binario.
                 {
                     while (operators.Count > 0 && GetPrecedence(operators.Peek()) >= GetPrecedence(token))
                     {
@@ -143,6 +187,7 @@ namespace FSParserCore
                 }
             }
 
+            // Agregar los operadores restantes a la salida.
             while (operators.Count > 0)
             {
                 output.Add(operators.Pop());
@@ -151,44 +196,58 @@ namespace FSParserCore
             return output;
         }
 
-        // Evalúa la notación polaca inversa (RPN)
+        // Evalúa la expresión en notación polaca inversa (RPN).
         private static object EvaluateRPN(List<string> rpn)
         {
             var stack = new Stack<object>();
 
             foreach (var token in rpn)
             {
-                if (double.TryParse(token.Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))  // Si es un número
+                if (double.TryParse(token.Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))  // Si es un número.
                 {
                     stack.Push(number);
                 }
-                else if (token.StartsWith("\"") && token.EndsWith("\""))  // Si es una cadena
+                else if (token.StartsWith("\"") && token.EndsWith("\""))  // Si es una cadena.
                 {
-                    stack.Push(token.Trim('\"'));  // Remover las comillas de las cadenas
+                    stack.Push(token.Trim('"'));  // Remover las comillas de las cadenas.
+                }
+                else if(token == "true" || token == "false")
+                {
+                    stack.Push(Convert.ToBoolean(token));
+                }
+                else if (token == "!")  // Si es el operador unario de negación.
+                {
+                    if (stack.Count < 1)
+                        throw new InvalidOperationException("Operación unaria '!' requiere un operando.");
+
+                    var operand = stack.Pop();
+
+                    if (operand is bool)
+                {
+                        stack.Push(!(bool)operand);  // Negación lógica para booleanos.
                 }
                 else
                 {
-                    if (stack.Count < 2)  // Comprobamos si la pila tiene al menos dos elementos
-                    {
-                        throw new InvalidOperationException("No hay suficientes elementos en la pila para realizar la operación.");
+                        throw new InvalidOperationException("Operador '!' solo se aplica a valores booleanos.");
                     }
+                }
+                else
+                    {
+                    // Operadores binarios.
+                    if (stack.Count < 2)
+                        throw new InvalidOperationException("No hay suficientes elementos en la pila para realizar la operación.");
 
                     var b = stack.Pop();
                     var a = stack.Pop();
 
                     object result = null;
 
-                    // Evaluar operadores
                     if (token == "+")
                     {
                         if (a is double && b is double)
-                        {
                             result = (double)a + (double)b;
-                        }
                         else
-                        {
-                            result = a.ToString() + b.ToString(); // Concatenación de cadenas
-                        }
+                            result = a.ToString() + b.ToString();
                     }
                     else if (token == "-")
                     {
@@ -264,6 +323,7 @@ namespace FSParserCore
         // Determina la precedencia de los operadores
         private static int GetPrecedence(string operatorToken)
         {
+            if (operatorToken == "!") return 4; // Mayor precedencia.
             if (operatorToken == "+" || operatorToken == "-") return 1;
             if (operatorToken == "*" || operatorToken == "/") return 2;
             if (operatorToken == ">" || operatorToken == "<" || operatorToken == "==" || operatorToken == "!=" || operatorToken == ">=" || operatorToken == "<=") return 3;
