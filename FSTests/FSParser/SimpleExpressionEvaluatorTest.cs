@@ -38,6 +38,14 @@ namespace FSTest.FSParser
             boolresult = (bool)SimpleExpressionEvaluator.Evaluate("\"gato\" == \"gato\"");
 
             Assert.AreEqual(boolresult, true);
+
+            boolresult = (bool)SimpleExpressionEvaluator.Evaluate("!True");
+
+            Assert.AreEqual(boolresult, false);
+
+            boolresult = (bool)SimpleExpressionEvaluator.Evaluate("5 != 8");
+
+            Assert.AreEqual(boolresult, true);
         }
     }
 }

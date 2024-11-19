@@ -17,108 +17,87 @@ namespace FSTestsCore.FSParser
         {
             var parser = new CSharpParser();
 
-            parser.CustomCommands["Print"] = args =>
-            {
-                Console.WriteLine(string.Join(" ", args));
-                return null;
-            };
-
-            parser.CustomCommands["Concat"] = args =>
-            {
-                return string.Join(" ", args);
-            };
-
-            parser.CustomCommands["Contains"] = args =>
-            {
-                return args[0].ToString().Contains(args[1].ToString());
-            };
-
-            parser.CustomCommands["Replace"] = args =>
-            {
-                return args[0].ToString().Replace(args[1].ToString(), args[2].ToString());
-            };
-
-            parser.CustomCommands["Replacereg"] = args =>
-            {
-                return TextUtil.ReplaceREG(args[0].ToString(), args[1].ToString(), args[2].ToString());
-            };
-
-            parser.CustomCommands["Help"] = args =>
-            {
-                return string.Join(" ", parser.CustomCommands.Keys.ToArray());
-            };
+            parser = CSharpParserCustomCommands.Commands(parser);
 
             var code = new List<string>
             {
+                "var1 = \"hola\";",
+                "var2 = \"adios\";",
+                "var3 = [var1] + [var2];",
                 "x = 10;",
-                "if (x > 5)",
+                "if ([x] > 5)",
                 " {",
-                "    y = x + 5;",
-                "    if (y > 10) {",
-                "        z = y * 2;",
+                "    y = [x] + 5;",
+                "    if ([y] > 10) {",
+                "        z = [y] * 2;",
                 "    }",
                 "}",
-                "while (x > 0) {",
-                "    x = x - 1;",
+                "while ([x] > 0) {",
+                "    x = [x] - 1;",
                 "}"
             };
 
             string code2 = @"
                 x = 10;
-                if (x > 5) 
+                // Ejemplo de comentarios
+                // Segunda línea
+                /*
+                    Esto es otra prueba
+                */
+                if ([x] > 5) 
                 {
-                      y = x + 5;
-                      if (y > 10) {
-                           z = y * 2;
+                      y = [x] + 5;
+                      if ([y] > 10) {
+                           z = [y] * 2;
                       }
                 }
-                while (x > 0) {
-                   x = x - 1;
+                while ([x] > 0) {
+                   x = [x] - 1;
                 }
             ";
 
             string code3 = @"
                 function Suma(a, b) {
-                    return a + b;
+                    return [a] + [b];
                 }
                 extension = "".cs"";
-                if(extension == "".cs"") {
+                if([extension] == "".cs"") {
                 help = Help();
                     }
                 var1 = ""esto es una prueba"";
-                if(Contains(var1, ""una"")) {
+                if(Contains([var1], ""una"")) {
                     var2 = Replace(""Contiene"", ""nti"", ""mto"");
                 }
-                var3=Replacereg(""esto es una prueba"", ""una"", ""dos"");
+                var3=ReplaceReg(""esto es una prueba"", ""una"", ""dos"");
                 x = Suma(5, 10);
-                Print(x);
+                Print([x]);
             ";
 
             var code4 = new List<string>
             {
                 "x = Sin(90);",
                 "y = Cos(0);",
-                "Print(x, y);",
+                "Print([x], [y]);",
                 "function Multiply(a, b) {",
-                "    return a * b;",
+                "    return [a] * [b];",
                 "}",
-                "result = Multiply(x, y);",
-                "Print(result);"
+                "result = Multiply([x], [y]);",
+                "Print([result]);"
             };
 
             var code5 = new List<string>
             {
                 "function Add(a, b) {",
-                "    return a + b;",
+                "    return [a] + [b];",
                 "}",
                 "function Multiply(a, b) {",
-                "    return a * b;",
+                "    return [a] * [b];",
                 "}",
                 "r = Concat(\"hola\",\"ad,ios\", \"gabon\");",
                 "x = Add(10, Multiply(3,2));",
-                "y = Multiply(x, 2);",
-                "if (y > Multiply(10,2)) {",
-                "    z = y - 10;",
+                "y = Multiply([x], 2);",
+                "if ([y] > Multiply(10,2)) {",
+                "    z = [y] - 10;",
                 "}"
             };
 
@@ -127,6 +106,7 @@ namespace FSTestsCore.FSParser
             Assert.AreEqual(parser.Variables["x"], 0.0);
             Assert.AreEqual(parser.Variables["y"], 15.0);
             Assert.AreEqual(parser.Variables["z"], 30.0);
+            Assert.AreEqual(parser.Variables["var3"], "holaadios");
 
             parser.Parse(code2);
 
