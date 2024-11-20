@@ -23,8 +23,8 @@ namespace FSParser
         private readonly static string returnPattern = @"^\s*return\s*(.*);";
         private readonly static string whilePattern = @"^\s*while\s*\((.+)\)\s*{?$";
         private readonly static string functionDefPattern = @"^\s*function\s+(\w+)\s*\((.*?)\)\s*{?$";
-        private readonly static string functionCallPattern = @"(\w+)\s*\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)";
-        private readonly static string functionCallProtectPattern = @"(\#\w+\#)\s*\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)";
+        private readonly static string functionCallPattern = @"(\w+\s*)\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)";
+        private readonly static string functionCallProtectPattern = @"(\#\w+\s*\#)\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)";
         private readonly static string allowedTextInLine = @"(\{|\}|/\*|\*/)";
 
         private readonly Regex singleLineCommentRegex = new Regex(singleLineCommentPattern, RegexOptions.Compiled | RegexOptions.Multiline);
@@ -87,12 +87,17 @@ namespace FSParser
         /// Esta función evita que se evalue funciones de C# que existen en este parser.
         /// Pone una almohadilla detrás y delante del nombre de la función para que no se parsee.
         /// </summary>
-        /// <param name="code"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
-        public string ProtectData(string code)
+        public string ProtectData(string data)
         {
+            //Reemplazamos los nombres de variables por @varnombre_variablevar@
+            // Construye un patrón de Regex para coincidir con todas las claves
+            string pattern = string.Join("|", variables.Keys.Select(Regex.Escape));
+            data = Regex.Replace(data, pattern, match => $"@var{match.Value}var@");
+
             // Usa un Regex para realizar un reemplazo eficiente
-            return functionCallRegex.Replace(code, match =>
+            return functionCallRegex.Replace(data, match =>
             {
                 string functionName = match.Groups[1].Value;
                 string arguments = match.Groups[2].Value;
@@ -103,6 +108,18 @@ namespace FSParser
         }
 
         /// <summary>
+        /// Protegemos las variables para evitar que se procesen como coódigo.
+        /// </summary>
+        void ProtectVariables()
+        {
+            foreach (var key in variables.Keys.ToList()) // Iteramos por una copia de las claves
+            {
+                if(variables[key] is string)
+                    variables[key] = ProtectData(variables[key].ToString());
+            }
+        }
+
+        /// <summary>
         /// Esta función restaura el código a protegido con la función ProtectData.
         /// Quita la almohadilla detrás y delante del nombre de la función.
         /// </summary>
@@ -110,15 +127,22 @@ namespace FSParser
         /// <returns></returns>
         public string UnProtectData(string code)
         {
-            return functionCallProtectRegex.Replace(code, match =>
+            // Realizamos el reemplazo de las funciones #nombre_funcion#(argumentos)
+            string result = functionCallProtectRegex.Replace(code, match =>
             {
                 string functionName = match.Groups[1].Value.Replace("#", "");
                 string arguments = match.Groups[2].Value;
                 return $"{functionName}({arguments})";
             });
+
+            // Realizamos el reemplazo de las variables @vardatavar@ a data.
+            string pattern = @"\@var(.*?)var\@";
+            result = Regex.Replace(result, pattern, match => match.Groups[1].Value, RegexOptions.Multiline);
+
+            return result;
         }
 
-        private List<string> ApplyVariables(List<string> arguments)
+        private List<string> ApplyVariablesToArguments(List<string> arguments)
         {
             var result = new List<string>();
             foreach(string s in arguments)
@@ -128,56 +152,26 @@ namespace FSParser
             return result;
         }
 
-        private string ApplyVariables(string expression, Dictionary<string, object> localVariables = null, HashSet<string> resolvedVariables = null)
+        private string ApplyVariables(string expression, Dictionary<string, object> localVariables = null)
         {
+            // Usar el diccionario proporcionado o la variable global
             var variablesToUse = localVariables ?? variables;
 
-            // Crear el conjunto para rastrear variables resueltas, si no se proporcionó
-            if (resolvedVariables == null)
-                resolvedVariables = new HashSet<string>();
-
-            // Copiar las claves y valores del diccionario para evitar conflictos durante la iteración
-            var variablesSnapshot = variablesToUse.ToList();
-
-            foreach (var variable in variablesSnapshot)
+            // Reemplaza variables en la expresión
+            foreach (var variable in variablesToUse)
             {
-                // Evitar resolver variables ya visitadas en esta llamada recursiva
-                if (resolvedVariables.Contains(variable.Key))
-                    continue;
-
                 var variableValue = variable.Value.ToString();
 
-                // Si el valor de la variable contiene otras variables
-                if (variablesToUse.Keys.Any(key => variableValue.Contains(key)))
-                {
-                    if (resolvedVariables.Contains(variable.Key))
-                        throw new Exception($"Referencia cíclica detectada en la variable '{variable.Key}'");
+                // Formatear valores numéricos
+                variableValue = FormatResult(variableValue);
 
-                    // Marcar la variable como visitada
-                    resolvedVariables.Add(variable.Key);
+                // Reemplazar todas las ocurrencias de la variable en la expresión
+                expression = Regex.Replace(expression, $@"\b{Regex.Escape(variable.Key)}\b", variableValue);
+            }
 
-                    // Resolver el valor recursivamente
-                    variableValue = ApplyVariables(variableValue, variablesToUse, resolvedVariables);
-
-                    // Actualizar el valor resuelto
-                    variablesToUse[variable.Key] = variableValue;
-
-                    // Eliminar la marca de la variable para futuros usos
-                    resolvedVariables.Remove(variable.Key);
-                }
-
-                // Aplicar formato correcto a los valores no numéricos
-                if (NumberUtils.IsNumeric(variableValue))
-                {
-                    variableValue = variableValue.Replace(",", ".");
-                }
-                //else if (!(variableValue.StartsWith("\"") && variableValue.EndsWith("\"")))
-                //{
-                //    variableValue = "\"" + variableValue + "\"";
-                //}
-
-                // Reemplazar las apariciones de la variable en la expresión
-                expression = Regex.Replace(expression, $@"\[{variable.Key}\]", variableValue);
+            if (Regex.IsMatch(expression, $@"\b({string.Join("|", variablesToUse.Keys.Select(Regex.Escape))})\b"))
+            {
+                expression = ApplyVariables(expression, localVariables);
             }
 
             return expression;
@@ -189,7 +183,7 @@ namespace FSParser
             expression = TextUtil.ReplaceStrings(expression, "dummy");
 
             // Patrón para caracteres válidos en una expresión matemática
-            var validExpressionPattern = @"^[\d\s\+\-\*/\^<>=!()\[\]\.\,\""\w]*$";
+            var validExpressionPattern = @"^[\d\s\+\-\*/\^<>=!()\.\,\""\w]*$";
 
             // Patrón para detectar al menos un operador válido
             var hasOperatorPattern = @"(\+|\-|\*|/|\^|!|<|>|<=|>=|==|!=)";
@@ -209,7 +203,7 @@ namespace FSParser
                 string argumentList = match.Groups[2].Value;
 
                 // Evalúa los argumentos
-                var evaluatedArgs = ApplyVariables(SplitArguments(argumentList));
+                var evaluatedArgs = ApplyVariablesToArguments(SplitArguments(argumentList));
 
                 object result;
 
@@ -344,6 +338,9 @@ namespace FSParser
 
             //Añadimos las variables generales
             AddGeneralVariables();
+
+            //Protegemos las variables para evitar que se procesen datos de la memoria como código o memoria.
+            ProtectVariables();
 
             code = RemoveComments(code);
             List<string> lines = new List<string>(code.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));

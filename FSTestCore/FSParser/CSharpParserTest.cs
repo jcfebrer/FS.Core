@@ -23,17 +23,17 @@ namespace FSTestsCore.FSParser
             {
                 "var1 = \"hola\";",
                 "var2 = \"adios\";",
-                "var3 = [var1] + [var2];",
+                "var3 = var1 + var2;",
                 "x = 10;",
-                "if ([x] > 5)",
+                "if (x > 5)",
                 " {",
-                "    y = [x] + 5;",
-                "    if ([y] > 10) {",
-                "        z = [y] * 2;",
+                "    y = x + 5;",
+                "    if (y > 10) {",
+                "        z = y * 2;",
                 "    }",
                 "}",
-                "while ([x] > 0) {",
-                "    x = [x] - 1;",
+                "while (x > 0) {",
+                "    x = x - 1;",
                 "}"
             };
 
@@ -44,60 +44,60 @@ namespace FSTestsCore.FSParser
                 /*
                     Esto es otra prueba
                 */
-                if ([x] > 5) 
+                if (x > 5) 
                 {
-                      y = [x] + 5;
-                      if ([y] > 10) {
-                           z = [y] * 2;
+                      y = x + 5;
+                      if (y > 10) {
+                           z = y * 2;
                       }
                 }
-                while ([x] > 0) {
-                   x = [x] - 1;
+                while (x > 0) {
+                   x = x - 1;
                 }
             ";
 
             string code3 = @"
                 function Suma(a, b) {
-                    return [a] + [b];
+                    return a + b;
                 }
                 extension = "".cs"";
-                if([extension] == "".cs"") {
+                if(extension == "".cs"") {
                 help = Help();
                     }
                 var1 = ""esto es una prueba"";
-                if(Contains([var1], ""una"")) {
+                if(Contains(var1, ""una"")) {
                     var2 = Replace(""Contiene"", ""nti"", ""mto"");
                 }
                 var3=ReplaceReg(""esto es una prueba"", ""una"", ""dos"");
                 x = Suma(5, 10);
-                Print([x]);
+                Print(x);
             ";
 
             var code4 = new List<string>
             {
                 "x = Sin(90);",
                 "y = Cos(0);",
-                "Print([x], [y]);",
+                "Print(x, y);",
                 "function Multiply(a, b) {",
-                "    return [a] * [b];",
+                "    return a * b;",
                 "}",
-                "result = Multiply([x], [y]);",
-                "Print([result]);"
+                "result = Multiply(x, y);",
+                "Print(result);"
             };
 
             var code5 = new List<string>
             {
                 "function Add(a, b) {",
-                "    return [a] + [b];",
+                "    return a + b;",
                 "}",
                 "function Multiply(a, b) {",
-                "    return [a] * [b];",
+                "    return a * b;",
                 "}",
                 "r = Concat(\"hola\",\"ad,ios\", \"gabon\");",
                 "x = Add(10, Multiply(3,2));",
-                "y = Multiply([x], 2);",
-                "if ([y] > Multiply(10,2)) {",
-                "    z = [y] - 10;",
+                "y = Multiply(x, 2);",
+                "if (y > Multiply(10,2)) {",
+                "    z = y - 10;",
                 "}"
             };
 

@@ -26,7 +26,7 @@ namespace FSParserCore
                 return expression;
             else
                 // Evalúa la expresión en RPN.
-            	return EvaluateRPN(rpn);
+                return EvaluateRPN(rpn);
         }
 
         // Aplica las variables locales a la expresión.
@@ -45,7 +45,12 @@ namespace FSParserCore
                     v = $"\"{v}\""; // Si no es un string, lo convierte a string entre comillas.
 
                 // Reemplaza las ocurrencias de las variables en la expresión.
-                expression = Regex.Replace(expression, $@"\[{Regex.Escape(variable.Key)}\]", v);
+                expression = Regex.Replace(expression, $@"\b{Regex.Escape(variable.Key)}\b", v);
+            }
+
+            if (Regex.IsMatch(expression, $@"\b({string.Join("|", localVariables.Keys.Select(Regex.Escape))})\b"))
+            {
+                expression = ApplyVariables(expression);
             }
 
             return expression;
@@ -76,11 +81,11 @@ namespace FSParserCore
                     currentToken = "";
                 }
                 // Si es una letra (parte de un identificador o nombre de función)
-                else if (char.IsLetter(c) || c == '_' || c == '[')
+                else if (char.IsLetter(c) || c == '_')
                 {
                     currentToken += c;
                     i++;
-                    while (i < expression.Length && (char.IsLetterOrDigit(expression[i]) || expression[i] == '_' || expression[i] == ']'))
+                    while (i < expression.Length && (char.IsLetterOrDigit(expression[i]) || expression[i] == '_'))
                     {
                         currentToken += expression[i];
                         i++;
@@ -99,12 +104,12 @@ namespace FSParserCore
                     {
                         tokens.Add(doubleCharOperator);
                         i += 2; // Avanzamos dos caracteres
-                }
+                    }
                     else
-                {
-                    tokens.Add(expression[i].ToString());
-                    i++;
-                }
+                    {
+                        tokens.Add(expression[i].ToString());
+                        i++;
+                    }
                 }
                 // Si es un operador de un solo carácter (como !, +, -, *, etc.).
                 else if ("!+-*/%^()".Contains(c))
@@ -223,16 +228,16 @@ namespace FSParserCore
                     var operand = stack.Pop();
 
                     if (operand is bool)
-                {
+                    {
                         stack.Push(!(bool)operand);  // Negación lógica para booleanos.
-                }
-                else
-                {
+                    }
+                    else
+                    {
                         throw new InvalidOperationException("Operador '!' solo se aplica a valores booleanos.");
                     }
                 }
                 else
-                    {
+                {
                     // Operadores binarios.
                     if (stack.Count < 2)
                         throw new InvalidOperationException("No hay suficientes elementos en la pila para realizar la operación.");

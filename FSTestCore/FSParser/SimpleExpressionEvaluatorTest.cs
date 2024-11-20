@@ -46,6 +46,20 @@ namespace FSTestCore.FSParser
             boolresult = (bool)SimpleExpressionEvaluator.Evaluate("5 != 8");
 
             Assert.AreEqual(boolresult, true);
+
+            Dictionary<string, object> memoria = new Dictionary<string, object>();
+            memoria.Add("var1", 15);
+            memoria.Add("var2", 24);
+            result = (double)SimpleExpressionEvaluator.Evaluate("var1 + var2", memoria);
+
+            Assert.AreEqual(result, 39.0);
+
+            Dictionary<string, object> memoria2 = new Dictionary<string, object>();
+            memoria2.Add("var1", "hola");
+            memoria2.Add("var2", "adios");
+            string resultStr = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2", memoria2);
+
+            Assert.AreEqual(resultStr, "holaadios");
         }
     }
 }

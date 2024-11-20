@@ -45,7 +45,12 @@ namespace FSParser
                     v = $"\"{v}\""; // Si no es un string, lo convierte a string entre comillas.
 
                 // Reemplaza las ocurrencias de las variables en la expresión.
-                expression = Regex.Replace(expression, $@"\[{Regex.Escape(variable.Key)}\]", v);
+                expression = Regex.Replace(expression, $@"\b{Regex.Escape(variable.Key)}\b", v);
+            }
+
+            if (Regex.IsMatch(expression, $@"\b({string.Join("|", localVariables.Keys.Select(Regex.Escape))})\b"))
+            {
+                expression = ApplyVariables(expression);
             }
 
             return expression;
@@ -76,11 +81,11 @@ namespace FSParser
                     currentToken = "";
                 }
                 // Si es una letra (parte de un identificador o nombre de función)
-                else if (char.IsLetter(c) || c == '_' || c == '[')
+                else if (char.IsLetter(c) || c == '_')
                 {
                     currentToken += c;
                     i++;
-                    while (i < expression.Length && (char.IsLetterOrDigit(expression[i]) || expression[i] == '_' || expression[i] == ']'))
+                    while (i < expression.Length && (char.IsLetterOrDigit(expression[i]) || expression[i] == '_'))
                     {
                         currentToken += expression[i];
                         i++;
