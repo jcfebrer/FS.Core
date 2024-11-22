@@ -188,10 +188,10 @@ namespace FSFormControlsCore
         //    RePositionCloseButtons();
         //}
 
-        //public TabPageCollection Tabs
-        //{
-        //    get { return base.TabPages; }
-        //}
+        public TabPageCollection Tabs
+        {
+            get { return base.TabPages; }
+        }
 
         protected override void OnSelectedIndexChanged(EventArgs e)
         {

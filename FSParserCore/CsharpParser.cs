@@ -16,6 +16,8 @@ namespace FSParserCore
         private readonly Dictionary<string, (List<string> Parameters, List<string> Body)> functions = new Dictionary<string, (List<string> Parameters, List<string> Body)>();
         private readonly Dictionary<string, Func<List<string>, object>> customCommands = new Dictionary<string, Func<List<string>, object>>();
 
+        private readonly static string textMark = "(<*>)"; // Marca que identifica un texto que no se debe de parsear.
+
         private readonly static string singleLineCommentPattern = @"(\s|\t)*//.*";
         private readonly static string blockCommentPattern = @"/\*.*?\*/";
         private readonly static string assignmentPattern = @"^\s*(\w+)\s*=\s*(.+);$";
@@ -23,8 +25,7 @@ namespace FSParserCore
         private readonly static string returnPattern = @"^\s*return\s*(.*);";
         private readonly static string whilePattern = @"^\s*while\s*\((.+)\)\s*{?$";
         private readonly static string functionDefPattern = @"^\s*function\s+(\w+)\s*\((.*?)\)\s*{?$";
-        private readonly static string functionCallPattern = @"(\w+\s*)\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)";
-        private readonly static string functionCallProtectPattern = @"(\#\w+\s*\#)\((([^()]|(?<Open>\()|(?<-Open>\)))*)\)";
+        private readonly static string functionCallPattern = @"(\w+\s*)\(((?:""[^""]*""|[^()""]|(?<Open>\()|(?<-Open>\)))*)\)";
         private readonly static string allowedTextInLine = @"(\{|\}|/\*|\*/)";
 
         private readonly Regex singleLineCommentRegex = new Regex(singleLineCommentPattern, RegexOptions.Compiled | RegexOptions.Multiline);
@@ -35,8 +36,7 @@ namespace FSParserCore
         private readonly Regex whileRegex = new Regex(whilePattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionDefRegex = new Regex(functionDefPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionCallRegex = new Regex(functionCallPattern, RegexOptions.Compiled | RegexOptions.Multiline);
-        private readonly Regex functionCallProtectRegex = new Regex(functionCallProtectPattern, RegexOptions.Compiled | RegexOptions.Multiline);
-
+        
         public Dictionary<string, object> Variables => variables;
         public Dictionary<string, Func<List<string>, object>> CustomCommands => customCommands;
 
@@ -84,62 +84,20 @@ namespace FSParserCore
         }
 
         /// <summary>
-        /// Esta función evita que se evalue funciones de C# que existen en este parser.
-        /// Pone una almohadilla detrás y delante del nombre de la función para que no se parsee.
-        /// </summary>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public string ProtectData(string data)
-        {
-            //Reemplazamos los nombres de variables por @varnombre_variablevar@
-            // Construye un patrón de Regex para coincidir con todas las claves
-            string pattern = string.Join("|", variables.Keys.Select(Regex.Escape));
-            data = Regex.Replace(data, pattern, match => $"@var{match.Value}var@");
-
-            // Usa un Regex para realizar un reemplazo eficiente
-            return functionCallRegex.Replace(data, match =>
-            {
-                string functionName = match.Groups[1].Value;
-                string arguments = match.Groups[2].Value;
-
-                // Construye el nuevo formato de la función
-                return $"#{functionName}#({arguments})";
-            });
-        }
-
-        /// <summary>
         /// Protegemos las variables para evitar que se procesen como coódigo.
         /// </summary>
-        void ProtectVariables()
+        public string ProtectData(string data)
         {
-            foreach (var key in variables.Keys.ToList()) // Iteramos por una copia de las claves
-            {
-                if(variables[key] is string)
-                    variables[key] = ProtectData(variables[key].ToString());
-            }
+            data = data + Environment.NewLine + textMark;
+            return data;
         }
 
         /// <summary>
-        /// Esta función restaura el código a protegido con la función ProtectData.
-        /// Quita la almohadilla detrás y delante del nombre de la función.
+        /// Esta función quita la marca de textMark, para evitar que se trate como código.
         /// </summary>
-        /// <param name="code"></param>
-        /// <returns></returns>
-        public string UnProtectData(string code)
+        public string UnProtectData(string data)
         {
-            // Realizamos el reemplazo de las funciones #nombre_funcion#(argumentos)
-            string result = functionCallProtectRegex.Replace(code, match =>
-            {
-                string functionName = match.Groups[1].Value.Replace("#", "");
-                string arguments = match.Groups[2].Value;
-                return $"{functionName}({arguments})";
-            });
-
-            // Realizamos el reemplazo de las variables @vardatavar@ a data.
-            string pattern = @"\@var(.*?)var\@";
-            result = Regex.Replace(result, pattern, match => match.Groups[1].Value, RegexOptions.Multiline);
-
-            return result;
+            return data.Replace(Environment.NewLine + textMark, "");
         }
 
         private List<string> ApplyVariablesToArguments(List<string> arguments)
@@ -171,7 +129,8 @@ namespace FSParserCore
 
             if (Regex.IsMatch(expression, $@"\b({string.Join("|", variablesToUse.Keys.Select(Regex.Escape))})\b"))
             {
-                expression = ApplyVariables(expression, localVariables);
+                if(!expression.Contains(textMark))
+                    expression = ApplyVariables(expression, localVariables);
             }
 
             return expression;
@@ -340,7 +299,7 @@ namespace FSParserCore
             AddGeneralVariables();
 
             //Protegemos las variables para evitar que se procesen datos de la memoria como código o memoria.
-            ProtectVariables();
+            //ProtectVariables();
 
             code = RemoveComments(code);
             List<string> lines = new List<string>(code.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
