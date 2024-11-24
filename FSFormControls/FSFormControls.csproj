@@ -175,6 +175,7 @@
     <Compile Include="DBExplorerTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="DBGridView\DBGridViewCell.cs" />
     <Compile Include="DBParam.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -81,6 +81,20 @@ namespace FSFormControls
             HorizontalWithGlassBottom50,
             VerticalWithGlassLeft50
         }
+        public enum HAlign
+        {
+            Default,
+            Left,
+            Center,
+            Right
+        }
+        public enum VAlign
+        {
+            Default,
+            Top,
+            Middle,
+            Bottom
+        }
 
         public Color BackColor;
         public Color BackColor2;
@@ -91,8 +105,8 @@ namespace FSFormControls
         public Font FontData;
         public Color ForeColor;
         public Bitmap Image;
-        public object ImageHAlign;
-        public object ImageVAlign;
+        public HAlign ImageHAlign;
+        public VAlign ImageVAlign;
         public string TextHAlignAsString;
         public DBTextTrimming? TextTrimming;
         public string TextVAlignAsString;
