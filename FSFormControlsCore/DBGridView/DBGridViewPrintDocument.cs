@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 #endregion
 
-namespace FSFormControlsCore.UserControls.DBGridView
+namespace FSFormControlsCore
 {
     [ToolboxItem(false)]
     public class DBGridViewPrintDocument : System.Drawing.Printing.PrintDocument

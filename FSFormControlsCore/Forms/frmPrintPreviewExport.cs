@@ -1,6 +1,6 @@
 #region
 
-using FSFormControlsCore.UserControls.DBGridView;
+using FSFormControlsCore;
 using System;
 using System.ComponentModel;
 using System.Data;

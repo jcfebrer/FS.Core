@@ -1,4 +1,4 @@
-﻿namespace FSFormControlsCore.Forms
+﻿namespace FSFormControlsCore
 {
     partial class frmTest
     {
@@ -35,7 +35,7 @@
             System.Windows.Forms.DataGridViewRow dataGridViewRow1 = new System.Windows.Forms.DataGridViewRow();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            UserControls.DBGridView.DBGridViewDisplayLayout dbGridViewDisplayLayout1 = new UserControls.DBGridView.DBGridViewDisplayLayout();
+            DBGridViewDisplayLayout dbGridViewDisplayLayout1 = new DBGridViewDisplayLayout();
             System.Windows.Forms.DataGridViewRow dataGridViewRow2 = new System.Windows.Forms.DataGridViewRow();
             dbTabControl1 = new DBTabControl();
             tabPage1 = new DBTabPage();
@@ -1968,7 +1968,7 @@
             dbGrid1.DefaultDecimals = 2;
             dbGrid1.DefaultHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             dbGridViewDisplayLayout1.Appearance = null;
-            dbGridViewDisplayLayout1.BorderStyle = UserControls.DBGridView.DBGridViewDisplayLayout.DBElementBorderStyle.None;
+            dbGridViewDisplayLayout1.BorderStyle = DBGridViewDisplayLayout.DBElementBorderStyle.None;
             dbGridViewDisplayLayout1.CaptionVisible = false;
             dbGridViewDisplayLayout1.GroupByBox = null;
             dbGridViewDisplayLayout1.Override = null;

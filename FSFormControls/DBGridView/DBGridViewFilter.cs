@@ -1,4 +1,4 @@
-﻿namespace FSFormControls.UserControls.DBGridView
+﻿namespace FSFormControls
 {
     public class DBGridViewFilter
     {

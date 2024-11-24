@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using FSLibraryCore;
 
-namespace FSFormControlsCore.UserControls.DBGridView
+namespace FSFormControlsCore
 {
     public class DBGridViewFilterCollection : CollectionBase, IBindingList
     {

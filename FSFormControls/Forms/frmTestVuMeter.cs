@@ -7,7 +7,7 @@ using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FSFormControls.Forms
+namespace FSFormControls
 {
     public partial class frmTestVuMeter : Form
     {

@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.Windows.Forms;
 
-namespace FSFormControlsCore.UserControls.DBGridView
+namespace FSFormControlsCore
 {
     internal class GridViewPrint
     {

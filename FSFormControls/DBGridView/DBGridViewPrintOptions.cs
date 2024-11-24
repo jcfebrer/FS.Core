@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace FSFormControls.UserControls.DBGridView
+namespace FSFormControls
 {
     public partial class DBGridViewPrintOptions : Form
     {

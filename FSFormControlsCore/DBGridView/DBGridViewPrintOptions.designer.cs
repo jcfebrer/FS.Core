@@ -1,4 +1,4 @@
-namespace FSFormControlsCore.UserControls.DBGridView
+namespace FSFormControlsCore
 {
     partial class DBGridViewPrintOptions
     {

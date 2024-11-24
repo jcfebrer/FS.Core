@@ -12,7 +12,7 @@ using System.Windows.Forms;
 using FSDatabaseCore;
 using FSExceptionCore;
 using FSFormControlsCore.Properties;
-using FSFormControlsCore.UserControls.DBGridView;
+using FSFormControlsCore;
 using FSLibraryCore;
 using DateTime = System.DateTime;
 

@@ -1,4 +1,4 @@
-namespace FSFormControlsCore.Forms
+namespace FSFormControlsCore
 {
     partial class frmTestGauge
     {

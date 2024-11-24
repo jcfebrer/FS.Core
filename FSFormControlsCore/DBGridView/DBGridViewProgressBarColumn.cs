@@ -4,9 +4,9 @@ using System.Text;
 using System.Windows.Forms;
 using System.Drawing;
 using System.ComponentModel;
-using FSFormControlsCore.UserControls.DBGridView;
+using FSFormControlsCore;
 
-namespace FSFormControlsCore.UserControls.DBGridView
+namespace FSFormControlsCore
 {
     public class DBGridViewProgressBarColumn : DataGridViewImageColumn
     {

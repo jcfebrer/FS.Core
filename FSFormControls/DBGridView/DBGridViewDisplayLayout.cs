@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace FSFormControls.UserControls.DBGridView
+namespace FSFormControls
 {
     public class DBGridViewDisplayLayout
     {
