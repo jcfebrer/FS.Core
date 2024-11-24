@@ -7,7 +7,7 @@
     using System.Reflection;
     using System.Xml.Linq;
 
-namespace FSFormControlsCore.Classes
+namespace FSFormControlsCore
 {
     public class SortableBindingList<T> : BindingList<T>
     {

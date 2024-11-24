@@ -4,7 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
-namespace FSFormControlsCore.Classes
+namespace FSFormControlsCore
 {
     public class Picker
     {
