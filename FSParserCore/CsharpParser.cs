@@ -115,22 +115,25 @@ namespace FSParserCore
             // Usar el diccionario proporcionado o la variable global
             var variablesToUse = localVariables ?? variables;
 
-            // Reemplaza variables en la expresión
-            foreach (var variable in variablesToUse)
+            // Si no hay claves en el diccionario, devolver la expresión original
+            if (!variablesToUse.Any() || expression.Contains(textMark))
+                return expression;
+
+            // Construir patrón de reemplazo una sola vez
+            string pattern = $@"\b({string.Join("|", variablesToUse.Keys.Select(Regex.Escape))})\b";
+
+            // Reemplazar todas las variables en la expresión
+            expression = Regex.Replace(expression, pattern, match =>
             {
-                var variableValue = variable.Value.ToString();
+                var key = match.Groups[1].Value;
+                var variableValue = FormatResult(variablesToUse[key].ToString());
+                return variableValue;
+            });
 
-                // Formatear valores numéricos
-                variableValue = FormatResult(variableValue);
-
-                // Reemplazar todas las ocurrencias de la variable en la expresión
-                expression = Regex.Replace(expression, $@"\b{Regex.Escape(variable.Key)}\b", variableValue);
-            }
-
-            if (Regex.IsMatch(expression, $@"\b({string.Join("|", variablesToUse.Keys.Select(Regex.Escape))})\b"))
+            // Verificar si quedan variables sin reemplazar y evitar recursión innecesaria
+            if (Regex.IsMatch(expression, pattern) && !expression.Contains(textMark))
             {
-                if(!expression.Contains(textMark))
-                    expression = ApplyVariables(expression, localVariables);
+                expression = ApplyVariables(expression, variablesToUse);
             }
 
             return expression;
