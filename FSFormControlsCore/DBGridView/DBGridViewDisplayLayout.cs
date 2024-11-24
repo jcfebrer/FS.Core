@@ -1,7 +1,8 @@
-﻿using System.Windows.Forms;
-
-namespace FSFormControlsCore
+﻿namespace FSFormControlsCore
 {
+    /// <summary>
+    /// Clase para aplicar stilos al DBGridView utilizada por Infragistics. Será eliminada en un futuro.
+    /// </summary>
     public class DBGridViewDisplayLayout
     {
         public enum DBCellClickAction
@@ -76,6 +77,46 @@ namespace FSFormControlsCore
             AutoFixed,
             AutoFree
         }
+        public enum DBRowSelectorNumberStyle
+        {
+            Default,
+            None,
+            ListIndex,
+            RowIndex,
+            VisibleIndex
+        }
+        public enum DBRowSelectorHeaderStyle
+        {
+            Default,
+            None,
+            ExtendFirstColumn,
+            SeparateElement,
+            ColumnChooserButton,
+            ColumnChooserButtonFixedSize
+        }
+        public enum SelectType
+        {
+            Default,
+            None,
+            Single,
+            Extended,
+            ExtendedAutoDrag,
+            SingleAutoDrag
+        }
+        public enum DBAllowColMoving
+        {
+            Default,
+            NotAllowed,
+            WithinGroup,
+            WithinBand
+        }
+        public enum DBAllowColSwapping
+        {
+            Default,
+            NotAllowed,
+            WithinGroup,
+            WithinBand
+        }
 
         public DBAppearance Appearance { get; set; }
         public DBElementBorderStyle BorderStyle { get; set; }
@@ -109,7 +150,14 @@ namespace FSFormControlsCore
         public DBElementBorderStyle BorderStyleCell { get; set; }
         public DBElementBorderStyle BorderStyleRow { get; set; }
         public DBRowSizing RowSizing { get; set; }
-        public object SelectTypeRow { get; set; }
+        public SelectType SelectTypeRow { get; set; }
         public object TabNavigation { get; set; }
+        public DBHeaderStyle RowSelectorStyle { get; set; }
+        public DBRowSelectorNumberStyle RowSelectorNumberStyle { get; set; }
+        public DBRowSelectorHeaderStyle RowSelectorHeaderStyle { get; set; }
+        public SelectType SelectTypeCol { get; set; }
+        public DBAllowColMoving AllowColMoving { get; set; }
+        public DBAllowColSwapping AllowColSwapping { get; set; }
+        public bool AllowDelete { get; set; }
     }
 }

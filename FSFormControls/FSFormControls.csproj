@@ -176,6 +176,7 @@
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DBGridView\DBGridViewCell.cs" />
+    <Compile Include="DBGridView\DBGridViewColumn.cs" />
     <Compile Include="DBParam.cs">
       <SubType>Component</SubType>
     </Compile>
