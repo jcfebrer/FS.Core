@@ -74,6 +74,14 @@ namespace FSFormControls
         public delegate void RowsAddedEventHandler(object sender, DataGridViewRowsAddedEventArgs e);
         public delegate void CellEndEditEventHandler(object sender, DataGridViewCellEventArgs e);
 
+        //public delegate void InitializeRowEventHandler(object sender, EventArgs e);
+        public delegate void InitializePrintPreviewEventHandler(object sender, EventArgs e);
+        public delegate void InitializePrintEventHandler(object sender, EventArgs e);
+        public delegate void BeforePrintEventHandler(object sender, EventArgs e);
+        public delegate void DoubleClickRowEventHandler(object sender, EventArgs e);
+        public delegate void BeforeSortChangeEventHandler(object sender, EventArgs e);
+        public delegate void BandEventHandler(object sender, EventArgs e);
+
         #endregion
 
         #region Events
@@ -96,6 +104,14 @@ namespace FSFormControls
         public event DataGridViewRowStateChangedEventHandler RowStateChanged;
         public event EventHandler RowEnter;
         public event DataGridViewRowCancelEventHandler UserDeletingRow;
+
+        //public event InitializeRowEventHandler InitializeRow;
+        public event InitializePrintPreviewEventHandler InitializePrintPreview;
+        public event InitializePrintEventHandler InitializePrint;
+        public event BeforePrintEventHandler BeforePrint;
+        public event DoubleClickRowEventHandler DoubleClickRow;
+        public event BeforeSortChangeEventHandler BeforeSortChange;
+        public event BandEventHandler AfterSortChange;
 
         #endregion
 

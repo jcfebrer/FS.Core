@@ -1968,7 +1968,7 @@
             dbGrid1.DefaultDecimals = 2;
             dbGrid1.DefaultHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             dbGridViewDisplayLayout1.Appearance = null;
-            dbGridViewDisplayLayout1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dbGridViewDisplayLayout1.BorderStyle = UserControls.DBGridView.DBGridViewDisplayLayout.DBElementBorderStyle.None;
             dbGridViewDisplayLayout1.CaptionVisible = false;
             dbGridViewDisplayLayout1.GroupByBox = null;
             dbGridViewDisplayLayout1.Override = null;

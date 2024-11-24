@@ -21,11 +21,27 @@ namespace FSFormControlsCore.UserControls.DBGridView
             ExternalSortSingle,
             ExternalSortMulti
         }
-        public enum DBBorderStyle
+        public enum DBElementBorderStyle
         {
+            Default,
             None,
             FixedSingle,
-            Fixed3D
+            Fixed3D,
+            Dotted,
+            Dashed,
+            Solid,
+            Inset,
+            Raised,
+            InsetSoft,
+            RaisedSoft,
+            Etched,
+            Rounded1,
+            Rounded1Etched,
+            Rounded4,
+            Rounded4Thick,
+            TwoColor,
+            WindowsVista,
+            Rounded3
         }
         public enum DBHeaderStyle
         {
@@ -51,9 +67,18 @@ namespace FSFormControlsCore.UserControls.DBGridView
             Horizontal,
             OutlookGroupBy
         }
+        public enum DBRowSizing
+        {
+            Default,
+            Fixed,
+            Free,
+            Sychronized,
+            AutoFixed,
+            AutoFree
+        }
 
         public DBAppearance Appearance { get; set; }
-        public BorderStyle BorderStyle { get; set; }
+        public DBElementBorderStyle BorderStyle { get; set; }
         public DBGridViewDisplayLayout GroupByBox { get; set; }
         public DBGridViewDisplayLayout Override { get; set; }
         public bool CaptionVisible { get; set; }
@@ -81,7 +106,10 @@ namespace FSFormControlsCore.UserControls.DBGridView
         public DBHeaderStyle HeaderStyle { get; set; }
         public DBHeaderClickAction HeaderClickAction { get; set; }
         public DBCellClickAction CellClickAction { get; set; }
-        public DBBorderStyle BorderStyleCell { get; set; }
-        public DBBorderStyle BorderStyleRow { get; set; }
+        public DBElementBorderStyle BorderStyleCell { get; set; }
+        public DBElementBorderStyle BorderStyleRow { get; set; }
+        public DBRowSizing RowSizing { get; set; }
+        public object SelectTypeRow { get; set; }
+        public object TabNavigation { get; set; }
     }
 }

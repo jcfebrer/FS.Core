@@ -1560,6 +1560,8 @@ namespace FSFormControlsCore
 
         public delegate void MouseEnterElementEventHandler(object sender, DBEditorButtonEventArgs e);
 
+        public delegate void MaskChangedEventHandler(object sender, EventArgs e);
+
         #endregion
 
         #region Events
@@ -1576,6 +1578,7 @@ namespace FSFormControlsCore
         public event EventHandler AfterExitEditMode;
         public event DBEditorButtonEventHandler EditorButtonClick;
         public event MouseEnterElementEventHandler MouseEnterElement;
+        public event MaskChangedEventHandler MaskChanged;
 
         #endregion
 

@@ -33,11 +33,18 @@ namespace FSFormControls
 
         //public DBAppearance Appearance { get; set; }
 
-        //public string Key { 
-        //    get { return this.Name; }
-        //    set { this.Name = value; }
-        //}
+        public string Key
+        {
+            get { return this.Name; }
+            set { this.Name = value; }
+        }
 
-        //public DBTabPage TabPage { get; set; }
+        public override string Text
+        {
+            get { return this.Text; }
+            set { this.Text = value; }
+        }
+
+        public DBTabPage TabPage { get; set; }
     }
 }
