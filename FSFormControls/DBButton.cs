@@ -220,7 +220,6 @@ namespace FSFormControls
             set { button.DialogResult = value; }
         }
 
-
         private void Button1_Click(object sender, EventArgs e)
         {
             if (null != Click) 

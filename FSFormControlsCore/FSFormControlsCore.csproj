@@ -111,6 +111,9 @@
     <Compile Update="DBStatusBarPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="DBToolBarContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="DBTooltip.cs">
       <SubType>Component</SubType>
     </Compile>

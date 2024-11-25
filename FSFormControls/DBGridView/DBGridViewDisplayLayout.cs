@@ -117,6 +117,12 @@
             WithinGroup,
             WithinBand
         }
+        public enum DBTabNavigation
+        {
+            NextCell,
+            NextControl,
+            NextControlOnLastCell
+        }
 
         public DBAppearance Appearance { get; set; }
         public DBElementBorderStyle BorderStyle { get; set; }
@@ -151,7 +157,7 @@
         public DBElementBorderStyle BorderStyleRow { get; set; }
         public DBRowSizing RowSizing { get; set; }
         public SelectType SelectTypeRow { get; set; }
-        public object TabNavigation { get; set; }
+        public DBTabNavigation TabNavigation { get; set; }
         public DBHeaderStyle RowSelectorStyle { get; set; }
         public DBRowSelectorNumberStyle RowSelectorNumberStyle { get; set; }
         public DBRowSelectorHeaderStyle RowSelectorHeaderStyle { get; set; }

@@ -253,6 +253,9 @@
     <Compile Include="DBStatusBarPanel.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DBToolBarContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DBTooltip.cs">
       <SubType>Component</SubType>
     </Compile>
