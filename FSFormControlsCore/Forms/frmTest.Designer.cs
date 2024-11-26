@@ -1,4 +1,6 @@
-﻿namespace FSFormControlsCore
+﻿using FSFormControlsCore.DBGraph;
+
+namespace FSFormControlsCore
 {
     partial class frmTest
     {
@@ -1997,8 +1999,8 @@
             // dbGraphics1
             // 
             dbGraphics1.About = "";
-            dbGraphics1.AlignmentBar = b_BarTypes.HorizontalLeft;
-            dbGraphics1.AlignmentLine = b_LineTypes.Horizontal;
+            dbGraphics1.AlignmentBar = BarTypes.HorizontalLeft;
+            dbGraphics1.AlignmentLine = LineTypes.Horizontal;
             dbGraphics1.Color = System.Drawing.Color.Empty;
             dbGraphics1.GraphBorder = false;
             dbGraphics1.Group = 0;

@@ -11,7 +11,7 @@ using FSLibrary;
 
 #endregion
 
-namespace FSFormControls
+namespace FSFormControls.DBGraph
 {
     #region '"Bar"' 
 
@@ -21,18 +21,18 @@ namespace FSFormControls
 
         public BarChart()
         {
-            base.ChartType = b_ChartType.Bar;
+            base.ChartType = ChartType.Bar;
         }
 
         public BarChart(BarPieceCollection BarPieceCollection)
         {
-            base.ChartType = b_ChartType.Bar;
+            base.ChartType = ChartType.Bar;
             BarSliceCollection = BarPieceCollection;
         }
 
-        public b_BarTypes Alignment { get; set; } = b_BarTypes.HorizontalLeft;
+        public BarTypes Alignment { get; set; } = BarTypes.HorizontalLeft;
 
-        public new b_ChartType ChartType => base.ChartType;
+        public new ChartType ChartType => base.ChartType;
     }
 
     public class BarSlice : BaseChunk
@@ -77,35 +77,35 @@ namespace FSFormControls
 
         public LineChart()
         {
-            ChartType = b_ChartType.Line;
+            ChartType = ChartType.Line;
         }
 
         public LineChart(Size ImgSize)
         {
-            ChartType = b_ChartType.Line;
+            ChartType = ChartType.Line;
             ImageSize = ImgSize;
         }
 
         public LineChart(bool ImgAutoSize)
         {
-            ChartType = b_ChartType.Line;
+            ChartType = ChartType.Line;
             AutoSize = ImgAutoSize;
         }
 
         public LineChart(bool ImgAutoSize, LinePlotCollection linePlotCollection)
         {
-            ChartType = b_ChartType.Line;
+            ChartType = ChartType.Line;
             AutoSize = ImgAutoSize;
             LinePlotCollection = linePlotCollection;
         }
 
         public LineChart(LinePlotCollection linePlotCollection)
         {
-            ChartType = b_ChartType.Line;
+            ChartType = ChartType.Line;
             LinePlotCollection = linePlotCollection;
         }
 
-        public b_LineTypes Alignment { get; set; } = b_LineTypes.Horizontal;
+        public LineTypes Alignment { get; set; } = LineTypes.Horizontal;
 
         public Color LineColor { get; set; } = Color.Black;
     }
@@ -158,31 +158,31 @@ namespace FSFormControls
 
         public PieChart()
         {
-            ChartType = b_ChartType.Pie;
+            ChartType = ChartType.Pie;
         }
 
         public PieChart(Size ImgSize)
         {
-            ChartType = b_ChartType.Pie;
+            ChartType = ChartType.Pie;
             ImageSize = ImgSize;
         }
 
         public PieChart(bool ImgAutoSize)
         {
-            ChartType = b_ChartType.Pie;
+            ChartType = ChartType.Pie;
             AutoSize = ImgAutoSize;
         }
 
         public PieChart(bool ImgAutoSize, PiePieceCollection PiePieceCollection)
         {
-            ChartType = b_ChartType.Pie;
+            ChartType = ChartType.Pie;
             AutoSize = ImgAutoSize;
             PieSliceCollection = PiePieceCollection;
         }
 
         public PieChart(Size ImgSize, PiePieceCollection PiePieceCollection)
         {
-            ChartType = b_ChartType.Pie;
+            ChartType = ChartType.Pie;
             PieSliceCollection = PiePieceCollection;
         }
     }
@@ -306,15 +306,15 @@ namespace FSFormControls
 
         public Size ImageSize { get; set; } = new Size(100, 100);
 
-        public b_ChartValueType ValueType { get; set; } = b_ChartValueType.ValueTotal;
+        public ChartValueType ValueType { get; set; } = ChartValueType.ValueTotal;
 
-        public b_ChartType ChartType { get; set; } = b_ChartType.Pie;
+        public ChartType ChartType { get; set; } = ChartType.Pie;
 
         public bool GraphBorder { get; set; } = true;
 
         protected internal Rectangle GraphRect { get; set; } = new Rectangle(0, 0, 0, 0);
 
-        public b_BarTypes GraphAlign { get; set; } = b_BarTypes.HorizontalLeft;
+        public BarTypes GraphAlign { get; set; } = BarTypes.HorizontalLeft;
     }
 
     public abstract class textStruct
@@ -420,7 +420,7 @@ namespace FSFormControls
 
     #region '"Base Enums"' 
 
-    public enum b_BarTypes
+    public enum BarTypes
     {
         HorizontalLeft = 0,
         HorizontalRight = 1,
@@ -428,19 +428,19 @@ namespace FSFormControls
         VerticalBottom = 3
     }
 
-    public enum b_LineTypes
+    public enum LineTypes
     {
         Horizontal = 1,
         Vertical = 2
     }
 
-    public enum b_ChartValueType
+    public enum ChartValueType
     {
         ValuePercent = 1,
         ValueTotal = 2
     }
 
-    public enum b_ChartType
+    public enum ChartType
     {
         Pie = 0,
         Bar = 1,
@@ -462,11 +462,11 @@ namespace FSFormControls
         {
             switch (graph.ChartType)
             {
-                case b_ChartType.Bar:
+                case ChartType.Bar:
                     return DrawBarChart((BarChart) graph);
-                case b_ChartType.Line:
+                case ChartType.Line:
                     return DrawLineChart((LineChart) graph);
-                case b_ChartType.Pie:
+                case ChartType.Pie:
                     return DrawPieChart((PieChart) graph);
 
                 default:
@@ -478,13 +478,13 @@ namespace FSFormControls
         {
             switch (graph.ChartType)
             {
-                case b_ChartType.Bar:
+                case ChartType.Bar:
                     DrawBarChart((BarChart) graph, retStream);
                     break;
-                case b_ChartType.Line:
+                case ChartType.Line:
                     DrawLineChart((LineChart) graph, retStream);
                     break;
-                case b_ChartType.Pie:
+                case ChartType.Pie:
                     DrawPieChart((PieChart) graph, retStream);
                     break;
             }
@@ -500,13 +500,13 @@ namespace FSFormControls
 
             switch (Graph.ChartType)
             {
-                case b_ChartType.Bar:
+                case ChartType.Bar:
                     oBaseChunkCollection = ((BarChart) Graph).BarSliceCollection;
                     break;
-                case b_ChartType.Line:
+                case ChartType.Line:
                     oBaseChunkCollection = ((LineChart) Graph).LinePlotCollection;
                     break;
-                case b_ChartType.Pie:
+                case ChartType.Pie:
                     oBaseChunkCollection = ((PieChart) Graph).PieSliceCollection;
                     break;
             }
@@ -591,7 +591,7 @@ namespace FSFormControls
             if (PieChart.AutoSize) PieChart.ImageSize = AutoSize(PieChart, PieChart.PieSliceCollection);
 
             PieChart.GraphRect = CalcGraph(PieChart);
-            if (PieChart.ValueType == b_ChartValueType.ValueTotal)
+            if (PieChart.ValueType == ChartValueType.ValueTotal)
                 PieChart.PieSliceCollection.CalcPercent();
             else
                 PieChart.PieSliceCollection.CalcPercent(true);
@@ -676,15 +676,15 @@ namespace FSFormControls
 
             switch (BarChart.Alignment)
             {
-                case b_BarTypes.HorizontalLeft:
+                case BarTypes.HorizontalLeft:
                     bMap.RotateFlip(RotateFlipType.Rotate270FlipXY);
                     break;
-                case b_BarTypes.HorizontalRight:
+                case BarTypes.HorizontalRight:
                     bMap.RotateFlip(RotateFlipType.Rotate90FlipX);
                     break;
-                case b_BarTypes.VerticalBottom:
+                case BarTypes.VerticalBottom:
                     break;
-                case b_BarTypes.VerticalTop:
+                case BarTypes.VerticalTop:
                     bMap.RotateFlip(RotateFlipType.Rotate180FlipX);
                     break;
             }
@@ -719,9 +719,9 @@ namespace FSFormControls
 
             switch (LineChart.Alignment)
             {
-                case b_LineTypes.Horizontal:
+                case LineTypes.Horizontal:
                     break;
-                case b_LineTypes.Vertical:
+                case LineTypes.Vertical:
                     bMap.RotateFlip(RotateFlipType.Rotate270FlipNone);
                     break;
             }
@@ -810,16 +810,16 @@ namespace FSFormControls
         {
             switch (chart.GraphAlign)
             {
-                case b_BarTypes.HorizontalLeft:
+                case BarTypes.HorizontalLeft:
 
                     break;
-                case b_BarTypes.HorizontalRight:
+                case BarTypes.HorizontalRight:
 
                     break;
-                case b_BarTypes.VerticalBottom:
+                case BarTypes.VerticalBottom:
 
                     break;
-                case b_BarTypes.VerticalTop:
+                case BarTypes.VerticalTop:
 
                     break;
             }
@@ -973,12 +973,12 @@ namespace FSFormControls
 
             switch (Graph.ChartType)
             {
-                case b_ChartType.Pie:
+                case ChartType.Pie:
                     return new Size(300, 300);
-                case b_ChartType.Bar:
-                case b_ChartType.Line:
-                    if ((Graph.GraphAlign == b_BarTypes.HorizontalLeft) |
-                        (Graph.GraphAlign == b_BarTypes.HorizontalRight))
+                case ChartType.Bar:
+                case ChartType.Line:
+                    if ((Graph.GraphAlign == BarTypes.HorizontalLeft) |
+                        (Graph.GraphAlign == BarTypes.HorizontalRight))
                     {
                         lwidth = ChunkCollection.Count * 55;
                         lheight = Convert.ToInt32(lwidth * 0.75);

@@ -194,6 +194,7 @@ namespace FSFormControls
         }
 
         public object Style { get; set; }
+        public DBTabControl SharedControlsPage { get; set; }
 
         protected override void OnSelectedIndexChanged(EventArgs e)
         {

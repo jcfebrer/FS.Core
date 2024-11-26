@@ -1,5 +1,6 @@
 #region
 
+using FSFormControls.DBGraph;
 using System;
 using System.ComponentModel;
 using System.Drawing;
@@ -27,8 +28,8 @@ namespace FSFormControls
         public bool isDraw;
 
 
-        public b_BarTypes m_AlignmentBar = b_BarTypes.HorizontalLeft;
-        public b_LineTypes m_AlignmentLine = b_LineTypes.Horizontal;
+        public BarTypes m_AlignmentBar = BarTypes.HorizontalLeft;
+        public LineTypes m_AlignmentLine = LineTypes.Horizontal;
         public Color m_Color;
         public bool m_GraphBorder;
         public int m_Group;
@@ -117,13 +118,13 @@ namespace FSFormControls
             set { m_PieTitle = value; }
         }
 
-        public b_BarTypes AlignmentBar
+        public BarTypes AlignmentBar
         {
             get { return m_AlignmentBar; }
             set { m_AlignmentBar = value; }
         }
 
-        public b_LineTypes AlignmentLine
+        public LineTypes AlignmentLine
         {
             get { return m_AlignmentLine; }
             set { m_AlignmentLine = value; }

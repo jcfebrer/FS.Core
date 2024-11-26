@@ -2040,8 +2040,8 @@
             // dbGraphics1
             // 
             this.dbGraphics1.About = "";
-            this.dbGraphics1.AlignmentBar = FSFormControls.b_BarTypes.HorizontalLeft;
-            this.dbGraphics1.AlignmentLine = FSFormControls.b_LineTypes.Horizontal;
+            this.dbGraphics1.AlignmentBar = FSFormControls.DBGraph.BarTypes.HorizontalLeft;
+            this.dbGraphics1.AlignmentLine = FSFormControls.DBGraph.LineTypes.Horizontal;
             this.dbGraphics1.Color = System.Drawing.Color.Empty;
             this.dbGraphics1.GraphBorder = false;
             this.dbGraphics1.Group = 0;
