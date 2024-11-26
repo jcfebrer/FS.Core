@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace FSFormControls
@@ -18,18 +19,29 @@ namespace FSFormControls
 
         public void ShowToolTip(Control control)
         {
-            //throw new NotImplementedException();
+            DBTooltip tooltip = new DBTooltip();
+            tooltip.SetToolTip(control, control.Text);
         }
 
-        public void SetToolTip(Control control, DBTooltip tooltip)
+        public void SetUltraToolTip(Control control, DBTooltip tooltip)
         {
-            //throw new NotImplementedException();
+            SetToolTip(control, tooltip);
+        }
+
+        public DBTooltip GetUltraToolTip(Control control)
+        {
+            return GetToolTip(control);
         }
 
         public DBTooltip GetToolTip(Control control)
         {
-            //throw new NotImplementedException();
-            return new DBTooltip("Revisar ToolTip");
+            DBTooltip tooltip = new DBTooltip(control.Text);
+            return tooltip;
+        }
+
+        public void SetToolTip(Control control, DBTooltip tooltip)
+        {
+            tooltip.SetToolTip(control, tooltip.ToolTipText);
         }
     }
 }

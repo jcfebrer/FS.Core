@@ -61,7 +61,6 @@ namespace FSFormControlsCore
         public delegate void SelectionChangedEventHandler(object sender, EventArgs e);
         public delegate void DropDownEventHandler(object sender, EventArgs e);
         public delegate void EnterEventHandler(object sender, EventArgs e);
-        public delegate void KeyDownEventHandler(object sender, KeyEventArgs e);
         public delegate void KeyPressEventHandler(object sender, KeyPressEventArgs e);
         public delegate void LeaveEventHandler(object sender, EventArgs e);
         public delegate void LostFocusEventHandler(object sender, EventArgs e);
@@ -89,7 +88,7 @@ namespace FSFormControlsCore
         public new event EventHandler GotFocus;
         public new event EventHandler MouseEnter;
         public event SelectionChangeCommittedEventHandler SelectionChangeCommitted;
-        public new event KeyDownEventHandler KeyDown;
+        public new event KeyEventHandler KeyDown;
         public new event LeaveEventHandler Leave;
         public new event KeyPressEventHandler KeyPress;
         public event EventHandler AfterEnterEditMode;

@@ -70,6 +70,7 @@ namespace FSFormControls
         public delegate void CellClickEventHandler(object sender, DataGridViewCellEventArgs e);
         public delegate void RowChangingEventHandler(object sender, DataRowChangeEventArgs e);
         public delegate void DataErrorEventHandler(object sender, DataGridViewDataErrorEventArgs e);
+        public delegate void ErrorEventHandler(object sender, EventArgs e);
         public delegate void CellValueChangedEventHandler(object sender, DataGridViewCellEventArgs e);
         public delegate void RowsAddedEventHandler(object sender, DataGridViewRowsAddedEventArgs e);
         public delegate void CellEndEditEventHandler(object sender, DataGridViewCellEventArgs e);
@@ -93,6 +94,7 @@ namespace FSFormControls
         public event CellClickEventHandler CellClick;
         public event CellClickEventHandler CellDoubleClick;
         public event DataErrorEventHandler DataError;
+        public event ErrorEventHandler Error;
         public event CellValueChangedEventHandler CellValueChanged;
         public event DataGridViewCellFormattingEventHandler CellFormatting;
         public event DataGridViewCellMouseEventHandler ColumnHeaderMouseClick;

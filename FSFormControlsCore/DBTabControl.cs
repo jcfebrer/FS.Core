@@ -193,6 +193,8 @@ namespace FSFormControlsCore
             get { return base.TabPages; }
         }
 
+        public object Style { get; set; }
+
         protected override void OnSelectedIndexChanged(EventArgs e)
         {
             base.OnSelectedIndexChanged(e);
