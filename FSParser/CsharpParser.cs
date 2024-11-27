@@ -265,7 +265,7 @@ namespace FSParser
         public void CheckSyntax(string codeBlock)
         {
             // Separemos el código en líneas
-            string[] codeLines = codeBlock.Split(Environment.NewLine.ToCharArray());
+            string[] codeLines = codeBlock.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
             List<string> errors = new List<string>();
             bool insideComments = false;
 
@@ -305,7 +305,7 @@ namespace FSParser
             //ProtectVariables();
 
             code = RemoveComments(code);
-            List<string> lines = new List<string>(code.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries));
+            List<string> lines = new List<string>(code.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
             ParseBlock(lines, 0, lines.Count);
         }
 

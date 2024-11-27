@@ -1155,7 +1155,7 @@ namespace FSFormControls
         //        str = Convert.ToString(Items[e.Index]);
         //    }
 
-        //    object[] transTemp5 = str.Split(Environment.NewLine.ToCharArray());
+        //    object[] transTemp5 = str.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
         //    var strOneLine = string.Join("", (string[]) transTemp5);
 
         //    if (im >= ImageList.Images.Count) im = ImageList.Images.Count - 1;
