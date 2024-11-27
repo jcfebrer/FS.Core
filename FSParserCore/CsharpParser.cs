@@ -18,7 +18,7 @@ namespace FSParserCore
 
         private readonly static string textMark = "(<*>)"; // Marca que identifica un texto que no se debe de parsear.
 
-        private readonly static string singleLineCommentPattern = @"(\s|\t)*//.*";
+        private readonly static string singleLineCommentPattern = @"(?<![""'].*)(\s|\t)*//.*";
         private readonly static string blockCommentPattern = @"/\*.*?\*/";
         private readonly static string assignmentPattern = @"^\s*(\w+)\s*=\s*(.+);$";
         private readonly static string ifPattern = @"^\s*if\s*\((.+)\)\s*{?$";

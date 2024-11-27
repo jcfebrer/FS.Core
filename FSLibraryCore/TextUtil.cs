@@ -2641,7 +2641,7 @@ namespace FSLibraryCore
         /// <returns></returns>
         public static string ReplaceREG(string str, string regex, string regreplace)
         {
-            return ReplaceREG(str, regex, regreplace, RegexOptions.None);
+            return ReplaceREG(str, regex, regreplace, RegexOptions.Multiline);
         }
 
         /// <summary>

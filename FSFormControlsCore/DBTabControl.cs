@@ -13,6 +13,24 @@ namespace FSFormControlsCore
     [ToolboxItem(true)]
     public class DBTabControl : TabControl, ISupportInitialize
     {
+        public enum DBTabControlStyle
+        {
+            Default,
+            PropertyPage,
+            PropertyPageSelected,
+            PropertyPageFlat,
+            PropertyPage2003,
+            StateButtons,
+            VisualStudio,
+            Flat,
+            Wizard,
+            Excel,
+            NotePage,
+            NotePageFlat,
+            VisualStudio2005,
+            Office2007Ribbon
+        }
+
         public delegate void SelectedTabChangedEventHandler(object sender, SelectedTabChangedEventArgs e);
 
         //protected override void OnControlAdded(ControlEventArgs e)
@@ -193,7 +211,7 @@ namespace FSFormControlsCore
             get { return base.TabPages; }
         }
 
-        public object Style { get; set; }
+        public DBTabControlStyle Style { get; set; }
         public DBTabControl SharedControlsPage { get; set; }
 
         protected override void OnSelectedIndexChanged(EventArgs e)
