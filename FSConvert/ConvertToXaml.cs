@@ -13,16 +13,15 @@ using System.Drawing;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
-using Color = System.Drawing.Color;
 using System.Linq;
+using System.Windows.Forms;
 
-namespace FSFormControls
+namespace FSConvert
 {
     /// <summary> Converts <seealso cref="System.Windows.Forms.Control"/>s to WPF XAML. </summary>
     /// <seealso cref="T:System.Windows.Forms.UserControl"/>
     ///  <seealso cref="T:System.Windows.Forms.Form"/>
-    internal static class ConvertToXaml
+    public static class ConvertToXaml
     {
         /// <summary> Generates the WPF XAML equivalent for a <see cref="System.Windows.Forms.Control"/>
         ///           and its children. The XAML won't be perfect - you will need to edit it. A lot.

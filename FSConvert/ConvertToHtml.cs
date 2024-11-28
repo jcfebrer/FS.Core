@@ -15,9 +15,9 @@ using Label = System.Web.UI.WebControls.Label;
 using Panel = System.Web.UI.WebControls.Panel;
 using TextBox = System.Web.UI.WebControls.TextBox;
 
-namespace FSFormControls
+namespace FSConvert
 {
-    internal class ConvertToHtml
+    public class ConvertToHtml
     {
         public string GenerateHTML(Form frm)
         {
@@ -100,11 +100,11 @@ namespace FSFormControls
                         ((DropDownList) webctrl).Style["HEIGHT"] = sy + "px";
                         ((DropDownList) webctrl).Font.Name = winctrl.Font.Name;
                         ((DropDownList) webctrl).Font.Size = FontUnit.Point(Convert.ToInt32(winctrl.Font.Size));
-                        if (winctrl is DBCombo)
+                        if (winctrl.GetType().ToString() == "FSFormControls.DBCombo")
                         {
-                            ((DropDownList) webctrl).DataSource = ((DBCombo) winctrl).DataControlList.DataTable;
-                            ((DropDownList) webctrl).DataTextField = ((DBCombo) winctrl).DBFieldList;
-                            ((DropDownList) webctrl).DataValueField = ((DBCombo) winctrl).DBFieldData;
+                            //((DropDownList) webctrl).DataSource = ((DBCombo) winctrl).DataControlList.DataTable;
+                            //((DropDownList) webctrl).DataTextField = ((DBCombo) winctrl).DBFieldList;
+                            //((DropDownList) webctrl).DataValueField = ((DBCombo) winctrl).DBFieldData;
                         }
                         else
                         {
@@ -151,11 +151,11 @@ namespace FSFormControls
                         ((DataGrid) webctrl).Font.Name = winctrl.Font.Name;
                         ((DataGrid) webctrl).Font.Size = FontUnit.Point(Convert.ToInt32(winctrl.Font.Size));
 
-                        if (winctrl is DBGridView)
-                            ((DataGrid)webctrl).DataSource = ((DBGridView)winctrl).DataControl.DataTable;
-                        else if (winctrl is DBGrid)
-                            ((DataGrid) webctrl).DataSource = ((DBGrid) winctrl).DataControl.DataTable;
-                        else
+                        //if (winctrl is DBGridView)
+                        //    ((DataGrid)webctrl).DataSource = ((DBGridView)winctrl).DataControl.DataTable;
+                        //else if (winctrl is DBGrid)
+                        //    ((DataGrid) webctrl).DataSource = ((DBGrid) winctrl).DataControl.DataTable;
+                        //else
                             ((DataGrid) webctrl).DataSource = ((System.Windows.Forms.DataGrid) winctrl).DataSource;
                         ((DataGrid) webctrl).DataBind();
                         break;
@@ -193,15 +193,17 @@ namespace FSFormControls
                         }
                         else
                         {
-                            if (winctrl is DBTabControl)
-                            {
-                                var tp = ((DBTabControl) winctrl).SelectedTab;
-                                ((Panel) webctrl).Controls.Add(GenerateHTMLControls(tp.Controls));
-                            }
-                            else
-                            {
-                                ((Panel) webctrl).Controls.Add(GenerateHTMLControls(winctrl.Controls));
-                            }
+                            ((Panel)webctrl).Controls.Add(GenerateHTMLControls(winctrl.Controls));
+
+                            //if (winctrl is DBTabControl)
+                            //{
+                            //    var tp = ((DBTabControl) winctrl).SelectedTab;
+                            //    ((Panel) webctrl).Controls.Add(GenerateHTMLControls(tp.Controls));
+                            //}
+                            //else
+                            //{
+                            //    ((Panel) webctrl).Controls.Add(GenerateHTMLControls(winctrl.Controls));
+                            //}
                         }
 
                         break;

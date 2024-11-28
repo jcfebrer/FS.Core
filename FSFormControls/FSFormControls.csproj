@@ -168,7 +168,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\ConvertToAspx.cs" />
     <Compile Include="Classes\InputBox.cs" />
     <Compile Include="Classes\SMS.cs" />
     <Compile Include="Classes\SortableBindingList.cs" />
@@ -181,7 +180,6 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="DBParamCollection.cs" />
-    <Compile Include="Classes\ConvertToXaml.cs" />
     <Compile Include="DBGauge.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -583,7 +581,6 @@
     <Compile Include="Classes\Error.cs" />
     <Compile Include="Classes\ErrorCollection.cs" />
     <Compile Include="Classes\Export.cs" />
-    <Compile Include="Classes\ConvertToHtml.cs" />
     <Compile Include="Classes\FormsCollection.cs" />
     <Compile Include="Classes\FunctionsForms.cs" />
     <Compile Include="Classes\Global.cs" />
@@ -1003,6 +1000,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FSConvert\FSConvert.csproj">
+      <Project>{c5ecb48b-42fb-4db8-9145-b67f5fefb421}</Project>
+      <Name>FSConvert</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSDatabase\FSDatabase.csproj">
       <Project>{31743f95-0d43-4ab1-bd23-45d8a88f2635}</Project>
       <Name>FSDatabase</Name>

@@ -1,12 +1,11 @@
-﻿using FSException;
-using System;
+﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSFormControls
+namespace FSConvert
 {
 	/// <summary>
 	/// Class that converts a Windows Forms form or control to an ASP.NET Web Forms page or control.
@@ -253,7 +252,7 @@ namespace FSFormControls
 
 			foreach (System.Windows.Forms.Control control in rootControl.Controls)
 			{
-				if (control is System.Windows.Forms.Label || control is DBLabel)
+				if (control is System.Windows.Forms.Label || control.GetType().ToString() == "FSFormControls.DBLabel")
 				{
 					webLabel = new System.Web.UI.WebControls.Label();
 					webLabel.ID = control.Name;
@@ -262,7 +261,7 @@ namespace FSFormControls
 					this.AddProperties(control, stringBuilder);
 					stringBuilder.AppendFormat(">{0}</asp:Label>{1}", control.Text, System.Environment.NewLine);
 				}
-				else if (control is System.Windows.Forms.TextBox || control is DBTextBox)
+				else if (control is System.Windows.Forms.TextBox || control.GetType().ToString() == "FSFormControls.DBTextBox")
 				{
 					webTextBox = new System.Web.UI.WebControls.TextBox();
 					webTextBox.ID = control.Name;
@@ -271,7 +270,7 @@ namespace FSFormControls
 					this.AddProperties(control, stringBuilder);
 					stringBuilder.AppendFormat(">{0}</asp:TextBox>{1}", control.Text, System.Environment.NewLine);
 				}
-				else if (FunctionsForms.IsContainer(control))
+				else if (control.HasChildren)
 				{
 					stringBuilder.Append("<fieldset");
 					stringBuilder.AppendFormat(" ID=\"{0}\" runat=\"server\"", control.Name);
@@ -377,7 +376,7 @@ namespace FSFormControls
 						codeDomProvider = CodeDomProvider.CreateProvider("CSharp");
 					}
 					else
-						throw new ExceptionUtil("Imposible crear el proveedor para: CSharp.");
+						throw new Exception("Imposible crear el proveedor para: CSharp.");
 					break;
 				case SourceLanguages.VbNet:
 					if (CodeDomProvider.IsDefinedLanguage("VB"))
@@ -385,7 +384,7 @@ namespace FSFormControls
 						codeDomProvider = CodeDomProvider.CreateProvider("VB");
 					}
 					else
-						throw new ExceptionUtil("Imposible crear el proveedor para: VB.NET.");
+						throw new Exception("Imposible crear el proveedor para: VB.NET.");
 					break;
 			}
 

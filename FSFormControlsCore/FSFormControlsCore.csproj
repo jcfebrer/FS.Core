@@ -252,6 +252,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FSConvertCore\FSConvertCore.csproj" />
     <ProjectReference Include="..\FSDatabaseCore\FSDatabaseCore.csproj" />
     <ProjectReference Include="..\FSDiskCore\FSDiskCore.csproj" />
     <ProjectReference Include="..\FSExcelCore\FSExcelCore.csproj" />
