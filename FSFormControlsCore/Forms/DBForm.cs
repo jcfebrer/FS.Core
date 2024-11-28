@@ -13,6 +13,7 @@ using FSLibraryCore;
 using FSExceptionCore;
 using FSGraphicsCore;
 using FSSystemInfoCore;
+using FSConvertCore;
 
 #endregion
 
@@ -54,6 +55,7 @@ namespace FSFormControlsCore
             mnuContext.Items.Add("&Vista Preliminar", null, PrintPreview);
             mnuContext.Items.Add("&Guardar como HTML", null, SaveAsHTML);
             mnuContext.Items.Add("&Guardar como ASPX", null, SaveAsASPX);
+            mnuContext.Items.Add("&Guardar como XAML", null, SaveAsXAML);
             mnuContext.Items.Add("&Refrescar", null, MnuRefresh);
             mnuContext.Items.Add("-");
             mnuContext.Items.Add("&Filtro", null, MnuFilter);
@@ -204,6 +206,26 @@ namespace FSFormControlsCore
                 ShowMenuBar(m_ShowMenu);
             }
         }
+
+        public StatusBar.StatusBarPanelCollection StatusBarPanels { get; set; }
+
+        //public long ProgressPosition
+        //{
+        //    get { return DbStatusBarProgressPanel1.ProgressPosition; }
+        //    set { DbStatusBarProgressPanel1.ProgressPosition = value; }
+        //}
+
+        //public long ProgressStartPoint
+        //{
+        //    get { return DbStatusBarProgressPanel1.StartPoint; }
+        //    set { DbStatusBarProgressPanel1.StartPoint = value; }
+        //}
+
+        //public long ProgressEndPoint
+        //{
+        //    get { return DbStatusBarProgressPanel1.EndPoint; }
+        //    set { DbStatusBarProgressPanel1.EndPoint = value; }
+        //}
 
         public bool AllowNavigate
         {
@@ -654,18 +676,19 @@ namespace FSFormControlsCore
         {
             try
             {
-                SaveFileDialog1.ShowDialog();
-                var fic = SaveFileDialog1.FileName;
-                if (fic == "") return;
-                var tw = new StreamWriter(fic);
+                //SaveFileDialog1.Filter = "Archivos HTML|*.htm*|Todos los archivos|*.*";
+                //SaveFileDialog1.ShowDialog();
+                //var fic = SaveFileDialog1.FileName;
+                //if (fic == "") return;
+                //var tw = new StreamWriter(fic);
 
                 //var dbform2html = new ConvertToHtml();
-                string convertStr = "Funcionalidad no implementada.";
-                //= dbform2html.GenerateHTML(this);
-                tw.Write(convertStr);
-                tw.Close();
-                tw = null;
-                ProcessUtil.OpenDocument(fic);
+                //tw.Write(dbform2html.GenerateHTML(this));
+                //tw.Close();
+                //tw = null;
+                //ProcessUtil.OpenDocument(fic);
+
+                throw new ExceptionUtil("Función no implementada en Core.");
             }
             catch (Exception ex)
             {
@@ -677,14 +700,37 @@ namespace FSFormControlsCore
         {
             try
             {
+                //SaveFileDialog1.Filter = "Archivos ASPX|*.aspx|Todos los archivos|*.*";
+                //SaveFileDialog1.ShowDialog();
+                //var fic = SaveFileDialog1.FileName;
+                //if (fic == "") return;
+
+                //var dbform2aspx = new ConvertToAspx(ConvertToAspx.AspxTypes.Page);
+                //dbform2aspx.Convert(this, Path.GetDirectoryName(fic));
+                //ProcessUtil.OpenDocument(fic);
+
+                throw new ExceptionUtil("Función no implementada en Core.");
+            }
+            catch (Exception ex)
+            {
+                throw new ExceptionUtil("Errores en la exportación.", ex);
+            }
+        }
+
+        private void SaveAsXAML(object sender, EventArgs e)
+        {
+            try
+            {
+                SaveFileDialog1.Filter = "Archivos XAML|*.xaml|Todos los archivos|*.*";
                 SaveFileDialog1.ShowDialog();
                 var fic = SaveFileDialog1.FileName;
                 if (fic == "") return;
+                var tw = new StreamWriter(fic);
 
-                //var dbform2aspx = new Convert2Aspx(Convert2Aspx.AspxTypes.Page);
-                //dbform2aspx.Convert(this, Path.GetDirectoryName(fic));
-                //ProcessUtil.OpenDocument(fic);
-                throw new ExceptionUtil("Funcionalidad no implementada.");
+                tw.Write(ConvertToXaml.Convert(this));
+                tw.Close();
+                tw = null;
+                ProcessUtil.OpenDocument(fic);
             }
             catch (Exception ex)
             {
@@ -927,15 +973,10 @@ namespace FSFormControlsCore
             mnuContext = new ContextMenuStrip(components);
             SaveFileDialog1 = new SaveFileDialog();
             tmrAutoSave = new Timer(components);
-            barraEstado = new DBStatusBar();
             estado = new ToolStripStatusLabel();
             mensaje = new ToolStripStatusLabel();
             info = new ToolStripStatusLabel();
-            DbToolBar1 = new DBToolBarEx();
-            DbTabOrderSchemeProvider1 = new TabOrderSchemaProvider();
             mnuFormMain.SuspendLayout();
-            ((ISupportInitialize)barraEstado).BeginInit();
-            barraEstado.SuspendLayout();
             SuspendLayout();
             // 
             // mnuFormMain
@@ -1003,7 +1044,7 @@ namespace FSFormControlsCore
             // mnuContext
             // 
             mnuContext.Name = "mnuContext";
-            mnuContext.Size = new Size(61, 4);
+            mnuContext.Size = new Size(181, 26);
             // 
             // SaveFileDialog1
             // 
@@ -1013,17 +1054,6 @@ namespace FSFormControlsCore
             // 
             tmrAutoSave.Interval = 60000;
             tmrAutoSave.Tick += tmrAutoSave_Tick;
-            // 
-            // barraEstado
-            // 
-            barraEstado.Items.AddRange(new ToolStripItem[] { estado, mensaje, info });
-            barraEstado.Location = new Point(0, 394);
-            barraEstado.Name = "barraEstado";
-            barraEstado.Size = new Size(1154, 22);
-            barraEstado.TabIndex = 2;
-            barraEstado.Text = "dbStatusBar1";
-            barraEstado.ViewStyle = DBStatusBar.ViewStyleEnum.Default;
-            barraEstado.WrapText = false;
             // 
             // estado
             // 
@@ -1041,64 +1071,18 @@ namespace FSFormControlsCore
             info.Name = "info";
             info.Size = new Size(0, 17);
             // 
-            // DbToolBar1
-            // 
-            DbToolBar1.About = "";
-            DbToolBar1.AllowAddNew = true;
-            DbToolBar1.AllowCancel = true;
-            DbToolBar1.AllowClose = true;
-            DbToolBar1.AllowDelete = true;
-            DbToolBar1.AllowEdit = true;
-            DbToolBar1.AllowFilter = true;
-            DbToolBar1.AllowList = true;
-            DbToolBar1.AllowNavigate = true;
-            DbToolBar1.AllowPrint = true;
-            DbToolBar1.AllowRecord = true;
-            DbToolBar1.AllowSave = true;
-            DbToolBar1.AllowSearch = true;
-            DbToolBar1.DataControl = null;
-            DbToolBar1.Dock = DockStyle.Top;
-            DbToolBar1.Location = new Point(0, 0);
-            DbToolBar1.Name = "DbToolBar1";
-            DbToolBar1.ShowAddNewButton = true;
-            DbToolBar1.ShowCancelButton = true;
-            DbToolBar1.ShowCloseButton = true;
-            DbToolBar1.ShowDeleteButton = true;
-            DbToolBar1.ShowEditButton = true;
-            DbToolBar1.ShowFilterButton = true;
-            DbToolBar1.ShowListButton = true;
-            DbToolBar1.ShowNavigateButton = true;
-            DbToolBar1.ShowPrintButton = true;
-            DbToolBar1.ShowRecordButton = true;
-            DbToolBar1.ShowSaveButton = true;
-            DbToolBar1.ShowScrollBar = true;
-            DbToolBar1.ShowSearchButton = true;
-            DbToolBar1.ShowText = true;
-            DbToolBar1.Size = new Size(1483, 25);
-            DbToolBar1.TabIndex = 1;
-            DbToolBar1.TabStop = false;
-            DbToolBar1.Value = 0;
-            DbToolBar1.VisibleScroll = true;
-            DbToolBar1.VisibleTotalRecord = false;
-            // 
             // DBForm
             // 
             AutoScaleMode = AutoScaleMode.None;
             ClientSize = new Size(1154, 416);
             ContextMenuStrip = mnuContext;
-            Controls.Add(barraEstado);
-            Controls.Add(DbToolBar1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = mnuFormMain;
             Name = "DBForm";
             Text = "DBForm";
             mnuFormMain.ResumeLayout(false);
             mnuFormMain.PerformLayout();
-            ((ISupportInitialize)barraEstado).EndInit();
-            barraEstado.ResumeLayout(false);
-            barraEstado.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

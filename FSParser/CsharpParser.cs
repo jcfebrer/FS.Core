@@ -18,8 +18,8 @@ namespace FSParser
 
         private readonly static string textMark = "(<*>)"; // Marca que identifica un texto que no se debe de parsear.
 
-        private readonly static string singleLineCommentPattern = @"(?<![""'].*)(\s|\t)*//.*";
-        private readonly static string blockCommentPattern = @"/\*.*?\*/";
+        private readonly static string singleLineCommentPattern = @"^\s*//(.*)";
+        private readonly static string blockCommentPattern = @"(?<![""'])/\*[^*]*\*+(?:[^/*][^*]*\*+)*/";
         private readonly static string assignmentPattern = @"^\s*(\w+)\s*=\s*(.+);$";
         private readonly static string ifPattern = @"^\s*if\s*\((.+)\)\s*{?$";
         private readonly static string returnPattern = @"^\s*return\s*(.*);";
@@ -228,6 +228,12 @@ namespace FSParser
             }
         }
 
+        private void AddGeneralVariables()
+        {
+            // Salto de linea
+            if (!variables.ContainsKey("crlf"))
+                variables.Add("crlf", Environment.NewLine);
+        }
 
         // Validación de la sintaxis completa del bloque de código
         private bool IsBlockSyntaxValid(string codeBlock)
@@ -305,15 +311,8 @@ namespace FSParser
             //ProtectVariables();
 
             code = RemoveComments(code);
-            List<string> lines = new List<string>(code.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+            List<string> lines = new List<string>(code.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
             ParseBlock(lines, 0, lines.Count);
-        }
-
-        private void AddGeneralVariables()
-        {
-            // Salto de linea
-            if(!variables.ContainsKey("crlf"))
-                variables.Add("crlf", Environment.NewLine);
         }
 
         public void Parse(List<string> lines)
@@ -329,6 +328,9 @@ namespace FSParser
                 string line = lines[i].Trim();
 
                 if (string.IsNullOrEmpty(line))
+                    continue;
+
+                if (line.StartsWith("\\"))
                     continue;
 
                 var functionDefMatch = functionDefRegex.Match(line);

@@ -12,9 +12,7 @@ using System.Windows.Forms;
 using FSDatabaseCore;
 using FSExceptionCore;
 using FSFormControlsCore.Properties;
-using FSFormControlsCore;
 using FSLibraryCore;
-using DateTime = System.DateTime;
 
 #endregion
 
@@ -1721,6 +1719,11 @@ namespace FSFormControlsCore
             return datagrid.Columns.Count;
         }
 
+        public void SetDataBinding(ArrayList dataSource, string dataMember)
+        {
+            datagrid.DataSource = dataSource;
+            datagrid.DataMember = dataMember;
+        }
 
         private string GetGridRow(int iRow, int iMaxColIndex)
         {

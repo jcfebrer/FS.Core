@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
+using System.Collections;
 using FSDatabaseCore;
 using FSLibraryCore;
 using FSExceptionCore;
@@ -596,6 +597,11 @@ namespace FSFormControlsCore
             }
         }
 
+        public object DataSource
+        {
+            get { return combobox.DataSource; }
+            set { combobox.DataSource = value; }
+        }
 
         public override Color ForeColor
         {
@@ -1251,6 +1257,12 @@ namespace FSFormControlsCore
 
             if (EditorButtonClick != null)
                 EditorButtonClick(sender, new DBEditorButtonEventArgs());
+        }
+
+        public void SetDataBinding(ArrayList dataSource, string valueMember)
+        {
+            combobox.DataSource = dataSource;
+            combobox.ValueMember = valueMember;
         }
     }
 
