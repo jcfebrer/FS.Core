@@ -207,7 +207,7 @@ namespace FSFormControlsCore
             }
         }
 
-        public StatusBar.StatusBarPanelCollection StatusBarPanels { get; set; }
+        //public StatusBar.StatusBarPanelCollection StatusBarPanels { get; set; }
 
         //public long ProgressPosition
         //{
