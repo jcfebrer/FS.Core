@@ -157,7 +157,7 @@ namespace FSLibrary
         /// <param name="hwnd"></param>
         /// <param name="lParam"></param>
         /// <returns></returns>
-        public delegate int EnumWindowsProc(IntPtr hwnd, int lParam);
+        public delegate bool EnumWindowsProc(IntPtr hwnd, int lParam);
 
         /// <summary>
         /// Función que llama a lpEnumFunc con los parametros lParam para enumerar las ventanas activas.
@@ -166,7 +166,7 @@ namespace FSLibrary
         /// <param name="lParam"></param>
         /// <returns></returns>
         [DllImport("user32.Dll")]
-        public static extern int EnumWindows(EnumWindowsProc lpEnumFunc, int lParam);
+        public static extern bool EnumWindows(EnumWindowsProc lpEnumFunc, int lParam);
 
         /// <summary>
         /// Devuelve los hijos de una ventana
@@ -768,6 +768,16 @@ namespace FSLibrary
             TokenPrivilege DesiredAccess, // desired access to process
             ref IntPtr TokenHandle // handle to open access token
         );
+
+        /// <summary>
+        /// Devuelve la posición y estado del proceso indicado.
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <param name="lpwndpl"></param>
+        /// <returns></returns>
+        [DllImport("user32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool GetWindowPlacement(IntPtr hWnd, ref WINDOWPLACEMENT lpwndpl);
 
         /// <summary>
         /// Duplicates the token.

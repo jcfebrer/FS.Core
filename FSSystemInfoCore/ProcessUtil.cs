@@ -2,9 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
+using static FSLibraryCore.Win32APIEnums;
 
 namespace FSSystemInfoCore
 {
@@ -133,10 +137,10 @@ namespace FSSystemInfoCore
         /// </summary>
         public static void ShowAllProcessWithTittle()
         {
-            foreach (Process pr in Process.GetProcesses())
+            foreach (Process process in Process.GetProcesses())
             {
-                if (pr.MainWindowTitle != "")
-                    ShowProcessByTitle(pr.MainWindowTitle);
+                if (process.MainWindowTitle != "")
+                    ShowProcessByTitle(process.MainWindowTitle);
             }
         }
 
@@ -227,17 +231,99 @@ namespace FSSystemInfoCore
         }
 
         /// <summary>
+        /// Ocultamos el proceso indicado en "process".
+        /// </summary>
+        /// <param name="process"></param>
+        public static void HideByProcess(Process process)
+        {
+            IntPtr hWnd = process.MainWindowHandle;
+            Win32API.ShowWindow(hWnd, Win32APIEnums.WindowShowStyle.Hide);
+        }
+
+        /// <summary>
+        /// Mostramos el proceso indicado en "process".
+        /// </summary>
+        /// <param name="process"></param>
+        public static void ShowByProcess(Process process)
+        {
+            IntPtr hWnd = process.MainWindowHandle;
+            Win32API.ShowWindow(hWnd, Win32APIEnums.WindowShowStyle.Show);
+            Win32API.SetForegroundWindow(hWnd);
+        }
+
+        /// <summary>
+        /// Mostramos el proceso indicado en "handle".
+        /// </summary>
+        /// <param name="handle"></param>
+        public static void ShowByHandle(IntPtr hWnd)
+        {
+            Win32API.ShowWindow(hWnd, Win32APIEnums.WindowShowStyle.Show);
+            Win32API.SetForegroundWindow(hWnd);
+        }
+
+        /// <summary>
+        /// Ocultamos el proceso indicado en "handle".
+        /// </summary>
+        /// <param name="handle"></param>
+        public static void HideByHandle(IntPtr hWnd)
+        {
+            Win32API.ShowWindow(hWnd, Win32APIEnums.WindowShowStyle.Hide);
+        }
+
+        /// <summary>
+        /// Devolvemos el estado del proceso indicado.
+        /// </summary>
+        /// <param name="process"></param>
+        public static int StateByProcess(Process process)
+        {
+            IntPtr hWnd = process.MainWindowHandle;
+            int style = Win32API.GetWindowLong(hWnd, Win32APIEnums.GWL_STYLE);
+
+            return style;
+        }
+
+        /// <summary>
+        /// Desocultar un proceso por el nombre del proceso.
+        /// </summary>
+        /// <param name="processName"></param>
+        public static void UnhideProcess(Process process)
+        {
+            int processId;
+            IntPtr handle = Win32API.FindWindowEx(IntPtr.Zero, process.Handle, null, IntPtr.Zero);
+
+            Win32API.GetWindowThreadProcessId(handle, out processId);
+
+            IntPtr intPtr = new IntPtr(processId);
+            ShowByHandle(intPtr);
+        }
+
+        /// <summary>
+        /// Devolvemos la posición de la ventana del proceso indicado.
+        /// </summary>
+        /// <param name="process"></param>
+        public static WINDOWPLACEMENT GetWindowPlacement(Process process)
+        {
+            IntPtr hWnd = process.MainWindowHandle;
+
+            WINDOWPLACEMENT placement = new WINDOWPLACEMENT();
+            placement.length = Marshal.SizeOf(placement);
+            Win32API.GetWindowPlacement(hWnd, ref placement);
+            
+            return placement;
+        }
+
+        /// <summary>
         /// Devuelve un listado de los servicios activos
         /// </summary>
         /// <returns></returns>
         public static List<ProcessData> GetProcesses()
         {
             List<ProcessData> listProcess = new List<ProcessData>();
-            foreach (Process pr in Process.GetProcesses())
+            foreach (Process process in Process.GetProcesses())
             {
                 ProcessData processData = new ProcessData();
-                processData.DisplayTitle = pr.MainWindowTitle;
-                processData.Name = pr.ProcessName;
+                processData.DisplayTitle = process.MainWindowTitle;
+                processData.Name = process.ProcessName;
 
                 listProcess.Add(processData);
             }
@@ -257,6 +343,139 @@ namespace FSSystemInfoCore
                 return false;
             else
                 return true;
+        }
+
+        /// <summary>
+        /// Obtiene el texto de la ventana
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <returns></returns>
+        public static string GetText(IntPtr hWnd)
+        {
+            int length = Win32API.GetWindowTextLength(hWnd);
+            StringBuilder sb = new StringBuilder(length + 1);
+            Win32API.GetWindowText(hWnd, sb, sb.Capacity);
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Obtiene el texto de la ventana dialogo
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <returns></returns>
+        public static StringBuilder GetEditText(IntPtr hWnd)
+        {
+            Int32 dwID = Win32API.GetWindowLong(hWnd, Win32APIEnums.GWL_ID);
+            IntPtr hWndParent = Win32API.GetParent(hWnd);
+            StringBuilder title = new StringBuilder(128);
+            Win32API.SendDlgItemMessage(hWndParent, dwID, Win32APIEnums.WM_GETTEXT, 128, title);
+            return title;
+        }
+
+        /// <summary>
+        /// Obtiene las dimensiones de la ventana
+        /// </summary>
+        /// <param name="hWnd"></param>
+        /// <returns></returns>
+        public static Rectangle GetRectangle(IntPtr hWnd)
+        {
+            Rectangle rect = new Rectangle();
+            Win32API.GetWindowRect(hWnd, ref rect);
+
+            return rect;
+        }
+
+        /// <summary> Get the text for the window pointed to by hWnd </summary>
+        public static string GetWindowText(IntPtr hWnd)
+        {
+            int size = Win32API.GetWindowTextLength(hWnd);
+            if (size > 0)
+            {
+                var builder = new StringBuilder(size + 1);
+                Win32API.GetWindowText(hWnd, builder, builder.Capacity);
+                return builder.ToString();
+            }
+
+            return String.Empty;
+        }
+
+        /// <summary> Find all windows that match the given filter </summary>
+        /// <param name="filter"> A delegate that returns true for windows
+        ///    that should be returned and false for windows that should
+        ///    not be returned </param>
+        public static IntPtr[] FindWindows(Win32API.EnumWindowsProc filter)
+        {
+            List<IntPtr> windows = new List<IntPtr>();
+
+            Win32API.EnumWindows(delegate (IntPtr wnd, int param)
+            {
+                if (filter(wnd, param))
+                {
+                    windows.Add(wnd);
+                }
+
+                return true;
+            }, 0);
+
+            return windows.ToArray();
+        }
+
+        /// <summary>
+        /// Devuelve todas las ventanas.
+        /// </summary>
+        /// <returns></returns>
+        public static IntPtr[] FindAllWindows()
+        {
+            List<IntPtr> windows = new List<IntPtr>();
+
+            Win32API.EnumWindows(delegate (IntPtr wnd, int param)
+            {
+                windows.Add(wnd);
+                
+                return true;
+            }, 0);
+
+            return windows.ToArray();
+        }
+
+
+        /// <summary>
+        /// Devuelve todas los threads de una ventana.
+        /// </summary>
+        /// <returns></returns>
+        public static IntPtr[] FindThreads(int thread)
+        {
+            List<IntPtr> windows = new List<IntPtr>();
+
+            Win32API.EnumWindows(delegate (IntPtr wnd, int param)
+            {
+                int processID = 0;
+                int threadID = Win32API.GetWindowThreadProcessId(wnd, out processID);
+                if (threadID == param)
+                {
+                    windows.Add(wnd);
+                    Win32API.EnumChildWindows(wnd, delegate (IntPtr wndChild, int paramChild)
+                    {
+                        windows.Add(wndChild);
+
+                        return true;
+                    }, threadID);
+                }
+
+                return true;
+            }, thread);
+
+            return windows.ToArray();
+        }
+
+        /// <summary> Find all windows that contain the given title text </summary>
+        /// <param name="titleText"> The text that the window title must contain. </param>
+        public static IEnumerable<IntPtr> FindWindowsWithText(string titleText)
+        {
+            return FindWindows(delegate (IntPtr wnd, int param)
+            {
+                return GetWindowText(wnd).Contains(titleText);
+            });
         }
     }
 }

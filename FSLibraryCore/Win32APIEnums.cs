@@ -95,6 +95,39 @@ namespace FSLibraryCore
         }
 
         /// <summary>
+        /// Estado y posicionamiento de una ventana
+        /// </summary>
+        [Serializable]
+        [StructLayout(LayoutKind.Sequential)]
+        public struct WINDOWPLACEMENT
+        {
+            /// <summary>
+            /// lngth
+            /// </summary>
+            public int length;
+            /// <summary>
+            /// flags
+            /// </summary>
+            public int flags;
+            /// <summary>
+            /// showCmd
+            /// </summary>
+            public WindowShowStyle showCmd;
+            /// <summary>
+            /// ptMinPosition
+            /// </summary>
+            public Point ptMinPosition;
+            /// <summary>
+            /// ptMaxPosition
+            /// </summary>
+            public Point ptMaxPosition;
+            /// <summary>
+            /// rcNormalPosition
+            /// </summary>
+            public Rectangle rcNormalPosition;
+        }
+
+        /// <summary>
         /// Process information
         /// </summary>
         [StructLayout(LayoutKind.Sequential)]
