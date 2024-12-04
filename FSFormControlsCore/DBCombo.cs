@@ -610,6 +610,16 @@ namespace FSFormControlsCore
             set { combobox.ForeColor = value; }
         }
 
+        public int SelectionStart {
+            get { return combobox.SelectionStart; }
+            set { combobox.SelectionStart = value; }
+        }
+        
+        public int SelectionLength {
+            get { return combobox.SelectionLength; }
+            set { combobox.SelectionLength = value; }
+        }
+
         public bool IsItemInList()
         {
             if (combobox.Items.Contains(combobox.SelectedText))

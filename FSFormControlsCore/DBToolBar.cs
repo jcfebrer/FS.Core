@@ -29,6 +29,11 @@ namespace FSFormControlsCore
         public bool MdiMergeable { get; set; }
         public DBRuntimeCustomizationOptions RuntimeCustomizationOptions { get; set; }
         public bool ShowShortcutsInToolTips { get; set; }
+        
+        public ToolStripItemCollection Tools
+        {
+            get { return this.Items; }
+        }
 
         public void BeginInit()
         {

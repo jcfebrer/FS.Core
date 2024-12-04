@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -29,6 +30,11 @@ namespace FSFormControls
         public bool MdiMergeable { get; set; }
         public DBRuntimeCustomizationOptions RuntimeCustomizationOptions { get; set; }
         public bool ShowShortcutsInToolTips { get; set; }
+        
+        public ToolBarButtonCollection Tools
+        {
+            get { return this.Buttons; }
+        }
 
         public void BeginInit()
         {

@@ -223,6 +223,9 @@ namespace FSFormControls
             }
         }
 
+        public int SelectionStart { get; set; }
+        public int SelectionLength { get; set; }
+
         public void BeginInit()
         {
         }

@@ -228,6 +228,7 @@
     <Compile Include="DBTextBoxMask.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DBToolBarManager.cs" />
     <Compile Include="DBToolBar.cs">
       <SubType>Component</SubType>
     </Compile>
