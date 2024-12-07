@@ -57,7 +57,6 @@ namespace FSLibraryCore
         /// <returns></returns>
         public static string ToRFC_822(System.DateTime date)
         {
-            //var offset = TimeZone.CurrentTimeZone.GetUtcOffset(System.DateTime.Now).Hours;
             var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Hours;
             var timeZone = "+" + offset.ToString().PadLeft(2, '0');
 
@@ -424,6 +423,21 @@ namespace FSLibraryCore
             if (date == null)
                 return DateTime.MinValue;
 
+            if (date.Contains("?"))
+                return DateTime.MinValue;
+
+            // Problema de fecha con 5 caracteres
+            if (date.Length == 5)
+                date = date.Substring(0, 4);
+
+            // Cuando solo viene el año
+            if (date.Length == 4)
+                date = date + "0101T000000";
+
+            // Si el mes y el dia contiene ceros en vez de 01/01
+            if (date.Substring(4, 4) == "0000")
+                date = date.Replace("0000T", "0101T");
+
             return DateTime.ParseExact(date, "yyyyMMddTHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture);
         }
@@ -435,9 +449,6 @@ namespace FSLibraryCore
         /// <returns></returns>
         public static string DateTimeToISO8601(DateTime date)
         {
-            //if (date == null)
-            //    date = DateTime.MinValue;
-
             return date.ToString("yyyyMMddTHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture);
         }
