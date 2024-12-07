@@ -171,6 +171,7 @@
     <Compile Include="Classes\InputBox.cs" />
     <Compile Include="Classes\SMS.cs" />
     <Compile Include="Classes\SortableBindingList.cs" />
+    <Compile Include="DBSummarieCollection.cs" />
     <Compile Include="DBExplorerTree.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -224,6 +225,7 @@
     <Compile Include="DBProgressBar.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="DBSummarie.cs" />
     <Compile Include="DBTabPageCollection.cs" />
     <Compile Include="DBTextBoxMask.cs">
       <SubType>Component</SubType>

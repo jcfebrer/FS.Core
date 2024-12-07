@@ -53,6 +53,7 @@ namespace FSFormControls
         private bool m_ShowTotals = false;
         internal PictureBox picRefrescar;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private DBSummarieCollection m_Summaries = new DBSummarieCollection();
 
         public string RowDraw = "";
         // end variables
@@ -588,6 +589,11 @@ namespace FSFormControls
         { 
             get { return datagrid.AutoSizeRowsMode; }
             set { datagrid.AutoSizeRowsMode = value; }
+        }
+
+        public DBSummarieCollection Summaries {
+            get { return m_Summaries; }
+            set { m_Summaries = value; }
         }
 
         public void BeginInit()

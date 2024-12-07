@@ -15,6 +15,6 @@ namespace FSFormControls
             set { this.Dock = value; }
         }
 
-        public DBToolBar ToolbarsManager { get; set; }
+        public DBToolBarManager ToolbarsManager { get; set; }
     }
 }
