@@ -81,6 +81,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="FSIA\NeuralNetworkTest.cs" />
+    <Compile Include="FSIA\PerceptronTest.cs" />
     <Compile Include="FSParser\CSharpParserTest.cs" />
     <Compile Include="FSParser\SimpleExpressionEvaluatorTest.cs" />
     <Compile Include="FSSystemInfo\FSDiskTests.cs" />
