@@ -29,4 +29,46 @@ namespace FSLibraryCore
         public static bool IsAnyOf<T>(this T value, params T[] testObjects)
             => testObjects.Contains(value);
     }
+
+    /// <summary>
+    /// Permite rellanar una array con un valor dado.
+    /// </summary>
+    public static class ArrayExtensions
+    {
+        /// <summary>
+        /// Propiedad Fill.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        public static void Fill<T>(this T[] array, T value)
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = value;
+            }
+        }
+
+        /// <summary>
+        /// Convierte cada elemento de un array utilizando una función de conversión.
+        /// </summary>
+        /// <typeparam name="TInput">El tipo del elemento de entrada.</typeparam>
+        /// <typeparam name="TOutput">El tipo del elemento de salida.</typeparam>
+        /// <param name="array">El array de entrada.</param>
+        /// <param name="converter">La función de conversión.</param>
+        /// <returns>Un nuevo array con los elementos convertidos.</returns>
+        public static TOutput[] ConvertAll<TInput, TOutput>(this TInput[] array, Func<TInput, TOutput> converter)
+        {
+            if (array == null) throw new ArgumentNullException(nameof(array));
+            if (converter == null) throw new ArgumentNullException(nameof(converter));
+
+            TOutput[] output = new TOutput[array.Length];
+            for (int i = 0; i < array.Length; i++)
+            {
+                output[i] = converter(array[i]);
+            }
+
+            return output;
+        }
+    }
 }

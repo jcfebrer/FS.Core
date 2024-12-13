@@ -12,7 +12,9 @@
 
 using FSException;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 #endregion
@@ -457,21 +459,44 @@ namespace FSLibrary
         }
 
         /// <summary>
-        /// Diferencia en dias excluyendo los dias festivos (sábados y domingos).
+        /// Calcula la diferencia en días hábiles (excluyendo sábados y domingos) entre dos fechas.
         /// </summary>
-        /// <param name="startD"></param>
-        /// <param name="endD"></param>
-        /// <returns></returns>
+        /// <param name="startD">Fecha inicial.</param>
+        /// <param name="endD">Fecha final.</param>
+        /// <returns>Número de días hábiles.</returns>
         public static double DateDiffBusinessDays(DateTime startD, DateTime endD)
         {
-            double calcBusinessDays =
-                1 + ((endD - startD).TotalDays * 5 -
-                (startD.DayOfWeek - endD.DayOfWeek) * 2) / 7;
+            DateTime tmp;
+            if (startD > endD)
+            {
+                tmp = endD;
+                endD = startD;
+                startD = tmp;
+            }
 
-            if (endD.DayOfWeek == DayOfWeek.Saturday) calcBusinessDays--;
-            if (startD.DayOfWeek == DayOfWeek.Sunday) calcBusinessDays--;
+            // Iterar sobre cada día en el rango y contar los días que no son fines de semana
+            double businessDays = 0;
+            for (var date = startD.Date; date <= endD.Date; date = date.AddDays(1))
+            {
+                if (!date.IsWeekendDay())
+                {
+                    businessDays++;
+                }
+            }
 
-            return calcBusinessDays;
+            return businessDays;
+        }
+
+        /// <summary>
+        /// Calcula la diferencia en minutos hábiles (excluyendo sábados y domingos) entre dos fechas.
+        /// </summary>
+        /// <param name="startD">Fecha inicial.</param>
+        /// <param name="endD">Fecha final.</param>
+        /// <returns>Número de minutos hábiles.</returns>
+        public static double DateDiffBusinessMinutes(DateTime startD, DateTime endD)
+        {
+            double businessDays = DateDiffBusinessDays(startD, endD);
+            return businessDays * 60 * 24;
         }
 
         /// <summary>
@@ -483,6 +508,82 @@ namespace FSLibrary
         {
             DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
             return epoch.AddMilliseconds(unixTimeMillis);
+        }
+
+        /// <summary>
+        /// Dias entre dos fechas
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public static IEnumerable<DateTime> DaysInRangeUntil(this DateTime start, DateTime end)
+        {
+            return Enumerable.Range(0, 1 + (int)(end.Date - start.Date).TotalDays)
+                             .Select(dt => start.Date.AddDays(dt));
+        }
+
+        /// <summary>
+        /// Devuelve true si la fecha es fin de semana
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static bool IsWeekendDay(this DateTime dt)
+        {
+            return dt.DayOfWeek == DayOfWeek.Saturday
+                || dt.DayOfWeek == DayOfWeek.Sunday;
+        }
+
+        /// <summary>
+        /// Devuelve la fecha mayor entre dos fechas.
+        /// </summary>
+        /// <param name="a">Primera fecha.</param>
+        /// <param name="b">Segunda fecha.</param>
+        /// <returns>La fecha mayor.</returns>
+        public static DateTime Max(DateTime a, DateTime b) => (a > b) ? a : b;
+
+        /// <summary>
+        /// Devuelve la fecha menor entre dos fechas.
+        /// </summary>
+        /// <param name="a">Primera fecha.</param>
+        /// <param name="b">Segunda fecha.</param>
+        /// <returns>La fecha menor.</returns>
+        public static DateTime Min(DateTime a, DateTime b) => (a < b) ? a : b;
+
+        /// <summary>
+        /// Devuelve los minutos entre dos fechas con la posibilidad de excluir fines de semana.
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="b"></param>
+        /// <param name="excludeWeekend">Excluir fines de semana</param>
+        /// <param name="startHour">Inicio de jornada laboral ej. 7</param>
+        /// <param name="endHour">Fin jornada laboral ej. 19</param>
+        /// <returns></returns>
+        public static double MinutesBetween2Dates(DateTime a, DateTime b, bool excludeWeekend, int startHour = 0, int endHour = 24)
+        {
+            // Obtener todos los días en el rango [a, b]
+            var days = DaysInRangeUntil(a, b);
+
+            // Filtrar fines de semana si es necesario
+            if (excludeWeekend)
+            {
+                days = days.Where(day => !IsWeekendDay(day));
+            }
+
+            // Calcular los minutos hábiles
+            var minutes = days.Select(day =>
+            {
+                // Inicio del día hábil (07:00 AM) o el inicio del rango, lo que sea más tarde
+                var start = Max(day.Date.AddHours(startHour), a);
+
+                // Fin del día hábil (19:00 PM) o el fin del rango, lo que sea más temprano
+                var end = Min(day.Date.AddHours(endHour), b);
+
+                // Asegurar que el rango sea válido
+                return (end > start) ? (end - start).TotalMinutes : 0;
+            });
+
+            // Retornar la suma total de los minutos
+            return minutes.Sum();
         }
     }
 }
