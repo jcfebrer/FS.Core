@@ -4,6 +4,7 @@ using OpenAI.Managers;
 using OpenAI.ObjectModels.RequestModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,10 +33,10 @@ namespace FSIA
 
             if (moderationResponse.Results.FirstOrDefault()?.Flagged != true)
             {
-                Console.WriteLine("Create Moderation test failed", ConsoleColor.DarkRed);
+                Debug.WriteLine("Create Moderation test failed", ConsoleColor.DarkRed);
             }
 
-            Console.WriteLine("Create Moderation test passed.", ConsoleColor.DarkGreen);
+            Debug.WriteLine("Create Moderation test passed.", ConsoleColor.DarkGreen);
         }
     }
 }

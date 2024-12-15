@@ -652,9 +652,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DBChart.bmp" />
-    <None Include="Resources\DBTabControl.bmp" />
-    <None Include="Resources\DBTreeView.bmp" />
+    <EmbeddedResource Include="Resources\DBChart.bmp" />
+    <EmbeddedResource Include="Resources\DBTabControl.bmp" />
+    <EmbeddedResource Include="Resources\DBTreeView.bmp" />
     <EmbeddedResource Include="Forms\frmDBExplorerTreeOptions.resx">
       <DependentUpon>frmDBExplorerTreeOptions.cs</DependentUpon>
     </EmbeddedResource>
@@ -1057,24 +1057,24 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FSInputBoxError.png" />
+    <EmbeddedResource Include="Resources\FSInputBoxError.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FSInputBoxExclamation.png" />
+    <EmbeddedResource Include="Resources\FSInputBoxExclamation.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FSInputBoxInformation.png" />
+    <EmbeddedResource Include="Resources\FSInputBoxInformation.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FSInputBoxNic80x80.png" />
+    <EmbeddedResource Include="Resources\FSInputBoxNic80x80.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\FSInputBoxQuestion.png" />
+    <EmbeddedResource Include="Resources\FSInputBoxQuestion.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\DBGauge.bmp" />
-    <Content Include="Resources\DBGridViewCollapse.png" />
-    <Content Include="Resources\DBGridViewExpand.png" />
-    <Content Include="Resources\DBVuMeter.bmp" />
+    <EmbeddedResource Include="Resources\DBGauge.bmp" />
+    <EmbeddedResource Include="Resources\DBGridViewCollapse.png" />
+    <EmbeddedResource Include="Resources\DBGridViewExpand.png" />
+    <EmbeddedResource Include="Resources\DBVuMeter.bmp" />
   </ItemGroup>
 </Project>
