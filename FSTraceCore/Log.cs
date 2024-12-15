@@ -13,7 +13,6 @@
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -249,16 +248,12 @@ namespace FSTraceCore
             //Aseguramos que el listener esta inicializado
             IntializeTraceListener();
 
-            if (m_firstSection)
-            {
-                message += FirstSection();
-            }
-
             LogMessage msgLog = GetMessageLog(traceLevel, message);
 
 
             if (m_traceListener != null)
             {
+                if(m_firstSection) m_traceListener.WriteLine(FirstSection());
                 m_traceListener.WriteLine(msgLog.ToString());
                 m_traceListener.Flush();
             }
@@ -267,11 +262,14 @@ namespace FSTraceCore
                 //Creamos la traza, si tenemos nuestro listener configurado
                 System.Diagnostics.Trace.AutoFlush = true;
                 System.Diagnostics.Trace.IndentSize = 4;
+
+                if (m_firstSection) System.Diagnostics.Trace.WriteLine(FirstSection());
                 System.Diagnostics.Trace.WriteLine(msgLog.ToString());
             }
 
             if (m_saveLogData)
             {
+                // Si esta la opción de agrupar, y existe el evento, actualizamos la información del evento.
                 if (m_groupData && logData.Exists(e => e.Message == msgLog.Message))
                 {
                     LogData logUpdate = logData.Find(e => e.Message == msgLog.Message);
@@ -280,25 +278,28 @@ namespace FSTraceCore
                 }
                 else
                 {
+                    // Creamos una nueva entrada
                     logData.Add(new LogData(msgLog.Time, msgLog.Message, msgLog.TraceLevel));
                 }
             }
 
-            //if (OperatingSystem.IsWindows())
+            //
+            // En NET.CORE el acceso al visor de eventos es solo para windows y es necesario un paquete NUGET: Microsoft.Extensions.Logging.EventLog
+            //
+            //using (EventLog eventLog = new EventLog("Application"))
             //{
-            //    using (EventLog eventLog = new EventLog("Application"))
-            //    {
-            //        EventLogEntryType eventType = EventLogEntryType.Information;
-            //        if (msgLog.TraceLevel == TraceLevel.Error) eventType = EventLogEntryType.Error;
-            //        if (msgLog.TraceLevel == TraceLevel.Warning) eventType = EventLogEntryType.Warning;
+            //    EventLogEntryType eventType = EventLogEntryType.Information;
+            //    if (msgLog.TraceLevel == TraceLevel.Error) eventType = EventLogEntryType.Error;
+            //    if (msgLog.TraceLevel == TraceLevel.Warning) eventType = EventLogEntryType.Warning;
 
-            //        if (traceLevel == TraceLevel.Error || traceLevel == TraceLevel.Warning)
-            //        {
-            //            eventLog.Source = "Application";
-            //            eventLog.WriteEntry(msgLog.ToString(), eventType, 2117, 1);
-            //        }
+            //    if (traceLevel == TraceLevel.Error || traceLevel == TraceLevel.Warning)
+            //    {
+            //        eventLog.Source = "Application";
+            //        if (m_firstSection) eventLog.WriteEntry(FirstSection());
+            //        eventLog.WriteEntry(msgLog.ToString(), eventType, 2117, 1);
             //    }
             //}
+
 
             if (OnMessageLogText != null)
                 OnMessageLogText.Invoke(null, msgLog.ToString());
@@ -351,6 +352,16 @@ namespace FSTraceCore
         public static void TraceInfo(string message, params object[] args)
         {
             Trace(TraceLevel.Info, message, args);
+        }
+
+        public static void Trace(string message)
+        {
+            Trace(TraceLevel.Info, message);
+        }
+
+        public static void Trace(Exception exception)
+        {
+            Trace(exception);
         }
 
         /// <summary>Escribe una traza de nivel error en el archivo de log. </summary>

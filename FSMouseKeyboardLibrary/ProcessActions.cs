@@ -24,12 +24,25 @@ namespace FSMouseKeyboardLibrary
                 repeatCount = 1;
             }
 
-            for (int f = 0; f < repeatCount; f++)
-            { 
-                if (cancel)
-                    break;
+            if (repeatCount > 0)
+            {
+                for (int f = 0; f < repeatCount; f++)
+                {
+                    if (cancel)
+                        break;
 
-                ProcessActions.Do(actions, makePointsIntermediate);
+                    ProcessActions.Do(actions, makePointsIntermediate);
+                }
+            }
+            else
+            {
+                do
+                {
+                    if (cancel)
+                        break;
+
+                    ProcessActions.Do(actions, makePointsIntermediate);
+                } while (true);
             }
         }
 

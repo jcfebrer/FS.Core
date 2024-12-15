@@ -43,12 +43,9 @@ namespace FSLibrary
         /// <param name="wavFile">The wav file.</param>
         public static void PlayWav(string wavFile)
         {
-            new System.Threading.Thread(() =>
-            {
-                if (keySound == null)
-                    keySound = new SoundPlayer(wavFile);
-                keySound.Play();
-            }).Start();
+            if (keySound == null)
+                keySound = new SoundPlayer(wavFile);
+            keySound.Play();
         }
 
         /// <summary>
