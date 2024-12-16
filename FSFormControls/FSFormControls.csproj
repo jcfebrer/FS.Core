@@ -278,6 +278,9 @@
     <Compile Include="Forms\frmDBExplorerTreeOptions.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\frmPreferences.Designer.cs">
+      <DependentUpon>frmPreferences.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmTestVuMeter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -357,6 +360,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmZoom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPreferences.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

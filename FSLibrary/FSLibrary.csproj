@@ -130,6 +130,7 @@
     <Compile Include="AlarmClock.cs" />
     <Compile Include="Autorun.cs" />
     <Compile Include="Clipboard.cs" />
+    <Compile Include="Config.cs" />
     <Compile Include="Contenedor_ISO6346.cs" />
     <Compile Include="DiffMatchPatch.cs" />
     <Compile Include="Dni.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="MimeType.cs" />
     <Compile Include="Multimedia.cs" />
     <Compile Include="NumberUtils.cs" />
+    <Compile Include="PowerEnergy.cs" />
     <Compile Include="Search.cs" />
     <Compile Include="Serializer.cs" />
     <Compile Include="Services.cs" />

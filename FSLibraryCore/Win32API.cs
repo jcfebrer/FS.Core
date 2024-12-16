@@ -150,6 +150,13 @@ namespace FSLibraryCore
         [DllImport("kernel32", EntryPoint = "GetShortPathName", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern int GetShortPathName(string longPath, StringBuilder shortPath, int bufSize);
 
+        /// <summary>
+        /// Establece el estado de ejecución del hilo.
+        /// </summary>
+        /// <param name="esFlags"></param>
+        /// <returns></returns>
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        public static extern uint SetThreadExecutionState(EXECUTION_STATE esFlags);
 
         /// <summary>
         /// Tipo WindowsProc para enumerar las ventanas

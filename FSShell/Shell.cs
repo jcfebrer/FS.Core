@@ -22,10 +22,13 @@ namespace FSShell
 		private StreamReader inStream;
 		private StreamWriter outStream;
 		private Thread shellThread;
+		private Thread mainThreadServer;
+		private bool running = true;
 
-		private const int default_port = 1337;
+
+        private const int default_port = 1337;
 		private const String default_user = "FSServer";
-		private const String default_password = "xxxxxxxx";
+		private const String default_password = "xxxxxx";
 
 
 		public Shell()
@@ -42,7 +45,13 @@ namespace FSShell
 			_password = default_password;
 		}
 
-		public Shell(int port, String name, String password)
+        public Shell(int port, String password)
+        {
+            _port = port;
+            _password = password;
+        }
+
+        public Shell(int port, String name, String password)
 		{
 			_port = port;
 			_name = name;
@@ -67,8 +76,8 @@ namespace FSShell
 		{
 			try
 			{
-				Thread shell = new Thread(StartServer);
-				shell.Start();
+				mainThreadServer = new Thread(StartServer);
+                mainThreadServer.Start();
 			}
 			catch (Exception) { }
 		}
@@ -78,7 +87,7 @@ namespace FSShell
 		{
 			try
 			{
-				while (true)
+				while (running)
 				{
 					if (_verbose)
 						Console.WriteLine("Listening on port " + _port);
@@ -213,21 +222,50 @@ namespace FSShell
 			try {
 				if(_verbose)
 					Console.WriteLine("Cancelando conexión...");
-				shell.Close();
-				shell.Dispose();
+
 				if(shellThread != null)
 					shellThread.Abort();
 				shellThread = null;
-				inStream.Dispose();
-				outStream.Dispose();
-				toShell.Dispose();
-				fromShell.Dispose();
-				shell.Dispose();
-				mainSocket.Close();
-				listener.Stop();
+
+				if(inStream != null)
+					inStream.Dispose();
+
+				if(outStream != null)
+					outStream.Dispose();
+
+				if(toShell != null)
+					toShell.Dispose();
+
+				if(fromShell != null)
+					fromShell.Dispose();
+
+                if (shell != null)
+                {
+                    shell.Close();
+                    shell.Dispose();
+                }
+
+				if(mainSocket != null)
+					mainSocket.Close();
+
+				if(listener != null)
+					listener.Stop();
+
 				return;
 			}
 			catch(Exception) {}
 		}
-	}
+
+        public void Close()
+        {
+			dropConnection();
+
+			if (mainThreadServer != null)
+			{
+                running = false;
+                mainThreadServer.Abort();
+				mainThreadServer = null;
+			}
+        }
+    }
 }
