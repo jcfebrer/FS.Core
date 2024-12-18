@@ -35,6 +35,7 @@ namespace FSFormControlsCore
         private ToolStripStatusLabel mensaje;
         private ToolStripStatusLabel info;
         private ToolStripMenuItem menuItem1;
+		private ToolStripMenuItem menuItem2;
         private DateTime loadTime;
 
 
@@ -47,6 +48,9 @@ namespace FSFormControlsCore
             SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
+            barraEstado.Items.Add("");
+            barraEstado.Items.Add("");
+            barraEstado.Items.Add("");
             barraEstado.Items[0].Text = "";
             barraEstado.Items[1].Text = "";
             barraEstado.Items[2].Text = "";
@@ -69,8 +73,8 @@ namespace FSFormControlsCore
             mnuContext.Items.Add("-");
             mnuContext.Items.Add("&Acerca de ...", null, MnuAcercade);
 
-            ((ToolStripMenuItem)mnuContext.Items[12]).Checked = false;
-            ((ToolStripMenuItem)mnuContext.Items[13]).Checked = true;
+            ((ToolStripMenuItem)mnuContext.Items[13]).Checked = false;
+            ((ToolStripMenuItem)mnuContext.Items[14]).Checked = true;
 
 
             //Guardamos la referencia al formulario en una variable global para poder consultarlo despues.
@@ -906,8 +910,8 @@ namespace FSFormControlsCore
         {
             try
             {
-                var s = new frmAbout();
-                s.ShowDialog();
+                frmAbout frmSobre = new frmAbout();
+                frmSobre.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -967,15 +971,18 @@ namespace FSFormControlsCore
             menuItem1 = new ToolStripMenuItem();
             mnuCalc = new ToolStripMenuItem();
             MenuItem7 = new ToolStripMenuItem();
+            menuItem2 = new ToolStripMenuItem();
             mnuAbout = new ToolStripMenuItem();
             MenuItem3 = new ToolStripMenuItem();
             mnuClose = new ToolStripMenuItem();
             mnuContext = new ContextMenuStrip(components);
             SaveFileDialog1 = new SaveFileDialog();
             tmrAutoSave = new Timer(components);
+            barraEstado = new DBStatusBar();
             estado = new ToolStripStatusLabel();
             mensaje = new ToolStripStatusLabel();
             info = new ToolStripStatusLabel();
+            DbToolBar1 = new DBToolBarEx();
             mnuFormMain.SuspendLayout();
             SuspendLayout();
             // 
@@ -989,7 +996,7 @@ namespace FSFormControlsCore
             // 
             // mnuForm
             // 
-            mnuForm.DropDownItems.AddRange(new ToolStripItem[] { mnuConfPag, menuItem1, mnuCalc, MenuItem7, mnuAbout, MenuItem3, mnuClose });
+            mnuForm.DropDownItems.AddRange(new ToolStripItem[] { mnuConfPag, menuItem1, mnuCalc, MenuItem7, menuItem2, mnuAbout, MenuItem3, mnuClose });
             mnuForm.Name = "mnuForm";
             mnuForm.Size = new Size(77, 20);
             mnuForm.Text = "&Formulario";
@@ -1020,6 +1027,11 @@ namespace FSFormControlsCore
             MenuItem7.Name = "MenuItem7";
             MenuItem7.Size = new Size(222, 22);
             MenuItem7.Text = "-";
+			// 
+            // menuItem2
+            // 
+            menuItem2.Text = "Configuración";
+            menuItem2.Click += menuItem2_Click;
             // 
             // mnuAbout
             // 
@@ -1086,5 +1098,11 @@ namespace FSFormControlsCore
         }
 
         #endregion
+
+        private void menuItem2_Click(object sender, EventArgs e)
+        {
+            frmPreferences frmPreferencias = new frmPreferences();
+            frmPreferencias.ShowDialog();
+        }
     }
 }

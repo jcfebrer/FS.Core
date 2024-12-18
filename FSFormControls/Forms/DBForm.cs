@@ -35,6 +35,7 @@ namespace FSFormControls
         private StatusBarPanel mensaje;
         private StatusBarPanel info;
         private MenuItem menuItem1;
+        private MenuItem menuItem2;
         private DateTime loadTime;
 
 
@@ -904,8 +905,8 @@ namespace FSFormControls
         {
             try
             {
-                var s = new frmAbout();
-                s.ShowDialog();
+                frmAbout frmSobre = new frmAbout();
+                frmSobre.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -966,6 +967,7 @@ namespace FSFormControls
             this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.mnuCalc = new System.Windows.Forms.MenuItem();
             this.MenuItem7 = new System.Windows.Forms.MenuItem();
+            this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.mnuAbout = new System.Windows.Forms.MenuItem();
             this.MenuItem3 = new System.Windows.Forms.MenuItem();
             this.mnuClose = new System.Windows.Forms.MenuItem();
@@ -998,6 +1000,7 @@ namespace FSFormControls
             this.menuItem1,
             this.mnuCalc,
             this.MenuItem7,
+            this.menuItem2,
             this.mnuAbout,
             this.MenuItem3,
             this.mnuClose});
@@ -1026,20 +1029,26 @@ namespace FSFormControls
             this.MenuItem7.Index = 3;
             this.MenuItem7.Text = "-";
             // 
+            // menuItem2
+            // 
+            this.menuItem2.Index = 4;
+            this.menuItem2.Text = "Configuración";
+            this.menuItem2.Click += new System.EventHandler(this.menuItem2_Click);
+            // 
             // mnuAbout
             // 
-            this.mnuAbout.Index = 4;
+            this.mnuAbout.Index = 5;
             this.mnuAbout.Text = "&Acerca de ...";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAcercaDe_Click);
             // 
             // MenuItem3
             // 
-            this.MenuItem3.Index = 5;
+            this.MenuItem3.Index = 6;
             this.MenuItem3.Text = "-";
             // 
             // mnuClose
             // 
-            this.mnuClose.Index = 6;
+            this.mnuClose.Index = 7;
             this.mnuClose.Text = "&Cerrar";
             this.mnuClose.Click += new System.EventHandler(this.mnuCerrar_Click);
             // 
@@ -1151,5 +1160,11 @@ namespace FSFormControls
         }
 
         #endregion
+
+        private void menuItem2_Click(object sender, EventArgs e)
+        {
+            frmPreferences frmPreferencias = new frmPreferences();
+            frmPreferencias.ShowDialog();
+        }
     }
 }

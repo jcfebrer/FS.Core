@@ -658,6 +658,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Forms\frmPreferences.resx">
+      <DependentUpon>frmPreferences.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DBChart.bmp" />
     <EmbeddedResource Include="Resources\DBTabControl.bmp" />
     <EmbeddedResource Include="Resources\DBTreeView.bmp" />

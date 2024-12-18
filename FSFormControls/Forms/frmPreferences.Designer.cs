@@ -28,6 +28,8 @@ namespace FSFormControls {
             this.btnUpdate = new System.Windows.Forms.Button();
             this.lblValue = new System.Windows.Forms.Label();
             this.btnExit = new System.Windows.Forms.Button();
+            this.comboSecciones = new System.Windows.Forms.ComboBox();
+            this.lblSecciones = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tvNodes
@@ -36,9 +38,10 @@ namespace FSFormControls {
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tvNodes.HideSelection = false;
-            this.tvNodes.Location = new System.Drawing.Point(12, 12);
+            this.tvNodes.Location = new System.Drawing.Point(12, 47);
             this.tvNodes.Name = "tvNodes";
-            this.tvNodes.Size = new System.Drawing.Size(333, 374);
+            this.tvNodes.ShowNodeToolTips = true;
+            this.tvNodes.Size = new System.Drawing.Size(333, 339);
             this.tvNodes.TabIndex = 3;
             this.tvNodes.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvNodes_AfterSelect);
             // 
@@ -53,6 +56,7 @@ namespace FSFormControls {
             this.txtValue.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.txtValue.Size = new System.Drawing.Size(333, 65);
             this.txtValue.TabIndex = 4;
+            this.txtValue.Leave += new System.EventHandler(this.txtValue_Leave);
             // 
             // btnUpdate
             // 
@@ -71,9 +75,9 @@ namespace FSFormControls {
             this.lblValue.AutoSize = true;
             this.lblValue.Location = new System.Drawing.Point(12, 389);
             this.lblValue.Name = "lblValue";
-            this.lblValue.Size = new System.Drawing.Size(31, 13);
+            this.lblValue.Size = new System.Drawing.Size(34, 13);
             this.lblValue.TabIndex = 6;
-            this.lblValue.Text = "Valor";
+            this.lblValue.Text = "Valor:";
             // 
             // btnExit
             // 
@@ -86,20 +90,41 @@ namespace FSFormControls {
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // Preferencias
+            // comboSecciones
+            // 
+            this.comboSecciones.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboSecciones.Location = new System.Drawing.Point(78, 20);
+            this.comboSecciones.Name = "comboSecciones";
+            this.comboSecciones.Size = new System.Drawing.Size(267, 21);
+            this.comboSecciones.TabIndex = 8;
+            this.comboSecciones.SelectedIndexChanged += new System.EventHandler(this.comboSecciones_SelectedIndexChanged);
+            // 
+            // lblSecciones
+            // 
+            this.lblSecciones.AutoSize = true;
+            this.lblSecciones.Location = new System.Drawing.Point(12, 23);
+            this.lblSecciones.Name = "lblSecciones";
+            this.lblSecciones.Size = new System.Drawing.Size(60, 13);
+            this.lblSecciones.TabIndex = 9;
+            this.lblSecciones.Text = "Secciones:";
+            // 
+            // frmPreferences
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(360, 520);
+            this.Controls.Add(this.lblSecciones);
+            this.Controls.Add(this.comboSecciones);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.lblValue);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.txtValue);
             this.Controls.Add(this.tvNodes);
             this.KeyPreview = true;
-            this.Name = "Preferencias";
+            this.Name = "frmPreferences";
             this.Text = "Administrador de preferencias";
             this.TransparencyKey = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.Load += new System.EventHandler(this.frmPreferences_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,6 +136,8 @@ namespace FSFormControls {
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Label lblValue;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.ComboBox comboSecciones;
+        private System.Windows.Forms.Label lblSecciones;
     }
 }
 

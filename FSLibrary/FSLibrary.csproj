@@ -131,6 +131,7 @@
     <Compile Include="Autorun.cs" />
     <Compile Include="Clipboard.cs" />
     <Compile Include="Config.cs" />
+    <Compile Include="ConfigSection.cs" />
     <Compile Include="Contenedor_ISO6346.cs" />
     <Compile Include="DiffMatchPatch.cs" />
     <Compile Include="Dni.cs" />

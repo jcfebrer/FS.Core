@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.Configuration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml;
 
 namespace FSLibraryCore
 {
@@ -14,24 +11,63 @@ namespace FSLibraryCore
     public class Config
     {
         /// <summary>
-        /// Actualizar propiedad.
+        /// Variable con la sección por defecto.
         /// </summary>
-        /// <param name="key"></param>
-        /// <param name="value"></param>
-        public static void UpdateProperty(string key, string value)
+        string APP_SETTINGS = "appSettings";
+
+        Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+        private string _section;
+        /// <summary>
+        /// Sección a utilizar
+        /// </summary>
+        public string Section {
+            get { return _section; }
+            set {
+                if (_section != value)
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            KeyValueConfigurationCollection appSettings = config.AppSettings.Settings;
+                    _section = value;
 
+                    // Forzamos la lectura de la nueva sección
+                    _settings = null;
+                }
+            }
+        }
 
-            // update SaveBeforeExit
-            config.AppSettings.Settings[key].Value = value;
+        private object _settings;
+        /// <summary>
+        /// Configuración
+        /// </summary>
+        public object Settings
+        {
+            get
+            {
+                if (_settings == null)
+                {
+                    _settings = configManager.GetSection(Section);
             
-            //save the file
-            config.Save(ConfigurationSaveMode.Modified);
+                    if (_settings == null)
+                        throw new Exception("Sección no encontrada. Sección: " + Section);
+                }
+                return _settings;
+            }
+        }
             
-            //relaod the section you modified
-            ConfigurationManager.RefreshSection(config.AppSettings.SectionInformation.Name);
+        /// <summary>
+        /// Constructor con la sección a utilizar
+        /// </summary>
+        /// <param name="section"></param>
+        public Config(string section)
+        {
+            Section = section;
+        }
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public Config()
+        {
+            Section = APP_SETTINGS;
         }
 
         /// <summary>
@@ -39,15 +75,20 @@ namespace FSLibraryCore
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static void UpdatePropertyWithRemove(string key, string value)
+        public void UpdatePropertyWithRemove(string key, string value)
         {
-            // Get the application configuration file.
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            if (Settings is FSSettingsSection)
+            {
+                ((FSSettingsSection)Settings).Settings.Remove(key);
+                ((FSSettingsSection)Settings).Settings.Add(key, value);
+            }
+            else
+        {
+                ((AppSettingsSection)Settings).Settings.Remove(key);
+                ((AppSettingsSection)Settings).Settings.Add(key, value);
+            }
 
-            config.AppSettings.Settings.Remove(key);
-            config.AppSettings.Settings.Add(key, value);
-
-            SaveConfigFile(config);
+            //SaveConfigFile();
         }
 
         /// <summary>
@@ -55,24 +96,42 @@ namespace FSLibraryCore
         /// </summary>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public static List<KeyValuePair<string, string>> ReadProperties()
+        public FSSettingsCollection ReadProperties()
         {
-            List<KeyValuePair<string, string>> result = new List<KeyValuePair<string, string>>();
+            FSSettingsCollection result = new FSSettingsCollection();
 
-            var section = ConfigurationManager.GetSection("applicationSettings");
+            object appSettings;
+            if (Settings is FSSettingsSection)
+                appSettings = ((FSSettingsSection)Settings).Settings;
+            else
+                appSettings = ((AppSettingsSection)Settings).Settings;
 
             // Get the AppSettings section.
-            NameValueCollection appSettings = ConfigurationManager.AppSettings;
+            //NameValueCollection appSettings = ConfigurationManager.AppSettings;
 
-            if (appSettings.Count == 0)
+            if (Settings is FSSettingsSection)
             {
-                throw new Exception(string.Format("[ReadAppSettings: {0}]", "AppSettings is empty Use GetSection command first."));
+                if (((FSSettingsCollection)appSettings).Count == 0)
+            {
+                    throw new Exception(string.Format("[ReadProperties: {0}]", "FSSettings is empty. Use GetSection command first."));
             }
-            for (int i = 0; i < appSettings.Count; i++)
-            {
-                KeyValuePair<string, string> keyValue = new KeyValuePair<string, string>(appSettings.GetKey(i), appSettings[i]);
 
-                result.Add(keyValue);
+                return (FSSettingsCollection)appSettings;
+            }
+            else
+            {
+                if (((KeyValueConfigurationCollection)appSettings).Count == 0)
+                {
+                    throw new Exception(string.Format("[ReadProperties: {0}]", "AppSettings is empty. Use GetSection command first."));
+                }
+                foreach (KeyValueConfigurationElement keyElement in (KeyValueConfigurationCollection)appSettings)
+            {
+                    FSSettingsElement fsKeyElement = new FSSettingsElement();
+                    fsKeyElement.Key = keyElement.Key;
+                    fsKeyElement.Value = keyElement.Value;
+
+                    result.Add(fsKeyElement);
+                }
             }
 
             return result;
@@ -83,38 +142,52 @@ namespace FSLibraryCore
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static void InsertProperty(string key, string value)
+        public void InsertProperty(string key, string value)
         {
-            // Get the application configuration file.
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            if (Settings is FSSettingsSection)
+            {
+                ((FSSettingsSection)Settings).Settings.Add(key, value);
+            }
+            else
+            {
+                ((AppSettingsSection)Settings).Settings.Add(key, value);
+            }
 
-            config.AppSettings.Settings.Add(key, value);
-
-            SaveConfigFile(config);
+            //SaveConfigFile();
         }
 
         /// <summary>
         /// Borramos una propiedad.
         /// </summary>
         /// <param name="key"></param>
-        public static void DeleteProperty(string key)
+        public void DeleteProperty(string key)
         {
-            // Get the application configuration file.
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings.Remove(key);
+            if (Settings is FSSettingsSection)
+        {
+                ((FSSettingsSection)Settings).Settings.Remove(key);
+            }
+            else
+            {
+                ((AppSettingsSection)Settings).Settings.Remove(key);
+            }
 
-            SaveConfigFile(config);
+            //SaveConfigFile();
         }
 
         /// <summary>
         /// Recuperamos el valor de una propiedad.
         /// </summary>
         /// <param name="key"></param>
-        public static string ValueProperty(string key)
+        public string ValueProperty(string key)
         {
-            // Get the application configuration file.
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            return config.AppSettings.Settings[key].Value;
+            if (Settings is FSSettingsSection)
+            {
+                return ((FSSettingsSection)Settings).Settings[key].Value;
+            }
+            else
+            {
+                return ((AppSettingsSection)Settings).Settings[key].Value;
+            }
         }
 
         /// <summary>
@@ -122,45 +195,54 @@ namespace FSLibraryCore
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public static void SetProperty(string key, string value)
+        public void SetProperty(string key, string value)
         {
-            // Get the application configuration file.
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings[key].Value = value;
+            if (Settings is FSSettingsSection)
+            {
+                ((FSSettingsSection)Settings).Settings[key].Value = value;
+            }
+            else
+            {
+                ((AppSettingsSection)Settings).Settings[key].Value = value;
+            }
 
-            SaveConfigFile(config);
+            //SaveConfigFile();
         }
 
         /// <summary>
         /// Guardamos la configuracíón en el fichero config.
         /// </summary>
-        public static void SaveConfigFile()
+        public void SaveConfigFile()
         {
-            // Get the application configuration file.
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            SaveConfigFile(config);
+            configManager.Save(ConfigurationSaveMode.Full);
+            ConfigurationManager.RefreshSection(Section);
         }
 
         /// <summary>
-        /// Guardamos la configuracíón en el fichero config.
+        /// Devuelve las secciones definidas en /condfiguration/configSections.
         /// </summary>
-        /// <param name="config"></param>
-        private static void SaveConfigFile(Configuration config)
+        /// <returns></returns>
+        public List<string> GetSections()
         {
-            string sectionName = "appSettings";
+            List<string> sections = new List<string>();
+            XmlDocument doc = new XmlDocument();
+            doc.Load(configManager.FilePath);
 
-            // Save the configuration file.
-            config.Save(ConfigurationSaveMode.Modified);
+            XmlNode configSectionsNode = doc.SelectSingleNode("/configuration/configSections");
 
-            // Force a reload of the changed section. This  
-            // makes the new values available for reading.
-            ConfigurationManager.RefreshSection(sectionName);
+            if (configSectionsNode != null)
+            {
+                XmlNodeList sectionNodes = configSectionsNode.SelectNodes("section");
 
-            // Get the AppSettings section.
-            AppSettingsSection appSettingSection =
-              (AppSettingsSection)config.GetSection(sectionName);
+                foreach (XmlNode sectionNode in sectionNodes)
+                {
+                    //string sectionType = sectionNode.Attributes["type"].Value;
+                    string sectionName = sectionNode.Attributes["name"].Value;
+                    sections.Add(sectionName);
+                }
+            }
 
-            //Console.WriteLine(appSettingSection.SectionInformation.GetRawXml());
+            return sections;
         }
     }
 }
