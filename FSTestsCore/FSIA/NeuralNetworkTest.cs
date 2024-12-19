@@ -84,11 +84,11 @@ namespace FSTestsCore.FSIA
         [TestMethod]
         public void TestXOR()
         {
-            // Red con 2 entradas, 4 neuronas en la capa oculta y 1 salida
+            // Red con 2 entradas, 2 neuronas en la capa oculta y 1 salida
             int[] layers = new int[] { 2, 4, 1 };
             var activations = new IActivationFunction[]
             {
-                new Sigmoid(),  // Capa oculta
+                new ReLU(),  // Capa oculta
                 new Sigmoid()   // Capa de salida
             };
 
@@ -110,7 +110,7 @@ namespace FSTestsCore.FSIA
             new double[] { 0 }
             };
 
-            nn.Train(inputs, targets, epochs: 10000, learningRate: 0.1);
+            nn.Train(inputs, targets, epochs: 5000, learningRate: 0.01);
 
             Debug.WriteLine("XOR lógico:");
             nn.TestNetwork(inputs);
@@ -123,7 +123,7 @@ namespace FSTestsCore.FSIA
             int[] layers = new int[] { 2, 2, 1 };
             var activations = new IActivationFunction[]
             {
-                new Sigmoid(),  // Capa oculta
+                new ReLU(),  // Capa oculta
                 new Sigmoid()   // Capa de salida
             };
 
@@ -145,7 +145,7 @@ namespace FSTestsCore.FSIA
             new double[] { 1 }
             };
 
-            nn.Train(inputs, targets, epochs: 2000, learningRate: 0.1);
+            nn.Train(inputs, targets, epochs: 2000, learningRate: 0.01);
 
             Debug.WriteLine("AND lógico:");
             nn.TestNetwork(inputs);
@@ -193,7 +193,7 @@ namespace FSTestsCore.FSIA
             int[] layers = new int[] { 4, 5, 3 };  // 4 entradas, 5 neuronas en la capa oculta, 3 salidas
             var activations = new IActivationFunction[]
             {
-                new ReLU(),  // Capa oculta
+                new Sigmoid(),  // Capa oculta
                 new Sigmoid()   // Capa de salida
             };
 
@@ -213,7 +213,7 @@ namespace FSTestsCore.FSIA
             new double[] { 0, 0, 1 }
             };
 
-            nn.Train(inputs, targets, epochs: 10000, learningRate: 0.1);
+            nn.Train(inputs, targets, epochs: 10000, learningRate: 0.01);
 
             Debug.WriteLine("Clasificación múltiple:");
             nn.TestNetwork(inputs);
@@ -291,7 +291,7 @@ namespace FSTestsCore.FSIA
             new double[] { 0 }
             };
 
-            nn.Train(inputs, targets, epochs: 5000, learningRate: 0.1);
+            nn.Train(inputs, targets, epochs: 5000, learningRate: 0.01);
 
             Debug.WriteLine("Red con 3 capas:");
             nn.TestNetwork(inputs);
@@ -304,45 +304,51 @@ namespace FSTestsCore.FSIA
         [TestMethod]
         public void Example_ClassificationMulticlass()
         {
-            int[] layers = new int[] { 4, 8, 3 };  // 4 entradas, 8 neuronas en la capa oculta, 3 salidas
-            var activations = new IActivationFunction[]
+            // Configuración de la red
+            int[] layers = new int[] { 4, 5, 3 }; // 4 entradas, 5 ocultas, 3 salidas
+            IActivationFunction[] activations = new IActivationFunction[]
             {
-                new ReLU(),  // Capa oculta1
+            new Tanh(),    // Capa oculta
                 new Softmax()   // Capa de salida
             };
 
+            // Crear la red neuronal
             var nn = new NeuralNetwork(layers, activations);
 
-            // Dataset (entrada: características; salida: clase esperada)
-            var inputs = new double[][]
+            // Datos de entrenamiento: Características del Iris Dataset simplificado
+            double[][] inputs = new double[][]
             {
-            new double[] { 5.1, 3.5, 1.4, 0.2 }, // Clase 0
-            new double[] { 4.9, 3.0, 1.4, 0.2 }, // Clase 0
-            new double[] { 6.2, 3.4, 5.4, 2.3 }, // Clase 2
-            new double[] { 5.9, 3.0, 5.1, 1.8 }, // Clase 2
-            new double[] { 6.0, 2.2, 4.0, 1.0 }, // Clase 1
-            new double[] { 5.5, 2.3, 4.0, 1.3 }  // Clase 1
+            new double[] { 5.1, 3.5, 1.4, 0.2 }, // Iris-setosa
+            new double[] { 4.9, 3.0, 1.4, 0.2 }, // Iris-setosa
+            new double[] { 6.3, 3.3, 6.0, 2.5 }, // Iris-virginica
+            new double[] { 5.8, 2.7, 5.1, 1.9 }, // Iris-virginica
+            new double[] { 5.7, 2.8, 4.1, 1.3 }, // Iris-versicolor
+            new double[] { 6.0, 2.7, 5.1, 1.6 }  // Iris-versicolor
             };
 
-            var outputs = new double[][]
+            // Etiquetas en formato one-hot: tres especies (setosa, versicolor, virginica)
+            double[][] outputs = new double[][]
             {
-            new double[] { 1, 0, 0 }, // Clase 0
-            new double[] { 1, 0, 0 }, // Clase 0
-            new double[] { 0, 0, 1 }, // Clase 2
-            new double[] { 0, 0, 1 }, // Clase 2
-            new double[] { 0, 1, 0 }, // Clase 1
-            new double[] { 0, 1, 0 }  // Clase 1
+            new double[] { 1, 0, 0 }, // Iris-setosa
+            new double[] { 1, 0, 0 }, // Iris-setosa
+            new double[] { 0, 0, 1 }, // Iris-virginica
+            new double[] { 0, 0, 1 }, // Iris-virginica
+            new double[] { 0, 1, 0 }, // Iris-versicolor
+            new double[] { 0, 1, 0 }  // Iris-versicolor
             };
 
-            // Entrenar la red
-            nn.Train(inputs, outputs, 1000, 0.01);
+            // Entrenamiento
+            nn.Train(inputs, outputs, epochs: 1000, learningRate: 0.1);
+
+            // Pruebas
+            Console.WriteLine("Resultados de la red neuronal para Iris Dataset simplificado:");
+            nn.TestNetwork(inputs);
 
             // Probar con datos nuevos
-            var testInput = new double[] { 5.7, 2.8, 4.1, 1.3 }; // Esperado: Clase 1
-            var prediction = nn.Predict(testInput);
+            var testInput = new double[] { 5.9, 3.0, 5.1, 1.8 }; // Esperado: Clase 2
 
             Debug.WriteLine("Predicción:");
-            Debug.WriteLine(string.Join(", ", prediction));
+            nn.TestNetwork(testInput);
         }
 
         /// <summary>
@@ -399,54 +405,50 @@ namespace FSTestsCore.FSIA
             // Configurar la red neuronal (entrada: 28x28 píxeles = 784, salida: 10 clases)
             var nn = new NeuralNetwork(layers, activations);
 
-            // Cargar datos del MNIST
-            string imagesPath = "C:\\Users\\jcfeb\\Downloads\\train-images.idx3-ubyte";
-            string labelsPath = "C:\\Users\\jcfeb\\Downloads\\train-labels.idx1-ubyte";
+            // Ruta a los archivos MNIST
+            string trainingImagesPath = "C:\\Users\\jcfeb\\Downloads\\train-images.idx3-ubyte";
+            string trainingLabelsPath = "C:\\Users\\jcfeb\\Downloads\\train-labels.idx1-ubyte";
+            string testImagesPath = "C:\\Users\\jcfeb\\Downloads\\t10k-images.idx3-ubyte";
+            string testLabelsPath = "C:\\Users\\jcfeb\\Downloads\\t10k-labels.idx1-ubyte";
 
-            MNISTLoader loader = new MNISTLoader(imagesPath, labelsPath);
 
-            Debug.WriteLine($"Total de imágenes: {loader.Images.Count}");
-            Debug.WriteLine($"Dimensiones: {loader.ImageWidth}x{loader.ImageHeight}");
+            // Normaliza imágenes y codifica etiquetas
+            var mnistLoader = new MNISTLoader();
+            var (trainImagesRaw, trainLabelsRaw) = mnistLoader.Load(trainingImagesPath, trainingLabelsPath);
+            var (testImagesRaw, testLabelsRaw) = mnistLoader.Load(testImagesPath, testLabelsPath);
 
-            // Preparar datos
-            var inputs = loader.Images.Select(img => loader.GetNormalizedImage(loader.Images.IndexOf(img))).ToArray();
-            var labels = loader.Labels.Select(label => nn.OneHotEncode(label, 10)).ToArray();
+            double[][] trainImages = mnistLoader.NormalizeImages(trainImagesRaw);
+            double[][] trainLabels = mnistLoader.OneHotEncodeLabels(trainLabelsRaw, 10);
+            double[][] testImages = mnistLoader.NormalizeImages(testImagesRaw);
+            double[][] testLabels = mnistLoader.OneHotEncodeLabels(testLabelsRaw, 10);
+
+            Debug.WriteLine($"Total de imágenes: {trainImages.Length}");
+            Debug.WriteLine($"Dimensiones: {trainImagesRaw[0].Length}x{trainImages[0].Length}");
 
             // Entrenar la red
-            Debug.WriteLine("Iniciando el entrenamiento...");
-            nn.Train(inputs, labels, epochs: 5000, learningRate: 0.01);
+            Console.WriteLine("Iniciando entrenamiento...");
+            nn.Train(trainImages, trainLabels, epochs: 10, learningRate: 0.01);
 
             // Probar la red neuronal
+            int correct = 0;
             Debug.WriteLine("Probando con los primeros 5 ejemplos:");
-            for (int i = 0; i < 5; i++)
+            for (int f = 0; f < 5; f++)
             {
-                var input = inputs[i];
-                var expected = loader.Labels[i];
+                var input = trainImages[f];
+                var expected = trainLabels[f];
                 var prediction = nn.Predict(input);
 
                 int predictedLabel = Array.IndexOf(prediction, prediction.Max());
                 Debug.WriteLine($"Etiqueta esperada: {expected}, Predicción: {predictedLabel}");
-            }
-
 
             // Visualizar una imagen
-            loader.PrintImage(0);
+                mnistLoader.PrintImage(trainImages[f]);
 
-            // Normalizar una imagen y mostrar los primeros 10 valores
-            double[] normalizedImage = loader.GetNormalizedImage(0);
-            Console.WriteLine($"Imagen normalizada (primeros 10 valores): {string.Join(", ", normalizedImage.Take(10))}");
-
-
-            // Evaluar con datos de prueba
-            int correct = 0;
-            for (int i = 0; i < inputs.Length; i++)
-            {
-                var prediction = nn.Predict(inputs[i]);
-                if (nn.GetMaxIndex(prediction) == nn.GetMaxIndex(labels[i]))
+                if (nn.GetMaxIndex(prediction) == nn.GetMaxIndex(trainLabels[f]))
                     correct++;
             }
 
-            Debug.WriteLine($"Precisión en datos de prueba: {correct * 100.0 / inputs.Length}%");
+            Debug.WriteLine($"Precisión en datos de prueba: {correct * 100.0 / trainImages.Length}%");
         }
 
         /// <summary>
@@ -458,7 +460,8 @@ namespace FSTestsCore.FSIA
             int[] layers = new int[] { 3, 10, 1 };  // 784 entradas, 128 neuronas en la capa oculta, 64 en la segunda capa, 10 salidas
             var activations = new IActivationFunction[]
             {
-                new ReLU()  // Capa oculta1
+                new ReLU(),  // Capa oculta1
+                new Softmax()
             };
 
             // Configurar la red neuronal
@@ -498,6 +501,37 @@ namespace FSTestsCore.FSIA
             var testInput = new double[] { 2200, 3, 2 }; // Casa nueva
             var prediction = nn.Predict(testInput.Select(x => x / 1000.0).ToArray());
             Debug.WriteLine($"Predicción del precio (en millones): {prediction[0]}");
+        }
+
+        [TestMethod]
+        public void TestActivationDerivatives()
+        {
+            // Prueba para Sigmoid
+            IActivationFunction sigmoid = new Sigmoid();
+            double input = 0.5;
+            double expectedSigmoidDerivative = sigmoid.Activate(input) * (1 - sigmoid.Activate(input));
+            Assert.AreEqual(expectedSigmoidDerivative, sigmoid.Derivative(input), 1e-6);
+
+            // Prueba para ReLU
+            IActivationFunction relu = new ReLU();
+            Assert.AreEqual(1, relu.Derivative(1.0));
+            Assert.AreEqual(0, relu.Derivative(-1.0));
+
+            // Prueba para LeakyReLU
+            IActivationFunction leakyRelu = new LeakyReLU();
+            Assert.AreEqual(1, leakyRelu.Derivative(1.0));
+            Assert.AreEqual(0.01, leakyRelu.Derivative(-1.0));
+
+            // Prueba para Tanh
+            IActivationFunction tanh = new Tanh();
+            double tanhOutput = tanh.Activate(input);
+            double expectedTanhDerivative = 1 - tanhOutput * tanhOutput;
+            Assert.AreEqual(expectedTanhDerivative, tanh.Derivative(input), 1e-6);
+
+            // Prueba para Step
+            IActivationFunction step = new Step();
+            Assert.AreEqual(0, step.Derivative(0.5));
+            Assert.AreEqual(0, step.Derivative(-1.0));
         }
     }
 }
