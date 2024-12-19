@@ -121,8 +121,22 @@
   <ItemGroup>
     <Compile Include="ChatGPT.cs" />
     <Compile Include="ChatGPT2.cs" />
+    <Compile Include="ConvolutionalNetwork\ActivationLayer.cs" />
+    <Compile Include="ConvolutionalNetwork\Activators.cs" />
+    <Compile Include="ConvolutionalNetwork\BatchNormalizationLayer.cs" />
+    <Compile Include="ConvolutionalNetwork\ConvolutionalLayer.cs" />
+    <Compile Include="ConvolutionalNetwork\ConvolutionalNeuralNetwork.cs" />
+    <Compile Include="ConvolutionalNetwork\DenseLayer.cs" />
+    <Compile Include="ConvolutionalNetwork\DropoutLayer.cs" />
+    <Compile Include="ConvolutionalNetwork\ELU.cs" />
+    <Compile Include="ConvolutionalNetwork\FlattenLayer.cs" />
+    <Compile Include="ConvolutionalNetwork\ILayer.cs" />
+    <Compile Include="ConvolutionalNetwork\SoftmaxLayer.cs" />
+    <Compile Include="ConvolutionalNetwork\PoolingLayer.cs" />
+    <Compile Include="ConvolutionalNetwork\SwishLayer.cs" />
     <Compile Include="DallE.cs" />
     <Compile Include="Moderation.cs" />
+    <Compile Include="NeuralNetwork\IActivationFunction.cs" />
     <Compile Include="NeuralNetwork\NeuralNetwork.cs" />
     <Compile Include="NeuralNetwork\NeuralNetworkActivations.cs" />
     <Compile Include="NeuralNetwork\MNISTLoader.cs" />
@@ -140,6 +154,11 @@
       <Project>{2A366B72-70B3-4700-B962-5920A0EEE074}</Project>
       <Name>FSException</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
+      <Project>{7e0adef9-bcb8-48cd-99b6-68bf862f7083}</Project>
+      <Name>FSLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
