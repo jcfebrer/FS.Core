@@ -177,7 +177,9 @@
             this.dbTabControl1.Location = new System.Drawing.Point(0, 138);
             this.dbTabControl1.Name = "dbTabControl1";
             this.dbTabControl1.SelectedIndex = 0;
+            this.dbTabControl1.SharedControlsPage = null;
             this.dbTabControl1.Size = new System.Drawing.Size(1071, 363);
+            this.dbTabControl1.Style = FSFormControls.DBTabControl.DBTabControlStyle.Default;
             this.dbTabControl1.TabIndex = 8;
             // 
             // tabPage1
@@ -202,11 +204,13 @@
             this.tabPage1.Controls.Add(this.dbRadioButton1);
             this.tabPage1.Controls.Add(this.dbListBox1);
             this.tabPage1.Controls.Add(this.dbListView1);
+            this.tabPage1.Key = "tabPage1";
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1063, 337);
             this.tabPage1.TabIndex = 0;
+            this.tabPage1.TabPage = null;
             this.tabPage1.Text = "Controles básicos";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
@@ -276,6 +280,7 @@
             this.dbCombo9.BlankSelection = false;
             this.dbCombo9.DataControl = null;
             this.dbCombo9.DataControlList = null;
+            this.dbCombo9.DataSource = null;
             this.dbCombo9.DBField = null;
             this.dbCombo9.DBFieldData = "";
             this.dbCombo9.DBFieldList = null;
@@ -295,6 +300,8 @@
             this.dbCombo9.SelectedItem = null;
             this.dbCombo9.SelectedOption = null;
             this.dbCombo9.SelectedValue = null;
+            this.dbCombo9.SelectionLength = 0;
+            this.dbCombo9.SelectionStart = 1183859504;
             this.dbCombo9.ShowCode = false;
             this.dbCombo9.ShowEdit = false;
             this.dbCombo9.Size = new System.Drawing.Size(213, 21);
@@ -600,6 +607,7 @@
             this.dbCombo8.Controls.Add(this.dbButton15);
             this.dbCombo8.DataControl = null;
             this.dbCombo8.DataControlList = null;
+            this.dbCombo8.DataSource = null;
             this.dbCombo8.DBField = null;
             this.dbCombo8.DBFieldData = "";
             this.dbCombo8.DBFieldList = null;
@@ -619,6 +627,8 @@
             this.dbCombo8.SelectedItem = null;
             this.dbCombo8.SelectedOption = null;
             this.dbCombo8.SelectedValue = null;
+            this.dbCombo8.SelectionLength = 0;
+            this.dbCombo8.SelectionStart = 1;
             this.dbCombo8.ShowCode = false;
             this.dbCombo8.ShowEdit = false;
             this.dbCombo8.Size = new System.Drawing.Size(76, 21);
@@ -698,6 +708,7 @@
             this.dbCombo7.Controls.Add(this.dbButton13);
             this.dbCombo7.DataControl = null;
             this.dbCombo7.DataControlList = null;
+            this.dbCombo7.DataSource = null;
             this.dbCombo7.DBField = null;
             this.dbCombo7.DBFieldData = "";
             this.dbCombo7.DBFieldList = null;
@@ -717,6 +728,8 @@
             this.dbCombo7.SelectedItem = null;
             this.dbCombo7.SelectedOption = null;
             this.dbCombo7.SelectedValue = null;
+            this.dbCombo7.SelectionLength = 0;
+            this.dbCombo7.SelectionStart = 0;
             this.dbCombo7.ShowCode = false;
             this.dbCombo7.ShowEdit = false;
             this.dbCombo7.Size = new System.Drawing.Size(76, 21);
@@ -796,6 +809,7 @@
             this.dbCombo6.Controls.Add(this.dbButton11);
             this.dbCombo6.DataControl = null;
             this.dbCombo6.DataControlList = null;
+            this.dbCombo6.DataSource = null;
             this.dbCombo6.DBField = null;
             this.dbCombo6.DBFieldData = "";
             this.dbCombo6.DBFieldList = null;
@@ -815,6 +829,8 @@
             this.dbCombo6.SelectedItem = null;
             this.dbCombo6.SelectedOption = null;
             this.dbCombo6.SelectedValue = null;
+            this.dbCombo6.SelectionLength = 0;
+            this.dbCombo6.SelectionStart = 0;
             this.dbCombo6.ShowCode = false;
             this.dbCombo6.ShowEdit = false;
             this.dbCombo6.Size = new System.Drawing.Size(76, 21);
@@ -894,6 +910,7 @@
             this.dbCombo5.Controls.Add(this.dbButton9);
             this.dbCombo5.DataControl = null;
             this.dbCombo5.DataControlList = null;
+            this.dbCombo5.DataSource = null;
             this.dbCombo5.DBField = null;
             this.dbCombo5.DBFieldData = "";
             this.dbCombo5.DBFieldList = null;
@@ -913,6 +930,8 @@
             this.dbCombo5.SelectedItem = null;
             this.dbCombo5.SelectedOption = null;
             this.dbCombo5.SelectedValue = null;
+            this.dbCombo5.SelectionLength = 0;
+            this.dbCombo5.SelectionStart = 0;
             this.dbCombo5.ShowCode = false;
             this.dbCombo5.ShowEdit = false;
             this.dbCombo5.Size = new System.Drawing.Size(95, 21);
@@ -992,6 +1011,7 @@
             this.dbCombo4.Controls.Add(this.dbButton7);
             this.dbCombo4.DataControl = null;
             this.dbCombo4.DataControlList = null;
+            this.dbCombo4.DataSource = null;
             this.dbCombo4.DBField = null;
             this.dbCombo4.DBFieldData = "";
             this.dbCombo4.DBFieldList = null;
@@ -1011,6 +1031,8 @@
             this.dbCombo4.SelectedItem = null;
             this.dbCombo4.SelectedOption = null;
             this.dbCombo4.SelectedValue = null;
+            this.dbCombo4.SelectionLength = 0;
+            this.dbCombo4.SelectionStart = 0;
             this.dbCombo4.ShowCode = false;
             this.dbCombo4.ShowEdit = false;
             this.dbCombo4.Size = new System.Drawing.Size(339, 21);
@@ -1090,6 +1112,7 @@
             this.dbCombo3.Controls.Add(this.dbButton5);
             this.dbCombo3.DataControl = null;
             this.dbCombo3.DataControlList = null;
+            this.dbCombo3.DataSource = null;
             this.dbCombo3.DBField = null;
             this.dbCombo3.DBFieldData = "";
             this.dbCombo3.DBFieldList = null;
@@ -1109,6 +1132,8 @@
             this.dbCombo3.SelectedItem = null;
             this.dbCombo3.SelectedOption = null;
             this.dbCombo3.SelectedValue = null;
+            this.dbCombo3.SelectionLength = 0;
+            this.dbCombo3.SelectionStart = 0;
             this.dbCombo3.ShowCode = false;
             this.dbCombo3.ShowEdit = false;
             this.dbCombo3.Size = new System.Drawing.Size(120, 21);
@@ -1295,6 +1320,8 @@
             this.dbDate1.Obligatory = false;
             this.dbDate1.PromptChar = '\0';
             this.dbDate1.ReadOnly = false;
+            this.dbDate1.SelectionLength = 0;
+            this.dbDate1.SelectionStart = 0;
             this.dbDate1.Size = new System.Drawing.Size(111, 20);
             this.dbDate1.TabIndex = 12;
             this.dbDate1.Text = "15/06/2019";
@@ -1360,6 +1387,7 @@
             this.dbCombo1.Controls.Add(this.dbButton3);
             this.dbCombo1.DataControl = null;
             this.dbCombo1.DataControlList = null;
+            this.dbCombo1.DataSource = null;
             this.dbCombo1.DBField = null;
             this.dbCombo1.DBFieldData = "";
             this.dbCombo1.DBFieldList = null;
@@ -1379,6 +1407,8 @@
             this.dbCombo1.SelectedItem = null;
             this.dbCombo1.SelectedOption = null;
             this.dbCombo1.SelectedValue = null;
+            this.dbCombo1.SelectionLength = 0;
+            this.dbCombo1.SelectionStart = 0;
             this.dbCombo1.ShowCode = false;
             this.dbCombo1.ShowEdit = false;
             this.dbCombo1.Size = new System.Drawing.Size(150, 21);
@@ -1571,11 +1601,13 @@
             this.tabPage2.Controls.Add(this.dbFindTextBox1);
             this.tabPage2.Controls.Add(this.dbPanel1);
             this.tabPage2.Controls.Add(this.dbFtp1);
+            this.tabPage2.Key = "tabPage2";
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(1063, 337);
             this.tabPage2.TabIndex = 1;
+            this.tabPage2.TabPage = null;
             this.tabPage2.Text = "tabPage2      ";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -1600,6 +1632,7 @@
             this.dbCombo2.BlankSelection = false;
             this.dbCombo2.DataControl = null;
             this.dbCombo2.DataControlList = null;
+            this.dbCombo2.DataSource = null;
             this.dbCombo2.DBField = null;
             this.dbCombo2.DBFieldData = "";
             this.dbCombo2.DBFieldList = null;
@@ -1620,6 +1653,8 @@
             this.dbCombo2.SelectedItem = null;
             this.dbCombo2.SelectedOption = null;
             this.dbCombo2.SelectedValue = null;
+            this.dbCombo2.SelectionLength = 0;
+            this.dbCombo2.SelectionStart = 0;
             this.dbCombo2.ShowCode = false;
             this.dbCombo2.ShowEdit = false;
             this.dbCombo2.Size = new System.Drawing.Size(147, 21);
@@ -1673,6 +1708,7 @@
             this.dbControl1.EraseDBControl = null;
             this.dbControl1.Filter = "";
             this.dbControl1.isEOF = true;
+            this.dbControl1.LastSelection = "";
             this.dbControl1.Location = new System.Drawing.Point(493, 6);
             this.dbControl1.LOCK = null;
             this.dbControl1.LOPD = null;
@@ -1771,11 +1807,13 @@
             // tabPage3
             // 
             this.tabPage3.Controls.Add(this.dbGridView1);
+            this.tabPage3.Key = "tabPage3";
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(1063, 337);
             this.tabPage3.TabIndex = 2;
+            this.tabPage3.TabPage = null;
             this.tabPage3.Text = "tabPage3      ";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -1789,8 +1827,10 @@
             this.dbGridView1.AllowDrop = true;
             this.dbGridView1.AllowUserToAddRows = true;
             this.dbGridView1.AlternatingColor = System.Drawing.Color.Empty;
+            this.dbGridView1.AutoGenerateColumns = false;
             this.dbGridView1.AutoSave = true;
             this.dbGridView1.AutoSizeColumns = true;
+            this.dbGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None;
             this.dbGridView1.CaptionText = null;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -1800,6 +1840,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dbGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dbGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dbGridView1.DataControl = null;
             this.dbGridView1.DataSource = null;
             this.dbGridView1.DBField = null;
@@ -1843,10 +1884,12 @@
             this.tabPage4.Controls.Add(this.dbLopd1);
             this.tabPage4.Controls.Add(this.dbRecord1);
             this.tabPage4.Controls.Add(this.dbLock1);
+            this.tabPage4.Key = "tabPage4";
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1063, 337);
             this.tabPage4.TabIndex = 3;
+            this.tabPage4.TabPage = null;
             this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
@@ -1982,10 +2025,12 @@
             this.tabPage5.Controls.Add(this.dbFrame1);
             this.tabPage5.Controls.Add(this.dbScroll1);
             this.tabPage5.Controls.Add(this.dbProgressBar1);
+            this.tabPage5.Key = "tabPage5";
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Size = new System.Drawing.Size(1063, 337);
             this.tabPage5.TabIndex = 4;
+            this.tabPage5.TabPage = null;
             this.tabPage5.Text = "tabPage5";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
@@ -2099,10 +2144,12 @@
             // 
             this.tabPage6.Controls.Add(this.dbEditPicture1);
             this.tabPage6.Controls.Add(this.dbRichTextBox1);
+            this.tabPage6.Key = "tabPage6";
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
             this.tabPage6.Size = new System.Drawing.Size(1063, 337);
             this.tabPage6.TabIndex = 5;
+            this.tabPage6.TabPage = null;
             this.tabPage6.Text = "tabPage6";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 

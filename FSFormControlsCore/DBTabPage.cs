@@ -39,11 +39,12 @@ namespace FSFormControlsCore
             set { this.Name = value; }
         }
 
-        public override string Text
-        {
-            get { return this.Text; }
-            set { this.Text = value; }
-        }
+        //private string _Text;
+        //public override string Text
+        //{
+        //    get { return _Text; }
+        //    set { _Text = value; }
+        //}
 
         public DBTabPage TabPage { get; set; }
     }

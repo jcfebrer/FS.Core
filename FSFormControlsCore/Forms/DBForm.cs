@@ -618,8 +618,8 @@ namespace FSFormControlsCore
         {
             //TrackMode(this, true);
 
-            ((ToolStripMenuItem)mnuContext.Items[11]).Checked = true;
-            ((ToolStripMenuItem)mnuContext.Items[12]).Checked = false;
+            ((ToolStripMenuItem)mnuContext.Items[13]).Checked = true;
+            ((ToolStripMenuItem)mnuContext.Items[14]).Checked = false;
         }
 
 
@@ -627,8 +627,8 @@ namespace FSFormControlsCore
         {
             //TrackMode(this, false);
 
-            ((ToolStripMenuItem)mnuContext.Items[11]).Checked = false;
-            ((ToolStripMenuItem)mnuContext.Items[12]).Checked = true;
+            ((ToolStripMenuItem)mnuContext.Items[13]).Checked = false;
+            ((ToolStripMenuItem)mnuContext.Items[14]).Checked = true;
         }
 
 
@@ -984,6 +984,8 @@ namespace FSFormControlsCore
             info = new ToolStripStatusLabel();
             DbToolBar1 = new DBToolBarEx();
             mnuFormMain.SuspendLayout();
+            ((ISupportInitialize)barraEstado).BeginInit();
+            barraEstado.SuspendLayout();
             SuspendLayout();
             // 
             // mnuFormMain
@@ -1027,9 +1029,11 @@ namespace FSFormControlsCore
             MenuItem7.Name = "MenuItem7";
             MenuItem7.Size = new Size(222, 22);
             MenuItem7.Text = "-";
-			// 
+            // 
             // menuItem2
             // 
+            menuItem2.Name = "menuItem2";
+            menuItem2.Size = new Size(222, 22);
             menuItem2.Text = "Configuración";
             menuItem2.Click += menuItem2_Click;
             // 
@@ -1056,7 +1060,7 @@ namespace FSFormControlsCore
             // mnuContext
             // 
             mnuContext.Name = "mnuContext";
-            mnuContext.Size = new Size(181, 26);
+            mnuContext.Size = new Size(61, 4);
             // 
             // SaveFileDialog1
             // 
@@ -1066,6 +1070,17 @@ namespace FSFormControlsCore
             // 
             tmrAutoSave.Interval = 60000;
             tmrAutoSave.Tick += tmrAutoSave_Tick;
+            // 
+            // barraEstado
+            // 
+            barraEstado.Items.AddRange(new ToolStripItem[] { estado, mensaje, info });
+            barraEstado.Location = new Point(0, 403);
+            barraEstado.Name = "barraEstado";
+            barraEstado.Size = new Size(1164, 22);
+            barraEstado.TabIndex = 2;
+            barraEstado.Text = "dbStatusBar1";
+            barraEstado.ViewStyle = DBStatusBar.ViewStyleEnum.Default;
+            barraEstado.WrapText = false;
             // 
             // estado
             // 
@@ -1083,18 +1098,64 @@ namespace FSFormControlsCore
             info.Name = "info";
             info.Size = new Size(0, 17);
             // 
+            // DbToolBar1
+            // 
+            DbToolBar1.About = "";
+            DbToolBar1.AllowAddNew = true;
+            DbToolBar1.AllowCancel = true;
+            DbToolBar1.AllowClose = true;
+            DbToolBar1.AllowDelete = true;
+            DbToolBar1.AllowEdit = true;
+            DbToolBar1.AllowFilter = true;
+            DbToolBar1.AllowList = true;
+            DbToolBar1.AllowNavigate = true;
+            DbToolBar1.AllowPrint = true;
+            DbToolBar1.AllowRecord = true;
+            DbToolBar1.AllowSave = true;
+            DbToolBar1.AllowSearch = true;
+            DbToolBar1.DataControl = null;
+            DbToolBar1.Dock = DockStyle.Top;
+            DbToolBar1.Location = new Point(0, 0);
+            DbToolBar1.Name = "DbToolBar1";
+            DbToolBar1.ShowAddNewButton = true;
+            DbToolBar1.ShowCancelButton = true;
+            DbToolBar1.ShowCloseButton = true;
+            DbToolBar1.ShowDeleteButton = true;
+            DbToolBar1.ShowEditButton = true;
+            DbToolBar1.ShowFilterButton = true;
+            DbToolBar1.ShowListButton = true;
+            DbToolBar1.ShowNavigateButton = true;
+            DbToolBar1.ShowPrintButton = true;
+            DbToolBar1.ShowRecordButton = true;
+            DbToolBar1.ShowSaveButton = true;
+            DbToolBar1.ShowScrollBar = true;
+            DbToolBar1.ShowSearchButton = true;
+            DbToolBar1.ShowText = true;
+            DbToolBar1.Size = new Size(1483, 25);
+            DbToolBar1.TabIndex = 1;
+            DbToolBar1.TabStop = false;
+            DbToolBar1.Value = 0;
+            DbToolBar1.VisibleScroll = true;
+            DbToolBar1.VisibleTotalRecord = false;
+            // 
             // DBForm
             // 
             AutoScaleMode = AutoScaleMode.None;
-            ClientSize = new Size(1154, 416);
+            ClientSize = new Size(1164, 425);
             ContextMenuStrip = mnuContext;
+            Controls.Add(barraEstado);
+            Controls.Add(DbToolBar1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = mnuFormMain;
             Name = "DBForm";
             Text = "DBForm";
             mnuFormMain.ResumeLayout(false);
             mnuFormMain.PerformLayout();
+            ((ISupportInitialize)barraEstado).EndInit();
+            barraEstado.ResumeLayout(false);
+            barraEstado.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

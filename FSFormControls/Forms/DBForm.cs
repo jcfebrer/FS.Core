@@ -615,8 +615,8 @@ namespace FSFormControls
         {
             //TrackMode(this, true);
 
-            ((ToolStripMenuItem)mnuContext.Items[11]).Checked = true;
-            ((ToolStripMenuItem)mnuContext.Items[12]).Checked = false;
+            ((ToolStripMenuItem)mnuContext.Items[13]).Checked = true;
+            ((ToolStripMenuItem)mnuContext.Items[14]).Checked = false;
         }
 
 
@@ -624,8 +624,8 @@ namespace FSFormControls
         {
             //TrackMode(this, false);
 
-            ((ToolStripMenuItem)mnuContext.Items[11]).Checked = false;
-            ((ToolStripMenuItem)mnuContext.Items[12]).Checked = true;
+            ((ToolStripMenuItem)mnuContext.Items[13]).Checked = false;
+            ((ToolStripMenuItem)mnuContext.Items[14]).Checked = true;
         }
 
 
@@ -1068,7 +1068,7 @@ namespace FSFormControls
             // 
             // barraEstado
             // 
-            this.barraEstado.Location = new System.Drawing.Point(0, -22);
+            this.barraEstado.Location = new System.Drawing.Point(0, 260);
             this.barraEstado.Name = "barraEstado";
             this.barraEstado.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
             this.estado,
@@ -1143,7 +1143,7 @@ namespace FSFormControls
             // DBForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1154, 0);
+            this.ClientSize = new System.Drawing.Size(1154, 282);
             this.ContextMenuStrip = this.mnuContext;
             this.Controls.Add(this.barraEstado);
             this.Controls.Add(this.DbToolBar1);

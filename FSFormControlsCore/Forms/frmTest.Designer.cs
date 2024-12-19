@@ -162,7 +162,6 @@ namespace FSFormControlsCore
             // DbToolBar1
             // 
             DbToolBar1.TabIndex = 0;
-            DbToolBar1.VisibleScroll = true;
             // 
             // dbTabControl1
             // 
@@ -176,7 +175,9 @@ namespace FSFormControlsCore
             dbTabControl1.Location = new System.Drawing.Point(0, 25);
             dbTabControl1.Name = "dbTabControl1";
             dbTabControl1.SelectedIndex = 0;
-            dbTabControl1.Size = new System.Drawing.Size(1071, 476);
+            dbTabControl1.SharedControlsPage = null;
+            dbTabControl1.Size = new System.Drawing.Size(1071, 498);
+            dbTabControl1.Style = DBTabControl.DBTabControlStyle.Default;
             dbTabControl1.TabIndex = 8;
             // 
             // tabPage1
@@ -201,11 +202,13 @@ namespace FSFormControlsCore
             tabPage1.Controls.Add(dbRadioButton1);
             tabPage1.Controls.Add(dbListBox1);
             tabPage1.Controls.Add(dbListView1);
+            tabPage1.Key = "tabPage1";
             tabPage1.Location = new System.Drawing.Point(4, 24);
             tabPage1.Name = "tabPage1";
             tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            tabPage1.Size = new System.Drawing.Size(1063, 448);
+            tabPage1.Size = new System.Drawing.Size(1063, 470);
             tabPage1.TabIndex = 0;
+            tabPage1.TabPage = null;
             tabPage1.Text = "Controles básicos";
             tabPage1.UseVisualStyleBackColor = true;
             // 
@@ -275,6 +278,7 @@ namespace FSFormControlsCore
             dbCombo9.BlankSelection = false;
             dbCombo9.DataControl = null;
             dbCombo9.DataControlList = null;
+            dbCombo9.DataSource = null;
             dbCombo9.DBField = null;
             dbCombo9.DBFieldData = "";
             dbCombo9.DBFieldList = null;
@@ -294,6 +298,8 @@ namespace FSFormControlsCore
             dbCombo9.SelectedItem = null;
             dbCombo9.SelectedOption = null;
             dbCombo9.SelectedValue = null;
+            dbCombo9.SelectionLength = 0;
+            dbCombo9.SelectionStart = 0;
             dbCombo9.ShowCode = false;
             dbCombo9.ShowEdit = false;
             dbCombo9.Size = new System.Drawing.Size(213, 23);
@@ -571,6 +577,7 @@ namespace FSFormControlsCore
             dbCombo8.Controls.Add(dbButton15);
             dbCombo8.DataControl = null;
             dbCombo8.DataControlList = null;
+            dbCombo8.DataSource = null;
             dbCombo8.DBField = null;
             dbCombo8.DBFieldData = "";
             dbCombo8.DBFieldList = null;
@@ -590,6 +597,8 @@ namespace FSFormControlsCore
             dbCombo8.SelectedItem = null;
             dbCombo8.SelectedOption = null;
             dbCombo8.SelectedValue = null;
+            dbCombo8.SelectionLength = 0;
+            dbCombo8.SelectionStart = 0;
             dbCombo8.ShowCode = false;
             dbCombo8.ShowEdit = false;
             dbCombo8.Size = new System.Drawing.Size(76, 23);
@@ -667,6 +676,7 @@ namespace FSFormControlsCore
             dbCombo7.Controls.Add(dbButton13);
             dbCombo7.DataControl = null;
             dbCombo7.DataControlList = null;
+            dbCombo7.DataSource = null;
             dbCombo7.DBField = null;
             dbCombo7.DBFieldData = "";
             dbCombo7.DBFieldList = null;
@@ -686,6 +696,8 @@ namespace FSFormControlsCore
             dbCombo7.SelectedItem = null;
             dbCombo7.SelectedOption = null;
             dbCombo7.SelectedValue = null;
+            dbCombo7.SelectionLength = 0;
+            dbCombo7.SelectionStart = 0;
             dbCombo7.ShowCode = false;
             dbCombo7.ShowEdit = false;
             dbCombo7.Size = new System.Drawing.Size(76, 23);
@@ -763,6 +775,7 @@ namespace FSFormControlsCore
             dbCombo6.Controls.Add(dbButton11);
             dbCombo6.DataControl = null;
             dbCombo6.DataControlList = null;
+            dbCombo6.DataSource = null;
             dbCombo6.DBField = null;
             dbCombo6.DBFieldData = "";
             dbCombo6.DBFieldList = null;
@@ -782,6 +795,8 @@ namespace FSFormControlsCore
             dbCombo6.SelectedItem = null;
             dbCombo6.SelectedOption = null;
             dbCombo6.SelectedValue = null;
+            dbCombo6.SelectionLength = 0;
+            dbCombo6.SelectionStart = 0;
             dbCombo6.ShowCode = false;
             dbCombo6.ShowEdit = false;
             dbCombo6.Size = new System.Drawing.Size(76, 23);
@@ -859,6 +874,7 @@ namespace FSFormControlsCore
             dbCombo5.Controls.Add(dbButton9);
             dbCombo5.DataControl = null;
             dbCombo5.DataControlList = null;
+            dbCombo5.DataSource = null;
             dbCombo5.DBField = null;
             dbCombo5.DBFieldData = "";
             dbCombo5.DBFieldList = null;
@@ -878,6 +894,8 @@ namespace FSFormControlsCore
             dbCombo5.SelectedItem = null;
             dbCombo5.SelectedOption = null;
             dbCombo5.SelectedValue = null;
+            dbCombo5.SelectionLength = 0;
+            dbCombo5.SelectionStart = 0;
             dbCombo5.ShowCode = false;
             dbCombo5.ShowEdit = false;
             dbCombo5.Size = new System.Drawing.Size(95, 23);
@@ -955,6 +973,7 @@ namespace FSFormControlsCore
             dbCombo4.Controls.Add(dbButton7);
             dbCombo4.DataControl = null;
             dbCombo4.DataControlList = null;
+            dbCombo4.DataSource = null;
             dbCombo4.DBField = null;
             dbCombo4.DBFieldData = "";
             dbCombo4.DBFieldList = null;
@@ -974,6 +993,8 @@ namespace FSFormControlsCore
             dbCombo4.SelectedItem = null;
             dbCombo4.SelectedOption = null;
             dbCombo4.SelectedValue = null;
+            dbCombo4.SelectionLength = 0;
+            dbCombo4.SelectionStart = 0;
             dbCombo4.ShowCode = false;
             dbCombo4.ShowEdit = false;
             dbCombo4.Size = new System.Drawing.Size(339, 23);
@@ -1051,6 +1072,7 @@ namespace FSFormControlsCore
             dbCombo3.Controls.Add(dbButton5);
             dbCombo3.DataControl = null;
             dbCombo3.DataControlList = null;
+            dbCombo3.DataSource = null;
             dbCombo3.DBField = null;
             dbCombo3.DBFieldData = "";
             dbCombo3.DBFieldList = null;
@@ -1070,6 +1092,8 @@ namespace FSFormControlsCore
             dbCombo3.SelectedItem = null;
             dbCombo3.SelectedOption = null;
             dbCombo3.SelectedValue = null;
+            dbCombo3.SelectionLength = 0;
+            dbCombo3.SelectionStart = 0;
             dbCombo3.ShowCode = false;
             dbCombo3.ShowEdit = false;
             dbCombo3.Size = new System.Drawing.Size(120, 23);
@@ -1248,6 +1272,8 @@ namespace FSFormControlsCore
             dbDate1.Obligatory = false;
             dbDate1.PromptChar = '\0';
             dbDate1.ReadOnly = false;
+            dbDate1.SelectionLength = 0;
+            dbDate1.SelectionStart = 0;
             dbDate1.Size = new System.Drawing.Size(111, 23);
             dbDate1.TabIndex = 12;
             dbDate1.Text = "15/06/2019";
@@ -1311,6 +1337,7 @@ namespace FSFormControlsCore
             dbCombo1.Controls.Add(dbButton3);
             dbCombo1.DataControl = null;
             dbCombo1.DataControlList = null;
+            dbCombo1.DataSource = null;
             dbCombo1.DBField = null;
             dbCombo1.DBFieldData = "";
             dbCombo1.DBFieldList = null;
@@ -1330,6 +1357,8 @@ namespace FSFormControlsCore
             dbCombo1.SelectedItem = null;
             dbCombo1.SelectedOption = null;
             dbCombo1.SelectedValue = null;
+            dbCombo1.SelectionLength = 0;
+            dbCombo1.SelectionStart = 0;
             dbCombo1.ShowCode = false;
             dbCombo1.ShowEdit = false;
             dbCombo1.Size = new System.Drawing.Size(150, 23);
@@ -1517,11 +1546,13 @@ namespace FSFormControlsCore
             tabPage2.Controls.Add(dbFindTextBox1);
             tabPage2.Controls.Add(dbPanel1);
             tabPage2.Controls.Add(dbFtp1);
+            tabPage2.Key = "tabPage2";
             tabPage2.Location = new System.Drawing.Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            tabPage2.Size = new System.Drawing.Size(1063, 335);
+            tabPage2.Size = new System.Drawing.Size(1063, 470);
             tabPage2.TabIndex = 1;
+            tabPage2.TabPage = null;
             tabPage2.Text = "tabPage2      ";
             tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -1546,6 +1577,7 @@ namespace FSFormControlsCore
             dbCombo2.BlankSelection = false;
             dbCombo2.DataControl = null;
             dbCombo2.DataControlList = null;
+            dbCombo2.DataSource = null;
             dbCombo2.DBField = null;
             dbCombo2.DBFieldData = "";
             dbCombo2.DBFieldList = null;
@@ -1566,6 +1598,8 @@ namespace FSFormControlsCore
             dbCombo2.SelectedItem = null;
             dbCombo2.SelectedOption = null;
             dbCombo2.SelectedValue = null;
+            dbCombo2.SelectionLength = 0;
+            dbCombo2.SelectionStart = 0;
             dbCombo2.ShowCode = false;
             dbCombo2.ShowEdit = false;
             dbCombo2.Size = new System.Drawing.Size(147, 24);
@@ -1716,11 +1750,13 @@ namespace FSFormControlsCore
             // tabPage3
             // 
             tabPage3.Controls.Add(dbGridView1);
+            tabPage3.Key = "tabPage3";
             tabPage3.Location = new System.Drawing.Point(4, 24);
             tabPage3.Name = "tabPage3";
             tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            tabPage3.Size = new System.Drawing.Size(1063, 335);
+            tabPage3.Size = new System.Drawing.Size(1063, 470);
             tabPage3.TabIndex = 2;
+            tabPage3.TabPage = null;
             tabPage3.Text = "tabPage3      ";
             tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -1734,8 +1770,10 @@ namespace FSFormControlsCore
             dbGridView1.AllowDrop = true;
             dbGridView1.AllowUserToAddRows = true;
             dbGridView1.AlternatingColor = System.Drawing.Color.Empty;
+            dbGridView1.AutoGenerateColumns = false;
             dbGridView1.AutoSave = true;
             dbGridView1.AutoSizeColumns = true;
+            dbGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None;
             dbGridView1.CaptionText = null;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -1745,6 +1783,7 @@ namespace FSFormControlsCore
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             dbGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dbGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dbGridView1.DataControl = null;
             dbGridView1.DataSource = null;
             dbGridView1.DBField = null;
@@ -1788,10 +1827,12 @@ namespace FSFormControlsCore
             tabPage4.Controls.Add(dbLopd1);
             tabPage4.Controls.Add(dbRecord1);
             tabPage4.Controls.Add(dbLock1);
+            tabPage4.Key = "tabPage4";
             tabPage4.Location = new System.Drawing.Point(4, 24);
             tabPage4.Name = "tabPage4";
-            tabPage4.Size = new System.Drawing.Size(1063, 335);
+            tabPage4.Size = new System.Drawing.Size(1063, 470);
             tabPage4.TabIndex = 3;
+            tabPage4.TabPage = null;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
             // 
@@ -1927,10 +1968,12 @@ namespace FSFormControlsCore
             tabPage5.Controls.Add(dbFrame1);
             tabPage5.Controls.Add(dbScroll1);
             tabPage5.Controls.Add(dbProgressBar1);
+            tabPage5.Key = "tabPage5";
             tabPage5.Location = new System.Drawing.Point(4, 24);
             tabPage5.Name = "tabPage5";
-            tabPage5.Size = new System.Drawing.Size(1063, 335);
+            tabPage5.Size = new System.Drawing.Size(1063, 470);
             tabPage5.TabIndex = 4;
+            tabPage5.TabPage = null;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
             // 
@@ -1944,8 +1987,10 @@ namespace FSFormControlsCore
             dbGrid1.AllowDrop = true;
             dbGrid1.AllowUserToAddRows = true;
             dbGrid1.AlternatingColor = System.Drawing.Color.Empty;
+            dbGrid1.AutoGenerateColumns = false;
             dbGrid1.AutoSave = true;
             dbGrid1.AutoSizeColumns = true;
+            dbGrid1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.None;
             dbGrid1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             dbGrid1.CaptionText = null;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1956,6 +2001,7 @@ namespace FSFormControlsCore
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             dbGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dbGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dbGrid1.DataControl = null;
             dbGrid1.DataSource = null;
             dbGrid1.DBField = null;
@@ -1969,11 +2015,45 @@ namespace FSFormControlsCore
             dbGrid1.DefaultCellStyle = dataGridViewCellStyle4;
             dbGrid1.DefaultDecimals = 2;
             dbGrid1.DefaultHeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            dbGridViewDisplayLayout1.ActiveCellAppearance = null;
+            dbGridViewDisplayLayout1.ActiveRowAppearance = null;
+            dbGridViewDisplayLayout1.AllowColMoving = DBGridViewDisplayLayout.DBAllowColMoving.Default;
+            dbGridViewDisplayLayout1.AllowColSwapping = DBGridViewDisplayLayout.DBAllowColSwapping.Default;
+            dbGridViewDisplayLayout1.AllowDelete = false;
             dbGridViewDisplayLayout1.Appearance = null;
+            dbGridViewDisplayLayout1.BandLabelAppearance = null;
             dbGridViewDisplayLayout1.BorderStyle = DBGridViewDisplayLayout.DBElementBorderStyle.None;
+            dbGridViewDisplayLayout1.BorderStyleCell = DBGridViewDisplayLayout.DBElementBorderStyle.Default;
+            dbGridViewDisplayLayout1.BorderStyleRow = DBGridViewDisplayLayout.DBElementBorderStyle.Default;
             dbGridViewDisplayLayout1.CaptionVisible = false;
+            dbGridViewDisplayLayout1.CardAreaAppearance = null;
+            dbGridViewDisplayLayout1.CellAppearance = null;
+            dbGridViewDisplayLayout1.CellClickAction = DBGridViewDisplayLayout.DBCellClickAction.Default;
+            dbGridViewDisplayLayout1.CellPadding = 0;
             dbGridViewDisplayLayout1.GroupByBox = null;
+            dbGridViewDisplayLayout1.GroupByRowAppearance = null;
+            dbGridViewDisplayLayout1.HeaderAppearance = null;
+            dbGridViewDisplayLayout1.HeaderClickAction = DBGridViewDisplayLayout.DBHeaderClickAction.Default;
+            dbGridViewDisplayLayout1.HeaderStyle = DBGridViewDisplayLayout.DBHeaderStyle.Default;
+            dbGridViewDisplayLayout1.Hidden = false;
+            dbGridViewDisplayLayout1.MaxColScrollRegions = 0;
+            dbGridViewDisplayLayout1.MaxRowScrollRegions = 0;
+            dbGridViewDisplayLayout1.MinRowHeight = 0;
             dbGridViewDisplayLayout1.Override = null;
+            dbGridViewDisplayLayout1.PromptAppearance = null;
+            dbGridViewDisplayLayout1.RowAppearance = null;
+            dbGridViewDisplayLayout1.RowSelectorHeaderStyle = DBGridViewDisplayLayout.DBRowSelectorHeaderStyle.Default;
+            dbGridViewDisplayLayout1.RowSelectorNumberStyle = DBGridViewDisplayLayout.DBRowSelectorNumberStyle.Default;
+            dbGridViewDisplayLayout1.RowSelectors = false;
+            dbGridViewDisplayLayout1.RowSelectorStyle = DBGridViewDisplayLayout.DBHeaderStyle.Default;
+            dbGridViewDisplayLayout1.RowSizing = DBGridViewDisplayLayout.DBRowSizing.Default;
+            dbGridViewDisplayLayout1.ScrollBounds = DBGridViewDisplayLayout.DBScrollBounds.ScrollToFill;
+            dbGridViewDisplayLayout1.ScrollStyle = DBGridViewDisplayLayout.DBScrollStyle.Deferred;
+            dbGridViewDisplayLayout1.SelectTypeCol = DBGridViewDisplayLayout.SelectType.Default;
+            dbGridViewDisplayLayout1.SelectTypeRow = DBGridViewDisplayLayout.SelectType.Default;
+            dbGridViewDisplayLayout1.TabNavigation = DBGridViewDisplayLayout.DBTabNavigation.NextCell;
+            dbGridViewDisplayLayout1.TemplateAddRowAppearance = null;
+            dbGridViewDisplayLayout1.ViewStyleBand = DBGridViewDisplayLayout.DBViewStyleBand.Vertical;
             dbGrid1.DisplayLayout = dbGridViewDisplayLayout1;
             dbGrid1.Editable = true;
             dbGrid1.EnableHeadersVisualStyles = true;
@@ -2059,10 +2139,12 @@ namespace FSFormControlsCore
             // 
             tabPage6.Controls.Add(dbEditPicture1);
             tabPage6.Controls.Add(dbRichTextBox1);
+            tabPage6.Key = "tabPage6";
             tabPage6.Location = new System.Drawing.Point(4, 24);
             tabPage6.Name = "tabPage6";
-            tabPage6.Size = new System.Drawing.Size(1063, 335);
+            tabPage6.Size = new System.Drawing.Size(1063, 470);
             tabPage6.TabIndex = 5;
+            tabPage6.TabPage = null;
             tabPage6.Text = "tabPage6";
             tabPage6.UseVisualStyleBackColor = true;
             // 
@@ -2094,7 +2176,7 @@ namespace FSFormControlsCore
             // dbStatusBar2
             // 
             dbStatusBar2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { statusBarPanel1, statusBarPanel2 });
-            dbStatusBar2.Location = new System.Drawing.Point(0, 479);
+            dbStatusBar2.Location = new System.Drawing.Point(0, 501);
             dbStatusBar2.Name = "dbStatusBar2";
             dbStatusBar2.Size = new System.Drawing.Size(1071, 22);
             dbStatusBar2.TabIndex = 44;
@@ -2115,7 +2197,7 @@ namespace FSFormControlsCore
             // 
             // dbStatusBar3
             // 
-            dbStatusBar3.Location = new System.Drawing.Point(0, 457);
+            dbStatusBar3.Location = new System.Drawing.Point(0, 479);
             dbStatusBar3.Name = "dbStatusBar3";
             dbStatusBar3.Size = new System.Drawing.Size(1071, 22);
             dbStatusBar3.TabIndex = 47;
@@ -2130,6 +2212,7 @@ namespace FSFormControlsCore
             Controls.Add(dbStatusBar3);
             Controls.Add(dbStatusBar2);
             Controls.Add(dbTabControl1);
+            Controls.Add(DbToolBar1);
             Gradient = true;
             Name = "frmTest";
             Text = "frmTest";
