@@ -1,4 +1,4 @@
-﻿namespace FSIA
+﻿namespace FSIACore
 {
     public interface IActivationFunction
     {

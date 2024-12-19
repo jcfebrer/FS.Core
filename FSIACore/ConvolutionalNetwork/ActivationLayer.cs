@@ -1,4 +1,4 @@
-﻿using FSLibrary;
+﻿using FSLibraryCore;
 using System;
 
 namespace FSIACore.ConvolutionalNetwork

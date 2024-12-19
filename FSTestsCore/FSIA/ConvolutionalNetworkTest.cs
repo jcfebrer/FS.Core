@@ -1,10 +1,6 @@
-﻿using FSIA;
-using FSIA.ConvolutionalNetwork;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
+﻿using FSIACore;
+using FSIACore.ConvolutionalNetwork;
 using System.Diagnostics;
-using System.Linq;
 
 namespace FSTestsCore.FSIA
 {
