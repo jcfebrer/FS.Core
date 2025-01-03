@@ -94,6 +94,15 @@ namespace FSLibrary
         /// <returns></returns>
         public delegate IntPtr LowLevelKeyboardProcDelegate(Int32 nCode, IntPtr wParam, KBDLLHOOKSTRUCT lParam);
 
+        /// <summary>
+        /// Reproduce un fichero .wav
+        /// </summary>
+        /// <param name="pszSound"></param>
+        /// <param name="hmod"></param>
+        /// <param name="fdwSound"></param>
+        /// <returns></returns>
+        [DllImport("winmm.dll", SetLastError = true)]
+        public static extern bool PlaySound(string pszSound, IntPtr hmod, int fdwSound);
 
         /// <summary>
         /// Logons the user.

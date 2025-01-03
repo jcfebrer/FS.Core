@@ -176,56 +176,120 @@ namespace FSLibraryCore
                 }
             }
         }
+
+        public static void SplitWav(string inputFilePath, string outputFilePath, int startMilliseconds, int durationMilliseconds)
+        {
+            if (!File.Exists(inputFilePath))
+                throw new FileNotFoundException("El archivo de entrada no existe.", inputFilePath);
+
+            using (var inputStream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read))
+            using (var binaryReader = new BinaryReader(inputStream))
+            using (var outputStream = new FileStream(outputFilePath, FileMode.Create, FileAccess.Write))
+            using (var binaryWriter = new BinaryWriter(outputStream))
+            {
+                // Leer el encabezado WAV
+                byte[] header = binaryReader.ReadBytes(44);
+
+                // Extraer información clave del encabezado
+                int sampleRate = BitConverter.ToInt32(header, 24); // SampleRate
+                short numChannels = BitConverter.ToInt16(header, 22); // NumChannels
+                short bitsPerSample = BitConverter.ToInt16(header, 34); // BitsPerSample
+                int byteRate = BitConverter.ToInt32(header, 28); // ByteRate
+                short blockAlign = BitConverter.ToInt16(header, 32); // BlockAlign
+
+                // Calcular posiciones en bytes
+                int bytesPerMillisecond = byteRate / 1000;
+                long startPosition = 44 + startMilliseconds * bytesPerMillisecond;
+                long durationBytes = durationMilliseconds * bytesPerMillisecond;
+
+                // Asegurar que las posiciones estén dentro del rango
+                if (startPosition >= inputStream.Length)
+                    throw new ArgumentOutOfRangeException(nameof(startMilliseconds), "El tiempo de inicio está fuera del rango del archivo.");
+                if (startPosition + durationBytes > inputStream.Length)
+                    durationBytes = inputStream.Length - startPosition;
+
+                // Ajustar el tamaño de Subchunk2 y ChunkSize en el encabezado
+                int subchunk2Size = (int)durationBytes;
+                int chunkSize = 36 + subchunk2Size;
+
+                Array.Copy(BitConverter.GetBytes(chunkSize), 0, header, 4, 4); // ChunkSize
+                Array.Copy(BitConverter.GetBytes(subchunk2Size), 0, header, 40, 4); // Subchunk2Size
+
+                // Escribir el encabezado modificado al archivo de salida
+                binaryWriter.Write(header);
+
+                // Mover al inicio de los datos
+                inputStream.Seek(startPosition, SeekOrigin.Begin);
+
+                // Leer y escribir los datos de audio
+                byte[] buffer = new byte[1024];
+                long bytesToRead = durationBytes;
+
+                while (bytesToRead > 0)
+                {
+                    int bytesRead = inputStream.Read(buffer, 0, (int)Math.Min(buffer.Length, bytesToRead));
+                    if (bytesRead == 0) break;
+
+                    binaryWriter.Write(buffer, 0, bytesRead);
+                    bytesToRead -= bytesRead;
+                }
+            }
     }
 
     /// <summary>
-    /// Clase Wav
+        /// Genera un fichero WAV con el Rate, duración y frecuencia indicada.
     /// </summary>
-    public static class Wav
-    {
-        [DllImport("winmm.dll", SetLastError = true)]
-        static extern bool PlaySound(string pszSound, UIntPtr hmod, uint fdwSound);
-
-        /// <summary>
-        /// Flags sound
-        /// </summary>
-        [Flags]
-        public enum SoundFlags
+        /// <param name="filePath"></param>
+        /// <param name="sampleRate"></param>
+        /// <param name="durationMs"></param>
+        /// <param name="frequency"></param>
+        public static void GenerateWav(string filePath, int sampleRate, int durationMs, int frequency)
         {
-            /// <summary>play synchronously (default)</summary>
-            SND_SYNC = 0x0000,
-            /// <summary>play asynchronously</summary>
-            SND_ASYNC = 0x0001,
-            /// <summary>silence (!default) if sound not found</summary>
-            SND_NODEFAULT = 0x0002,
-            /// <summary>pszSound points to a memory file</summary>
-            SND_MEMORY = 0x0004,
-            /// <summary>loop the sound until next sndPlaySound</summary>
-            SND_LOOP = 0x0008,
-            /// <summary>don’t stop any currently playing sound</summary>
-            SND_NOSTOP = 0x0010,
-            /// <summary>Stop Playing Wave</summary>
-            SND_PURGE = 0x40,
-            /// <summary>don’t wait if the driver is busy</summary>
-            SND_NOWAIT = 0x00002000,
-            /// <summary>name is a registry alias</summary>
-            SND_ALIAS = 0x00010000,
-            /// <summary>alias is a predefined id</summary>
-            SND_ALIAS_ID = 0x00110000,
-            /// <summary>name is file name</summary>
-            SND_FILENAME = 0x00020000,
-            /// <summary>name is resource name or atom</summary>
-            SND_RESOURCE = 0x00040004
+            int samples = sampleRate * durationMs / 1000;
+            short amplitude = 3000; // Amplitud del sonido
+            byte[] wavData = new byte[44 + samples * 2];
+
+            // Cabecera WAV
+            using (var stream = new MemoryStream(wavData))
+            using (var writer = new BinaryWriter(stream))
+            {
+                writer.Write(new[] { 'R', 'I', 'F', 'F' });
+                writer.Write(36 + samples * 2); // ChunkSize
+                writer.Write(new[] { 'W', 'A', 'V', 'E' });
+                writer.Write(new[] { 'f', 'm', 't', ' ' });
+                writer.Write(16); // Subchunk1Size
+                writer.Write((short)1); // AudioFormat (PCM)
+                writer.Write((short)1); // NumChannels (Mono)
+                writer.Write(sampleRate); // SampleRate
+                writer.Write(sampleRate * 2); // ByteRate
+                writer.Write((short)2); // BlockAlign
+                writer.Write((short)16); // BitsPerSample
+                writer.Write(new[] { 'd', 'a', 't', 'a' });
+                writer.Write(samples * 2); // Subchunk2Size
+
+                // Datos de audio
+                for (int i = 0; i < samples; i++)
+                {
+                    double t = (double)i / sampleRate;
+                    short sample = (short)(amplitude * Math.Sin(2 * Math.PI * frequency * t));
+                    writer.Write(sample);
+                }
+            }
+
+            File.WriteAllBytes(filePath, wavData);
     }
 
         /// <summary>
         /// Plays the specified file name.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
-        public static void Play(string fileName)
+        public static void PlaySound(string fileName)
         {
-            PlaySound(fileName, UIntPtr.Zero,
-               (uint)(SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC));
-        }
+            if (!File.Exists(fileName))
+                throw new FileNotFoundException("El archivo de entrada no existe.", fileName);
+
+            Win32API.PlaySound(fileName, IntPtr.Zero,
+                   (int)(SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC));
     }
+}
 }

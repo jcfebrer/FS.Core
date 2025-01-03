@@ -60,5 +60,27 @@ namespace FSLibraryCore.Tests
             //    }
             //}
         }
+
+        [TestMethod]
+        public void GenerateZXSpectrumWav()
+        {
+            bool boolResult = true;
+            try
+            {
+                string filePath = "zx_spectrum_key.wav";
+                if (!System.IO.File.Exists(filePath))
+                {
+                    Multimedia.GenerateWav(filePath, 44100, 100, 800);
+                    Console.WriteLine($"Archivo generado: {filePath}");
+                }
+                boolResult = true;
+            }
+            catch (Exception)
+            {
+                boolResult = false;
+            }
+
+            Assert.AreEqual(boolResult, true);
+        }
     }
 }
