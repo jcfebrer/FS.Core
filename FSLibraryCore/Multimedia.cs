@@ -2,6 +2,8 @@
 using System.IO;
 using System.Media;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.ComTypes;
+using System.Windows.Forms;
 
 namespace FSLibraryCore
 {
@@ -36,27 +38,60 @@ namespace FSLibraryCore
         //}
 
         private static SoundPlayer keySound = null;
+        private static string lastPlaySound = "";
 
         /// <summary>
         /// Plays the wav.
         /// </summary>
-        /// <param name="wavFile">The wav file.</param>
-        public static void PlayWav(string wavFile)
+        /// <param name="fileName">The wav file.</param>
+        public static void PlayWav(string fileName)
         {
-                if (keySound == null)
-                    keySound = new SoundPlayer(wavFile);
+            if (lastPlaySound == fileName)
                 keySound.Play();
+            else
+                keySound = null;
+
+            if (!File.Exists(fileName))
+                throw new FileNotFoundException("El archivo de entrada no existe.", fileName);
+
+                if (keySound == null)
+            {
+                using (keySound = new SoundPlayer(fileName))
+                {
+                    keySound.Play();
+                }
+            }
+            else
+                keySound.Play();
+
+            lastPlaySound = fileName;
         }
 
         /// <summary>
         /// Plays the wav synchronize.
         /// </summary>
-        /// <param name="wavFile">The wav file.</param>
-        public static void PlayWavSync(string wavFile)
+        /// <param name="fileName">The wav file.</param>
+        public static void PlayWavSync(string fileName)
         {
+            if (lastPlaySound == fileName)
+                keySound.Play();
+            else
+                keySound = null;
+
+            if (!File.Exists(fileName))
+                throw new FileNotFoundException("El archivo de entrada no existe.", fileName);
+
             if (keySound == null)
-                keySound = new SoundPlayer(wavFile);
+            {
+                using (keySound = new SoundPlayer(fileName))
+                {
             keySound.PlaySync();
+        }
+            }
+            else 
+                keySound.PlaySync();
+
+            lastPlaySound = fileName;
         }
 
         /// <summary>
