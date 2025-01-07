@@ -14,9 +14,10 @@ namespace FSLibraryCore
         /// <summary>
         /// Instala la aplicación para ejecutarse al inicio.
         /// </summary>
-        public static void Install()
+        /// <param name="force">Desinstalamos la aplicación si esta instalada</param>
+        public static void Install(bool force = true)
         {
-            Install(Application.ProductName, Application.ExecutablePath);
+            Install(Application.ProductName, Application.ExecutablePath, force);
         }
 
         /// <summary>
@@ -24,11 +25,15 @@ namespace FSLibraryCore
         /// </summary>
         /// <param name="app">Nombre de la aplicación</param>
         /// <param name="appPath">Path al ejecutable</param>
-        public static void Install(string app, string appPath)
+        /// <param name="force">Desinstalamos la aplicación si esta instalada</param>
+        public static void Install(string app, string appPath, bool force = false)
         {
             RegistryKey rkApp = registryKey.OpenSubKey(runPath, true);
 
-            if (!IsStartupItem())
+            if (force)
+                UnInstall(app);
+
+            if (!IsStartupItem(app))
                 rkApp.SetValue(app, appPath);
         }
 
@@ -48,7 +53,7 @@ namespace FSLibraryCore
         {
             RegistryKey rkApp = registryKey.OpenSubKey(runPath, true);
 
-            if (IsStartupItem())
+            if (IsStartupItem(app))
                 rkApp.DeleteValue(app, false);
         }
 
@@ -69,7 +74,7 @@ namespace FSLibraryCore
                 return false;
             else
             {
-                if (rkApp.GetValue(Application.ProductName).ToString().ToLower() != Application.ExecutablePath.ToString().ToLower())
+                if (rkApp.GetValue(app).ToString().ToLower() != Application.ExecutablePath.ToString().ToLower())
                     return false;
                 else
                     return true;
