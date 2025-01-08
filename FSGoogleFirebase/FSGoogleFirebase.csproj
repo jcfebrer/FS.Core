@@ -41,6 +41,12 @@
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Febrer Software.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Api.Gax, Version=4.9.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
       <HintPath>..\..\FSApps\packages\Google.Api.Gax.4.9.0\lib\net462\Google.Api.Gax.dll</HintPath>
@@ -126,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Febrer Software.pfx" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

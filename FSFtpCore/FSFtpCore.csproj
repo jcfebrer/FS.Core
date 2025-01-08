@@ -44,6 +44,8 @@
     <Copyright>FSFtp</Copyright>
     <AssemblyVersion>16.0.16</AssemblyVersion>
     <NeutralLanguage>en</NeutralLanguage>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>D:\FS\Febrer Software.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Core">
