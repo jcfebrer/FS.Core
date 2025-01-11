@@ -318,13 +318,20 @@ namespace FSLibrary
         /// Plays the specified file name.
         /// </summary>
         /// <param name="fileName">Name of the file.</param>
-        public static void PlaySound(string fileName)
+        /// <param name="sync">Modo sincronizado true/false</param>
+        public static void PlaySound(string fileName, bool sync = false)
         {
             if (!File.Exists(fileName))
                 throw new FileNotFoundException("El archivo de entrada no existe.", fileName);
 
+            SoundFlags syncSound;
+            if(sync)
+                syncSound = SoundFlags.SND_SYNC;
+            else
+                syncSound = SoundFlags.SND_ASYNC;
+
             Win32API.PlaySound(fileName, IntPtr.Zero,
-                   (int)(SoundFlags.SND_FILENAME | SoundFlags.SND_ASYNC));
+                   (int)(SoundFlags.SND_FILENAME | syncSound));
         }
     }
 }
