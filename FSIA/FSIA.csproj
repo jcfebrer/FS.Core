@@ -35,7 +35,17 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MathNet.Numerics, Version=5.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\FSApps\packages\MathNet.Numerics.5.0.0\lib\net48\MathNet.Numerics.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\FSApps\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -135,6 +145,9 @@
     <Compile Include="ConvolutionalNetwork\PoolingLayer.cs" />
     <Compile Include="ConvolutionalNetwork\SwishLayer.cs" />
     <Compile Include="DallE.cs" />
+    <Compile Include="GenerativeNetwork\ActivationFunctions.cs" />
+    <Compile Include="GenerativeNetwork\AutoregressiveModel.cs" />
+    <Compile Include="GenerativeNetwork\LanguageModel.cs" />
     <Compile Include="Moderation.cs" />
     <Compile Include="NeuralNetwork\IActivationFunction.cs" />
     <Compile Include="NeuralNetwork\NeuralNetwork.cs" />
