@@ -66,6 +66,7 @@
     <Compile Include="CaptureScreen.cs" />
     <Compile Include="FontUtil.cs" />
     <Compile Include="GraphicsUtil.cs" />
+    <Compile Include="IconUtil.cs" />
     <Compile Include="ImageProcess.cs" />
     <Compile Include="PixelGrabber.cs" />
     <Compile Include="PrintingUtil.cs" />

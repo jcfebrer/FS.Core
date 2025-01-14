@@ -165,7 +165,7 @@ namespace FSLibrary
         /// <param name="esFlags"></param>
         /// <returns></returns>
         [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-        public static extern uint SetThreadExecutionState(EXECUTION_STATE esFlags);
+        public static extern int SetThreadExecutionState(EXECUTION_STATE esFlags);
 
         /// <summary>
         /// Tipo WindowsProc para enumerar las ventanas
@@ -217,6 +217,25 @@ namespace FSLibrary
         [DllImport("kernel32.dll")]
         public static extern bool Beep(int freq, int duration);
 
+        /// <summary>
+        /// Extrae el icono asociado a un fichero (exe, dll, ...)
+        /// </summary>
+        /// <param name="hInst"></param>
+        /// <param name="lpIconPath"></param>
+        /// <param name="lpiIcon"></param>
+        /// <returns></returns>
+        [DllImport("shell32.dll")]
+        public static extern IntPtr ExtractAssociatedIcon(IntPtr hInst, StringBuilder lpIconPath, out ushort lpiIcon);
+
+        /// <summary>
+        /// Extrae el icono asociado a un fichero (exe, dll, ...)
+        /// </summary>
+        /// <param name="hInst"></param>
+        /// <param name="lpszExeFileName"></param>
+        /// <param name="nIconIndex"></param>
+        /// <returns></returns>
+        [DllImport("shell32.dll")]
+        public static extern IntPtr ExtractIcon(IntPtr hInst, string lpszExeFileName, int nIconIndex);
 
         /// <summary>
         /// Función que genera eventos de teclado.

@@ -51,6 +51,11 @@ namespace FSMouseKeyboardLibrary
             return false;
         }
 
+        public bool IsKeyPressed(Keys key)
+        {
+            short state = Win32API.GetKeyState((int)key);
+            return ((state & 128) != 0);
+        }
 
         public void TroggleLed(LedKeys key, bool state)
         {
