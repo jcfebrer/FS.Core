@@ -10,22 +10,30 @@ namespace FSGraphics
 {
     public class IconUtil
     {
-        public Icon GetAssociatedIconFile(string fileName)
+        public static Icon GetAssociatedIconFile(string fileName)
         {
-            ushort uicon;
-            StringBuilder strB = new StringBuilder(fileName);
-            IntPtr handle = Win32API.ExtractAssociatedIcon(IntPtr.Zero, strB, out uicon);
-            Icon ico = Icon.FromHandle(handle);
+            Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(fileName);
+            if (icon == null)
+            {
+                ushort uicon;
+                StringBuilder strB = new StringBuilder(fileName);
+                IntPtr handle = Win32API.ExtractAssociatedIcon(IntPtr.Zero, strB, out uicon);
+                icon = Icon.FromHandle(handle);
+            }
 
-            return ico;
+            return icon;
         }
 
-        public Icon GetIconFile(string fileName)
+        public static Icon GetIconFile(string fileName)
         {
-            IntPtr handle = Win32API.ExtractIcon(IntPtr.Zero, fileName, 0);
-            Icon ico = Icon.FromHandle(handle);
+            Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(fileName);
+            if (icon == null)
+            {
+                IntPtr handle = Win32API.ExtractIcon(IntPtr.Zero, fileName, 0);
+                icon = Icon.FromHandle(handle);
+            }
 
-            return ico;
+            return icon;
         }
     }
 }
