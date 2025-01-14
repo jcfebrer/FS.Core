@@ -20,7 +20,7 @@
     <Product>FSGoogleDrive</Product>
     <Copyright>Copyright 2017</Copyright>
     <AssemblyVersion>1.0.%2a</AssemblyVersion>
-    <SignAssembly>True</SignAssembly>
+    <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>D:\FS\Febrer Software.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>

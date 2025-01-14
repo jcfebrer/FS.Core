@@ -46,7 +46,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Febrer Software.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Google.Api.CommonProtos, Version=2.16.0.0, Culture=neutral, PublicKeyToken=3ec5ea7f18953e47, processorArchitecture=MSIL">
@@ -154,7 +155,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Febrer Software.pfx" />
     <None Include="packages.config" />
     <None Include="protos\google\api\annotations.proto" />
     <None Include="protos\google\api\auth.proto" />

@@ -75,7 +75,8 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Febrer Software.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -130,7 +131,6 @@
     <Compile Include="maindoc\UBL-TransportationStatus-2.0.cs" />
     <Compile Include="maindoc\UBL-Waybill-2.0.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Febrer Software.pfx" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">

@@ -77,7 +77,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Febrer Software.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -111,8 +112,5 @@
     <Compile Include="Proxy\FtpClientProxy.cs" />
     <Compile Include="Proxy\FtpClientUserAtHostProxy.cs" />
     <Compile Include="Proxy\ProxyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Febrer Software.pfx" />
   </ItemGroup>
 </Project>

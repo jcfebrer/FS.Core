@@ -71,7 +71,8 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Febrer Software.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Interop.SHDocVw">
@@ -127,8 +128,5 @@
       <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>
       <Name>FSNetwork</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Febrer Software.pfx" />
   </ItemGroup>
 </Project>
