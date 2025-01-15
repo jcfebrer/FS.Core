@@ -10,7 +10,7 @@ namespace FSGraphicsCore
 {
     public class IconUtil
     {
-        public static Icon GetAssociatedIconFile(string fileName)
+        public static Icon ExtractAssociatedIcon(string fileName)
         {
             Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(fileName);
             if (icon == null)
@@ -24,12 +24,12 @@ namespace FSGraphicsCore
             return icon;
         }
 
-        public static Icon GetIconFile(string fileName)
+        public static Icon ExtractIcon(string fileName, int iconIndex = 0)
         {
             Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(fileName);
             if (icon == null)
             {
-            IntPtr handle = Win32API.ExtractIcon(IntPtr.Zero, fileName, 0);
+                IntPtr handle = Win32API.ExtractIcon(IntPtr.Zero, fileName, iconIndex);
                 icon = Icon.FromHandle(handle);
             }
 
