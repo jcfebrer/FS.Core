@@ -4,6 +4,7 @@ using System.Media;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
+using static FSLibraryCore.Win32APIEnums;
 
 namespace FSLibraryCore
 {
@@ -216,6 +217,9 @@ namespace FSLibraryCore
         {
             if (!File.Exists(inputFilePath))
                 throw new FileNotFoundException("El archivo de entrada no existe.", inputFilePath);
+
+            if(Path.GetExtension(inputFilePath).ToLower() != ".wav")
+                throw new Exception("Solo se permiten ficheros con extensión WAV. Fichero: " + inputFilePath);
 
             using (var inputStream = new FileStream(inputFilePath, FileMode.Open, FileAccess.Read))
             using (var binaryReader = new BinaryReader(inputStream))

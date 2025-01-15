@@ -1,9 +1,4 @@
-﻿/*
- * Please leave this Copyright notice in your code if you use it
- * Written by Decebal Mihailescu [http://www.codeproject.com/script/articles/list_articles.asp?userid=634640]
- */
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
@@ -13,43 +8,115 @@ using System.Text;
 namespace FSLibrary
 {
     /// <summary>
-    /// Flags sound
-    /// </summary>
-    [Flags]
-    public enum SoundFlags
-    {
-        /// <summary>play synchronously (default)</summary>
-        SND_SYNC = 0x0000,
-        /// <summary>play asynchronously</summary>
-        SND_ASYNC = 0x0001,
-        /// <summary>silence (!default) if sound not found</summary>
-        SND_NODEFAULT = 0x0002,
-        /// <summary>pszSound points to a memory file</summary>
-        SND_MEMORY = 0x0004,
-        /// <summary>loop the sound until next sndPlaySound</summary>
-        SND_LOOP = 0x0008,
-        /// <summary>don’t stop any currently playing sound</summary>
-        SND_NOSTOP = 0x0010,
-        /// <summary>Stop Playing Wave</summary>
-        SND_PURGE = 0x40,
-        /// <summary>don’t wait if the driver is busy</summary>
-        SND_NOWAIT = 0x00002000,
-        /// <summary>name is a registry alias</summary>
-        SND_ALIAS = 0x00010000,
-        /// <summary>alias is a predefined id</summary>
-        SND_ALIAS_ID = 0x00110000,
-        /// <summary>name is file name</summary>
-        SND_FILENAME = 0x00020000,
-        /// <summary>name is resource name or atom</summary>
-        SND_RESOURCE = 0x00040004
-    }
-
-    /// <summary>
     /// Clase con funciones para el uso de la API32 de windows
     /// </summary>
     [SuppressUnmanagedCodeSecurity]
     public static class Win32APIEnums
     {
+        /// <summary>
+        /// Flags sound
+        /// </summary>
+        [Flags]
+        public enum SoundFlags
+        {
+            /// <summary>play synchronously (default)</summary>
+            SND_SYNC = 0x0000,
+            /// <summary>play asynchronously</summary>
+            SND_ASYNC = 0x0001,
+            /// <summary>silence (!default) if sound not found</summary>
+            SND_NODEFAULT = 0x0002,
+            /// <summary>pszSound points to a memory file</summary>
+            SND_MEMORY = 0x0004,
+            /// <summary>loop the sound until next sndPlaySound</summary>
+            SND_LOOP = 0x0008,
+            /// <summary>don’t stop any currently playing sound</summary>
+            SND_NOSTOP = 0x0010,
+            /// <summary>Stop Playing Wave</summary>
+            SND_PURGE = 0x40,
+            /// <summary>don’t wait if the driver is busy</summary>
+            SND_NOWAIT = 0x00002000,
+            /// <summary>name is a registry alias</summary>
+            SND_ALIAS = 0x00010000,
+            /// <summary>alias is a predefined id</summary>
+            SND_ALIAS_ID = 0x00110000,
+            /// <summary>name is file name</summary>
+            SND_FILENAME = 0x00020000,
+            /// <summary>name is resource name or atom</summary>
+            SND_RESOURCE = 0x00040004
+        }
+
+        /// <summary>
+        /// Retrieve the handle to the icon that represents the file and the index 
+        /// of the icon within the system image list. The handle is copied to the 
+        /// hIcon member of the structure specified by psfi, and the index is 
+        /// copied to the iIcon member.
+        /// </summary>
+        public const int SHGFI_ICON = 0x100;
+        /// <summary>
+        /// Modify SHGFI_ICON, causing the function to retrieve the file's large 
+        /// icon. The SHGFI_ICON flag must also be set.
+        /// </summary>
+        public const int SHGFI_LARGEICON = 0x0;
+        /// <summary>
+        /// Modify SHGFI_ICON, causing the function to retrieve the file's small 
+        /// icon. Also used to modify SHGFI_SYSICONINDEX, causing the function to 
+        /// return the handle to the system image list that contains small icon 
+        /// images. The SHGFI_ICON and/or SHGFI_SYSICONINDEX flag must also be set.
+        /// </summary>
+        public const int SHGFI_SMALLICON = 0x1;
+        /// <summary>
+        /// Indicates that the function should not attempt to access the file 
+        /// specified by pszPath.
+        /// </summary>
+        public const int SHGFI_USEFILEATTRIBUTES = 0x10;
+
+        /// <summary>
+        /// Contains information about a file object.
+        /// </summary>
+        [StructLayout(LayoutKind.Sequential)]
+        public struct SHFILEINFO
+        {
+            /// <summary>
+            /// A handle to the icon that represents the file.
+            /// </summary>
+            public IntPtr hIcon;
+            /// <summary>
+            /// The index of the icon image within the system image list.
+            /// </summary>
+            public IntPtr iIcon;
+            /// <summary>
+            /// An array of values that indicates the attributes of the file object.
+            /// </summary>
+            public int dwAttributes;
+            /// <summary>
+            /// A string that contains the name of the file as it appears in the Windows Shell, or the path and file name of the file that contains the icon representing the file.
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 260)]
+            public string szDisplayName;
+            /// <summary>
+            /// A string that describes the type of file.
+            /// </summary>
+            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 80)]
+            public string szTypeName;
+        };
+
+        /// <summary>
+        /// Represents the different icon sizes that can be extracted using the 
+        /// <see cref="Win32API.ExtractAssociatedIcon"/> method.
+        /// </summary>
+        public enum ShellIconSize : int
+        {
+
+            /// <summary>
+            /// Specifies a small (16x16) icon.
+            /// </summary>
+            SmallIcon = SHGFI_ICON | SHGFI_SMALLICON,
+            /// <summary>
+            /// Specifies a large (32x32) icon.
+            /// </summary>
+            LargeIcon = SHGFI_ICON | SHGFI_LARGEICON
+        }
+
         /// <summary>
         /// Estructura STARTUPINFO
         /// </summary>

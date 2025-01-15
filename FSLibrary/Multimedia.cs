@@ -4,6 +4,7 @@ using System.Media;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Windows.Forms;
+using static FSLibrary.Win32APIEnums;
 
 namespace FSLibrary
 {
