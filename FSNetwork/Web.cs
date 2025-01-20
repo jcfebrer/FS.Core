@@ -7,8 +7,11 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace FSNetwork
@@ -438,6 +441,32 @@ namespace FSNetwork
 
             // retornar el codigo HTML
             return html;
+        }
+
+        /// <summary>
+        /// Validates a URI
+        /// </summary>
+        /// <param name="url">URI as string</param>
+        /// <returns>True if valid</returns>
+        public static bool ValidateURI(string url)
+        {
+            Uri locurl;
+            if (System.Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out locurl))
+            {
+                if (
+                    !(locurl.IsAbsoluteUri &&
+                      (locurl.Scheme == "http" || locurl.Scheme == "https")) ||
+                    !locurl.IsAbsoluteUri)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

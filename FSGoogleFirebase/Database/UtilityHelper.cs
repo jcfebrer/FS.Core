@@ -24,32 +24,6 @@ namespace FSGoogleFirebase.Database
         private const string USER_AGENT = "firebase-net/0.2";
 
         /// <summary>
-        /// Validates a URI
-        /// </summary>
-        /// <param name="url">URI as string</param>
-        /// <returns>True if valid</returns>
-        public static bool ValidateURI(string url)
-        {
-            Uri locurl;
-            if (System.Uri.TryCreate(url, UriKind.RelativeOrAbsolute, out locurl))
-            {
-                if (
-                    !(locurl.IsAbsoluteUri &&
-                      (locurl.Scheme == "http" || locurl.Scheme == "https")) ||
-                    !locurl.IsAbsoluteUri)
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        /// <summary>
         /// Validates JSON string
         /// </summary>
         /// <param name="inJSON">JSON to be validatedd</param>
