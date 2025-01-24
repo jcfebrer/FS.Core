@@ -213,6 +213,16 @@ namespace FSLibrary
             }
         }
 
+        /// <summary>
+        /// Extrae un fichero wav del fichero wav original desde la posición indicada en ms y la duración indicada.
+        /// </summary>
+        /// <param name="inputFilePath"></param>
+        /// <param name="outputFilePath"></param>
+        /// <param name="startMilliseconds"></param>
+        /// <param name="durationMilliseconds"></param>
+        /// <exception cref="FileNotFoundException"></exception>
+        /// <exception cref="Exception"></exception>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public static void SplitWav(string inputFilePath, string outputFilePath, int startMilliseconds, int durationMilliseconds)
         {
             if (!File.Exists(inputFilePath))

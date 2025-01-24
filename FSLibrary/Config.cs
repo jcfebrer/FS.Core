@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Xml;
 
@@ -188,6 +189,62 @@ namespace FSLibrary
             {
                 return ((AppSettingsSection)Settings).Settings[key].Value;
             }
+        }
+
+        /// <summary>
+        /// Recuperamos el valor de una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        public string[] ValuePropertyArray(string key)
+        {
+            return ValueProperty(key).Split(new char[] { '|', ';' }, StringSplitOptions.RemoveEmptyEntries);
+        }
+
+        /// <summary>
+        /// Recuperamos el valor de una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        public bool ValuePropertyBool(string key)
+        {
+            return Convert.ToBoolean(ValueProperty(key));
+        }
+
+        /// <summary>
+        /// Recuperamos el valor de una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        public int ValuePropertyInt(string key)
+        {
+            return Convert.ToInt32(ValueProperty(key));
+        }
+
+        /// <summary>
+        /// Recuperamos el valor de una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        public DateTime ValuePropertyDate(string key)
+        {
+            return Convert.ToDateTime(ValueProperty(key));
+        }
+
+        /// <summary>
+        /// Guardamos el valor de una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public void SetProperty(string key, string[] value)
+        {
+            SetProperty(key, String.Join("|", value));
+        }
+
+        /// <summary>
+        /// Guardamos el valor de una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public void SetProperty(string key, List<string> value)
+        {
+            SetProperty(key, String.Join("|", value));
         }
 
         /// <summary>

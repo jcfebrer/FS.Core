@@ -229,9 +229,9 @@ namespace FSLibraryCore
 		[DllImport("shell32.dll")]
         public static extern IntPtr SHGetFileInfo(
             string pszPath,
-            uint dwFileAttributes,
+            int dwFileAttributes,
             ref SHFILEINFO psfi,
-            uint cbSizeFileInfo,
+            int cbSizeFileInfo,
             ShellIconSize uFlags
         );
 
@@ -251,7 +251,7 @@ namespace FSLibraryCore
         /// <param name="lpiIcon"></param>
         /// <returns></returns>
         [DllImport("shell32.dll")]
-        public static extern IntPtr ExtractAssociatedIcon(IntPtr hInst, StringBuilder lpIconPath, out ushort lpiIcon);
+        public static extern IntPtr ExtractAssociatedIcon(IntPtr hInst, StringBuilder lpIconPath, out short lpiIcon);
 
         /// <summary>
         /// Extrae el icono asociado a un fichero (exe, dll, ...)

@@ -708,5 +708,15 @@ namespace FSDiskCore
 
             return fileInfoList;
         }
+
+        public static string[] GetFiles(string sourceFolder, string filters)
+        {
+            return filters.Split('|').SelectMany(filter => Directory.GetFiles(sourceFolder, filter)).ToArray();
+        }
+
+        public static string[] GetFiles(string sourceFolder, string filters, SearchOption searchOption)
+        {
+            return filters.Split('|').SelectMany(filter => Directory.GetFiles(sourceFolder, filter, searchOption)).ToArray();
+        }
     }
 }

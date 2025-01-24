@@ -19,9 +19,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
+using System.Xml.Linq;
 
 namespace FSLibraryCore.DiffMatchPatch {
   internal static class CompatibilityExtensions {
@@ -48,7 +50,18 @@ namespace FSLibraryCore.DiffMatchPatch {
    * which means: delete "Hello", add "Goodbye" and keep " world."
    */
   public enum Operation {
-    DELETE, INSERT, EQUAL
+        /// <summary>
+        /// Datos borrados
+        /// </summary>
+        DELETE,
+        /// <summary>
+        /// Datos añadidos
+        /// </summary>
+        INSERT,
+        /// <summary>
+        /// Datos iguales
+        /// </summary>
+        EQUAL
   }
 
 
@@ -56,10 +69,16 @@ namespace FSLibraryCore.DiffMatchPatch {
    * Class representing one diff operation.
    */
   public class Diff {
+
+        /// <summary>
+        /// One of: INSERT, DELETE or EQUAL.
+        /// </summary>
     public Operation operation;
-    // One of: INSERT, DELETE or EQUAL.
+
+        /// <summary>
+        /// The text associated with this diff operation.
+        /// </summary>
     public string text;
-    // The text associated with this diff operation.
 
     /**
      * Constructor.  Initializes the diff with the provided values.
@@ -102,6 +121,11 @@ namespace FSLibraryCore.DiffMatchPatch {
       return p.operation == this.operation && p.text == this.text;
     }
 
+        /// <summary>
+        /// Devuelve true si son iguales
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
     public bool Equals(Diff obj) {
       // If parameter is null return false.
       if (obj == null) {
@@ -112,6 +136,10 @@ namespace FSLibraryCore.DiffMatchPatch {
       return obj.operation == this.operation && obj.text == this.text;
     }
 
+        /// <summary>
+        /// Devuelve el Hashcode
+        /// </summary>
+        /// <returns></returns>
     public override int GetHashCode() {
       return text.GetHashCode() ^ operation.GetHashCode();
     }
@@ -122,10 +150,30 @@ namespace FSLibraryCore.DiffMatchPatch {
    * Class representing one patch operation.
    */
   public class Patch {
+
+        /// <summary>
+        /// Array de diferencias
+        /// </summary>
     public List<Diff> diffs = new List<Diff>();
+
+        /// <summary>
+        /// Comienzo 1
+        /// </summary>
     public int start1;
+
+        /// <summary>
+        /// Comienzo 2
+        /// </summary>
     public int start2;
+
+        /// <summary>
+        /// Longitud 1
+        /// </summary>
     public int length1;
+
+        /// <summary>
+        /// Longitud 2
+        /// </summary>
     public int length2;
 
     /**
@@ -182,22 +230,39 @@ namespace FSLibraryCore.DiffMatchPatch {
     // Defaults.
     // Set these on your diff_match_patch instance to override the defaults.
 
-    // Number of seconds to map a diff before giving up (0 for infinity).
+        /// <summary>
+        /// Number of seconds to map a diff before giving up (0 for infinity).
+        /// </summary>
     public float Diff_Timeout = 1.0f;
-    // Cost of an empty edit operation in terms of edit characters.
+        /// <summary>
+        /// Cost of an empty edit operation in terms of edit characters.
+        /// </summary>
     public short Diff_EditCost = 4;
-    // At what point is no match declared (0.0 = perfection, 1.0 = very loose).
+        /// <summary>
+        /// At what point is no match declared (0.0 = perfection, 1.0 = very loose).
+        /// </summary>
     public float Match_Threshold = 0.5f;
-    // How far to search for a match (0 = exact location, 1000+ = broad match).
-    // A match this many characters away from the expected location will add
-    // 1.0 to the score (0.0 is a perfect match).
+
+
+        /// <summary>
+        /// How far to search for a match (0 = exact location, 1000+ = broad match).
+        /// A match this many characters away from the expected location will add
+        /// 1.0 to the score (0.0 is a perfect match).
+        /// </summary>
     public int Match_Distance = 1000;
-    // When deleting a large block of text (over ~64 characters), how close
-    // do the contents have to be to match the expected contents. (0.0 =
-    // perfection, 1.0 = very loose).  Note that Match_Threshold controls
-    // how closely the end points of a delete need to match.
+
+        /// <summary>
+        /// When deleting a large block of text (over ~64 characters), how close
+        /// do the contents have to be to match the expected contents. (0.0 =
+        /// perfection, 1.0 = very loose).  Note that Match_Threshold controls
+        /// how closely the end points of a delete need to match.
+        /// When deleting a large block of text (over ~64 characters), how close
+        /// </summary>
     public float Patch_DeleteThreshold = 0.5f;
-    // Chunk size for context length.
+
+        /// <summary>
+        /// Chunk size for context length.
+        /// </summary>
     public short Patch_Margin = 4;
 
     // The number of bits in an int.
@@ -1785,15 +1850,20 @@ namespace FSLibraryCore.DiffMatchPatch {
       return patch_make(text1, diffs);
     }
 
-    /**
-     * Compute a list of patches to turn text1 into text2.
-     * text2 is ignored, diffs are the delta between text1 and text2.
-     * @param text1 Old text
-     * @param text2 Ignored.
-     * @param diffs Array of Diff objects for text1 to text2.
-     * @return List of Patch objects.
-     * @deprecated Prefer patch_make(string text1, List<Diff> diffs).
-     */
+
+        /// <summary>
+        /// Compute a list of patches to turn text1 into text2.
+        /// text2 is ignored, diffs are the delta between text1 and text2.
+        /// @param text1 Old text
+        /// @param text2 Ignored.
+        /// @param diffs Array of Diff objects for text1 to text2.
+        /// @return List of Patch objects.
+        /// @deprecated Prefer patch_make(string text1, diffs).
+        /// </summary>
+        /// <param name="text1"></param>
+        /// <param name="text2"></param>
+        /// <param name="diffs"></param>
+        /// <returns></returns>
     public List<Patch> patch_make(string text1, string text2,
         List<Diff> diffs) {
       return patch_make(text1, diffs);

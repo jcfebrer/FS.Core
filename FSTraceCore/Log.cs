@@ -53,6 +53,11 @@ namespace FSTraceCore
     public static class Log
     {
         private static List<LogData> logData = new List<LogData>();
+        public static List<LogData> LogData
+        {
+            get { return logData; }
+            set { logData = value; }
+        }
 
         public delegate void MessageLogEventHandler(object source, Log.LogMessage e);
         public delegate void MessageLogTextEventHandler(object source, string e);
@@ -481,15 +486,19 @@ namespace FSTraceCore
 
         public class LogMessage
         {
-            public DateTime Time;
-            public double Millisegundos;
-            public int PID;
-            public int ThreadId;
-            public TraceLevel TraceLevel;
-            public string ModuleName;
-            public string TypeName;
-            public string ProcessName;
-            public string Message;
+            public DateTime Time { get; set; }
+            public double Millisegundos { get; set; }
+            public int PID { get; set; }
+            public int ThreadId { get; set; }
+            public TraceLevel TraceLevel { get; set; }
+            public string ModuleName { get; set; }
+            public string TypeName { get; set; }
+            public string ProcessName { get; set; }
+            public string Message { get; set; }
+
+            public LogMessage()
+            {
+            }
 
             public LogMessage(DateTime Time, double Millisegundos, int PID, int ThreadId, TraceLevel TraceLevel, string ModuleName, string TypeName, string ProcessName, string Message)
             {

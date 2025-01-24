@@ -14,7 +14,7 @@ namespace FSGraphicsCore
             Icon icon = System.Drawing.Icon.ExtractAssociatedIcon(fileName);
             if (icon == null)
             {
-            ushort uicon;
+                short uicon;
             StringBuilder strB = new StringBuilder(fileName);
             IntPtr handle = Win32API.ExtractAssociatedIcon(IntPtr.Zero, strB, out uicon);
                 icon = Icon.FromHandle(handle);
@@ -44,7 +44,7 @@ namespace FSGraphicsCore
         public static Icon GetIconForFile(string filename, ShellIconSize size)
         {
             SHFILEINFO shinfo = new SHFILEINFO();
-            Win32API.SHGetFileInfo(filename, 0, ref shinfo, (uint)Marshal.SizeOf(shinfo), size);
+            Win32API.SHGetFileInfo(filename, 0, ref shinfo, Marshal.SizeOf(shinfo), size);
 
             Icon icon = null;
 
