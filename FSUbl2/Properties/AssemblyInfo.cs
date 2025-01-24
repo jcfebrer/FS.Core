@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("IT Larsen")]
 [assembly: AssemblyProduct("UBL Larsen")]
-[assembly: AssemblyCopyright("")]
+[assembly: AssemblyCopyright("Febrer Software 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
