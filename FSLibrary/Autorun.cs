@@ -11,6 +11,7 @@ namespace FSLibrary
     {
         static readonly string runPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
         static readonly RegistryKey registryKey = Registry.CurrentUser;
+        static RegistryKey rkApp = registryKey.OpenSubKey(runPath, true);
 
         /// <summary>
         /// Instala la aplicación para ejecutarse al inicio.
@@ -29,8 +30,6 @@ namespace FSLibrary
         /// <param name="force">Desinstalamos la aplicación si esta instalada</param>
         public static void Install(string app, string appPath, bool force = false)
         {
-            RegistryKey rkApp = registryKey.OpenSubKey(runPath, true);
-
             if (force)
                 UnInstall(app);
 
@@ -52,8 +51,6 @@ namespace FSLibrary
         /// <param name="app"></param>
         public static void UnInstall(string app)
         {
-            RegistryKey rkApp = registryKey.OpenSubKey(runPath, true);
-
             if (IsStartupItem(app))
                 rkApp.DeleteValue(app, false);
         }
@@ -69,8 +66,6 @@ namespace FSLibrary
 
         private static bool IsStartupItem(string app)
         {
-            RegistryKey rkApp = registryKey.OpenSubKey(runPath, true);
-
             if (rkApp.GetValue(app) == null)
                 return false;
             else
