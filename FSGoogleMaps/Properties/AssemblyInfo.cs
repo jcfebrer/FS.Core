@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FSGoogleDrive")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Febrer Software")]
 [assembly: AssemblyProduct("FSGoogleDrive")]
 [assembly: AssemblyCopyright("Copyright 2017")]
 [assembly: AssemblyTrademark("")]

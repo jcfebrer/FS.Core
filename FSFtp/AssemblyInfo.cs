@@ -10,7 +10,7 @@ using System;
 [assembly: AssemblyTitle("FSFtp")]
 [assembly: AssemblyDescription("Cliente FTP y FTPS")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Febrer Software")]
 [assembly: AssemblyProduct("FSFtp")]
 [assembly: AssemblyCopyright("FSFtp")]
 [assembly: AssemblyTrademark("")]
