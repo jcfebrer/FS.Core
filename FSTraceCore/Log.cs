@@ -23,22 +23,56 @@ using System.Threading;
 
 namespace FSTraceCore
 {
-    public class LogData
+    public class LogMessage
     {
-        public DateTime Date { get; set; }
-        public string Message { get; set; }
+        public DateTime Time { get; set; }
+        public double Millisegundos { get; set; }
+        public int PID { get; set; }
+        public int ThreadId { get; set; }
         public TraceLevel TraceLevel { get; set; }
+        public string ModuleName { get; set; }
+        public string TypeName { get; set; }
+        public string ProcessName { get; set; }
+        public string Message { get; set; }
         public int Count { get; set; }
 
-        public LogData()
-        { }
-
-        public LogData(DateTime date, string message, TraceLevel traceLevel)
+        public LogMessage()
         {
-            this.Date = date;
-            this.Message = message;
-            this.TraceLevel = traceLevel;
-            this.Count = 0;
+        }
+
+        public LogMessage(DateTime Time, double Millisegundos, int PID, int ThreadId, TraceLevel TraceLevel, string ModuleName, string TypeName, string ProcessName, string Message)
+        {
+            this.Time = Time;
+            this.Millisegundos = Millisegundos;
+            this.PID = PID;
+            this.ThreadId = ThreadId;
+            this.TraceLevel = TraceLevel;
+            this.ModuleName = ModuleName;
+            this.TypeName = TypeName;
+            this.ProcessName = ProcessName;
+            this.Message = Message;
+        }
+
+        public LogMessage(DateTime Time, TraceLevel TraceLevel, string Message)
+        {
+            this.Time = Time;
+            this.TraceLevel = TraceLevel;
+            this.Message = Message;
+        }
+
+        public override string ToString()
+        {
+            return string.Format(
+                    "{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}",
+                    Time,
+                    Millisegundos.ToString().PadLeft(5, '0'),
+                    PID,
+                    ThreadId,
+                    TraceLevel,
+                    ModuleName,
+                    TypeName,
+                    ProcessName,
+                    Message);
         }
 
         public bool IsTraceLevel(TraceLevel level, bool state)
@@ -52,14 +86,14 @@ namespace FSTraceCore
     /// <summary>Implementa funcionalidad de traceo</summary>
     public static class Log
     {
-        private static List<LogData> logData = new List<LogData>();
-        public static List<LogData> LogData
+        private static List<LogMessage> logMessages = new List<LogMessage>();
+        public static List<LogMessage> LogMessages
         {
-            get { return logData; }
-            set { logData = value; }
+            get { return logMessages; }
+            set { logMessages = value; }
         }
 
-        public delegate void MessageLogEventHandler(object source, Log.LogMessage e);
+        public delegate void MessageLogEventHandler(object source, LogMessage e);
         public delegate void MessageLogTextEventHandler(object source, string e);
         public static event MessageLogTextEventHandler OnMessageLogText;
         public static event MessageLogEventHandler OnMessageLog;
@@ -70,7 +104,7 @@ namespace FSTraceCore
         private static TraceListener m_traceListener;
         private static bool m_firstSection = true;
         private static TraceSwitch m_logLevelSwitch;
-        private static bool m_saveLogData = false;
+        private static bool m_saveLogData = true;
         private static bool m_groupData = false;
 
         public static TraceLevel LogTraceLevel
@@ -167,22 +201,22 @@ namespace FSTraceCore
             return logFile;
         }
 
-        public static List<LogData> GetLogData(bool error, bool warning, bool info)
+        public static List<LogMessage> GetLogData(bool error, bool warning, bool info)
         {
-            Func<LogData, bool> predicate1 = s => s.IsTraceLevel(TraceLevel.Error, error);
-            Func<LogData, bool> predicate2 = s => s.IsTraceLevel(TraceLevel.Warning, warning);
-            Func<LogData, bool> predicate3 = s => s.IsTraceLevel(TraceLevel.Info, info);
-            return logData.FindAll(s => (predicate1(s) || predicate2(s) || predicate3(s)));
+            Func<LogMessage, bool> predicate1 = s => s.IsTraceLevel(TraceLevel.Error, error);
+            Func<LogMessage, bool> predicate2 = s => s.IsTraceLevel(TraceLevel.Warning, warning);
+            Func<LogMessage, bool> predicate3 = s => s.IsTraceLevel(TraceLevel.Info, info);
+            return logMessages.FindAll(s => (predicate1(s) || predicate2(s) || predicate3(s)));
         }
 
-        public static List<LogData> GetLogData(TraceLevel level)
+        public static List<LogMessage> GetLogData(TraceLevel level)
         {
-            return logData.FindAll(x => x.TraceLevel == level);
+            return logMessages.FindAll(x => x.TraceLevel == level);
         }
 
-        public static List<LogData> GetLogData()
+        public static List<LogMessage> GetLogData()
         {
-            return logData;
+            return logMessages;
         }
 
         /// <summary>
@@ -275,16 +309,16 @@ namespace FSTraceCore
             if (m_saveLogData)
             {
                 // Si esta la opción de agrupar, y existe el evento, actualizamos la información del evento.
-                if (m_groupData && logData.Exists(e => e.Message == msgLog.Message))
+                if (m_groupData && logMessages.Exists(e => e.Message == msgLog.Message))
                 {
-                    LogData logUpdate = logData.Find(e => e.Message == msgLog.Message);
-                    logUpdate.Date = msgLog.Time;
+                    LogMessage logUpdate = logMessages.Find(e => e.Message == msgLog.Message);
+                    logUpdate.Time = msgLog.Time;
                     logUpdate.Count++;
                 }
                 else
                 {
                     // Creamos una nueva entrada
-                    logData.Add(new LogData(msgLog.Time, msgLog.Message, msgLog.TraceLevel));
+                    logMessages.Add(new LogMessage(msgLog.Time, msgLog.TraceLevel, msgLog.Message));
                 }
             }
 
@@ -480,52 +514,6 @@ namespace FSTraceCore
             {
                 System.Diagnostics.Trace.Listeners.Remove("Default");
                 System.Diagnostics.Trace.Listeners.Add(m_traceListener);
-            }
-        }
-
-
-        public class LogMessage
-        {
-            public DateTime Time { get; set; }
-            public double Millisegundos { get; set; }
-            public int PID { get; set; }
-            public int ThreadId { get; set; }
-            public TraceLevel TraceLevel { get; set; }
-            public string ModuleName { get; set; }
-            public string TypeName { get; set; }
-            public string ProcessName { get; set; }
-            public string Message { get; set; }
-
-            public LogMessage()
-            {
-            }
-
-            public LogMessage(DateTime Time, double Millisegundos, int PID, int ThreadId, TraceLevel TraceLevel, string ModuleName, string TypeName, string ProcessName, string Message)
-            {
-                this.Time = Time;
-                this.Millisegundos = Millisegundos;
-                this.PID = PID;
-                this.ThreadId = ThreadId;
-                this.TraceLevel = TraceLevel;
-                this.ModuleName = ModuleName;
-                this.TypeName = TypeName;
-                this.ProcessName = ProcessName;
-                this.Message = Message;
-            }
-
-            public override string ToString()
-            {
-                return string.Format(
-                        "{0}|{1}|{2}|{3}|{4}|{5}|{6}|{7}|{8}",
-                        Time,
-                        Millisegundos.ToString().PadLeft(5, '0'),
-                        PID,
-                        ThreadId,
-                        TraceLevel,
-                        ModuleName,
-                        TypeName,
-                        ProcessName,
-                        Message);
             }
         }
     }

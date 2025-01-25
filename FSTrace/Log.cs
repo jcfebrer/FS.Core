@@ -12,7 +12,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
@@ -87,11 +86,11 @@ namespace FSTrace
     /// <summary>Implementa funcionalidad de traceo</summary>
     public static class Log
     {
-        private static List<LogMessage> logData = new List<LogMessage>();
-        public static List<LogMessage> LogData
+        private static List<LogMessage> logMessages = new List<LogMessage>();
+        public static List<LogMessage> LogMessages
         {
-            get { return logData; }
-            set { logData = value; }
+            get { return logMessages; }
+            set { logMessages = value; }
         }
 
         public delegate void MessageLogEventHandler(object source, LogMessage e);
@@ -203,17 +202,17 @@ namespace FSTrace
             Func<LogMessage, bool> predicate1 = s => s.IsTraceLevel(TraceLevel.Error, error);
             Func<LogMessage, bool> predicate2 = s => s.IsTraceLevel(TraceLevel.Warning, warning);
             Func<LogMessage, bool> predicate3 = s => s.IsTraceLevel(TraceLevel.Info, info);
-            return logData.FindAll(s => (predicate1(s) || predicate2(s) || predicate3(s)));
+            return logMessages.FindAll(s => (predicate1(s) || predicate2(s) || predicate3(s)));
         }
 
         public static List<LogMessage> GetLogData(TraceLevel level)
         {
-            return logData.FindAll(x => x.TraceLevel == level);
+            return logMessages.FindAll(x => x.TraceLevel == level);
         }
 
         public static List<LogMessage> GetLogData()
         {
-            return logData;
+            return logMessages;
         }
 
         /// <summary>
@@ -306,16 +305,16 @@ namespace FSTrace
             if (m_saveLogData)
             {
                 // Si esta la opción de agrupar, y existe el evento, actualizamos la información del evento.
-                if (m_groupData && logData.Exists(e => e.Message == msgLog.Message))
+                if (m_groupData && logMessages.Exists(e => e.Message == msgLog.Message))
                 {
-                    LogMessage logUpdate = logData.Find(e => e.Message == msgLog.Message);
+                    LogMessage logUpdate = logMessages.Find(e => e.Message == msgLog.Message);
                     logUpdate.Time = msgLog.Time;
                     logUpdate.Count++;
                 }
                 else
                 {
                     // Creamos una nueva entrada
-                    logData.Add(new LogMessage(msgLog.Time, msgLog.TraceLevel, msgLog.Message));
+                    logMessages.Add(new LogMessage(msgLog.Time, msgLog.TraceLevel, msgLog.Message));
                 }
             }
 
