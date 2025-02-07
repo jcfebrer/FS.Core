@@ -58,8 +58,8 @@
     <Reference Include="Google.Apis.Core, Version=1.69.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\..\FSApps\packages\Google.Apis.Core.1.69.0\lib\net462\Google.Apis.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Cloud.AIPlatform.V1, Version=3.14.0.0, Culture=neutral, PublicKeyToken=185c282632e132a0, processorArchitecture=MSIL">
-      <HintPath>..\..\FSApps\packages\Google.Cloud.AIPlatform.V1.3.14.0\lib\net462\Google.Cloud.AIPlatform.V1.dll</HintPath>
+    <Reference Include="Google.Cloud.AIPlatform.V1, Version=3.16.0.0, Culture=neutral, PublicKeyToken=185c282632e132a0, processorArchitecture=MSIL">
+      <HintPath>..\..\FSApps\packages\Google.Cloud.AIPlatform.V1.3.16.0\lib\net462\Google.Cloud.AIPlatform.V1.dll</HintPath>
     </Reference>
     <Reference Include="Google.Cloud.Iam.V1, Version=3.4.0.0, Culture=neutral, PublicKeyToken=185c282632e132a0, processorArchitecture=MSIL">
       <HintPath>..\..\FSApps\packages\Google.Cloud.Iam.V1.3.4.0\lib\net462\Google.Cloud.Iam.V1.dll</HintPath>

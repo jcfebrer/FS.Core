@@ -267,6 +267,26 @@ namespace FSLibrary
         }
 
         /// <summary>
+        /// Guardamos el valor de una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public void SetProperty(string key, bool value)
+        {
+            SetProperty(key, value.ToString());
+        }
+
+        /// <summary>
+        /// Guardamos el valor de una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public void SetProperty(string key, DateTime value)
+        {
+            SetProperty(key, value.ToString());
+        }
+
+        /// <summary>
         /// Guardamos la configuracíón en el fichero config.
         /// </summary>
         public void SaveConfigFile()

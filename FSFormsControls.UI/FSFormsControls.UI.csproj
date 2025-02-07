@@ -50,14 +50,14 @@
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Converters\GreaterThanConverter.cs" />
     <Compile Include="Converters\LimitedItemsConverter.cs" />
-    <Compile Include="InputBox.xaml.cs">
+    <Compile Include="Windows\InputBox.xaml.cs">
       <DependentUpon>InputBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="TreeView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="InputBox.xaml">
+    <Page Include="Windows\InputBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Media;
 
-namespace FSFormsControls.UI
+namespace FSFormsControls.UI.Windows
 {
     /// <summary>
     /// Lógica de interacción para InputBox.xaml
     /// </summary>
-    public partial class InputBox : UserControl
+    public partial class InputBox : Window
     {
         public event Action OnYesButton;
         public event Action OnNoButton;
@@ -15,18 +15,6 @@ namespace FSFormsControls.UI
         public InputBox()
         {
             InitializeComponent();
-
-            InputBoxGrid.Visibility = System.Windows.Visibility.Collapsed;
-        }
-
-        public void Show()
-        {
-            InputBoxGrid.Visibility = System.Windows.Visibility.Visible;
-        }
-
-        public void Close()
-        {
-            InputBoxGrid.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         public new Visibility Visibility
@@ -39,6 +27,24 @@ namespace FSFormsControls.UI
         {
             get { return TextBoxHeader.Text; }
             set { TextBoxHeader.Text = value; }
+        }
+
+        public Brush HeaderColor
+        {
+            get { return TextBoxHeader.Foreground; }
+            set { TextBoxHeader.Foreground = value; }
+        }
+
+        public string Text
+        {
+            get { return InputTextBox.Text; }
+            set { InputTextBox.Text = value; }
+        }
+
+        public Brush Color
+        {
+            get { return borderBackground.Background; }
+            set { borderBackground.Background = value; }
         }
 
         public string YesButtonText
