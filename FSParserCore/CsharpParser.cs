@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace FSParserCore
@@ -52,33 +53,60 @@ namespace FSParserCore
             return code;
         }
 
-        // Nuevo método para dividir argumentos teniendo en cuenta paréntesis anidados
+        // Nuevo método para dividir argumentos separados por comas, teniendo en cuenta paréntesis anidados y cadenas entrecomilladas.
         private List<string> SplitArguments(string arguments)
         {
+            if (string.IsNullOrWhiteSpace(arguments))
+                return new List<string>(); // Retorna lista vacía si no hay argumentos.
+
             var result = new List<string>();
-            var currentArg = "";
+            var currentArg = new StringBuilder();
             int parenthesesBalance = 0;
             bool insideString = false;
 
-            foreach (char c in arguments)
+            for (int i = 0; i < arguments.Length; i++)
             {
+                char c = arguments[i];
+
                 if (c == ',' && parenthesesBalance == 0 && !insideString)
                 {
-                    result.Add(TextUtil.RemoveQuotes(currentArg.Trim()));
-                    currentArg = "";
+                    // Añadir el argumento actual (limpio) a la lista y resetear
+                    // Quitamos tambien la @ al comienzo del argumento.
+                    result.Add(TextUtil.RemoveQuotes(currentArg.ToString().Trim().TrimStart('@')));
+                    currentArg.Clear();
                 }
                 else
                 {
                     if (c == '(' && !insideString) parenthesesBalance++;
                     if (c == ')' && !insideString) parenthesesBalance--;
-                    if (c == '\"') insideString = !insideString; // Toggle insideString on encountering "
 
-                    currentArg += c;
+                    if (c == '"')
+                    {
+                        // Manejar comillas escapadas (ej: \" )
+                        if (i > 0 && arguments[i - 1] == '\\')
+                        {
+                            currentArg.Length--; // Elimina el carácter de escape
+                }
+                        else
+                        {
+                            insideString = !insideString; // Cambia el estado
+                        }
+                    }
+
+                    currentArg.Append(c);
                 }
             }
 
-            if (!string.IsNullOrWhiteSpace(currentArg))
-                result.Add(TextUtil.RemoveQuotes(currentArg.Trim()));
+            // Añadir el último argumento si queda algo
+            if (currentArg.Length > 0)
+            {
+                // Quitamos tambien la @ al comienzo del argumento.
+                result.Add(TextUtil.RemoveQuotes(currentArg.ToString().Trim().TrimStart('@')));
+            }
+
+            // Verificar balanceo de paréntesis
+            if (parenthesesBalance != 0)
+                throw new ArgumentException("Los paréntesis no están balanceados en la cadena de argumentos.");
 
             return result;
         }
