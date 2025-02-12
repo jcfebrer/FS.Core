@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace FSFormsControls.UI.Core
+namespace FSFormControls.UI.Core
 {
     public class BindingProxy : Freezable
     {

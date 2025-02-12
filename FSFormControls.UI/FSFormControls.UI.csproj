@@ -7,8 +7,8 @@
     <ProjectGuid>{C9C16943-F967-4825-A66E-985A94FDF28A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FSFormsControls.UI</RootNamespace>
-    <AssemblyName>FSFormsControls.UI</AssemblyName>
+    <RootNamespace>FSFormControls.UI</RootNamespace>
+    <AssemblyName>FSFormControls.UI</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -45,11 +45,28 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ProgressBar.cs" />
+    <Compile Include="Slider.cs" />
+    <Compile Include="Grid.cs" />
+    <Compile Include="TabItem.cs" />
+    <Compile Include="TabControl.cs" />
+    <Compile Include="GroupBox.cs" />
+    <Compile Include="StackPanel.cs" />
+    <Compile Include="Image.cs" />
+    <Compile Include="DataGrid.cs" />
+    <Compile Include="ListBox.cs" />
+    <Compile Include="ComboBox.cs" />
+    <Compile Include="RadioButton.cs" />
+    <Compile Include="DatePicker.cs" />
+    <Compile Include="Button.cs" />
     <Compile Include="Core\BindingProxy.cs" />
     <Compile Include="Core\ObservableObject.cs" />
     <Compile Include="Core\RelayCommand.cs" />
     <Compile Include="Converters\GreaterThanConverter.cs" />
     <Compile Include="Converters\LimitedItemsConverter.cs" />
+    <Compile Include="CheckBox.cs" />
+    <Compile Include="Label.cs" />
+    <Compile Include="TextBox.cs" />
     <Compile Include="Windows\InputBox.xaml.cs">
       <DependentUpon>InputBox.xaml</DependentUpon>
     </Compile>

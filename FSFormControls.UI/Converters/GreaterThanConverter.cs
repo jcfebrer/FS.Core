@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace FSFormsControls.UI.Converters
+namespace FSFormControls.UI.Converters
 {
     public class GreaterThanConverter : IValueConverter
     {

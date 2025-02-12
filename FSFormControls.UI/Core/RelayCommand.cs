@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace FSFormsControls.UI.Core
+namespace FSFormControls.UI.Core
 {
     public class RelayCommand : ICommand
     {

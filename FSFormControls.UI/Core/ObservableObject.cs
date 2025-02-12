@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace FSFormsControls.UI.Core
+namespace FSFormControls.UI.Core
 {
     public class ObservableObject : INotifyPropertyChanged
     {

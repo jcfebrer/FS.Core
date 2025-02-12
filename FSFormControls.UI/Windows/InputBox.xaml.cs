@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Media;
 
-namespace FSFormsControls.UI.Windows
+namespace FSFormControls.UI.Windows
 {
     /// <summary>
     /// Lógica de interacción para InputBox.xaml

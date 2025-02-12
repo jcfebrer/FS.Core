@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // La información general de un ensamblado se controla mediante el siguiente 
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
-[assembly: AssemblyTitle("FSFormsControls.UI")]
+[assembly: AssemblyTitle("FSFormControls.UI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("LG")]
-[assembly: AssemblyProduct("FSFormsControls.UI")]
+[assembly: AssemblyProduct("FSFormControls.UI")]
 [assembly: AssemblyCopyright("Copyright © LG 2025")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

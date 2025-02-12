@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Data;
 
-namespace FSFormsControls.UI.Converters
+namespace FSFormControls.UI.Converters
 {
     public class LimitedItemsConverter : IValueConverter
     {
