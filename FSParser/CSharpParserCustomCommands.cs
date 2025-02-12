@@ -48,6 +48,11 @@ namespace FSParser
                 return string.Join(" ", parser.CustomCommands.Keys.ToArray());
             };
 
+            parser.CustomCommands["ConvertWpf"] = args =>
+            {
+                return FSConvert.ConvertToWPF.Convert(args[0]);
+            };
+
             return parser;
         }
     }

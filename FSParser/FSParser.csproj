@@ -74,6 +74,10 @@
     <Compile Include="XmlParser.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FSConvert\FSConvert.csproj">
+      <Project>{98dfbead-3965-4779-ad46-8d2b908cabdd}</Project>
+      <Name>FSConvert</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSException\FSException.csproj">
       <Project>{2A366B72-70B3-4700-B962-5920A0EEE074}</Project>
       <Name>FSException</Name>

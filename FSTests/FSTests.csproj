@@ -91,6 +91,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="FSConvert\TestConvertXaml.cs" />
     <Compile Include="FSIA\AutoregressiveModeTest.cs" />
     <Compile Include="FSIA\ConvolutionalNetworkTest.cs" />
     <Compile Include="FSIA\NeuralNetworkTest.cs" />
@@ -143,6 +144,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FSConvert\FSConvert.csproj">
+      <Project>{98dfbead-3965-4779-ad46-8d2b908cabdd}</Project>
+      <Name>FSConvert</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FSCrypto\FSCrypto.csproj">
       <Project>{5DDE5624-1823-435D-8C88-46EB601106A4}</Project>
       <Name>FSCrypto</Name>
