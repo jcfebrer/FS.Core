@@ -2,7 +2,7 @@
 
 namespace FSParser
 {
-    public interface IParser
+    public interface ___IParser
     {
         NameValueCollection Memory { get; set; }
 

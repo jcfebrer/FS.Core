@@ -13,6 +13,12 @@ namespace FSConvert
 {
     public class ConvertToWPF
     {
+        private static bool setPosition = true;
+        private static bool setMargin = false;
+        private static bool setSize = true;
+        private static bool setAnchor = true;
+        private static bool setDock = true;
+
         public static bool Convert_old(string inputFile, string outputFile)
         {
             if (!File.Exists(inputFile))
@@ -85,8 +91,10 @@ namespace FSConvert
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
               (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
               (?=.*this\.\k<name>\.Click\s*\+=\s*new\s*System\.EventHandler\(this\.(?<eventHandler>[a-zA-Z0-9_]+)\))?",
-            "<fs:Button x:Name='${name}' Content='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Width='${width}' Height='${height}' Click='${eventHandler}' />"
+            "<fs:Button x:Name='${name}' Content='${text}' ${position} ${margin} ${size} ${anchor} ${dock} Click='${eventHandler}' />"
         ),
         (
             "DBButton",
@@ -94,56 +102,70 @@ namespace FSConvert
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
               (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
               (?=.*this\.\k<name>\.Click\s*\+=\s*new\s*System\.EventHandler\(this\.(?<eventHandler>[a-zA-Z0-9_]+)\))?",
-            "<fs:Button x:Name='${name}' Content='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Width='${width}' Height='${height}' Click='${eventHandler}' />"
+            "<fs:Button x:Name='${name}' Content='${text}' ${position} ${margin} ${size} ${anchor} ${dock} Click='${eventHandler}' />"
         ),
         (
             "Label",
             @"this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.Label\(\);\s*
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
-              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?",
-            "<fs:Label x:Name='${name}' Content='${text}' Padding='0' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:Label x:Name='${name}' Content='${text}' Padding='0' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBLabel",
             @"this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBLabel\(\);\s*
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
-              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?",
-            "<fs:Label x:Name='${name}' Content='${text}' Padding='0' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:Label x:Name='${name}' Content='${text}' Padding='0' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "TextBox",
             @"this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.TextBox\(\);\s*
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
-              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?",
-            "<fs:TextBox x:Name='${name}' Text='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:TextBox x:Name='${name}' Text='${text}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBTextBox",
             @"this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBTextBox\(\);\s*
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
-              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?",
-            "<fs:TextBox x:Name='${name}' Text='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:TextBox x:Name='${name}' Text='${text}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DatePicker",
             @"this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.DatePicker\(\);\s*
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
-              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?",
-            "<fs:DatePicker x:Name='${name}' Padding='0' Text='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:DatePicker x:Name='${name}' Padding='0' Text='${text}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBDate",
             @"this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBDate\(\);\s*
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
-              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?",
-            "<fs:DatePicker x:Name='${name}' Padding='0' Text='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:DatePicker x:Name='${name}' Padding='0' Text='${text}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "CheckBox",
@@ -151,9 +173,11 @@ namespace FSConvert
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
               (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
               (?=.*this\.\k<name>\.CheckedChanged\s*\+=\s*new\s*System\.EventHandler\(this\.(?<eventHandler>[a-zA-Z0-9_]+)\))?
               (?=.*this\.\k<name>\.Enter\s*\+=\s*new\s*System\.EventHandler\(this\.(?<eventHandlerEnter>[a-zA-Z0-9_]+)\))?",
-            "<fs:CheckBox x:Name='${name}' Content='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' CheckedChanged='${eventHandler}' Enter='${eventHandlerEnter}' />"
+            "<fs:CheckBox x:Name='${name}' Content='${text}' ${position} ${margin} ${size} ${anchor} ${dock} Checked='${eventHandler}' />"
         ),
         (
             "DBCheckBox",
@@ -161,25 +185,31 @@ namespace FSConvert
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
               (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
               (?=.*this\.\k<name>\.CheckedChanged\s*\+=\s*new\s*System\.EventHandler\(this\.(?<eventHandler>[a-zA-Z0-9_]+)\))?
               (?=.*this\.\k<name>\.Enter\s*\+=\s*new\s*System\.EventHandler\(this\.(?<eventHandlerEnter>[a-zA-Z0-9_]+)\))?",
-            "<fs:CheckBox x:Name='${name}' Content='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' CheckedChanged='${eventHandler}' Enter='${eventHandlerEnter}' />"
+            "<fs:CheckBox x:Name='${name}' Content='${text}' ${position} ${margin} ${size} ${anchor} ${dock} Checked='${eventHandler}' />"
         ),
         (
             "RadioButton",
             @"this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.RadioButton\(\);\s*
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
-              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?",
-            "<fs:RadioButton x:Name='${name}' Content='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:RadioButton x:Name='${name}' Content='${text}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBRadioButton",
             @"this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBRadioButton\(\);\s*
               (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
               (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
-              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?",
-            "<fs:RadioButton x:Name='${name}' Content='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+              (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+              (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:RadioButton x:Name='${name}' Content='${text}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "ComboBox",
@@ -188,8 +218,9 @@ namespace FSConvert
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
             (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"")?
-            ",
-            "<fs:ComboBox x:Name='${name}' Text='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+              (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:ComboBox x:Name='${name}' Text='${text}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBCombo",
@@ -198,8 +229,9 @@ namespace FSConvert
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
             (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"")?
-            ",
-            "<fs:ComboBox x:Name='${name}' Text='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?",
+            "<fs:ComboBox x:Name='${name}' Text='${text}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "ListBox",
@@ -207,8 +239,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.ListBox\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:ListBox x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            "<fs:ListBox x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBListBox",
@@ -216,8 +250,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.ListBox\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:ListBox x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            "<fs:ListBox x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DataGridView",
@@ -225,8 +261,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.DataGridView\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:DataGrid x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n{{columns}}\n</fs:DataGrid>"
+            "<fs:DataGrid x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n{{columns}}\n</fs:DataGrid>"
         ),
         (
             "DBGridView",
@@ -234,8 +272,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBGridView\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:DataGrid x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n{{columns}}\n</fs:DataGrid>"
+            "<fs:DataGrid x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n{{columns}}\n</fs:DataGrid>"
         ),
         (
             "DBGrid",
@@ -243,8 +283,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBGrid\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:DataGrid x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n{{columns}}\n</fs:DataGrid>"
+            "<fs:DataGrid x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n{{columns}}\n</fs:DataGrid>"
         ),
         (
             "PictureBox",
@@ -252,8 +294,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.PictureBox\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:Image x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            "<fs:Image x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBPictureBox",
@@ -261,8 +305,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBPictureBox\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:Image x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            "<fs:Image x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "Panel",
@@ -271,7 +317,7 @@ namespace FSConvert
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
             ",
-            "<fs:StackPanel x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n  <Grid>{{children}}</Grid>\n</fs:StackPanel>"
+            "<fs:StackPanel x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n  <StackPanel>{{children}}</StackPanel>\n</fs:StackPanel>"
         ),
         (
             "DBPanel",
@@ -279,8 +325,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBPanel\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:StackPanel x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n  <Grid>{{children}}</Grid>\n</fs:StackPanel>"
+            "<fs:StackPanel x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n  <StackPanel>{{children}}</StackPanel>\n</fs:StackPanel>"
         ),
         (
             "GroupBox",
@@ -289,8 +337,10 @@ namespace FSConvert
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
             (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:GroupBox x:Name='${name}' Header='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Width='${width}' Height='${height}'>\n  <Grid>{{children}}</Grid>\n</fs:GroupBox>"
+            "<fs:GroupBox x:Name='${name}' Header='${text}' ${position} ${margin} ${size} ${anchor} ${dock}>\n  <StackPanel>{{children}}</StackPanel>\n</fs:GroupBox>"
         ),
         (
             "DBGroupBox",
@@ -299,8 +349,10 @@ namespace FSConvert
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
             (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:GroupBox x:Name='${name}' Header='${text}' HorizontalAlignment='Left' VerticalAlignment='Top' Width='${width}' Height='${height}'>\n  <Grid>{{children}}</Grid>\n</fs:GroupBox>"
+            "<fs:GroupBox x:Name='${name}' Header='${text}' ${position} ${margin} ${size} ${anchor} ${dock}>\n  <StackPanel>{{children}}</StackPanel>\n</fs:GroupBox>"
         ),
         (
             "TabControl",
@@ -308,8 +360,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.TabControl\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:TabControl x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n  {{children}}\n</fs:TabControl>"
+            "<fs:TabControl x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n  {{children}}\n</fs:TabControl>"
         ),
         (
             "DBTabControl",
@@ -317,8 +371,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBTabControl\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:TabControl x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n  {{children}}\n</fs:TabControl>"
+            "<fs:TabControl x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n  {{children}}\n</fs:TabControl>"
         ),
         (
             "TabPage",
@@ -327,8 +383,10 @@ namespace FSConvert
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
             (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:TabItem x:Name='${name}' Header='${text}'>\n  <Grid>{{children}}</Grid>\n</fs:TabItem>"
+            "<fs:TabItem x:Name='${name}' Header='${text}'>\n  <ScrollViewer HorizontalScrollBarVisibility='Auto'><StackPanel>{{children}}</StackPanel></ScrollViewer>\n</fs:TabItem>"
         ),
         (
             "DBTabPage",
@@ -337,8 +395,10 @@ namespace FSConvert
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
             (?=.*this\.\k<name>\.Text\s*=\s*""(?<text>[^""]+)"" )?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:TabItem x:Name='${name}' Header='${text}'>\n  <Grid>{{children}}</Grid>\n</fs:TabItem>"
+            "<fs:TabItem x:Name='${name}' Header='${text}'>\n  <ScrollViewer HorizontalScrollBarVisibility='Auto'><StackPanel>{{children}}</StackPanel></ScrollViewer>\n</fs:TabItem>"
         ),
         (
             "FlowLayoutPanel",
@@ -346,8 +406,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.FlowLayoutPanel\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:StackPanel x:Name='${name}' Orientation='Horizontal' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n  <Grid>{{children}}</Grid>\n</fs:StackPanel>"
+            "<fs:StackPanel x:Name='${name}' Orientation='Horizontal' ${position} ${margin} ${size} ${anchor} ${dock}>\n  <StackPanel>{{children}}</StackPanel>\n</fs:StackPanel>"
         ),
         (
             "DBFlowLayoutPanel",
@@ -355,8 +417,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBFlowLayoutPanel\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:StackPanel x:Name='${name}' Orientation='Horizontal' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n  <Grid>{{children}}</Grid>\n</fs:StackPanel>"
+            "<fs:StackPanel x:Name='${name}' Orientation='Horizontal' ${position} ${margin} ${size} ${anchor} ${dock}>\n  <StackPanel>{{children}}</StackPanel>\n</fs:StackPanel>"
         ),
         (
             "TableLayoutPanel",
@@ -364,8 +428,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.TableLayoutPanel\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:Grid x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n  <!-- Define rows and columns -->\n</fs:Grid>"
+            "<fs:Grid x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n  <!-- Define rows and columns -->\n</fs:Grid>"
         ),
         (
             "DBTableLayoutPanel",
@@ -373,8 +439,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBTableLayoutPanel\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:Grid x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}'>\n  <!-- Define rows and columns -->\n</fs:Grid>"
+            "<fs:Grid x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock}>\n  <!-- Define rows and columns -->\n</fs:Grid>"
         ),
         (
             "TrackBar",
@@ -382,8 +450,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.TrackBar\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:Slider x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            "<fs:Slider x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBTrackBar",
@@ -391,8 +461,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBTrackBar\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:Slider x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            "<fs:Slider x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "ProgressBar",
@@ -400,8 +472,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*System\.Windows\.Forms\.ProgressBar\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:ProgressBar x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            "<fs:ProgressBar x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         ),
         (
             "DBProgressBar",
@@ -409,8 +483,10 @@ namespace FSConvert
             this\.(?<name>[a-zA-Z0-9_]+)\s*=\s*new\s*FSFormControls\.DBProgressBar\(\);
             (?=.*this\.\k<name>\.Location\s*=\s*new\s*System\.Drawing\.Point\((?<x>\d+),\s*(?<y>\d+)\))?
             (?=.*this\.\k<name>\.Size\s*=\s*new\s*System\.Drawing\.Size\((?<width>\d+),\s*(?<height>\d+)\))?
+            (?=.*this\.\k<name>\.Anchor\s*=\s*\(\(System\.Windows\.Forms\.AnchorStyles\)\((?<anchor>[^\)]+)\)\); )?
+            (?=.*this\.\k<name>\.Dock\s*=\s*System\.Windows\.Forms\.DockStyle\.(?<dock>\w+); )?
             ",
-            "<fs:ProgressBar x:Name='${name}' HorizontalAlignment='Left' VerticalAlignment='Top' Margin='${x},${y},0,0' Width='${width}' Height='${height}' />"
+            "<fs:ProgressBar x:Name='${name}' ${position} ${margin} ${size} ${anchor} ${dock} />"
         )
                 // Puedes agregar más patrones para otros controles (ComboBox, ListBox, etc.) aquí.
             };
@@ -456,12 +532,52 @@ namespace FSConvert
                         string name = match.Groups["name"].Value;
                         string xaml = replacement;
 
+                        if (setMargin)
+                            xaml = xaml.Replace("${margin}", "Margin='${x},${y},0,0'");
+                        else
+                            xaml = xaml.Replace("${margin}", "");
+
+                        if (setSize)
+                            xaml = xaml.Replace("${size}", "Width='${width}' Height='${height}'");
+                        else
+                            xaml = xaml.Replace("${size}", "");
+
+                        if (setAnchor)
+                        {
+                            //xaml = xaml.Replace("${anchor}", "Anchor='${anchor}'");
+
+                            string anchor = match.Groups["anchor"].Value;
+                            bool isLeft = anchor.Contains("Left");
+                            bool isRight = anchor.Contains("Right");
+                            bool isTop = anchor.Contains("Top");
+                            bool isBottom = anchor.Contains("Bottom");
+
+                            string horizontalAlignment = (isLeft && isRight) ? "Stretch" : isRight ? "Right" : "Left";
+                            string verticalAlignment = (isTop && isBottom) ? "Stretch" : isBottom ? "Bottom" : "Top";
+
+                            xaml = xaml.Replace("${anchor}", $"HorizontalAlignment='{horizontalAlignment}' VerticalAlignment='{verticalAlignment}'");
+                        }
+                        else
+                            xaml = xaml.Replace("${anchor}", "");
+
+                        if (setDock)
+                            xaml = xaml.Replace("${dock}", "DockPanel.Dock='${dock}'");
+                        else
+                            xaml = xaml.Replace("${dock}", "");
+
+                        if (setPosition && !xaml.Contains("HorizontalAlignment"))
+                            xaml = xaml.Replace("${position}", "HorizontalAlignment='Left' VerticalAlignment='Top'");
+                        else
+                            xaml = xaml.Replace("${position}", "");
+
                         //Procesamos las columnas del grid
                         if ((control == "Grid" || control == "DBGrid" || control == "DBGridView") && gridColumnsMapping.ContainsKey(name))
                         {
                             string columnsXaml = string.Join("\n", gridColumnsMapping[name]);
                             xaml = xaml.Replace("{{columns}}", columnsXaml);
                         }
+                        else
+                            xaml = xaml.Replace("{{columns}}", "");
 
                         foreach (var groupName in regex.GetGroupNames())
                         {
@@ -474,12 +590,22 @@ namespace FSConvert
                                 xaml = xaml.Replace($"${{{groupName}}}", "");
                             }
                         }
+
+                        xaml = xaml.Replace("DockPanel.Dock=''", "")
+                            .Replace("DockPanel.Dock='Fill'", "")
+                            .Replace("Anchor=''", "")
+                            .Replace("Width=''", "")
+                            .Replace("Height=''", "")
+                            .Replace("Click=''", "")
+                            .Replace("Margin=',,0,0'", "");
+
                         controlXamlMapping[name] = (xaml, control); // Sobrescribir si ya existe.
                     }
                 }
             }
 
             // Paso 2: Extraer la jerarquía de contenedores.
+            //var childControls = new List<string>();
             var containerRegex = new Regex(
                 @"this\.(?<container>[a-zA-Z0-9_]+)\.Controls\.Add\(\s*this\.(?<child>[a-zA-Z0-9_]+)\s*\);",
                 RegexOptions.Multiline);
@@ -491,35 +617,23 @@ namespace FSConvert
                 if (!containerMapping.ContainsKey(container))
                     containerMapping[container] = new List<string>();
                 containerMapping[container].Add(child);
+
+                //if(!childControls.Contains(child))
+                //    childControls.Add(child);
             }
 
-            // Paso 3: Determinar los controles de nivel superior, incluyendo los del formulario.
             var topLevelControls = new List<string>();
-
-            foreach(var container in containerMapping)
+            foreach (var control in containerMapping)
             {
-                if(container.Value.Count > 0)
-                    topLevelControls.Add(container.Key);
-            }
+                //if(control.Value.Count > 0)
+                //    topLevelControls.Add(control.Key);
 
-            // Controles añadidos directamente al formulario (this.Controls.Add).
-            if (containerMapping.ContainsKey("this"))
-            {
-                topLevelControls.AddRange(containerMapping["this"]);
-            }
-
-            // Controles definidos pero que no son hijos de ningún contenedor.
-            var allChildControls = new HashSet<string>(containerMapping.Values.SelectMany(c => c));
-            foreach (var control in controlXamlMapping.Keys)
-            {
-                if (!allChildControls.Contains(control) && !topLevelControls.Contains(control))
-                {
-                    topLevelControls.Add(control);
-                }
+                //if (!childControls.Contains(control.Key))
+                //    topLevelControls.Add(control.Key);
             }
 
             //topLevelControls.Clear();
-            //topLevelControls.Add("tabServicio");
+            topLevelControls.Add("tabServicio");
 
             // Construir el XAML final combinando los controles de nivel superior.
             var finalXamlBuilder = new StringBuilder();

@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace FSParser
 {
@@ -41,8 +42,46 @@ namespace FSParser
         public Dictionary<string, object> Variables => variables;
         public Dictionary<string, Func<List<string>, object>> CustomCommands => customCommands;
 
+        public event EventHandler OnMemoryUpdate;
+
+        private static ManualResetEvent resetEvent = new ManualResetEvent(true);
+
+        bool stop = false;
+
         public CSharpParser()
         {
+        }
+
+        public void Abort()
+        {
+            stop = true;
+        }
+
+        public void Clear()
+        {
+            //inicializamos las variables
+            variables.Clear();
+            stop = false;
+        }
+
+        public void ThreadWait()
+        {
+            resetEvent.WaitOne();
+        }
+
+        public void ThreadSet()
+        {
+            resetEvent.Set();
+        }
+
+        public void ThreadReset()
+        {
+            resetEvent.Reset();
+        }
+
+        public void Wait(int milisecs)
+        {
+            Thread.Sleep(milisecs);
         }
 
         private string RemoveComments(string code)
@@ -189,7 +228,7 @@ namespace FSParser
             // Evalúa funciones recursivamente utilizando functionCallRegex.Replace
             expression = functionCallRegex.Replace(expression, match =>
             {
-                string functionName = match.Groups[1].Value;
+                string functionName = match.Groups[1].Value.ToLower();
                 string argumentList = match.Groups[2].Value;
 
                 // Evalúa los argumentos
@@ -215,17 +254,18 @@ namespace FSParser
                     throw new Exception($"Función '{functionName}' no definida.");
                 }
 
+                //result = EvaluateExpression(result.ToString(), variablesToUse);
+                
                 // Devuelve el resultado formateado
-                return FormatResult(result);
+                return FormatResult(result.ToString());
             });
 
             // Evalúa la expresión final si es una operación matemática simple
             return EvaluateFinalExpression(expression, variablesToUse);
         }
 
-        private string FormatResult(object result)
+        private string FormatResult(string value)
         {
-            string value = result.ToString();
             if (NumberUtils.IsNumeric(value))
             {
                 return value.Replace(",", ".");
@@ -353,6 +393,10 @@ namespace FSParser
         {
             for (int i = start; i < end; i++)
             {
+                if (stop) break;
+
+                ThreadWait();
+
                 string line = lines[i].Trim();
 
                 if (string.IsNullOrEmpty(line))
@@ -383,6 +427,9 @@ namespace FSParser
                 if (assignmentMatch.Success)
                 {
                     HandleAssignment(assignmentMatch, localVariables);
+
+                    if (OnMemoryUpdate != null)
+                        OnMemoryUpdate(localVariables, EventArgs.Empty);
                     continue;
                 }
 
@@ -422,13 +469,13 @@ namespace FSParser
                 var customCommandMatch = functionCallRegex.Match(line);
                 if (customCommandMatch.Success)
                 {
-                    string commandName = customCommandMatch.Groups[1].Value;
+                    string commandName = customCommandMatch.Groups[1].Value.ToLower();
                     string argumentList = customCommandMatch.Groups[2].Value;
 
                     if (customCommands.ContainsKey(commandName))
                     {
                         List<string> evaluatedArgs = SplitArguments(argumentList);
-                            //.Select(arg => EvaluateExpression(arg.Trim(), localVariables))
+                            //.Select(arg => EvaluateExpression(arg.Trim(), localVariables).ToString())
                             //.ToList();
 
                         customCommands[commandName](evaluatedArgs);
