@@ -62,15 +62,15 @@ namespace FSTests.FSParser
                 }
                 extension = "".cs"";
                 if(extension == "".cs"") {
-                help = Help();
+                help = help();
                     }
                 var1 = ""esto es una prueba"";
-                if(Contains(var1, ""una"")) {
-                    var2 = Replace(""Contiene"", ""nti"", ""mto"");
+                if(contains(var1, ""una"")) {
+                    var2 = replace(""Contiene"", ""nti"", ""mto"");
                 }
-                var3=ReplaceReg(""esto es una prueba"", ""una"", ""dos"");
+                var3=replacereg(""esto es una prueba"", ""una"", ""dos"");
                 x = Suma(5, 10);
-                Print(x);
+                print(x);
             ";
 
             var code4 = new List<string>
@@ -101,6 +101,22 @@ namespace FSTests.FSParser
                 "}"
             };
 
+            var code6 = new List<string>
+            {
+                "hola = \"mundo\";",
+                "v1 = \"hola \" + 40 + \"radiola\";",
+                "v2 = \"hola \" + hola + \" adios\";",
+                "var1 = 100;",
+                "var2 = 200;",
+                "var3 = 50;",
+                "suma1 = var1 + var2 + var3;",
+                
+                "var1 = \"hola\";",
+                "var2 = \"que\";",
+                "var3 = \"tal\";",
+                "suma2 = var1 + var2 + var3;"
+            };
+
             parser.Parse(code);
 
             Assert.AreEqual(parser.Variables["x"], 0.0);
@@ -125,18 +141,25 @@ namespace FSTests.FSParser
 
             parser.Parse(code4);
 
-            Assert.AreEqual(parser.Variables["x"], 0.893996663600558d);
+            Assert.AreEqual(parser.Variables["x"], 0.893996663600558);
             Assert.AreEqual(parser.Variables["y"], 1.0);
             Assert.AreEqual(parser.Variables["z"], 30.0);
-            Assert.AreEqual(parser.Variables["result"], 0.893996663600558d);
+            Assert.AreEqual(parser.Variables["result"], 0.893996663600558);
 
             parser.Parse(code5);
 
             Assert.AreEqual(parser.Variables["x"], 16.0);
             Assert.AreEqual(parser.Variables["y"], 32.0);
             Assert.AreEqual(parser.Variables["z"], 22.0);
-            Assert.AreEqual(parser.Variables["result"], 0.893996663600558d);
-            Assert.AreEqual(parser.Variables["r"], "hola ad,ios gabon");
+            Assert.AreEqual(parser.Variables["result"], 0.893996663600558);
+            Assert.AreEqual(parser.Variables["r"], "\"hola\" \"ad,ios\" \"gabon\"");
+
+            parser.Parse(code6);
+
+            Assert.AreEqual(parser.Variables["v1"], "hola 40radiola");
+            Assert.AreEqual(parser.Variables["v2"], "hola mundo adios");
+            Assert.AreEqual(parser.Variables["suma1"], 350.0);
+            Assert.AreEqual(parser.Variables["suma2"], "holaquetal");
         }
     }
 }

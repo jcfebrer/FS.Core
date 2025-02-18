@@ -10,9 +10,9 @@ namespace FSParser
     public class SimpleExpressionEvaluator
     {
         // Evalúa una expresión matemática o lógica, reemplazando las variables con sus valores.
-        public static object Evaluate(string expression, Dictionary<string, object> localVariables = null)
+        public static object Evaluate(string expression, Dictionary<string, object> localVariables = null, string textMark = null)
         {
-            var tokens = Tokenize(expression, localVariables);
+            var tokens = Tokenize(expression, localVariables, textMark);
 
             // Si hay solo un token, significa que es una constante o variable, retornamos directamente.
             if (tokens.Count == 1)
@@ -29,35 +29,8 @@ namespace FSParser
                 return EvaluateRPN(rpn);
         }
 
-        // Aplica las variables locales a la expresión.
-        private static string ApplyVariables(string expression, Dictionary<string, object> localVariables = null)
-        {
-            if (localVariables == null)
-                return expression;
-
-            // Reemplaza variables en la expresión
-            foreach (var variable in localVariables)
-            {
-                var v = variable.Value.ToString();
-                if (double.TryParse(v, out _))
-                    v = v.Replace(",", "."); // Asegura que los números sean válidos con punto como separador decimal.
-                else if (!(v.StartsWith("\"") && v.EndsWith("\"")))
-                    v = $"\"{v}\""; // Si no es un string, lo convierte a string entre comillas.
-
-                // Reemplaza las ocurrencias de las variables en la expresión.
-                expression = Regex.Replace(expression, $@"\b{Regex.Escape(variable.Key)}\b", v);
-            }
-
-            if (Regex.IsMatch(expression, $@"\b({string.Join("|", localVariables.Keys.Select(Regex.Escape))})\b"))
-            {
-                expression = ApplyVariables(expression);
-            }
-
-            return expression;
-        }
-
         // Tokeniza la expresión en componentes: números, operadores y variables.
-        private static List<string> Tokenize(string expression, Dictionary<string, object> localVariables)
+        private static List<string> Tokenize(string expression, Dictionary<string, object> localVariables, string textMark)
         {
             var tokens = new List<string>();
             var currentToken = "";
@@ -91,7 +64,7 @@ namespace FSParser
                         i++;
                     }
 
-                    currentToken = ApplyVariables(currentToken, localVariables);
+                    currentToken = TextUtil.ApplyVariables(currentToken, localVariables, textMark);
 
                     tokens.Add(currentToken);
                     currentToken = "";

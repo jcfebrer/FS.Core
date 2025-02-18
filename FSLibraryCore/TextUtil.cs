@@ -2369,7 +2369,7 @@ namespace FSLibraryCore
         }
 
         /// <summary>
-        /// Elimina las comillas de una cadena.
+        /// Elimina las comillas externas de una cadena.
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
@@ -3249,6 +3249,79 @@ namespace FSLibraryCore
         public static string JoinParts(char separator, IEnumerable<String> parts)
         {
             return String.Join(separator.ToString(), parts);
+        }
+
+
+        /// <summary>
+        /// Aplica las variables a la expresión sustituyendo por los valores de forma recursiva.
+        /// </summary>
+        /// <param name="expression">Expresión a evaluar y sustituir por las variables.</param>
+        /// <param name="variables">Diccionario de variables con su valor.</param>
+        /// <param name="textMark">Si la expresión contiene esta marca, no la procesamos.</param>
+        /// <returns></returns>
+        public static string ApplyVariables(string expression, Dictionary<string, object> variables, string textMark)
+        {
+            string lastExpression;
+            do
+            {
+                if (variables == null)
+                    return expression;
+
+                if (textMark != null && expression.Contains(textMark))
+                    return expression;
+
+                lastExpression = expression; // Guarda la expresión antes del reemplazo
+
+                // Construir patrón para detectar variables
+                string pattern = $@"\b({string.Join("|", variables.Keys.Select(Regex.Escape))})\b";
+
+                // Usar StringBuilder para construir la nueva expresión
+                StringBuilder result = new StringBuilder();
+                int lastIndex = 0;
+
+                foreach (Match match in Regex.Matches(expression, pattern))
+                {
+                    // Contar cuántas comillas hay antes de la coincidencia
+                    string beforeMatch = expression.Substring(0, match.Index);
+                    int doubleQuotesCount = beforeMatch.Count(c => c == '"');
+                    int singleQuotesCount = beforeMatch.Count(c => c == '\'');
+
+                    // Si el número de comillas es impar, significa que está dentro de una cadena.
+                    bool insideDoubleQuotes = doubleQuotesCount % 2 != 0;
+                    bool insideSingleQuotes = singleQuotesCount % 2 != 0;
+
+                    // Solo reemplazar si NO está dentro de comillas
+                    if (!insideDoubleQuotes && !insideSingleQuotes)
+                    {
+                        result.Append(expression.Substring(lastIndex, match.Index - lastIndex)); // Agregar parte anterior
+                        string variableValue = variables[match.Value].ToString();
+
+                        //Si el valor no es una variable de memoria, la entrecomillamos o si es un numero, cambiamos coma por punto.
+                        if (!Regex.Match(variableValue, pattern).Success)
+                        {
+                            if (double.TryParse(variableValue, out _))
+                                variableValue = variableValue.Replace(",", "."); // Asegura que los números sean válidos con punto como separador decimal.
+                            else if (!(variableValue.StartsWith("\"") && variableValue.EndsWith("\"")))
+                                variableValue = $"\"{variableValue}\""; // Si no es un número, lo convierte a string entre comillas.
+                        }
+
+                        result.Append(variableValue);
+                    }
+                    else
+                    {
+                        result.Append(expression.Substring(lastIndex, match.Index - lastIndex + match.Length)); // Agregar sin reemplazar
+                    }
+
+                    lastIndex = match.Index + match.Length;
+                }
+
+                // Agregar el resto de la expresión
+                result.Append(expression.Substring(lastIndex));
+                expression = result.ToString();
+
+            } while (!expression.Equals(lastExpression)); // Repetir hasta que la expresión ya no cambie
+
+            return expression;
         }
     }
 }

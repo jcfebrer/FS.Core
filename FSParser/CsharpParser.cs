@@ -15,8 +15,8 @@ namespace FSParser
     public class CSharpParser
     {
         private readonly Dictionary<string, object> variables = new Dictionary<string, object>();
-        private readonly Dictionary<string, (List<string> Parameters, List<string> Body)> functions = new Dictionary<string, (List<string> Parameters, List<string> Body)>();
-        private readonly Dictionary<string, Func<List<string>, object>> customCommands = new Dictionary<string, Func<List<string>, object>>();
+        private readonly Dictionary<string, (List<string> Parameters, List<string> Body)> functions = new Dictionary<string, (List<string> Parameters, List<string> Body)>(StringComparer.InvariantCultureIgnoreCase);
+        private readonly Dictionary<string, Func<List<string>, object>> customCommands = new Dictionary<string, Func<List<string>, object>>(StringComparer.InvariantCultureIgnoreCase);
 
         private readonly static string textMark = "(<*>)"; // Marca que identifica un texto que no se debe de parsear.
 
@@ -24,21 +24,24 @@ namespace FSParser
         private readonly static string blockCommentPattern = @"(?<![""'])/\*[^*]*\*+(?:[^/*][^*]*\*+)*/";
         private readonly static string assignmentPattern = @"^\s*(\w+)\s*=\s*(.+);$";
         private readonly static string ifPattern = @"^\s*if\s*\((.+)\)\s*{?$";
+        private readonly static string elsePattern = @"^\s*else\s*{?$";
         private readonly static string returnPattern = @"^\s*return\s*(.*);";
         private readonly static string whilePattern = @"^\s*while\s*\((.+)\)\s*{?$";
         private readonly static string functionDefPattern = @"^\s*function\s+(\w+)\s*\((.*?)\)\s*{?$";
         private readonly static string functionCallPattern = @"(\w+\s*)\(((?:""[^""]*""|[^()""]|(?<Open>\()|(?<-Open>\)))*)\)";
-        private readonly static string allowedTextInLine = @"(\{|\}|/\*|\*/)";
+        private readonly static string allowedTextInLinePattern = @"(\{|\}|/\*|\*/|else)";
 
         private readonly Regex singleLineCommentRegex = new Regex(singleLineCommentPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex blockCommentRegex = new Regex(blockCommentPattern, RegexOptions.Compiled | RegexOptions.Singleline);
         private readonly Regex assignmentRegex = new Regex(assignmentPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex ifRegex = new Regex(ifPattern, RegexOptions.Compiled | RegexOptions.Multiline);
+        private readonly Regex elseRegex = new Regex(elsePattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex returnRegex = new Regex(returnPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex whileRegex = new Regex(whilePattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionDefRegex = new Regex(functionDefPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionCallRegex = new Regex(functionCallPattern, RegexOptions.Compiled | RegexOptions.Multiline);
-        
+        private readonly Regex allowedTextInLineRegex = new Regex(allowedTextInLinePattern, RegexOptions.Compiled | RegexOptions.Multiline);
+
         public Dictionary<string, object> Variables => variables;
         public Dictionary<string, Func<List<string>, object>> CustomCommands => customCommands;
 
@@ -111,7 +114,7 @@ namespace FSParser
                 {
                     // Añadir el argumento actual (limpio) a la lista y resetear
                     // Quitamos tambien la @ al comienzo del argumento.
-                    result.Add(TextUtil.RemoveQuotes(currentArg.ToString().Trim().TrimStart('@')));
+                    result.Add(currentArg.ToString().Trim().TrimStart('@'));
                     currentArg.Clear();
                 }
                 else
@@ -140,7 +143,7 @@ namespace FSParser
             if (currentArg.Length > 0)
             {
                 // Quitamos tambien la @ al comienzo del argumento.
-                result.Add(TextUtil.RemoveQuotes(currentArg.ToString().Trim().TrimStart('@')));
+                result.Add(currentArg.ToString().Trim().TrimStart('@'));
             }
 
             // Verificar balanceo de paréntesis
@@ -172,38 +175,9 @@ namespace FSParser
             var result = new List<string>();
             foreach(string s in arguments)
             {
-                result.Add(ApplyVariables(s));
+                result.Add(TextUtil.ApplyVariables(s, variables, textMark));
             }
             return result;
-        }
-
-        private string ApplyVariables(string expression, Dictionary<string, object> localVariables = null)
-        {
-            // Usar el diccionario proporcionado o la variable global
-            var variablesToUse = localVariables ?? variables;
-
-            // Si no hay claves en el diccionario, devolver la expresión original
-            if (!variablesToUse.Any() || expression.Contains(textMark))
-                return expression;
-
-            // Construir patrón de reemplazo una sola vez
-            string pattern = $@"\b({string.Join("|", variablesToUse.Keys.Select(Regex.Escape))})\b";
-
-            // Reemplazar todas las variables en la expresión
-            expression = Regex.Replace(expression, pattern, match =>
-            {
-                var key = match.Groups[1].Value;
-                var variableValue = FormatResult(variablesToUse[key].ToString());
-                return variableValue;
-            });
-
-            // Verificar si quedan variables sin reemplazar y evitar recursión innecesaria
-            if (Regex.IsMatch(expression, pattern) && !expression.Contains(textMark))
-            {
-                expression = ApplyVariables(expression, variablesToUse);
-            }
-
-            return expression;
         }
 
         private bool IsSimpleMathExpression(string expression)
@@ -224,53 +198,55 @@ namespace FSParser
         private object EvaluateExpression(string expression, Dictionary<string, object> localVariables = null)
         {
             var variablesToUse = localVariables ?? variables;
+            object result = expression;
+            object lastResult;
 
-            // Evalúa funciones recursivamente utilizando functionCallRegex.Replace
-            expression = functionCallRegex.Replace(expression, match =>
+            do
             {
-                string functionName = match.Groups[1].Value.ToLower();
-                string argumentList = match.Groups[2].Value;
+                //Si la expresión contiene la marca de texto para no evaluar, salimos.
+                if (textMark != null && result.ToString().Contains(textMark))
+                    break;
 
-                // Evalúa los argumentos
-                var evaluatedArgs = ApplyVariablesToArguments(SplitArguments(argumentList));
+                lastResult = result; // Guarda la expresión antes de la evaluación
 
-                object result;
+                // Evalúa funciones recursivamente utilizando functionCallRegex.Replace
+                result = functionCallRegex.Replace(result.ToString(), match =>
+                {
+                    string functionName = match.Groups[1].Value;
+                    string argumentList = match.Groups[2].Value;
 
-                // Usa un bloque `switch` tradicional
-                if (functions.ContainsKey(functionName))
-                {
-                    result = CallFunction(functionName, evaluatedArgs);
-                }
-                else if (IsSystemFunction(functionName, out MethodInfo methodInfo))
-                {
-                    result = CallSystemFunction(methodInfo, evaluatedArgs);
-                }
-                else if (customCommands.ContainsKey(functionName))
-                {
-                    result = customCommands[functionName](evaluatedArgs);
-                }
-                else
-                {
-                    throw new Exception($"Función '{functionName}' no definida.");
-                }
+                    // Evalúa los argumentos
+                    var evaluatedArgs = ApplyVariablesToArguments(SplitArguments(argumentList));
 
-                //result = EvaluateExpression(result.ToString(), variablesToUse);
-                
-                // Devuelve el resultado formateado
-                return FormatResult(result.ToString());
-            });
+                    object _result;
+
+                    if (functions.ContainsKey(functionName))
+                    {
+                        _result = CallFunction(functionName, evaluatedArgs);
+                    }
+                    else if (IsSystemFunction(functionName, out MethodInfo methodInfo))
+                    {
+                        _result = CallSystemFunction(methodInfo, evaluatedArgs);
+                    }
+                    else if (customCommands.ContainsKey(functionName))
+                    {
+                        _result = customCommands[functionName](evaluatedArgs);
+                    }
+                    else
+                    {
+                        throw new Exception($"Función '{functionName}' no definida.");
+                    }
+
+                    return _result.ToString();
+                });
+
+                result = EvaluateFinalExpression(result.ToString(), variablesToUse);
+
+                // Sigue evaluando mientras la expresión cambie después de la evaluación
+            } while (!result.Equals(lastResult));
 
             // Evalúa la expresión final si es una operación matemática simple
-            return EvaluateFinalExpression(expression, variablesToUse);
-        }
-
-        private string FormatResult(string value)
-        {
-            if (NumberUtils.IsNumeric(value))
-            {
-                return value.Replace(",", ".");
-            }
-            return value;
+            return result;
         }
 
         private object EvaluateFinalExpression(string expression, Dictionary<string, object> variablesToUse)
@@ -279,7 +255,7 @@ namespace FSParser
             {
                 if (IsSimpleMathExpression(expression))
                 {
-                    return SimpleExpressionEvaluator.Evaluate(expression, variablesToUse);
+                    return SimpleExpressionEvaluator.Evaluate(expression, variablesToUse, textMark);
                 }
                 else if (NumberUtils.IsNumeric(expression))
                 {
@@ -287,7 +263,7 @@ namespace FSParser
                 }
                 else
                 {
-                    return TextUtil.RemoveQuotes(expression);
+                    return expression;
                 }
             }
             catch (Exception ex)
@@ -307,11 +283,11 @@ namespace FSParser
         private bool IsBlockSyntaxValid(string codeBlock)
         {
             // Comprobar contra cada patrón de bloque (for, if, where)
-            string[] blockPatterns = { ifPattern, whilePattern, blockCommentPattern };
+            string[] blockPatterns = { ifPattern, elsePattern, whilePattern, blockCommentPattern };
 
             foreach (var pattern in blockPatterns)
             {
-                if (Regex.IsMatch(codeBlock, pattern))
+                if (Regex.IsMatch(codeBlock, pattern, RegexOptions.Compiled | RegexOptions.Multiline))
                     return true;  // Devuelve true si hay alguna estructura completa de bloque
             }
             return false;
@@ -325,7 +301,7 @@ namespace FSParser
                 return true;
 
             // Comprobar contra cada patrón de línea (var, print, comentario)
-            string[] linePatterns = { assignmentPattern, functionCallPattern, functionDefPattern, returnPattern, singleLineCommentPattern, allowedTextInLine };
+            string[] linePatterns = { assignmentPattern, functionCallPattern, functionDefPattern, returnPattern, singleLineCommentPattern, allowedTextInLinePattern };
 
             foreach (var pattern in linePatterns)
             {
@@ -379,8 +355,8 @@ namespace FSParser
             //ProtectVariables();
 
             code = RemoveComments(code);
-            List<string> lines = new List<string>(code.Split(new[] { Environment.NewLine }, StringSplitOptions.None));
-            ParseBlock(lines, 0, lines.Count);
+            List<string> lines = new List<string>(code.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries));
+            ParseBlock(lines, 0, lines.Count, variables);
         }
 
         public void Parse(List<string> lines)
@@ -404,6 +380,9 @@ namespace FSParser
 
                 if (line.StartsWith("\\"))
                     continue;
+
+                //if (allowedTextInLineRegex.IsMatch(line))
+                //    continue;
 
                 var functionDefMatch = functionDefRegex.Match(line);
                 if (functionDefMatch.Success)
@@ -433,6 +412,12 @@ namespace FSParser
                     continue;
                 }
 
+                var elseMatch = elseRegex.Match(line);
+                if (elseMatch.Success)
+                {
+                    continue;
+                }
+
                 var ifMatch = ifRegex.Match(line);
                 if (ifMatch.Success)
                 {
@@ -444,9 +429,15 @@ namespace FSParser
                     int closingIndex = FindClosingBracket(lines, i);
 
                     if (conditionResult)
+                    {
                         i = ParseBlock(lines, i + 1, closingIndex, localVariables);
+
+                        i = SkipParseElse(lines, closingIndex, false, localVariables);
+                    }
                     else
-                        i = closingIndex;
+                    {
+                        i = SkipParseElse(lines, closingIndex, true, localVariables);
+                    }
                     continue;
                 }
 
@@ -474,9 +465,9 @@ namespace FSParser
 
                     if (customCommands.ContainsKey(commandName))
                     {
-                        List<string> evaluatedArgs = SplitArguments(argumentList);
-                            //.Select(arg => EvaluateExpression(arg.Trim(), localVariables).ToString())
-                            //.ToList();
+                        List<string> evaluatedArgs = ApplyVariablesToArguments(SplitArguments(argumentList))
+                            .Select(arg => EvaluateExpression(arg.Trim(), localVariables).ToString())
+                            .ToList();
 
                         customCommands[commandName](evaluatedArgs);
                         continue;
@@ -486,6 +477,39 @@ namespace FSParser
                 throw new Exception($"Instrucción no reconocida: {line}");
             }
             return end;
+        }
+
+        /// <summary>
+        /// Saltamos la sección del else si la hay
+        /// </summary>
+        /// <param name="lines"></param>
+        /// <param name="closingIndex"></param>
+        /// <param name="parseElse"></param>
+        /// <param name="localVariables"></param>
+        /// <returns></returns>
+        private int SkipParseElse(List<string> lines, int closingIndex, bool parseElse, Dictionary<string,object> localVariables)
+        {
+            int i;
+            int elseIndex = closingIndex + 1;
+
+            if (elseIndex < lines.Count && lines[elseIndex].Trim().StartsWith("else"))
+            {
+                if (!lines[elseIndex].Contains("{") && lines[elseIndex + 1].Trim() == "{")
+                    elseIndex++;
+
+                int elseClosingIndex = FindClosingBracket(lines, elseIndex);
+
+                if (parseElse)
+                    i = ParseBlock(lines, elseIndex + 1, elseClosingIndex, localVariables);
+                else
+                    i = elseClosingIndex;
+            }
+            else
+            {
+                i = closingIndex;
+            }
+
+            return i;
         }
 
         private int FindClosingBracket(List<string> lines, int start)
