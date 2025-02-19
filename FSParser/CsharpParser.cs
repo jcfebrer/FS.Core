@@ -32,7 +32,7 @@ namespace FSParser
         private readonly static string allowedTextInLinePattern = @"(\{|\}|/\*|\*/|else)";
 
         private readonly Regex singleLineCommentRegex = new Regex(singleLineCommentPattern, RegexOptions.Compiled | RegexOptions.Multiline);
-        private readonly Regex blockCommentRegex = new Regex(blockCommentPattern, RegexOptions.Compiled | RegexOptions.Singleline);
+        private readonly Regex blockCommentRegex = new Regex(blockCommentPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex assignmentRegex = new Regex(assignmentPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex ifRegex = new Regex(ifPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex elseRegex = new Regex(elsePattern, RegexOptions.Compiled | RegexOptions.Multiline);
@@ -245,7 +245,10 @@ namespace FSParser
                 // Sigue evaluando mientras la expresión cambie después de la evaluación
             } while (!result.Equals(lastResult));
 
-            // Evalúa la expresión final si es una operación matemática simple
+            // Si es una cadena, eliminamos las comillas al comienzo y final de la expresión.
+            //if (result is string)
+            //    result = TextUtil.RemoveQuotes(result.ToString());
+
             return result;
         }
 
@@ -255,10 +258,12 @@ namespace FSParser
             {
                 if (IsSimpleMathExpression(expression))
                 {
+                    // Evalúa la expresión final si es una operación matemática simple
                     return SimpleExpressionEvaluator.Evaluate(expression, variablesToUse, textMark);
                 }
                 else if (NumberUtils.IsNumeric(expression))
                 {
+                    // Si es un número, cambia el punto por la coma.
                     return Convert.ToDouble(expression.Replace(".", ","));
                 }
                 else
@@ -305,7 +310,7 @@ namespace FSParser
 
             foreach (var pattern in linePatterns)
             {
-                if (Regex.IsMatch(line, pattern))
+                if (Regex.IsMatch(line, pattern, RegexOptions.Compiled | RegexOptions.Multiline))
                     return true;  // Devuelve verdadero si la línea coincide con alguna estructura válida
             }
 

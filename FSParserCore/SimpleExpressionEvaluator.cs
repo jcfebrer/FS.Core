@@ -14,9 +14,9 @@ namespace FSParserCore
         {
             var tokens = Tokenize(expression, localVariables, textMark);
 
-            // Si hay solo un token, significa que es una constante o variable, retornamos directamente.
-            if (tokens.Count == 1)
-                return expression;
+            //// Si hay solo un token, significa que es una constante o variable, retornamos directamente.
+            //if (tokens.Count == 1)
+            //    return expression;
 
             // Convierte la expresión infija a notación polaca inversa (RPN).
             var rpn = InfixToRPN(tokens);

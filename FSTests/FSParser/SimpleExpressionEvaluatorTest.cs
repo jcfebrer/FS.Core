@@ -39,6 +39,10 @@ namespace FSTest.FSParser
 
             Assert.AreEqual(boolresult, false);
 
+            var objresult = SimpleExpressionEvaluator.Evaluate("\"esto es una prueba\"");
+
+            Assert.AreEqual(objresult, "esto es una prueba");
+
             boolresult = (bool)SimpleExpressionEvaluator.Evaluate("5 != 8");
 
             Assert.AreEqual(boolresult, true);
@@ -53,9 +57,25 @@ namespace FSTest.FSParser
             Dictionary<string, object> memoria2 = new Dictionary<string, object>();
             memoria2.Add("var1", "hola");
             memoria2.Add("var2", "adios");
-            string resultStr = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2", memoria2);
+            string resultStr2 = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2", memoria2);
 
-            Assert.AreEqual(resultStr, "holaadios");
+            Assert.AreEqual(resultStr2, "holaadios");
+
+            Dictionary<string, object> memoria3 = new Dictionary<string, object>();
+            memoria3.Add("var1", "hola");
+            memoria3.Add("var2", "adios");
+            memoria3.Add("var3", "var1");
+            string resultStr3 = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2 + var3", memoria3);
+
+            Assert.AreEqual(resultStr3, "holaadioshola");
+
+            Dictionary<string, object> memoria4 = new Dictionary<string, object>();
+            memoria4.Add("var1", "\"hola\"");
+            memoria4.Add("var2", "\"adios\"");
+            memoria4.Add("var3", "\"var1\"");
+            string resultStr4 = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2 + var3", memoria4);
+
+            Assert.AreEqual(resultStr4, "holaadiosvar1");
         }
     }
 }

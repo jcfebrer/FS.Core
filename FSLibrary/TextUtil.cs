@@ -3262,6 +3262,7 @@ namespace FSLibrary
         public static string ApplyVariables(string expression, Dictionary<string, object> variables, string textMark)
         {
             string lastExpression;
+
             do
             {
                 if (variables == null)
@@ -3286,7 +3287,7 @@ namespace FSLibrary
                     int doubleQuotesCount = beforeMatch.Count(c => c == '"');
                     int singleQuotesCount = beforeMatch.Count(c => c == '\'');
 
-                    // Si el número de comillas es impar, significa que está dentro de una cadena.
+                    // Si el número de comillas es impar, significa que está dentro de una cadena y no hacemos nada.
                     bool insideDoubleQuotes = doubleQuotesCount % 2 != 0;
                     bool insideSingleQuotes = singleQuotesCount % 2 != 0;
 

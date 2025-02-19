@@ -36,7 +36,7 @@ namespace FSParserCore
 
             parser.CustomCommands["convertwpf"] = args =>
             {
-                return FSConvert.ConvertToWPF.Convert(_Q(args[0]));
+                return FSConvertCore.ConvertToWPF.Convert(_Q(args[0]));
             };
 
             parser.CustomCommands["help"] = args =>

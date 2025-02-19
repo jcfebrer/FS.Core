@@ -37,6 +37,13 @@ namespace FSTests.FSParser
                 "}"
             };
 
+            parser.Parse(code);
+
+            Assert.AreEqual(parser.Variables["x"], 0.0);
+            Assert.AreEqual(parser.Variables["y"], 15.0);
+            Assert.AreEqual(parser.Variables["z"], 30.0);
+            Assert.AreEqual(parser.Variables["var3"], "holaadios");
+
             string code2 = @"
                 x = 10;
                 // Ejemplo de comentarios
@@ -56,6 +63,12 @@ namespace FSTests.FSParser
                 }
             ";
 
+            parser.Parse(code2);
+
+            Assert.AreEqual(parser.Variables["x"], 0.0);
+            Assert.AreEqual(parser.Variables["y"], 15.0);
+            Assert.AreEqual(parser.Variables["z"], 30.0);
+
             string code3 = @"
                 function Suma(a, b) {
                     return a + b;
@@ -73,6 +86,15 @@ namespace FSTests.FSParser
                 print(x);
             ";
 
+            parser.Parse(code3);
+
+            Assert.AreEqual(parser.Variables["x"], 15.0);
+            Assert.AreEqual(parser.Variables["y"], 15.0);
+            Assert.AreEqual(parser.Variables["z"], 30.0);
+            Assert.AreEqual(parser.Variables["var1"], "\"esto es una prueba\"");
+            Assert.AreEqual(parser.Variables["var2"], "Comtoene");
+            Assert.AreEqual(parser.Variables["var3"], "esto es dos prueba");
+
             var code4 = new List<string>
             {
                 "x = Sin(90);",
@@ -84,6 +106,13 @@ namespace FSTests.FSParser
                 "result = Multiply(x, y);",
                 "Print(result);"
             };
+
+            parser.Parse(code4);
+
+            Assert.AreEqual(parser.Variables["x"], 0.893996663600558);
+            Assert.AreEqual(parser.Variables["y"], 1.0);
+            Assert.AreEqual(parser.Variables["z"], 30.0);
+            Assert.AreEqual(parser.Variables["result"], 0.893996663600558);
 
             var code5 = new List<string>
             {
@@ -101,6 +130,14 @@ namespace FSTests.FSParser
                 "}"
             };
 
+            parser.Parse(code5);
+
+            Assert.AreEqual(parser.Variables["x"], 16.0);
+            Assert.AreEqual(parser.Variables["y"], 32.0);
+            Assert.AreEqual(parser.Variables["z"], 22.0);
+            Assert.AreEqual(parser.Variables["result"], 0.893996663600558);
+            Assert.AreEqual(parser.Variables["r"], "\"hola\" \"ad,ios\" \"gabon\"");
+
             var code6 = new List<string>
             {
                 "hola = \"mundo\";",
@@ -117,49 +154,22 @@ namespace FSTests.FSParser
                 "suma2 = var1 + var2 + var3;"
             };
 
-            parser.Parse(code);
-
-            Assert.AreEqual(parser.Variables["x"], 0.0);
-            Assert.AreEqual(parser.Variables["y"], 15.0);
-            Assert.AreEqual(parser.Variables["z"], 30.0);
-            Assert.AreEqual(parser.Variables["var3"], "holaadios");
-
-            parser.Parse(code2);
-
-            Assert.AreEqual(parser.Variables["x"] , 0.0);
-            Assert.AreEqual(parser.Variables["y"], 15.0);
-            Assert.AreEqual(parser.Variables["z"], 30.0);
-
-            parser.Parse(code3);
-
-            Assert.AreEqual(parser.Variables["x"], 15.0);
-            Assert.AreEqual(parser.Variables["y"], 15.0);
-            Assert.AreEqual(parser.Variables["z"], 30.0);
-            Assert.AreEqual(parser.Variables["var1"], "esto es una prueba");
-            Assert.AreEqual(parser.Variables["var2"], "Comtoene");
-            Assert.AreEqual(parser.Variables["var3"], "esto es dos prueba");
-
-            parser.Parse(code4);
-
-            Assert.AreEqual(parser.Variables["x"], 0.893996663600558);
-            Assert.AreEqual(parser.Variables["y"], 1.0);
-            Assert.AreEqual(parser.Variables["z"], 30.0);
-            Assert.AreEqual(parser.Variables["result"], 0.893996663600558);
-
-            parser.Parse(code5);
-
-            Assert.AreEqual(parser.Variables["x"], 16.0);
-            Assert.AreEqual(parser.Variables["y"], 32.0);
-            Assert.AreEqual(parser.Variables["z"], 22.0);
-            Assert.AreEqual(parser.Variables["result"], 0.893996663600558);
-            Assert.AreEqual(parser.Variables["r"], "\"hola\" \"ad,ios\" \"gabon\"");
-
             parser.Parse(code6);
 
             Assert.AreEqual(parser.Variables["v1"], "hola 40radiola");
             Assert.AreEqual(parser.Variables["v2"], "hola mundo adios");
             Assert.AreEqual(parser.Variables["suma1"], 350.0);
             Assert.AreEqual(parser.Variables["suma2"], "holaquetal");
+
+            var code7 = new List<string>
+            {
+                "var1 = \"contenido\";",
+                "expression = \"esto es una prueba: var1\" + var1;"
+            };
+
+            parser.Parse(code7);
+
+            Assert.AreEqual(parser.Variables["expression"], "esto es una prueba: var1contenido");
         }
     }
 }
