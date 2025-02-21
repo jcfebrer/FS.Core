@@ -17,13 +17,16 @@ namespace FSParser
 
             do
             {
+                if (TextUtil.HasProtectText(result.ToString()))
+                    break;
+
                 lastResult = result;
 
                 var tokens = Tokenize(result.ToString(), localVariables);
 
-                //// Si hay solo un token, significa que es una constante o variable, retornamos directamente.
-                //if (tokens.Count == 1)
-                //    return result;
+                // Si hay solo un token, significa que es una constante o variable, retornamos directamente.
+                if (tokens.Count == 1)
+                    return result;
 
                 // Convierte la expresión infija a notación polaca inversa (RPN).
                 var rpn = InfixToRPN(tokens);
@@ -36,7 +39,7 @@ namespace FSParser
             return result;
         }
 
-        public static bool IsSimpleMathExpression(string expression)
+        public static bool IsSimpleExpression(string expression)
         {
             // Reemplazamos las cadenas entre comillas para que no se tengan en cuenta en la evaluación
             expression = TextUtil.ReplaceStrings(expression, "dummy");

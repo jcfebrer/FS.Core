@@ -188,11 +188,11 @@ namespace FSParserCore
 
             do
             {
-                if (TextUtil.HasProtectQuotes(result.ToString()))
+                if (TextUtil.HasProtectText(result.ToString()))
                     break;
 
-                if (TextUtil.HasQuotes(result.ToString()) && !SimpleExpressionEvaluator.IsSimpleMathExpression(result.ToString()))
-                    break;
+                //if (TextUtil.HasQuotes(result.ToString()) && !SimpleExpressionEvaluator.IsSimpleExpression(result.ToString()))
+                //    break;
 
                 ////Si la expresión contiene la marca de texto para no evaluar, salimos.
                 //if (textMark != null && result.ToString().Contains(textMark))
@@ -247,7 +247,7 @@ namespace FSParserCore
         {
             try
             {
-                if (IsSimpleMathExpression(expression))
+                if (SimpleExpressionEvaluator.IsSimpleExpression(expression))
                 {
                     // Evalúa la expresión final si es una operación matemática simple
                     return SimpleExpressionEvaluator.Evaluate(expression, variablesToUse);

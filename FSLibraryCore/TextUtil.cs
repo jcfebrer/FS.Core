@@ -22,7 +22,7 @@ namespace FSLibraryCore
         /// <summary>
         /// Cadena a sustituir por las comillas.
         /// </summary>
-        public static string PROTECT_QUOTE = "{*}";
+        public static string PROTECT_TEXT = "{**}";
 
         /// <summary>
         /// Tipo de alineación.
@@ -2374,18 +2374,38 @@ namespace FSLibraryCore
         }
 
         /// <summary>
+        /// Protege una cadena de texto para que no sea evaluada.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string ProtectText(string str)
+        {
+            if(!str.EndsWith(PROTECT_TEXT))
+                return str + PROTECT_TEXT;
+            return str;
+        }
+
+        /// <summary>
+        /// Desprotege una cadena de texto para que pueda ser evaluada.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string UnProtectText(string str)
+        {
+            if (HasProtectText(str))
+                return str.Replace(PROTECT_TEXT, "");
+            return str;
+        }
+
+        /// <summary>
         /// Devuelve la cadena entrecomillada
         /// </summary>
         /// <param name="str">Cadena a entrecomillar</param>
-        /// <param name="protect">Protege las comillas internas.</param>
         /// <returns></returns>
-        public static string AddQuotes(string str, bool protect = false)
+        public static string AddQuotes(string str)
         {
             if (HasQuotes(str))
                 return str;
-
-            if (protect)
-                str = str.Replace("\"", PROTECT_QUOTE);
 
             return string.Format("\"{0}\"", str);
         }
@@ -2405,25 +2425,20 @@ namespace FSLibraryCore
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static bool HasProtectQuotes(string str)
+        public static bool HasProtectText(string str)
         {
-            return str.Contains(TextUtil.PROTECT_QUOTE);
+            return str.Contains(PROTECT_TEXT);
         }
 
         /// <summary>
         /// Elimina las comillas externas de una cadena.
         /// </summary>
         /// <param name="str"></param>
-        /// <param name="removeProtectQuotes">Dejamos las comillas internas correctamente.</param>
         /// <returns></returns>
-        public static string RemoveQuotes(string str, bool removeProtectQuotes = false)
+        public static string RemoveQuotes(string str)
         {
             //str = str.Trim('"');
             str = Regex.Replace(str, "^\"(.*)\"$", "$1", RegexOptions.Singleline);
-
-            // Dejamos las comillas internas correctas
-            if (removeProtectQuotes)
-                str = str.Replace(PROTECT_QUOTE, "\"");
 
             return str;
         }
@@ -3317,8 +3332,8 @@ namespace FSLibraryCore
 
             do
             {
-                //if (textMark != null && expression.Contains(textMark))
-                //    return expression;
+                if (TextUtil.HasProtectText(expression))
+                    return expression;
 
                 lastExpression = expression; // Guarda la expresión antes del reemplazo
 

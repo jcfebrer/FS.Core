@@ -207,7 +207,7 @@ namespace FSTestsCore.FSParser
 
             var code11 = new List<string>
             {
-                "var1 = \"cont\"enido\";",
+                "var1 = \"contenido\";",
                 "expression = \"esto es una prueba: \" + var1;"
             };
 
