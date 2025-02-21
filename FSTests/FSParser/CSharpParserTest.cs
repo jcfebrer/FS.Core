@@ -42,7 +42,7 @@ namespace FSTests.FSParser
             Assert.AreEqual(parser.Variables["x"], 0.0);
             Assert.AreEqual(parser.Variables["y"], 15.0);
             Assert.AreEqual(parser.Variables["z"], 30.0);
-            Assert.AreEqual(parser.Variables["var3"], "holaadios");
+            Assert.AreEqual(parser.Variables["var3"], "\"holaadios\"");
 
             string code2 = @"
                 x = 10;
@@ -156,20 +156,64 @@ namespace FSTests.FSParser
 
             parser.Parse(code6);
 
-            Assert.AreEqual(parser.Variables["v1"], "hola 40radiola");
-            Assert.AreEqual(parser.Variables["v2"], "hola mundo adios");
+            Assert.AreEqual(parser.Variables["v1"], "\"hola 40radiola\"");
+            Assert.AreEqual(parser.Variables["v2"], "\"hola mundo adios\"");
             Assert.AreEqual(parser.Variables["suma1"], 350.0);
-            Assert.AreEqual(parser.Variables["suma2"], "holaquetal");
+            Assert.AreEqual(parser.Variables["suma2"], "\"holaquetal\"");
 
+// Prueba de redundancia ciclica:
+            // la variable result crea redundancia ciclica en SimpleExpressionEvaluator
             var code7 = new List<string>
+            {
+                "result = \"prueba con result bien\" + \"var1\";",
+                "result = \"cadena1;\" + result;"
+            };
+
+            parser.Parse(code7);
+
+            Assert.AreEqual(parser.Variables["result"], "\"cadena1;prueba con result bienvar1\"");
+
+            // Prueba de anidamiento
+            var code8 = new List<string>
+            {
+                "result = \"cadena1\";",
+                "result = \"using System.Data;\" + crlf + \"using FSFormControls;\" + crlf + result;"
+            };
+
+            parser.Parse(code8);
+
+            Assert.AreEqual(parser.Variables["result"], "\"using System.Data;\r\nusing FSFormControls;\r\ncadena1\"");
+
+
+            var code9 = new List<string>
             {
                 "var1 = \"contenido\";",
                 "expression = \"esto es una prueba: var1\" + var1;"
             };
 
-            parser.Parse(code7);
+            parser.Parse(code9);
 
-            Assert.AreEqual(parser.Variables["expression"], "esto es una prueba: var1contenido");
+            Assert.AreEqual(parser.Variables["expression"], "\"esto es una prueba: var1contenido\"");
+
+            var code10 = new List<string>
+            {
+                "var1 = \"cont\" + \"enido\";",
+                "expression = \"esto es una prueba: \" + var1;"
+            };
+
+            parser.Parse(code10);
+
+            Assert.AreEqual(parser.Variables["expression"], "\"esto es una prueba: contenido\"");
+
+            var code11 = new List<string>
+            {
+                "var1 = \"cont\"enido\";",
+                "expression = \"esto es una prueba: \" + var1;"
+            };
+
+            parser.Parse(code11);
+
+            Assert.AreEqual(parser.Variables["expression"], "\"esto es una prueba: contenido\"");
         }
     }
 }

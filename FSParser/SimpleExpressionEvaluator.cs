@@ -10,27 +10,49 @@ namespace FSParser
     public class SimpleExpressionEvaluator
     {
         // Evalúa una expresión matemática o lógica, reemplazando las variables con sus valores.
-        public static object Evaluate(string expression, Dictionary<string, object> localVariables = null, string textMark = null)
+        public static object Evaluate(string expression, Dictionary<string, object> localVariables = null)
         {
-            var tokens = Tokenize(expression, localVariables, textMark);
+            object lastResult;
+            object result = expression;
 
-            //// Si hay solo un token, significa que es una constante o variable, retornamos directamente.
-            //if (tokens.Count == 1)
-            //    return expression;
+            do
+            {
+                lastResult = result;
 
-            // Convierte la expresión infija a notación polaca inversa (RPN).
-            var rpn = InfixToRPN(tokens);
+                var tokens = Tokenize(result.ToString(), localVariables);
 
-            // Si la conversión a RPN es vacía, retornamos la expresión original.
-            if (rpn.Count == 0)
-                return expression;
-            else
+                //// Si hay solo un token, significa que es una constante o variable, retornamos directamente.
+                //if (tokens.Count == 1)
+                //    return result;
+
+                // Convierte la expresión infija a notación polaca inversa (RPN).
+                var rpn = InfixToRPN(tokens);
+
                 // Evalúa la expresión en RPN.
-                return EvaluateRPN(rpn);
+                result = EvaluateRPN(rpn);
+
+            } while (!result.Equals(lastResult));
+
+            return result;
+        }
+
+        public static bool IsSimpleMathExpression(string expression)
+        {
+            // Reemplazamos las cadenas entre comillas para que no se tengan en cuenta en la evaluación
+            expression = TextUtil.ReplaceStrings(expression, "dummy");
+
+            // Patrón para caracteres válidos en una expresión matemática
+            var validExpressionPattern = @"^[\d\s\+\-\*/\^<>=!()\.\,\""\w]*$";
+
+            // Patrón para detectar al menos un operador válido
+            var hasOperatorPattern = @"(\+|\-|\*|/|\^|!|<|>|<=|>=|==|!=)";
+
+            // Verifica que todos los caracteres sean válidos y que haya al menos un operador
+            return Regex.IsMatch(expression, validExpressionPattern) && Regex.IsMatch(expression, hasOperatorPattern);
         }
 
         // Tokeniza la expresión en componentes: números, operadores y variables.
-        private static List<string> Tokenize(string expression, Dictionary<string, object> localVariables, string textMark)
+        private static List<string> Tokenize(string expression, Dictionary<string, object> localVariables)
         {
             var tokens = new List<string>();
             var currentToken = "";
@@ -64,7 +86,13 @@ namespace FSParser
                         i++;
                     }
 
-                    currentToken = TextUtil.ApplyVariables(currentToken, localVariables, textMark);
+                    string evalToken = TextUtil.ApplyVariables(currentToken, localVariables);
+                    if(evalToken == currentToken && !(evalToken.ToLower() == "true" || evalToken.ToLower() == "false"))
+                    {
+                        throw new Exception($"Varaible no definida: {evalToken}");
+                    }
+                    else
+                        currentToken = evalToken;
 
                     tokens.Add(currentToken);
                     currentToken = "";
@@ -131,7 +159,7 @@ namespace FSParser
                 {
                     output.Add(token);
                 }
-                else if (token.StartsWith("\"") && token.EndsWith("\""))  // Si es una cadena.
+                else if (TextUtil.HasQuotes(token))  // Si es una cadena.
                 {
                     output.Add(token);
                 }
@@ -185,11 +213,11 @@ namespace FSParser
                 {
                     stack.Push(number);
                 }
-                else if (token.StartsWith("\"") && token.EndsWith("\""))  // Si es una cadena.
+                else if (TextUtil.HasQuotes(token))  // Si es una cadena.
                 {
-                    stack.Push(token.Trim('"'));  // Remover las comillas de las cadenas.
+                    stack.Push(token);  // Remover las comillas de las cadenas.
                 }
-                else if(token == "true" || token == "false")
+                else if(token.ToLower() == "true" || token.ToLower() == "false")
                 {
                     stack.Push(Convert.ToBoolean(token));
                 }
@@ -225,7 +253,7 @@ namespace FSParser
                         if (a is double && b is double)
                             result = (double)a + (double)b;
                         else
-                            result = a.ToString() + b.ToString();
+                            result = TextUtil.AddQuotes(TextUtil.RemoveQuotes(a.ToString()) + TextUtil.RemoveQuotes(b.ToString()));
                     }
                     else if (token == "-")
                     {

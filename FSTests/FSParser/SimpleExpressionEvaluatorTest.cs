@@ -41,7 +41,7 @@ namespace FSTest.FSParser
 
             var objresult = SimpleExpressionEvaluator.Evaluate("\"esto es una prueba\"");
 
-            Assert.AreEqual(objresult, "esto es una prueba");
+            Assert.AreEqual(objresult, "\"esto es una prueba\"");
 
             boolresult = (bool)SimpleExpressionEvaluator.Evaluate("5 != 8");
 
@@ -59,7 +59,7 @@ namespace FSTest.FSParser
             memoria2.Add("var2", "adios");
             string resultStr2 = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2", memoria2);
 
-            Assert.AreEqual(resultStr2, "holaadios");
+            Assert.AreEqual(resultStr2, "\"holaadios\"");
 
             Dictionary<string, object> memoria3 = new Dictionary<string, object>();
             memoria3.Add("var1", "hola");
@@ -67,7 +67,7 @@ namespace FSTest.FSParser
             memoria3.Add("var3", "var1");
             string resultStr3 = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2 + var3", memoria3);
 
-            Assert.AreEqual(resultStr3, "holaadioshola");
+            Assert.AreEqual(resultStr3, "\"holaadioshola\"");
 
             Dictionary<string, object> memoria4 = new Dictionary<string, object>();
             memoria4.Add("var1", "\"hola\"");
@@ -75,7 +75,22 @@ namespace FSTest.FSParser
             memoria4.Add("var3", "\"var1\"");
             string resultStr4 = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2 + var3", memoria4);
 
-            Assert.AreEqual(resultStr4, "holaadiosvar1");
+            Assert.AreEqual(resultStr4, "\"holaadiosvar1\"");
+
+            Dictionary<string, object> memoria5 = new Dictionary<string, object>();
+            memoria5.Add("var1", "\"hola\"");
+            memoria5.Add("var2", "var1 + \"prueba\"");
+            memoria5.Add("var3", "\" var1\"");
+            string resultStr5 = (string)SimpleExpressionEvaluator.Evaluate("var1 + var2 + var3", memoria5);
+
+            Assert.AreEqual(resultStr5, "\"holaholaprueba var1\"");
+
+            Dictionary<string, object> memoria6 = new Dictionary<string, object>();
+            memoria6.Add("result", "\"hola\"");
+            memoria6.Add("result2", "\"hola\" + result");
+            string resultStr6 = (string)SimpleExpressionEvaluator.Evaluate("result + result2", memoria6);
+
+            Assert.AreEqual(resultStr6, "\"holaholahola\"");
         }
     }
 }

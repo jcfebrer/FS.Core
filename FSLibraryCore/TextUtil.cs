@@ -20,6 +20,11 @@ namespace FSLibraryCore
     public class TextUtil
     {
         /// <summary>
+        /// Cadena a sustituir por las comillas.
+        /// </summary>
+        public static string PROTECT_QUOTE = "{*}";
+
+        /// <summary>
         /// Tipo de alineación.
         /// </summary>
         public enum FormatColumnAlignment
@@ -2369,13 +2374,58 @@ namespace FSLibraryCore
         }
 
         /// <summary>
-        /// Elimina las comillas externas de una cadena.
+        /// Devuelve la cadena entrecomillada
+        /// </summary>
+        /// <param name="str">Cadena a entrecomillar</param>
+        /// <param name="protect">Protege las comillas internas.</param>
+        /// <returns></returns>
+        public static string AddQuotes(string str, bool protect = false)
+        {
+            if (HasQuotes(str))
+                return str;
+
+            if (protect)
+                str = str.Replace("\"", PROTECT_QUOTE);
+
+            return string.Format("\"{0}\"", str);
+        }
+
+        /// <summary>
+        /// Devuelve true/false si la cadena contiene comillas al comienzo y fin de la cadena.
         /// </summary>
         /// <param name="str"></param>
         /// <returns></returns>
-        public static string RemoveQuotes(string str)
+        public static bool HasQuotes(string str)
         {
-            return Regex.Replace(str, "^\"(.*)\"$", "$1");
+            return str.StartsWith("\"") && str.EndsWith("\"");
+        }
+
+        /// <summary>
+        /// Devuelve true/false si la cadena contiene comillas protegidas
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static bool HasProtectQuotes(string str)
+        {
+            return str.Contains(TextUtil.PROTECT_QUOTE);
+        }
+
+        /// <summary>
+        /// Elimina las comillas externas de una cadena.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="removeProtectQuotes">Dejamos las comillas internas correctamente.</param>
+        /// <returns></returns>
+        public static string RemoveQuotes(string str, bool removeProtectQuotes = false)
+        {
+            //str = str.Trim('"');
+            str = Regex.Replace(str, "^\"(.*)\"$", "$1", RegexOptions.Singleline);
+
+            // Dejamos las comillas internas correctas
+            if (removeProtectQuotes)
+                str = str.Replace(PROTECT_QUOTE, "\"");
+
+            return str;
         }
 
         /// <summary>
@@ -3257,19 +3307,18 @@ namespace FSLibraryCore
         /// </summary>
         /// <param name="expression">Expresión a evaluar y sustituir por las variables.</param>
         /// <param name="variables">Diccionario de variables con su valor.</param>
-        /// <param name="textMark">Si la expresión contiene esta marca, no la procesamos.</param>
-        /// <returns></returns>
-        public static string ApplyVariables(string expression, Dictionary<string, object> variables, string textMark)
+        // <returns></returns>
+        public static string ApplyVariables(string expression, Dictionary<string, object> variables)
         {
             string lastExpression;
 
-            do
-            {
                 if (variables == null)
                     return expression;
 
-                if (textMark != null && expression.Contains(textMark))
-                    return expression;
+            do
+            {
+                //if (textMark != null && expression.Contains(textMark))
+                //    return expression;
 
                 lastExpression = expression; // Guarda la expresión antes del reemplazo
 
@@ -3297,10 +3346,10 @@ namespace FSLibraryCore
                         result.Append(expression.Substring(lastIndex, match.Index - lastIndex)); // Agregar parte anterior
                         string variableValue = variables[match.Value].ToString();
 
-                        //Si el valor no es una variable de memoria, la entrecomillamos o si es un numero, cambiamos coma por punto.
+                        // Si el valor no es una variable de memoria y no está entrecomillado, aplicamos transformaciones
                         if (!Regex.Match(variableValue, pattern).Success)
                         {
-                            if (double.TryParse(variableValue, out _))
+                            if (NumberUtils.IsNumeric(variableValue))
                                 variableValue = variableValue.Replace(",", "."); // Asegura que los números sean válidos con punto como separador decimal.
                             else if (!(variableValue.StartsWith("\"") && variableValue.EndsWith("\"")))
                                 variableValue = $"\"{variableValue}\""; // Si no es un número, lo convierte a string entre comillas.

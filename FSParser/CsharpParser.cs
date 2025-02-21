@@ -18,7 +18,7 @@ namespace FSParser
         private readonly Dictionary<string, (List<string> Parameters, List<string> Body)> functions = new Dictionary<string, (List<string> Parameters, List<string> Body)>(StringComparer.InvariantCultureIgnoreCase);
         private readonly Dictionary<string, Func<List<string>, object>> customCommands = new Dictionary<string, Func<List<string>, object>>(StringComparer.InvariantCultureIgnoreCase);
 
-        private readonly static string textMark = "(<*>)"; // Marca que identifica un texto que no se debe de parsear.
+        //private readonly static string textMark = "(<*>)"; // Marca que identifica un texto que no se debe de parsear.
 
         private readonly static string singleLineCommentPattern = @"^\s*//(.*)";
         private readonly static string blockCommentPattern = @"(?<![""'])/\*[^*]*\*+(?:[^/*][^*]*\*+)*/";
@@ -153,46 +153,31 @@ namespace FSParser
             return result;
         }
 
-        /// <summary>
-        /// Protegemos las variables para evitar que se procesen como coódigo.
-        /// </summary>
-        public string ProtectData(string data)
-        {
-            data = data + Environment.NewLine + textMark;
-            return data;
-        }
+        ///// <summary>
+        ///// Protegemos las variables para evitar que se procesen como coódigo.
+        ///// </summary>
+        //public string ProtectData(string data)
+        //{
+        //    data = data + Environment.NewLine + textMark;
+        //    return data;
+        //}
 
-        /// <summary>
-        /// Esta función quita la marca de textMark, para evitar que se trate como código.
-        /// </summary>
-        public string UnProtectData(string data)
-        {
-            return data.Replace(Environment.NewLine + textMark, "");
-        }
+        ///// <summary>
+        ///// Esta función quita la marca de textMark, para evitar que se trate como código.
+        ///// </summary>
+        //public string UnProtectData(string data)
+        //{
+        //    return data.Replace(Environment.NewLine + textMark, "");
+        //}
 
         private List<string> ApplyVariablesToArguments(List<string> arguments)
         {
             var result = new List<string>();
             foreach(string s in arguments)
             {
-                result.Add(TextUtil.ApplyVariables(s, variables, textMark));
+                result.Add(TextUtil.ApplyVariables(s, variables));
             }
             return result;
-        }
-
-        private bool IsSimpleMathExpression(string expression)
-        {
-            // Reemplazamos las cadenas entre comillas para que no se tengan en cuenta en la evaluación
-            expression = TextUtil.ReplaceStrings(expression, "dummy");
-
-            // Patrón para caracteres válidos en una expresión matemática
-            var validExpressionPattern = @"^[\d\s\+\-\*/\^<>=!()\.\,\""\w]*$";
-
-            // Patrón para detectar al menos un operador válido
-            var hasOperatorPattern = @"(\+|\-|\*|/|\^|!|<|>|<=|>=|==|!=)";
-
-            // Verifica que todos los caracteres sean válidos y que haya al menos un operador
-            return Regex.IsMatch(expression, validExpressionPattern) && Regex.IsMatch(expression, hasOperatorPattern);
         }
 
         private object EvaluateExpression(string expression, Dictionary<string, object> localVariables = null)
@@ -203,9 +188,15 @@ namespace FSParser
 
             do
             {
-                //Si la expresión contiene la marca de texto para no evaluar, salimos.
-                if (textMark != null && result.ToString().Contains(textMark))
+                if (TextUtil.HasProtectQuotes(result.ToString()))
                     break;
+
+                if (TextUtil.HasQuotes(result.ToString()) && !SimpleExpressionEvaluator.IsSimpleMathExpression(result.ToString()))
+                    break;
+
+                ////Si la expresión contiene la marca de texto para no evaluar, salimos.
+                //if (textMark != null && result.ToString().Contains(textMark))
+                //    break;
 
                 lastResult = result; // Guarda la expresión antes de la evaluación
 
@@ -259,7 +250,7 @@ namespace FSParser
                 if (IsSimpleMathExpression(expression))
                 {
                     // Evalúa la expresión final si es una operación matemática simple
-                    return SimpleExpressionEvaluator.Evaluate(expression, variablesToUse, textMark);
+                    return SimpleExpressionEvaluator.Evaluate(expression, variablesToUse);
                 }
                 else if (NumberUtils.IsNumeric(expression))
                 {
