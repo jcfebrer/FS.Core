@@ -22,6 +22,7 @@ using FSTraceCore;
 using System.Diagnostics;
 using System.Reflection;
 using FSExceptionCore;
+using FSCertificateCore;
 
 #endregion
 
@@ -168,7 +169,7 @@ namespace FSMailCore
 
             if (Firmar)
             {
-                Mail.Body = FSCertificateCore.Certificate.SignMessage(sBody, Certificado);
+                Mail.Body = Certificate.SignMessage(sBody, Certificado);
             }
             else
             {
@@ -223,7 +224,7 @@ namespace FSMailCore
 
 		public bool SendErrorMail(System.Exception ex)
 		{
-			return SendErrorMail("", ex, false, null);
+			return SendErrorMail(ex.Message, ex, false, null);
 		}
 
 		public bool SendErrorMail(string message, System.Exception ex, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
@@ -231,6 +232,10 @@ namespace FSMailCore
 			string sSubject = "Error: Excepción no controlada";
 			string sBody = "";
 
+            if (!String.IsNullOrEmpty(message))
+            {
+                sBody += "Mensaje: " + message + "\r\n";
+            }
 
 			//if (ex == null && HttpContext.Current != null && HttpContext.Current.Server != null)
 			//{
@@ -247,29 +252,26 @@ namespace FSMailCore
 			//	sBody += "RawUrl: " + HttpContext.Current.Request.RawUrl + "\r\n";
 			//	sBody += "QueryString: " + HttpContext.Current.Server.UrlDecode(HttpContext.Current.Request.QueryString.ToString()) + "\r\n";
 			//	string ip = HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"];
-			//	sBody = sBody + "IP: <a href='https://www.whois.com/whois/" + ip + "'>" + ip + "</a>\r\n";
+			//	if (!String.IsNullOrEmpty(ip))
+			//	{
+			//		sBody += "IP: <a href='https://www.whois.com/whois/" + ip + "'>" + ip + "</a>\r\n";
+			//	}
 			//}
 
 
 			if (ex != null)
 			{
-				sBody += "<i><b><u>For Developer Use Only: </u></b></i>" + "<br><br>" +
-					"Project Name:   " + Assembly.GetCallingAssembly().GetName().Name + "<br>" +
-					"Error Message:  " + ex.Message + "<br>" +
-					"Error:  " + ex + "<br>";
+				sBody += "--------------------------- EXCEPTION -----------------------------" + "\r\n";
+                sBody += "Project Name:   " + Assembly.GetCallingAssembly().GetName().Name + "\r\n" +
+					"Error Message:  " + ex.Message + "\r\n" +
+					"Error:  " + ex + "\r\n";
 
 				if (ex.InnerException != null)
 				{
-					sBody += "Inner Message : " + ex.InnerException.Message + "<br>";
-					sBody += "Error: " + ex.InnerException;
+                    sBody += "--------------------------- INNER EXCEPTION -----------------------------" + "\r\n";
+                    sBody += "Inner Message : " + ex.InnerException.Message + "\r\n";
+					sBody += "Error: " + ex.InnerException + "\r\n";
 				}
-			}
-
-			sBody += "\r\n\r\n";
-
-			if (message != "")
-			{
-				sBody += "Mensaje: " + message + "\r\n";
 			}
 
 			return SendMailMessage(ErrorEmail, "", "", sSubject, sBody,
