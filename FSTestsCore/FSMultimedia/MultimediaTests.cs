@@ -1,7 +1,8 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FSLibraryCore;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace FSLibraryCore.Tests
+namespace FSMultimediaCore.Tests
 {
     [TestClass]
     public class MultimediaTests

@@ -28,6 +28,7 @@
     <ProjectReference Include="..\FSGoogleAuthenticatorCore\FSGoogleAuthenticatorCore.csproj" />
     <ProjectReference Include="..\FSIACore\FSIACore.csproj" />
     <ProjectReference Include="..\FSMailCore\FSMailCore.csproj" />
+    <ProjectReference Include="..\FSMultimediaCore\FSMultimediaCore.csproj" />
     <ProjectReference Include="..\FSNetworkCore\FSNetworkCore.csproj" />
     <ProjectReference Include="..\FSParserCore\FSParserCore.csproj" />
     <ProjectReference Include="..\FSSepaLibraryCore\FSSepaLibraryCore.csproj" />

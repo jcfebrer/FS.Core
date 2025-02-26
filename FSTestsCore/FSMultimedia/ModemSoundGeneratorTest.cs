@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace FSMultimedia.Test
+namespace FSMultimediaCore.Test
 {
     [TestClass]
     public class ModemSoundGeneratorTest
