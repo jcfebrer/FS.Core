@@ -23,18 +23,6 @@
     <OutputPath>bin\x86\Release\</OutputPath>
     <DocumentationFile>bin\Release\FSFtpCore.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <DocumentationFile>bin\Debug\FSFtpCore.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <DocumentationFile>bin\Debug\FSFtpCore.xml</DocumentationFile>
-  </PropertyGroup>
   <PropertyGroup>
     <TargetFramework>net8.0-windows</TargetFramework>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>

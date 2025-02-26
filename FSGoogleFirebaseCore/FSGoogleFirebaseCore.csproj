@@ -11,10 +11,6 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug Todo\</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSCryptoCore\FSCryptoCore.csproj" />
     <ProjectReference Include="..\FSLibraryCore\FSLibraryCore.csproj" />

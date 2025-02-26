@@ -16,14 +16,6 @@
   <PropertyGroup>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug Todo\</OutputPath>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|x86'">
-    <OutputPath>bin\x86\Debug Todo\</OutputPath>
-  </PropertyGroup>
   <ItemGroup>
     <None Include="common\CodeList_CurrencyCode_ISO_7_04.cs" />
     <None Include="common\CodeList_LanguageCode_ISO_7_04.cs" />
