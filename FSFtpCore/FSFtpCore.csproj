@@ -45,7 +45,7 @@
     <AssemblyVersion>16.0.16</AssemblyVersion>
     <NeutralLanguage>en</NeutralLanguage>
     <SignAssembly>False</SignAssembly>
-    <AssemblyOriginatorKeyFile>D:\FS\Febrer Software.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Core">

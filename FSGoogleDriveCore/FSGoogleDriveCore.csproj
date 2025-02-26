@@ -21,7 +21,7 @@
     <Copyright>Copyright 2017</Copyright>
     <AssemblyVersion>1.0.%2a</AssemblyVersion>
     <SignAssembly>False</SignAssembly>
-    <AssemblyOriginatorKeyFile>D:\FS\Febrer Software.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Core">
