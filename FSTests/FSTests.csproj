@@ -97,6 +97,7 @@
     <Compile Include="FSIA\NeuralNetworkTest.cs" />
     <Compile Include="FSIA\PerceptronTest.cs" />
     <Compile Include="FSLibrary\DateTimeUtilTests.cs" />
+    <Compile Include="FSMultimedia\ModemSoundGeneratorTest.cs" />
     <Compile Include="FSParser\CSharpParserTest.cs" />
     <Compile Include="FSParser\SimpleExpressionEvaluatorTest.cs" />
     <Compile Include="FSSystemInfo\FSDiskTests.cs" />
@@ -106,7 +107,7 @@
     <Compile Include="FSIA\ChatGPTTest.cs" />
     <Compile Include="FSLibrary\DniTests.cs" />
     <Compile Include="FSLibrary\IniParserTests.cs" />
-    <Compile Include="FSLibrary\MultimediaTests.cs" />
+    <Compile Include="FSMultimedia\MultimediaTests.cs" />
     <Compile Include="FSLibrary\NumberUtilsTests.cs" />
     <Compile Include="FSLibrary\SerializerTests.cs" />
     <Compile Include="FSLibrary\TextUtilTests.cs" />
@@ -179,6 +180,10 @@
     <ProjectReference Include="..\FSMail\FSMail.csproj">
       <Project>{890916d9-1b2a-4c31-a2cd-f9cc8a80bd87}</Project>
       <Name>FSMail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FSMultimedia\FSMultimedia.csproj">
+      <Project>{C3B37E9C-BB2B-409B-978C-3DADD603DE56}</Project>
+      <Name>FSMultimedia</Name>
     </ProjectReference>
     <ProjectReference Include="..\FSNetwork\FSNetwork.csproj">
       <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>

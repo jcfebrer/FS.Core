@@ -148,7 +148,6 @@
     <Compile Include="Info.cs" />
     <Compile Include="KnownFolders.cs" />
     <Compile Include="MimeType.cs" />
-    <Compile Include="Multimedia.cs" />
     <Compile Include="NumberUtils.cs" />
     <Compile Include="PowerEnergy.cs" />
     <Compile Include="Search.cs" />

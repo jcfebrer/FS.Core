@@ -1,12 +1,10 @@
-﻿using System;
+﻿using FSLibrary;
+using System;
 using System.IO;
 using System.Media;
-using System.Runtime.InteropServices;
-using System.Runtime.InteropServices.ComTypes;
-using System.Windows.Forms;
 using static FSLibrary.Win32APIEnums;
 
-namespace FSLibrary
+namespace FSMultimedia
 {
     /// <summary>
     /// Librería multimedia
