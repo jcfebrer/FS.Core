@@ -15,16 +15,17 @@ namespace FSNetwork
         private string serviceUrl = null;
         private string externalIp = null;
 
-        public void Discover()
+        public bool Discover()
         {
-            DiscoverAsync();
+            return DiscoverAsync().Result;
         }
 
         /// <summary>
         /// Descubre dispositivos UPnP y emite un evento por cada dispositivo encontrado
         /// </summary>
-        public async Task DiscoverAsync()
+        public async Task<bool> DiscoverAsync()
         {
+            bool result = false;
             string searchMessage = "M-SEARCH * HTTP/1.1\r\n" +
                                    "HOST: 239.255.255.250:1900\r\n" +
                                    "MAN: \"ssdp:discover\"\r\n" +
@@ -39,7 +40,10 @@ namespace FSNetwork
 
                 await udpClient.SendAsync(requestData, requestData.Length, multicastEndPoint);
 
-                while (true)
+                DateTime startTime = DateTime.Now;
+                TimeSpan timeout = TimeSpan.FromSeconds(5);
+
+                while ((DateTime.Now - startTime) < timeout)
                 {
                     var receiveTask = udpClient.ReceiveAsync();
                     if (await Task.WhenAny(receiveTask, Task.Delay(5000)) != receiveTask) break;
@@ -57,10 +61,65 @@ namespace FSNetwork
                             {
                                 // Emitir evento con información del dispositivo
                                 OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs(response.RemoteEndPoint.Address.ToString(), locationUrl, serviceUrl));
+
+                                result = true;
                             }
                         }
                     }
                 }
+
+                return result;
+            }
+        }
+
+        public bool DiscoverSync()
+        {
+            bool result = false;
+            string searchMessage = "M-SEARCH * HTTP/1.1\r\n" +
+                                   "HOST: 239.255.255.250:1900\r\n" +
+                                   "MAN: \"ssdp:discover\"\r\n" +
+                                   "MX: 2\r\n" +
+                                   "ST: urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\n\r\n";
+
+            using (UdpClient udpClient = new UdpClient())
+            {
+                udpClient.EnableBroadcast = true;
+                IPEndPoint multicastEndPoint = new IPEndPoint(IPAddress.Parse("239.255.255.250"), 1900);
+                byte[] requestData = Encoding.UTF8.GetBytes(searchMessage);
+
+                udpClient.Send(requestData, requestData.Length, multicastEndPoint);
+
+                var receiveBuffer = new byte[8192];
+                IPEndPoint senderEndPoint = new IPEndPoint(IPAddress.Any, 0);
+
+                DateTime startTime = DateTime.Now;
+                TimeSpan timeout = TimeSpan.FromSeconds(5);
+
+                while ((DateTime.Now - startTime) < timeout)
+                {
+                    if (udpClient.Available > 0)
+                    {
+                        receiveBuffer = udpClient.Receive(ref senderEndPoint);
+                        string responseText = Encoding.UTF8.GetString(receiveBuffer);
+
+                        if (responseText.ToLower().Contains("location:"))
+                        {
+                            string locationUrl = ExtractLocationUrl(responseText);
+                            if (locationUrl != null)
+                            {
+                                bool success = ParseGateway(locationUrl);
+                                if (success)
+                                {
+                                    OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs(senderEndPoint.Address.ToString(), locationUrl, serviceUrl));
+
+                                    result = true;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                return result;
             }
         }
 
