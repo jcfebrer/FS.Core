@@ -6,6 +6,7 @@ using System.Xml;
 using System.IO;
 using System.Threading.Tasks;
 using FSException;
+using System.Threading;
 
 namespace FSNetwork
 {
@@ -14,10 +15,23 @@ namespace FSNetwork
         public event EventHandler<UPnPDeviceEventArgs> OnDeviceFound;
         private string serviceUrl = null;
         private string externalIp = null;
+        private int timeoutInSecs = 15;
+
+        private static string ssdp_discover = "ssdp:discover";
+        private static string st_discover = "urn:schemas-upnp-org:device:InternetGatewayDevice:1"; //ssdp:all
+        private static int mx_discover = 2;
+
+        private static IPEndPoint multicastEndPoint = new IPEndPoint(IPAddress.Parse("239.255.255.250"), 1900);
+
+        private string searchMessage = "M-SEARCH * HTTP/1.1\r\n" +
+                       "HOST: " + multicastEndPoint.Address.ToString() + ":" + multicastEndPoint.Port + "\r\n" +
+                       "MAN: \"" + ssdp_discover + "\"\r\n" +
+                       "MX: " + mx_discover + "\r\n" +
+                       "ST: " + st_discover + "\r\n\r\n";
 
         public bool Discover()
         {
-            return DiscoverAsync().Result;
+            return DiscoverSync();
         }
 
         /// <summary>
@@ -26,27 +40,24 @@ namespace FSNetwork
         public async Task<bool> DiscoverAsync()
         {
             bool result = false;
-            string searchMessage = "M-SEARCH * HTTP/1.1\r\n" +
-                                   "HOST: 239.255.255.250:1900\r\n" +
-                                   "MAN: \"ssdp:discover\"\r\n" +
-                                   "MX: 2\r\n" +
-                                   "ST: urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\n\r\n";
 
             using (UdpClient udpClient = new UdpClient())
             {
                 udpClient.EnableBroadcast = true;
-                IPEndPoint multicastEndPoint = new IPEndPoint(IPAddress.Parse("239.255.255.250"), 1900);
+
                 byte[] requestData = Encoding.UTF8.GetBytes(searchMessage);
 
                 await udpClient.SendAsync(requestData, requestData.Length, multicastEndPoint);
 
                 DateTime startTime = DateTime.Now;
-                TimeSpan timeout = TimeSpan.FromSeconds(5);
+                TimeSpan timeout = TimeSpan.FromSeconds(timeoutInSecs);
 
                 while ((DateTime.Now - startTime) < timeout)
                 {
                     var receiveTask = udpClient.ReceiveAsync();
-                    if (await Task.WhenAny(receiveTask, Task.Delay(5000)) != receiveTask) break;
+
+                    if (await Task.WhenAny(receiveTask, Task.Delay(5000)) != receiveTask) 
+                        break;
 
                     UdpReceiveResult response = receiveTask.Result;
                     string responseText = Encoding.UTF8.GetString(response.Buffer);
@@ -75,16 +86,11 @@ namespace FSNetwork
         public bool DiscoverSync()
         {
             bool result = false;
-            string searchMessage = "M-SEARCH * HTTP/1.1\r\n" +
-                                   "HOST: 239.255.255.250:1900\r\n" +
-                                   "MAN: \"ssdp:discover\"\r\n" +
-                                   "MX: 2\r\n" +
-                                   "ST: urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\n\r\n";
 
             using (UdpClient udpClient = new UdpClient())
             {
                 udpClient.EnableBroadcast = true;
-                IPEndPoint multicastEndPoint = new IPEndPoint(IPAddress.Parse("239.255.255.250"), 1900);
+                
                 byte[] requestData = Encoding.UTF8.GetBytes(searchMessage);
 
                 udpClient.Send(requestData, requestData.Length, multicastEndPoint);
@@ -93,7 +99,7 @@ namespace FSNetwork
                 IPEndPoint senderEndPoint = new IPEndPoint(IPAddress.Any, 0);
 
                 DateTime startTime = DateTime.Now;
-                TimeSpan timeout = TimeSpan.FromSeconds(5);
+                TimeSpan timeout = TimeSpan.FromSeconds(timeoutInSecs);
 
                 while ((DateTime.Now - startTime) < timeout)
                 {
@@ -161,8 +167,7 @@ namespace FSNetwork
 
         public bool AddPortMapping(int externalPort, int internalPort, string localIp, string description = "UPnP Port Forward")
         {
-            if (serviceUrl == null)
-                throw new ExceptionUtil("La url de servicio es null. ¿Esta activo y disponible tu router con UPnP activado?");
+            CheckServiceUrl();
 
             string soapBody = $@"
             <u:AddPortMapping xmlns:u='urn:schemas-upnp-org:service:WANIPConnection:1'>
@@ -181,8 +186,7 @@ namespace FSNetwork
 
         public bool DeletePortMapping(int externalPort)
         {
-            if (serviceUrl == null)
-                throw new ExceptionUtil("La url de servicio es null. ¿Esta activo y disponible tu router con UPnP activado?");
+            CheckServiceUrl();
 
             string soapBody = $@"
             <u:DeletePortMapping xmlns:u='urn:schemas-upnp-org:service:WANIPConnection:1'>
@@ -196,8 +200,7 @@ namespace FSNetwork
 
         public string GetExternalIPAddress()
         {
-            if (serviceUrl == null)
-                throw new ExceptionUtil("La url de servicio es null. ¿Esta activo y disponible tu router con UPnP activado?");
+            CheckServiceUrl();
 
             string soapBody = "<u:GetExternalIPAddress xmlns:u='urn:schemas-upnp-org:service:WANIPConnection:1'></u:GetExternalIPAddress>";
 
@@ -209,6 +212,12 @@ namespace FSNetwork
                     externalIp = ipNode.InnerText;
             }
             return externalIp;
+        }
+
+        private void CheckServiceUrl()
+        {
+            if (serviceUrl == null)
+                throw new ExceptionUtil("La url de servicio es null. ¿Esta activo y disponible tu router con UPnP activado?");
         }
 
         private bool SendSoapRequest(string action, string body)
