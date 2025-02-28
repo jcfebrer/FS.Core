@@ -21,10 +21,6 @@ namespace FSTests.FSNetworkCore
                 Debug.WriteLine($"📍 URL de servicio: {e.ServiceUrl}");
             };
 
-            Debug.WriteLine("🔎 Buscando dispositivos UPnP de forma sincrónica método 3 por Sockets...");
-            bool foundSync2 = upnp.DiscoverUdpSocket();
-            Debug.WriteLine(foundSync2 ? "✅ Dispositivo encontrado." : "❌ No se encontró ningún dispositivo.");
-
             Debug.WriteLine("🔎 Buscando dispositivos UPnP de forma sincrónica...");
             bool foundSync = upnp.Discover();
             Debug.WriteLine(foundSync ? "✅ Dispositivo encontrado." : "❌ No se encontró ningún dispositivo.");

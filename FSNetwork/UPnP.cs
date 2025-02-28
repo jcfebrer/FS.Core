@@ -76,103 +76,6 @@ namespace FSNetwork
             }
         }
 
-        public bool DiscoverUdpSocket()
-        {
-            try
-            {
-                if (gateway != null)
-                    multicastEndPoint = new IPEndPoint(gateway, port);
-                else
-                    multicastEndPoint = new IPEndPoint(IPAddress.Parse(multicastAddress), 1900);
-
-                bool result = false;
-
-                byte[] searchBytes = Encoding.UTF8.GetBytes(SearchMessage());
-
-                IPEndPoint LocalEndPoint = new IPEndPoint(IPAddress.Any, port);
-
-                Socket udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-
-                udpSocket.SendBufferSize = searchBytes.Length;
-                udpSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
-                udpSocket.Bind(LocalEndPoint);
-
-                if (gateway == null)
-                    udpSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, new MulticastOption(multicastEndPoint.Address, IPAddress.Any));
-                else
-                    udpSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.MulticastInterface, IPAddress.Parse(multicastAddress).GetAddressBytes());
-
-                udpSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.MulticastTimeToLive, 2);
-                udpSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.MulticastLoopback, true);
-
-                Debug.WriteLine("UDP-Socket setup done...\r\n");
-				
-                udpSocket.SendTo(searchBytes, SocketFlags.None, multicastEndPoint);
-
-                Debug.WriteLine("M-Search sent...\r\n");
-
-                byte[] ReceiveBuffer = new byte[64000];
-
-                int ReceivedBytes = 0;
-
-                DateTime startTime = DateTime.Now;
-                TimeSpan timeout = TimeSpan.FromSeconds(timeoutInSecs);
-
-                while ((DateTime.Now - startTime) < timeout)
-                {
-                    if (udpSocket.Available > 0)
-                    {
-                        ReceivedBytes = udpSocket.Receive(ReceiveBuffer, SocketFlags.None);
-
-                        if (ReceivedBytes > 0)
-                        {
-                            string responseText = Encoding.UTF8.GetString(ReceiveBuffer, 0, ReceivedBytes);
-
-                            if (responseText.ToLower().Contains("location:"))
-                            {
-                                string locationUrl = ExtractLocationUrl(responseText);
-                                if (locationUrl != null)
-                                {
-                                    bool success = ParseGateway(locationUrl);
-                                    if (success)
-                                    {
-                                        // Emitir evento con información del dispositivo
-                                        OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs("0.0.0.0:0", locationUrl, serviceUrl, responseText));
-
-                                        if (stopInFirstFind)
-                                            return true;
-                                        else
-                                            result = true;
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                // Emitir evento con información del dispositivo
-                                OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs("0.0.0.0:0", null, null, responseText));
-                            }
-                        }
-                    }
-                }
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                Log.TraceError(ex);
-                return false;
-            }
-        }
-
-        public void FindDevices()
-        {
-            byte[] multiCastData = Encoding.UTF8.GetBytes(SearchMessage());
-
-            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            socket.SendBufferSize = multiCastData.Length;
-
-        }
-
         /// <summary>
         /// Descubre dispositivos UPnP y emite un evento por cada dispositivo encontrado
         /// </summary>
@@ -245,7 +148,7 @@ namespace FSNetwork
                 Log.TraceError(ex);
                 return false;
             }
-}
+        }
 
         public bool DiscoverSync()
         {
