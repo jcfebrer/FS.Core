@@ -4,12 +4,12 @@ using System;
 namespace FSMultimedia.Test
 {
     [TestClass]
-    public class ModemSoundGeneratorTest
+    public class ZXModemSoundGeneratorTest
     {
         [TestMethod()]
         public void TestSound()
         {
-            ModemSoundGenerator modem = new ModemSoundGenerator();
+            ZXModemSoundGenerator modem = new ZXModemSoundGenerator();
 
             string text = "ATDT555-1234"; // Mensaje simulado de un módem
 

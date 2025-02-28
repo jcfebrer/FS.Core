@@ -22,7 +22,7 @@ namespace FSMultimediaCore.Test
 
             string result = decoder.DecodeFromWav("modem.wav");
 
-            Console.WriteLine("Texto recuperado: " + result);
+            Assert.AreEqual(text, result);
         }
     }
 }

@@ -1,15 +1,15 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace FSMultimedia.Test
+namespace FSMultimediaCore.Test
 {
     [TestClass]
-    public class ModemSoundGeneratorTest
+    public class ZXModemSoundGeneratorTest
     {
         [TestMethod()]
         public void TestSound()
         {
-            ModemSoundGenerator modem = new ModemSoundGenerator();
+            ZXModemSoundGenerator modem = new ZXModemSoundGenerator();
 
             string text = "ATDT555-1234"; // Mensaje simulado de un módem
 
