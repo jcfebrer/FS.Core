@@ -97,7 +97,9 @@
     <Compile Include="FSIA\NeuralNetworkTest.cs" />
     <Compile Include="FSIA\PerceptronTest.cs" />
     <Compile Include="FSLibrary\DateTimeUtilTests.cs" />
+    <Compile Include="FSMultimedia\ZXModemSoundGeneratorTest.cs" />
     <Compile Include="FSMultimedia\ModemSoundGeneratorTest.cs" />
+    <Compile Include="FSNetwork\FSUPnPTests.cs" />
     <Compile Include="FSParser\CSharpParserTest.cs" />
     <Compile Include="FSParser\SimpleExpressionEvaluatorTest.cs" />
     <Compile Include="FSSystemInfo\FSDiskTests.cs" />

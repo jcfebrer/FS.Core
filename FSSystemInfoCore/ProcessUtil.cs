@@ -81,6 +81,9 @@ namespace FSSystemInfoCore
         /// <returns></returns>
         public static bool OpenDocument(string documentName, string args)
         {
+            if (documentName == null)
+                throw new Exception("Debes indicar el nombre del documento a abrir.");
+
             try
             {
                 if (!documentName.Contains("http"))

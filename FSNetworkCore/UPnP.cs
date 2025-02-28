@@ -6,6 +6,9 @@ using System.Xml;
 using System.IO;
 using System.Threading.Tasks;
 using FSExceptionCore;
+using System.Threading;
+using System.Diagnostics;
+using FSTraceCore;
 
 namespace FSNetworkCore
 {
@@ -14,35 +17,197 @@ namespace FSNetworkCore
         public event EventHandler<UPnPDeviceEventArgs> OnDeviceFound;
         private string serviceUrl = null;
         private string externalIp = null;
+        private int timeoutInSecs = 5;
+        private IPAddress gateway = null;
+        private bool stopInFirstFind = true;
 
-        public void Discover()
+        private string ssdp_discover = "ssdp:discover";
+
+        // Tipo de dispositivos a descubrir:
+        private string st_discover = "upnp:rootdevice";
+        //ssdp:all
+        //urn:schemas-upnp-org:device:MediaRenderer:1
+        //urn:schemas-upnp-org:service:WANCommonInterfaceConfig:1
+        //urn:schemas-upnp-org:device:InternetGatewayDevice:1
+        //upnp:rootdevice
+
+        public bool StopInFirstFind
         {
-            DiscoverAsync();
+            get { return stopInFirstFind; }
+            set { stopInFirstFind = value; }
+        }
+
+        public string DiscoverType
+        {
+            get { return st_discover; }
+            set { st_discover = value; }
+        }
+
+        public IPAddress Gateway
+        {
+            get { return gateway; }
+            set { gateway = value; }
+        }
+
+        public int DiscoverTimeoutInSecs
+        {
+            get { return timeoutInSecs; }
+            set { timeoutInSecs = value; }
+        }
+
+        // segundos de espera en responder
+        private int mx_discover = 3;
+
+        private const int port = 1900;
+        private const string multicastAddress = "239.255.255.250";
+
+        private IPEndPoint multicastEndPoint = new IPEndPoint(IPAddress.Parse(multicastAddress), port);
+
+        public bool Discover()
+        {
+            try
+            {
+                return DiscoverSync();
+            }
+            catch (Exception ex)
+            {
+                Log.TraceError(ex);
+                return false;
+            }
+        }
+
+        public bool DiscoverUdpSocket()
+        {
+            try
+            {
+                if (gateway != null)
+                    multicastEndPoint = new IPEndPoint(gateway, port);
+                else
+                    multicastEndPoint = new IPEndPoint(IPAddress.Parse(multicastAddress), 1900);
+
+                bool result = false;
+
+                byte[] searchBytes = Encoding.UTF8.GetBytes(SearchMessage());
+
+                IPEndPoint LocalEndPoint = new IPEndPoint(IPAddress.Any, port);
+
+                Socket udpSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+
+                udpSocket.SendBufferSize = searchBytes.Length;
+                udpSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                udpSocket.Bind(LocalEndPoint);
+
+                if (gateway == null)
+                    udpSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.AddMembership, new MulticastOption(multicastEndPoint.Address, IPAddress.Any));
+                else
+                    udpSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.MulticastInterface, IPAddress.Parse(multicastAddress).GetAddressBytes());
+
+                udpSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.MulticastTimeToLive, 2);
+                udpSocket.SetSocketOption(SocketOptionLevel.IP, SocketOptionName.MulticastLoopback, true);
+
+                Debug.WriteLine("UDP-Socket setup done...\r\n");
+
+                udpSocket.SendTo(searchBytes, SocketFlags.None, multicastEndPoint);
+
+                Debug.WriteLine("M-Search sent...\r\n");
+
+                byte[] ReceiveBuffer = new byte[64000];
+
+                int ReceivedBytes = 0;
+
+                DateTime startTime = DateTime.Now;
+                TimeSpan timeout = TimeSpan.FromSeconds(timeoutInSecs);
+
+                while ((DateTime.Now - startTime) < timeout)
+                {
+                    if (udpSocket.Available > 0)
+                    {
+                        ReceivedBytes = udpSocket.Receive(ReceiveBuffer, SocketFlags.None);
+
+                        if (ReceivedBytes > 0)
+                        {
+                            string responseText = Encoding.UTF8.GetString(ReceiveBuffer, 0, ReceivedBytes);
+
+                            if (responseText.ToLower().Contains("location:"))
+                            {
+                                string locationUrl = ExtractLocationUrl(responseText);
+                                if (locationUrl != null)
+                                {
+                                    bool success = ParseGateway(locationUrl);
+                                    if (success)
+        {
+                                        // Emitir evento con información del dispositivo
+                                        OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs("0.0.0.0:0", locationUrl, serviceUrl, responseText));
+
+                                        if (stopInFirstFind)
+                                            return true;
+                                        else
+                                            result = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                // Emitir evento con información del dispositivo
+                                OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs("0.0.0.0:0", null, null, responseText));
+                            }
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                Log.TraceError(ex);
+                return false;
+            }
+        }
+
+        public void FindDevices()
+        {
+            byte[] multiCastData = Encoding.UTF8.GetBytes(SearchMessage());
+
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            socket.SendBufferSize = multiCastData.Length;
+
         }
 
         /// <summary>
         /// Descubre dispositivos UPnP y emite un evento por cada dispositivo encontrado
         /// </summary>
-        public async Task DiscoverAsync()
+        public async Task<bool> DiscoverAsync()
         {
-            string searchMessage = "M-SEARCH * HTTP/1.1\r\n" +
-                                   "HOST: 239.255.255.250:1900\r\n" +
-                                   "MAN: \"ssdp:discover\"\r\n" +
-                                   "MX: 2\r\n" +
-                                   "ST: urn:schemas-upnp-org:device:InternetGatewayDevice:1\r\n\r\n";
+            try
+            {
+                if (gateway != null)
+                    multicastEndPoint = new IPEndPoint(gateway, port);
+                else
+                    multicastEndPoint = new IPEndPoint(IPAddress.Parse(multicastAddress), 1900);
+
+                bool result = false;
 
             using (UdpClient udpClient = new UdpClient())
             {
+                    //udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                    //udpClient.Client.ReceiveTimeout = timeoutInSecs * 1000;
+                    //udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, 0));
+
                 udpClient.EnableBroadcast = true;
-                IPEndPoint multicastEndPoint = new IPEndPoint(IPAddress.Parse("239.255.255.250"), 1900);
-                byte[] requestData = Encoding.UTF8.GetBytes(searchMessage);
+
+                    byte[] requestData = Encoding.UTF8.GetBytes(SearchMessage());
 
                 await udpClient.SendAsync(requestData, requestData.Length, multicastEndPoint);
 
-                while (true)
+                    //DateTime startTime = DateTime.Now;
+                    //TimeSpan timeout = TimeSpan.FromSeconds(timeoutInSecs);
+
+                    while (true) //while ((DateTime.Now - startTime) < timeout)
                 {
                 var receiveTask = udpClient.ReceiveAsync();
-                    if (await Task.WhenAny(receiveTask, Task.Delay(5000)) != receiveTask) break;
+
+                        if (await Task.WhenAny(receiveTask, Task.Delay(timeoutInSecs * 1000)) != receiveTask)
+                            break;
 
                     UdpReceiveResult response = receiveTask.Result;
                     string responseText = Encoding.UTF8.GetString(response.Buffer);
@@ -56,19 +221,123 @@ namespace FSNetworkCore
                             if (success)
                             {
                                 // Emitir evento con información del dispositivo
-                                OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs(response.RemoteEndPoint.Address.ToString(), locationUrl, serviceUrl));
+                                    OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs(response.RemoteEndPoint.Address.ToString(), locationUrl, serviceUrl, responseText));
+
+                                    if (stopInFirstFind)
+                                        return true;
+                                    else
+                                        result = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            // Emitir evento con información del dispositivo
+                            OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs(response.RemoteEndPoint.Address.ToString(), null, null, responseText));
+                        }
+                    }
+
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.TraceError(ex);
+                return false;
+            }
+}
+
+        public bool DiscoverSync()
+        {
+            try
+            {
+                if (gateway != null)
+                    multicastEndPoint = new IPEndPoint(gateway, port);
+                else
+                    multicastEndPoint = new IPEndPoint(IPAddress.Parse(multicastAddress), 1900);
+
+                bool result = false;
+
+                using (UdpClient udpClient = new UdpClient())
+                {
+                    //udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+                    //udpClient.Client.ReceiveTimeout = timeoutInSecs * 1000;
+                    //udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, 0));
+
+                    udpClient.EnableBroadcast = true;
+
+                    byte[] requestData = Encoding.UTF8.GetBytes(SearchMessage());
+
+                    udpClient.Send(requestData, requestData.Length, multicastEndPoint);
+
+                    var receiveBuffer = new byte[8192];
+                    IPEndPoint senderEndPoint = new IPEndPoint(IPAddress.Any, 0);
+
+                    DateTime startTime = DateTime.Now;
+                    TimeSpan timeout = TimeSpan.FromSeconds(timeoutInSecs);
+
+                    while ((DateTime.Now - startTime) < timeout)
+                    {
+                        if (udpClient.Available > 0)
+                        {
+                            receiveBuffer = udpClient.Receive(ref senderEndPoint);
+                            string responseText = Encoding.UTF8.GetString(receiveBuffer);
+
+                            if (responseText.ToLower().Contains("location:"))
+                            {
+                                string locationUrl = ExtractLocationUrl(responseText);
+                                if (locationUrl != null)
+                                {
+                                    bool success = ParseGateway(locationUrl);
+                                    if (success)
+                                    {
+                                        OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs(senderEndPoint.Address.ToString(), locationUrl, serviceUrl, responseText));
+
+                                        if (stopInFirstFind)
+                                            return true;
+                                        else
+                                            result = true;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                // Emitir evento con información del dispositivo
+                                OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs(senderEndPoint.Address.ToString(), null, null, responseText));
                             }
                         }
                     }
+
+                    return result;
                 }
             }
+            catch (Exception ex)
+            {
+                Log.TraceError(ex);
+                return false;
+            }
+}
+
+        private string SearchMessage()
+        {
+            string searchMessage = $@"M-SEARCH * HTTP/1.1
+HOST: {multicastAddress}:{port}
+MAN: ""{ssdp_discover}""
+MX: {mx_discover}
+ST: {st_discover}
+
+";
+            return searchMessage;
         }
 
+        /// <summary>
+        /// Extrae la URL de la respuesta SSDP.
+        /// </summary>
         private string ExtractLocationUrl(string response)
         {
             int startIndex = response.ToLower().IndexOf("location:") + 9;
-            int endIndex = response.IndexOf("\r", startIndex);
-            return response.Substring(startIndex, endIndex - startIndex).Trim();
+            int endIndex = response.IndexOfAny(new[] { '\r', '\n' }, startIndex);
+            return (startIndex > 8 && endIndex > startIndex) ? response.Substring(startIndex, endIndex - startIndex).Trim() : null;
         }
 
         private async Task<bool> ParseGatewayAsync(string url)
@@ -102,8 +371,7 @@ namespace FSNetworkCore
 
         public bool AddPortMapping(int externalPort, int internalPort, string localIp, string description = "UPnP Port Forward")
         {
-            if (serviceUrl == null)
-                throw new ExceptionUtil("La url de servicio es null. ¿Esta activo y disponible tu router con UPnP activado?");
+            CheckServiceUrl();
 
             string soapBody = $@"
             <u:AddPortMapping xmlns:u='urn:schemas-upnp-org:service:WANIPConnection:1'>
@@ -122,8 +390,7 @@ namespace FSNetworkCore
 
         public bool DeletePortMapping(int externalPort)
         {
-            if (serviceUrl == null)
-                throw new ExceptionUtil("La url de servicio es null. ¿Esta activo y disponible tu router con UPnP activado?");
+            CheckServiceUrl();
 
             string soapBody = $@"
             <u:DeletePortMapping xmlns:u='urn:schemas-upnp-org:service:WANIPConnection:1'>
@@ -137,8 +404,7 @@ namespace FSNetworkCore
 
         public string GetExternalIPAddress()
         {
-            if (serviceUrl == null) 
-                throw new ExceptionUtil("La url de servicio es null. ¿Esta activo y disponible tu router con UPnP activado?");
+            CheckServiceUrl();
 
             string soapBody = "<u:GetExternalIPAddress xmlns:u='urn:schemas-upnp-org:service:WANIPConnection:1'></u:GetExternalIPAddress>";
 
@@ -150,6 +416,12 @@ namespace FSNetworkCore
                     externalIp = ipNode.InnerText;
             }
             return externalIp;
+        }
+
+        private void CheckServiceUrl()
+        {
+            if (serviceUrl == null)
+                throw new ExceptionUtil("La url de servicio es null. ¿Esta activo y disponible tu router con UPnP activado?");
         }
 
         private bool SendSoapRequest(string action, string body)
@@ -209,12 +481,14 @@ namespace FSNetworkCore
         public string IPAddress { get; }
         public string LocationUrl { get; }
         public string ServiceUrl { get; }
+        public string ResponseText { get; }
 
-        public UPnPDeviceEventArgs(string ipAddress, string locationUrl, string serviceUrl)
+        public UPnPDeviceEventArgs(string ipAddress, string locationUrl, string serviceUrl, string responseText)
         {
             IPAddress = ipAddress;
             LocationUrl = locationUrl;
             ServiceUrl = serviceUrl;
+            ResponseText = responseText;
         }
 }
 }
