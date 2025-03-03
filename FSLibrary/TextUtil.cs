@@ -3333,7 +3333,7 @@ namespace FSLibrary
             do
             {
                 if (TextUtil.HasProtectText(expression))
-                    return expression;
+                    return FormatNumericValue(expression);
 
                 lastExpression = expression; // Guarda la expresión antes del reemplazo
 
@@ -3361,14 +3361,9 @@ namespace FSLibrary
                         result.Append(expression.Substring(lastIndex, match.Index - lastIndex)); // Agregar parte anterior
                         string variableValue = variables[match.Value].ToString();
 
-                        // Si el valor no es una variable de memoria y no está entrecomillado, aplicamos transformaciones
+                        // Si el valor no es una variable de memoria, formateamos el dato
                         if (!Regex.Match(variableValue, pattern).Success)
-                        {
-                            if (NumberUtils.IsNumeric(variableValue))
-                                variableValue = variableValue.Replace(",", "."); // Asegura que los números sean válidos con punto como separador decimal.
-                            else if (!(variableValue.StartsWith("\"") && variableValue.EndsWith("\"")))
-                                variableValue = $"\"{variableValue}\""; // Si no es un número, lo convierte a string entre comillas.
-                        }
+                            variableValue = FormatNumericValue(variableValue);
 
                         result.Append(variableValue);
                     }
@@ -3387,6 +3382,21 @@ namespace FSLibrary
             } while (!expression.Equals(lastExpression)); // Repetir hasta que la expresión ya no cambie
 
             return expression;
+        }
+
+        /// <summary>
+        ///  Si no está entrecomillado, aplicamos transformaciones para número y entrecomillamos el valor.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        private static string FormatNumericValue(string value)
+        {
+            if (NumberUtils.IsNumeric(value))
+                value = value.Replace(",", "."); // Asegura que los números sean válidos con punto como separador decimal.
+            else if (!HasQuotes(value))
+                value = AddQuotes(value); // Si no es un número, lo convierte a string entre comillas.
+
+            return value;
         }
     }
 }
