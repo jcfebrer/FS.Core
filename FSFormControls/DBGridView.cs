@@ -1117,7 +1117,7 @@ namespace FSFormControls
                             dbic.HeaderText = column.HeaderCaption;
                             dbic.ReadOnly = column.ReadColumn;
                             dbic.Width = column.Width;
-                            dbic.DefaultCellStyle.WrapMode = column.MultiLine
+                            dbic.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             dbic.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1141,7 +1141,7 @@ namespace FSFormControls
                             dbcbc.HeaderText = column.HeaderCaption;
                             dbcbc.ReadOnly = column.ReadColumn;
                             dbcbc.Width = column.Width;
-                            dbcbc.DefaultCellStyle.WrapMode = column.MultiLine
+                            dbcbc.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             dbcbc.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1167,7 +1167,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1192,7 +1192,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1217,7 +1217,7 @@ namespace FSFormControls
                             cm.HeaderText = column.HeaderCaption;
                             cm.ReadOnly = column.ReadColumn;
                             cm.Width = column.Width;
-                            cm.DefaultCellStyle.WrapMode = column.MultiLine
+                            cm.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             cm.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1243,7 +1243,7 @@ namespace FSFormControls
                             tp.HeaderText = column.HeaderCaption;
                             tp.ReadOnly = column.ReadColumn;
                             tp.Width = column.Width;
-                            tp.DefaultCellStyle.WrapMode = column.MultiLine
+                            tp.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             tp.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1268,7 +1268,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1293,7 +1293,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1318,7 +1318,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1365,7 +1365,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1393,7 +1393,7 @@ namespace FSFormControls
                             comboCol.ReadOnly = column.ReadColumn;
                             comboCol.Width = column.Width;
                             comboCol.HeaderText = column.HeaderCaption;
-                            comboCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            comboCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             comboCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1418,7 +1418,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1443,7 +1443,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1468,7 +1468,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1493,7 +1493,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;
@@ -1518,7 +1518,7 @@ namespace FSFormControls
                             textCol.HeaderText = column.HeaderCaption;
                             textCol.ReadOnly = column.ReadColumn;
                             textCol.Width = column.Width;
-                            textCol.DefaultCellStyle.WrapMode = column.MultiLine
+                            textCol.DefaultCellStyle.WrapMode = column.Multiline
                                 ? DataGridViewTriState.True
                                 : DataGridViewTriState.False;
                             textCol.DefaultCellStyle.BackColor = column.ColumnBackColor;

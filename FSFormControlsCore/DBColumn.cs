@@ -111,7 +111,7 @@ namespace FSFormControlsCore
         /// <summary>
         ///     Permitir líneas múltiples
         /// </summary>
-        public bool MultiLine { get; set; } = false;
+        public bool Multiline { get; set; } = false;
 
         /// <summary>
         ///     Permitir valores nulos

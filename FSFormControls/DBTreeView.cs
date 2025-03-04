@@ -173,6 +173,11 @@ namespace FSFormControls
             set { TreeView1.SelectedNode = value; }
         }
 
+        public TreeNode ActiveNode {
+            get { return TreeView1.SelectedNode; }
+            set { TreeView1.SelectedNode = value; }
+        }
+
         public void BeginInit()
         {
         }
