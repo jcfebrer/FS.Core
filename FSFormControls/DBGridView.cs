@@ -1725,6 +1725,12 @@ namespace FSFormControls
             return datagrid.Columns.Count;
         }
 
+        public void SetDataBinding(DataTable dataSource, string dataMember)
+        {
+            datagrid.DataSource = dataSource;
+            datagrid.DataMember = dataMember;
+        }
+
         public void SetDataBinding(ArrayList dataSource, string dataMember)
         {
             datagrid.DataSource = dataSource;
