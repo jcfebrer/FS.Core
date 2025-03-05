@@ -36,5 +36,6 @@ namespace FSFormControls
         public string Name { get; set; }
         public SummarieType Type { get; set; }
         public string DisplayFormat { get; set; }
+        public object SourceColumn { get; set; }
     }
 }

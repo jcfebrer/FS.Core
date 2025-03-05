@@ -72,6 +72,11 @@ namespace FSFormControls
             get { return toolbars[0].Buttons; }
         }
 
+        public bool Visible {
+            get { return toolbars[0].Visible; }
+            set { toolbars[0].Visible = value; }
+        }
+
         public event ToolBarButtonClickEventHandler ButtonClick;
         public delegate void ToolBarButtonClickEventHandler(object sender, ToolBarButtonClickEventArgs e);
     }
