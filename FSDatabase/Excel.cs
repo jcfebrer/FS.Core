@@ -6,11 +6,13 @@ namespace FSDatabase
 {
     public class Excel
     {
+        public string ConnectionString { get; set; }
+
         public Excel(string fileName)
         {
             ConnectionString = string.Format("provider=Microsoft.Jet.OLEDB.4.0; data source={0};Extended Properties=Excel 8.0;", fileName);
         }
-        public string ConnectionString {get; set;}
+        
         public DataSet Parse()
         {
             DataSet data = new DataSet();

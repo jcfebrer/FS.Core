@@ -2471,11 +2471,42 @@ namespace FSFormControls
 
         private void MnuExcelExport(object sender, EventArgs e)
         {
-            var excel = new FSExcel.Excel();
-
-            excel.Export(DataControl.DataTable);
+            FSExcel.Excel excel = new FSExcel.Excel();
+            excel.Export(ExportDBGrid());
         }
 
+        public DataTable ExportDBGrid()
+        {
+            string data;
+            DataTable dataTable = new DataTable();
+
+            for (int f = 0; f <= this.DataControl.DataTable.Rows.Count - 1; f++)
+            {
+                DataRow row = dataTable.NewRow();
+
+                for (int g = 0; g <= this.Columns.Count - 1; g++)
+                {
+                    if (this.Columns[g].ColumnType == FSFormControls.DBColumn.ColumnTypes.ComboColumn)
+                    {
+                        data = this.Columns[g].ColumnDBControl.Find(this.Columns[g].ColumnDBFieldData,
+                                                                                     Convert.ToString(
+                                                                                         this.get_RowValue(
+                                                                                             this.Columns[g].FieldDB, -1)),
+                                                                                     this.Columns[g].ComboListField);
+                    }
+                    else
+                    {
+                        data = Convert.ToString(this.get_RowValue(this.Columns[g].FieldDB, f));
+                    }
+
+                    row[g] = data;
+                }
+
+                dataTable.Rows.Add(row);
+            }
+
+            return dataTable;
+        }
 
         private void UnCheckTotalMenu()
         {

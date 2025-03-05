@@ -14,9 +14,11 @@ namespace FSFormControlsCore
             set { List[index] = value; }
         }
 
-        public void Add(string name, DBSummarie.SummarieType type)
+        public DBSummarie Add(string name, DBSummarie.SummarieType type, DBColumn dBColumn)
         {
-            List.Add(new DBSummarie(name, type));
+            DBSummarie summarie = new DBSummarie(name, type, dBColumn);
+            
+            return Add(summarie);
         }
 
         public DBSummarie Add(DBSummarie Value)
