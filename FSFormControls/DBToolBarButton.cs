@@ -28,5 +28,13 @@ namespace FSFormControls
             get { return Name; }
             set { Name = value; }
         }
+
+        public class SharedDef
+        {
+            public Shortcut Shortcut;
+            public string ToolTipText;
+        }
+
+        public SharedDef SharedProps { get; set; }
     }
 }

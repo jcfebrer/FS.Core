@@ -291,6 +291,9 @@ namespace FSFormControls
         public SortIndicatorEnum SortIndicator { get; set; }
         public LogicalOperatorEnum LogicalOperator { get; set; }
         public DBGridViewFilterCollection DBGridViewFilters { get; set; }
+        
+        public int Index { get; set; }
+
         public event CellClickEventHandler CellClick;
 
         public void PerformClick(object sender, DataGridViewCellEventArgs e)

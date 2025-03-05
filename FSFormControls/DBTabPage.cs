@@ -22,14 +22,17 @@ namespace FSFormControls
         //}
 
 
-        //public bool Active
-        //{
-        //    get
-        //    {
-        //        DBTabControl dbTabControl = (DBTabControl)base.Parent;
-        //        return (dbTabControl.SelectedTab == this);
-        //    }
-        //}
+        /// <summary>
+        /// Devuelve true si la pestaña esta seleccionada.
+        /// </summary>
+        public bool Active
+        {
+            get
+            {
+                DBTabControl dbTabControl = (DBTabControl)base.Parent;
+                return (dbTabControl.SelectedTab == this);
+            }
+        }
 
         //public DBAppearance Appearance { get; set; }
 
