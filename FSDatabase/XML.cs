@@ -31,11 +31,11 @@ namespace FSDatabase
         /// <returns></returns>
         public bool Load(string fileName)
         {
-            string file = m_directory + (m_directory.EndsWith("\\") ? "" : "\\") + fileName;
-            if (!file.ToLower().EndsWith(".xml"))
-                file += ".xml";
+            m_fileName = m_directory + (m_directory.EndsWith("\\") ? "" : "\\") + fileName;
+            if (!m_fileName.ToLower().EndsWith(".xml"))
+                m_fileName += ".xml";
 
-            m_fileName = HttpContext.Current.Server.MapPath(file);
+            //m_fileName = HttpContext.Current.Server.MapPath(m_fileName);
 
             m_dataTable = (DataTable)Web.GetCacheValue(m_fileName);
 
@@ -100,7 +100,7 @@ namespace FSDatabase
 
         public DataTable GetSchemaTables()
         {
-            DirectoryInfo d = new DirectoryInfo(HttpContext.Current.Server.MapPath(m_directory));
+            DirectoryInfo d = new DirectoryInfo(m_directory); // new DirectoryInfo(HttpContext.Current.Server.MapPath(m_directory));
             FileInfo[] Files = d.GetFiles("*.xml");
             
             DataTable schema = new DataTable();
@@ -233,6 +233,33 @@ namespace FSDatabase
             }
 
             return schema;
+        }
+
+        public static DataRow[] XMLSelect(string select, string fileNameXml, string fileNameXsd)
+        {
+            DataTable dtPaginas = new DataTable();
+            dtPaginas.ReadXmlSchema(fileNameXsd);
+            dtPaginas.ReadXml(fileNameXml);
+
+            return dtPaginas.Select(select);
+        }
+
+        public static DataTable XMLDataTable(string select, string fileNameXml, string fileNameXsd)
+        {
+            DataTable dtPaginas = new DataTable();
+            dtPaginas.ReadXmlSchema(fileNameXsd);
+            dtPaginas.ReadXml(fileNameXml);
+
+            return dtPaginas.Select(select).CopyToDataTable();
+        }
+
+        public static DataTable XMLDataTable(string fileNameXml, string fileNameXsd)
+        {
+            DataTable dtPaginas = new DataTable();
+            dtPaginas.ReadXmlSchema(fileNameXsd);
+            dtPaginas.ReadXml(fileNameXml);
+
+            return dtPaginas;
         }
     }
 }

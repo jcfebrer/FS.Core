@@ -15,8 +15,10 @@ namespace FSFormControls
 {
     internal class frmFilter : Form
     {
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Filter { get; set; } = "";
 
         private void frmFiltrosBusquedas_Load(object sender, EventArgs e)

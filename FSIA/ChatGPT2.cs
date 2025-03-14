@@ -157,7 +157,7 @@ namespace FSIA
         {
             Key = key;
             Organization = organization;
-            Url = url;    
+            Url = url;
         }
 
         public async Task<ChatResponse> Question(string prompt, string system, CancellationToken token)
@@ -214,12 +214,18 @@ namespace FSIA
 
                 var response = await httpClient.PostAsync(Url, content);
 
+//#if !NETFRAMEWORK
+                //var responseBody = await response.Content.ReadAsStringAsync(token);
+//#else
                 var responseBody = await response.Content.ReadAsStringAsync();
+//#endif
 
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.Unauthorized:
-                    case (HttpStatusCode)429: //HttpStatusCode.TooManyRequests:
+#if !NETFRAMEWORK
+                    case HttpStatusCode.TooManyRequests:
+#endif
                     case HttpStatusCode.InternalServerError:
                     case HttpStatusCode.NotFound:
                     case HttpStatusCode.BadRequest:

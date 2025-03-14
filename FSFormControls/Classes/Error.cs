@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using FSException;
 using FSLibrary;
+using FSTrace;
 using DateTimeUtil = FSLibrary.DateTimeUtil;
 
 #endregion
@@ -92,10 +93,7 @@ namespace FSFormControls
                     title = "Gestor de Errores";
                 mess = mess + message;
 
-                if (Global.SaveErrorsOnFile)
-                    WriteEvent(mess);
-                if (Global.SaveErrorsOnEventLog)
-                    WriteEventLog(mess);
+                Log.TraceError(mess);
 
                 if (!Global.SilentError)
                     if (!Silent)
@@ -191,44 +189,6 @@ namespace FSFormControls
         public static void ErrorMessage(Form frm, object sender, Exception e, bool silent)
         {
             ErrorMessage(frm, sender, "", "", MessageBoxIcon.Error, e, silent);
-        }
-
-
-        public static void WriteEvent(string message)
-        {
-            try
-            {
-                var SW = new StreamWriter("FSLog.txt", true);
-
-                SW.WriteLine(DateTimeUtil.ShortDate(System.DateTime.Now) + " - " + DateTimeUtil.ShortDate(System.DateTime.Now));
-
-                SW.WriteLine(message);
-                SW.WriteLine("\r\n");
-                SW.Flush();
-                SW.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Imposible guardar log de errores. Error: " + ex.Message, "Febrer Software",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-
-        public static void WriteEventLog(string message)
-        {
-            try
-            {
-                var log = new EventLog();
-
-                log.Source = "Application";
-                log.WriteEntry(message, EventLogEntryType.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Imposible guardar log de errores. Error: " + ex.Message, "Febrer Software",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
     }
 }

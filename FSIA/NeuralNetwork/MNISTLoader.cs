@@ -25,10 +25,10 @@ namespace FSIA
             double[][] normalizedImages = new double[numImages][];
 
             for (int i = 0; i < numImages; i++)
-            {
+        {
                 normalizedImages[i] = new double[imageSize];
                 for (int j = 0; j < imageSize; j++)
-                {
+            {
                     normalizedImages[i][j] = rawImages[i][j] / 255.0;
                 }
             }
@@ -82,7 +82,7 @@ namespace FSIA
             int cols = image.GetLength(2);
 
             for (int i = 0; i < rows; i++)
-            {
+                {
                 for (int j = 0; j < cols; j++)
                 {
                     Debug.Write(image[0, i, j] > 0.5 ? "#" : ".");
@@ -120,24 +120,24 @@ namespace FSIA
                 for (int i = 0; i < numImages; i++)
                 {
                     images[i] = reader.ReadBytes(numRows * numCols);
-                }
+        }
 
                 return images;
             }
         }
 
         private byte[] LoadLabels(string path)
-        {
-            using (var reader = new BinaryReader(new FileStream(path, FileMode.Open)))
             {
+            using (var reader = new BinaryReader(new FileStream(path, FileMode.Open)))
+                {
                 int magicNumber = ReverseBytes((long)reader.ReadInt32());
                 if (magicNumber != 2049)
                     throw new Exception("Número mágico inválido en el archivo de etiquetas");
 
                 int numLabels = ReverseBytes((long)reader.ReadInt32());
                 return reader.ReadBytes(numLabels);
+                }
             }
-        }
 
         private int ReverseBytes(long value)
         {

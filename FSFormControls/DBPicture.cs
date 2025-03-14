@@ -28,6 +28,7 @@ namespace FSFormControls
         public int m_BorderSize = 1;
         public t_PictureType m_PictureType = t_PictureType.Line;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public t_PictureType PictureType
         {
             get { return m_PictureType; }
@@ -38,6 +39,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new BorderStyle BorderStyle
         {
             get { return Label1.BorderStyle; }
@@ -48,12 +50,14 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Color
         {
             get { return Label1.BackColor; }
             set { Label1.BackColor = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int BorderSize
         {
             get { return m_BorderSize; }

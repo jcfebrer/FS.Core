@@ -26,12 +26,12 @@ namespace FSMouseKeyboardLibrary
 
             if (repeatCount > 0)
             {
-                for (int f = 0; f < repeatCount; f++)
-                {
-                    if (cancel)
-                        break;
+            for (int f = 0; f < repeatCount; f++)
+            { 
+                if (cancel)
+                    break;
 
-                    ProcessActions.Do(actions, makePointsIntermediate);
+                ProcessActions.Do(actions, makePointsIntermediate);
                 }
             }
             else

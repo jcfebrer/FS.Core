@@ -22,12 +22,14 @@ namespace FSFormControls
     {
         private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new BorderStyle BorderStyle
         {
             get { return PictureBox1.BorderStyle; }
             set { PictureBox1.BorderStyle = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PictureBoxSizeMode SizeMode
         {
             get { return PictureBox1.SizeMode; }
@@ -40,6 +42,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -49,6 +52,7 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
@@ -62,7 +66,7 @@ namespace FSFormControls
         //    get { return PictureBox1.DataBindings; }
         //}
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -73,10 +77,10 @@ namespace FSFormControls
                 switch (m_Mode)
                 {
                     case Global.AccessMode.ReadMode:
-                        ContextMenu1.MenuItems[0].Enabled = false;
+                        ContextMenu1.Items[0].Enabled = false;
                         break;
                     case Global.AccessMode.WriteMode:
-                        ContextMenu1.MenuItems[0].Enabled = true;
+                        ContextMenu1.Items[0].Enabled = true;
                         break;
                 }
             }
@@ -171,9 +175,9 @@ namespace FSFormControls
 
         #region '" Código generado por el Diseñador de Windows Forms "' 
 
-        internal ContextMenu ContextMenu1;
+        internal ContextMenuStrip ContextMenu1;
         internal Label Label1;
-        internal MenuItem MenuItem1;
+        internal ToolStripMenuItem MenuItem1;
         internal OpenFileDialog OpenFileDialog1;
         internal PictureBox PictureBox1;
         internal ToolTip ToolTip1;
@@ -202,8 +206,8 @@ namespace FSFormControls
         {
             components = new Container();
             PictureBox1 = new PictureBox();
-            ContextMenu1 = new ContextMenu();
-            MenuItem1 = new MenuItem();
+            ContextMenu1 = new ContextMenuStrip();
+            MenuItem1 = new ToolStripMenuItem();
             OpenFileDialog1 = new OpenFileDialog();
             Label1 = new Label();
             ToolTip1 = new ToolTip(components);
@@ -213,7 +217,7 @@ namespace FSFormControls
             // PictureBox1
             // 
             PictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            PictureBox1.ContextMenu = ContextMenu1;
+            PictureBox1.ContextMenuStrip = ContextMenu1;
             PictureBox1.Dock = DockStyle.Fill;
             PictureBox1.Location = new Point(0, 0);
             PictureBox1.Name = "PictureBox1";
@@ -224,20 +228,20 @@ namespace FSFormControls
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new MenuItem[]
+            ContextMenu1.Items.AddRange(new ToolStripMenuItem[]
             {
                 MenuItem1
             });
             // 
             // MenuItem1
             // 
-            MenuItem1.Index = 0;
+            MenuItem1.ImageIndex = 0;
             MenuItem1.Text = "Seleccionar Imagen";
             // 
             // Label1
             // 
             Label1.BorderStyle = BorderStyle.Fixed3D;
-            Label1.ContextMenu = ContextMenu1;
+            Label1.ContextMenuStrip = ContextMenu1;
             Label1.Dock = DockStyle.Fill;
             Label1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Italic, GraphicsUnit.Point, 0);
             Label1.Location = new Point(0, 0);

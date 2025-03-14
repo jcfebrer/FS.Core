@@ -28,6 +28,7 @@ namespace FSFormControls
 
         public bool fullDlg;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataTable DataTable
         {
             set { dataGridView1.DataSource = value; }

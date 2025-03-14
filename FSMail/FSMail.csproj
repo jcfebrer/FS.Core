@@ -1,112 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{890916D9-1B2A-4C31-A2CD-F9CC8A80BD87}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FSMail</RootNamespace>
-    <AssemblyName>FSMail</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
+    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>FSMail</AssemblyTitle>
+    <Product>FSMail</Product>
+    <Copyright>Copyright ©  2019</Copyright>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.configuration" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Security" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
+    <ProjectReference Include="..\FSCertificate\FSCertificate.csproj" />
+    <ProjectReference Include="..\FSCrypto\FSCrypto.csproj" />
+    <ProjectReference Include="..\FSException\FSException.csproj" />
+    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Imap.cs" />
-    <Compile Include="ImapBase.cs" />
-    <Compile Include="ImapExpception.cs" />
-    <Compile Include="MailTcp.cs" />
-    <Compile Include="MIME\MimeBody.cs" />
-    <Compile Include="MIME\MimeCode.cs" />
-    <Compile Include="MIME\MimeCodeBase64.cs" />
-    <Compile Include="MIME\MimeCodeManager.cs" />
-    <Compile Include="MIME\MimeCodeQP.cs" />
-    <Compile Include="MIME\MimeConst.cs" />
-    <Compile Include="MIME\MimeField.cs" />
-    <Compile Include="MIME\MimeFieldCodeBase.cs" />
-    <Compile Include="MIME\MimeHeader.cs" />
-    <Compile Include="MIME\MimeMessage.cs" />
-    <Compile Include="MIME\MimeType.cs" />
-    <Compile Include="SendMail.cs" />
-    <Compile Include="Pop3.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AtomReadMail.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\FSCertificate\FSCertificate.csproj">
-      <Project>{310595fe-ba38-48f1-8072-ef2bc695885a}</Project>
-      <Name>FSCertificate</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSCrypto\FSCrypto.csproj">
-      <Project>{5dde5624-1823-435d-8c88-46eb601106a4}</Project>
-      <Name>FSCrypto</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSException\FSException.csproj">
-      <Project>{2A366B72-70B3-4700-B962-5920A0EEE074}</Project>
-      <Name>FSException</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
-      <Project>{7e0adef9-bcb8-48cd-99b6-68bf862f7083}</Project>
-      <Name>FSLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSTrace\FSTrace.csproj">
-      <Project>{2ea3b2cc-791c-430c-8135-79d270be20b4}</Project>
-      <Name>FSTrace</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>

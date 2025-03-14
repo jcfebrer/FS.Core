@@ -26,12 +26,14 @@ namespace FSFormControls
 
         public double Value => dblSec;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public double EurValue
         {
             get { return m_EurValue; }
             set { m_EurValue = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int ButtonSeparation
         {
             get { return m_ButtonSeparation; }
@@ -43,6 +45,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color ButtonColor
         {
             get { return m_ButtonColor; }
@@ -54,6 +57,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color TextColor
         {
             get { return m_TextColor; }

@@ -7,7 +7,11 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Reflection;
-using System.Runtime.Remoting.Messaging;
+
+#if NETFRAMEWORK
+	using System.Runtime.Remoting.Messaging;
+#endif
+
 using System.Text;
 using System.Text.RegularExpressions;
 
@@ -674,6 +678,7 @@ namespace FSDns
             return g.BeginInvoke(ip, requestCallback, stateObject);
         }
 
+#if NETFRAMEWORK
         ///<summary>
         ///  Ends an asynchronous request for DNS information.
         ///</summary>
@@ -700,6 +705,7 @@ namespace FSDns
             }
             return null;
         }
+#endif        
 
         public void LoadRootFile(string strPath)
         {
@@ -799,6 +805,7 @@ namespace FSDns
             return g.BeginInvoke(hostNameOrAddress, requestCallback, stateObject);
         }
 
+#if NETFRAMEWORK
         ///<summary>
         ///  Ends an asynchronous request for DNS information.
         ///</summary>
@@ -813,6 +820,7 @@ namespace FSDns
             GetHostAddressesDelegate g = (GetHostAddressesDelegate) aResult.AsyncDelegate;
             return g.EndInvoke(AsyncResult);
         }
+#endif        
 
         ///<summary>
         ///  Creates an System.Net.IPHostEntry instance from the specified System.Net.IPAddress.
@@ -860,6 +868,7 @@ namespace FSDns
             return g.BeginInvoke(hostName, requestCallback, stateObject);
         }
 
+#if NETFRAMEWORK
         ///<summary>
         ///  Ends an asynchronous request for DNS information.
         ///</summary>
@@ -874,6 +883,7 @@ namespace FSDns
             GetHostByNameDelegate g = (GetHostByNameDelegate) aResult.AsyncDelegate;
             return g.EndInvoke(AsyncResult);
         }
+#endif
 
         ///<summary>
         ///  Resolves a host name or IP address to an System.Net.IPHostEntry instance.
@@ -906,6 +916,7 @@ namespace FSDns
             return g.BeginInvoke(hostName, requestCallback, stateObject);
         }
 
+#if NETFRAMEWORK
         ///<summary>
         ///  Ends an asynchronous request for DNS information.
         ///</summary>
@@ -920,6 +931,7 @@ namespace FSDns
             ResolveDelegate g = (ResolveDelegate) aResult.AsyncDelegate;
             return g.EndInvoke(AsyncResult);
         }
+#endif
 
         #region Nested type: GetHostAddressesDelegate
 

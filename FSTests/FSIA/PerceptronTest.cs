@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTests.FSIA
+namespace FSTestsCore.FSIA
 {
     [TestClass]
     public class PerceptronTest

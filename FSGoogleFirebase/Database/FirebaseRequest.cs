@@ -7,11 +7,9 @@
 namespace FSGoogleFirebase.Database
 {
     using FSGoogleFirebase.Auth;
-    using FSNetwork;
     using System;
     using System.Net;
     using System.Net.Http;
-    using System.Threading.Tasks;
 
     /// <summary>
     /// Firebase Request
@@ -65,7 +63,7 @@ namespace FSGoogleFirebase.Database
         public FirebaseResponse Execute()
         {
             Uri requestURI;
-            if (Web.ValidateURI(this.Uri))
+            if (UtilityHelper.ValidateURI(this.Uri))
             {
                 requestURI = new Uri(this.Uri);
             }

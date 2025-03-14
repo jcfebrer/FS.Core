@@ -17,6 +17,7 @@ namespace FSFormControls
         public Keyboard dbk = new Keyboard();
         public DBTextBox m_TextBox;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTextBox TextBox
         {
             get { return m_TextBox; }

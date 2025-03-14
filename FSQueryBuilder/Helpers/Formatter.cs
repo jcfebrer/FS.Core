@@ -47,7 +47,7 @@ namespace FSQueryBuilder.Helpers
                 else if (value is byte[])
                 {
                     //formattedValue = System.Text.Encoding.ASCII.GetString((byte[])value);
-                    //formattedValue = FSLibrary.Functions.BytesToString((byte[])value);
+                    //formattedValue = FSLibraryCore.Functions.BytesToString((byte[])value);
                     formattedValue = String.Format(Quotes, (Convert.ToBase64String((byte[])value)));
                 }
                 else if (value is bool)

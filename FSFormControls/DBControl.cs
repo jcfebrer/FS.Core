@@ -83,6 +83,8 @@ namespace FSFormControls
         #endregion
 
         private static string[] m_tables;
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public static string[] Tables
         {
             get
@@ -106,6 +108,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -117,7 +120,6 @@ namespace FSFormControls
 
         public DbActionTypes Action = DbActionTypes.None;
         public bool AddError;
-        public DBGrid AsociatedDBGrid;
         public DBGridView AsociatedDBGridView;
         private IContainer components;
         public bool Connected;
@@ -140,8 +142,10 @@ namespace FSFormControls
         public string RelationSQL = "";
         public string SQL = "";
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DbType TypeDB { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string XmlFile
         {
             get { return m_xmlFile; }
@@ -151,38 +155,65 @@ namespace FSFormControls
                 if (!string.IsNullOrEmpty(m_xmlFile)) Text = "XML: " + m_xmlFile;
             }
         }
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SaveError { get; set; }
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly { get; set; }
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SaveOnChangeRecord { get; set; }
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool StoreInBase64Format { get; set; } = false;
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Versionable { get; set; }
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VersionableTable { get; set; } = "";
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VersionableVersionField { get; set; } = "";
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VersionableUserField { get; set; } = "";
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VersionableDateField { get; set; } = "";
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBColumnCollection ColumnMapping { get; set; }
+
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PageSettings PageSettings { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBParamCollection Parameters { get; set; }
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return Label1.Text; }
             set { Label1.Text = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoConnect { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ArrayList ArrayList { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl EraseDBControl { get; set; }
 
         [Description(
             "Nombre XML del control. Esta propiedad se utiliza para la generación de código XML a partir de un formulario."
         )]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string XMLName
         {
             get
@@ -192,6 +223,7 @@ namespace FSFormControls
             set { m_XMLName = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get
@@ -236,7 +268,7 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool isEOF
         {
             get
@@ -258,6 +290,7 @@ namespace FSFormControls
             set { m_isEOF = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Selection
         {
             get { return m_Selection; }
@@ -268,6 +301,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string LastSelection
         {
             get { return m_LastSelection; }
@@ -279,7 +313,7 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int DBPosition
         {
             get { return m_DBPosition; }
@@ -292,36 +326,41 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataTable DataTable { get; set; }
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataView DataView { get; set; }
 
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataSet DataSet { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string RelationDBField { get; set; } = "";
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string RelationParentDBField { get; set; } = "";
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl RelationDataControl { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBFieldData { get; set; } = "";
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Paging { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int PagingSize { get; set; }
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Page
         {
             get { return m_Page; }
@@ -332,6 +371,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Filter
         {
             get { return m_Filter; }
@@ -350,8 +390,10 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBLopd LOPD { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBLock LOCK { get; set; }
 
 
@@ -483,7 +525,6 @@ namespace FSFormControls
 
                 UpdateControls(findForm.Controls);
 
-                FillGridControls(findForm.Controls);
                 FillGridViewControls(findForm.Controls);
                 FillComboControls(findForm.Controls);
                 FillListBoxControls(findForm.Controls);
@@ -650,7 +691,6 @@ namespace FSFormControls
 
                 UpdateControls(findForm.Controls);
 
-                FillGridControls(findForm.Controls);
                 FillGridViewControls(findForm.Controls);
                 FillComboControls(findForm.Controls);
                 FillListBoxControls(findForm.Controls);
@@ -900,12 +940,6 @@ namespace FSFormControls
             if (DataTable == null)
                 throw new ExceptionUtil("DataTable null.");
 
-
-            if (AsociatedDBGrid != null)
-                if (AsociatedDBGrid.CurrentRowIndex != -1)
-                    if (AsociatedDBGrid.Editable)
-                        AsociatedDBGrid.Select(AsociatedDBGrid.CurrentRowIndex);
-
             if (AsociatedDBGridView != null)
                 if (AsociatedDBGridView.CurrentRowIndex != -1)
                     if (AsociatedDBGridView.Editable)
@@ -1117,20 +1151,6 @@ namespace FSFormControls
                     !(DataTable.Rows[DataTable.Rows.Count - 1][f] is Array))
                 {
                     if (DataTable.Rows[DataTable.Rows.Count - 1][f] + "" != "-1")
-                    {
-                        isnull = false;
-                        break;
-                    }
-
-                    if (AsociatedDBGrid != null)
-                    {
-                        if (AsociatedDBGrid.Columns.Find(DataTable.Columns[f].ColumnName) == null)
-                        {
-                            isnull = false;
-                            break;
-                        }
-                    }
-                    else
                     {
                         isnull = false;
                         break;
@@ -1884,24 +1904,6 @@ namespace FSFormControls
                 }
         }
 
-        private void FillGridControls(ControlCollection frm)
-        {
-            if (frm == null) return;
-
-            foreach (Control ctr in frm)
-                if (FunctionsForms.IsContainer(ctr))
-                {
-                    FillGridControls(ctr.Controls);
-                }
-                else
-                {
-                    if (ctr is DBGrid)
-                        if (((DBGrid) ctr).DataControl != null)
-                            if (((DBGrid) ctr).DataControl.NameControl() == Name)
-                                ((DBGrid) ctr).Fill();
-                }
-        }
-
         private void FillGridViewControls(ControlCollection frm)
         {
             if (frm == null) return;
@@ -2040,23 +2042,6 @@ namespace FSFormControls
                             }
                 }
 
-                if (ctr is DBGrid)
-                    if (((DBGrid) ctr).DataControl != null)
-                        if (((DBGrid) ctr).DataControl.NameControl() == Name)
-                            for (f = 0; f <= ((DBGrid) ctr).Columns.Count - 1; f++)
-                                if (((DBGrid) ctr).Columns[f].MaxLength == 0 &&
-                                    !string.IsNullOrEmpty(((DBGrid) ctr).DBField))
-                                {
-                                    s = db.GetField(((DBGrid) ctr).Columns[f].FieldDB, TableName).Tamano;
-                                    if ((s != 0) & (s < Global.MAX_TEXT_LENGTH))
-                                    {
-                                        if (((DBGrid) ctr).Columns[f].ColumnType ==
-                                            FSFormControls.DBColumn.ColumnTypes.DateColumn)
-                                            s = Convert.ToInt32(Global.DATE_LENGTH);
-                                        ((DBGrid) ctr).Columns[f].MaxLength = s;
-                                    }
-                                }
-
                 if (ctr is DBGridView)
                     if (((DBGridView) ctr).DataControl != null)
                         if (((DBGridView) ctr).DataControl.NameControl() == Name)
@@ -2114,15 +2099,6 @@ namespace FSFormControls
                                     ((DBFindTextBox)ctr).MaxValue =
                                         db.FieldMaxValue(((DBFindTextBox)ctr).DBField);
                             }
-
-                    if (ctr is DBGrid)
-                        if (((DBGrid) ctr).DataControl != null)
-                            if (((DBGrid) ctr).DataControl.NameControl() == Name)
-                                for (f = 0; f <= ((DBGrid) ctr).Columns.Count - 1; f++)
-                                    if (((DBGrid) ctr).Columns[f].MaxValue == decimal.MaxValue &&
-                                        !string.IsNullOrEmpty(((DBGrid) ctr).DBField))
-                                        ((DBGrid) ctr).Columns[f].MaxValue =
-                                            db.FieldMaxValue(((DBGrid) ctr).Columns[f].FieldDB);
 
                     if (ctr is DBGridView)
                         if (((DBGridView) ctr).DataControl != null)
@@ -2305,7 +2281,7 @@ namespace FSFormControls
                 else
                 {
                     if (ctr is DBCombo | ctr is DBTextBox | ctr is DBFindTextBox | ctr is DBDate | ctr is DBCheckBox |
-                        ctr is DBGrid | ctr is DBGridView | ctr is DBImage | ctr is DBFile | ctr is DBEditPicture | ctr is DBLabel)
+                        ctr is DBGridView | ctr is DBImage | ctr is DBFile | ctr is DBEditPicture | ctr is DBLabel)
                     {
                         if (ctr is DBCombo && ((DBCombo)ctr).DataControl != null && ((DBCombo)ctr).DataControl.NameControl() == Name)
                             ((DBCombo)ctr).Mode = AccMode;
@@ -2317,8 +2293,6 @@ namespace FSFormControls
                             ((DBDate)ctr).Mode = AccMode;
                         if (ctr is DBCheckBox && ((DBCheckBox)ctr).DataControl != null && ((DBCheckBox)ctr).DataControl.NameControl() == Name)
                             ((DBCheckBox)ctr).Mode = AccMode;
-                        if (ctr is DBGrid && ((DBGrid)ctr).DataControl != null && ((DBGrid)ctr).DataControl.NameControl() == Name)
-                            ((DBGrid)ctr).Mode = AccMode;
                         if (ctr is DBGridView && ((DBGridView)ctr).DataControl != null && ((DBGridView)ctr).DataControl.NameControl() == Name)
                             ((DBGridView)ctr).Mode = AccMode;
                         if (ctr is DBImage && ((DBImage)ctr).DataControl != null && ((DBImage)ctr).DataControl.NameControl() == Name)
@@ -2914,12 +2888,14 @@ namespace FSFormControls
                 m_Caption = caption;
             }
 
+            //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public string FieldDB
             {
                 get { return m_FieldDB; }
                 set { m_FieldDB = value; }
             }
 
+            //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public string Caption
             {
                 get { return m_Caption; }

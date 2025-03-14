@@ -10,14 +10,14 @@ namespace FSGoogleFirebase
 	{
 		public Device sourceId { get; set; }
 		public String mensaje { get; set; }
-		public Device destId { get; set; }
-		public String codeMsg { get; set; }
-		public DateTime dateTime { get; set; }
-		public Boolean fileHttp { get; set; }
-		public Msg referenceMsg { get; set; }
-		public String parameter { get; set; }
+        public Device destId { get; set; }
+        public String codeMsg { get; set; }
+        public DateTime dateTime { get; set; }
+        public Boolean fileHttp { get; set; }
+        public Msg referenceMsg { get; set; }
+        public String parameter { get; set; }
 
-		public String separatorDat = ":#:";
+        public String separatorDat = ":#:";
 
 		public Msg()
 		{
@@ -32,10 +32,10 @@ namespace FSGoogleFirebase
 			String filehttp = "false";
 			String reference = "";
 
-			if (dateTime != null)
+			//if (dateTime != null)
 				dateT = dateTime.ToShortDateString();
-			else
-				dateT = DateTime.Now.ToShortDateString();
+			//else
+			//	dateT = DateTime.Now.ToShortDateString();
 
 			if (fileHttp)
 				filehttp = fileHttp.ToString();

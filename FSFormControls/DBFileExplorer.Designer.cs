@@ -28,60 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.cmbDrives = new System.Windows.Forms.ComboBox();
-            this.dbTreeView1 = new FSFormControls.DBTreeView();
-            ((System.ComponentModel.ISupportInitialize)(this.dbTreeView1)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            cmbDrives = new System.Windows.Forms.ComboBox();
+            dbTreeView1 = new DBTreeView();
+            ((System.ComponentModel.ISupportInitialize)dbTreeView1).BeginInit();
+            SuspendLayout();
             // 
             // cmbDrives
             // 
-            this.cmbDrives.Dock = System.Windows.Forms.DockStyle.Top;
-            this.cmbDrives.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbDrives.FormattingEnabled = true;
-            this.cmbDrives.Location = new System.Drawing.Point(0, 0);
-            this.cmbDrives.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmbDrives.Name = "cmbDrives";
-            this.cmbDrives.Size = new System.Drawing.Size(313, 24);
-            this.cmbDrives.TabIndex = 28;
-            this.cmbDrives.SelectedIndexChanged += new System.EventHandler(this.cmbDrives_SelectedIndexChanged);
+            cmbDrives.Dock = System.Windows.Forms.DockStyle.Top;
+            cmbDrives.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cmbDrives.FormattingEnabled = true;
+            cmbDrives.Location = new System.Drawing.Point(0, 0);
+            cmbDrives.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            cmbDrives.Name = "cmbDrives";
+            cmbDrives.Size = new System.Drawing.Size(318, 28);
+            cmbDrives.TabIndex = 28;
+            cmbDrives.SelectedIndexChanged += cmbDrives_SelectedIndexChanged;
             // 
             // dbTreeView1
             // 
-            this.dbTreeView1.About = "";
-            this.dbTreeView1.AllowLoadXML = false;
-            this.dbTreeView1.AllowSaveXML = true;
-            this.dbTreeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dbTreeView1.DataControl = null;
-            this.dbTreeView1.EnableReArrange = false;
-            this.dbTreeView1.HideSelection = true;
-            this.dbTreeView1.HotTracking = false;
-            this.dbTreeView1.Level = 0;
-            this.dbTreeView1.Location = new System.Drawing.Point(0, 33);
-            this.dbTreeView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.dbTreeView1.Name = "dbTreeView1";
-            this.dbTreeView1.SelectedNode = null;
-            this.dbTreeView1.ShowLines = true;
-            this.dbTreeView1.ShowRootLines = true;
-            this.dbTreeView1.Size = new System.Drawing.Size(313, 264);
-            this.dbTreeView1.TabIndex = 27;
-            this.dbTreeView1.NodeMouseClick += new FSFormControls.DBTreeView.TreeNodeMouseClickEventHandler(this.dbTreeView1_NodeMouseClick);
-            this.dbTreeView1.NodeMouseDoubleClick += new FSFormControls.DBTreeView.TreeNodeMouseDoubleClickEventHandler(this.dbTreeView1_NodeMouseDoubleClick);
+            dbTreeView1.About = "";
+            dbTreeView1.AllowLoadXML = false;
+            dbTreeView1.AllowSaveXML = true;
+            dbTreeView1.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            dbTreeView1.DataControl = null;
+            dbTreeView1.EnableReArrange = false;
+            dbTreeView1.HideSelection = true;
+            dbTreeView1.HotTracking = false;
+            dbTreeView1.Level = 0;
+            dbTreeView1.Location = new System.Drawing.Point(0, 42);
+            dbTreeView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            dbTreeView1.Name = "dbTreeView1";
+            dbTreeView1.SelectedNode = null;
+            dbTreeView1.ShowLines = true;
+            dbTreeView1.ShowRootLines = true;
+            dbTreeView1.Size = new System.Drawing.Size(318, 269);
+            dbTreeView1.TabIndex = 27;
+            dbTreeView1.NodeMouseClick += dbTreeView1_NodeMouseClick;
+            dbTreeView1.NodeMouseDoubleClick += dbTreeView1_NodeMouseDoubleClick;
             // 
             // DBFileExplorer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cmbDrives);
-            this.Controls.Add(this.dbTreeView1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.Name = "DBFileExplorer";
-            this.Size = new System.Drawing.Size(313, 300);
-            ((System.ComponentModel.ISupportInitialize)(this.dbTreeView1)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(cmbDrives);
+            Controls.Add(dbTreeView1);
+            Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            Name = "DBFileExplorer";
+            Size = new System.Drawing.Size(318, 315);
+            ((System.ComponentModel.ISupportInitialize)dbTreeView1).EndInit();
+            ResumeLayout(false);
         }
 
         #endregion

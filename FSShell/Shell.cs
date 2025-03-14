@@ -26,7 +26,7 @@ namespace FSShell
 		private bool running = true;
 
 
-        private const int default_port = 1337;
+		private const int default_port = 1337;
 		private const String default_user = "FSServer";
 		private const String default_password = "xxxxxx";
 
@@ -51,7 +51,7 @@ namespace FSShell
             _password = password;
         }
 
-        public Shell(int port, String name, String password)
+		public Shell(int port, String name, String password)
 		{
 			_port = port;
 			_name = name;
@@ -228,28 +228,28 @@ namespace FSShell
 				shellThread = null;
 
 				if(inStream != null)
-					inStream.Dispose();
+				inStream.Dispose();
 
 				if(outStream != null)
-					outStream.Dispose();
+				outStream.Dispose();
 
 				if(toShell != null)
-					toShell.Dispose();
+				toShell.Dispose();
 
 				if(fromShell != null)
-					fromShell.Dispose();
+				fromShell.Dispose();
 
                 if (shell != null)
                 {
                     shell.Close();
-                    shell.Dispose();
+				shell.Dispose();
                 }
 
 				if(mainSocket != null)
-					mainSocket.Close();
+				mainSocket.Close();
 
 				if(listener != null)
-					listener.Stop();
+				listener.Stop();
 
 				return;
 			}
@@ -267,5 +267,5 @@ namespace FSShell
 				mainThreadServer = null;
 			}
         }
-    }
+	}
 }

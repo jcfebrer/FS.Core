@@ -41,11 +41,15 @@ namespace FSDisk
                 fol.FechaArchivo = f.CreationTime;
                 fol.Path = f.FullName;
 
-                FileIOPermission fileIOPermission = new FileIOPermission(PermissionState.Unrestricted);
+#if NETFRAMEWORK
+                FileIOPermission fileIOPermission = new FileIOPermission(System.Security.Permissions.PermissionState.Unrestricted);
                 fileIOPermission.AllLocalFiles = FileIOPermissionAccess.Read;
+#endif
                 try
                 {
+#if NETFRAMEWORK
                     fileIOPermission.Demand();
+#endif
 
                     DirectoryInfo[] dir = f.GetDirectories();
                     if (dir != null && dir.Length > 0)

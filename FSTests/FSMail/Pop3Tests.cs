@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTests.FSMail
+namespace FSTestsCore.FSMail
 {
     [TestClass()]
     public class Pop3Tests

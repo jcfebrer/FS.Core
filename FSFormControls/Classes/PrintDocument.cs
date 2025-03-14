@@ -42,8 +42,10 @@ namespace FSFormControls
 
         public DataTable DataTable { get; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int NumberOfPagesPreviewed { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string QuestionAfterNPreviewedPages { get; set; }
 
         protected override void OnBeginPrint(PrintEventArgs ev)

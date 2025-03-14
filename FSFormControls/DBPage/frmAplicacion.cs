@@ -16,6 +16,7 @@ namespace FSFormControls
         public PageCollection m_Pages = new PageCollection();
         public int pos;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PageCollection Pages
         {
             get { return m_Pages; }
@@ -35,9 +36,10 @@ namespace FSFormControls
         }
 
 
-        private void ToolBar1_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        private void ToolBar1_ButtonClick(object sender, ToolStripItemClickedEventArgs e)
         {
-            switch (Convert.ToString(e.Button.Tag))
+            ToolStripButton tsb = (ToolStripButton)e.ClickedItem;
+            switch (Convert.ToString(tsb.Tag))
             {
                 case "SIGUIENTE":
                     if (pos < Pages.Count - 1) Go(pos + 1);
@@ -86,11 +88,11 @@ namespace FSFormControls
 
         private void AddContextMenuPages()
         {
-            var mnuPaginas = new ContextMenu();
+            var mnuPaginas = new ContextMenuStrip();
 
-            foreach (DBPage pg in Pages) mnuPaginas.MenuItems.Add(pg.Text, mnuClick);
+            foreach (DBPage pg in Pages) mnuPaginas.Items.Add(pg.Text, null, mnuClick);
 
-            ToolBar1.Buttons[4].DropDownMenu = mnuPaginas;
+            //ToolBar1.Items[4].DropDownMenu = mnuPaginas;
         }
 
         private void AddProjectForms()
@@ -119,9 +121,9 @@ namespace FSFormControls
 
         private void mnuClick(object sender, EventArgs e)
         {
-            var m = (MenuItem) sender;
+            var m = (ToolStripMenuItem) sender;
 
-            Go(m.Index);
+            Go(m.ImageIndex);
         }
 
         #region '" Código generado por el Diseñador de Windows Forms "' 
@@ -130,19 +132,19 @@ namespace FSFormControls
 
         internal Panel Panel1;
         internal Splitter Splitter1;
-        public ToolBar ToolBar1;
-        internal ToolBarButton ToolBarButton1;
-        internal ToolBarButton ToolBarButton2;
-        internal ToolBarButton ToolBarButton3;
-        internal ToolBarButton ToolBarButton4;
-        internal ToolBarButton ToolBarButton5;
+        public ToolStrip ToolBar1;
+        internal ToolStripButton ToolBarButton1;
+        internal ToolStripButton ToolBarButton2;
+        internal ToolStripButton ToolBarButton3;
+        internal ToolStripButton ToolBarButton4;
+        internal ToolStripButton ToolBarButton5;
         internal TreeView TreeView1;
 
         public frmAplicacion()
         {
             InitializeComponent();
 
-            ToolBar1.ButtonClick += ToolBar1_ButtonClick;
+            ToolBar1.ItemClicked += ToolBar1_ButtonClick;
 
             this.Load += FrmAplicacion_Load;
         }
@@ -164,12 +166,12 @@ namespace FSFormControls
         private void InitializeComponent()
         {
             this.Panel1 = new System.Windows.Forms.Panel();
-            this.ToolBar1 = new System.Windows.Forms.ToolBar();
-            this.ToolBarButton1 = new System.Windows.Forms.ToolBarButton();
-            this.ToolBarButton2 = new System.Windows.Forms.ToolBarButton();
-            this.ToolBarButton3 = new System.Windows.Forms.ToolBarButton();
-            this.ToolBarButton4 = new System.Windows.Forms.ToolBarButton();
-            this.ToolBarButton5 = new System.Windows.Forms.ToolBarButton();
+            this.ToolBar1 = new System.Windows.Forms.ToolStrip();
+            this.ToolBarButton1 = new System.Windows.Forms.ToolStripButton();
+            this.ToolBarButton2 = new System.Windows.Forms.ToolStripButton();
+            this.ToolBarButton3 = new System.Windows.Forms.ToolStripButton();
+            this.ToolBarButton4 = new System.Windows.Forms.ToolStripButton();
+            this.ToolBarButton5 = new System.Windows.Forms.ToolStripButton();
             this.Splitter1 = new System.Windows.Forms.Splitter();
             this.TreeView1 = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
@@ -184,16 +186,15 @@ namespace FSFormControls
             // 
             // ToolBar1
             // 
-            this.ToolBar1.Buttons.AddRange(new System.Windows.Forms.ToolBarButton[] {
+            this.ToolBar1.Items.AddRange(new System.Windows.Forms.ToolStripButton[] {
             this.ToolBarButton1,
             this.ToolBarButton2,
             this.ToolBarButton3,
             this.ToolBarButton4,
             this.ToolBarButton5});
-            this.ToolBar1.DropDownArrows = true;
             this.ToolBar1.Location = new System.Drawing.Point(0, 0);
             this.ToolBar1.Name = "ToolBar1";
-            this.ToolBar1.ShowToolTips = true;
+            this.ToolBar1.ShowItemToolTips = true;
             this.ToolBar1.Size = new System.Drawing.Size(512, 50);
             this.ToolBar1.TabIndex = 4;
             // 
@@ -228,7 +229,6 @@ namespace FSFormControls
             // ToolBarButton5
             // 
             this.ToolBarButton5.Name = "ToolBarButton5";
-            this.ToolBarButton5.Style = System.Windows.Forms.ToolBarButtonStyle.DropDownButton;
             this.ToolBarButton5.Tag = "PAGINAS";
             this.ToolBarButton5.Text = "Páginas";
             // 

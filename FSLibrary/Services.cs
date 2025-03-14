@@ -3,7 +3,6 @@ using FSTrace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Management;
 using System.ServiceProcess;
 using System.Text;
@@ -20,9 +19,9 @@ namespace FSLibrary
         /// </summary>
         /// <param name="serviceName"></param>
         /// <returns></returns>
-        public static bool ExistService(string serviceName)
+        public static bool ExistsService(string serviceName)
         {
-            return ExistService(serviceName, "");
+            return ExistsService(serviceName, "");
         }
 
         /// <summary>
@@ -31,7 +30,7 @@ namespace FSLibrary
         /// <param name="serviceName"></param>
         /// <param name="machineName"></param>
         /// <returns></returns>
-        public static bool ExistService(string serviceName, string machineName)
+        public static bool ExistsService(string serviceName, string machineName)
         {
             ServiceController[] ctl;
             if (String.IsNullOrEmpty(machineName))
@@ -72,7 +71,7 @@ namespace FSLibrary
         /// </exception>
         public static void Stop(string serviceName, string machineName)
         {
-            if (!ExistService(serviceName)) throw new ExceptionUtil("Servicio inexistente: " + serviceName);
+            if (!ExistsService(serviceName)) throw new ExceptionUtil("Servicio inexistente: " + serviceName);
 
             ServiceController sc;
             if (String.IsNullOrEmpty(machineName))
@@ -119,7 +118,7 @@ namespace FSLibrary
         /// </exception>
         public static void Start(string serviceName, string machineName)
         {
-            if (!ExistService(serviceName)) throw new ExceptionUtil("Servicio inexistente: " + serviceName);
+            if (!ExistsService(serviceName)) throw new ExceptionUtil("Servicio inexistente: " + serviceName);
 
             ServiceController sc;
             if (String.IsNullOrEmpty(machineName))
@@ -228,7 +227,7 @@ namespace FSLibrary
         /// <returns></returns>
         public static ServiceInfo GetService(string serviceName, string machineName)
         {
-            if (!ExistService(serviceName)) throw new ExceptionUtil("Servicio inexistente: " + serviceName);
+            if (!ExistsService(serviceName)) throw new ExceptionUtil("Servicio inexistente: " + serviceName);
 
             ServiceController sc;
             if (String.IsNullOrEmpty(machineName))
@@ -272,7 +271,6 @@ namespace FSLibrary
             }
         }
     }
-
 
     /// <summary>
     /// Información del servicio

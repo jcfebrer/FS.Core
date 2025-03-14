@@ -60,123 +60,122 @@ namespace FSFormControls
 			base.Dispose( disposing );
 		}
 
-		#region Windows Form Designer generated code
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDBExplorerTreeOptions));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.okButton = new System.Windows.Forms.Button();
-            this.chkMyD = new System.Windows.Forms.CheckBox();
-            this.chkMyF = new System.Windows.Forms.CheckBox();
-            this.chkMyN = new System.Windows.Forms.CheckBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.chkMyT = new System.Windows.Forms.CheckBox();
-            this.chkMyA = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+        #region Windows Form Designer generated code
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            components = new Container();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(frmDBExplorerTreeOptions));
+            pictureBox1 = new PictureBox();
+            okButton = new Button();
+            chkMyD = new CheckBox();
+            chkMyF = new CheckBox();
+            chkMyN = new CheckBox();
+            label1 = new Label();
+            toolTip1 = new ToolTip(components);
+            chkMyT = new CheckBox();
+            chkMyA = new CheckBox();
+            ((ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(8, 8);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(56, 48);
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(10, 10);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(67, 59);
+            pictureBox1.TabIndex = 1;
+            pictureBox1.TabStop = false;
             // 
             // okButton
             // 
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.okButton.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.okButton.Location = new System.Drawing.Point(125, 113);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 20;
-            this.okButton.Text = "Ok";
+            okButton.DialogResult = DialogResult.OK;
+            okButton.FlatStyle = FlatStyle.System;
+            okButton.Location = new Point(150, 146);
+            okButton.Name = "okButton";
+            okButton.Size = new Size(90, 28);
+            okButton.TabIndex = 20;
+            okButton.Text = "Ok";
             // 
             // chkMyD
             // 
-            this.chkMyD.Location = new System.Drawing.Point(96, 24);
-            this.chkMyD.Name = "chkMyD";
-            this.chkMyD.Size = new System.Drawing.Size(104, 24);
-            this.chkMyD.TabIndex = 21;
-            this.chkMyD.Text = "My Documents";
-            this.chkMyD.CheckedChanged += new System.EventHandler(this.chkMyD_CheckedChanged);
+            chkMyD.Location = new Point(115, 30);
+            chkMyD.Name = "chkMyD";
+            chkMyD.Size = new Size(125, 29);
+            chkMyD.TabIndex = 21;
+            chkMyD.Text = "My Documents";
+            chkMyD.CheckedChanged += chkMyD_CheckedChanged;
             // 
             // chkMyF
             // 
-            this.chkMyF.Location = new System.Drawing.Point(96, 48);
-            this.chkMyF.Name = "chkMyF";
-            this.chkMyF.Size = new System.Drawing.Size(104, 24);
-            this.chkMyF.TabIndex = 22;
-            this.chkMyF.Text = "My Favorites";
-            this.chkMyF.CheckedChanged += new System.EventHandler(this.chkMyF_CheckedChanged);
+            chkMyF.Location = new Point(115, 59);
+            chkMyF.Name = "chkMyF";
+            chkMyF.Size = new Size(125, 30);
+            chkMyF.TabIndex = 22;
+            chkMyF.Text = "My Favorites";
+            chkMyF.CheckedChanged += chkMyF_CheckedChanged;
             // 
             // chkMyN
             // 
-            this.chkMyN.Location = new System.Drawing.Point(96, 72);
-            this.chkMyN.Name = "chkMyN";
-            this.chkMyN.Size = new System.Drawing.Size(104, 24);
-            this.chkMyN.TabIndex = 23;
-            this.chkMyN.Text = "My Networks ";
-            this.chkMyN.CheckedChanged += new System.EventHandler(this.chkMyN_CheckedChanged);
+            chkMyN.Location = new Point(115, 89);
+            chkMyN.Name = "chkMyN";
+            chkMyN.Size = new Size(125, 29);
+            chkMyN.TabIndex = 23;
+            chkMyN.Text = "My Networks ";
+            chkMyN.CheckedChanged += chkMyN_CheckedChanged;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(72, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(144, 16);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Customize Explorer Tree";
+            label1.Location = new Point(86, 10);
+            label1.Name = "label1";
+            label1.Size = new Size(173, 20);
+            label1.TabIndex = 24;
+            label1.Text = "Customize Explorer Tree";
             // 
             // chkMyT
             // 
-            this.chkMyT.Location = new System.Drawing.Point(200, 48);
-            this.chkMyT.Name = "chkMyT";
-            this.chkMyT.Size = new System.Drawing.Size(104, 24);
-            this.chkMyT.TabIndex = 30;
-            this.chkMyT.Text = "Toolbar ";
-            this.chkMyT.CheckedChanged += new System.EventHandler(this.chkMyT_CheckedChanged);
+            chkMyT.Location = new Point(240, 59);
+            chkMyT.Name = "chkMyT";
+            chkMyT.Size = new Size(125, 30);
+            chkMyT.TabIndex = 30;
+            chkMyT.Text = "Toolbar ";
+            chkMyT.CheckedChanged += chkMyT_CheckedChanged;
             // 
             // chkMyA
             // 
-            this.chkMyA.Location = new System.Drawing.Point(200, 24);
-            this.chkMyA.Name = "chkMyA";
-            this.chkMyA.Size = new System.Drawing.Size(104, 24);
-            this.chkMyA.TabIndex = 29;
-            this.chkMyA.Text = "Addressbar ";
-            this.chkMyA.CheckedChanged += new System.EventHandler(this.chkMyA_CheckedChanged);
+            chkMyA.Location = new Point(240, 30);
+            chkMyA.Name = "chkMyA";
+            chkMyA.Size = new Size(125, 29);
+            chkMyA.TabIndex = 29;
+            chkMyA.Text = "Addressbar ";
+            chkMyA.CheckedChanged += chkMyA_CheckedChanged;
             // 
             // frmDBExplorerTreeOptions
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-            this.ClientSize = new System.Drawing.Size(322, 162);
-            this.Controls.Add(this.chkMyT);
-            this.Controls.Add(this.chkMyA);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.chkMyN);
-            this.Controls.Add(this.chkMyF);
-            this.Controls.Add(this.chkMyD);
-            this.Controls.Add(this.okButton);
-            this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "frmDBExplorerTreeOptions";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Customize Windows Explorer";
-            this.Load += new System.EventHandler(this.frmOptions_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
+            AutoScaleBaseSize = new Size(6, 16);
+            ClientSize = new Size(373, 198);
+            Controls.Add(chkMyT);
+            Controls.Add(chkMyA);
+            Controls.Add(label1);
+            Controls.Add(chkMyN);
+            Controls.Add(chkMyF);
+            Controls.Add(chkMyD);
+            Controls.Add(okButton);
+            Controls.Add(pictureBox1);
+            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            Name = "frmDBExplorerTreeOptions";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "Customize Windows Explorer";
+            Load += frmOptions_Load;
+            ((ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+        }
+        #endregion
 
-		}
-		#endregion
-
-		private void btnOK_Click(object sender, System.EventArgs e)
+        private void btnOK_Click(object sender, System.EventArgs e)
 		{
 			
 		}

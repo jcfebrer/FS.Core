@@ -51,12 +51,14 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
             set { m_DataControl = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool CanDelete
         {
             get
@@ -68,7 +70,7 @@ namespace FSFormControls
             set { m_CanDelete = value; }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string XMLName
         {
             get
@@ -80,6 +82,7 @@ namespace FSFormControls
             set { m_XMLName = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool CheckBoxes
         {
             get { return ListView1.CheckBoxes; }

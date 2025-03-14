@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace FSTests.FSLibrary
+namespace FSTestsCore.FSLibrary
 {
     [TestClass]
     public class DateTimeUtilTests

@@ -26,7 +26,7 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return m_Text; }
@@ -37,6 +37,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CheckBox CheckBox {
             get { return checkbox; }
             set { checkbox = value; }
@@ -47,6 +48,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -56,26 +58,31 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBAppearance Appearance { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Checked
         {
             get { return checkbox.Checked; }
             set { checkbox.Checked = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CheckState CheckState
         {
             get { return checkbox.CheckState; }
             set { checkbox.CheckState = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ContentAlignment CheckAlign
         {
             get { return checkbox.CheckAlign; }
@@ -83,6 +90,7 @@ namespace FSFormControls
         }
 
         [Description("Indicamos si el control es editable o no.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Editable
         {
             get { return m_Editable; }
@@ -93,6 +101,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -116,6 +125,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override Color BackColor
         {
             get { return m_BackColor; }
@@ -126,6 +136,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public FlatStyle FlatStyle
         {
             get { return checkbox.FlatStyle; }

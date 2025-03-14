@@ -37,6 +37,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -46,13 +47,14 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Obligatory
         {
             get { return m_Obligatory; }
@@ -66,13 +68,14 @@ namespace FSFormControls
             }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControlList
         {
             get { return m_DBControlList; }
             set { m_DBControlList = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string MaskInput
         {
             get { return DbTextBox1.MaskInput; }
@@ -81,7 +84,7 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return DbTextBox1.Text; }
@@ -89,6 +92,7 @@ namespace FSFormControls
         }
 
         [Description("Indicamos si el control es editable o no.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Editable
         {
             get { return m_Editable; }
@@ -99,19 +103,21 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DisableButton
         {
             get { return m_DisableButton; }
             set { m_DisableButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBFieldData
         {
             get { return m_DBFieldData; }
             set { m_DBFieldData = value; }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -141,13 +147,14 @@ namespace FSFormControls
         //    get { return DbTextBox1.DataBindings; }
         //}
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int MaxLength
         {
             get { return DbTextBox1.MaxLength; }
             set { DbTextBox1.MaxLength = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal MaxValue
         {
             get { return DbTextBox1.MaxValue; }
@@ -156,6 +163,7 @@ namespace FSFormControls
 
 
         [Description("Tipo de datos a introducir en el control. Texto, Numérico, Fecha, Porcentaje, ...")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTextBox.TypeData DataType
         {
             get { return m_DataType; }
@@ -166,12 +174,14 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowSelectForm
         {
             get { return m_ShowSelectForm; }
             set { m_ShowSelectForm = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override Color BackColor
         {
             get { return m_BackColor; }

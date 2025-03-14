@@ -1,5 +1,6 @@
 #region
 
+using FSFormControls;
 using System;
 using System.ComponentModel;
 using System.Data;
@@ -18,16 +19,16 @@ namespace FSFormControls
         {
             InitializeComponent();
 
-            var btn = new ToolBarButton();
+            var btn = new ToolStripButton();
             btn.ToolTipText = "Exportar datos";
             btn.Tag = 100;
             btn.ImageIndex = 0;
-            var btn2 = new ToolBarButton();
+            var btn2 = new ToolStripButton();
             btn2.ToolTipText = "Enviar datos por e-Mail";
             btn2.Tag = 101;
             btn2.ImageIndex = 1;
 
-            var btns = new ToolBarButton[2];
+            var btns = new ToolStripButton[2];
             btns[0] = btn;
             btns[1] = btn2;
 
@@ -39,7 +40,7 @@ namespace FSFormControls
             AddedButtonsClick += TablePrintPreviewDialog_AddedButtonsClick;
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object TableDocument
         {
             get { return Document; }
@@ -55,13 +56,14 @@ namespace FSFormControls
             Name = "frmPrintPreviewExport";
         }
 
-        private void TablePrintPreviewDialog_AddedButtonsClick(object sender, ToolBarButtonClickEventArgs e)
+        private void TablePrintPreviewDialog_AddedButtonsClick(object sender, EventArgs e)
         {
+            ToolStripButton tsb = (ToolStripButton)sender;
             var TblDocument = TableDocument;
             DataTable tbl = null;
 
             if (TblDocument is PrintDocument) tbl = ((PrintDocument) TblDocument).DataTable;
-            if (TblDocument is GridPrintDocument) tbl = ((GridPrintDocument) TblDocument).DataTable;
+            if (TblDocument is DBGridViewPrintDocument) tbl = ((DBGridViewPrintDocument) TblDocument).DataTable;
 
             var ds = tbl.DataSet;
 
@@ -71,11 +73,11 @@ namespace FSFormControls
                 ds.Tables.Add(tbl);
             }
 
-            if (Convert.ToInt32(e.Button.Tag) == 100)
+            if (Convert.ToInt32(tsb.Tag) == 100)
             {
                 Export.ExportDataset(ds);
             }
-            else if (Convert.ToInt32(e.Button.Tag) == 101)
+            else if (Convert.ToInt32(tsb.Tag) == 101)
             {
                 var ibr = InputBox.ShowDialog("¿Dirección email de destino?", "", "", InputBox.Icon.Question, InputBox.Buttons.Ok, InputBox.Type.TextBox);
                 Export.SendEMail(Global.MailUserName, InputBox.ResultValue, ds);

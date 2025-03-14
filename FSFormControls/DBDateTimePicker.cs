@@ -14,6 +14,7 @@ namespace FSFormControls
     [ToolboxItem(true)]
     public class DBDateTimePicker : DateTimePicker
     {
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTime Date
         {
             get { return base.Value; }
@@ -21,6 +22,7 @@ namespace FSFormControls
         }
 
         [Browsable(true)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new object Value
         {
             get

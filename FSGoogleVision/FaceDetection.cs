@@ -16,7 +16,7 @@ namespace FSGoogleVision
             // Instantiates a client
             ImageAnnotatorClient client = ImageAnnotatorClient.Create();
             // Load the image file into memory
-            Image imageSource = Image.FromFile(fileName);
+            Google.Cloud.Vision.V1.Image imageSource = Google.Cloud.Vision.V1.Image.FromFile(fileName);
             // Performs label detection on the image file
             var responseLabels = client.DetectLabels(imageSource);
             foreach (var annotation in responseLabels)

@@ -15,8 +15,8 @@ namespace FSGraphics
             if (icon == null)
             {
                 short uicon;
-                StringBuilder strB = new StringBuilder(fileName);
-                IntPtr handle = Win32API.ExtractAssociatedIcon(IntPtr.Zero, strB, out uicon);
+            StringBuilder strB = new StringBuilder(fileName);
+            IntPtr handle = Win32API.ExtractAssociatedIcon(IntPtr.Zero, strB, out uicon);
                 icon = Icon.FromHandle(handle);
             }
 
@@ -33,7 +33,7 @@ namespace FSGraphics
             }
 
             return icon;
-        }
+    }
 
         /// <summary>
         /// Returns an icon representation of the specified file.
@@ -72,5 +72,5 @@ namespace FSGraphics
             size |= (ShellIconSize)SHGFI_USEFILEATTRIBUTES;
             return GetIconForFile(extension, size);
         }
-    }
+}
 }

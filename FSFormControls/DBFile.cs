@@ -25,7 +25,7 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return txtFileName.Text; }
@@ -39,6 +39,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -48,16 +49,17 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowText { get; set; } = true;
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -80,11 +82,13 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string FieldFileName { get; set; } = "nombre";
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string FieldDateTime { get; set; } = "fecha";
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         [Browsable(false)] public byte[] Data { get; set; }
 
         public event FileChangedEventHandler FileChanged;

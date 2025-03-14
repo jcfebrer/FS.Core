@@ -15,6 +15,7 @@ namespace FSFormControls
     {
         public string m_ZoomText;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ZoomText
         {
             get { return m_ZoomText; }
@@ -25,6 +26,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int MaxLength
         {
             get { return DbTextBox1.MaxLength; }

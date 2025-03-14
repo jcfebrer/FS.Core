@@ -431,6 +431,7 @@ namespace FSFormControls
 
         [Description("Image of Collapsed Chevron")]
         [Category("Chevron")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Bitmap CollapsedImage
         {
             get { return m_CollapsedImage; }
@@ -447,6 +448,7 @@ namespace FSFormControls
 
         [Description("Image of Expanded Chevron")]
         [Category("Chevron")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Bitmap ExpandedImage
         {
             get { return m_ExpandedImage; }
@@ -463,6 +465,7 @@ namespace FSFormControls
 
         [Description("Image of Collapsed Chevron when highlighted")]
         [Category("Chevron")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Bitmap CollapsedHighlightImage
         {
             get { return m_CollapsedHImage; }
@@ -479,6 +482,7 @@ namespace FSFormControls
 
         [Description("Image of Expanded Chevron when highlighted")]
         [Category("Chevron")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Bitmap ExpandedHighlightImage
         {
             get { return m_ExpandedHImage; }
@@ -495,6 +499,7 @@ namespace FSFormControls
 
         [Description("Caption Font.")]
         [Category("Caption")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font CaptionFont
         {
             get { return m_CaptionFont; }
@@ -578,13 +583,16 @@ namespace FSFormControls
 
         [Description("Tooltip Text")]
         [Category("Behavior")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string TooltipText { get; set; }
 
         [Description("Height of the control when expanded")]
         [Browsable(false)]
         [DesignOnly(true)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int ExpandedHeight { get; set; } = 10;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool IsExpanded { get; private set; } = true;
 
         #endregion

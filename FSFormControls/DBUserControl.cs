@@ -27,6 +27,7 @@ namespace FSFormControls
 
 
         [Editor(typeof(EditorAbout), typeof(UITypeEditor))]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string About { get; set; } = "";
 
          private void InitializeComponent()

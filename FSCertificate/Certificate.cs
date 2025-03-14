@@ -43,8 +43,8 @@ namespace FSCertificate
 
             Store.Close();
 
-            if(certificate == null)
-                throw new ExceptionUtil("Certificado: " +  name + ", no encontrado en el almacen.");
+            if (certificate == null)
+                throw new ExceptionUtil("Certificado: " + name + ", no encontrado en el almacen.");
             else
                 return certificate;
         }
@@ -166,7 +166,7 @@ namespace FSCertificate
             signedXml.KeyInfo = keyInfo;
 
             // Add the key to the SignedXml document.
-            signedXml.SigningKey = (RSA)cert.PrivateKey;
+            signedXml.SigningKey = (RSA)cert.GetRSAPrivateKey();
 
             // Create a reference to be signed.
             Reference reference = new Reference();
@@ -230,7 +230,7 @@ namespace FSCertificate
             signedXml.LoadXml((XmlElement)nodeList[0]);
 
             // Check the signature and return the result.
-            return signedXml.CheckSignature((RSA)cert.PrivateKey);
+            return signedXml.CheckSignature((RSA)cert.GetRSAPrivateKey());
         }
 
 
@@ -258,7 +258,7 @@ namespace FSCertificate
 
         public static bool CheckIfHasPrivateKey(X509Certificate2 cert)
         {
-            return cert.PrivateKey == null;
+            return cert.GetRSAPrivateKey() == null;
         }
     }
 }

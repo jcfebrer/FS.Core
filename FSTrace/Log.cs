@@ -10,9 +10,9 @@
 
 #region
 
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
@@ -179,7 +179,11 @@ namespace FSTrace
         /// </summary>
         private static string GetLogFile()
         {
-            string logFile = ConfigurationManager.AppSettings["LogFile"];
+            IConfiguration configurationBuilder = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", true, true)
+                .Build();
+
+            string logFile = configurationBuilder.GetValue<string>("appSettings:LogFile");
 
             if (String.IsNullOrEmpty(logFile))
                 return null;
@@ -259,7 +263,7 @@ namespace FSTrace
         }
 
         ///// <summary>Escribe una traza en el archivo de log y en trace.axd</summary>
-        ///// <param name="traceLevel">Nivel de la traza según <see cref="FSLibrary.Log.Level" /></param>
+        ///// <param name="traceLevel">Nivel de la traza según <see cref="FSLibraryCore.Log.Level" /></param>
         ///// <param name="message">Mensaje que se escribira en el log.</param>
         //private static void Trace(Level traceLevel, string message, System.Web.TraceContext pageTrace)
         //{
@@ -272,7 +276,7 @@ namespace FSTrace
         //}
 
         /// <summary>Escribe una traza en el archivo de log y en trace.axd</summary>
-        /// <param name="traceLevel">Nivel de la traza según <see cref="FSLibrary.Log.Level" /></param>
+        /// <param name="traceLevel">Nivel de la traza según <see cref="FSLibraryCore.Log.Level" /></param>
         /// <param name="message">Mensaje que se escribira en el log.</param>
         private static void Trace(TraceLevel traceLevel, string message)
         {
@@ -318,19 +322,22 @@ namespace FSTrace
                 }
             }
 
-            using (EventLog eventLog = new EventLog("Application"))
-            {
-                EventLogEntryType eventType = EventLogEntryType.Information;
-                if (msgLog.TraceLevel == TraceLevel.Error) eventType = EventLogEntryType.Error;
-                if (msgLog.TraceLevel == TraceLevel.Warning) eventType = EventLogEntryType.Warning;
+            //
+            // En NET.CORE el acceso al visor de eventos es solo para windows y es necesario un paquete NUGET: Microsoft.Extensions.Logging.EventLog
+            //
+            //using (EventLog eventLog = new EventLog("Application"))
+            //{
+            //    EventLogEntryType eventType = EventLogEntryType.Information;
+            //    if (msgLog.TraceLevel == TraceLevel.Error) eventType = EventLogEntryType.Error;
+            //    if (msgLog.TraceLevel == TraceLevel.Warning) eventType = EventLogEntryType.Warning;
 
-                if (traceLevel == TraceLevel.Error || traceLevel == TraceLevel.Warning)
-                {
-                    eventLog.Source = "Application";
-                    if (m_firstSection) eventLog.WriteEntry(FirstSection());
-                    eventLog.WriteEntry(msgLog.ToString(), eventType, 2117, 1);
-                }
-            }
+            //    if (traceLevel == TraceLevel.Error || traceLevel == TraceLevel.Warning)
+            //    {
+            //        eventLog.Source = "Application";
+            //        if (m_firstSection) eventLog.WriteEntry(FirstSection());
+            //        eventLog.WriteEntry(msgLog.ToString(), eventType, 2117, 1);
+            //    }
+            //}
 
 
             if (OnMessageLogText != null)
@@ -356,7 +363,7 @@ namespace FSTrace
         }
 
         /// <summary>Escribe una traza en el archivo de log y en trace.axd</summary>
-        /// <param name="traceLevel">Nivel de la traza según <see cref="FSLibrary.LogUtil.Level" /></param>
+        /// <param name="traceLevel">Nivel de la traza según <see cref="FSLibraryCore.LogUtil.Level" /></param>
         /// <param name="message">Mensaje que se escribira en el log. Puede contener marcadores de formato.</param>
         /// <param name="args">Argumentos para los marcadores de formato de la cadena espcificada en el parametro message.</param>
         private static void Trace(TraceLevel traceLevel, string message, params object[] args)

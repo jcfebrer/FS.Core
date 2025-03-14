@@ -26,7 +26,7 @@ namespace FSLibrary
             get { return _section; }
             set {
                 if (_section != value)
-                {
+        {
                     _section = value;
 
                     // Forzamos la lectura de la nueva sección
@@ -46,14 +46,14 @@ namespace FSLibrary
                 if (_settings == null)
                 {
                     _settings = configManager.GetSection(Section);
-
+            
                     if (_settings == null)
                         throw new Exception("Sección no encontrada. Sección: " + Section);
                 }
                 return _settings;
             }
         }
-
+            
         /// <summary>
         /// Constructor con la sección a utilizar
         /// </summary>
@@ -84,7 +84,7 @@ namespace FSLibrary
                 ((FSSettingsSection)Settings).Settings.Add(key, value);
             }
             else
-            {
+        {
                 ((AppSettingsSection)Settings).Settings.Remove(key);
                 ((AppSettingsSection)Settings).Settings.Add(key, value);
             }
@@ -113,9 +113,9 @@ namespace FSLibrary
             if (Settings is FSSettingsSection)
             {
                 if (((FSSettingsCollection)appSettings).Count == 0)
-                {
+            {
                     throw new Exception(string.Format("[ReadProperties: {0}]", "FSSettings is empty. Use GetSection command first."));
-                }
+            }
 
                 return (FSSettingsCollection)appSettings;
             }
@@ -126,7 +126,7 @@ namespace FSLibrary
                     throw new Exception(string.Format("[ReadProperties: {0}]", "AppSettings is empty. Use GetSection command first."));
                 }
                 foreach (KeyValueConfigurationElement keyElement in (KeyValueConfigurationCollection)appSettings)
-                {
+            {
                     FSSettingsElement fsKeyElement = new FSSettingsElement();
                     fsKeyElement.Key = keyElement.Key;
                     fsKeyElement.Value = keyElement.Value;
@@ -164,7 +164,7 @@ namespace FSLibrary
         public void DeleteProperty(string key)
         {
             if (Settings is FSSettingsSection)
-            {
+        {
                 ((FSSettingsSection)Settings).Settings.Remove(key);
             }
             else

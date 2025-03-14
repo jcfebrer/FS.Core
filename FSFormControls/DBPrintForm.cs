@@ -845,32 +845,26 @@ namespace FSFormControls
         {
             ScanForChildControls = false;
 
-            DataGrid dg = null;
-            if (c is DBGrid)
-                dg = ((DBGrid) c).datagrid;
+            DataGridView dg = null;
+            if (c is DBGridView)
+                dg = ((DBGridView) c).dataGridView;
             else
-                dg = (DataGrid) c;
+                dg = (DataGridView) c;
 
             float extraHeight = 0;
             float extraHeightHeaderLine = 0;
             var printFont = new Font(dg.Font.Name, dg.Font.Size, FontStyle.Bold);
             var h = mp.FontHeight(printFont);
-            DataGridTableStyle myGridTableStyle = null;
-            if (dg.TableStyles.Count == 0)
-            {
-                myGridTableStyle = new DataGridTableStyle();
-                dg.TableStyles.Add(myGridTableStyle);
-            }
 
             var xPos = x;
             var yPos = y;
             float w = 0;
             extraHeightHeaderLine = mp.BeginPrintUnit(yPos, h + 1);
             var i = 0;
-            while (i < dg.TableStyles[0].GridColumnStyles.Count)
+            while (i < dg.Columns.Count)
             {
-                var caption = dg.TableStyles[0].GridColumnStyles[i].HeaderText;
-                w = dg.TableStyles[0].GridColumnStyles[i].Width;
+                var caption = dg.Columns[i].HeaderText;
+                w = dg.Columns[i].Width;
                 if (xPos + w > x + dg.Width) w = x + dg.Width - xPos;
                 if (xPos < x + dg.Width) mp.DrawString(caption, printFont, m_Brush, xPos, yPos, w, h);
                 if (i == 0) mp.DrawLines(m_Pen, x, yPos + h, x + dg.Width, yPos + h);
@@ -904,10 +898,10 @@ namespace FSFormControls
                     extraHeight = mp.BeginPrintUnit(yPos, h);
                     xPos = x;
                     i = 0;
-                    while (i < dg.TableStyles[0].GridColumnStyles.Count)
+                    while (i < dg.Columns.Count)
                     {
                         var caption = dr[i].ToString();
-                        w = dg.TableStyles[0].GridColumnStyles[i].Width;
+                        w = dg.Columns[i].Width;
                         if (xPos + w > x + dg.Width) w = x + dg.Width - xPos;
                         if (xPos < x + dg.Width) mp.DrawString(caption, printFont, m_Brush, xPos, yPos, w, h);
                         xPos += w;

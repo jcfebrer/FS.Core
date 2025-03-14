@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace FSTests.FSNetwork
+namespace FSTests.FSNetworkCore
 {
     [TestClass]
     public class FSUPnPTests

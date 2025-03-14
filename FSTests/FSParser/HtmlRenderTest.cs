@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FSParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FSTests.FSParser
+namespace FSTestsCore.FSParser
 {
     [TestClass()]
     public class HtmlRenderTest

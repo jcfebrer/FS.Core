@@ -28,8 +28,8 @@ namespace FSParser
                 if (tokens.Count == 1)
                     return result;
 
-                // Convierte la expresión infija a notación polaca inversa (RPN).
-                var rpn = InfixToRPN(tokens);
+            // Convierte la expresión infija a notación polaca inversa (RPN).
+            var rpn = InfixToRPN(tokens);
 
                 // Evalúa la expresión en RPN.
                 result = EvaluateRPN(rpn);

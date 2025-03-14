@@ -43,8 +43,8 @@ namespace FSFormControls
 
         private void DbGrid1_DoubleClick(object sender, EventArgs e)
         {
-            SelectedValue = Convert.ToString(DbGrid1.get_RowValue(DBFindTextBox.DBFieldData, -1));
-            SelectedRow = DbGrid1.DataControl.DataTable.DefaultView[DbGrid1.RowSel].Row;
+            SelectedValue = Convert.ToString(DbGrid1.RowValue(DBFindTextBox.DBFieldData, -1));
+            SelectedRow = DbGrid1.DataControl.DataTable.DefaultView[DbGrid1.ActiveRow.Index].Row;
             Close();
         }
 
@@ -53,7 +53,7 @@ namespace FSFormControls
         private readonly IContainer components = null;
 
         internal DBButton DbButton1;
-        internal DBGrid DbGrid1;
+        internal DBGridView DbGrid1;
 
         public frmSelectForm()
         {
@@ -75,7 +75,7 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            DbGrid1 = new DBGrid();
+            DbGrid1 = new DBGridView();
             DbButton1 = new DBButton();
             SuspendLayout();
             // 
@@ -84,50 +84,50 @@ namespace FSFormControls
             DbGrid1.AllowAddNew = true;
             DbGrid1.AllowDelete = true;
             DbGrid1.AllowDrop = true;
-            DbGrid1.AllowSorting = true;
+            //DbGrid1.AllowSorting = true;
             DbGrid1.AlternatingColor = Color.Empty;
             DbGrid1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
                                               | AnchorStyles.Left
                                               | AnchorStyles.Right;
             DbGrid1.AutoSave = true;
             DbGrid1.AutoSizeColumns = true;
-            DbGrid1.BackGroundColor = Color.LightGray;
+            //DbGrid1.BackGroundColor = Color.LightGray;
             DbGrid1.BorderStyle = BorderStyle.Fixed3D;
-            DbGrid1.CaptionBackColor = SystemColors.ActiveCaption;
-            DbGrid1.CaptionFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold);
-            DbGrid1.CaptionForeColor = SystemColors.ActiveCaptionText;
+            //DbGrid1.CaptionBackColor = SystemColors.ActiveCaption;
+            //DbGrid1.CaptionFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Bold);
+            //DbGrid1.CaptionForeColor = SystemColors.ActiveCaptionText;
             DbGrid1.CaptionText = null;
-            DbGrid1.CaptionVisible = true;
-            DbGrid1.ColumnHeadersVisible = true;
-            DbGrid1.CurrentRowIndex = -1;
-            DbGrid1.CustomColumnHeaders = false;
+            //DbGrid1.CaptionVisible = true;
+            //DbGrid1.ColumnHeadersVisible = true;
+            //DbGrid1.CurrentRowIndex = -1;
+            //DbGrid1.CustomColumnHeaders = false;
             DbGrid1.DataControl = null;
             DbGrid1.DefaultDecimals = 2;
             DbGrid1.DefaultHeaderFont =
                 new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DbGrid1.Editable = true;
-            DbGrid1.FlatMode = false;
-            DbGrid1.GridLineColor = SystemColors.Control;
-            DbGrid1.GridLineStyle = DataGridLineStyle.Solid;
-            DbGrid1.HeaderBackColor = SystemColors.Control;
-            DbGrid1.HeaderFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            DbGrid1.HeaderForeColor = SystemColors.ControlText;
-            DbGrid1.LastCol = -1;
-            DbGrid1.LastRow = -1;
+            //DbGrid1.FlatMode = false;
+            //DbGrid1.GridLineColor = SystemColors.Control;
+            //DbGrid1.GridLineStyle = DataGridLineStyle.Solid;
+            //DbGrid1.HeaderBackColor = SystemColors.Control;
+            //DbGrid1.HeaderFont = new Font("Microsoft Sans Serif", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            //DbGrid1.HeaderForeColor = SystemColors.ControlText;
+            //DbGrid1.LastCol = -1;
+            //DbGrid1.LastRow = -1;
             DbGrid1.Location = new Point(16, 8);
             DbGrid1.Mode = Global.AccessMode.ReadMode;
             DbGrid1.Name = "DbGrid1";
             DbGrid1.RecordMode = false;
-            DbGrid1.RowHeadersVisible = true;
-            DbGrid1.RowHeight = 16;
-            DbGrid1.RowSel = -1;
+            //DbGrid1.RowHeadersVisible = true;
+            //DbGrid1.RowHeight = 16;
+            //DbGrid1.RowSel = -1;
             DbGrid1.RowsInCaption = 2;
             DbGrid1.ShowRecordScrollBar = true;
             DbGrid1.ShowTotals = false;
             DbGrid1.Size = new Size(463, 324);
             DbGrid1.TabIndex = 0;
             DbGrid1.TotalOperation = DBColumn.OperationTypes.Sum;
-            DbGrid1.XMLName = "";
+            //DbGrid1.XMLName = "";
             // 
             // DbButton1
             // 

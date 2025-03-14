@@ -44,7 +44,7 @@ namespace FSCrypto.Tests
         [TestMethod()]
         public void Encode64()
         {
-            string base64 = FSCrypto.Base64.Encode("81354", true);
+            string base64 = Base64.Encode("81354", true);
 
             Assert.AreEqual("ODEzNTQ=", base64, "Encode error");
         }
@@ -52,7 +52,7 @@ namespace FSCrypto.Tests
         [TestMethod()]
         public void Decode64()
         {
-            string base64 = FSCrypto.Base64.Decode("ODEzNTQ=", true);
+            string base64 = Base64.Decode("ODEzNTQ=", true);
 
             Assert.AreEqual("81354", base64, "Decode error");
         }

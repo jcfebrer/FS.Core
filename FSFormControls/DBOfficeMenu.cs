@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 #endregion
 
+#if NETFRAMEWORK
 namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBOfficeMenu.bmp")]
@@ -447,3 +448,4 @@ namespace FSFormControls
         public static Color MenuLightColor2 = Color.FromArgb(50, Color.FromKnownColor(KnownColor.InactiveCaption));
     }
 }
+#endif

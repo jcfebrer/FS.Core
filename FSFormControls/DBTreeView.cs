@@ -31,8 +31,8 @@ namespace FSFormControls
         {
             InitializeComponent();
 
-            ContextMenu1.MenuItems[0].Visible = AllowSaveXML;
-            ContextMenu1.MenuItems[1].Visible = AllowLoadXML;
+            ContextMenu1.Items[0].Visible = AllowSaveXML;
+            ContextMenu1.Items[1].Visible = AllowLoadXML;
 
 
             TreeView1.DoubleClick += TreeView1_DoubleClick;
@@ -101,12 +101,16 @@ namespace FSFormControls
         #endregion
 
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Level { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnableReArrange { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowLoadXML { get; set; } = false;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowSaveXML { get; set; } = false;
 
 
@@ -115,30 +119,35 @@ namespace FSFormControls
             get { return TreeView1.Nodes; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool HotTracking
         {
             get { return TreeView1.HotTracking; }
             set { TreeView1.HotTracking = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool HideSelection
         {
             get { return TreeView1.HideSelection; }
             set { TreeView1.HideSelection = value; }
         }
 
-        public override ContextMenu ContextMenu
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public override ContextMenuStrip ContextMenuStrip
         {
-            get { return TreeView1.ContextMenu; }
-            set { TreeView1.ContextMenu = value; }
+            get { return TreeView1.ContextMenuStrip; }
+            set { TreeView1.ContextMenuStrip = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowLines
         {
             get { return TreeView1.ShowLines; }
             set { TreeView1.ShowLines = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowRootLines
         {
             get { return TreeView1.ShowRootLines; }
@@ -146,6 +155,7 @@ namespace FSFormControls
         }
 
         [Description("Imagenes del DBTreeView. 0 - Carpeta cerrada, 1 - Carpeta abierta, 2 - Elemento.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ImageList ImageList
         {
             get { return TreeView1.ImageList; }
@@ -158,6 +168,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -167,12 +178,14 @@ namespace FSFormControls
 
         public DBTreeViewNode SelectedDBNode => TreeView1.SelectedNode as DBTreeViewNode;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TreeNode SelectedNode
         {
             get { return TreeView1.SelectedNode; }
             set { TreeView1.SelectedNode = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TreeNode ActiveNode {
             get { return TreeView1.SelectedNode; }
             set { TreeView1.SelectedNode = value; }
@@ -971,10 +984,10 @@ namespace FSFormControls
 
         #region '" Windows Form Designer generated code "' 
 
-        internal ContextMenu ContextMenu1;
+        internal ContextMenuStrip ContextMenu1;
         internal ImageList ImageList1;
-        internal MenuItem MenuItem1;
-        internal MenuItem MenuItem2;
+        internal ToolStripMenuItem MenuItem1;
+        internal ToolStripMenuItem MenuItem2;
         internal OpenFileDialog OpenFileDialog1;
         internal SaveFileDialog SaveFileDialog1;
         internal TreeView TreeView1;
@@ -994,9 +1007,9 @@ namespace FSFormControls
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBTreeView));
             this.TreeView1 = new System.Windows.Forms.TreeView();
-            this.ContextMenu1 = new System.Windows.Forms.ContextMenu();
-            this.MenuItem1 = new System.Windows.Forms.MenuItem();
-            this.MenuItem2 = new System.Windows.Forms.MenuItem();
+            this.ContextMenu1 = new System.Windows.Forms.ContextMenuStrip();
+            this.MenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ImageList1 = new System.Windows.Forms.ImageList(this.components);
             this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -1005,7 +1018,7 @@ namespace FSFormControls
             // TreeView1
             // 
             this.TreeView1.AllowDrop = true;
-            this.TreeView1.ContextMenu = this.ContextMenu1;
+            this.TreeView1.ContextMenuStrip = this.ContextMenu1;
             this.TreeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TreeView1.ImageIndex = 0;
             this.TreeView1.ImageList = this.ImageList1;
@@ -1017,18 +1030,18 @@ namespace FSFormControls
             // 
             // ContextMenu1
             // 
-            this.ContextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.ContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this.MenuItem1,
             this.MenuItem2});
             // 
             // MenuItem1
             // 
-            this.MenuItem1.Index = 0;
+            this.MenuItem1.ImageIndex = 0;
             this.MenuItem1.Text = "Guardar XML";
             // 
             // MenuItem2
             // 
-            this.MenuItem2.Index = 1;
+            this.MenuItem2.ImageIndex = 1;
             this.MenuItem2.Text = "Cargar XML";
             // 
             // ImageList1
@@ -1041,7 +1054,7 @@ namespace FSFormControls
             // 
             // DBTreeView
             // 
-            this.ContextMenu = this.ContextMenu1;
+            this.ContextMenuStrip = this.ContextMenu1;
             this.Controls.Add(this.TreeView1);
             this.Name = "DBTreeView";
             this.Size = new System.Drawing.Size(149, 126);

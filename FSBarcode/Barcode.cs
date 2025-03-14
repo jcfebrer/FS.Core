@@ -94,7 +94,7 @@ namespace FSBarcode
 			}
 		}
 
-		public static Bitmap GetQRBitmap(string qrText, int width, int height)
+        public static Bitmap GetQRBitmap(string qrText, int width, int height)
 		{
 			using (Bitmap bitMap = Generate(qrText, width, height, CodeFormat.QR))
 			{
@@ -102,7 +102,7 @@ namespace FSBarcode
 			}
 		}
 
-		public static byte[] GetQRBytes(string qrText, int width, int height)
+        public static byte[] GetQRBytes(string qrText, int width, int height)
 		{
 			using (Bitmap bitMap = Generate(qrText, width, height, CodeFormat.QR))
 			{

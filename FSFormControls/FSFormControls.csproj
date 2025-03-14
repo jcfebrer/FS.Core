@@ -1,27 +1,12 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8EF3EA53-F7EB-4A64-A2F0-9911AFD757D0}</ProjectGuid>
+    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FSFormControls</RootNamespace>
-    <AssemblyName>FSFormControls</AssemblyName>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <SccProjectName>
-    </SccProjectName>
-    <SccLocalPath>
-    </SccLocalPath>
-    <SccAuxPath>
-    </SccAuxPath>
-    <SccProvider>
-    </SccProvider>
+    <SccProjectName></SccProjectName>
+    <SccLocalPath></SccLocalPath>
+    <SccAuxPath></SccAuxPath>
+    <SccProvider></SccProvider>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -36,660 +21,174 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkProfile />
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <BaseAddress>285212672</BaseAddress>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <BaseAddress>285212672</BaseAddress>
     <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRules>
     </CodeAnalysisRules>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
     <BaseAddress>285212672</BaseAddress>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <BaseAddress>285212672</BaseAddress>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core">
+    <Reference Update="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Classes\InputBox.cs" />
-    <Compile Include="Classes\SMS.cs" />
-    <Compile Include="Classes\SortableBindingList.cs" />
-    <Compile Include="DBSummarieCollection.cs" />
-    <Compile Include="DBExplorerTree.cs">
+    <Compile Update="DBGauge.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBFileExplorer.cs" />
+    <Compile Update="DBGridView.cs" />
+    <Compile Update="DBGridView\DBGridViewPrintDocument.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBPage\DBPage.cs" />
+    <Compile Update="DBSplitter.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBProgressBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBTextBoxMask.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBToolBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBToolBarButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBOptionSet.cs" />
+    <Compile Update="DBRadioButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBStatusBarPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBToolBarContainer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBTooltip.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBVuMeter.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DBGridView\DBGridViewCell.cs" />
-    <Compile Include="DBGridView\DBGridViewColumn.cs" />
-    <Compile Include="DBParam.cs">
+    <Compile Update="Forms\DBEtchedLine.cs" />
+    <Compile Update="DBPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DBParamCollection.cs" />
-    <Compile Include="DBGauge.cs">
+    <Compile Update="DBStatusBarProgressPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DBGauge.Designer.cs">
-      <DependentUpon>DBGauge.cs</DependentUpon>
+    <Compile Update="DBTabPage.cs">
+      <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DBFileExplorer.cs">
+    <Compile Update="DBButton.cs" />
+    <Compile Update="DBCalculator.cs" />
+    <Compile Update="DBChart.cs" />
+    <Compile Update="DBCheckBox.cs" />
+    <Compile Update="DBCombo.cs" />
+    <Compile Update="DBComm.cs" />
+    <Compile Update="DBControl.cs" />
+    <Compile Update="DBDate.cs" />
+    <Compile Update="DBDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBDocument.cs" />
+    <Compile Update="DBEditPicture.cs" />
+    <Compile Update="DBFile.cs" />
+    <Compile Update="DBFindTextBox.cs" />
+    <Compile Update="DBFontCombo.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBFrame.cs" />
+    <Compile Update="DBFtp.cs" />
+    <Compile Update="DBGraphics.cs" />
+    <Compile Update="DBColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBGroupBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBGroupBoxXP.cs" />
+    <Compile Update="DBGroupBoxXPList.cs" />
+    <Compile Update="DBImage.cs" />
+    <Compile Update="DBLabel.cs" />
+    <Compile Update="DBListBox.cs" />
+    <Compile Update="DBListView.cs" />
+    <Compile Update="DBLock.cs" />
+    <Compile Update="DBLopd.cs" />
+    <Compile Update="DBMarkControl.cs" />
+    <Compile Update="DBPicture.cs" />
+    <Compile Update="DBPlanner.cs" />
+    <Compile Update="DBPlannerObject.cs" />
+    <Compile Update="DBRecord.cs" />
+    <Compile Update="DBRichTextBox.cs" />
+    <Compile Update="DBScroll.cs" />
+    <Compile Update="DBShape.cs" />
+    <Compile Update="DBStatusBar.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBTabControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="DBTextBox.cs" />
+    <Compile Update="DBToolBarEx.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DBFileExplorer.Designer.cs">
-      <DependentUpon>DBFileExplorer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DBGridView.cs">
+    <Compile Update="DBTreeView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DBGridView\DBGridViewProgressBarCell.cs" />
-    <Compile Include="DBGridView\DBGridViewProgressBarColumn.cs" />
-    <Compile Include="DBGridView\DBGridViewPrint.cs" />
-    <Compile Include="DBGridView\DBGridViewPrintDocument.cs">
+    <Compile Update="Classes\PrintDocument.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DBGridView\DBGridViewPrinter.cs" />
-    <Compile Include="Classes\Picker.cs" />
-    <Compile Include="DBGridView\DBGridViewBand.cs" />
-    <Compile Include="DBGridView\DBGridViewBandCollection.cs" />
-    <Compile Include="DBGridView\DBGridViewDisplayLayout.cs" />
-    <Compile Include="DBGridView\DBGridViewFilter.cs" />
-    <Compile Include="DBGridView\DBGridViewFilterCollection.cs" />
-    <Compile Include="DBGridView\DBGridViewPrintOptions.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DBGridView\DBGridViewPrintOptions.designer.cs">
-      <DependentUpon>DBGridViewPrintOptions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DBPage\PageCollection.cs" />
-    <Compile Include="DBPage\DBPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBSplitter.cs">
+    <Compile Update="Classes\ReportDocument.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DBProgressBar.cs">
+    <Compile Update="Classes\TabOrderSchemaProvider.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="DBSummarie.cs" />
-    <Compile Include="DBTabPageCollection.cs" />
-    <Compile Include="DBTextBoxMask.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBToolBarManager.cs" />
-    <Compile Include="DBToolBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBToolBarButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBRadioButtonCollection.cs" />
-    <Compile Include="DBButtonCollection.cs" />
-    <Compile Include="DBEditorButtonEventHandler.cs" />
-    <Compile Include="DBComboValues.cs" />
-    <Compile Include="DBColumnCollection.cs" />
-    <Compile Include="DBOptionSet.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBOptionSet.Designer.cs">
-      <DependentUpon>DBOptionSet.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DBRadioButton.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBStatusBarPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBToolBarContainer.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBTooltip.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBTooltipManager.cs" />
-    <Compile Include="DBTreeViewNode.cs" />
-    <Compile Include="DBUserControl.cs" />
-    <Compile Include="DBVuMeter.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\DBForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DBTaskNotifier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\DBEtchedLine.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Forms\frmDBExplorerTreeOptions.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmPreferences.Designer.cs">
-      <DependentUpon>frmPreferences.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmTestVuMeter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmTestVuMeter.Designer.cs">
-      <DependentUpon>frmTestVuMeter.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmTestGauge.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmTestGauge.Designer.cs">
-      <DependentUpon>frmTestGauge.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmAbout.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmCalc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmCalculator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmColumns.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmError.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmFilter.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmFind.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmFind.designer.cs">
-      <DependentUpon>frmFind.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmGlobalEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmKeyboard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmListView.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmMemo.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmPrintPreview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmPrintPreviewExport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmRecord.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmSelectForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmShowTable.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmTaskBarNotifier.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmTest.Designer.cs">
-      <DependentUpon>frmTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\frmWebError.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmWizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmZoom.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmPreferences.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
+    <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="DBAppearance.cs" />
-    <Compile Include="DBGridView\DBGridViewDateTimePickerColumn.cs" />
-    <Compile Include="DBGridView\DBGridViewMaskColumn.cs" />
-    <Compile Include="DBGridView\DBGridViewMultipleComboBoxCell.cs" />
-    <Compile Include="DBGridView\DBGridViewWatermarkColumn.cs" />
-    <Compile Include="Classes\FunctionsGrid.cs" />
-    <Compile Include="DBListViewColumnSorter.cs" />
-    <Compile Include="DBPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBStatusBarProgressPanel.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBTabPage.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBButton.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBCalculator.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBChart.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBCheckBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBCombo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBComm.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBDate.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBDateTimePicker.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBDocument.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBEditPicture.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBFile.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBFindTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBFontCombo.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBFrame.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBFtp.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBFtp.designer.cs">
-      <DependentUpon>DBFtp.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DBGraph.cs" />
-    <Compile Include="DBGraphics.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBGraphics.designer.cs">
-      <DependentUpon>DBGraphics.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DBGrid.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridButton2Column.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridButtonColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridComboBoxColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridDataPictureColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridDateColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridDBTextBoxColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridFileColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridMultiLineTextBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridPercentColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridPictureColumn.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridPictureContextMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridProperty.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridPropertyColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DataGridTimePickerColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBColumn.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGrid\DBTableStyle.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGroupBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBGroupBoxXP.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBGroupBoxXPList.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBHTMLParser\DBHtmlAttribute.cs" />
-    <Compile Include="DBHTMLParser\DBHtmlDocument.cs" />
-    <Compile Include="DBHTMLParser\DBHtmlElement.cs" />
-    <Compile Include="DBHTMLParser\DBHtmlEncoder.cs" />
-    <Compile Include="DBHTMLParser\DBHtmlNode.cs" />
-    <Compile Include="DBHTMLParser\DBHtmlParser.cs" />
-    <Compile Include="DBHTMLParser\DBHtmlText.cs" />
-    <Compile Include="DBImage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBLabel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBListBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBListView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBLock.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBLopd.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBMarkControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBOfficeMenu.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBPage\frmAplicacion.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DBPicture.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBPlanner.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBPlanner.designer.cs">
-      <DependentUpon>DBPlanner.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DBPlannerObject.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBPlannerObject.designer.cs">
-      <DependentUpon>DBPlannerObject.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DBPrintForm.cs" />
-    <Compile Include="DBRecord.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBRichTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBScroll.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBShape.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBStatusBar.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBTabControl.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="DBTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBToolBarEx.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DBTreeView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Classes\Error.cs" />
-    <Compile Include="Classes\ErrorCollection.cs" />
-    <Compile Include="Classes\Export.cs" />
-    <Compile Include="Classes\FormsCollection.cs" />
-    <Compile Include="Classes\FunctionsForms.cs" />
-    <Compile Include="Classes\Global.cs" />
-    <Compile Include="DBGrid\GridPrinter.cs" />
-    <Compile Include="DBGrid\GridPrintDocument.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Classes\PageSetup.cs" />
-    <Compile Include="Classes\PDUEncoder.cs" />
-    <Compile Include="Classes\PrintDocument.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Classes\ReportDocument.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Classes\TabOrderManager.cs" />
-    <Compile Include="Classes\TabOrderSchemaProvider.cs">
-      <SubType>Component</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Classes\DBGlobal.resx">
-      <DependentUpon>Global.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBExplorerTree.resx">
-      <DependentUpon>DBExplorerTree.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBParam.resx">
-      <DependentUpon>DBParam.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBFileExplorer.resx">
-      <DependentUpon>DBFileExplorer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGridView.resx">
-      <DependentUpon>DBGridView.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGridView\DBGridViewPrintOptions.resx">
-      <DependentUpon>DBGridViewPrintOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGrid\DBGridPrintDocument.resx">
-      <DependentUpon>GridPrintDocument.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Classes\DBPrintDocument.resx">
-      <DependentUpon>PrintDocument.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBOptionSet.resx">
-      <DependentUpon>DBOptionSet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBPage\DBPage.resx" />
-    <EmbeddedResource Include="DBUserControl.resx">
-      <DependentUpon>DBUserControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DBForm.resx">
-      <DependentUpon>DBForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\DBTaskNotifier.resx">
-      <DependentUpon>DBTaskNotifier.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Forms\frmPreferences.resx">
-      <DependentUpon>frmPreferences.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\DBChart.bmp" />
-    <EmbeddedResource Include="Resources\DBTabControl.bmp" />
-    <EmbeddedResource Include="Resources\DBTreeView.bmp" />
-    <EmbeddedResource Include="Forms\frmDBExplorerTreeOptions.resx">
-      <DependentUpon>frmDBExplorerTreeOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmTestVuMeter.resx">
-      <DependentUpon>frmTestVuMeter.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmTestGauge.resx">
-      <DependentUpon>frmTestGauge.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmTest.resx">
-      <DependentUpon>frmTest.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DBPicture.bmp" />
     <EmbeddedResource Include="Resources\DBListBox.bmp" />
     <EmbeddedResource Include="Resources\DBImage.bmp" />
-    <EmbeddedResource Include="Forms\DBEtchedLine.resx">
-      <DependentUpon>DBEtchedLine.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Resources\DBGridView.bmp" />
     <EmbeddedResource Include="Resources\DBButton.bmp" />
     <EmbeddedResource Include="Resources\DBCheckBox.bmp" />
@@ -720,283 +219,6 @@
     <EmbeddedResource Include="Forms\DBTaskNotifierImages\skin.bmp" />
     <EmbeddedResource Include="Forms\DBTaskNotifierImages\close2.bmp" />
     <EmbeddedResource Include="Forms\DBTaskNotifierImages\close.bmp" />
-    <EmbeddedResource Include="Forms\frmAbout.resx">
-      <DependentUpon>frmAbout.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmCalc.resx">
-      <DependentUpon>frmCalc.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmCalculator.resx">
-      <DependentUpon>frmCalculator.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmColumns.resx">
-      <DependentUpon>frmColumns.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmError.resx">
-      <DependentUpon>frmError.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmFilter.resX">
-      <DependentUpon>frmFilter.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmFind.resx">
-      <DependentUpon>frmFind.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmGlobalEdit.resx">
-      <DependentUpon>frmGlobalEdit.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmKeyboard.resx">
-      <DependentUpon>frmKeyboard.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmListView.resx">
-      <DependentUpon>frmListView.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmMemo.resx">
-      <DependentUpon>frmMemo.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmPrintPreview.resx">
-      <DependentUpon>frmPrintPreview.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmPrintPreviewExport.resx">
-      <DependentUpon>frmPrintPreviewExport.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmRecord.resx">
-      <DependentUpon>frmRecord.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmSelectForm.resx">
-      <DependentUpon>frmSelectForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmShowTable.resx">
-      <DependentUpon>frmShowTable.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmTaskBarNotifier.resx">
-      <DependentUpon>frmTaskBarNotifier.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmWebError.resx">
-      <DependentUpon>frmWebError.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmWizard.resx">
-      <DependentUpon>frmWizard.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmZoom.resx">
-      <DependentUpon>frmZoom.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <SubType>Designer</SubType>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBButton.resx">
-      <DependentUpon>DBButton.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBCalculator.resx">
-      <DependentUpon>DBCalculator.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBChart.resx">
-      <DependentUpon>DBChart.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBCheckBox.resx">
-      <DependentUpon>DBCheckBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBCombo.resx">
-      <DependentUpon>DBCombo.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBComm.resx">
-      <DependentUpon>DBComm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBControl.resx">
-      <DependentUpon>DBControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBDate.resx">
-      <DependentUpon>DBDate.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBDateTimePicker.resx">
-      <DependentUpon>DBDateTimePicker.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBDocument.resx">
-      <DependentUpon>DBDocument.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBEditPicture.resx">
-      <DependentUpon>DBEditPicture.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBFile.resx">
-      <DependentUpon>DBFile.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBFindTextBox.resx">
-      <DependentUpon>DBFindTextBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBFrame.resx">
-      <DependentUpon>DBFrame.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBFtp.resx">
-      <DependentUpon>DBFtp.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGraph.resx">
-      <DependentUpon>DBGraph.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGraphics.resx">
-      <SubType>Designer</SubType>
-      <DependentUpon>DBGraphics.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGrid.resx">
-      <DependentUpon>DBGrid.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGrid\DataGridComboBoxColumn.resx">
-      <DependentUpon>DataGridComboBoxColumn.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGrid\DataGridFileColumn.resx">
-      <DependentUpon>DataGridFileColumn.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGrid\DataGridPictureColumn.resx">
-      <DependentUpon>DataGridPictureColumn.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGrid\DataGridPictureContextMenu.resx">
-      <DependentUpon>DataGridPictureContextMenu.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGrid\DataGridProperty.resx">
-      <DependentUpon>DataGridProperty.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBColumn.resx">
-      <DependentUpon>DBColumn.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGroupBox.resx">
-      <DependentUpon>DBGroupBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGroupBoxXP.resx">
-      <DependentUpon>DBGroupBoxXP.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBGroupBoxXPList.resx">
-      <DependentUpon>DBGroupBoxXPList.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBImage.resx">
-      <DependentUpon>DBImage.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBLabel.resx">
-      <DependentUpon>DBLabel.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBListBox.resx">
-      <DependentUpon>DBListBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBListView.resx">
-      <DependentUpon>DBListView.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBLock.resx">
-      <DependentUpon>DBLock.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBLopd.resx">
-      <DependentUpon>DBLopd.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBMarkControl.resx">
-      <DependentUpon>DBMarkControl.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBOfficeMenu.resx">
-      <DependentUpon>DBOfficeMenu.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBPage\frmAplicacion.resx">
-      <DependentUpon>frmAplicacion.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBPicture.resx">
-      <DependentUpon>DBPicture.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBPlanner.resx">
-      <DependentUpon>DBPlanner.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBPlannerObject.resx">
-      <DependentUpon>DBPlannerObject.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBPrintForm.resx">
-      <DependentUpon>DBPrintForm.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBRecord.resx">
-      <DependentUpon>DBRecord.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBRichTextBox.resx">
-      <DependentUpon>DBRichTextBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBScroll.resx">
-      <DependentUpon>DBScroll.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBShape.resx">
-      <DependentUpon>DBShape.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBStatusBar.resx">
-      <DependentUpon>DBStatusBar.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBTextBox.resx">
-      <DependentUpon>DBTextBox.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBToolBarEx.resx">
-      <DependentUpon>DBToolBarEx.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DBTreeView.resx">
-      <DependentUpon>DBTreeView.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
@@ -1019,78 +241,37 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSConvert\FSConvert.csproj">
-      <Project>{c5ecb48b-42fb-4db8-9145-b67f5fefb421}</Project>
-      <Name>FSConvert</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSDatabase\FSDatabase.csproj">
-      <Project>{31743f95-0d43-4ab1-bd23-45d8a88f2635}</Project>
-      <Name>FSDatabase</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSDisk\FSDisk.csproj">
-      <Project>{B9B3D9B8-8C7B-49A7-BBAB-8321F04CC02C}</Project>
-      <Name>FSDisk</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSExcel\FSExcel.csproj">
-      <Project>{314CD2F3-012F-4643-BC45-222083317D25}</Project>
-      <Name>FSExcel</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSException\FSException.csproj">
-      <Project>{2a366b72-70b3-4700-b962-5920a0eee074}</Project>
-      <Name>FSException</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSGraphics\FSGraphics.csproj">
-      <Project>{13461507-32fc-48bc-bd27-f3a9de011825}</Project>
-      <Name>FSGraphics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
-      <Project>{7e0adef9-bcb8-48cd-99b6-68bf862f7083}</Project>
-      <Name>FSLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSMail\FSMail.csproj">
-      <Project>{890916d9-1b2a-4c31-a2cd-f9cc8a80bd87}</Project>
-      <Name>FSMail</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSMouseKeyboardLibrary\FSMouseKeyboardLibrary.csproj">
-      <Project>{F419622F-4D82-40A6-B4FB-3FE36579F018}</Project>
-      <Name>FSMouseKeyboardLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj">
-      <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>
-      <Name>FSNetwork</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSQueryBuilder\FSQueryBuilder.csproj">
-      <Project>{9281d89a-c56f-4620-b036-1258cdb9b28e}</Project>
-      <Name>FSQueryBuilder</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSSecurity\FSSecurity.csproj">
-      <Project>{8855fbf5-7ae4-4d21-a6b4-574f5a45ebcb}</Project>
-      <Name>FSSecurity</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj">
-      <Project>{1CF06DF5-C06E-4B00-8611-62EEC4B37B29}</Project>
-      <Name>FSSystemInfo</Name>
-    </ProjectReference>
+    <Content Include="Resources\DBGauge.bmp" />
+    <Content Include="Resources\DBGridViewCollapse.png" />
+    <Content Include="Resources\DBGridViewExpand.png" />
+    <Content Include="Resources\DBVuMeter.bmp" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'!='net461'">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
+    <Reference Include="System.Design" Version="4.0.0" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\FSInputBoxError.png" />
+    <ProjectReference Include="..\FSConvert\FSConvert.csproj" />
+    <ProjectReference Include="..\FSDatabase\FSDatabase.csproj" />
+    <ProjectReference Include="..\FSDisk\FSDisk.csproj" />
+    <ProjectReference Include="..\FSExcel\FSExcel.csproj" />
+    <ProjectReference Include="..\FSException\FSException.csproj" />
+    <ProjectReference Include="..\FSGraphics\FSGraphics.csproj" />
+    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\FSMail\FSMail.csproj" />
+    <ProjectReference Include="..\FSMouseKeyboardLibrary\FSMouseKeyboardLibrary.csproj" />
+    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />
+    <ProjectReference Include="..\FSQueryBuilder\FSQueryBuilder.csproj" />
+    <ProjectReference Include="..\FSSecurity\FSSecurity.csproj" />
+    <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\FSInputBoxExclamation.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\FSInputBoxInformation.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\FSInputBoxNic80x80.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\FSInputBoxQuestion.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\DBGauge.bmp" />
-    <EmbeddedResource Include="Resources\DBGridViewCollapse.png" />
-    <EmbeddedResource Include="Resources\DBGridViewExpand.png" />
-    <EmbeddedResource Include="Resources\DBVuMeter.bmp" />
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 </Project>

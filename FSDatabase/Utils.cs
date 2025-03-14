@@ -1,6 +1,11 @@
 ﻿using FSException;
 using FSLibrary;
 using FSSystemInfo;
+
+#if !NETFRAMEWORK
+using Microsoft.AspNetCore.Http;
+#endif
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -248,10 +253,19 @@ namespace FSDatabase
             {
                 if (frmCampos == null) return;
 
+#if NETFRAMEWORK
                 for (int f = 0; f <= frm.Form.Count - 1; f++)
                 {
                     string value = frm.Form.Get(f);
                     string name = frm.Form.Keys[f];
+#else
+                var dict = frm.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+
+                foreach (var item in dict)
+                {
+                    string value = item.Value;
+                    string name = item.Key;
+#endif
 
                     Field field = frmCampos.Find(name);
 

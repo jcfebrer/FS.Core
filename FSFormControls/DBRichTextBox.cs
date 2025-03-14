@@ -145,6 +145,7 @@ namespace FSFormControls
         private int SCF_WORD = Convert.ToInt32(0X2L);
         private int updating;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color SelectionBackColor
         {
             set
@@ -221,6 +222,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PARA_FORMAT ParaFormat
         {
             get
@@ -249,6 +251,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CHAR_FORMAT CharFormat
         {
             get
@@ -277,6 +280,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CHAR_FORMAT DefaultCharFormat
         {
             get
@@ -305,6 +309,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PARA_FORMAT DefaultParaFormat
         {
             get
@@ -601,98 +606,100 @@ namespace FSFormControls
 
         private void UnPushColor()
         {
-            ToolBar1.Buttons[9].Pushed = false;
-            ToolBar1.Buttons[10].Pushed = false;
-            ToolBar1.Buttons[11].Pushed = false;
-            ToolBar1.Buttons[12].Pushed = false;
-            ToolBar1.Buttons[13].Pushed = false;
-            ToolBar1.Buttons[14].Pushed = false;
-            ToolBar1.Buttons[15].Pushed = false;
-            ToolBar1.Buttons[16].Pushed = false;
+            //ToolBar1.Items[9].Pushed = false;
+            //ToolBar1.Items[10].Pushed = false;
+            //ToolBar1.Items[11].Pushed = false;
+            //ToolBar1.Items[12].Pushed = false;
+            //ToolBar1.Items[13].Pushed = false;
+            //ToolBar1.Items[14].Pushed = false;
+            //ToolBar1.Items[15].Pushed = false;
+            //ToolBar1.Items[16].Pushed = false;
         }
 
 
         private void UnPushAlign()
         {
-            ToolBar1.Buttons[18].Pushed = false;
-            ToolBar1.Buttons[19].Pushed = false;
-            ToolBar1.Buttons[20].Pushed = false;
+            //ToolBar1.Items[18].Pushed = false;
+            //ToolBar1.Items[19].Pushed = false;
+            //ToolBar1.Items[20].Pushed = false;
         }
 
 
-        private void ToolBar1_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        private void ToolBar1_ButtonClick(object sender, EventArgs e)
         {
-            switch (Convert.ToString(e.Button.Tag))
+            ToolStripMenuItem toolStripMenuItem = sender as ToolStripMenuItem;
+            string tag = toolStripMenuItem.Tag.ToString();
+            switch (tag)
             {
                 case "BOLD":
-                    SetSelectionBold(e.Button.Pushed);
+                    SetSelectionBold(toolStripMenuItem.Pressed);
                     break;
                 case "ITALIC":
-                    SetSelectionItalic(e.Button.Pushed);
+                    SetSelectionItalic(toolStripMenuItem.Pressed);
                     break;
                 case "UNDERLINE":
-                    SetSelectionUnderlined(e.Button.Pushed);
+                    SetSelectionUnderlined(toolStripMenuItem.Pressed);
                     break;
                 case "STRIKEOUT":
-                    SetSelectionStrikeOut(e.Button.Pushed);
+                    SetSelectionStrikeOut(toolStripMenuItem.Pressed);
                     break;
                 case "BLACK":
                     UnPushColor();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionColor = Color.Black;
                     break;
                 case "WHITE":
                     UnPushColor();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionColor = Color.White;
                     break;
                 case "YELLOW":
                     UnPushColor();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionColor = Color.Yellow;
                     break;
                 case "RED":
                     UnPushColor();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionColor = Color.Red;
                     break;
                 case "MAGENTA":
                     UnPushColor();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionColor = Color.Magenta;
                     break;
                 case "GREEN":
                     UnPushColor();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionColor = Color.Green;
                     break;
                 case "CYAN":
                     UnPushColor();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionColor = Color.Cyan;
                     break;
                 case "BLUE":
                     UnPushColor();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionColor = Color.Blue;
                     break;
                 case "LEFT":
                     UnPushAlign();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionAlignment = HorizontalAlignment.Left;
                     break;
                 case "RIGHT":
                     UnPushAlign();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionAlignment = HorizontalAlignment.Right;
                     break;
                 case "CENTER":
                     UnPushAlign();
-                    e.Button.Pushed = true;
+                    toolStripMenuItem.Checked = true;
                     RichTextBox1.SelectionAlignment = HorizontalAlignment.Center;
                     break;
                 case "BULLET":
-                    RichTextBox1.SelectionBullet = e.Button.Pushed;
+                    RichTextBox1.SelectionBullet = toolStripMenuItem.Pressed;
                     break;
                 case "UNDO":
                     RichTextBox1.Undo();
@@ -919,7 +926,7 @@ namespace FSFormControls
         {
             SetSelectionFont("Arial");
             UncheckFonts();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -927,7 +934,7 @@ namespace FSFormControls
         {
             SetSelectionFont("Courier New");
             UncheckFonts();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -935,7 +942,7 @@ namespace FSFormControls
         {
             SetSelectionFont("Times New Roman");
             UncheckFonts();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -943,7 +950,7 @@ namespace FSFormControls
         {
             SetSelectionFont("Microsoft Sans Serif");
             UncheckFonts();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -951,7 +958,7 @@ namespace FSFormControls
         {
             SetSelectionSize(8);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -959,7 +966,7 @@ namespace FSFormControls
         {
             SetSelectionSize(10);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -967,7 +974,7 @@ namespace FSFormControls
         {
             SetSelectionSize(12);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -975,7 +982,7 @@ namespace FSFormControls
         {
             SetSelectionSize(14);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -983,7 +990,7 @@ namespace FSFormControls
         {
             SetSelectionSize(16);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -991,7 +998,7 @@ namespace FSFormControls
         {
             SetSelectionSize(18);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -999,7 +1006,7 @@ namespace FSFormControls
         {
             SetSelectionSize(20);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1007,7 +1014,7 @@ namespace FSFormControls
         {
             SetSelectionSize(22);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1015,7 +1022,7 @@ namespace FSFormControls
         {
             SetSelectionSize(24);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1023,7 +1030,7 @@ namespace FSFormControls
         {
             SetSelectionSize(26);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1031,7 +1038,7 @@ namespace FSFormControls
         {
             SetSelectionSize(28);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1039,7 +1046,7 @@ namespace FSFormControls
         {
             SetSelectionSize(36);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1047,7 +1054,7 @@ namespace FSFormControls
         {
             SetSelectionSize(48);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1055,7 +1062,7 @@ namespace FSFormControls
         {
             SetSelectionSize(72);
             UncheckSize();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1063,7 +1070,7 @@ namespace FSFormControls
         {
             SetSelectionFont("Tahoma");
             UncheckFonts();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1071,7 +1078,7 @@ namespace FSFormControls
         {
             SetSelectionFont("Verdana");
             UncheckFonts();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
         }
 
 
@@ -1085,10 +1092,10 @@ namespace FSFormControls
         {
             if (!(RichTextBox1.SelectionFont == null))
             {
-                ToolBar1.Buttons[0].Pushed = RichTextBox1.SelectionFont.Bold;
-                ToolBar1.Buttons[1].Pushed = RichTextBox1.SelectionFont.Italic;
-                ToolBar1.Buttons[2].Pushed = RichTextBox1.SelectionFont.Underline;
-                ToolBar1.Buttons[3].Pushed = RichTextBox1.SelectionFont.Strikeout;
+                //ToolBar1.Items[0].Pushed = RichTextBox1.SelectionFont.Bold;
+                //ToolBar1.Items[1].Pushed = RichTextBox1.SelectionFont.Italic;
+                //ToolBar1.Items[2].Pushed = RichTextBox1.SelectionFont.Underline;
+                //ToolBar1.Items[3].Pushed = RichTextBox1.SelectionFont.Strikeout;
 
                 UnPushColor();
                 // falta
@@ -1122,18 +1129,18 @@ namespace FSFormControls
 
 
                 UnPushAlign();
-                switch (RichTextBox1.SelectionAlignment)
-                {
-                    case HorizontalAlignment.Left:
-                        ToolBar1.Buttons[18].Pushed = true;
-                        break;
-                    case HorizontalAlignment.Center:
-                        ToolBar1.Buttons[19].Pushed = true;
-                        break;
-                    case HorizontalAlignment.Right:
-                        ToolBar1.Buttons[20].Pushed = true;
-                        break;
-                }
+                //switch (RichTextBox1.SelectionAlignment)
+                //{
+                //    case HorizontalAlignment.Left:
+                //        ToolBar1.Items[18].Pushed = true;
+                //        break;
+                //    case HorizontalAlignment.Center:
+                //        ToolBar1.Items[19].Pushed = true;
+                //        break;
+                //    case HorizontalAlignment.Right:
+                //        ToolBar1.Items[20].Pushed = true;
+                //        break;
+                //}
 
 
                 UncheckFonts();
@@ -2283,63 +2290,63 @@ namespace FSFormControls
 
         #region '" Windows Form Designer generated code "' 
 
-        internal ContextMenu ContextMenu1;
-        internal ContextMenu ContextMenu2;
+        internal ContextMenuStrip ContextMenu1;
+        internal ContextMenuStrip ContextMenu2;
         internal ImageList ImageList1;
-        internal MenuItem MenuItem1;
-        internal MenuItem MenuItem10;
-        internal MenuItem MenuItem11;
-        internal MenuItem MenuItem12;
-        internal MenuItem MenuItem13;
-        internal MenuItem MenuItem14;
-        internal MenuItem MenuItem15;
-        internal MenuItem MenuItem16;
-        internal MenuItem MenuItem17;
-        internal MenuItem MenuItem18;
-        internal MenuItem MenuItem19;
-        internal MenuItem MenuItem2;
-        internal MenuItem MenuItem20;
-        internal MenuItem MenuItem3;
-        internal MenuItem MenuItem4;
-        internal MenuItem MenuItem5;
-        internal MenuItem MenuItem6;
-        internal MenuItem MenuItem7;
-        internal MenuItem MenuItem8;
-        internal MenuItem MenuItem9;
+        internal ToolStripMenuItem MenuItem1;
+        internal ToolStripMenuItem MenuItem10;
+        internal ToolStripMenuItem MenuItem11;
+        internal ToolStripMenuItem MenuItem12;
+        internal ToolStripMenuItem MenuItem13;
+        internal ToolStripMenuItem MenuItem14;
+        internal ToolStripMenuItem MenuItem15;
+        internal ToolStripMenuItem MenuItem16;
+        internal ToolStripMenuItem MenuItem17;
+        internal ToolStripMenuItem MenuItem18;
+        internal ToolStripMenuItem MenuItem19;
+        internal ToolStripMenuItem MenuItem2;
+        internal ToolStripMenuItem MenuItem20;
+        internal ToolStripMenuItem MenuItem3;
+        internal ToolStripMenuItem MenuItem4;
+        internal ToolStripMenuItem MenuItem5;
+        internal ToolStripMenuItem MenuItem6;
+        internal ToolStripMenuItem MenuItem7;
+        internal ToolStripMenuItem MenuItem8;
+        internal ToolStripMenuItem MenuItem9;
         internal OpenFileDialog OpenFileDialog1;
         internal RichTextBox RichTextBox1;
         internal SaveFileDialog SaveFileDialog1;
-        internal ToolBar ToolBar1;
-        internal ToolBarButton ToolBarButton1;
-        internal ToolBarButton ToolBarButton10;
-        internal ToolBarButton ToolBarButton11;
-        internal ToolBarButton ToolBarButton12;
-        internal ToolBarButton ToolBarButton13;
-        internal ToolBarButton ToolBarButton14;
-        internal ToolBarButton ToolBarButton15;
-        internal ToolBarButton ToolBarButton16;
-        internal ToolBarButton ToolBarButton17;
-        internal ToolBarButton ToolBarButton18;
-        internal ToolBarButton ToolBarButton19;
-        internal ToolBarButton ToolBarButton2;
-        internal ToolBarButton ToolBarButton20;
-        internal ToolBarButton ToolBarButton21;
-        internal ToolBarButton ToolBarButton22;
-        internal ToolBarButton ToolBarButton23;
-        internal ToolBarButton ToolBarButton24;
-        internal ToolBarButton ToolBarButton25;
-        internal ToolBarButton ToolBarButton26;
-        internal ToolBarButton ToolBarButton27;
-        internal ToolBarButton ToolBarButton28;
-        internal ToolBarButton ToolBarButton29;
-        internal ToolBarButton ToolBarButton3;
-        internal ToolBarButton ToolBarButton30;
-        internal ToolBarButton ToolBarButton4;
-        internal ToolBarButton ToolBarButton5;
-        internal ToolBarButton ToolBarButton6;
-        internal ToolBarButton ToolBarButton7;
-        internal ToolBarButton ToolBarButton8;
-        internal ToolBarButton ToolBarButton9;
+        internal ToolStrip ToolBar1;
+        internal ToolStripButton ToolBarButton1;
+        internal ToolStripButton ToolBarButton10;
+        internal ToolStripButton ToolBarButton11;
+        internal ToolStripButton ToolBarButton12;
+        internal ToolStripButton ToolBarButton13;
+        internal ToolStripButton ToolBarButton14;
+        internal ToolStripButton ToolBarButton15;
+        internal ToolStripButton ToolBarButton16;
+        internal ToolStripButton ToolBarButton17;
+        internal ToolStripButton ToolBarButton18;
+        internal ToolStripButton ToolBarButton19;
+        internal ToolStripButton ToolBarButton2;
+        internal ToolStripButton ToolBarButton20;
+        internal ToolStripButton ToolBarButton21;
+        internal ToolStripButton ToolBarButton22;
+        internal ToolStripButton ToolBarButton23;
+        internal ToolStripButton ToolBarButton24;
+        internal ToolStripButton ToolBarButton25;
+        internal ToolStripButton ToolBarButton26;
+        internal ToolStripButton ToolBarButton27;
+        internal ToolStripButton ToolBarButton28;
+        internal ToolStripButton ToolBarButton29;
+        internal ToolStripButton ToolBarButton3;
+        internal ToolStripButton ToolBarButton30;
+        internal ToolStripButton ToolBarButton4;
+        internal ToolStripButton ToolBarButton5;
+        internal ToolStripButton ToolBarButton6;
+        internal ToolStripButton ToolBarButton7;
+        internal ToolStripButton ToolBarButton8;
+        internal ToolStripButton ToolBarButton9;
         private IContainer components;
 
         public DBRichTextBox()
@@ -2347,7 +2354,7 @@ namespace FSFormControls
             InitializeComponent();
 
 
-            ToolBar1.ButtonClick += ToolBar1_ButtonClick;
+            ToolBar1.ItemClicked += ToolBar1_ButtonClick;
             MenuItem1.Click += MenuItem1_Click;
             MenuItem4.Click += MenuItem4_Click;
             MenuItem2.Click += MenuItem2_Click;
@@ -2385,59 +2392,59 @@ namespace FSFormControls
             components = new Container();
             var resources = new ComponentResourceManager(typeof(DBRichTextBox));
             RichTextBox1 = new RichTextBox();
-            ToolBar1 = new ToolBar();
-            ToolBarButton1 = new ToolBarButton();
-            ToolBarButton2 = new ToolBarButton();
-            ToolBarButton3 = new ToolBarButton();
-            ToolBarButton6 = new ToolBarButton();
-            ToolBarButton5 = new ToolBarButton();
-            ToolBarButton4 = new ToolBarButton();
-            ContextMenu1 = new ContextMenu();
-            MenuItem1 = new MenuItem();
-            MenuItem2 = new MenuItem();
-            MenuItem3 = new MenuItem();
-            MenuItem4 = new MenuItem();
-            MenuItem19 = new MenuItem();
-            MenuItem20 = new MenuItem();
-            ToolBarButton7 = new ToolBarButton();
-            ToolBarButton8 = new ToolBarButton();
-            ContextMenu2 = new ContextMenu();
-            MenuItem5 = new MenuItem();
-            MenuItem6 = new MenuItem();
-            MenuItem7 = new MenuItem();
-            MenuItem8 = new MenuItem();
-            MenuItem9 = new MenuItem();
-            MenuItem10 = new MenuItem();
-            MenuItem11 = new MenuItem();
-            MenuItem12 = new MenuItem();
-            MenuItem13 = new MenuItem();
-            MenuItem14 = new MenuItem();
-            MenuItem15 = new MenuItem();
-            MenuItem16 = new MenuItem();
-            MenuItem17 = new MenuItem();
-            MenuItem18 = new MenuItem();
-            ToolBarButton9 = new ToolBarButton();
-            ToolBarButton10 = new ToolBarButton();
-            ToolBarButton11 = new ToolBarButton();
-            ToolBarButton12 = new ToolBarButton();
-            ToolBarButton13 = new ToolBarButton();
-            ToolBarButton14 = new ToolBarButton();
-            ToolBarButton15 = new ToolBarButton();
-            ToolBarButton16 = new ToolBarButton();
-            ToolBarButton17 = new ToolBarButton();
-            ToolBarButton18 = new ToolBarButton();
-            ToolBarButton19 = new ToolBarButton();
-            ToolBarButton20 = new ToolBarButton();
-            ToolBarButton22 = new ToolBarButton();
-            ToolBarButton21 = new ToolBarButton();
-            ToolBarButton23 = new ToolBarButton();
-            ToolBarButton24 = new ToolBarButton();
-            ToolBarButton25 = new ToolBarButton();
-            ToolBarButton26 = new ToolBarButton();
-            ToolBarButton27 = new ToolBarButton();
-            ToolBarButton28 = new ToolBarButton();
-            ToolBarButton29 = new ToolBarButton();
-            ToolBarButton30 = new ToolBarButton();
+            ToolBar1 = new ToolStrip();
+            ToolBarButton1 = new ToolStripButton();
+            ToolBarButton2 = new ToolStripButton();
+            ToolBarButton3 = new ToolStripButton();
+            ToolBarButton6 = new ToolStripButton();
+            ToolBarButton5 = new ToolStripButton();
+            ToolBarButton4 = new ToolStripButton();
+            ContextMenu1 = new ContextMenuStrip();
+            MenuItem1 = new ToolStripMenuItem();
+            MenuItem2 = new ToolStripMenuItem();
+            MenuItem3 = new ToolStripMenuItem();
+            MenuItem4 = new ToolStripMenuItem();
+            MenuItem19 = new ToolStripMenuItem();
+            MenuItem20 = new ToolStripMenuItem();
+            ToolBarButton7 = new ToolStripButton();
+            ToolBarButton8 = new ToolStripButton();
+            ContextMenu2 = new ContextMenuStrip();
+            MenuItem5 = new ToolStripMenuItem();
+            MenuItem6 = new ToolStripMenuItem();
+            MenuItem7 = new ToolStripMenuItem();
+            MenuItem8 = new ToolStripMenuItem();
+            MenuItem9 = new ToolStripMenuItem();
+            MenuItem10 = new ToolStripMenuItem();
+            MenuItem11 = new ToolStripMenuItem();
+            MenuItem12 = new ToolStripMenuItem();
+            MenuItem13 = new ToolStripMenuItem();
+            MenuItem14 = new ToolStripMenuItem();
+            MenuItem15 = new ToolStripMenuItem();
+            MenuItem16 = new ToolStripMenuItem();
+            MenuItem17 = new ToolStripMenuItem();
+            MenuItem18 = new ToolStripMenuItem();
+            ToolBarButton9 = new ToolStripButton();
+            ToolBarButton10 = new ToolStripButton();
+            ToolBarButton11 = new ToolStripButton();
+            ToolBarButton12 = new ToolStripButton();
+            ToolBarButton13 = new ToolStripButton();
+            ToolBarButton14 = new ToolStripButton();
+            ToolBarButton15 = new ToolStripButton();
+            ToolBarButton16 = new ToolStripButton();
+            ToolBarButton17 = new ToolStripButton();
+            ToolBarButton18 = new ToolStripButton();
+            ToolBarButton19 = new ToolStripButton();
+            ToolBarButton20 = new ToolStripButton();
+            ToolBarButton22 = new ToolStripButton();
+            ToolBarButton21 = new ToolStripButton();
+            ToolBarButton23 = new ToolStripButton();
+            ToolBarButton24 = new ToolStripButton();
+            ToolBarButton25 = new ToolStripButton();
+            ToolBarButton26 = new ToolStripButton();
+            ToolBarButton27 = new ToolStripButton();
+            ToolBarButton28 = new ToolStripButton();
+            ToolBarButton29 = new ToolStripButton();
+            ToolBarButton30 = new ToolStripButton();
             ImageList1 = new ImageList(components);
             OpenFileDialog1 = new OpenFileDialog();
             SaveFileDialog1 = new SaveFileDialog();
@@ -2454,7 +2461,7 @@ namespace FSFormControls
             // 
             // ToolBar1
             // 
-            ToolBar1.Buttons.AddRange(new ToolBarButton[]
+            ToolBar1.Items.AddRange(new ToolStripButton[]
             {
                 ToolBarButton1,
                 ToolBarButton2,
@@ -2487,11 +2494,11 @@ namespace FSFormControls
                 ToolBarButton29,
                 ToolBarButton30
             });
-            ToolBar1.DropDownArrows = true;
+            //ToolBar1.DropDownArrows = true;
             ToolBar1.ImageList = ImageList1;
             ToolBar1.Location = new Point(0, 0);
             ToolBar1.Name = "ToolBar1";
-            ToolBar1.ShowToolTips = true;
+            ToolBar1.ShowItemToolTips = true;
             ToolBar1.Size = new Size(433, 72);
             ToolBar1.TabIndex = 1;
             // 
@@ -2499,45 +2506,45 @@ namespace FSFormControls
             // 
             ToolBarButton1.ImageIndex = 0;
             ToolBarButton1.Name = "ToolBarButton1";
-            ToolBarButton1.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton1.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton1.Tag = "BOLD";
             // 
             // ToolBarButton2
             // 
             ToolBarButton2.ImageIndex = 2;
             ToolBarButton2.Name = "ToolBarButton2";
-            ToolBarButton2.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton2.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton2.Tag = "ITALIC";
             // 
             // ToolBarButton3
             // 
             ToolBarButton3.ImageIndex = 1;
             ToolBarButton3.Name = "ToolBarButton3";
-            ToolBarButton3.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton3.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton3.Tag = "UNDERLINE";
             // 
             // ToolBarButton6
             // 
             ToolBarButton6.ImageIndex = 4;
             ToolBarButton6.Name = "ToolBarButton6";
-            ToolBarButton6.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton6.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton6.Tag = "STRIKEOUT";
             // 
             // ToolBarButton5
             // 
             ToolBarButton5.Name = "ToolBarButton5";
-            ToolBarButton5.Style = ToolBarButtonStyle.Separator;
+            //ToolBarButton5.Style = ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton4
             // 
-            ToolBarButton4.DropDownMenu = ContextMenu1;
+            //ToolBarButton4.DropDownMenu = ContextMenu1;
             ToolBarButton4.ImageIndex = 3;
             ToolBarButton4.Name = "ToolBarButton4";
-            ToolBarButton4.Style = ToolBarButtonStyle.DropDownButton;
+            //ToolBarButton4.Style = ToolBarButtonStyle.DropDownButton;
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new MenuItem[]
+            ContextMenu1.Items.AddRange(new ToolStripMenuItem[]
             {
                 MenuItem1,
                 MenuItem2,
@@ -2550,49 +2557,49 @@ namespace FSFormControls
             // MenuItem1
             // 
             MenuItem1.Checked = true;
-            MenuItem1.Index = 0;
+            //MenuItem1.Index = 0;
             MenuItem1.Text = "Arial";
             // 
             // MenuItem2
             // 
-            MenuItem2.Index = 1;
+            //MenuItem2.Index = 1;
             MenuItem2.Text = "Times New Roman";
             // 
             // MenuItem3
             // 
-            MenuItem3.Index = 2;
+            //MenuItem3.Index = 2;
             MenuItem3.Text = "Sans Serif";
             // 
             // MenuItem4
             // 
-            MenuItem4.Index = 3;
+            //MenuItem4.Index = 3;
             MenuItem4.Text = "Courier New";
             // 
             // MenuItem19
             // 
-            MenuItem19.Index = 4;
+            //MenuItem19.Index = 4;
             MenuItem19.Text = "Tahoma";
             // 
             // MenuItem20
             // 
-            MenuItem20.Index = 5;
+            //MenuItem20.Index = 5;
             MenuItem20.Text = "Verdana";
             // 
             // ToolBarButton7
             // 
             ToolBarButton7.Name = "ToolBarButton7";
-            ToolBarButton7.Style = ToolBarButtonStyle.Separator;
+            //ToolBarButton7.Style = ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton8
             // 
-            ToolBarButton8.DropDownMenu = ContextMenu2;
+            //ToolBarButton8.DropDownMenu = ContextMenu2;
             ToolBarButton8.ImageIndex = 5;
             ToolBarButton8.Name = "ToolBarButton8";
-            ToolBarButton8.Style = ToolBarButtonStyle.DropDownButton;
+            //ToolBarButton8.Style = ToolBarButtonStyle.DropDownButton;
             // 
             // ContextMenu2
             // 
-            ContextMenu2.MenuItems.AddRange(new MenuItem[]
+            ContextMenu2.Items.AddRange(new ToolStripMenuItem[]
             {
                 MenuItem5,
                 MenuItem6,
@@ -2613,179 +2620,179 @@ namespace FSFormControls
             // MenuItem5
             // 
             MenuItem5.Checked = true;
-            MenuItem5.Index = 0;
+            //MenuItem5.Index = 0;
             MenuItem5.Text = "8";
             // 
             // MenuItem6
             // 
-            MenuItem6.Index = 1;
+            //MenuItem6.Index = 1;
             MenuItem6.Text = "10";
             // 
             // MenuItem7
             // 
-            MenuItem7.Index = 2;
+            //MenuItem7.Index = 2;
             MenuItem7.Text = "12";
             // 
             // MenuItem8
             // 
-            MenuItem8.Index = 3;
+            //MenuItem8.Index = 3;
             MenuItem8.Text = "14";
             // 
             // MenuItem9
             // 
-            MenuItem9.Index = 4;
+            //MenuItem9.Index = 4;
             MenuItem9.Text = "16";
             // 
             // MenuItem10
             // 
-            MenuItem10.Index = 5;
+            //MenuItem10.Index = 5;
             MenuItem10.Text = "18";
             // 
             // MenuItem11
             // 
-            MenuItem11.Index = 6;
+            //MenuItem11.Index = 6;
             MenuItem11.Text = "20";
             // 
             // MenuItem12
             // 
-            MenuItem12.Index = 7;
+            //MenuItem12.Index = 7;
             MenuItem12.Text = "22";
             // 
             // MenuItem13
             // 
-            MenuItem13.Index = 8;
+            //MenuItem13.Index = 8;
             MenuItem13.Text = "24";
             // 
             // MenuItem14
             // 
-            MenuItem14.Index = 9;
+            //MenuItem14.Index = 9;
             MenuItem14.Text = "26";
             // 
             // MenuItem15
             // 
-            MenuItem15.Index = 10;
+            //MenuItem15.Index = 10;
             MenuItem15.Text = "28";
             // 
             // MenuItem16
             // 
-            MenuItem16.Index = 11;
+            //MenuItem16.Index = 11;
             MenuItem16.Text = "36";
             // 
             // MenuItem17
             // 
-            MenuItem17.Index = 12;
+            //MenuItem17.Index = 12;
             MenuItem17.Text = "48";
             // 
             // MenuItem18
             // 
-            MenuItem18.Index = 13;
+            //MenuItem18.Index = 13;
             MenuItem18.Text = "72";
             // 
             // ToolBarButton9
             // 
             ToolBarButton9.Name = "ToolBarButton9";
-            ToolBarButton9.Style = ToolBarButtonStyle.Separator;
+            //ToolBarButton9.Style = ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton10
             // 
             ToolBarButton10.ImageIndex = 13;
             ToolBarButton10.Name = "ToolBarButton10";
-            ToolBarButton10.Pushed = true;
-            ToolBarButton10.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton10.Pushed = true;
+            //ToolBarButton10.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton10.Tag = "BLACK";
             // 
             // ToolBarButton11
             // 
             ToolBarButton11.ImageIndex = 12;
             ToolBarButton11.Name = "ToolBarButton11";
-            ToolBarButton11.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton11.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton11.Tag = "WHITE";
             // 
             // ToolBarButton12
             // 
             ToolBarButton12.ImageIndex = 6;
             ToolBarButton12.Name = "ToolBarButton12";
-            ToolBarButton12.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton12.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton12.Tag = "YELLOW";
             // 
             // ToolBarButton13
             // 
             ToolBarButton13.ImageIndex = 7;
             ToolBarButton13.Name = "ToolBarButton13";
-            ToolBarButton13.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton13.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton13.Tag = "RED";
             // 
             // ToolBarButton14
             // 
             ToolBarButton14.ImageIndex = 8;
             ToolBarButton14.Name = "ToolBarButton14";
-            ToolBarButton14.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton14.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton14.Tag = "MAGENTA";
             // 
             // ToolBarButton15
             // 
             ToolBarButton15.ImageIndex = 9;
             ToolBarButton15.Name = "ToolBarButton15";
-            ToolBarButton15.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton15.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton15.Tag = "GREEN";
             // 
             // ToolBarButton16
             // 
             ToolBarButton16.ImageIndex = 10;
             ToolBarButton16.Name = "ToolBarButton16";
-            ToolBarButton16.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton16.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton16.Tag = "CYAN";
             // 
             // ToolBarButton17
             // 
             ToolBarButton17.ImageIndex = 11;
             ToolBarButton17.Name = "ToolBarButton17";
-            ToolBarButton17.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton17.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton17.Tag = "BLUE";
             // 
             // ToolBarButton18
             // 
             ToolBarButton18.Name = "ToolBarButton18";
-            ToolBarButton18.Style = ToolBarButtonStyle.Separator;
+            //ToolBarButton18.Style = ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton19
             // 
             ToolBarButton19.ImageIndex = 14;
             ToolBarButton19.Name = "ToolBarButton19";
-            ToolBarButton19.Pushed = true;
-            ToolBarButton19.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton19.Pushed = true;
+            //ToolBarButton19.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton19.Tag = "LEFT";
             // 
             // ToolBarButton20
             // 
             ToolBarButton20.ImageIndex = 16;
             ToolBarButton20.Name = "ToolBarButton20";
-            ToolBarButton20.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton20.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton20.Tag = "CENTER";
             // 
             // ToolBarButton22
             // 
             ToolBarButton22.ImageIndex = 17;
             ToolBarButton22.Name = "ToolBarButton22";
-            ToolBarButton22.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton22.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton22.Tag = "RIGHT";
             // 
             // ToolBarButton21
             // 
             ToolBarButton21.Name = "ToolBarButton21";
-            ToolBarButton21.Style = ToolBarButtonStyle.Separator;
+            //ToolBarButton21.Style = ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton23
             // 
             ToolBarButton23.ImageIndex = 18;
             ToolBarButton23.Name = "ToolBarButton23";
-            ToolBarButton23.Style = ToolBarButtonStyle.ToggleButton;
+            //ToolBarButton23.Style = ToolBarButtonStyle.ToggleButton;
             ToolBarButton23.Tag = "BULLET";
             // 
             // ToolBarButton24
             // 
             ToolBarButton24.Name = "ToolBarButton24";
-            ToolBarButton24.Style = ToolBarButtonStyle.Separator;
+            //ToolBarButton24.Style = ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton25
             // 
@@ -2802,25 +2809,25 @@ namespace FSFormControls
             // ToolBarButton27
             // 
             ToolBarButton27.Name = "ToolBarButton27";
-            ToolBarButton27.Style = ToolBarButtonStyle.Separator;
+            //ToolBarButton27.Style = ToolBarButtonStyle.Separator;
             // 
             // ToolBarButton28
             // 
-            ToolBarButton28.ImageIndex = 22;
+            //ToolBarButton28.Index = 22;
             ToolBarButton28.Name = "ToolBarButton28";
             ToolBarButton28.Tag = "SAVE";
             ToolBarButton28.ToolTipText = "Guardar";
             // 
             // ToolBarButton29
             // 
-            ToolBarButton29.ImageIndex = 23;
+            //ToolBarButton29.Index = 23;
             ToolBarButton29.Name = "ToolBarButton29";
             ToolBarButton29.Tag = "LOAD";
             ToolBarButton29.ToolTipText = "Cargar";
             // 
             // ToolBarButton30
             // 
-            ToolBarButton30.ImageIndex = 21;
+            //ToolBarButton30.Index = 21;
             ToolBarButton30.Name = "ToolBarButton30";
             ToolBarButton30.Tag = "SEARCH";
             ToolBarButton30.ToolTipText = "B?scar y reemplazar";

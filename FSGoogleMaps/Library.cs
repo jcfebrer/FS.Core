@@ -23,8 +23,8 @@ using FSException;
 namespace FSGoogleMaps
 {
 
-	public class Library
-	{
+    public class Library
+    {
         public string ApiKey { get; set; }
 
         public Library(string apiKey)

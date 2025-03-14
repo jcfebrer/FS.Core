@@ -45,17 +45,20 @@ namespace FSFormControls
 
         private int secondX, secondY;
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int PointSizeX { get; set; } = 9;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int PointSizeY { get; set; } = 9;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new BorderStyle BorderStyle
         {
             get { return PictureBox1.BorderStyle; }
             set { PictureBox1.BorderStyle = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PictureBoxSizeMode SizeMode
         {
             get { return PictureBox1.SizeMode; }
@@ -68,6 +71,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -77,13 +81,14 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -94,12 +99,12 @@ namespace FSFormControls
                 switch (m_Mode)
                 {
                     case Global.AccessMode.ReadMode:
-                        ContextMenu1.MenuItems[0].Enabled = false;
+                        ContextMenu1.Items[0].Enabled = false;
                         ToolBar1.Visible = false;
                         ToolBar2.Visible = false;
                         break;
                     case Global.AccessMode.WriteMode:
-                        ContextMenu1.MenuItems[0].Enabled = true;
+                        ContextMenu1.Items[0].Enabled = true;
                         ToolBar1.Visible = true;
                         ToolBar2.Visible = true;
                         break;
@@ -107,6 +112,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Image Image
         {
             get { return PictureBox1.Image; }
@@ -122,6 +128,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Data
         {
             get
@@ -170,9 +177,10 @@ namespace FSFormControls
         }
 
 
-        private void ToolBar1_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        private void ToolBar1_ButtonClick(object sender, EventArgs e)
         {
-            switch (Convert.ToString(e.Button.Tag))
+            ToolStripItem tsi = (ToolStripItem)sender;
+            switch (Convert.ToString(tsi.Tag))
             {
                 case "ERASE":
                     if (DrawObjects.Count == 0) return;
@@ -190,34 +198,35 @@ namespace FSFormControls
                     drawType = DrawObjectType.Line;
 
                     UnPush(ToolBar1);
-                    e.Button.Pushed = true;
+                    //tsi.Pushed = true;
                     break;
                 case "CIRCLE":
                     drawType = DrawObjectType.Circle;
 
                     UnPush(ToolBar1);
-                    e.Button.Pushed = true;
+                    //tsi.Pushed = true;
                     break;
                 case "POINT":
                     drawType = DrawObjectType.Point;
 
                     UnPush(ToolBar1);
-                    e.Button.Pushed = true;
+                    //tsi.Pushed = true;
                     break;
                 case "RECTANGLE":
                     drawType = DrawObjectType.Rectangle;
 
                     UnPush(ToolBar1);
-                    e.Button.Pushed = true;
+                    //tsi.Pushed = true;
                     break;
             }
         }
 
 
-        private void UnPush(ToolBar tb)
+        private void UnPush(ToolStrip tb)
         {
-            var f = 0;
-            for (f = 0; f <= tb.Buttons.Count - 1; f++) tb.Buttons[f].Pushed = false;
+            //var f = 0;
+            //for (f = 0; f <= tb.Items.Count - 1; f++) 
+                //tb.Items[f].Pushed = false;
         }
 
 
@@ -432,57 +441,58 @@ namespace FSFormControls
         }
 
 
-        private void ToolBar2_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        private void ToolBar2_ButtonClick(object sender, EventArgs e)
         {
-            switch (Convert.ToString(e.Button.Tag))
+            ToolStripItem tsi = (ToolStripItem)sender;
+            switch (Convert.ToString(tsi.Tag))
             {
                 case "BLACK":
                     colorSel = Color.Black;
 
                     UnPush(ToolBar2);
-                    e.Button.Pushed = true;
+                    //e.Button.Pushed = true;
                     break;
                 case "YELLOW":
                     colorSel = Color.Yellow;
 
                     UnPush(ToolBar2);
-                    e.Button.Pushed = true;
+                    //e.Button.Pushed = true;
                     break;
                 case "RED":
                     colorSel = Color.Red;
 
                     UnPush(ToolBar2);
-                    e.Button.Pushed = true;
+                    //e.Button.Pushed = true;
                     break;
                 case "WHITE":
                     colorSel = Color.White;
 
                     UnPush(ToolBar2);
-                    e.Button.Pushed = true;
+                    //e.Button.Pushed = true;
                     break;
                 case "CYAN":
                     colorSel = Color.Cyan;
 
                     UnPush(ToolBar2);
-                    e.Button.Pushed = true;
+                    //e.Button.Pushed = true;
                     break;
                 case "MAGENTA":
                     colorSel = Color.Magenta;
 
                     UnPush(ToolBar2);
-                    e.Button.Pushed = true;
+                    //e.Button.Pushed = true;
                     break;
                 case "BLUE":
                     colorSel = Color.Blue;
 
                     UnPush(ToolBar2);
-                    e.Button.Pushed = true;
+                    //e.Button.Pushed = true;
                     break;
                 case "GREEN":
                     colorSel = Color.Green;
 
                     UnPush(ToolBar2);
-                    e.Button.Pushed = true;
+                    //e.Button.Pushed = true;
                     break;
             }
         }
@@ -569,9 +579,9 @@ namespace FSFormControls
 
             drawingObject.Type = drawType;
 
-            drawingObject.mark1.ContextMenu = objectMenu;
-            drawingObject.mark2.ContextMenu = objectMenu;
-            drawingObject.mark3.ContextMenu = objectMenu;
+            drawingObject.mark1.ContextMenuStrip = objectMenu;
+            drawingObject.mark2.ContextMenuStrip = objectMenu;
+            drawingObject.mark3.ContextMenuStrip = objectMenu;
 
             if (!isPoint)
             {
@@ -709,9 +719,9 @@ namespace FSFormControls
                 drw.Color = color;
                 drw.Info = info;
 
-                drw.mark1.ContextMenu = objectMenu;
-                drw.mark2.ContextMenu = objectMenu;
-                drw.mark3.ContextMenu = objectMenu;
+                drw.mark1.ContextMenuStrip = objectMenu;
+                drw.mark2.ContextMenuStrip = objectMenu;
+                drw.mark3.ContextMenuStrip = objectMenu;
 
                 drw.mark3.IsMoveMark = true;
 
@@ -842,32 +852,32 @@ namespace FSFormControls
 
         #region '" Código generado por el Diseñador de Windows Forms "' 
 
-        internal ContextMenu ContextMenu1;
+        internal ContextMenuStrip ContextMenu1;
         internal ImageList ImageList1;
-        internal MenuItem MenuItem1;
-        internal MenuItem MenuItem2;
-        internal MenuItem MenuItem3;
-        internal MenuItem MenuItem4;
+        internal ToolStripMenuItem MenuItem1;
+        internal ToolStripMenuItem MenuItem2;
+        internal ToolStripMenuItem MenuItem3;
+        internal ToolStripMenuItem MenuItem4;
         internal OpenFileDialog OpenFileDialog1;
         internal PictureBox PictureBox1;
-        internal ToolBar ToolBar1;
-        internal ToolBar ToolBar2;
-        internal ToolBarButton ToolBarButton10;
-        internal ToolBarButton ToolBarButton11;
-        internal ToolBarButton ToolBarButton12;
-        internal ToolBarButton ToolBarButton13;
-        internal ToolBarButton ToolBarButton14;
-        internal ToolBarButton ToolBarButton2;
-        internal ToolBarButton ToolBarButton3;
-        internal ToolBarButton ToolBarButton4;
-        internal ToolBarButton ToolBarButton5;
-        internal ToolBarButton ToolBarButton6;
-        internal ToolBarButton ToolBarButton7;
-        internal ToolBarButton ToolBarButton8;
-        internal ToolBarButton ToolBarButton9;
+        internal ToolStrip ToolBar1;
+        internal ToolStrip ToolBar2;
+        internal ToolStripButton ToolBarButton10;
+        internal ToolStripButton ToolBarButton11;
+        internal ToolStripButton ToolBarButton12;
+        internal ToolStripButton ToolBarButton13;
+        internal ToolStripButton ToolBarButton14;
+        internal ToolStripButton ToolBarButton2;
+        internal ToolStripButton ToolBarButton3;
+        internal ToolStripButton ToolBarButton4;
+        internal ToolStripButton ToolBarButton5;
+        internal ToolStripButton ToolBarButton6;
+        internal ToolStripButton ToolBarButton7;
+        internal ToolStripButton ToolBarButton8;
+        internal ToolStripButton ToolBarButton9;
         internal ToolTip ToolTip1;
         private IContainer components;
-        public ContextMenu objectMenu;
+        public ContextMenuStrip objectMenu;
 
         public DBEditPicture()
         {
@@ -878,8 +888,8 @@ namespace FSFormControls
             SetStyle(ControlStyles.AllPaintingInWmPaint, true);
 
             MenuItem1.Click += MenuItem1_Click;
-            ToolBar1.ButtonClick += ToolBar1_ButtonClick;
-            ToolBar2.ButtonClick += ToolBar2_ButtonClick;
+            ToolBar1.ItemClicked += ToolBar1_ButtonClick;
+            ToolBar2.ItemClicked += ToolBar2_ButtonClick;
             PictureBox1.MouseMove += PictureBox1_MouseMove;
             PictureBox1.MouseDown += PictureBox1_MouseDown;
             PictureBox1.MouseUp += PictureBox1_MouseUp;
@@ -900,117 +910,69 @@ namespace FSFormControls
         private void InitializeComponent()
         {
             components = new Container();
-            var resources = new ComponentResourceManager(typeof(DBEditPicture));
-            ContextMenu1 = new ContextMenu();
-            MenuItem1 = new MenuItem();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(DBEditPicture));
+            ContextMenu1 = new ContextMenuStrip(components);
+            MenuItem1 = new ToolStripMenuItem();
             OpenFileDialog1 = new OpenFileDialog();
             ToolTip1 = new ToolTip(components);
-            ToolBar1 = new ToolBar();
-            ToolBarButton9 = new ToolBarButton();
-            ToolBarButton2 = new ToolBarButton();
-            ToolBarButton3 = new ToolBarButton();
-            ToolBarButton4 = new ToolBarButton();
-            ToolBarButton5 = new ToolBarButton();
+            ToolBar1 = new ToolStrip();
             ImageList1 = new ImageList(components);
-            ToolBar2 = new ToolBar();
-            ToolBarButton10 = new ToolBarButton();
-            ToolBarButton11 = new ToolBarButton();
-            ToolBarButton12 = new ToolBarButton();
-            ToolBarButton13 = new ToolBarButton();
-            ToolBarButton14 = new ToolBarButton();
-            ToolBarButton6 = new ToolBarButton();
-            ToolBarButton7 = new ToolBarButton();
-            ToolBarButton8 = new ToolBarButton();
+            ToolBarButton9 = new ToolStripButton();
+            ToolBarButton2 = new ToolStripButton();
+            ToolBarButton3 = new ToolStripButton();
+            ToolBarButton4 = new ToolStripButton();
+            ToolBarButton5 = new ToolStripButton();
+            ToolBar2 = new ToolStrip();
+            ToolBarButton10 = new ToolStripButton();
+            ToolBarButton11 = new ToolStripButton();
+            ToolBarButton12 = new ToolStripButton();
+            ToolBarButton13 = new ToolStripButton();
+            ToolBarButton14 = new ToolStripButton();
+            ToolBarButton6 = new ToolStripButton();
+            ToolBarButton7 = new ToolStripButton();
+            ToolBarButton8 = new ToolStripButton();
             PictureBox1 = new PictureBox();
-            objectMenu = new ContextMenu();
-            MenuItem2 = new MenuItem();
-            MenuItem3 = new MenuItem();
-            MenuItem4 = new MenuItem();
-            ((ISupportInitialize) PictureBox1).BeginInit();
+            objectMenu = new ContextMenuStrip(components);
+            MenuItem2 = new ToolStripMenuItem();
+            MenuItem3 = new ToolStripMenuItem();
+            MenuItem4 = new ToolStripMenuItem();
+            ContextMenu1.SuspendLayout();
+            ToolBar1.SuspendLayout();
+            ToolBar2.SuspendLayout();
+            ((ISupportInitialize)PictureBox1).BeginInit();
+            objectMenu.SuspendLayout();
             SuspendLayout();
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new MenuItem[]
-            {
-                MenuItem1
-            });
+            ContextMenu1.ImageScalingSize = new Size(20, 20);
+            ContextMenu1.Items.AddRange(new ToolStripItem[] { MenuItem1 });
+            ContextMenu1.Name = "ContextMenu1";
+            ContextMenu1.Size = new Size(209, 28);
             // 
             // MenuItem1
             // 
-            MenuItem1.Index = 0;
+            MenuItem1.Name = "MenuItem1";
+            MenuItem1.Size = new Size(208, 24);
             MenuItem1.Text = "Seleccionar Imagen";
             // 
             // ToolBar1
             // 
-            ToolBar1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            ToolBar1.Buttons.AddRange(new ToolBarButton[]
-            {
-                ToolBarButton9,
-                ToolBarButton2,
-                ToolBarButton3,
-                ToolBarButton4,
-                ToolBarButton5
-            });
-            ToolBar1.ButtonSize = new Size(50, 50);
-            ToolBar1.Divider = false;
+            ToolBar1.AutoSize = false;
             ToolBar1.Dock = DockStyle.None;
-            ToolBar1.DropDownArrows = true;
             ToolBar1.ImageList = ImageList1;
-            ToolBar1.Location = new Point(321, 0);
+            ToolBar1.ImageScalingSize = new Size(20, 20);
+            ToolBar1.Items.AddRange(new ToolStripItem[] { ToolBarButton9, ToolBarButton2, ToolBarButton3, ToolBarButton4, ToolBarButton5 });
+            ToolBar1.LayoutStyle = ToolStripLayoutStyle.Flow;
+            ToolBar1.Location = new Point(406, 3);
             ToolBar1.Name = "ToolBar1";
-            ToolBar1.ShowToolTips = true;
-            ToolBar1.Size = new Size(56, 184);
+            ToolBar1.Size = new Size(99, 191);
             ToolBar1.TabIndex = 0;
-            // 
-            // ToolBarButton9
-            // 
-            ToolBarButton9.ImageIndex = 6;
-            ToolBarButton9.Name = "ToolBarButton9";
-            ToolBarButton9.Pushed = true;
-            ToolBarButton9.Style = ToolBarButtonStyle.ToggleButton;
-            ToolBarButton9.Tag = "POINT";
-            ToolBarButton9.Text = "Punto";
-            ToolBarButton9.ToolTipText = "Punto";
-            // 
-            // ToolBarButton2
-            // 
-            ToolBarButton2.ImageIndex = 5;
-            ToolBarButton2.Name = "ToolBarButton2";
-            ToolBarButton2.Style = ToolBarButtonStyle.ToggleButton;
-            ToolBarButton2.Tag = "LINE";
-            ToolBarButton2.Text = "Linea";
-            ToolBarButton2.ToolTipText = "Linea";
-            // 
-            // ToolBarButton3
-            // 
-            ToolBarButton3.ImageIndex = 1;
-            ToolBarButton3.Name = "ToolBarButton3";
-            ToolBarButton3.Style = ToolBarButtonStyle.ToggleButton;
-            ToolBarButton3.Tag = "CIRCLE";
-            ToolBarButton3.Text = "Circulo";
-            ToolBarButton3.ToolTipText = "C?rculo";
-            // 
-            // ToolBarButton4
-            // 
-            ToolBarButton4.ImageIndex = 4;
-            ToolBarButton4.Name = "ToolBarButton4";
-            ToolBarButton4.Style = ToolBarButtonStyle.ToggleButton;
-            ToolBarButton4.Tag = "RECTANGLE";
-            ToolBarButton4.Text = "Cuadrado";
-            ToolBarButton4.ToolTipText = "Rect?ngulo";
-            // 
-            // ToolBarButton5
-            // 
-            ToolBarButton5.ImageIndex = 2;
-            ToolBarButton5.Name = "ToolBarButton5";
-            ToolBarButton5.Tag = "ERASE";
-            ToolBarButton5.Text = "Borrar";
-            ToolBarButton5.ToolTipText = "Borrar";
             // 
             // ImageList1
             // 
-            ImageList1.ImageStream = (ImageListStreamer) resources.GetObject("ImageList1.ImageStream");
+            ImageList1.ColorDepth = ColorDepth.Depth8Bit;
+            ImageList1.ImageStream = (ImageListStreamer)resources.GetObject("ImageList1.ImageStream");
             ImageList1.TransparentColor = Color.Transparent;
             ImageList1.Images.SetKeyName(0, "");
             ImageList1.Images.SetKeyName(1, "");
@@ -1028,122 +990,152 @@ namespace FSFormControls
             ImageList1.Images.SetKeyName(13, "");
             ImageList1.Images.SetKeyName(14, "");
             // 
+            // ToolBarButton9
+            // 
+            ToolBarButton9.ImageIndex = 6;
+            ToolBarButton9.Name = "ToolBarButton9";
+            ToolBarButton9.Size = new Size(97, 24);
+            ToolBarButton9.Tag = "POINT";
+            ToolBarButton9.Text = "Punto";
+            ToolBarButton9.ToolTipText = "Punto";
+            // 
+            // ToolBarButton2
+            // 
+            ToolBarButton2.ImageIndex = 5;
+            ToolBarButton2.Name = "ToolBarButton2";
+            ToolBarButton2.Size = new Size(97, 24);
+            ToolBarButton2.Tag = "LINE";
+            ToolBarButton2.Text = "Linea";
+            ToolBarButton2.ToolTipText = "Linea";
+            // 
+            // ToolBarButton3
+            // 
+            ToolBarButton3.ImageIndex = 1;
+            ToolBarButton3.Name = "ToolBarButton3";
+            ToolBarButton3.Size = new Size(97, 24);
+            ToolBarButton3.Tag = "CIRCLE";
+            ToolBarButton3.Text = "Circulo";
+            ToolBarButton3.ToolTipText = "C?rculo";
+            // 
+            // ToolBarButton4
+            // 
+            ToolBarButton4.ImageIndex = 4;
+            ToolBarButton4.Name = "ToolBarButton4";
+            ToolBarButton4.Size = new Size(97, 24);
+            ToolBarButton4.Tag = "RECTANGLE";
+            ToolBarButton4.Text = "Cuadrado";
+            ToolBarButton4.ToolTipText = "Rect?ngulo";
+            // 
+            // ToolBarButton5
+            // 
+            ToolBarButton5.ImageIndex = 2;
+            ToolBarButton5.Name = "ToolBarButton5";
+            ToolBarButton5.Size = new Size(97, 24);
+            ToolBarButton5.Tag = "ERASE";
+            ToolBarButton5.Text = "Borrar";
+            ToolBarButton5.ToolTipText = "Borrar";
+            // 
             // ToolBar2
             // 
             ToolBar2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            ToolBar2.Buttons.AddRange(new ToolBarButton[]
-            {
-                ToolBarButton10,
-                ToolBarButton11,
-                ToolBarButton12,
-                ToolBarButton13,
-                ToolBarButton14,
-                ToolBarButton6,
-                ToolBarButton7,
-                ToolBarButton8
-            });
-            ToolBar2.ButtonSize = new Size(38, 38);
-            ToolBar2.Divider = false;
             ToolBar2.Dock = DockStyle.None;
-            ToolBar2.DropDownArrows = true;
             ToolBar2.ImageList = ImageList1;
-            ToolBar2.Location = new Point(0, 320);
+            ToolBar2.ImageScalingSize = new Size(20, 20);
+            ToolBar2.Items.AddRange(new ToolStripItem[] { ToolBarButton10, ToolBarButton11, ToolBarButton12, ToolBarButton13, ToolBarButton14, ToolBarButton6, ToolBarButton7, ToolBarButton8 });
+            ToolBar2.Location = new Point(0, 325);
             ToolBar2.Name = "ToolBar2";
-            ToolBar2.ShowToolTips = true;
-            ToolBar2.Size = new Size(320, 26);
+            ToolBar2.Size = new Size(245, 27);
             ToolBar2.TabIndex = 1;
             // 
             // ToolBarButton10
             // 
             ToolBarButton10.ImageIndex = 14;
             ToolBarButton10.Name = "ToolBarButton10";
-            ToolBarButton10.Pushed = true;
-            ToolBarButton10.Style = ToolBarButtonStyle.ToggleButton;
+            ToolBarButton10.Size = new Size(29, 24);
             ToolBarButton10.Tag = "BLACK";
             // 
             // ToolBarButton11
             // 
             ToolBarButton11.ImageIndex = 13;
             ToolBarButton11.Name = "ToolBarButton11";
-            ToolBarButton11.Style = ToolBarButtonStyle.ToggleButton;
+            ToolBarButton11.Size = new Size(29, 24);
             ToolBarButton11.Tag = "WHITE";
             // 
             // ToolBarButton12
             // 
             ToolBarButton12.ImageIndex = 8;
             ToolBarButton12.Name = "ToolBarButton12";
-            ToolBarButton12.Style = ToolBarButtonStyle.ToggleButton;
+            ToolBarButton12.Size = new Size(29, 24);
             ToolBarButton12.Tag = "RED";
             // 
             // ToolBarButton13
             // 
             ToolBarButton13.ImageIndex = 7;
             ToolBarButton13.Name = "ToolBarButton13";
-            ToolBarButton13.Style = ToolBarButtonStyle.ToggleButton;
+            ToolBarButton13.Size = new Size(29, 24);
             ToolBarButton13.Tag = "YELLOW";
             // 
             // ToolBarButton14
             // 
             ToolBarButton14.ImageIndex = 11;
             ToolBarButton14.Name = "ToolBarButton14";
-            ToolBarButton14.Style = ToolBarButtonStyle.ToggleButton;
+            ToolBarButton14.Size = new Size(29, 24);
             ToolBarButton14.Tag = "CYAN";
             // 
             // ToolBarButton6
             // 
             ToolBarButton6.ImageIndex = 10;
             ToolBarButton6.Name = "ToolBarButton6";
-            ToolBarButton6.Style = ToolBarButtonStyle.ToggleButton;
+            ToolBarButton6.Size = new Size(29, 24);
             ToolBarButton6.Tag = "GREEN";
             // 
             // ToolBarButton7
             // 
             ToolBarButton7.ImageIndex = 12;
             ToolBarButton7.Name = "ToolBarButton7";
-            ToolBarButton7.Style = ToolBarButtonStyle.ToggleButton;
+            ToolBarButton7.Size = new Size(29, 24);
             ToolBarButton7.Tag = "BLUE";
             // 
             // ToolBarButton8
             // 
             ToolBarButton8.ImageIndex = 9;
             ToolBarButton8.Name = "ToolBarButton8";
-            ToolBarButton8.Style = ToolBarButtonStyle.ToggleButton;
+            ToolBarButton8.Size = new Size(29, 24);
             ToolBarButton8.Tag = "MAGENTA";
             // 
             // PictureBox1
             // 
-            PictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom
-                                                  | AnchorStyles.Left
-                                                  | AnchorStyles.Right;
+            PictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             PictureBox1.BorderStyle = BorderStyle.FixedSingle;
-            PictureBox1.Location = new Point(0, 0);
+            PictureBox1.Location = new Point(3, 3);
             PictureBox1.Name = "PictureBox1";
-            PictureBox1.Size = new Size(321, 320);
+            PictureBox1.Size = new Size(400, 319);
             PictureBox1.TabIndex = 2;
             PictureBox1.TabStop = false;
             // 
             // objectMenu
             // 
-            objectMenu.MenuItems.AddRange(new MenuItem[]
-            {
-                MenuItem2,
-                MenuItem3,
-                MenuItem4
-            });
+            objectMenu.ImageScalingSize = new Size(20, 20);
+            objectMenu.Items.AddRange(new ToolStripItem[] { MenuItem2, MenuItem3, MenuItem4 });
+            objectMenu.Name = "objectMenu";
+            objectMenu.Size = new Size(202, 76);
             // 
             // MenuItem2
             // 
-            MenuItem2.Index = 0;
+            MenuItem2.Name = "MenuItem2";
+            MenuItem2.Size = new Size(201, 24);
             MenuItem2.Text = "Editar Información";
             // 
             // MenuItem3
             // 
-            MenuItem3.Index = 1;
+            MenuItem3.Name = "MenuItem3";
+            MenuItem3.Size = new Size(201, 24);
             MenuItem3.Text = "Ver Información";
             // 
             // MenuItem4
             // 
-            MenuItem4.Index = 2;
+            MenuItem4.Name = "MenuItem4";
+            MenuItem4.Size = new Size(201, 24);
             MenuItem4.Text = "Borrar";
             // 
             // DBEditPicture
@@ -1152,8 +1144,14 @@ namespace FSFormControls
             Controls.Add(ToolBar1);
             Controls.Add(PictureBox1);
             Name = "DBEditPicture";
-            Size = new Size(377, 360);
-            ((ISupportInitialize) PictureBox1).EndInit();
+            Size = new Size(505, 352);
+            ContextMenu1.ResumeLayout(false);
+            ToolBar1.ResumeLayout(false);
+            ToolBar1.PerformLayout();
+            ToolBar2.ResumeLayout(false);
+            ToolBar2.PerformLayout();
+            ((ISupportInitialize)PictureBox1).EndInit();
+            objectMenu.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }

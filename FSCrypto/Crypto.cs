@@ -262,7 +262,7 @@ namespace FSCrypto
                     //si se requiere MD5 en la encriptación de la clave
                     if (EncKeyMD5)
                     {
-                        var md5 = new MD5CryptoServiceProvider();
+                        var md5 = MD5.Create();
                         var hashByte = UTF8Encoding.UTF8.GetBytes(Key);
                         key = md5.ComputeHash(hashByte, 0, hashByte.Length);
                     }
@@ -340,7 +340,7 @@ namespace FSCrypto
                     //si se requiere MD5 en la encriptación de la clave
                     if (EncKeyMD5)
                     {
-                        var md5 = new MD5CryptoServiceProvider();
+                        var md5 = MD5.Create();
                         var hashByte = UTF8Encoding.UTF8.GetBytes(Key);
                         key = md5.ComputeHash(hashByte, 0, hashByte.Length);
                     }
@@ -449,7 +449,7 @@ namespace FSCrypto
                     //si se requiere MD5 en la encriptación de la clave
                     if (EncKeyMD5)
                     {
-                        var md5 = new MD5CryptoServiceProvider();
+                        var md5 = MD5.Create();
                         var hashByte = UTF8Encoding.UTF8.GetBytes(Key);
                         key = md5.ComputeHash(hashByte, 0, hashByte.Length);
                     }
@@ -506,7 +506,7 @@ namespace FSCrypto
             switch (algorithm)
             {
                 case CryptoProvider.AES:
-                    var aes = new AesCryptoServiceProvider();
+                    var aes = Aes.Create();
 
                     aes.Mode = (System.Security.Cryptography.CipherMode)cipherMode;
                     aes.Padding = (System.Security.Cryptography.PaddingMode)paddingMode;
@@ -525,7 +525,7 @@ namespace FSCrypto
                     aes.Clear();
                     return transform;
                 case CryptoProvider.DES:
-                    var des = new DESCryptoServiceProvider();
+                    var des = DES.Create();
 
                     des.Mode = (System.Security.Cryptography.CipherMode)cipherMode;
                     des.Padding = (System.Security.Cryptography.PaddingMode)paddingMode;
@@ -543,7 +543,7 @@ namespace FSCrypto
                     des.Clear();
                     return transform;
                 case CryptoProvider.TripleDES:
-                    var des3 = new TripleDESCryptoServiceProvider();
+                    var des3 = TripleDES.Create();
 
                     des3.Mode = (System.Security.Cryptography.CipherMode)cipherMode;
                     des3.Padding = (System.Security.Cryptography.PaddingMode)paddingMode;
@@ -561,7 +561,7 @@ namespace FSCrypto
                     des3.Clear();
                     return transform;
                 case CryptoProvider.RC2:
-                    var rc2 = new RC2CryptoServiceProvider();
+                    var rc2 = RC2.Create();
 
                     rc2.Mode = (System.Security.Cryptography.CipherMode)cipherMode;
                     rc2.Padding = (System.Security.Cryptography.PaddingMode)paddingMode;
@@ -579,7 +579,7 @@ namespace FSCrypto
                     rc2.Clear();
                     return transform;
                 case CryptoProvider.Rijndael:
-                    Rijndael rijndael = new RijndaelManaged();
+                    var rijndael = Aes.Create();
 
                     rijndael.Mode = (System.Security.Cryptography.CipherMode)cipherMode;
                     rijndael.Padding = (System.Security.Cryptography.PaddingMode)paddingMode;

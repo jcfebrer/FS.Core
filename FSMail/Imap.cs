@@ -57,9 +57,9 @@ namespace FSMail
 			{
 				Login(sHost, IMAP_DEFAULT_PORT, sUserId, sPassword);
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 		}
 
@@ -127,9 +127,9 @@ namespace FSMail
 				}
 				else return;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 
 			ArrayList asResultArray = new ArrayList();
@@ -148,9 +148,9 @@ namespace FSMail
 				else throw e_login;
 
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 		}
 
@@ -170,11 +170,11 @@ namespace FSMail
 				{
 					eImapResponse = SendAndReceive(sCommand, ref asResultArray);
 				}
-				catch (Exception e)
+				catch (Exception)
 				{
 					Disconnect();
 					IsLoggedIn = false;
-					throw e;
+					throw;
 				}
 				Disconnect();
 				IsLoggedIn = false;
@@ -206,7 +206,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -240,9 +240,9 @@ namespace FSMail
 				}
 				else throw e_examine;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 			//-------------------------
 			// PARSE RESPONSE
@@ -322,7 +322,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED, e.Message);
 				}
 
@@ -356,9 +356,9 @@ namespace FSMail
 				}
 				else throw e_select;
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 
 			//-------------------------
@@ -444,9 +444,9 @@ namespace FSMail
 					else SelectFolder(MailboxName);
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 		}
 
@@ -471,9 +471,9 @@ namespace FSMail
 				else
 					return false;
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
-				throw e;
+				throw;
 			}
 		}
 
@@ -501,7 +501,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -589,9 +589,9 @@ namespace FSMail
 					}
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 
 		}
@@ -648,7 +648,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -669,9 +669,9 @@ namespace FSMail
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 
 			return true;
@@ -695,7 +695,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -716,9 +716,9 @@ namespace FSMail
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 
 			return true;
@@ -768,7 +768,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -790,9 +790,9 @@ namespace FSMail
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 
 			return true;
@@ -820,7 +820,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -842,9 +842,9 @@ namespace FSMail
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 				}
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 
 			return true;
@@ -873,7 +873,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -929,9 +929,9 @@ namespace FSMail
 				return size;
 
 			}
-			catch (Exception e)
+			catch (Exception)
 			{
-				throw e;
+				throw;
 			}
 		}
 
@@ -960,7 +960,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -1044,10 +1044,10 @@ namespace FSMail
 				else
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_SEARCH, asResultArray[0].ToString());
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				LogOut();
-				throw e;
+				throw;
 			}
 
 			return asSearchResult;
@@ -1082,7 +1082,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -1100,9 +1100,9 @@ namespace FSMail
 			{
 				sData = GetBody(sMessageUID, sMessagePart);
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
-				throw e;
+				throw;
 			}
 
 			return sData;
@@ -1134,7 +1134,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -1152,9 +1152,9 @@ namespace FSMail
 			{
 				return GetHeader(sMessageUID, sMessagePart);
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
-				throw e;
+				throw;
 			}
 		}
 
@@ -1175,7 +1175,7 @@ namespace FSMail
 				catch (ImapException e)
 				{
 					if (e.Type != ImapException.ImapErrorEnum.IMAP_ERR_INSUFFICIENT_DATA)
-						throw e;
+						throw;
 
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_NOTCONNECTED);
 				}
@@ -1234,9 +1234,9 @@ namespace FSMail
 
 				return imapEmail;
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
-				throw e;
+				throw;
 			}
 		}
 
@@ -1305,10 +1305,10 @@ namespace FSMail
 				}
 
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				LogOut();
-				throw e;
+				throw;
 			}
 		}
 
@@ -1663,10 +1663,10 @@ namespace FSMail
 				else
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_FETCHMSG, sCommandSuffix);
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				LogOut();
-				throw e;
+				throw;
 			}
 
 			return sData;
@@ -1751,10 +1751,10 @@ namespace FSMail
 				else
 					throw new ImapException(ImapException.ImapErrorEnum.IMAP_ERR_FETCHMSG, sCommandSuffix);
 			}
-			catch (ImapException e)
+			catch (ImapException)
 			{
 				LogOut();
-				throw e;
+				throw;
 			}
 
 			return asMessageHeader;

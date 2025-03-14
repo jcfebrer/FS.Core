@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 using static FSFormControls.DBToolBar;
-using static System.Windows.Forms.ToolBar;
+using static System.Windows.Forms.ToolStrip;
 
 namespace FSFormControls
 {
@@ -15,12 +15,12 @@ namespace FSFormControls
         public DBToolBarManager()
         {
             DBToolBar toolbar = new DBToolBar();
-            toolbar.ButtonClick += Toolbar_ButtonClick;
+            toolbar.Click += Toolbar_ButtonClick;
             
             toolbars.Add(toolbar);
         }
 
-        private void Toolbar_ButtonClick(object sender, ToolBarButtonClickEventArgs e)
+        private void Toolbar_ButtonClick(object sender, EventArgs e)
         {
             if (this.ButtonClick != null)
             {
@@ -62,22 +62,22 @@ namespace FSFormControls
             return false;
         }
 
-        public ToolBarButtonCollection Tools
+        public ToolStripItemCollection Tools
         {
-            get { return toolbars[0].Buttons; }
+            get { return toolbars[0].Items; }
         }
 
-        public ToolBarButtonCollection Buttons
+        public ToolStripItemCollection Buttons
         {
-            get { return toolbars[0].Buttons; }
+            get { return toolbars[0].Items; }
         }
-
+        
         public bool Visible {
             get { return toolbars[0].Visible; }
             set { toolbars[0].Visible = value; }
         }
 
         public event ToolBarButtonClickEventHandler ButtonClick;
-        public delegate void ToolBarButtonClickEventHandler(object sender, ToolBarButtonClickEventArgs e);
+        public delegate void ToolBarButtonClickEventHandler(object sender, EventArgs e);
     }
 }

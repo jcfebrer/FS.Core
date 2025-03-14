@@ -23,11 +23,13 @@ namespace FSFormControls
         /// <summary>
         ///     Nombre del parámetro
         /// </summary>
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Name { get; set; } = "";
 
         /// <summary>
         ///     Valor del parámetro
         /// </summary>
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object Value { get; set; }
 
     }

@@ -1,17 +1,20 @@
 ﻿
 using FSCrypto;
 using FSLibrary;
+
+#if !NETFRAMEWORK
+	using Microsoft.AspNetCore.Http;
+#endif
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Web;
 
 namespace FSNetwork
@@ -32,10 +35,15 @@ namespace FSNetwork
 				if (_virtualPath == null)
 				{
 					string url;
-					if(HttpContext.Current == null)
+#if NETFRAMEWORK
+					if (HttpContext.Current == null)
 						url = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
 					else
 						url = HttpContext.Current.Request.ApplicationPath;
+#else
+					url = HttpContext.Current.Request.PathBase;
+#endif
+
 
 					if (url != "/") url += "/";
 					_virtualPath = url;
@@ -97,14 +105,23 @@ namespace FSNetwork
 
 		public static string CurrentUrl()
 		{
-			return @"http://" + HttpContext.Current.Request.ServerVariables["SERVER_NAME"] +
-				HttpContext.Current.Request.ServerVariables["URL"];
+#if NETFRAMEWORK
+            return @"http://" + HttpContext.Current.Request.ServerVariables["SERVER_NAME"] +
+                HttpContext.Current.Request.ServerVariables["URL"];
+#else
+			return @"http://" + HttpContext.Current.GetServerVariable("SERVER_NAME") +
+				HttpContext.Current.GetServerVariable("URL");
+#endif
 		}
-		
-		
-				public static void SetSessionValue(string name, object value)
+
+
+		public static void SetSessionValue(string name, object value)
 		{
-			HttpContext.Current.Session[name] = value;
+#if NETFRAMEWORK
+            HttpContext.Current.Session[name] = value;
+#else
+			HttpContext.Current.Session.SetString(name, value.ToString());
+#endif
 		}
 
 		public static string formatJSON(string data)
@@ -125,50 +142,94 @@ namespace FSNetwork
 
 		public static object GetSessionValue(string name)
 		{
-			return HttpContext.Current.Session[name];
+#if NETFRAMEWORK
+            return HttpContext.Current.Session[name];
+#else
+			return HttpContext.Current.Session.GetString(name);
+#endif
 		}
 
 		public static object GetCacheValue(string name)
 		{
-			return (HttpContext.Current == null ? HttpRuntime.Cache.Get(name) : HttpContext.Current.Cache.Get(name));
+#if NETFRAMEWORK
+            return (HttpContext.Current == null ? HttpRuntime.Cache.Get(name) : HttpContext.Current.Cache.Get(name));
+#else
+			return HttpContext.Current.Session.GetString(name);
+#endif
 		}
 
 		public static void SetCacheValue(string name, object value)
 		{
-			if (HttpContext.Current == null)
-			{
-				//HttpRuntime se utiliza en windows forms
-				if (value == null)
-					HttpRuntime.Cache.Remove(name);
-				else
-					HttpRuntime.Cache.Insert(name, value);
-			}
+#if NETFRAMEWORK
+            if (HttpContext.Current == null)
+            {
+                //HttpRuntime se utiliza en windows forms
+                if (value == null)
+                    HttpRuntime.Cache.Remove(name);
+                else
+                    HttpRuntime.Cache.Insert(name, value);
+            }
+            else
+            {
+                if (value == null)
+                    HttpContext.Current.Cache.Remove(name);
+                else
+                    HttpContext.Current.Cache.Insert(name, value);
+            }
+#else
+			if (value == null)
+				HttpContext.Current.Session.Remove(name);
 			else
-			{
-				if (value == null)
-					HttpContext.Current.Cache.Remove(name);
-				else
-					HttpContext.Current.Cache.Insert(name, value);
-			}
-		}
+				HttpContext.Current.Session.Set(name, NumberUtils.ObjectToByteArray(value));
+#endif
+        }
 
-        public static void ClearCacheVariables()
+#if !NETFRAMEWORK
+		public static void SetCacheValue(string name, string value)
+        {
+            if (value == null)
+                HttpContext.Current.Session.Remove(name);
+            else
+                HttpContext.Current.Session.SetString(name, value);
+        }
+#endif
+
+#if NETFRAMEWORK
+		public static void ClearCacheVariables()
         {
             foreach (System.Collections.DictionaryEntry entry in HttpContext.Current.Cache)
             {
-				HttpContext.Current.Cache.Remove(entry.Key.ToString());
-			}
+                HttpContext.Current.Cache.Remove(entry.Key.ToString());
+            }
 
-			//HttpRuntime se utiliza en windows forms
-			foreach (System.Collections.DictionaryEntry entry in HttpRuntime.Cache)
-			{
-				HttpRuntime.Cache.Remove(entry.Key.ToString());
+            //HttpRuntime se utiliza en windows forms
+            foreach (System.Collections.DictionaryEntry entry in HttpRuntime.Cache)
+            {
+                HttpRuntime.Cache.Remove(entry.Key.ToString());
+            }
+        }
+#endif
+
+		public static void ClearSessionVariables()
+        {
+            foreach (string entry in HttpContext.Current.Session.Keys)
+            {
+				HttpContext.Current.Session.Remove(entry);
 			}
 		}
 
+#if !NETFRAMEWORK
 		public static string ServerMapPath(string path)
-		{
-			string serverMapPath = null;
+        {
+            string homePath = (string)AppDomain.CurrentDomain.GetData("WebRootPath");
+            return Path.Combine(
+                homePath,
+                path);
+        }
+#else
+		public static string ServerMapPath(string path)
+        {
+            string serverMapPath = null;
 
             if (HttpContext.Current != null)
             {
@@ -176,11 +237,11 @@ namespace FSNetwork
                     serverMapPath = HttpContext.Current.Server.MapPath(path);
             }
 
-			if (serverMapPath.EndsWith("\\")) serverMapPath = serverMapPath.Substring(0, serverMapPath.Length - 1);
-			return serverMapPath;
-		}
-		
-		
+            if (serverMapPath.EndsWith("\\")) serverMapPath = serverMapPath.Substring(0, serverMapPath.Length - 1);
+            return serverMapPath;
+        }
+#endif
+
 		public static string RequestQueryForm()
 		{
 			return RequestQueryForm("");
@@ -198,17 +259,35 @@ namespace FSNetwork
 			//cojemos las colecciones de FORM y QUERYSTRING, y las unificamos sin repetidos
 			//prevaleciendo las del FORM
 			NameValueCollection nvc = new NameValueCollection();
-			nvc.Add(HttpContext.Current.Request.QueryString);
-
-			foreach (string keyForm in HttpContext.Current.Request.Form.AllKeys)
+#if NETFRAMEWORK
+            nvc.Add(HttpContext.Current.Request.QueryString);
+#else
+			foreach (string name in HttpContext.Current.Request.Query.Keys)
 			{
-				foreach (string value in HttpContext.Current.Request.Form.GetValues(keyForm))
-				{
-					//si exite un parametro en la colleccion nvc de querystring, lo borramos, y añadimos el del form.
-					if (nvc.Get(keyForm) != null)
-						nvc.Remove(keyForm);
+				nvc.Add(name, HttpContext.Current.Request.Query[name]);
+			}
+#endif
 
-					nvc.Add(keyForm, value);
+			if (HttpContext.Current.Request.ContentType != null && HttpContext.Current.Request.Form != null)
+			{
+#if NETFRAMEWORK
+                foreach (string keyForm in HttpContext.Current.Request.Form.AllKeys)
+#else
+				foreach (string keyForm in HttpContext.Current.Request.Form.Keys)
+#endif
+				{
+#if NETFRAMEWORK
+                    foreach (string value in HttpContext.Current.Request.Form.GetValues(keyForm))
+#else
+					foreach (string value in HttpContext.Current.Request.Form[keyForm])
+#endif
+					{
+						//si exite un parametro en la colleccion nvc de querystring, lo borramos, y añadimos el del form.
+						if (nvc.Get(keyForm) != null)
+							nvc.Remove(keyForm);
+
+						nvc.Add(keyForm, value);
+					}
 				}
 			}
 
@@ -236,30 +315,37 @@ namespace FSNetwork
 
 		public static string GeneraHiddenFields(HttpRequest frm)
 		{
-			string generaHiddenFieldsReturn = null;
 			string campos = null;
 
 			campos = "";
-			for (int f = 0; f < frm.Form.Count - 1; f++)
+			foreach (string name in frm.Form.Keys)
 			{
-				campos = campos + @"<input type=""hidden"" value=""" + Functions.Valor(frm.Form.Keys[f]) + @""" name=""" +
-					frm.Form.Get(f) + @"""/>" + "\r\n";
+				campos = campos + @"<input type=""hidden"" value=""" + Functions.Valor(frm.Form[name]) + @""" name=""" +
+					name + @"""/>" + "\r\n";
 			}
-			generaHiddenFieldsReturn = campos;
-			return generaHiddenFieldsReturn;
+			return campos;
 		}
 		
 		
 		public static string Request(string name)
 		{
-            if (HttpContext.Current == null)
+			if (HttpContext.Current == null)
                 return "";
 
-            object dato = HttpContext.Current.Request.Form[name];
-			if (dato == null) dato = HttpContext.Current.Request.QueryString[name];
-			if (dato == null) return "";
+            object dato = null;
+#if NETFRAMEWORK
+            dato = HttpContext.Current.Request.Form[name];
+            if (dato == null)
+				dato = HttpContext.Current.Request.QueryString[name];
+#else
+			if (HttpContext.Current.Request.HasFormContentType)
+                dato = HttpContext.Current.Request.Form[name];
+            if (dato == null)
+                dato = HttpContext.Current.Request.Query[name];
+#endif
+            if (dato == null) return "";
 
-			dato = TextUtil.OnlyAlfaNumeric(Functions.Valor(dato));
+            dato = TextUtil.OnlyAlfaNumeric(Functions.Valor(dato));
 
             //seleccionamos el último valor
             string[] datos = dato.ToString().Split(',');
@@ -271,36 +357,57 @@ namespace FSNetwork
 
 		public static int RequestInt(string name)
 		{
-            if (HttpContext.Current == null)
+			if (HttpContext.Current == null)
+                return 0;
+                
+			object dato = null;
+#if NETFRAMEWORK
+            dato = HttpContext.Current.Request.Form[name];
+            if (dato == null) 
+				dato = HttpContext.Current.Request.QueryString[name];
+#else
+			if (HttpContext.Current.Request.HasFormContentType)
+                dato = HttpContext.Current.Request.Form[name];
+			if (dato == null)
+				dato = HttpContext.Current.Request.Query[name];
+#endif
+
+            if (dato == null)
+                return 0;
+            if (dato + "" == "")
                 return 0;
 
-            object dato = HttpContext.Current.Request.Form[name];
-			if (dato == null) dato = HttpContext.Current.Request.QueryString[name];
-			if (dato == null) return 0;
-			if (dato + "" == "") return 0;
+            //seleccionamos el último valor
+            string[] datos = dato.ToString().Split(',');
+            dato = datos[datos.Length - 1];
 
-			//seleccionamos el último valor
-			string[] datos = dato.ToString().Split(',');
-			dato = datos[datos.Length - 1];
-
-			return NumberUtils.NumberInt(dato);
+            return NumberUtils.NumberInt(dato);
 		}
 
-
-		public static bool RequestBool(string name)
+        public static bool RequestBool(string name)
 		{
 			if (HttpContext.Current == null)
-				return false;
+                return false;
+                
+            object dato = null;
+#if NETFRAMEWORK
+            dato = HttpContext.Current.Request.Form[name];
+            if (dato == null) 
+				dato = HttpContext.Current.Request.QueryString[name];
+#else
+			if (HttpContext.Current.Request.HasFormContentType)
+                dato = HttpContext.Current.Request.Form[name];
+            if (dato == null)
+                dato = HttpContext.Current.Request.Query[name];
+#endif
 
-			object dato = HttpContext.Current.Request.Form[name];
-			if (dato == null) dato = HttpContext.Current.Request.QueryString[name];
-			if (dato == null)
-			{
-				return false;
-			}
+            if (dato == null)
+            {
+                return false;
+            }
 
-			//seleccionamos el último valor
-			string[] datos = dato.ToString().Split(',');
+            //seleccionamos el último valor
+            string[] datos = dato.ToString().Split(',');
 			dato = datos[datos.Length - 1];
 
 			return Functions.ValorBool(dato);
@@ -309,12 +416,22 @@ namespace FSNetwork
 		
 		public static string RequestDate(string date)
 		{
-            if (HttpContext.Current == null)
+			if (HttpContext.Current == null)
                 return "";
+                
+            object dato = null;
+#if NETFRAMEWORK
+            dato = HttpContext.Current.Request.Form[date];
+            if (dato == null) 
+				dato = HttpContext.Current.Request.QueryString[date];
+#else
+			if (HttpContext.Current.Request.HasFormContentType)
+                dato = HttpContext.Current.Request.Form[date];
+            if (dato == null)
+                dato = HttpContext.Current.Request.Query[date];
+#endif
 
-            object dato = HttpContext.Current.Request.Form[date];
-			if (dato == null) dato = HttpContext.Current.Request.QueryString[date];
-			if (dato == null)
+            if (dato == null)
 			{
 				return "";
 			}
@@ -329,45 +446,81 @@ namespace FSNetwork
 			return FSLibrary.DateTimeUtil.ShortDate(Convert.ToDateTime(dato));
 		}
 
-
+#if NETFRAMEWORK
 		public static string Cookie(HttpCookie dato)
+        {
+            if (dato == null)
+            {
+                return "";
+            }
+            return dato.Value;
+        }
+#else
+		public static string Cookie(string name)
 		{
-			if (dato == null)
-			{
-				return "";
-			}
-			return dato.Value;
+			return HttpContext.Current.Request.Cookies[name];
 		}
+#endif
 
-
-		public static string Cookie(HttpCookie dato, string valor)
+#if NETFRAMEWORK
+        public static string Cookie(HttpCookie dato, string valor)
+        {
+            if (dato == null)
+            {
+                return "";
+            }
+            if (dato[valor] + "" == "")
+            {
+                return "";
+            }
+            return dato[valor];
+        }
+#else
+		public static void SetCookie(string name, string value)
 		{
-			if (dato == null)
-			{
-				return "";
-			}
-			if (dato[valor] + "" == "")
-			{
-				return "";
-			}
-			return dato[valor];
-		}
+            CookieOptions option = new CookieOptions();
+            option.Expires = DateTime.Now.AddMilliseconds(10);
+            HttpContext.Current.Response.Cookies.Append(name, value, option);
+        }
+#endif
 
 		public static void WriteCookiesToFile(string file, CookieContainer cookieContainer)
 		{
 			using (Stream stream = File.Create(file))
 			{
-				BinaryFormatter formatter = new BinaryFormatter();
-				formatter.Serialize(stream, cookieContainer);
+#if NETFRAMEWORK
+                BinaryFormatter formatter = new BinaryFormatter();
+                formatter.Serialize(stream, cookieContainer);
+#else
+				byte[] result = NumberUtils.ObjectToByteArray(cookieContainer);
+                stream.Write(result);
+#endif
 			}
 		}
 
 		public static CookieContainer ReadCookiesFromFile(string file)
 		{
-			using (Stream stream = File.Open(file, FileMode.Open))
+            byte[] buffer = new byte[16 * 1024];
+
+            using (Stream stream = File.Open(file, FileMode.Open))
 			{
-				BinaryFormatter formatter = new BinaryFormatter();
-				return (CookieContainer)formatter.Deserialize(stream);
+#if NETFRAMEWORK
+                BinaryFormatter formatter = new BinaryFormatter();
+                return (CookieContainer)formatter.Deserialize(stream);
+#else
+				using (MemoryStream ms = new MemoryStream())
+				{
+					int read;
+					while ((read = stream.Read(buffer, 0, buffer.Length)) > 0)
+					{
+						ms.Write(buffer, 0, read);
+					}
+
+                    byte[] data = ms.ToArray();
+                    CookieContainer result = NumberUtils.ByteArrayToObject<CookieContainer>(data);
+                    return result;
+                }
+#endif
 			}
 		}
 

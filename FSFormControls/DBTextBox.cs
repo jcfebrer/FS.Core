@@ -87,7 +87,7 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return textbox.Text; }
@@ -97,47 +97,61 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object Value
         {
             get { return textbox.Text; }
             set { textbox.Text = value.ToString(); }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ScrollBars ScrollBars
         {
             get { return textbox.ScrollBars; }
             set { textbox.ScrollBars = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public NumericTypeEnum NumericType { get; set; } = NumericTypeEnum.Double;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public char PromptChar { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SendTabAsEnter { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SendCommaAsPoint { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AcceptsReturn
         {
             get { return textbox.AcceptsReturn; }
             set { textbox.AcceptsReturn = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal MaxValue { get; set; } = decimal.MaxValue;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public decimal MinValue { get; set; } = decimal.MinValue;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public EditAsType EditAs { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TabNavigationEnum TabNavigation { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int NonAutoSizeHeight { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public SelectAllBehaviorEnum SelectAllBehavior { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string FormatString { get; set; } = "";
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ScrollBars ShowScrollBars
         {
             get { return textbox.ScrollBars; }
@@ -150,6 +164,7 @@ namespace FSFormControls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DBButtonCollection ButtonsLeft { get; set; } = new DBButtonCollection();
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowKeyboard
         {
             get { return m_ShowKeyboard; }
@@ -161,18 +176,23 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowAsCombo { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool FireTextChanged { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBColumn.OperationTypes GridOperation { get; set; } = DBColumn.OperationTypes.Sum;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string InputMask
         {
             get { return MaskInput; }
             set { MaskInput = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string MaskInput
         {
             get { return m_MaskInput; }
@@ -185,6 +205,7 @@ namespace FSFormControls
 
 
         [Description("Obligamos al usuario a introducir datos en este control.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Obligatory
         {
             get { return m_Obligatory; }
@@ -201,6 +222,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public HorizontalAlignment TextAlign
         {
             get { return textbox.TextAlign; }
@@ -208,6 +230,7 @@ namespace FSFormControls
         }
 
         [Description("Indicamos si el control es editable o no.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Editable
         {
             get { return m_Editable; }
@@ -230,6 +253,7 @@ namespace FSFormControls
 
 
         [Description("Tipo de datos a introducir en el control. Texto, Numérico, Fecha, Porcentaje, ...")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TypeData DataType
         {
             get { return m_DataType; }
@@ -241,10 +265,11 @@ namespace FSFormControls
             }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Encrypted { get; set; }
 
         [Description("Estado del control. Lectura / Escritura / Protegido.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -284,6 +309,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -293,6 +319,7 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
@@ -301,20 +328,24 @@ namespace FSFormControls
 
 
         [Description("Número de decimales utilizado si el control es Numérico.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Decimals { get; set; } = 2;
 
 
         [Description(
             "DBCombo asociado al control. Si se produce un cambio en el combo asociado, se actualiza el contenido de este control."
         )]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBCombo AsociatedCombo { get; set; }
 
         [Description(
             "DBFindTextBox asociado al control. Si se produce un cambio en el DBFindTextBox asociado, se actualiza el contenido de este control."
         )]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBFindTextBox AsociatedDBFindTextBox { get; set; }
 
         [Description("Color de fondo del control.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Color BackColor
         {
             get { return m_BackColor; }
@@ -326,18 +357,22 @@ namespace FSFormControls
         }
 
         [Description("Color de fondo del control en modo lectura.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color BackColorRead { get; set; } = Color.WhiteSmoke;
 
         [Description("Color de escritura del control.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Color ForeColor
         {
             get { return textbox.ForeColor; }
             set { textbox.ForeColor = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBAppearance Appearance { get; set; }
 
         [Description("Modo lectura")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly
         {
             get { return textbox.ReadOnly; }
@@ -345,6 +380,7 @@ namespace FSFormControls
         }
 
         [Description("Estilo de borde del control.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new BorderStyle BorderStyle
         {
             get { return m_BorderStyle; }
@@ -356,6 +392,7 @@ namespace FSFormControls
         }
 
         [Description("Tipo de letra del control.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font DBFont
         {
             get { return textbox.Font; }
@@ -366,6 +403,7 @@ namespace FSFormControls
         [Description(
             "Longitud máxima permitida en la edición. Si existe un campo de la base de datos asociado a este control, este campo se asigna en función del tamaño del campo de la base de datos."
         )]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int MaxLength
         {
             get { return textbox.MaxLength; }
@@ -373,6 +411,7 @@ namespace FSFormControls
         }
 
         [Description("Modo multilinea si/no.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Multiline
         {
             get { return m_MultiLine; }
@@ -391,12 +430,15 @@ namespace FSFormControls
         [Description(
             "Indicamos el modo en que debe presentar la cadena. May?sculas / Min?sculas o inicial en may?scula resto min?scula."
         )]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TypeString Capitalize { get; set; } = TypeString.Normal;
 
         [Description("Indicamos la forma de representarse una fecha.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DateFormat { get; set; } = "dd/MM/yyyy";
 
         [Description("Punto decimal en los miles si/no.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DotNumber
         {
             get
@@ -409,6 +451,7 @@ namespace FSFormControls
         }
 
         [Description("Caracter utilizado en el campo password.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public char PasswordChar
         {
             get { return textbox.PasswordChar; }
@@ -418,6 +461,7 @@ namespace FSFormControls
         [Description(
             "Nombre XML del control. Esta propiedad se utiliza para la generación de código XML a partir de un formulario."
         )]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string XMLName
         {
             get
@@ -430,6 +474,7 @@ namespace FSFormControls
         }
 
         [Description("Activar sombra si/no.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Shadow
         {
             get { return m_Shadow; }
@@ -439,9 +484,12 @@ namespace FSFormControls
             }
         }
 
-        [Description("Color de la sombra.")] public Color ShadowColor { get; set; } = Color.Gray;
+        [Description("Color de la sombra.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Color ShadowColor { get; set; } = Color.Gray;
 
         [Description("Tamaño en pixels de la sombra.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int ShadowSize
         {
             get { return m_ShadowSize; }
@@ -459,6 +507,7 @@ namespace FSFormControls
 
 
         [Description("Literal utilizado cuando el cursor se mueve por el control. Aparece con fondo amarillo.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ToolTip
         {
             get { return m_ToolTip; }
@@ -472,23 +521,28 @@ namespace FSFormControls
         [Description(
             "Valor por defecto del campo. Se puede utilizar las palabras reservadas: #date#, #time#, #shortdate#, #shorttime#, #longdate#, #longtime#, para indicar la fecha y hora actuales."
         )]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DefaultValue { get; set; } = "";
 
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectionStart
         {
             get { return textbox.SelectionStart; }
             set { textbox.SelectionStart = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectionLength
         {
             get { return textbox.SelectionLength; }
             set { textbox.SelectionLength = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Expression { get; set; } = "";
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string LastValue { get; private set; } = "";
 		
 		public void ScrollToEnd()
@@ -1278,7 +1332,7 @@ namespace FSFormControls
         //                         e.Value = "0";
         //                     }
         //                     e.Value = Convert.ToDouble(e.Value).ToString("c");
-        //                     if (FSLibrary.Functions.NumeroDecimal(e.Value) > m_MaxValue)
+        //                     if (FSLibraryCore.Functions.NumeroDecimal(e.Value) > m_MaxValue)
         //                     {
         //                         e.Value = m_MaxValue;
         //                     }
@@ -1293,7 +1347,7 @@ namespace FSFormControls
         //                         e.Value = "0";
         //                     }
         //                     e.Value = Convert.ToDouble(e.Value).ToString("n" + Decimals);
-        //                     if (FSLibrary.Functions.NumeroDecimal(e.Value) > m_MaxValue)
+        //                     if (FSLibraryCore.Functions.NumeroDecimal(e.Value) > m_MaxValue)
         //                     {
         //                         e.Value = m_MaxValue;
         //                     }
@@ -1304,7 +1358,7 @@ namespace FSFormControls
         //                         e.Value = "0";
         //                     }
         //                     e.Value = Convert.ToDouble(e.Value).ToString("n" + Decimals);
-        //                     if (FSLibrary.Functions.NumeroDecimal(e.Value) > m_MaxValue)
+        //                     if (FSLibraryCore.Functions.NumeroDecimal(e.Value) > m_MaxValue)
         //                     {
         //                         e.Value = m_MaxValue;
         //                     }
@@ -1325,7 +1379,7 @@ namespace FSFormControls
         //                             e.Value = e.Value.ToString().ToLower();
         //                             break;
         //                         case TypeString.Capitalize:
-        //                             e.Value = FSLibrary.TextUtil.PCase(Convert.ToString(e.Value));
+        //                             e.Value = FSLibraryCore.TextUtil.PCase(Convert.ToString(e.Value));
         //                             break;
         //                         case TypeString.Normal:
         //                             break;
@@ -1389,7 +1443,7 @@ namespace FSFormControls
         //                     {
         //                         if (Convert.ToString(e.Value) != "")
         //                         {
-        //                             e.Value = FSLibrary.DateTime.ShortDate(Convert.ToDateTime(e.Value));
+        //                             e.Value = FSLibraryCore.DateTime.ShortDate(Convert.ToDateTime(e.Value));
         //                         }
         //                         else
         //                         {

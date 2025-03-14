@@ -59,7 +59,7 @@ namespace FSLibrary
         /// <returns></returns>
         public static string ToRFC_822(System.DateTime date)
         {
-            var offset = TimeZone.CurrentTimeZone.GetUtcOffset(System.DateTime.Now).Hours;
+            var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Hours;
             var timeZone = "+" + offset.ToString().PadLeft(2, '0');
 
             if (offset < 0)
@@ -96,7 +96,7 @@ namespace FSLibrary
         {
             var dat = date.ToShortDateString();
 
-            //if (BDType == FSLibrary.Enum.BDType.MySQL)
+            //if (BDType == FSLibraryCore.Enum.BDType.MySQL)
             //    dat = date.ToString("yyyy-MM-dd");
 
             return dat;
@@ -112,7 +112,7 @@ namespace FSLibrary
         {
             var dat = date.ToLongDateString();
 
-            //if (BDType == FSLibrary.Enum.BDType.MySQL)
+            //if (BDType == FSLibraryCore.Enum.BDType.MySQL)
             //    dat = date.ToString("yyyy-MM-dd");
 
             return dat;
@@ -451,9 +451,6 @@ namespace FSLibrary
         /// <returns></returns>
         public static string DateTimeToISO8601(DateTime date)
         {
-            if (date == null)
-                date = DateTime.MinValue;
-
             return date.ToString("yyyyMMddTHHmmss",
                                        System.Globalization.CultureInfo.InvariantCulture);
         }

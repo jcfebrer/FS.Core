@@ -24,7 +24,7 @@ namespace FSTestsCore.FSIA
         public async void TestChat2GPT()
         {
             CancellationToken token = new CancellationToken();
-            ChatGPT2 chatGPT2 = new ChatGPT2(ConfigurationManager.AppSettings["ChatGPTKey"], ConfigurationManager.AppSettings["ChatGPTOrganization"], ConfigurationManager.AppSettings["ChatGPRUrl"]);
+            ChatGPT2 chatGPT2 = new ChatGPT2(ConfigurationManager.AppSettings["ChatGPTKey"], ConfigurationManager.AppSettings["ChatGPTOrganization"], ConfigurationManager.AppSettings["ChatGPTUrl"]);
 
             var respuesta = await chatGPT2.Question("Cual es la capital de Nueva York?", "Actua como un reconocido filosofo de la antigua grecia.", token);
 

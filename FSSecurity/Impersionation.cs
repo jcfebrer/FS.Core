@@ -9,7 +9,7 @@ namespace FSSecurity
 {
     public class Impersonation : IDisposable
     {
-        private WindowsImpersonationContext _impersonatedUserContext;
+        //private WindowsImpersonationContext _impersonatedUserContext;
 
 
         /// <summary>
@@ -19,37 +19,38 @@ namespace FSSecurity
         /// <param name="password">user's domain password</param>
         public Impersonation(string domain, string username, string password)
         {
-            var token = ValidateParametersAndGetFirstLoginToken(username, domain, password);
+            throw new ExceptionUtil("Función CORE no implementada.");
+            //var token = ValidateParametersAndGetFirstLoginToken(username, domain, password);
 
-            var duplicateToken = IntPtr.Zero;
-            try
-            {
-                if (!Win32API.DuplicateToken(token, 2, ref duplicateToken))
-                    throw new InvalidOperationException(
-                        "DuplicateToken call to reset permissions for this token failed");
+            //var duplicateToken = IntPtr.Zero;
+            //try
+            //{
+            //    if (!Win32API.DuplicateToken(token, 2, ref duplicateToken))
+            //        throw new InvalidOperationException(
+            //            "DuplicateToken call to reset permissions for this token failed");
 
-                var identityForLoggedOnUser = new WindowsIdentity(duplicateToken);
-                _impersonatedUserContext = identityForLoggedOnUser.Impersonate();
-                if (_impersonatedUserContext == null)
-                    throw new InvalidOperationException("WindowsIdentity.Impersonate() failed");
-            }
-            finally
-            {
-                if (token != IntPtr.Zero)
-                    Win32API.CloseHandle(token);
-                if (duplicateToken != IntPtr.Zero)
-                    Win32API.CloseHandle(duplicateToken);
-            }
+            //    var identityForLoggedOnUser = new WindowsIdentity(duplicateToken);
+            //    _impersonatedUserContext = identityForLoggedOnUser.Impersonate();
+            //    if (_impersonatedUserContext == null)
+            //        throw new InvalidOperationException("WindowsIdentity.Impersonate() failed");
+            //}
+            //finally
+            //{
+            //    if (token != IntPtr.Zero)
+            //        Win32API.CloseHandle(token);
+            //    if (duplicateToken != IntPtr.Zero)
+            //        Win32API.CloseHandle(duplicateToken);
+            //}
         }
 
         public void Dispose()
         {
-            // Stop impersonation and revert to the process identity
-            if (_impersonatedUserContext != null)
-            {
-                _impersonatedUserContext.Undo();
-                _impersonatedUserContext = null;
-            }
+            //// Stop impersonation and revert to the process identity
+            //if (_impersonatedUserContext != null)
+            //{
+            //    _impersonatedUserContext.Undo();
+            //    _impersonatedUserContext = null;
+            //}
         }
 
 

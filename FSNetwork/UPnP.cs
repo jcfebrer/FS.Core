@@ -90,40 +90,40 @@ namespace FSNetwork
 
                 bool result = false;
 
-                using (UdpClient udpClient = new UdpClient())
-                {
+            using (UdpClient udpClient = new UdpClient())
+            {
                     //udpClient.Client.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
                     //udpClient.Client.ReceiveTimeout = timeoutInSecs * 1000;
                     //udpClient.Client.Bind(new IPEndPoint(IPAddress.Any, 0));
 
-                    udpClient.EnableBroadcast = true;
+                udpClient.EnableBroadcast = true;
 
                     byte[] requestData = Encoding.UTF8.GetBytes(SearchMessage());
 
-                    await udpClient.SendAsync(requestData, requestData.Length, multicastEndPoint);
+                await udpClient.SendAsync(requestData, requestData.Length, multicastEndPoint);
 
                     //DateTime startTime = DateTime.Now;
                     //TimeSpan timeout = TimeSpan.FromSeconds(timeoutInSecs);
 
                     while (true) //while ((DateTime.Now - startTime) < timeout)
-                    {
-                        var receiveTask = udpClient.ReceiveAsync();
+                {
+                var receiveTask = udpClient.ReceiveAsync();
 
                         if (await Task.WhenAny(receiveTask, Task.Delay(timeoutInSecs * 1000)) != receiveTask)
                             break;
 
-                        UdpReceiveResult response = receiveTask.Result;
-                        string responseText = Encoding.UTF8.GetString(response.Buffer);
+                    UdpReceiveResult response = receiveTask.Result;
+                    string responseText = Encoding.UTF8.GetString(response.Buffer);
 
-                        if (responseText.ToLower().Contains("location:"))
+                    if (responseText.ToLower().Contains("location:"))
+                    {
+                        string locationUrl = ExtractLocationUrl(responseText);
+                        if (locationUrl != null)
                         {
-                            string locationUrl = ExtractLocationUrl(responseText);
-                            if (locationUrl != null)
+                            bool success = await ParseGatewayAsync(locationUrl);
+                            if (success)
                             {
-                                bool success = await ParseGatewayAsync(locationUrl);
-                                if (success)
-                                {
-                                    // Emitir evento con información del dispositivo
+                                // Emitir evento con información del dispositivo
                                     OnDeviceFound?.Invoke(this, new UPnPDeviceEventArgs(response.RemoteEndPoint.Address.ToString(), locationUrl, serviceUrl, responseText));
 
                                     if (stopInFirstFind)
@@ -148,7 +148,7 @@ namespace FSNetwork
                 Log.TraceError(ex);
                 return false;
             }
-        }
+}
 
         public bool DiscoverSync()
         {
@@ -393,5 +393,5 @@ ST: {st_discover}
             ServiceUrl = serviceUrl;
             ResponseText = responseText;
         }
-    }
+}
 }

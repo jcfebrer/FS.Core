@@ -35,7 +35,7 @@ namespace FSFormControls
 
         public PageIndexChangedDlgt PageIndexChangedDelegate => m_dPageIndexChanged;
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int CurrentPage { get; private set; }
 
         public event ValidatePageEventHandler ValidatePage;
@@ -228,7 +228,7 @@ namespace FSFormControls
             // 
             // mnuForm
             // 
-            mnuForm.OwnerDraw = true;
+            //mnuForm.OwnerDraw = true;
             mnuForm.Visible = false;
             // 
             // panelStep

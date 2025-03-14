@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if NETFRAMEWORK
+
+using System;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -228,3 +230,5 @@ namespace FSConvert
         }
     }
 }
+
+#endif

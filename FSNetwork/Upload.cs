@@ -17,6 +17,10 @@ using System;
 using System.IO;
 using System.Web;
 
+#if !NETFRAMEWORK
+    using Microsoft.AspNetCore.Http;
+#endif
+
 #endregion
 
 namespace FSNetwork
@@ -43,23 +47,42 @@ namespace FSNetwork
             string fic = null;
             //Field v = null;
 
-
+#if NETFRAMEWORK
             HttpFileCollection uploadedFiles = HttpContext.Current.Request.Files;
-            int i = 0;
-            while (!(i == uploadedFiles.Count))
-            {
-                HttpPostedFile userPostedFile = uploadedFiles[i];
+#else
+            var uploadedFiles = HttpContext.Current.Request.Form.Files;
+#endif
 
-                if ((userPostedFile.ContentLength > 0))
+
+#if NETFRAMEWORK
+            foreach (HttpPostedFile file in uploadedFiles)
+#else
+            foreach (var file in uploadedFiles)
+#endif
+            {
+#if NETFRAMEWORK
+                long len = file.ContentLength;
+#else
+                long len = file.Length;
+#endif
+
+                if (len > 0)
                 {
-                    fic = NumberUtils.RandomHexValue(3) + Path.GetFileName(userPostedFile.FileName);
+                    fic = NumberUtils.RandomHexValue(3) + Path.GetFileName(file.FileName);
                     strNewFileName = strFileUploadPath + @"\" + fic;
                     blnExtensionOK = FileUtils.FileExtension(strNewFileName, saryFileUploadTypes);
-                    lngErrorFileSize = Convert.ToInt64(MaxFileSize(userPostedFile.ContentLength, intMaxFileSize));
+                    lngErrorFileSize = Convert.ToInt64(MaxFileSize(len, intMaxFileSize));
 
                     if (blnExtensionOK & lngErrorFileSize == 0)
                     {
-                        userPostedFile.SaveAs(strNewFileName);
+#if NETFRAMEWORK
+                        file.SaveAs(strNewFileName);
+#else
+                        using (var stream = System.IO.File.Create(strNewFileName))
+                        {
+                            file.CopyToAsync(stream);
+                        }
+#endif
 
                         //if (frmCampos != null)
                         //{
@@ -77,7 +100,6 @@ namespace FSNetwork
                                               ". Tamaño máximo de fichero: " + intMaxFileSize + "kb");
                     }
                 }
-                i += 1;
             }
         }
 

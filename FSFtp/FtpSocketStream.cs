@@ -634,7 +634,7 @@ namespace FSFtp {
         /// </summary>
         /// <param name="targethost">The host to authenticate the certiciate against</param>
         public void ActivateEncryption(string targethost) {
-            ActivateEncryption(targethost, null, SslProtocols.Default);
+            ActivateEncryption(targethost, null, SslProtocols.Tls12);
         }
 
         /// <summary>
@@ -645,7 +645,7 @@ namespace FSFtp {
         /// <param name="targethost">The host to authenticate the certiciate against</param>
         /// <param name="clientCerts">A collection of client certificates to use when authenticating the SSL stream</param>
         public void ActivateEncryption(string targethost, X509CertificateCollection clientCerts) {
-            ActivateEncryption(targethost, clientCerts, SslProtocols.Default);
+            ActivateEncryption(targethost, clientCerts, SslProtocols.Tls12);
         }
 
         /// <summary>
@@ -685,13 +685,13 @@ namespace FSFtp {
                     auth_time_total.Seconds,
                     auth_time_total.TotalSeconds);
             }
-            catch (AuthenticationException ex) {
+            catch (AuthenticationException) {
                 // authentication failed and in addition it left our 
                 // ssl stream in an unsuable state so cleanup needs
                 // to be done and the exception can be re-thrown for
                 // handling down the chain.
                 Close();
-                throw ex;
+                throw;
             }
         }
 

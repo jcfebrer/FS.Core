@@ -1,5 +1,10 @@
 ﻿using FSException;
 using FSLibrary;
+
+#if !NETFRAMEWORK
+    using Microsoft.AspNetCore.Http;
+#endif
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,7 +76,7 @@ namespace FSNetwork
         }
 
         /// <summary>
-        /// System.Net.NetworkInformation.NetworkInterface n = FSNetwork.Net.GetBestNetworkInterface(IPAddress.Parse("8.8.8.8"));
+        /// System.Net.NetworkInformation.NetworkInterface n = FSNetworkCore.Net.GetBestNetworkInterface(IPAddress.Parse("8.8.8.8"));
         /// </summary>
         /// <param name="remoteAddress"></param>
         /// <returns></returns>
@@ -125,8 +130,12 @@ namespace FSNetwork
 
         public static string GetWebIPAddress()
         {
+#if NETFRAMEWORK
             System.Web.HttpContext context = System.Web.HttpContext.Current;
             string ipAddress = context.Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
+#else
+            string ipAddress = HttpContext.Current.GetServerVariable("HTTP_X_FORWARDED_FOR");
+#endif
 
             if (!string.IsNullOrEmpty(ipAddress))
             {
@@ -137,7 +146,11 @@ namespace FSNetwork
                 }
             }
 
+#if NETFRAMEWORK
             return context.Request.ServerVariables["REMOTE_ADDR"];
+#else
+            return HttpContext.Current.GetServerVariable("REMOTE_ADDR");
+#endif
         }
 
         public static string GetPublicAddress2()
@@ -148,22 +161,15 @@ namespace FSNetwork
             //http://www.serport.biz:8002/ip.aspx
             //http://ipecho.net/plain
             //http://checkip.dyndns.org
-            string externalip = new WebClient().DownloadString("https://ipv4.icanhazip.com");
+            string externalip = Http.GetFromUrl("https://ipv4.icanhazip.com");
             return externalip.Replace("\n", "");
         }
 
         public static string GetPublicAddress()
         {
-            WebRequest req = WebRequest.Create("http://checkip.dyndns.org");
-            using (WebResponse resp = req.GetResponse())
-            {
-
-                System.IO.StreamReader sr = new System.IO.StreamReader(resp.GetResponseStream());
-                string result = sr.ReadToEnd();
-                result = TextUtil.SearchIpValues(result).First();
-                
-                return result;
-            }
+            string result = Http.GetFromUrl("http://checkip.dyndns.org");
+            result = TextUtil.SearchIpValues(result).First();
+            return result;
         }
 
         public static bool IsUrl(string Url)

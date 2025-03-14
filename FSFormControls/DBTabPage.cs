@@ -36,6 +36,7 @@ namespace FSFormControls
 
         //public DBAppearance Appearance { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Key
         {
             get { return this.Name; }
@@ -49,6 +50,7 @@ namespace FSFormControls
         //    set { _Text = value; }
         //}
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTabPage TabPage { get; set; }
     }
 }

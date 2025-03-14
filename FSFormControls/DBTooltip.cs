@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.ComponentModel;
+using System.Windows.Forms;
 
 namespace FSFormControls
 {
@@ -13,6 +14,7 @@ namespace FSFormControls
             ToolTipText = text;
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ToolTipText { get; set; }
     }
 }

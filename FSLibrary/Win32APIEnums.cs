@@ -12,45 +12,45 @@ namespace FSLibrary
     /// </summary>
     [SuppressUnmanagedCodeSecurity]
     public static class Win32APIEnums
+{
+    /// <summary>
+    /// Flags sound
+    /// </summary>
+    [Flags]
+    public enum SoundFlags
     {
-        /// <summary>
-        /// Flags sound
-        /// </summary>
-        [Flags]
-        public enum SoundFlags
-        {
-            /// <summary>play synchronously (default)</summary>
-            SND_SYNC = 0x0000,
-            /// <summary>play asynchronously</summary>
-            SND_ASYNC = 0x0001,
-            /// <summary>silence (!default) if sound not found</summary>
-            SND_NODEFAULT = 0x0002,
-            /// <summary>pszSound points to a memory file</summary>
-            SND_MEMORY = 0x0004,
-            /// <summary>loop the sound until next sndPlaySound</summary>
-            SND_LOOP = 0x0008,
-            /// <summary>don’t stop any currently playing sound</summary>
-            SND_NOSTOP = 0x0010,
-            /// <summary>Stop Playing Wave</summary>
-            SND_PURGE = 0x40,
-            /// <summary>don’t wait if the driver is busy</summary>
-            SND_NOWAIT = 0x00002000,
-            /// <summary>name is a registry alias</summary>
-            SND_ALIAS = 0x00010000,
-            /// <summary>alias is a predefined id</summary>
-            SND_ALIAS_ID = 0x00110000,
-            /// <summary>name is file name</summary>
-            SND_FILENAME = 0x00020000,
-            /// <summary>name is resource name or atom</summary>
-            SND_RESOURCE = 0x00040004
-        }
+        /// <summary>play synchronously (default)</summary>
+        SND_SYNC = 0x0000,
+        /// <summary>play asynchronously</summary>
+        SND_ASYNC = 0x0001,
+        /// <summary>silence (!default) if sound not found</summary>
+        SND_NODEFAULT = 0x0002,
+        /// <summary>pszSound points to a memory file</summary>
+        SND_MEMORY = 0x0004,
+        /// <summary>loop the sound until next sndPlaySound</summary>
+        SND_LOOP = 0x0008,
+        /// <summary>don’t stop any currently playing sound</summary>
+        SND_NOSTOP = 0x0010,
+        /// <summary>Stop Playing Wave</summary>
+        SND_PURGE = 0x40,
+        /// <summary>don’t wait if the driver is busy</summary>
+        SND_NOWAIT = 0x00002000,
+        /// <summary>name is a registry alias</summary>
+        SND_ALIAS = 0x00010000,
+        /// <summary>alias is a predefined id</summary>
+        SND_ALIAS_ID = 0x00110000,
+        /// <summary>name is file name</summary>
+        SND_FILENAME = 0x00020000,
+        /// <summary>name is resource name or atom</summary>
+        SND_RESOURCE = 0x00040004
+    }
 
-        /// <summary>
+    /// <summary>
         /// Retrieve the handle to the icon that represents the file and the index 
         /// of the icon within the system image list. The handle is copied to the 
         /// hIcon member of the structure specified by psfi, and the index is 
         /// copied to the iIcon member.
-        /// </summary>
+    /// </summary>
         public const int SHGFI_ICON = 0x100;
         /// <summary>
         /// Modify SHGFI_ICON, causing the function to retrieve the file's large 
@@ -105,7 +105,7 @@ namespace FSLibrary
         /// <see cref="Win32API.ExtractAssociatedIcon"/> method.
         /// </summary>
         public enum ShellIconSize : int
-        {
+    {
 
             /// <summary>
             /// Specifies a small (16x16) icon.

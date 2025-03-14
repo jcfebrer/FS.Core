@@ -10,7 +10,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
-using System.Security.Cryptography.Pkcs;
 using System.Security.Cryptography.X509Certificates;
 
 namespace FSPdf
@@ -69,7 +68,7 @@ namespace FSPdf
                 "Signature");
             }
 
-            var keyPair = Org.BouncyCastle.Security.DotNetUtilities.GetKeyPair(certificate.PrivateKey).Private;
+            var keyPair = Org.BouncyCastle.Security.DotNetUtilities.GetKeyPair(certificate.GetRSAPrivateKey()).Private;
             Org.BouncyCastle.X509.X509Certificate bcCert = Org.BouncyCastle.Security.DotNetUtilities.FromX509Certificate(certificate);
             var chain = new List<Org.BouncyCastle.X509.X509Certificate> { bcCert };
             IExternalSignature signature = new PrivateKeySignature(keyPair, "SHA-256");

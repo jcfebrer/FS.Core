@@ -41,7 +41,7 @@ namespace FSParser
         private readonly Regex functionDefRegex = new Regex(functionDefPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionCallRegex = new Regex(functionCallPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex allowedTextInLineRegex = new Regex(allowedTextInLinePattern, RegexOptions.Compiled | RegexOptions.Multiline);
-
+        
         public Dictionary<string, object> Variables => variables;
         public Dictionary<string, Func<List<string>, object>> CustomCommands => customCommands;
 
@@ -128,7 +128,7 @@ namespace FSParser
                         if (i > 0 && arguments[i - 1] == '\\')
                         {
                             currentArg.Length--; // Elimina el carácter de escape
-                        }
+                }
                         else
                         {
                             insideString = !insideString; // Cambia el estado
@@ -200,36 +200,36 @@ namespace FSParser
 
                 lastResult = result; // Guarda la expresión antes de la evaluación
 
-                // Evalúa funciones recursivamente utilizando functionCallRegex.Replace
+            // Evalúa funciones recursivamente utilizando functionCallRegex.Replace
                 result = functionCallRegex.Replace(result.ToString(), match =>
-                {
-                    string functionName = match.Groups[1].Value;
-                    string argumentList = match.Groups[2].Value;
+            {
+                string functionName = match.Groups[1].Value;
+                string argumentList = match.Groups[2].Value;
 
-                    // Evalúa los argumentos
-                    var evaluatedArgs = ApplyVariablesToArguments(SplitArguments(argumentList));
+                // Evalúa los argumentos
+                var evaluatedArgs = ApplyVariablesToArguments(SplitArguments(argumentList));
 
                     object _result;
 
-                    if (functions.ContainsKey(functionName))
-                    {
+                if (functions.ContainsKey(functionName))
+                {
                         _result = CallFunction(functionName, evaluatedArgs);
-                    }
-                    else if (IsSystemFunction(functionName, out MethodInfo methodInfo))
-                    {
+                }
+                else if (IsSystemFunction(functionName, out MethodInfo methodInfo))
+                {
                         _result = CallSystemFunction(methodInfo, evaluatedArgs);
-                    }
-                    else if (customCommands.ContainsKey(functionName))
-                    {
+                }
+                else if (customCommands.ContainsKey(functionName))
+                {
                         _result = customCommands[functionName](evaluatedArgs);
-                    }
-                    else
-                    {
-                        throw new Exception($"Función '{functionName}' no definida.");
-                    }
+                }
+                else
+                {
+                    throw new Exception($"Función '{functionName}' no definida.");
+                }
 
                     return _result.ToString();
-                });
+            });
 
                 result = EvaluateFinalExpression(result.ToString(), variablesToUse);
 

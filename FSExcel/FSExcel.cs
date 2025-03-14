@@ -6,11 +6,10 @@ using DataTable = System.Data.DataTable;
 
 namespace FSExcel
 {
-    [CLSCompliant(false)]
     public class Excel
     {
         public Application m_Excel;
-        public Range m_Rng;
+        public Microsoft.Office.Interop.Excel.Range m_Rng;
         public Worksheet m_Sht;
         public Workbook m_WrkBk;
 
@@ -85,7 +84,7 @@ namespace FSExcel
             var xlsApp = new Application();
             Workbook xlsWB = null;
             Worksheet xlsSheet = null;
-            Range xlsRng = null;
+            Microsoft.Office.Interop.Excel.Range xlsRng = null;
             int f = 0, g = 0;
 
             xlsApp.Visible = false;

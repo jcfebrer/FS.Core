@@ -117,6 +117,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Show textvalues in dial")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool UseLedLight
         {
             get
@@ -132,6 +133,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Show textvalues in dial")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowLedPeak
         {
             get
@@ -147,6 +149,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Analog meter layout")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AnalogMeter
         {
             get
@@ -164,6 +167,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Text (max 10 letters)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VuText
         {
             get
@@ -179,6 +183,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Text in dial")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string[] TextInDial
         {
             get
@@ -194,6 +199,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Show textvalues in dial")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowTextInDial
         {
             get
@@ -209,6 +215,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Only show the Analog Dial Panel (Sets BackColor to DialBackColor so antialias won't look bad)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowDialOnly
         {
             get
@@ -225,6 +232,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Color on dial background")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color DialBackground
         {
             get
@@ -240,6 +248,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Color on Value < 0")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color DialTextNegative
         {
             get
@@ -255,6 +264,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Color on Value = 0")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color DialTextZero
         {
             get
@@ -270,6 +280,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Color on Value > 0")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color DialTextPositive
         {
             get
@@ -285,6 +296,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Color on needle")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color NeedleColor
         {
             get
@@ -300,6 +312,7 @@ namespace FSFormControls
 
         [Category("Analog Meter")]
         [Description("Color on Peak needle")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color PeakNeedleColor
         {
             get
@@ -318,6 +331,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Display value in analog or logarithmic scale")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public MeterScaleEnum MeterScale
         {
             get
@@ -333,6 +347,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Led size (1 to 72 pixels)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Size LedSize
         {
             get
@@ -356,6 +371,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Led spacing (0 to 72 pixels)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int LedSpace
         {
             get
@@ -374,6 +390,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Led bar is vertical")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool VerticalBar
         {
             get
@@ -390,6 +407,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Max value from total LedCount to 65535")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int LevelMax
         {
             get
@@ -408,6 +426,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("The level shown (between Min and Max)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Level
         {
             get
@@ -436,6 +455,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("How many mS to hold peak indicator (50 to 10000mS)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Peakms
         {
             get
@@ -454,6 +474,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Use peak indicator")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool PeakHold
         {
             get
@@ -469,6 +490,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Number of Leds in first area (0 to 32, default 6) Total Led count must be at least 1")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Led1Count
         {
             get
@@ -489,6 +511,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Number of Leds in middle area (0 to 32, default 6) Total Led count must be at least 1")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Led2Count
         {
             get
@@ -509,6 +532,7 @@ namespace FSFormControls
 
         [Category("VU Meter")]
         [Description("Number of Leds in last area (0 to 32, default 4) Total Led count must be at least 1")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Led3Count
         {
             get
@@ -529,6 +553,7 @@ namespace FSFormControls
 
         [Category("VU Meter - Colors")]
         [Description("Color of Leds in first area (Led on)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Led1ColorOn
         {
             get
@@ -544,6 +569,7 @@ namespace FSFormControls
 
         [Category("VU Meter - Colors")]
         [Description("Color of Leds in middle area (Led on)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Led2ColorOn
         {
             get
@@ -559,6 +585,7 @@ namespace FSFormControls
 
         [Category("VU Meter - Colors")]
         [Description("Color of Leds in last area (Led on)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Led3ColorOn
         {
             get
@@ -574,6 +601,7 @@ namespace FSFormControls
 
         [Category("VU Meter - Colors")]
         [Description("Color of Leds in first area (Led off)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Led1ColorOff
         {
             get
@@ -589,6 +617,7 @@ namespace FSFormControls
 
         [Category("VU Meter - Colors")]
         [Description("Color of Leds in middle area (Led off)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Led2ColorOff
         {
             get
@@ -604,6 +633,7 @@ namespace FSFormControls
 
         [Category("VU Meter - Colors")]
         [Description("Color of Leds in last area (Led off)")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Led3ColorOff
         {
             get

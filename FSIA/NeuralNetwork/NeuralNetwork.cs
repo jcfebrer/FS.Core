@@ -134,9 +134,9 @@ namespace FSIA
                             else
                             {
                                 // Derivada estándar de otras funciones de activación
-                                errors[i][j] = errorGradientSum * activationFunctions[i].Derivative(neurons[i][j]);
-                            }
+                            errors[i][j] = errorGradientSum * activationFunctions[i].Derivative(neurons[i][j]);
                         }
+                    }
                     }
 
                     // Actualizar pesos y sesgos
@@ -183,7 +183,7 @@ namespace FSIA
         /// </summary>
         public bool TestNetwork(double[] input)
         {
-            Step stepFunction = new Step();
+                Step stepFunction = new Step();
             double[] prediction = Predict(input);
             int predictedClass = GetMaxIndex(prediction);
             double[] binaryOutput = prediction.Select(stepFunction.Activate).ToArray();

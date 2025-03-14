@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,7 +6,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBToolBar.bmp")]
     [ToolboxItem(true)]
-    public class DBToolBar : ToolBar, ISupportInitialize
+    public class DBToolBar : ToolStrip, ISupportInitialize
     {
         public DBToolBar()
         {

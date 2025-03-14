@@ -183,12 +183,12 @@ namespace FSFormControls
         {
             if (e.Button == MouseButtons.Right)
             {
-                var cmTotal = new ContextMenu();
+                var cmTotal = new ContextMenuStrip();
 
-                cmTotal.MenuItems.Add("&Suma", MnuSum).RadioCheck = true;
-                cmTotal.MenuItems.Add("&Máximo", MnuMax).RadioCheck = true;
-                cmTotal.MenuItems.Add("&Mínimo", MnuMin).RadioCheck = true;
-                cmTotal.MenuItems.Add("&Promedio", MnuAverage).RadioCheck = true;
+                cmTotal.Items.Add("&Suma", null, MnuSum);
+                cmTotal.Items.Add("&Máximo", null, MnuMax);
+                cmTotal.Items.Add("&Mínimo", null, MnuMin);
+                cmTotal.Items.Add("&Promedio", null, MnuAverage);
 
                 int currentMouseOverRow = dataGridViewTotal.HitTest(e.X, e.Y).RowIndex;
 
@@ -205,30 +205,30 @@ namespace FSFormControls
         {
             if (e.Button == MouseButtons.Right)
             {
-                var cm = new ContextMenu();
+                var cm = new ContextMenuStrip();
 
-                cm.MenuItems.Add("&Vista preliminar", MnuPrintPreview);
-                cm.MenuItems.Add("&Imprimir", MnuPrint);
-                cm.MenuItems.Add("&Exportar a Excel", MnuExcelExport);
-                cm.MenuItems.Add("-");
-                cm.MenuItems.Add("&Ajustar tamaño", MnuAutoAdjust);
-                cm.MenuItems.Add("&Modo Registro", ModeRecord);
-                cm.MenuItems.Add("&Refrescar", MnuRefrescar);
-                cm.MenuItems.Add("-");
-                cm.MenuItems.Add("&Copiar registro", MnuCopyOneReg);
-                cm.MenuItems.Add("Copiar &seleccionados", MnuCopySelectedReg);
-                cm.MenuItems.Add("Copiar &todos", MnuCopyAllReg);
-                cm.MenuItems.Add("-");
-                cm.MenuItems.Add("&Filtro", MnuFilter);
-                cm.MenuItems.Add("&Quitar filtro", MnuDelFilter);
-                cm.MenuItems.Add("-");
-                cm.MenuItems.Add("&Buscar", MnuFind);
-                cm.MenuItems.Add("&Buscar siguiente", MnuFindNext);
-                cm.MenuItems.Add("-");
-                cm.MenuItems.Add("&Editar Columnas", MnuColumnEdit);
-                cm.MenuItems.Add("&Seleccionar todas", MnuSelect);
-                cm.MenuItems.Add("-");
-                cm.MenuItems.Add("&Totales", MnuShowTotals);
+                cm.Items.Add("&Vista preliminar", null, MnuPrintPreview);
+                cm.Items.Add("&Imprimir", null, MnuPrint);
+                cm.Items.Add("&Exportar a Excel", null, MnuExcelExport);
+                cm.Items.Add("-");
+                cm.Items.Add("&Ajustar tamaño", null, MnuAutoAdjust);
+                cm.Items.Add("&Modo Registro", null, ModeRecord);
+                cm.Items.Add("&Refrescar", null, MnuRefrescar);
+                cm.Items.Add("-");
+                cm.Items.Add("&Copiar registro", null, MnuCopyOneReg);
+                cm.Items.Add("Copiar &seleccionados", null, MnuCopySelectedReg);
+                cm.Items.Add("Copiar &todos", null, MnuCopyAllReg);
+                cm.Items.Add("-");
+                cm.Items.Add("&Filtro", null, MnuFilter);
+                cm.Items.Add("&Quitar filtro", null, MnuDelFilter);
+                cm.Items.Add("-");
+                cm.Items.Add("&Buscar", null, MnuFind);
+                cm.Items.Add("&Buscar siguiente", null, MnuFindNext);
+                cm.Items.Add("-");
+                cm.Items.Add("&Editar Columnas", null, MnuColumnEdit);
+                cm.Items.Add("&Seleccionar todas", null, MnuSelect);
+                cm.Items.Add("-");
+                cm.Items.Add("&Totales", null, MnuShowTotals);
 
                 int currentMouseOverRow = datagrid.HitTest(e.X, e.Y).RowIndex;
 
@@ -246,6 +246,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DBControl; }
@@ -265,6 +266,7 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
@@ -277,6 +279,7 @@ namespace FSFormControls
 
         public DataGridViewColumnCollection ColumnsGrid => datagrid.Columns;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int RowHeadersWidth
         {
             get { return datagrid.RowHeadersWidth; }
@@ -287,18 +290,22 @@ namespace FSFormControls
 
         public int CurrentRowIndex => datagrid.CurrentRow.Index;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoSave { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool MultiSelect
         {
             get { return datagrid.MultiSelect; }
             set { datagrid.MultiSelect = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowExpand { get; set; }
 
         public DataGridViewRowCollection Rows => datagrid.Rows;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color AlternatingColor
         {
             get { return m_alternatingColor; }
@@ -314,6 +321,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string CaptionText
         {
             get { return m_captionText; }
@@ -324,18 +332,24 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowRecordScrollBar { get; set; } = true;
 
         //[Description("DataBindings.")] public new ControlBindingsCollection DataBindings => datagrid.DataBindings;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowAddNew { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowDelete { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Editable { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int DefaultDecimals { get; set; } = 2;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int RowsInCaption
         {
             get { return m_RowsInCaption; }
@@ -346,8 +360,10 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBColumn.OperationTypes TotalOperation { get; set; } = DBColumn.OperationTypes.Sum;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font DefaultHeaderFont
         {
             get
@@ -360,35 +376,41 @@ namespace FSFormControls
             set { m_DefaultHeaderFont = value; }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool RecordMode { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoSizeColumns { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewSelectionMode SelectionMode
         {
             get { return datagrid.SelectionMode; }
             set { datagrid.SelectionMode = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewCellStyle ColumnHeadersDefaultCellStyle
         {
             get { return datagrid.ColumnHeadersDefaultCellStyle; }
             set { datagrid.ColumnHeadersDefaultCellStyle = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewCellStyle DefaultCellStyle
         {
             get { return datagrid.DefaultCellStyle; }
             set { datagrid.DefaultCellStyle = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnableHeadersVisualStyles
         {
             get { return datagrid.EnableHeadersVisualStyles; }
             set { datagrid.EnableHeadersVisualStyles = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoGenerateColumns
         {
             get { return datagrid.AutoGenerateColumns; }
@@ -415,6 +437,7 @@ namespace FSFormControls
             datagrid.Sort(comparer);
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewRow ActiveRow
         {
             get
@@ -430,6 +453,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBGridViewDisplayLayout DisplayLayout { get; set; } = new DBGridViewDisplayLayout();
 
         //private DBGridViewBandCollection m_Bands = new DBGridViewBandCollection();
@@ -456,8 +480,10 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBColumnCollection SortedColumns { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowTotals
         {
             get { return m_ShowTotals; }
@@ -470,6 +496,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object DataSource
         {
             get { return datagrid.DataSource; }
@@ -485,7 +512,7 @@ namespace FSFormControls
             }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get
@@ -544,22 +571,26 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewCell ActiveCell
         {
             get { return datagrid.CurrentCell; }
             set { datagrid.CurrentCell = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly { 
             get { return datagrid.ReadOnly; } 
             set { datagrid.ReadOnly = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowUserToAddRows {
             get { return datagrid.AllowUserToAddRows; }
             set { datagrid.AllowUserToAddRows = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int FirstDisplayedScrollingRowIndex 
         { 
             get { return datagrid.FirstDisplayedScrollingRowIndex; }
@@ -569,12 +600,14 @@ namespace FSFormControls
             } 
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewRow RowTemplate 
         { 
             get { return datagrid.RowTemplate; } 
             set { datagrid.RowTemplate = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewColumnHeadersHeightSizeMode ColumnHeadersHeightSizeMode {
             get { return datagrid.ColumnHeadersHeightSizeMode; } 
             set { datagrid.ColumnHeadersHeightSizeMode = value; } 
@@ -585,12 +618,14 @@ namespace FSFormControls
             get { return datagrid.SelectedRows; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewAutoSizeRowsMode AutoSizeRowsMode 
         { 
             get { return datagrid.AutoSizeRowsMode; }
             set { datagrid.AutoSizeRowsMode = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBSummarieCollection Summaries {
             get { return m_Summaries; }
             set { m_Summaries = value; }
@@ -2356,12 +2391,12 @@ namespace FSFormControls
 
         private void UnCheckTotalMenu()
         {
-            if (dataGridViewTotal.ContextMenu == null)
+            if (dataGridViewTotal.ContextMenuStrip == null)
                 return;
 
-            var f = 0;
-            for (f = 0; f <= dataGridViewTotal.ContextMenu.MenuItems.Count - 1; f++)
-                dataGridViewTotal.ContextMenu.MenuItems[f].Checked = false;
+            //var f = 0;
+            //for (f = 0; f <= dataGridViewTotal.ContextMenuStrip.Items.Count - 1; f++)
+            //    dataGridViewTotal.ContextMenuStrip.Items[f].Checked = false;
         }
 
 
@@ -2387,7 +2422,7 @@ namespace FSFormControls
         {
             TotalOperation = DBColumn.OperationTypes.Sum;
             UnCheckTotalMenu();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
             RefreshTotals();
         }
 
@@ -2396,7 +2431,7 @@ namespace FSFormControls
         {
             TotalOperation = DBColumn.OperationTypes.Max;
             UnCheckTotalMenu();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
             RefreshTotals();
         }
 
@@ -2405,7 +2440,7 @@ namespace FSFormControls
         {
             TotalOperation = DBColumn.OperationTypes.Min;
             UnCheckTotalMenu();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
             RefreshTotals();
         }
 
@@ -2414,7 +2449,7 @@ namespace FSFormControls
         {
             TotalOperation = DBColumn.OperationTypes.Average;
             UnCheckTotalMenu();
-            ((MenuItem) sender).Checked = true;
+            ((ToolStripMenuItem) sender).Checked = true;
             RefreshTotals();
         }
 
@@ -2433,7 +2468,7 @@ namespace FSFormControls
                 ShowTotals = false;
             }
 
-            ((MenuItem) sender).Checked = ShowTotals;
+            ((ToolStripMenuItem) sender).Checked = ShowTotals;
         }
 
 
@@ -2493,7 +2528,7 @@ namespace FSFormControls
 
         private void MnuAutoAdjust(object sender, EventArgs e)
         {
-            FunctionsGrid.AutoSizeColumnsToContent(DataControl, Columns, CreateGraphics(), Font, null);
+            FunctionsGrid.AutoSizeColumnsToContent(DataControl, Columns, CreateGraphics(), Font);
         }
 
 
@@ -2502,16 +2537,16 @@ namespace FSFormControls
             if (m_columnMove != -1)
             {
                 HideColumn(m_columnMove);
-                datagrid.ContextMenu.MenuItems[1].MenuItems[m_columnMove].Checked = true;
+                //datagrid.ContextMenuStrip.Items[m_columnMove].Checked = true;
             }
         }
 
         private void ShowMenu(object sender, EventArgs e)
         {
-            if (sender is MenuItem)
+            if (sender is ToolStripMenuItem)
             {
-                ShowColumn(((MenuItem) sender).Index);
-                ((MenuItem) sender).Checked = false;
+                ShowColumn(((ToolStripMenuItem) sender).ImageIndex);
+                ((ToolStripMenuItem) sender).Checked = false;
             }
         }
 
@@ -2659,9 +2694,9 @@ namespace FSFormControls
             DbRecord1.DataControl.UpdateControls(DbRecord1.Controls);
             DbRecord1.DataControl.FillComboControls(DbRecord1.Controls);
 
-            var cmRecord = new ContextMenu();
-            cmRecord.MenuItems.Add("&Modo Grid", ModeRecord);
-            DbRecord1.ContextMenu = cmRecord;
+            var cmRecord = new ContextMenuStrip();
+            cmRecord.Items.Add("&Modo Grid", null, ModeRecord);
+            DbRecord1.ContextMenuStrip = cmRecord;
 
             FilledRecord = true;
         }

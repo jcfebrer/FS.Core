@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -21,6 +22,7 @@ namespace FSFormControls
         //    mskn.msk = m;
         //}
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override DataGridViewCell CellTemplate
         {
             get { return base.CellTemplate; }
@@ -66,6 +68,7 @@ namespace FSFormControls
                 Mask = mask;
             }
 
+            //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public object EditingControlFormattedValue
             {
                 get { return Text; }
@@ -87,6 +90,7 @@ namespace FSFormControls
                 Font = dataGridViewCellStyle.Font;
             }
 
+            //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public int EditingControlRowIndex { get; set; }
 
             public bool EditingControlWantsInputKey(
@@ -114,8 +118,10 @@ namespace FSFormControls
 
             public bool RepositionEditingControlOnValueChange => false;
 
+            //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public DataGridView EditingControlDataGridView { get; set; }
 
+            //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public bool EditingControlValueChanged { get; set; }
 
             public Cursor EditingPanelCursor => base.Cursor;

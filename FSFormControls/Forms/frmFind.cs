@@ -1,6 +1,7 @@
 #region
 
 using System;
+using System.ComponentModel;
 
 #endregion
 
@@ -19,6 +20,7 @@ namespace FSFormControls
             cmdFind.Click += cmdFind_Click;
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBRichTextBox DBRichTextBox
         {
             get { return m_DBRichTextBox; }

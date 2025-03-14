@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace FSFormControls
@@ -10,6 +11,7 @@ namespace FSFormControls
         {
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override DataGridViewCell CellTemplate
         {
             get { return base.CellTemplate; }
@@ -57,6 +59,7 @@ namespace FSFormControls
             Format = DateTimePickerFormat.Short;
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object EditingControlFormattedValue
         {
             get { return Value.ToShortDateString(); }
@@ -80,6 +83,7 @@ namespace FSFormControls
             CalendarMonthBackground = dataGridViewCellStyle.BackColor;
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int EditingControlRowIndex { get; set; }
 
         public bool EditingControlWantsInputKey(
@@ -107,8 +111,10 @@ namespace FSFormControls
 
         public bool RepositionEditingControlOnValueChange => false;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridView EditingControlDataGridView { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EditingControlValueChanged { get; set; }
 
         public Cursor EditingPanelCursor => base.Cursor;

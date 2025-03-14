@@ -18,9 +18,8 @@ namespace FSFormControls
     {
         private ArrayList AddedButtons;
         private int nInitialImages;
-        protected ToolBar pToolBar;
-
-        public ToolBar ParentToolbar
+        protected ToolStrip pToolBar;
+        public ToolStrip ParentToolbar
         {
             get
             {
@@ -30,17 +29,18 @@ namespace FSFormControls
 
                 if (fi == null)
                     return null;
-                return (ToolBar) fi.GetValue(this);
+                return (ToolStrip) fi.GetValue(this);
             }
         }
 
-        public event ToolBarButtonClickEventHandler AddedButtonsClick;
+        public event EventHandler AddedButtonsClick;
 
-        private void AddedButtons_Click(object sender, ToolBarButtonClickEventArgs e)
+        private void AddedButtons_Click(object sender, EventArgs e)
         {
+            ToolStrip ts = (ToolStrip)sender;
             var i = 0;
             for (i = 0; i <= AddedButtons.Count - 1; i++)
-                if (e.Button == AddedButtons[i])
+                if (ts.Items[i] == AddedButtons[i])
                 {
                     if (null != AddedButtonsClick)
                         AddedButtonsClick(this, e);
@@ -49,7 +49,7 @@ namespace FSFormControls
         }
 
 
-        public void AddToolBarButtons(ToolBarButton[] Buttons)
+        public void AddToolBarButtons(ToolStripButton[] Buttons)
         {
             var imgList = pToolBar.ImageList;
             var i = 0;
@@ -63,8 +63,8 @@ namespace FSFormControls
             {
                 AddedButtons.Add(Buttons[i]);
                 if (Buttons[i].ImageIndex >= 0) Buttons[i].ImageIndex += nInitialImages;
-                pToolBar.Buttons.Add(Buttons[i]);
-                initw += pToolBar.Buttons[pToolBar.Buttons.Count - 1].Rectangle.Width;
+                pToolBar.Items.Add(Buttons[i]);
+                initw += pToolBar.Items[pToolBar.Items.Count - 1].ContentRectangle.Width;
             }
 
             var s = MinimumSize;
@@ -112,29 +112,29 @@ namespace FSFormControls
 
                 if (pToolBar != null)
                 {
-                    pToolBar.Buttons[0].ToolTipText = "Imprimir";
-                    pToolBar.Buttons[1].ToolTipText = "Zoom";
-                    pToolBar.Buttons[3].ToolTipText = "1 Página";
-                    pToolBar.Buttons[4].ToolTipText = "2 Páginas";
-                    pToolBar.Buttons[5].ToolTipText = "3 Páginas";
-                    pToolBar.Buttons[6].ToolTipText = "4 Páginas";
-                    pToolBar.Buttons[7].ToolTipText = "6 Páginas";
+                    pToolBar.Items[0].ToolTipText = "Imprimir";
+                    pToolBar.Items[1].ToolTipText = "Zoom";
+                    pToolBar.Items[3].ToolTipText = "1 Página";
+                    pToolBar.Items[4].ToolTipText = "2 Páginas";
+                    pToolBar.Items[5].ToolTipText = "3 Páginas";
+                    pToolBar.Items[6].ToolTipText = "4 Páginas";
+                    pToolBar.Items[7].ToolTipText = "6 Páginas";
                 }
             }
             else
             {
-                pToolBar = new ToolBar();
+                pToolBar = new ToolStrip();
 
-                pToolBar.Buttons.Add("Imprimir");
-                pToolBar.Buttons.Add("Zoom");
-                pToolBar.Buttons.Add("1 Página");
-                pToolBar.Buttons.Add("2 Páginas");
-                pToolBar.Buttons.Add("3 Páginas");
-                pToolBar.Buttons.Add("4 Páginas");
-                pToolBar.Buttons.Add("5 Páginas");
+                pToolBar.Items.Add("Imprimir");
+                pToolBar.Items.Add("Zoom");
+                pToolBar.Items.Add("1 Página");
+                pToolBar.Items.Add("2 Páginas");
+                pToolBar.Items.Add("3 Páginas");
+                pToolBar.Items.Add("4 Páginas");
+                pToolBar.Items.Add("5 Páginas");
             }
 
-            pToolBar.ButtonClick += AddedButtons_Click;
+            pToolBar.ItemClicked += AddedButtons_Click;
 
             var p = GetPageLabel();
             if (p != null)

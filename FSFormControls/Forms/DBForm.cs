@@ -31,11 +31,11 @@ namespace FSFormControls
         private bool m_ShowToolBar = true;
         private DBControl m_DataControl;
         public DBStatusBar barraEstado;
-        private StatusBarPanel estado;
-        private StatusBarPanel mensaje;
-        private StatusBarPanel info;
-        private MenuItem menuItem1;
-        private MenuItem menuItem2;
+        private ToolStripStatusLabel estado;
+        private ToolStripStatusLabel mensaje;
+        private ToolStripStatusLabel info;
+        private ToolStripMenuItem menuItem1;
+		private ToolStripMenuItem menuItem2;
         private DateTime loadTime;
 
 
@@ -48,9 +48,12 @@ namespace FSFormControls
             SetStyle(ControlStyles.DoubleBuffer, true);
             //SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
 
-            barraEstado.Panels[0].Text = "";
-            barraEstado.Panels[1].Text = "";
-            barraEstado.Panels[2].Text = "";
+            barraEstado.Items.Add("");
+            barraEstado.Items.Add("");
+            barraEstado.Items.Add("");
+            barraEstado.Items[0].Text = "";
+            barraEstado.Items[1].Text = "";
+            barraEstado.Items[2].Text = "";
 
             mnuContext.Items.Add("&Imprimir", null, PrintDocument);
             mnuContext.Items.Add("&Vista Preliminar", null, PrintPreview);
@@ -86,7 +89,7 @@ namespace FSFormControls
         private void DBForm_Shown(object sender, EventArgs e)
         {
             TimeSpan ts = (DateTime.Now - loadTime);
-            barraEstado.Panels[2].Text = "LT: " + ts.TotalMilliseconds.ToString("0.###") + " ms.";
+            barraEstado.Items[2].Text = "LT: " + ts.TotalMilliseconds.ToString("0.###") + " ms.";
         }
 
         /// <summary>
@@ -94,6 +97,7 @@ namespace FSFormControls
         /// Asignamos el parent del dbcontrol cuando se user dl dbcontrol sin asignar a un formulario.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -105,10 +109,12 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool CanClose { get; set; } = true;
 
         //public DbConnection DBConnection { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Form MDIMain
         {
             get { return m_mdiParent; }
@@ -122,15 +128,19 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AlertOnSave { get; set; } = true;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoSave { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public double AutoSaveTime { get; set; } = 10 * 60 * 1000;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TabOrderManager.TabScheme TabOrder { get; set; } = TabOrderManager.TabScheme.AcrossFirst;
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color GradientStartColor
         {
             get { return m_GradientStartColor; }
@@ -141,6 +151,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color GradientEndColor
         {
             get { return m_GradientEndColor; }
@@ -151,6 +162,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public LinearGradientMode GradientMode
         {
             get { return m_GradientMode; }
@@ -161,11 +173,13 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Gradient { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowContextMenu { get; set; } = true;
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -176,7 +190,7 @@ namespace FSFormControls
             }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowToolBar
         {
             get { return m_ShowToolBar; }
@@ -197,6 +211,7 @@ namespace FSFormControls
         //    }
         //}
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowMenu
         {
             get { return m_ShowMenu; }
@@ -208,7 +223,7 @@ namespace FSFormControls
             }
         }
 
-        public StatusBar.StatusBarPanelCollection StatusBarPanels { get; set; }
+        //public StatusBar.StatusBarPanelCollection StatusBarPanels { get; set; }
 
         //public long ProgressPosition
         //{
@@ -228,150 +243,175 @@ namespace FSFormControls
         //    set { DbStatusBarProgressPanel1.EndPoint = value; }
         //}
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowNavigate
         {
             get { return DbToolBar1.AllowNavigate; }
             set { DbToolBar1.AllowNavigate = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowSearch
         {
             get { return DbToolBar1.AllowSearch; }
             set { DbToolBar1.AllowSearch = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowCancel
         {
             get { return DbToolBar1.AllowCancel; }
             set { DbToolBar1.AllowCancel = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowSave
         {
             get { return DbToolBar1.AllowSave; }
             set { DbToolBar1.AllowSave = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowAddNew
         {
             get { return DbToolBar1.AllowAddNew; }
             set { DbToolBar1.AllowAddNew = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowPrint
         {
             get { return DbToolBar1.AllowPrint; }
             set { DbToolBar1.AllowPrint = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowFilter
         {
             get { return DbToolBar1.AllowFilter; }
             set { DbToolBar1.AllowFilter = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowRecord
         {
             get { return DbToolBar1.AllowRecord; }
             set { DbToolBar1.AllowRecord = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowEdit
         {
             get { return DbToolBar1.AllowEdit; }
             set { DbToolBar1.AllowEdit = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowDelete
         {
             get { return DbToolBar1.AllowDelete; }
             set { DbToolBar1.AllowDelete = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowList
         {
             get { return DbToolBar1.AllowList; }
             set { DbToolBar1.AllowList = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowNavigate
         {
             get { return DbToolBar1.ShowNavigateButton; }
             set { DbToolBar1.ShowNavigateButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowSearch
         {
             get { return DbToolBar1.ShowSearchButton; }
             set { DbToolBar1.ShowSearchButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowScrollBar
         {
             get { return DbToolBar1.ShowScrollBar; }
             set { DbToolBar1.ShowScrollBar = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowCancel
         {
             get { return DbToolBar1.ShowCancelButton; }
             set { DbToolBar1.ShowCancelButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowSave
         {
             get { return DbToolBar1.ShowSaveButton; }
             set { DbToolBar1.ShowSaveButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowAddNew
         {
             get { return DbToolBar1.ShowAddNewButton; }
             set { DbToolBar1.ShowAddNewButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowPrint
         {
             get { return DbToolBar1.ShowPrintButton; }
             set { DbToolBar1.ShowPrintButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowFilter
         {
             get { return DbToolBar1.ShowFilterButton; }
             set { DbToolBar1.ShowFilterButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowRecord
         {
             get { return DbToolBar1.ShowRecordButton; }
             set { DbToolBar1.ShowRecordButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowEdit
         {
             get { return DbToolBar1.ShowEditButton; }
             set { DbToolBar1.ShowEditButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowDelete
         {
             get { return DbToolBar1.ShowDeleteButton; }
             set { DbToolBar1.ShowDeleteButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowList
         {
             get { return DbToolBar1.ShowListButton; }
             set { DbToolBar1.ShowListButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowClose
         {
             get { return DbToolBar1.ShowCloseButton; }
             set { DbToolBar1.ShowCloseButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutomaticConnect { get; set; } = true;
 
         //public DBStatusBar StatusBar
@@ -677,6 +717,7 @@ namespace FSFormControls
         {
             try
             {
+#if NETFRAMEWORK            	
                 SaveFileDialog1.Filter = "Archivos HTML|*.htm*|Todos los archivos|*.*";
                 SaveFileDialog1.ShowDialog();
                 var fic = SaveFileDialog1.FileName;
@@ -688,6 +729,9 @@ namespace FSFormControls
                 tw.Close();
                 tw = null;
                 ProcessUtil.OpenDocument(fic);
+#else
+                throw new ExceptionUtil("Función no implementada en Core.");
+#endif
             }
             catch (Exception ex)
             {
@@ -699,14 +743,16 @@ namespace FSFormControls
         {
             try
             {
-                SaveFileDialog1.Filter = "Archivos ASPX|*.aspx|Todos los archivos|*.*";
-                SaveFileDialog1.ShowDialog();
-                var fic = SaveFileDialog1.FileName;
-                if (fic == "") return;
+                //SaveFileDialog1.Filter = "Archivos ASPX|*.aspx|Todos los archivos|*.*";
+                //SaveFileDialog1.ShowDialog();
+                //var fic = SaveFileDialog1.FileName;
+                //if (fic == "") return;
 
-                var dbform2aspx = new ConvertToAspx(ConvertToAspx.AspxTypes.Page);
-                dbform2aspx.Convert(this, Path.GetDirectoryName(fic));
-                ProcessUtil.OpenDocument(fic);
+                //var dbform2aspx = new ConvertToAspx(ConvertToAspx.AspxTypes.Page);
+                //dbform2aspx.Convert(this, Path.GetDirectoryName(fic));
+                //ProcessUtil.OpenDocument(fic);
+
+                throw new ExceptionUtil("Función no implementada en Core.");
             }
             catch (Exception ex)
             {
@@ -805,9 +851,6 @@ namespace FSFormControls
                     if (ctr is DBCombo)
                         ((DBCombo)ctr).Fill();
 
-                    if (ctr is DBGrid)
-                        ((DBGrid)ctr).Fill();
-
                     if (ctr is DBGridView)
                         ((DBGridView)ctr).Fill();
                 }
@@ -825,18 +868,19 @@ namespace FSFormControls
             {
                 try
                 {
-                    //Convert the form to an ASP.NET Web Form
-                    ConvertToAspx convertToAspx = new ConvertToAspx();
-                    convertToAspx.AspxType = ConvertToAspx.AspxTypes.Page;
-                    convertToAspx.SourceLanguage = ConvertToAspx.SourceLanguages.C_Sharp;
-                    convertToAspx.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
+                    ////Convert the form to an ASP.NET Web Form
+                    //Convert2Aspx convert2Aspx = new Convert2Aspx();
+                    //convert2Aspx.AspxType = Convert2Aspx.AspxTypes.Page;
+                    //convert2Aspx.SourceLanguage = Convert2Aspx.SourceLanguages.C_Sharp;
+                    //convert2Aspx.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
 
-                    //Convert the form to an ASP.NET user control
-                    ConvertToAspx convertToAspxUC = new ConvertToAspx();
-                    convertToAspxUC.AspxType = ConvertToAspx.AspxTypes.UserControl;
-                    convertToAspxUC.SourceLanguage = ConvertToAspx.SourceLanguages.C_Sharp;
-                    convertToAspxUC.RootName = this.Name + "UC";
-                    convertToAspxUC.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
+                    ////Convert the form to an ASP.NET user control
+                    //Convert2Aspx convert2AspxUC = new Convert2Aspx();
+                    //convert2AspxUC.AspxType = Convert2Aspx.AspxTypes.UserControl;
+                    //convert2AspxUC.SourceLanguage = Convert2Aspx.SourceLanguages.C_Sharp;
+                    //convert2AspxUC.RootName = this.Name + "UC";
+                    //convert2AspxUC.Convert(this, Path.GetDirectoryName(saveDialog.FileName));
+                    throw new ExceptionUtil("Funcionalidad no implementada.");
                 }
                 catch (Exception ex)
                 {
@@ -853,7 +897,7 @@ namespace FSFormControls
         private void ShowMenuBar(bool show)
         {
             mnuForm.Visible = show;
-            for (var f = 0; f <= mnuFormMain.MenuItems.Count - 1; f++) mnuFormMain.MenuItems[f].Visible = show;
+            for (var f = 0; f <= mnuFormMain.Items.Count - 1; f++) mnuFormMain.Items[f].Visible = show;
         }
 
         private void mnuCalculadora_Click(object sender, EventArgs e)
@@ -917,20 +961,19 @@ namespace FSFormControls
 
         #region '" Código generado por el Diseñador de Windows Forms "' 
 
-        internal DBOfficeMenu DbOfficeMenu1;
         internal TabOrderSchemaProvider DbTabOrderSchemeProvider1;
         public DBToolBarEx DbToolBar1;
-        internal MenuItem MenuItem3;
-        internal MenuItem MenuItem7;
+        internal ToolStripMenuItem MenuItem3;
+        internal ToolStripMenuItem MenuItem7;
         internal SaveFileDialog SaveFileDialog1;
         private IContainer components;
-        internal MenuItem mnuAbout;
-        internal MenuItem mnuCalc;
-        internal MenuItem mnuClose;
-        internal MenuItem mnuConfPag;
+        internal ToolStripMenuItem mnuAbout;
+        internal ToolStripMenuItem mnuCalc;
+        internal ToolStripMenuItem mnuClose;
+        internal ToolStripMenuItem mnuConfPag;
         internal ContextMenuStrip mnuContext;
-        public MenuItem mnuForm;
-        public MainMenu mnuFormMain;
+        public ToolStripMenuItem mnuForm;
+        public MenuStrip mnuFormMain;
         internal Timer tmrAutoSave;
         
 
@@ -959,204 +1002,199 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBForm));
-            this.mnuFormMain = new System.Windows.Forms.MainMenu(this.components);
-            this.mnuForm = new System.Windows.Forms.MenuItem();
-            this.mnuConfPag = new System.Windows.Forms.MenuItem();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.mnuCalc = new System.Windows.Forms.MenuItem();
-            this.MenuItem7 = new System.Windows.Forms.MenuItem();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.mnuAbout = new System.Windows.Forms.MenuItem();
-            this.MenuItem3 = new System.Windows.Forms.MenuItem();
-            this.mnuClose = new System.Windows.Forms.MenuItem();
-            this.mnuContext = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.SaveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.tmrAutoSave = new System.Windows.Forms.Timer(this.components);
-            this.barraEstado = new FSFormControls.DBStatusBar();
-            this.estado = new System.Windows.Forms.StatusBarPanel();
-            this.mensaje = new System.Windows.Forms.StatusBarPanel();
-            this.info = new System.Windows.Forms.StatusBarPanel();
-            this.DbToolBar1 = new FSFormControls.DBToolBarEx();
-            this.DbOfficeMenu1 = new FSFormControls.DBOfficeMenu(this.components);
-            this.DbTabOrderSchemeProvider1 = new FSFormControls.TabOrderSchemaProvider();
-            ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mensaje)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.info)).BeginInit();
-            this.SuspendLayout();
+            components = new Container();
+            ComponentResourceManager resources = new ComponentResourceManager(typeof(DBForm));
+            mnuFormMain = new MenuStrip();
+            mnuForm = new ToolStripMenuItem();
+            mnuConfPag = new ToolStripMenuItem();
+            menuItem1 = new ToolStripMenuItem();
+            mnuCalc = new ToolStripMenuItem();
+            MenuItem7 = new ToolStripMenuItem();
+            menuItem2 = new ToolStripMenuItem();
+            mnuAbout = new ToolStripMenuItem();
+            MenuItem3 = new ToolStripMenuItem();
+            mnuClose = new ToolStripMenuItem();
+            mnuContext = new ContextMenuStrip(components);
+            SaveFileDialog1 = new SaveFileDialog();
+            tmrAutoSave = new Timer(components);
+            barraEstado = new DBStatusBar();
+            estado = new ToolStripStatusLabel();
+            mensaje = new ToolStripStatusLabel();
+            info = new ToolStripStatusLabel();
+            DbToolBar1 = new DBToolBarEx();
+            mnuFormMain.SuspendLayout();
+            ((ISupportInitialize)barraEstado).BeginInit();
+            barraEstado.SuspendLayout();
+            SuspendLayout();
             // 
             // mnuFormMain
             // 
-            this.mnuFormMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuForm});
+            mnuFormMain.Items.AddRange(new ToolStripItem[] { mnuForm });
+            mnuFormMain.Location = new Point(0, 0);
+            mnuFormMain.Name = "mnuFormMain";
+            mnuFormMain.Size = new Size(200, 24);
+            mnuFormMain.TabIndex = 0;
             // 
             // mnuForm
             // 
-            this.mnuForm.Index = 0;
-            this.mnuForm.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
-            this.mnuConfPag,
-            this.menuItem1,
-            this.mnuCalc,
-            this.MenuItem7,
-            this.menuItem2,
-            this.mnuAbout,
-            this.MenuItem3,
-            this.mnuClose});
-            this.mnuForm.Text = "&Formulario";
+            mnuForm.DropDownItems.AddRange(new ToolStripItem[] { mnuConfPag, menuItem1, mnuCalc, MenuItem7, menuItem2, mnuAbout, MenuItem3, mnuClose });
+            mnuForm.Name = "mnuForm";
+            mnuForm.Size = new Size(77, 20);
+            mnuForm.Text = "&Formulario";
             // 
             // mnuConfPag
             // 
-            this.mnuConfPag.Index = 0;
-            this.mnuConfPag.Text = "&Configuración página";
-            this.mnuConfPag.Click += new System.EventHandler(this.mnuConfigurarPagina_Click);
+            mnuConfPag.Name = "mnuConfPag";
+            mnuConfPag.Size = new Size(222, 22);
+            mnuConfPag.Text = "&Configuración página";
+            mnuConfPag.Click += mnuConfigurarPagina_Click;
             // 
             // menuItem1
             // 
-            this.menuItem1.Index = 1;
-            this.menuItem1.Text = "Convertir formulario a ASPX";
-            this.menuItem1.Click += new System.EventHandler(this.menuItem1_Click);
+            menuItem1.Name = "menuItem1";
+            menuItem1.Size = new Size(222, 22);
+            menuItem1.Text = "Convertir formulario a ASPX";
+            menuItem1.Click += menuItem1_Click;
             // 
             // mnuCalc
             // 
-            this.mnuCalc.Index = 2;
-            this.mnuCalc.Text = "Calculadora";
-            this.mnuCalc.Click += new System.EventHandler(this.mnuCalculadora_Click);
+            mnuCalc.Name = "mnuCalc";
+            mnuCalc.Size = new Size(222, 22);
+            mnuCalc.Text = "Calculadora";
+            mnuCalc.Click += mnuCalculadora_Click;
             // 
             // MenuItem7
             // 
-            this.MenuItem7.Index = 3;
-            this.MenuItem7.Text = "-";
+            MenuItem7.Name = "MenuItem7";
+            MenuItem7.Size = new Size(222, 22);
+            MenuItem7.Text = "-";
             // 
             // menuItem2
             // 
-            this.menuItem2.Index = 4;
-            this.menuItem2.Text = "Configuración";
-            this.menuItem2.Click += new System.EventHandler(this.menuItem2_Click);
+            menuItem2.Name = "menuItem2";
+            menuItem2.Size = new Size(222, 22);
+            menuItem2.Text = "Configuración";
+            menuItem2.Click += menuItem2_Click;
             // 
             // mnuAbout
             // 
-            this.mnuAbout.Index = 5;
-            this.mnuAbout.Text = "&Acerca de ...";
-            this.mnuAbout.Click += new System.EventHandler(this.mnuAcercaDe_Click);
+            mnuAbout.Name = "mnuAbout";
+            mnuAbout.Size = new Size(222, 22);
+            mnuAbout.Text = "&Acerca de ...";
+            mnuAbout.Click += mnuAcercaDe_Click;
             // 
             // MenuItem3
             // 
-            this.MenuItem3.Index = 6;
-            this.MenuItem3.Text = "-";
+            MenuItem3.Name = "MenuItem3";
+            MenuItem3.Size = new Size(222, 22);
+            MenuItem3.Text = "-";
             // 
             // mnuClose
             // 
-            this.mnuClose.Index = 7;
-            this.mnuClose.Text = "&Cerrar";
-            this.mnuClose.Click += new System.EventHandler(this.mnuCerrar_Click);
+            mnuClose.Name = "mnuClose";
+            mnuClose.Size = new Size(222, 22);
+            mnuClose.Text = "&Cerrar";
+            mnuClose.Click += mnuCerrar_Click;
             // 
             // mnuContext
             // 
-            this.mnuContext.Name = "mnuContext";
-            this.mnuContext.Size = new System.Drawing.Size(61, 4);
+            mnuContext.Name = "mnuContext";
+            mnuContext.Size = new Size(61, 4);
             // 
             // SaveFileDialog1
             // 
-            this.SaveFileDialog1.Filter = "Archivos HTML|*.htm*|Todos los archivos|*.*";
+            SaveFileDialog1.Filter = "Archivos HTML|*.htm*|Todos los archivos|*.*";
             // 
             // tmrAutoSave
             // 
-            this.tmrAutoSave.Interval = 60000;
-            this.tmrAutoSave.Tick += new System.EventHandler(this.tmrAutoSave_Tick);
+            tmrAutoSave.Interval = 60000;
+            tmrAutoSave.Tick += tmrAutoSave_Tick;
             // 
             // barraEstado
             // 
-            this.barraEstado.Location = new System.Drawing.Point(0, 260);
-            this.barraEstado.Name = "barraEstado";
-            this.barraEstado.Panels.AddRange(new System.Windows.Forms.StatusBarPanel[] {
-            this.estado,
-            this.mensaje,
-            this.info});
-            this.barraEstado.ShowPanels = true;
-            this.barraEstado.Size = new System.Drawing.Size(1154, 22);
-            this.barraEstado.TabIndex = 2;
-            this.barraEstado.Text = "dbStatusBar1";
-            this.barraEstado.ViewStyle = FSFormControls.DBStatusBar.ViewStyleEnum.Default;
-            this.barraEstado.WrapText = false;
+            barraEstado.Items.AddRange(new ToolStripItem[] { estado, mensaje, info });
+            barraEstado.Location = new Point(0, 403);
+            barraEstado.Name = "barraEstado";
+            barraEstado.Size = new Size(1164, 22);
+            barraEstado.TabIndex = 2;
+            barraEstado.Text = "dbStatusBar1";
+            barraEstado.ViewStyle = DBStatusBar.ViewStyleEnum.Default;
+            barraEstado.WrapText = false;
             // 
             // estado
             // 
-            this.estado.Name = "estado";
+            estado.Name = "estado";
+            estado.Size = new Size(0, 17);
             // 
             // mensaje
             // 
-            this.mensaje.AutoSize = System.Windows.Forms.StatusBarPanelAutoSize.Spring;
-            this.mensaje.Name = "mensaje";
-            this.mensaje.Width = 937;
+            mensaje.Name = "mensaje";
+            mensaje.Size = new Size(0, 17);
             // 
             // info
             // 
-            this.info.Alignment = System.Windows.Forms.HorizontalAlignment.Right;
-            this.info.Name = "info";
+            info.Alignment = ToolStripItemAlignment.Right;
+            info.Name = "info";
+            info.Size = new Size(0, 17);
             // 
             // DbToolBar1
             // 
-            this.DbToolBar1.About = "";
-            this.DbToolBar1.AllowAddNew = true;
-            this.DbToolBar1.AllowCancel = true;
-            this.DbToolBar1.AllowClose = true;
-            this.DbToolBar1.AllowDelete = true;
-            this.DbToolBar1.AllowEdit = true;
-            this.DbToolBar1.AllowFilter = true;
-            this.DbToolBar1.AllowList = true;
-            this.DbToolBar1.AllowNavigate = true;
-            this.DbToolBar1.AllowPrint = true;
-            this.DbToolBar1.AllowRecord = true;
-            this.DbToolBar1.AllowSave = true;
-            this.DbToolBar1.AllowSearch = true;
-            this.DbToolBar1.DataControl = null;
-            this.DbToolBar1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.DbToolBar1.Location = new System.Drawing.Point(0, 0);
-            this.DbToolBar1.Name = "DbToolBar1";
-            this.DbToolBar1.ShowAddNewButton = true;
-            this.DbToolBar1.ShowCancelButton = true;
-            this.DbToolBar1.ShowCloseButton = true;
-            this.DbToolBar1.ShowDeleteButton = true;
-            this.DbToolBar1.ShowEditButton = true;
-            this.DbToolBar1.ShowFilterButton = true;
-            this.DbToolBar1.ShowListButton = true;
-            this.DbToolBar1.ShowNavigateButton = true;
-            this.DbToolBar1.ShowPrintButton = true;
-            this.DbToolBar1.ShowRecordButton = true;
-            this.DbToolBar1.ShowSaveButton = true;
-            this.DbToolBar1.ShowScrollBar = true;
-            this.DbToolBar1.ShowSearchButton = true;
-            this.DbToolBar1.ShowText = true;
-            this.DbToolBar1.Size = new System.Drawing.Size(1020, 138);
-            this.DbToolBar1.TabIndex = 1;
-            this.DbToolBar1.TabStop = false;
-            this.DbToolBar1.Value = 0;
-            this.DbToolBar1.VisibleScroll = true;
-            this.DbToolBar1.VisibleTotalRecord = false;
-            // 
-            // DbOfficeMenu1
-            // 
-            this.DbOfficeMenu1.ImageList = null;
+            DbToolBar1.About = "";
+            DbToolBar1.AllowAddNew = true;
+            DbToolBar1.AllowCancel = true;
+            DbToolBar1.AllowClose = true;
+            DbToolBar1.AllowDelete = true;
+            DbToolBar1.AllowEdit = true;
+            DbToolBar1.AllowFilter = true;
+            DbToolBar1.AllowList = true;
+            DbToolBar1.AllowNavigate = true;
+            DbToolBar1.AllowPrint = true;
+            DbToolBar1.AllowRecord = true;
+            DbToolBar1.AllowSave = true;
+            DbToolBar1.AllowSearch = true;
+            DbToolBar1.DataControl = null;
+            DbToolBar1.Dock = DockStyle.Top;
+            DbToolBar1.Location = new Point(0, 0);
+            DbToolBar1.Name = "DbToolBar1";
+            DbToolBar1.ShowAddNewButton = true;
+            DbToolBar1.ShowCancelButton = true;
+            DbToolBar1.ShowCloseButton = true;
+            DbToolBar1.ShowDeleteButton = true;
+            DbToolBar1.ShowEditButton = true;
+            DbToolBar1.ShowFilterButton = true;
+            DbToolBar1.ShowListButton = true;
+            DbToolBar1.ShowNavigateButton = true;
+            DbToolBar1.ShowPrintButton = true;
+            DbToolBar1.ShowRecordButton = true;
+            DbToolBar1.ShowSaveButton = true;
+            DbToolBar1.ShowScrollBar = true;
+            DbToolBar1.ShowSearchButton = true;
+            DbToolBar1.ShowText = true;
+            DbToolBar1.Size = new Size(1483, 25);
+            DbToolBar1.TabIndex = 1;
+            DbToolBar1.TabStop = false;
+            DbToolBar1.Value = 0;
+            DbToolBar1.VisibleScroll = true;
+            DbToolBar1.VisibleTotalRecord = false;
             // 
             // DBForm
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1154, 282);
-            this.ContextMenuStrip = this.mnuContext;
-            this.Controls.Add(this.barraEstado);
-            this.Controls.Add(this.DbToolBar1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Menu = this.mnuFormMain;
-            this.Name = "DBForm";
-            this.Text = "DBForm";
-            ((System.ComponentModel.ISupportInitialize)(this.barraEstado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.estado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.mensaje)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.info)).EndInit();
-            this.ResumeLayout(false);
-
+            AutoScaleMode = AutoScaleMode.None;
+            ClientSize = new Size(1164, 425);
+            ContextMenuStrip = mnuContext;
+            Controls.Add(barraEstado);
+            Controls.Add(DbToolBar1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = mnuFormMain;
+            Name = "DBForm";
+            Text = "DBForm";
+            mnuFormMain.ResumeLayout(false);
+            mnuFormMain.PerformLayout();
+            ((ISupportInitialize)barraEstado).EndInit();
+            barraEstado.ResumeLayout(false);
+            barraEstado.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

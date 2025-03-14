@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static FSIA.NeuralNetworkActivations;
 
-namespace FSTests.FSIA
+namespace FSTestsCore.FSIA
 {
     [TestClass]
     public class NeuralNetworkTest
@@ -309,7 +309,7 @@ namespace FSTests.FSIA
             IActivationFunction[] activations = new IActivationFunction[]
             {
             new Tanh(),    // Capa oculta
-            new Softmax()  // Capa de salida
+                new Softmax()   // Capa de salida
             };
 
             // Crear la red neuronal
@@ -441,7 +441,7 @@ namespace FSTests.FSIA
                 int predictedLabel = Array.IndexOf(prediction, prediction.Max());
                 Debug.WriteLine($"Etiqueta esperada: {expected}, Predicción: {predictedLabel}");
 
-                // Visualizar una imagen
+            // Visualizar una imagen
                 mnistLoader.PrintImage(trainImages[f]);
 
                 if (nn.GetMaxIndex(prediction) == nn.GetMaxIndex(trainLabels[f]))

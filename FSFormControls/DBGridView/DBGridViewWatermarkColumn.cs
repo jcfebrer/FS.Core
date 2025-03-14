@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -11,6 +12,7 @@ namespace FSFormControls
             CellTemplate = new DataGridViewWatermarkCell();
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string WatermarkText
         {
             get

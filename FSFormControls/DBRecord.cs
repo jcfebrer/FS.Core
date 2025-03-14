@@ -43,6 +43,7 @@ namespace FSFormControls
         //private bool isInitialize = false;
         private Global.AccessMode m_Mode = Global.AccessMode.WriteMode;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowToolBar
         {
             get { return DbToolBar1.Visible; }
@@ -56,6 +57,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -78,6 +80,7 @@ namespace FSFormControls
         /// Asignamos el parent del dbcontrol cuando se user dl dbcontrol sin asignar a un formulario.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -92,12 +95,14 @@ namespace FSFormControls
 
 
         private int m_PosYLabel = 20;
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int PosYLabel {
             get { return m_PosYLabel; }
             set { m_PosYLabel = value; }
         }
 
         private int m_PosXLabel = 20;
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int PosXLabel
         {
             get { return m_PosXLabel; }
@@ -105,175 +110,207 @@ namespace FSFormControls
         }
 
         private int m_LabelYIncrement = 25;
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int LabelYIncrement
         {
            get { return m_LabelYIncrement; }
            set { m_LabelYIncrement = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DoubleHeightInLargeText { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public t_showmode ShowMode { get; set; } = t_showmode.Vertical;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public HorizontalAlignment LabelAlign { get; set; } = HorizontalAlignment.Left;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoSizeColumns { get; set; } = true;
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public t_date DateType { get; set; } = t_date.Normal;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool TextBoxShadow { get; set; }
 
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DBColumnCollection Columns { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new BorderStyle BorderStyle
         {
             get { return panelRecord.BorderStyle; }
             set { panelRecord.BorderStyle = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowNavigate
         {
             get { return DbToolBar1.AllowNavigate; }
             set { DbToolBar1.AllowNavigate = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowComboEdit { get; set; } = false;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowSearch
         {
             get { return DbToolBar1.AllowSearch; }
             set { DbToolBar1.AllowSearch = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowCancel
         {
             get { return DbToolBar1.AllowCancel; }
             set { DbToolBar1.AllowCancel = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowSave
         {
             get { return DbToolBar1.AllowSave; }
             set { DbToolBar1.AllowSave = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowAddNew
         {
             get { return DbToolBar1.AllowAddNew; }
             set { DbToolBar1.AllowAddNew = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowPrint
         {
             get { return DbToolBar1.AllowPrint; }
             set { DbToolBar1.AllowPrint = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowFilter
         {
             get { return DbToolBar1.AllowFilter; }
             set { DbToolBar1.AllowFilter = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowRecord
         {
             get { return DbToolBar1.AllowRecord; }
             set { DbToolBar1.AllowRecord = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowEdit
         {
             get { return DbToolBar1.AllowEdit; }
             set { DbToolBar1.AllowEdit = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowDelete
         {
             get { return DbToolBar1.AllowDelete; }
             set { DbToolBar1.AllowDelete = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowList
         {
             get { return DbToolBar1.AllowList; }
             set { DbToolBar1.AllowList = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowNavigate
         {
             get { return DbToolBar1.ShowNavigateButton; }
             set { DbToolBar1.ShowNavigateButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowSearch
         {
             get { return DbToolBar1.ShowSearchButton; }
             set { DbToolBar1.ShowSearchButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowCancel
         {
             get { return DbToolBar1.ShowCancelButton; }
             set { DbToolBar1.ShowCancelButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowSave
         {
             get { return DbToolBar1.ShowSaveButton; }
             set { DbToolBar1.ShowSaveButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowClose
         {
             get { return DbToolBar1.ShowCloseButton; }
             set { DbToolBar1.ShowCloseButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowAddNew
         {
             get { return DbToolBar1.ShowAddNewButton; }
             set { DbToolBar1.ShowAddNewButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowPrint
         {
             get { return DbToolBar1.ShowPrintButton; }
             set { DbToolBar1.ShowPrintButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowFilter
         {
             get { return DbToolBar1.ShowFilterButton; }
             set { DbToolBar1.ShowFilterButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowRecord
         {
             get { return DbToolBar1.ShowRecordButton; }
             set { DbToolBar1.ShowRecordButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowScrollBar
         {
             get { return DbToolBar1.ShowScrollBar; }
             set { DbToolBar1.ShowScrollBar = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowEdit
         {
             get { return DbToolBar1.ShowEditButton; }
             set { DbToolBar1.ShowEditButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowDelete
         {
             get { return DbToolBar1.ShowDeleteButton; }
             set { DbToolBar1.ShowDeleteButton = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowList
         {
             get { return DbToolBar1.ShowListButton; }

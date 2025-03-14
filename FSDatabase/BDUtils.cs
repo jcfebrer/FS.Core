@@ -27,12 +27,16 @@ using FSQueryBuilder.Enums;
 using DateTime = System.DateTime;
 using FSException;
 using System.CodeDom;
-using System.Web.UI.WebControls;
 using FSQueryBuilder;
 using FSQueryBuilder.QueryParts.Where;
 using FSTrace;
 using FSSecurity;
-using System.Configuration.Provider;
+
+#if !NETFRAMEWORK
+    using Microsoft.AspNetCore.Http;
+#endif
+
+using System.Linq;
 
 namespace FSDatabase
 {
@@ -87,12 +91,12 @@ namespace FSDatabase
                 if (!String.IsNullOrEmpty(providerName))
                     ProviderName = providerName;
                 else
-                    throw new ExceptionUtil("No se ha definido ProviderName en FSDatabase.Contants");
+                    throw new ExceptionUtil("No se ha definido ProviderName en FSDatabaseCore.Contants");
 
                 if (!String.IsNullOrEmpty(connectionString))
                     ConnString = connectionString;
                 else
-                    throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabase.Contants");
+                    throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabaseCore.Contants");
 
                 ConnStringEntryId = 0;
             }
@@ -137,7 +141,7 @@ namespace FSDatabase
                 SetDBMSType();
             }
             else
-                throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabase.Contants");
+                throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabaseCore.Contants");
         }
 
 
@@ -152,7 +156,7 @@ namespace FSDatabase
                 SetDBMSType();
             }
             else
-                throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabase.Contants");
+                throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabaseCore.Contants");
         }
 
         public BdUtils(string connStringEntryName)
@@ -1704,7 +1708,7 @@ namespace FSDatabase
         //            }
         //            catch (System.Exception e)
         //            {
-        //                throw new FSLibrary.Exception(e);
+        //                throw new FSLibraryCore.Exception(e);
         //            }
         //        }
 
@@ -1922,6 +1926,7 @@ namespace FSDatabase
                 var sFields = "";
                 Field c = null;
 
+#if NETFRAMEWORK
                 for (var f = 0; f <= frm.Form.Count - 1; f++)
                 {
                     if (frmCampos != null) c = frmCampos.Find(frm.Form.Keys[f]);
@@ -1945,6 +1950,33 @@ namespace FSDatabase
                     else
                         sFields = sFields + "[" + frm.Form.Keys[f] + "] nvarchar(50)" + " NULL,";
                 }
+#else
+                var dict = frm.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+
+                foreach (var item in dict)
+                {
+                    if (frmCampos != null) c = frmCampos.Find(item.Key);
+
+                    if (c != null)
+                        switch (c.Tipo)
+                        {
+                            case Utils.FieldTypeEnum.Number:
+                                sFields = sFields + "[" + item.Key + "] int NULL,";
+                                break;
+                            case Utils.FieldTypeEnum.String:
+                                sFields = sFields + "[" + item.Key + "] nvarchar(" + c.Tamano + ")" + " NULL,";
+                                break;
+                            case Utils.FieldTypeEnum.Boolean:
+                                sFields = sFields + "[" + item.Key + "] bit NULL,";
+                                break;
+                            case Utils.FieldTypeEnum.DateTime:
+                                sFields = sFields + "[" + item.Key + "] datetime NULL,";
+                                break;
+                        }
+                    else
+                        sFields = sFields + "[" + item.Key + "] nvarchar(50)" + " NULL,";
+                }
+#endif
 
                 sFields = TextUtil.Substring(sFields, 0, TextUtil.Length(sFields) - 1);
 
@@ -1967,9 +1999,16 @@ namespace FSDatabase
 
                 var sch = GetSchemaTable(tableName);
 
+#if NETFRAMEWORK
                 for (var f = 0; f <= frm.Form.Count - 1; f++)
                 {
                     var campo = frm.Form.Keys[f];
+#else
+                var dict = frm.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+                foreach (var item in dict)
+                {
+                    var campo = item.Key;
+#endif
 
                     if (!IsControlField(campo))
                         if (TextUtil.Substring(campo, 0, 3) != "cmd")
@@ -1980,7 +2019,11 @@ namespace FSDatabase
 
                             sFields = sFields + "[" + campo + "]" + ",";
 
+#if NETFRAMEWORK
                             var v = Functions.Valor(frm.Form.Get(f));
+#else
+                            var v = Functions.Valor(item.Value);
+#endif
                             if (c != null)
                             {
                                 if (c.Valor != "") v = c.Valor;
@@ -2007,7 +2050,11 @@ namespace FSDatabase
                             }
                             else
                             {
+#if NETFRAMEWORK
                                 sData += "'" + frm.Form.Get(f).Trim() + "',";
+#else
+                                sData += "'" + item.Value.Trim() + "',";
+#endif
                             }
                         }
                 }
@@ -2057,16 +2104,27 @@ namespace FSDatabase
 
                 var sch = GetSchemaTable(tableName);
 
+#if NETFRAMEWORK
                 for (var f = 0; f <= frm.Form.Count - 1; f++)
                 {
                     var campo = frm.Form.Keys[f];
+#else
+                var dict = frm.Form.ToDictionary(x => x.Key, x => x.Value.ToString());
+                foreach (var item in dict)
+                {
+                    var campo = item.Key;
+#endif
 
                     if (!IsControlField(campo))
                         if (TextUtil.Substring(campo, 0, 3) != "cmd")
                         {
                             if (frmCampos != null) c = frmCampos.Find(campo);
 
+#if NETFRAMEWORK
                             var v = Functions.Valor(frm.Form.Get(f));
+#else
+                            var v = Functions.Valor(item.Value);
+#endif
 
                             if (c == null) c = GetField(campo, sch);
 
@@ -2098,7 +2156,12 @@ namespace FSDatabase
                             }
                             else
                             {
+#if NETFRAMEWORK
                                 sFields = sFields + "[" + campo + "]='" + frm.Form.Get(f).Trim() + "',";
+#else
+                                sFields = sFields + "[" + campo + "]='" + item.Value.Trim() + "',";
+#endif
+
                             }
                         }
                 }
@@ -2759,11 +2822,10 @@ namespace FSDatabase
             try
             {
                 var sb = new StringBuilder("");
-                //sb.Append("OdbcPermission: " + Permission.TestPermission(new OdbcPermission(PermissionState.Unrestricted)));
-                sb.Append("OleDbPermission: " +
-                          Permission.TestPermission(new OleDbPermission(System.Security.Permissions.PermissionState.Unrestricted)));
-                //sb.Append("DbPermission: " + Permission.TestPermission(new permission(PermissionState.Unrestricted)));
-                //sb.Append("SqlClientPermission: " + Permission.TestPermission(new SqlClientPermission(PermissionState.Unrestricted)));
+                //sb.Append("OdbcPermission: " + Permission.TestPermission(new OdbcPermission(System.Security.Permissions.PermissionState.Unrestricted)));
+                //sb.Append("OleDbPermission: " + Permission.TestPermission(new OleDbPermission(System.Security.Permissions.PermissionState.Unrestricted)));
+                //sb.Append("DbPermission: " + Permission.TestPermission(new permission(System.Security.Permissions.PermissionState.Unrestricted)));
+                //sb.Append("SqlClientPermission: " + Permission.TestPermission(new SqlClientPermission(System.Security.Permissions.PermissionState.Unrestricted)));
                 return sb.ToString();
             }
             catch (Exception e)

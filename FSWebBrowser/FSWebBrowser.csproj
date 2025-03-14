@@ -1,132 +1,58 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7FCC8F9D-A108-4DBD-A43A-C347B33B6BC4}</ProjectGuid>
+    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <RootNamespace>FSWebBrowser</RootNamespace>
-    <AssemblyName>FSWebBrowser</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <TargetFrameworkProfile />
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <RegisterForComInterop>false</RegisterForComInterop>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>full</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
-    <Optimize>true</Optimize>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Interop.SHDocVw">
       <HintPath>..\dll\Interop.SHDocVw.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
-    <Reference Include="Microsoft.CSharp">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
     <Reference Include="Microsoft.mshtml, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
       <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\dll\Microsoft.mshtml.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core">
+    <Reference Update="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CrossFrameIE.cs" />
-    <Compile Include="FSWebBrowser.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="FSWebBrowser.designer.cs" />
+    <Compile Update="FSWebBrowser.cs" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\FSDns\FSDns.csproj">
-      <Project>{A47E3F44-0524-4860-88C5-27472EAA9B7D}</Project>
-      <Name>FSDns</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSException\FSException.csproj">
-      <Project>{2a366b72-70b3-4700-b962-5920a0eee074}</Project>
-      <Name>FSException</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSGraphics\FSGraphics.csproj">
-      <Project>{13461507-32fc-48bc-bd27-f3a9de011825}</Project>
-      <Name>FSGraphics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj">
-      <Project>{7E0ADEF9-BCB8-48CD-99B6-68BF862F7083}</Project>
-      <Name>FSLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSFormControls\FSFormControls.csproj">
-      <Project>{8EF3EA53-F7EB-4A64-A2F0-9911AFD757D0}</Project>
-      <Name>FSFormControls</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj">
-      <Project>{40ad564b-b070-4afe-99f4-50bb865e8e4e}</Project>
-      <Name>FSNetwork</Name>
-    </ProjectReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FSDns\FSDns.csproj" />
+    <ProjectReference Include="..\FSException\FSException.csproj" />
+    <ProjectReference Include="..\FSFormControls\FSFormControls.csproj" />
+    <ProjectReference Include="..\FSGraphics\FSGraphics.csproj" />
+    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />
   </ItemGroup>
 </Project>

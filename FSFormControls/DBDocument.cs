@@ -32,6 +32,7 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -40,13 +41,14 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -57,11 +59,11 @@ namespace FSFormControls
                 switch (m_Mode)
                 {
                     case Global.AccessMode.ReadMode:
-                        Label1.ContextMenu = null;
+                        Label1.ContextMenuStrip = null;
                         Label1.Enabled = false;
                         break;
                     case Global.AccessMode.WriteMode:
-                        Label1.ContextMenu = ContextMenu1;
+                        Label1.ContextMenuStrip = ContextMenu1;
                         Label1.Enabled = false;
                         break;
                 }
@@ -129,9 +131,9 @@ namespace FSFormControls
 
         private readonly IContainer components = null;
 
-        internal ContextMenu ContextMenu1;
+        internal ContextMenuStrip ContextMenu1;
         internal Label Label1;
-        internal MenuItem MenuItem1;
+        internal ToolStripMenuItem MenuItem1;
         internal OpenFileDialog OpenFileDialog1;
 
         public DBDocument()
@@ -152,26 +154,26 @@ namespace FSFormControls
         [DebuggerStepThrough]
         private void InitializeComponent()
         {
-            this.ContextMenu1 = new System.Windows.Forms.ContextMenu();
-            this.MenuItem1 = new System.Windows.Forms.MenuItem();
+            this.ContextMenu1 = new System.Windows.Forms.ContextMenuStrip();
+            this.MenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.Label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ContextMenu1
             // 
-            this.ContextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.ContextMenu1.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this.MenuItem1});
             // 
             // MenuItem1
             // 
-            this.MenuItem1.Index = 0;
+            this.MenuItem1.ImageIndex = 0;
             this.MenuItem1.Text = "Seleccionar Imagen";
             // 
             // Label1
             // 
             this.Label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.Label1.ContextMenu = this.ContextMenu1;
+            this.Label1.ContextMenuStrip = this.ContextMenu1;
             this.Label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label1.Location = new System.Drawing.Point(0, 0);

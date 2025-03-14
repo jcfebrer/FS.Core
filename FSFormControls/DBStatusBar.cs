@@ -11,7 +11,7 @@ namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBStatusBar.bmp")]
     [ToolboxItem(true)]
-    public class DBStatusBar : StatusBar, ISupportInitialize
+    public class DBStatusBar : StatusStrip, ISupportInitialize
     {
         //private DBStatusBarPanelCollection m_Panels = new DBStatusBarPanelCollection();
 
@@ -26,8 +26,10 @@ namespace FSFormControls
         //    get { return (DBStatusBarPanelCollection)base.Panels; }
         //}
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ViewStyleEnum ViewStyle { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool WrapText { get; set; }
 
         //public string get_Text()

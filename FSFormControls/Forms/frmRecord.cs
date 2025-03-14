@@ -52,6 +52,7 @@ namespace FSFormControls
         //    set { DbRecord1 = value; }
         //}
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new DBControl DataControl
         {
             get { return base.DataControl; }
@@ -90,8 +91,8 @@ namespace FSFormControls
             // 
             // mnuForm
             // 
-            this.mnuForm.MergeType = System.Windows.Forms.MenuMerge.Replace;
-            this.mnuForm.OwnerDraw = true;
+            this.mnuForm.MergeAction = MergeAction.Replace;
+            //this.mnuForm.OwnerDraw = true;
             // 
             // DbRecord1
             // 

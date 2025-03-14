@@ -9,7 +9,7 @@
 //using System.Text;
 //using System.Threading.Tasks;
 
-//namespace FSGoogleFirebase.FireSharp
+//namespace FSGoogleFirebaseCore.FireSharp
 //{
 //    /// <summary>
 //    /// Pruebas con firebase database sin finalizar

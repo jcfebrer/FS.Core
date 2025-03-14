@@ -16,6 +16,7 @@ namespace FSFormControls
 
         public double Value => DbCalculator.Value;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTextBox DBTextbox
         {
             get { return m_dbtextbox; }

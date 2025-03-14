@@ -6,7 +6,6 @@ using OpenAI.Managers;
 using OpenAI;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Runtime.Remoting.Messaging;
 using System.Net;
 using FSException;
 

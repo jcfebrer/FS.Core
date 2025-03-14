@@ -3327,8 +3327,8 @@ namespace FSLibrary
         {
             string lastExpression;
 
-            if (variables == null)
-                return expression;
+                if (variables == null)
+                    return expression;
 
             do
             {

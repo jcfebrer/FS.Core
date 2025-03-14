@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTests.FSParser
+namespace FSTestsCore.FSParser
 {
     [TestClass()]
     public class CSharpParserTest
@@ -177,12 +177,12 @@ namespace FSTests.FSParser
             var code8 = new List<string>
             {
                 "result = \"cadena1\";",
-                "result = \"using System.Data;\" + crlf + \"using FSFormControls;\" + crlf + result;"
+                "result = \"using System.Data;\" + crlf + \"using FSFormControlsCore;\" + crlf + result;"
             };
 
             parser.Parse(code8);
 
-            Assert.AreEqual(parser.Variables["result"], "\"using System.Data;\r\nusing FSFormControls;\r\ncadena1\"");
+            Assert.AreEqual(parser.Variables["result"], "\"using System.Data;\r\nusing FSFormControlsCore;\r\ncadena1\"");
 
 
             var code9 = new List<string>

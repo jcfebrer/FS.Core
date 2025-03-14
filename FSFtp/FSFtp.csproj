@@ -1,116 +1,46 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E963B766-56BF-4966-8917-88C1EE69D61A}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>FSFtp</RootNamespace>
-    <AssemblyName>FSFtp</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>bin\Debug</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <DocumentationFile>bin\Debug\FSFtp.xml</DocumentationFile>
-    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\FSFtpCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <DocumentationFile>bin\Release\FSFtp.xml</DocumentationFile>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\FSFtpCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
-    <DocumentationFile>bin\Debug\FSFtp.xml</DocumentationFile>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\FSFtpCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\x86\Release\</OutputPath>
-    <DocumentationFile>bin\Release\FSFtp.xml</DocumentationFile>
-    <Optimize>true</Optimize>
-    <PlatformTarget>x86</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <DocumentationFile>bin\Debug\FSFtp.xml</DocumentationFile>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug Todo|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug Todo\</OutputPath>
-    <DefineConstants>DEBUG;</DefineConstants>
-    <DocumentationFile>bin\Debug\FSFtp.xml</DocumentationFile>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
+    <DocumentationFile>bin\Release\FSFtpCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AssemblyTitle>FSFtp</AssemblyTitle>
+    <Description>Cliente FTP y FTPS</Description>
+    <Product>FSFtp</Product>
+    <Copyright>FSFtp</Copyright>
+    <AssemblyVersion>16.0.16</AssemblyVersion>
+    <NeutralLanguage>en</NeutralLanguage>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core">
+    <Reference Update="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Web" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Compile Include="AssemblyInfo.cs" />
-    <Compile Include="Extensions\GetChecksum.cs" />
-    <Compile Include="Extensions\MD5.cs" />
-    <Compile Include="FtpClient.cs" />
-    <Compile Include="FtpDataStream.cs" />
-    <Compile Include="FtpEnums.cs" />
-    <Compile Include="FtpExceptions.cs" />
-    <Compile Include="FtpExtensionAttribute.cs" />
-    <Compile Include="FtpExtensions.cs" />
-    <Compile Include="FtpHash.cs" />
-    <Compile Include="FtpListItem.cs" />
-    <Compile Include="FtpReply.cs" />
-    <Compile Include="FtpSocketStream.cs" />
-    <Compile Include="FtpTrace.cs" />
-    <Compile Include="Extensions\XCRC.cs" />
-    <Compile Include="Extensions\XMD5.cs" />
-    <Compile Include="Extensions\XSHA1.cs" />
-    <Compile Include="Extensions\XSHA256.cs" />
-    <Compile Include="Extensions\XSHA512.cs" />
-    <Compile Include="Proxy\FtpClientHttp11Proxy.cs" />
-    <Compile Include="Proxy\FtpClientProxy.cs" />
-    <Compile Include="Proxy\FtpClientUserAtHostProxy.cs" />
-    <Compile Include="Proxy\ProxyInfo.cs" />
+  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
+    <Reference Include="System.Web" Version="4.0.0" />
   </ItemGroup>
 </Project>

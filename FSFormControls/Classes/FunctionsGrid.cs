@@ -60,8 +60,7 @@ namespace FSFormControls
         }
 
 
-        public static void AutoSizeColumnsToContent(DBControl dc, DBColumnCollection col, Graphics g, Font fon,
-            GridColumnStylesCollection dgstyles)
+        public static void AutoSizeColumnsToContent(DBControl dc, DBColumnCollection col, Graphics g, Font fon)
         {
             var nRowsToScan = 0;
 
@@ -124,9 +123,6 @@ namespace FSFormControls
                             }
 
                         col[iCurrCol].Width = iWidth + 1;
-                        if (dgstyles != null)
-                            if (iCurrCol < dgstyles.Count)
-                                dgstyles[iCurrCol].Width = iWidth + 4;
                     }
             }
             catch (Exception ex)
@@ -137,12 +133,6 @@ namespace FSFormControls
             {
                 g.Dispose();
             }
-        }
-
-
-        public static void AutoSizeColumnsToContent(DBControl dc, DBColumnCollection col, Graphics g, Font fon)
-        {
-            AutoSizeColumnsToContent(dc, col, g, fon, null);
         }
 
         public static void GenerateColumns(DBControl dataControl, DBColumnCollection columns, int decimals,
@@ -192,7 +182,7 @@ namespace FSFormControls
             }
 
             if (autoSize)
-                AutoSizeColumnsToContent(dataControl, columns, graphics, font, null);
+                AutoSizeColumnsToContent(dataControl, columns, graphics, font);
             else
                 ColumnsSetSize(columns, dataControl, false);
         }

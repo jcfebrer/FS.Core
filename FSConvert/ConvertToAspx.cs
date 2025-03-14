@@ -246,6 +246,7 @@ namespace FSConvert
 		/// <param name="stringBuilder"></param>
 		private void ConvertControls(System.Windows.Forms.Control rootControl, System.Text.StringBuilder stringBuilder)
 		{
+#if NETFRAMEWORK
 			System.Web.UI.WebControls.Label webLabel;
 			System.Web.UI.WebControls.TextBox webTextBox;
 			System.Web.UI.HtmlControls.HtmlGenericControl webGroupBox;
@@ -286,14 +287,15 @@ namespace FSConvert
 					this._WebControls.Add(webGroupBox);
 				}
 			}
-		}
+#endif
+        }
 
-		/// <summary>
-		/// The method assigns values to the _FullName, _RootName and _Namespace 
-		/// private variables based on the rootControl' type properties.
-		/// </summary>
-		/// <param name="rootControl"></param>
-		private void CheckNames(System.Windows.Forms.Control rootControl)
+        /// <summary>
+        /// The method assigns values to the _FullName, _RootName and _Namespace 
+        /// private variables based on the rootControl' type properties.
+        /// </summary>
+        /// <param name="rootControl"></param>
+        private void CheckNames(System.Windows.Forms.Control rootControl)
 		{
 			if (this._FullName == null)
 			{
@@ -350,7 +352,8 @@ namespace FSConvert
 			// Initialize TypeDeclaration private declaration
 			codeTypeDeclaration = new System.CodeDom.CodeTypeDeclaration(this._RootName);
 
-			switch (this._AspxType)
+#if NETFRAMEWORK
+            switch (this._AspxType)
 			{
 				case AspxTypes.Page:
 					codeTypeDeclaration.BaseTypes.Add(typeof(System.Web.UI.Page));
@@ -359,6 +362,7 @@ namespace FSConvert
 					codeTypeDeclaration.BaseTypes.Add(typeof(System.Web.UI.UserControl));
 					break;
 			}
+#endif
 
 			this.GenerateFields(codeTypeDeclaration);
 			this.BuildOnInitMethod(codeTypeDeclaration);
@@ -415,12 +419,14 @@ namespace FSConvert
 		{
 			System.CodeDom.CodeMemberField memberField;
 
-			foreach (System.Web.UI.Control webControl in this._WebControls)
+#if NETFRAMEWORK
+            foreach (System.Web.UI.Control webControl in this._WebControls)
 			{
 				memberField = new System.CodeDom.CodeMemberField(webControl.GetType(), webControl.ID);
 				memberField.Attributes = System.CodeDom.MemberAttributes.Family;
 				typeDeclaration.Members.Add(memberField);
 			}
+#endif
 
 			// The following placeholder declaration is required by the Web Form Designer.
 			// it is only necessary for Vb.Net

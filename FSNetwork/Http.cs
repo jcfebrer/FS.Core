@@ -1,12 +1,17 @@
 #region
 
 using FSException;
-using FSLibrary;
+
+#if !NETFRAMEWORK
+    using Microsoft.AspNetCore.Http;
+#endif
+
 using System;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Net;
-using System.Net.Sockets;
+using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -38,6 +43,11 @@ namespace FSNetwork
 
         public static string GetFromUrl(string url, Encoding enc, string user, string password)
         {
+            string responseText;
+
+            //WebClient webCLient = new WebClient();
+            //string responseText = webCLient.DownloadString(url);
+#if NETFRAMEWORK
             HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
             myRequest.Method = "GET";
 
@@ -47,10 +57,24 @@ namespace FSNetwork
             HttpWebResponse myResponse = ((HttpWebResponse)(myRequest.GetResponse()));
             Stream receiveStream = myResponse.GetResponseStream();
             StreamReader readStream = new StreamReader(receiveStream, enc);
-            string responseText = readStream.ReadToEnd();
+            responseText = readStream.ReadToEnd();
 
             myResponse.Close();
             readStream.Close();
+#else
+            using (var handler = new HttpClientHandler())
+            {
+                if (!String.IsNullOrEmpty(user))
+                    handler.Credentials = new NetworkCredential(user, password);
+
+                using (HttpClient httpClient = new HttpClient(handler))
+                {
+                    HttpResponseMessage response = httpClient.PostAsync(url, null).Result;
+                    responseText = response.Content.ReadAsStringAsync().Result;
+                    responseText = enc.GetString(Encoding.ASCII.GetBytes(responseText));
+                }
+            }
+#endif
 
             return responseText;
         }
@@ -78,7 +102,7 @@ namespace FSNetwork
                     }
                 }
             }
-            catch(Exception e) { sContents = e.Message; }
+            catch (Exception e) { sContents = e.Message; }
             return sContents;
         }
 
@@ -89,7 +113,7 @@ namespace FSNetwork
             FSLibrary.TextUtil.Replace(url, "//", "/");
             HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
             myRequest.ContentType = "application/x-www-form-urlencoded";
-            myRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
+            myRequest.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
             myRequest.Headers.Add("XXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXX");
             myRequest.Headers.Add("Cache-control", "no-cache");
             myRequest.AllowAutoRedirect = true;
@@ -115,7 +139,7 @@ namespace FSNetwork
 
             FSLibrary.TextUtil.Replace(url, "//", "/");
             HttpWebRequest myRequest = (HttpWebRequest)(WebRequest.Create(url));
-            myRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
+            myRequest.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
             myRequest.Headers.Add("XXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXX");
             myRequest.Headers.Add("Cache-control", "no-cache");
 
@@ -161,7 +185,7 @@ namespace FSNetwork
             FSLibrary.TextUtil.Replace(url, "//", "/");
             HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
             myRequest.ContentType = "application/x-www-form-urlencoded";
-            myRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
+            myRequest.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
             myRequest.Headers.Add("XXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXX");
             myRequest.Headers.Add("Cache-control", "no-cache");
             myRequest.AllowAutoRedirect = true;
@@ -192,7 +216,7 @@ namespace FSNetwork
             FSLibrary.TextUtil.Replace(url, "//", "/");
             HttpWebRequest myRequest = ((HttpWebRequest)(WebRequest.Create(url)));
             myRequest.ContentType = "application/x-www-form-urlencoded";
-            myRequest.UserAgent = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
+            myRequest.Headers["User-Agent"] = "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.0.3705)";
             myRequest.Headers.Add("XXXXXXXXXXXXXXX", "XXXXXXXXXXXXXXX");
             myRequest.Headers.Add("Cache-control", "no-cache");
             myRequest.SendChunked = false;
@@ -280,7 +304,7 @@ namespace FSNetwork
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
                 request.KeepAlive = true;
-                request.UserAgent =
+                request.Headers["User-Agent"] =
                     "Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/533.4 (KHTML, like Gecko) Chrome/5.0.375.99 Safari/533.4";
                 request.Headers.Set(HttpRequestHeader.Authorization, "Basic YWRtaW46");
                 request.Accept = "*/*";
@@ -589,10 +613,11 @@ namespace FSNetwork
 
         public static bool IsLocalhost()
         {
-            if (HttpContext.Current == null)
-                return false;
-
+#if NETFRAMEWORK
             string host = HttpContext.Current.Request.Url.Host;
+#else
+            string host = HttpContext.Current.Request.Host.Value;
+#endif
             return (host == null || FSLibrary.TextUtil.Substring(host, 0, 9) == "localhost" ||
                 FSLibrary.TextUtil.Substring(host, 0, 9) == "127.0.0.1" || FSLibrary.TextUtil.Substring(host, 0, 3) == "10." ||
                 FSLibrary.TextUtil.Substring(host, 0, 4) == "192.");
@@ -601,10 +626,19 @@ namespace FSNetwork
         public static string IpAddress()
         {
             string strIp = null;
+
+#if NETFRAMEWORK
             strIp = FSLibrary.Functions.Valor(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]);
+#else
+            strIp = HttpContext.Current.Request.Headers["X-Forwarded-For"].FirstOrDefault();
+#endif
             if (strIp == "")
             {
+#if NETFRAMEWORK
                 strIp = FSLibrary.Functions.Valor(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+#else
+                strIp = HttpContext.Current.Connection.RemoteIpAddress.ToString();
+#endif
             }
             if (strIp == "::1") strIp = "127.0.0.1";
             return strIp;
@@ -627,11 +661,20 @@ namespace FSNetwork
             if (!relativeUrl.StartsWith("~/"))
                 relativeUrl = relativeUrl.Insert(0, "~/");
 
+#if NETFRAMEWORK
             Uri url = HttpContext.Current.Request.Url;
+#else
+            Uri url = new Uri(HttpContext.Current.Request.Host.Value);
+#endif
             string port = url.Port != 80 ? (":" + url.Port) : String.Empty;
 
+#if NETFRAMEWORK
             return String.Format("{0}://{1}{2}{3}",
-                url.Scheme, url.Host, port, VirtualPathUtility.ToAbsolute(relativeUrl));
+                url.Scheme, url.Host, port, System.Web.VirtualPathUtility.ToAbsolute(relativeUrl));
+#else
+            return String.Format("{0}://{1}{2}{3}",
+                url.Scheme, url.Host, port, HttpContext.Current.Request.PathBase + relativeUrl);
+#endif
         }
 
         public static string ReadHeaders(WebHeaderCollection headers)

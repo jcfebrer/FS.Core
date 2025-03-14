@@ -26,7 +26,7 @@ namespace FSFormControls
 
         public int Y => Location.Y;
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SizeX
         {
             get { return m_SizeX; }
@@ -37,6 +37,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SizeY
         {
             get { return m_SizeY; }

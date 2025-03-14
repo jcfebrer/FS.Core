@@ -9,7 +9,7 @@ namespace FSSecurity
     ///
     /// using (WindowsLogin wi = new WindowsLogin("Administrator", System.Environment.MachineName, "TOP_SECRET"))
     /// {
-    /// #if NET461
+    /// #if NETFRAMEWORK
     ///     using (user.Impersonate())
     /// #else
     ///     WindowsIdentity.RunImpersonated(wi.Identity.AccessToken, () =>
@@ -18,7 +18,7 @@ namespace FSSecurity
     ///     WindowsIdentity useri = WindowsIdentity.GetCurrent();
     ///     System.Console.WriteLine(useri.Name);
     /// }
-    /// #if !NET461
+    /// #if !NETFRAMEWORK
     ///     );
     /// #endif
     /// }

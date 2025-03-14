@@ -9,8 +9,7 @@ namespace FSFormControls
     /// <summary>
     ///     Status Bar Panel that Displays Progress
     /// </summary>
-    public class DBStatusBarProgressPanel
-        : StatusBarPanel
+    public class DBStatusBarProgressPanel : ToolStripStatusLabel
     {
         #region Component Designer generated code
 
@@ -34,7 +33,7 @@ namespace FSFormControls
         {
             if (!_drawEventRegistered)
             {
-                Parent.DrawItem += Parent_DrawItem;
+                //Parent.DrawItem += Parent_DrawItem;
                 _drawEventRegistered = true;
             }
 
@@ -92,73 +91,73 @@ namespace FSFormControls
 
         #region Owner-Draw
 
-        /// <summary>
-        ///     Owner-Draw Event
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="sbdevent"></param>
-        private void Parent_DrawItem(object sender, StatusBarDrawItemEventArgs sbdevent)
-        {
-            if (sbdevent.Panel == this)
-            {
-                sbdevent.DrawBackground();
+        ///// <summary>
+        /////     Owner-Draw Event
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="sbdevent"></param>
+        //private void Parent_DrawItem(object sender, StatusBarDrawItemEventArgs sbdevent)
+        //{
+        //    if (sbdevent.Panel == this)
+        //    {
+        //        sbdevent.DrawBackground();
 
-                if (ProgressPosition != StartPoint)
-                    if (ProgressPosition <= EndPoint || AnimationStyle == ProgressDisplayStyle.Infinite)
-                    {
-                        var bounds = sbdevent.Bounds;
-                        var percent = ProgressPosition / (EndPoint - (float) StartPoint);
+        //        if (ProgressPosition != StartPoint)
+        //            if (ProgressPosition <= EndPoint || AnimationStyle == ProgressDisplayStyle.Infinite)
+        //            {
+        //                var bounds = sbdevent.Bounds;
+        //                var percent = ProgressPosition / (EndPoint - (float) StartPoint);
 
-                        switch (AnimationStyle)
-                        {
-                            case ProgressDisplayStyle.LeftToRight:
-                            {
-                                bounds.Width = (int) (percent * sbdevent.Bounds.Width);
-                                break;
-                            }
-                            case ProgressDisplayStyle.RightToLeft:
-                            {
-                                bounds.Width = (int) (percent * sbdevent.Bounds.Width);
-                                bounds.X += sbdevent.Bounds.Width - bounds.Width;
-                                break;
-                            }
-                            case ProgressDisplayStyle.BottomToTop:
-                            {
-                                bounds.Height = (int) (percent * sbdevent.Bounds.Height);
-                                bounds.Y += sbdevent.Bounds.Height - bounds.Height;
-                                break;
-                            }
-                            case ProgressDisplayStyle.TopToBottom:
-                            {
-                                bounds.Height = (int) (percent * sbdevent.Bounds.Height);
-                                break;
-                            }
-                            case ProgressDisplayStyle.Infinite:
-                            {
-                                bounds.Height = (int) (percent * sbdevent.Bounds.Height);
-                                bounds.Y += (sbdevent.Bounds.Height - bounds.Height) / 2;
-                                bounds.Width = (int) (percent * sbdevent.Bounds.Width);
-                                bounds.X += (sbdevent.Bounds.Width - bounds.Width) / 2;
-                                break;
-                            }
-                        }
+        //                switch (AnimationStyle)
+        //                {
+        //                    case ProgressDisplayStyle.LeftToRight:
+        //                    {
+        //                        bounds.Width = (int) (percent * sbdevent.Bounds.Width);
+        //                        break;
+        //                    }
+        //                    case ProgressDisplayStyle.RightToLeft:
+        //                    {
+        //                        bounds.Width = (int) (percent * sbdevent.Bounds.Width);
+        //                        bounds.X += sbdevent.Bounds.Width - bounds.Width;
+        //                        break;
+        //                    }
+        //                    case ProgressDisplayStyle.BottomToTop:
+        //                    {
+        //                        bounds.Height = (int) (percent * sbdevent.Bounds.Height);
+        //                        bounds.Y += sbdevent.Bounds.Height - bounds.Height;
+        //                        break;
+        //                    }
+        //                    case ProgressDisplayStyle.TopToBottom:
+        //                    {
+        //                        bounds.Height = (int) (percent * sbdevent.Bounds.Height);
+        //                        break;
+        //                    }
+        //                    case ProgressDisplayStyle.Infinite:
+        //                    {
+        //                        bounds.Height = (int) (percent * sbdevent.Bounds.Height);
+        //                        bounds.Y += (sbdevent.Bounds.Height - bounds.Height) / 2;
+        //                        bounds.Width = (int) (percent * sbdevent.Bounds.Width);
+        //                        bounds.X += (sbdevent.Bounds.Width - bounds.Width) / 2;
+        //                        break;
+        //                    }
+        //                }
 
-                        // draw the progress bar
-                        sbdevent.Graphics.FillRectangle(ProgressDrawStyle, bounds);
+        //                // draw the progress bar
+        //                sbdevent.Graphics.FillRectangle(ProgressDrawStyle, bounds);
 
-                        if (ShowText)
-                        {
-                            var sf = new StringFormat();
-                            sf.LineAlignment = StringAlignment.Center;
-                            sf.Alignment = StringAlignment.Center;
+        //                if (ShowText)
+        //                {
+        //                    var sf = new StringFormat();
+        //                    sf.LineAlignment = StringAlignment.Center;
+        //                    sf.Alignment = StringAlignment.Center;
 
-                            // draw the text on top of the progress bar
-                            sbdevent.Graphics.DrawString(Convert.ToInt32(percent * 100) + "%", TextFont, TextDrawStyle,
-                                sbdevent.Bounds, sf);
-                        }
-                    }
-            }
-        }
+        //                    // draw the text on top of the progress bar
+        //                    sbdevent.Graphics.DrawString(Convert.ToInt32(percent * 100) + "%", TextFont, TextDrawStyle,
+        //                        sbdevent.Bounds, sf);
+        //                }
+        //            }
+        //    }
+        //}
 
         #endregion
 
@@ -240,60 +239,70 @@ namespace FSFormControls
         ///     The method used when drawing the progress bar
         /// </summary>
         [Category("Animation")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ProgressDisplayStyle AnimationStyle { get; set; }
 
         /// <summary>
         ///     Timespan between infinate progress animation changes
         /// </summary>
         [Category("Animation")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TimeSpan AnimationTick { get; set; }
 
         /// <summary>
         ///     Ammount to move on each progress step
         /// </summary>
         [Category("Measurement")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public long StepSize { get; set; }
 
         /// <summary>
         ///     Start point of progress
         /// </summary>
         [Category("Measurement")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public long StartPoint { get; set; }
 
         /// <summary>
         ///     Point of progress completion
         /// </summary>
         [Category("Measurement")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public long EndPoint { get; set; }
 
         /// <summary>
         ///     Current Position of the Progress Indicator
         /// </summary>
         [Category("Measurement")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public long ProgressPosition { get; set; }
 
         /// <summary>
         ///     Brush style of the progress indicator
         /// </summary>
         [Category("Style")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Brush ProgressDrawStyle { get; set; }
 
         /// <summary>
         ///     Brush style of the Text when it is drawn
         /// </summary>
         [Category("Style")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Brush TextDrawStyle { get; set; }
 
         /// <summary>
         ///     Font style of the Text when it is drawn
         /// </summary>
         [Category("Style")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font TextFont { get; set; }
 
         /// <summary>
         ///     Optionally Display Text value of the Indicator
         /// </summary>
         [Category("Style")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowText { get; set; }
 
         /// <summary>
@@ -325,7 +334,7 @@ namespace FSFormControls
         /// </summary>
         public void StopAnimation()
         {
-            if (_animationThread.IsAlive) _animationThread.Abort();
+            if (_animationThread.IsAlive) _animationThread.Interrupt();
         }
 
         /// <summary>
@@ -340,6 +349,7 @@ namespace FSFormControls
             }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Key { get; set; }
 
         public enum SizingModeEnum
@@ -348,11 +358,14 @@ namespace FSFormControls
             Spring
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public SizingModeEnum SizingMode { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ProgressBar ProgressBarInfo { get; set; }
 
-        public bool Visible { get; set; }
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public new bool Visible { get; set; }
 
         private void InitializeAnimationThread()
         {

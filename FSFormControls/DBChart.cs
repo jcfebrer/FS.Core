@@ -11,7 +11,6 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using FSLibrary;
 using FSException;
-using System.Collections.Generic;
 
 #endregion
 
@@ -63,25 +62,30 @@ namespace FSFormControls
         public long Yscale_Max = 10;
         public int Yscale_units = 1;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public plotTypeEnum PlotType { get; set; } = plotTypeEnum.Chart;
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Color { get; set; } = Color.Blue;
 
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DataValueCollection Values { get; set; }
 
-
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DisplayUnits { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DisplayBarValue { get; set; }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowChartLegends
         {
             get { return m_ShowChartLegends; }
             set { m_ShowChartLegends = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataTable DataTable
         {
             get { return _dataTable; }
@@ -705,16 +709,16 @@ namespace FSFormControls
 
         private readonly IContainer components = null;
 
-        internal ContextMenu ContextMenu1;
-        internal MenuItem MenuItem2;
+        internal ContextMenuStrip ContextMenu1;
+        internal ToolStripMenuItem MenuItem2;
         internal SaveFileDialog SaveFileDialog1;
         internal Label lblDesc;
-        internal MenuItem mnuModeBar;
-        internal MenuItem mnuModeChart;
-        internal MenuItem mnuModeCurve;
-        internal MenuItem mnuModeLine;
-        internal MenuItem mnuModePoint;
-        internal MenuItem mnuSave;
+        internal ToolStripMenuItem mnuModeBar;
+        internal ToolStripMenuItem mnuModeChart;
+        internal ToolStripMenuItem mnuModeCurve;
+        internal ToolStripMenuItem mnuModeLine;
+        internal ToolStripMenuItem mnuModePoint;
+        internal ToolStripMenuItem mnuSave;
         internal PictureBox pictureMain;
 
         public DBChart()
@@ -748,14 +752,14 @@ namespace FSFormControls
         {
             lblDesc = new Label();
             pictureMain = new PictureBox();
-            ContextMenu1 = new ContextMenu();
-            mnuSave = new MenuItem();
-            MenuItem2 = new MenuItem();
-            mnuModePoint = new MenuItem();
-            mnuModeLine = new MenuItem();
-            mnuModeCurve = new MenuItem();
-            mnuModeBar = new MenuItem();
-            mnuModeChart = new MenuItem();
+            ContextMenu1 = new ContextMenuStrip();
+            mnuSave = new ToolStripMenuItem();
+            MenuItem2 = new ToolStripMenuItem();
+            mnuModePoint = new ToolStripMenuItem();
+            mnuModeLine = new ToolStripMenuItem();
+            mnuModeCurve = new ToolStripMenuItem();
+            mnuModeBar = new ToolStripMenuItem();
+            mnuModeChart = new ToolStripMenuItem();
             SaveFileDialog1 = new SaveFileDialog();
             ((ISupportInitialize) pictureMain).BeginInit();
             SuspendLayout();
@@ -771,7 +775,7 @@ namespace FSFormControls
             // 
             // pictureMain
             // 
-            pictureMain.ContextMenu = ContextMenu1;
+            pictureMain.ContextMenuStrip = ContextMenu1;
             pictureMain.Location = new Point(8, 8);
             pictureMain.Name = "pictureMain";
             pictureMain.Size = new Size(100, 50);
@@ -781,7 +785,7 @@ namespace FSFormControls
             // 
             // ContextMenu1
             // 
-            ContextMenu1.MenuItems.AddRange(new[]
+            ContextMenu1.Items.AddRange(new[]
             {
                 mnuSave,
                 MenuItem2
@@ -789,13 +793,13 @@ namespace FSFormControls
             // 
             // mnuSave
             // 
-            mnuSave.Index = 0;
+            //mnuSave.ImageIndex = 0;
             mnuSave.Text = "Guardar Imagen";
             // 
             // MenuItem2
             // 
-            MenuItem2.Index = 1;
-            MenuItem2.MenuItems.AddRange(new[]
+            //MenuItem2.ImageIndex = 1;
+            MenuItem2.DropDownItems.AddRange(new[]
             {
                 mnuModePoint,
                 mnuModeLine,
@@ -807,33 +811,32 @@ namespace FSFormControls
             // 
             // mnuModePoint
             // 
+            //mnuModePoint.ImageIndex = 0;
             mnuModePoint.Checked = true;
-            mnuModePoint.Index = 0;
-            mnuModePoint.RadioCheck = true;
             mnuModePoint.Text = "Punto";
             // 
             // mnuModeLine
             // 
-            mnuModeLine.Index = 1;
-            mnuModeLine.RadioCheck = true;
+            //mnuModeLine.ImageIndex = 1;
+            mnuModeLine.Checked = true;
             mnuModeLine.Text = "Linea";
             // 
             // mnuModeCurve
             // 
-            mnuModeCurve.Index = 2;
-            mnuModeCurve.RadioCheck = true;
+            //mnuModeCurve.ImageIndex = 2;
+            mnuModeCurve.Checked = true;
             mnuModeCurve.Text = "Curva";
             // 
             // mnuModeBar
             // 
-            mnuModeBar.Index = 3;
-            mnuModeBar.RadioCheck = true;
+            //mnuModeBar.ImageIndex = 3;
+            mnuModeBar.Checked = true;
             mnuModeBar.Text = "Barra";
             // 
             // mnuModeChart
             // 
-            mnuModeChart.Index = 4;
-            mnuModeChart.RadioCheck = true;
+            //mnuModeChart.ImageIndex = 4;
+            mnuModeChart.Checked = true;
             mnuModeChart.Text = "Tarta";
             // 
             // DBChart
@@ -891,42 +894,49 @@ namespace FSFormControls
             m_Legend = legend;
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Value
         {
             get { return m_Value; }
             set { m_Value = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Color
         {
             get { return m_Color; }
             set { m_Color = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Legend
         {
             get { return m_Legend; }
             set { m_Legend = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool MovePie
         {
             get { return m_MovePie; }
             set { m_MovePie = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public float Percent
         {
             get { return m_Percent; }
             set { m_Percent = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public float Span
         {
             get { return m_Span; }
             set { m_Span = value; }
         }
 
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public float StartAngle
         {
             get { return m_StartAngle; }

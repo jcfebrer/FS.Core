@@ -191,6 +191,7 @@ namespace FSFormControls
         [RefreshProperties(RefreshProperties.Repaint)]
         [Category("Values")]
         [Description("Set the properties for border")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public BorderProperties BorderOptions { get; set; } = new BorderProperties(2, Color.Black, false,
             DashStyle.Solid,
             Border3DStyle.Flat, Color.Empty, Color.Empty,
@@ -200,6 +201,7 @@ namespace FSFormControls
         [RefreshProperties(RefreshProperties.Repaint)]
         [Category("Values")]
         [Description("Set the properties for text")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TextProperties TextOptions { get; set; } = new TextProperties("", new Font("Arial", 8), Color.Black,
             ContentAlignment.TopCenter);
 
@@ -207,6 +209,7 @@ namespace FSFormControls
         [RefreshProperties(RefreshProperties.Repaint)]
         [Category("Values")]
         [Description("Set the properties for gradiant")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public GradiantProperties GradiantOptions { get; set; } = new GradiantProperties(Color.Empty, Color.Empty,
             LinearGradientMode.Horizontal);
 
@@ -214,6 +217,7 @@ namespace FSFormControls
         [Category("Values")]
         [RefreshProperties(RefreshProperties.Repaint)]
         [Description("Set the properties for background texture")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Bitmap BackgroundTexture
         {
             get { return m_BackgroundTexture; }
@@ -228,6 +232,7 @@ namespace FSFormControls
         [Category("Values")]
         [RefreshProperties(RefreshProperties.Repaint)]
         [Description("Set the properties for shadow")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ShadowProperties ShadowOptions { get; set; } = new ShadowProperties(Color.DarkGray,
             Shadowpositions.BottomRight,
             6);
@@ -236,6 +241,7 @@ namespace FSFormControls
         [RefreshProperties(RefreshProperties.Repaint)]
         [Category("Values")]
         [Description("Set the properties for hatch desing")]
+        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public HatchProperties HatchOptions { get; set; } = new HatchProperties(Color.Empty, Color.Transparent,
             HatchStyle.BackwardDiagonal);
 
@@ -598,9 +604,9 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -665,9 +671,9 @@ namespace FSFormControls
 
                 g.DrawString(TextOptions.Text, TextOptions.TextFont, _TextBrush, StartPosition, Topposition);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
@@ -699,9 +705,9 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -739,9 +745,9 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -782,9 +788,9 @@ namespace FSFormControls
                             break;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
                 finally
                 {
@@ -823,9 +829,9 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -854,9 +860,9 @@ namespace FSFormControls
                             break;
                     }
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    throw ex;
+                    throw;
                 }
         }
 
@@ -889,9 +895,9 @@ namespace FSFormControls
                         break;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
             finally
             {
@@ -918,9 +924,9 @@ namespace FSFormControls
                 Tri_Points[2] = new Point(_Width + Rect.X, _Height + Rect.Y);
                 return Tri_Points;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                throw;
             }
         }
 
