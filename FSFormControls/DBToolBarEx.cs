@@ -50,7 +50,6 @@ namespace FSFormControls
         internal ToolStripButton ToolBarButton84;
         private ToolStripButton toolBarButton87;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Value
         {
             get { return HScroll1.Value; }
@@ -80,28 +79,24 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
             set { m_DataControl = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool VisibleScroll
         {
             get { return HScroll1.Visible; }
             set { HScroll1.Visible = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool VisibleTotalRecord
         {
             get { return lblReg.Visible; }
             set { lblReg.Visible = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowNavigateButton
         {
             get { return m_ShowNavigateButton; }
@@ -112,7 +107,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowSearchButton
         {
             get { return m_ShowSearchButton; }
@@ -123,7 +117,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowCloseButton
         {
             get { return m_ShowCloseButton; }
@@ -134,7 +127,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowCancelButton
         {
             get { return m_ShowCancelButton; }
@@ -145,7 +137,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowSaveButton
         {
             get { return m_ShowSaveButton; }
@@ -156,7 +147,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowScrollBar
         {
             get { return m_ShowScrollBar; }
@@ -167,7 +157,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowText
         {
             get { return m_ShowText; }
@@ -178,7 +167,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowAddNewButton
         {
             get { return m_ShowAddNewButton; }
@@ -189,7 +177,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowPrintButton
         {
             get { return m_ShowPrintButton; }
@@ -200,7 +187,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowFilterButton
         {
             get { return m_ShowFilterButton; }
@@ -211,7 +197,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowRecordButton
         {
             get { return m_ShowRecordButton; }
@@ -222,7 +207,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowEditButton
         {
             get { return m_ShowEditButton; }
@@ -233,7 +217,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowDeleteButton
         {
             get { return m_ShowDeleteButton; }
@@ -244,7 +227,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowListButton
         {
             get { return m_ShowListButton; }
@@ -255,7 +237,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowNavigate
         {
             get { return m_AllowNavigate; }
@@ -266,7 +247,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowSearch
         {
             get { return m_AllowSearch; }
@@ -277,7 +257,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowCancel
         {
             get { return m_AllowCancel; }
@@ -288,7 +267,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowSave
         {
             get { return m_AllowSave; }
@@ -299,7 +277,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowAddNew
         {
             get { return m_AllowAddNew; }
@@ -310,7 +287,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowPrint
         {
             get { return m_AllowPrint; }
@@ -321,7 +297,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowFilter
         {
             get { return m_AllowFilter; }
@@ -332,7 +307,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowRecord
         {
             get { return m_AllowRecord; }
@@ -343,7 +317,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowEdit
         {
             get { return m_AllowEdit; }
@@ -354,7 +327,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowDelete
         {
             get { return m_AllowDelete; }
@@ -365,7 +337,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowList
         {
             get { return m_AllowList; }
@@ -376,7 +347,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowClose
         {
             get { return m_AllowClose; }

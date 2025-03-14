@@ -246,7 +246,6 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DBControl; }
@@ -266,20 +265,16 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DBColumnCollection Columns { get; set; } = new DBColumnCollection();
 
         public DataGridViewColumnCollection ColumnsGrid => datagrid.Columns;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int RowHeadersWidth
         {
             get { return datagrid.RowHeadersWidth; }
@@ -290,22 +285,18 @@ namespace FSFormControls
 
         public int CurrentRowIndex => datagrid.CurrentRow.Index;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoSave { get; set; } = true;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool MultiSelect
         {
             get { return datagrid.MultiSelect; }
             set { datagrid.MultiSelect = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowExpand { get; set; }
 
         public DataGridViewRowCollection Rows => datagrid.Rows;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color AlternatingColor
         {
             get { return m_alternatingColor; }
@@ -321,7 +312,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string CaptionText
         {
             get { return m_captionText; }
@@ -332,24 +322,18 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowRecordScrollBar { get; set; } = true;
 
         //[Description("DataBindings.")] public new ControlBindingsCollection DataBindings => datagrid.DataBindings;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowAddNew { get; set; } = true;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowDelete { get; set; } = true;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Editable { get; set; } = true;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int DefaultDecimals { get; set; } = 2;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int RowsInCaption
         {
             get { return m_RowsInCaption; }
@@ -360,10 +344,8 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBColumn.OperationTypes TotalOperation { get; set; } = DBColumn.OperationTypes.Sum;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font DefaultHeaderFont
         {
             get
@@ -376,41 +358,34 @@ namespace FSFormControls
             set { m_DefaultHeaderFont = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool RecordMode { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoSizeColumns { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewSelectionMode SelectionMode
         {
             get { return datagrid.SelectionMode; }
             set { datagrid.SelectionMode = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewCellStyle ColumnHeadersDefaultCellStyle
         {
             get { return datagrid.ColumnHeadersDefaultCellStyle; }
             set { datagrid.ColumnHeadersDefaultCellStyle = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewCellStyle DefaultCellStyle
         {
             get { return datagrid.DefaultCellStyle; }
             set { datagrid.DefaultCellStyle = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnableHeadersVisualStyles
         {
             get { return datagrid.EnableHeadersVisualStyles; }
             set { datagrid.EnableHeadersVisualStyles = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoGenerateColumns
         {
             get { return datagrid.AutoGenerateColumns; }
@@ -437,7 +412,6 @@ namespace FSFormControls
             datagrid.Sort(comparer);
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewRow ActiveRow
         {
             get
@@ -453,7 +427,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBGridViewDisplayLayout DisplayLayout { get; set; } = new DBGridViewDisplayLayout();
 
         //private DBGridViewBandCollection m_Bands = new DBGridViewBandCollection();
@@ -480,10 +453,8 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBColumnCollection SortedColumns { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowTotals
         {
             get { return m_ShowTotals; }
@@ -496,7 +467,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object DataSource
         {
             get { return datagrid.DataSource; }
@@ -512,7 +482,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get
@@ -571,26 +540,22 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewCell ActiveCell
         {
             get { return datagrid.CurrentCell; }
             set { datagrid.CurrentCell = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly { 
             get { return datagrid.ReadOnly; } 
             set { datagrid.ReadOnly = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowUserToAddRows {
             get { return datagrid.AllowUserToAddRows; }
             set { datagrid.AllowUserToAddRows = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int FirstDisplayedScrollingRowIndex 
         { 
             get { return datagrid.FirstDisplayedScrollingRowIndex; }
@@ -600,14 +565,12 @@ namespace FSFormControls
             } 
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewRow RowTemplate 
         { 
             get { return datagrid.RowTemplate; } 
             set { datagrid.RowTemplate = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewColumnHeadersHeightSizeMode ColumnHeadersHeightSizeMode {
             get { return datagrid.ColumnHeadersHeightSizeMode; } 
             set { datagrid.ColumnHeadersHeightSizeMode = value; } 
@@ -618,14 +581,12 @@ namespace FSFormControls
             get { return datagrid.SelectedRows; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataGridViewAutoSizeRowsMode AutoSizeRowsMode 
         { 
             get { return datagrid.AutoSizeRowsMode; }
             set { datagrid.AutoSizeRowsMode = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBSummarieCollection Summaries {
             get { return m_Summaries; }
             set { m_Summaries = value; }

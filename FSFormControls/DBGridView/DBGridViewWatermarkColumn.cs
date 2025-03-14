@@ -12,7 +12,6 @@ namespace FSFormControls
             CellTemplate = new DataGridViewWatermarkCell();
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string WatermarkText
         {
             get

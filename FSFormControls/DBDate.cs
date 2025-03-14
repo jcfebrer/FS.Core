@@ -33,7 +33,6 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return FSLibrary.DateTimeUtil.ShortDate(DateTimePicker1.Value); }
@@ -50,7 +49,6 @@ namespace FSFormControls
         /// Asignamos el parent del dbcontrol cuando se user dl dbcontrol sin asignar a un formulario.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -59,28 +57,24 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTime Date
         {
             get { return DateTimePicker1.Value; }
             set { DateTimePicker1.Value = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTime DateTime
         {
             get { return DateTimePicker1.Value; }
             set { DateTimePicker1.Value = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override Color ForeColor
         {
             get { return DateTimePicker1.ForeColor; }
@@ -88,7 +82,6 @@ namespace FSFormControls
             set { DateTimePicker1.ForeColor = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTime? Value
         {
             get { return DateTimePicker1.Value; }
@@ -107,43 +100,34 @@ namespace FSFormControls
         }
 
         [Description("Modo lectura")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly
         {
             get { return Mode == Global.AccessMode.ReadMode; }
             set { Mode = value ? Global.AccessMode.ReadMode : Global.AccessMode.WriteMode; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public char PromptChar { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBAppearance Appearance { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string MaskInput { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowNullValue { get; set; } = true;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTime MinDate
         {
             get { return DateTimePicker1.MinDate; }
             set { DateTimePicker1.MinDate = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTime MaxDate
         {
             get { return DateTimePicker1.MaxDate; }
             set { DateTimePicker1.MaxDate = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string FormatString { get; set; } = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool IsNull
         {
             get { return m_IsNull; }
@@ -158,7 +142,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string CustomFormat
         {
             get { return m_CustomFormat; }
@@ -169,7 +152,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTimePickerFormat Format
         {
             get { return m_Format; }
@@ -181,7 +163,6 @@ namespace FSFormControls
         }
 
         [Description("Indicamos si el control es editable o no.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Editable
         {
             get { return m_Editable; }
@@ -192,7 +173,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Obligatory
         {
             get { return m_Obligatory; }
@@ -206,7 +186,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override Color BackColor
         {
             get { return m_BackColor; }
@@ -217,7 +196,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -241,10 +219,8 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectionStart { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectionLength { get; set; }
 
         public void BeginInit()

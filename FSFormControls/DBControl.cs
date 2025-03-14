@@ -84,7 +84,6 @@ namespace FSFormControls
 
         private static string[] m_tables;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public static string[] Tables
         {
             get
@@ -108,7 +107,6 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -142,10 +140,8 @@ namespace FSFormControls
         public string RelationSQL = "";
         public string SQL = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DbType TypeDB { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string XmlFile
         {
             get { return m_xmlFile; }
@@ -156,64 +152,47 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SaveError { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SaveOnChangeRecord { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool StoreInBase64Format { get; set; } = false;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Versionable { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VersionableTable { get; set; } = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VersionableVersionField { get; set; } = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VersionableUserField { get; set; } = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string VersionableDateField { get; set; } = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBColumnCollection ColumnMapping { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PageSettings PageSettings { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBParamCollection Parameters { get; set; }
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return Label1.Text; }
             set { Label1.Text = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoConnect { get; set; } = true;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ArrayList ArrayList { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl EraseDBControl { get; set; }
 
         [Description(
             "Nombre XML del control. Esta propiedad se utiliza para la generación de código XML a partir de un formulario."
         )]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string XMLName
         {
             get
@@ -223,7 +202,6 @@ namespace FSFormControls
             set { m_XMLName = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get
@@ -268,7 +246,6 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool isEOF
         {
             get
@@ -290,7 +267,6 @@ namespace FSFormControls
             set { m_isEOF = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Selection
         {
             get { return m_Selection; }
@@ -301,7 +277,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string LastSelection
         {
             get { return m_LastSelection; }
@@ -313,7 +288,6 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int DBPosition
         {
             get { return m_DBPosition; }
@@ -326,41 +300,31 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataTable DataTable { get; set; }
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataView DataView { get; set; }
 
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataSet DataSet { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string RelationDBField { get; set; } = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string RelationParentDBField { get; set; } = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl RelationDataControl { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBFieldData { get; set; } = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Paging { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int PagingSize { get; set; }
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Page
         {
             get { return m_Page; }
@@ -371,7 +335,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Filter
         {
             get { return m_Filter; }
@@ -390,10 +353,8 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBLopd LOPD { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBLock LOCK { get; set; }
 
 
@@ -2888,14 +2849,12 @@ namespace FSFormControls
                 m_Caption = caption;
             }
 
-            //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public string FieldDB
             {
                 get { return m_FieldDB; }
                 set { m_FieldDB = value; }
             }
 
-            //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
             public string Caption
             {
                 get { return m_Caption; }

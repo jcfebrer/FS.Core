@@ -234,7 +234,6 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -242,14 +241,12 @@ namespace FSFormControls
         }
 
         [Description("Campo de la base de datos a enlazar.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool GridMode { get; set; } = false;
 
         //public bool FlatMode
@@ -262,7 +259,6 @@ namespace FSFormControls
         //    }
         //}
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBFieldData
         {
             get
@@ -276,7 +272,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public AutoCompleteMode AutoCompleteMode
         {
             get { return combobox.AutoCompleteMode; }
@@ -288,7 +283,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Obligatory
         {
             get { return m_Obligatory; }
@@ -300,14 +294,12 @@ namespace FSFormControls
         }
 
         [Description("Modo lectura")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ReadOnly
         {
             get { return m_Mode == Global.AccessMode.ReadMode; }
             set { Mode = value ? Global.AccessMode.ReadMode : Global.AccessMode.WriteMode; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ComboBoxStyle DropDownStyle
         {
             get { return m_DropDownStyle; }
@@ -318,10 +310,8 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBAppearance Appearance { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool IsInEditMode
         {
             get { return m_Mode == Global.AccessMode.WriteMode; }
@@ -355,7 +345,6 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ValueMember
         {
             get { return combobox.ValueMember; }
@@ -369,7 +358,6 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DisplayMember
         {
             get { return combobox.DisplayMember; }
@@ -381,7 +369,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ImageList ImageList
         {
             get { return m_ImageList; }
@@ -392,17 +379,14 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override Color BackColor
         {
             get { return combobox.BackColor; }
             set { combobox.BackColor = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Sort { get; set; } = true;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBFieldList
         {
             get { return m_DBFieldList; }
@@ -413,10 +397,8 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public SortStyleEnum SortStyle { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get
@@ -449,7 +431,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBComboValues Items
         {
             get
@@ -470,7 +451,6 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object SelectedOption
         {
             get { return m_SelectedOption; }
@@ -483,17 +463,14 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectedIndex
         {
             get { return combobox.SelectedIndex; }
             set { combobox.SelectedIndex = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool BlankSelection { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DroppedDown
         {
             get { return combobox.DroppedDown; }
@@ -502,13 +479,11 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object Selected
         {
             set { combobox.SelectedIndex = combobox.FindStringExact(Convert.ToString(value)); }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControlList
         {
             get
@@ -528,7 +503,6 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public override string Text
         {
             get { return combobox.Text; }
@@ -537,7 +511,6 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object Value
         {
             get { return combobox.SelectedValue; }
@@ -552,13 +525,10 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowCode { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string OrderBy { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Editable
         {
             get { return m_Editable; }
@@ -580,16 +550,13 @@ namespace FSFormControls
             }
         }
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DBButtonCollection ButtonsRight { get; set; } = new DBButtonCollection();
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DBButtonCollection ButtonsLeft { get; set; } = new DBButtonCollection();
 
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object SelectedValue
         {
             get { return combobox.SelectedValue; }
@@ -598,7 +565,6 @@ namespace FSFormControls
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object SelectedItem
         {
             get { return combobox.SelectedItem; }
@@ -608,7 +574,6 @@ namespace FSFormControls
 
         public new ControlBindingsCollection DataBindings => combobox.DataBindings;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowEdit
         {
             get { return m_ShowEdit; }
@@ -619,14 +584,12 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object DataSource
         {
             get { return combobox.DataSource; }
             set { combobox.DataSource = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override Color ForeColor
         {
             get { return combobox.ForeColor; }
@@ -634,13 +597,11 @@ namespace FSFormControls
             set { combobox.ForeColor = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectionStart {
             get { return combobox.SelectionStart; }
             set { combobox.SelectionStart = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int SelectionLength {
             get { return combobox.SelectionLength; }
             set { combobox.SelectionLength = value; }

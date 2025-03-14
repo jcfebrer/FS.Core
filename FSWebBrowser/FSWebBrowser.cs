@@ -73,42 +73,36 @@ namespace FSWebBrowser
             WebBrowser1.StatusTextChanged += WebBrowser1_StatusTextChanged;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowWebBrowserDrop
         {
             get { return WebBrowser1.AllowWebBrowserDrop; }
             set { WebBrowser1.AllowWebBrowserDrop = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowNavigation
         {
             get { return WebBrowser1.AllowNavigation; }
             set { WebBrowser1.AllowNavigation = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ScriptErrorsSuppressed
         {
             get { return WebBrowser1.ScriptErrorsSuppressed; }
             set { WebBrowser1.ScriptErrorsSuppressed = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool WebBrowserShortcutsEnabled
         {
             get { return WebBrowser1.WebBrowserShortcutsEnabled; }
             set { WebBrowser1.WebBrowserShortcutsEnabled = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool IsWebBrowserContextMenuEnabled
         {
             get { return WebBrowser1.IsWebBrowserContextMenuEnabled; }
             set { WebBrowser1.IsWebBrowserContextMenuEnabled = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DocumentText
         {
             get { return WebBrowser1.DocumentText; }
@@ -130,14 +124,12 @@ namespace FSWebBrowser
             get { return WebBrowser1.CanGoForward; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Uri Url
         {
             get { return WebBrowser1.Url; }
             set { WebBrowser1.Url = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public List<string> BlackList { get; set; }
 
         public string StatusText
@@ -145,34 +137,24 @@ namespace FSWebBrowser
             get { return WebBrowser1.StatusText; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowNewWindow { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool NudeDetect { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowImageExternalLinks { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowFileDownload { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowIFrames { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool CheckBadWords { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string[] BadWords { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool RemoveFlashBanner { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool RemoveContextMenu { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool CheckIsChildValidPage { get; set; }
 
         public HtmlDocument Document

@@ -155,7 +155,6 @@ namespace FSFormControls
         /// <summary>
         ///     Por defecto, si existe más de una pestaña, devolvemos la primera en caso de que SelectedTab sea null.
         /// </summary>
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new TabPage SelectedTab
         {
             get
@@ -212,10 +211,8 @@ namespace FSFormControls
             get { return base.TabPages; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTabControlStyle Style { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTabControl SharedControlsPage { get; set; }
 
         protected override void OnSelectedIndexChanged(EventArgs e)

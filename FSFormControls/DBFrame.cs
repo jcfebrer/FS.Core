@@ -52,7 +52,6 @@ namespace FSFormControls
         public int m_xPos = 10;
         public int m_yPos = 10;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color TextColor
         {
             get { return m_TextColor; }
@@ -63,7 +62,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int TextXPos
         {
             get { return m_xPos; }
@@ -74,7 +72,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int TextYPos
         {
             get { return m_yPos; }
@@ -87,7 +84,6 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return m_Text; }
@@ -98,7 +94,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Shadow
         {
             get { return m_Shadow; }
@@ -109,7 +104,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowClose
         {
             get { return m_ShowClose; }
@@ -120,7 +114,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public FrameType Type
         {
             get { return m_FrameType; }
@@ -131,7 +124,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int BorderDiameter
         {
             get { return m_borderDiameter; }
@@ -142,7 +134,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int BorderSize
         {
             get { return m_borderSize; }
@@ -153,7 +144,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color BorderColor
         {
             get { return m_borderColor; }
@@ -164,7 +154,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int ShadowSize
         {
             get { return m_shadowSize; }
@@ -175,7 +164,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color FrameColor
         {
             get { return m_backColor; }
@@ -186,7 +174,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color ShadowColor
         {
             get { return m_ShadowColor; }

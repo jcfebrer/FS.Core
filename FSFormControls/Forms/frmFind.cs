@@ -20,7 +20,6 @@ namespace FSFormControls
             cmdFind.Click += cmdFind_Click;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBRichTextBox DBRichTextBox
         {
             get { return m_DBRichTextBox; }

@@ -17,7 +17,6 @@ namespace FSFormControls {
         }
 
         private List<KeyValuePair<string, string>> m_DescriptionList = new List<KeyValuePair<string, string>>();
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public List<KeyValuePair<string, string>> DescriptionList
         {
             get { return m_DescriptionList; }
@@ -28,7 +27,6 @@ namespace FSFormControls {
         /// Lista de secciones a utilizar
         /// </summary>
         private List<string> m_Sections = new List<string>();
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public List<string> Sections {
             get { return m_Sections; }
             set { m_Sections = value; } 

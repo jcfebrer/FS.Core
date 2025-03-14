@@ -105,36 +105,26 @@ namespace FSFormControls
             FooterLines = 2;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font Font { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Brush Brush { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SupressDefaultHeader { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool SupressDefaultFooter { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int FooterLines { get; set; }
 
         public ReportColumnCollection Columns { get; } = new ReportColumnCollection();
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Title { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string SubTitleLeft { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string SubTitleRight { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string FooterLeft { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string FooterRight { get; set; }
 
         #endregion
@@ -144,7 +134,6 @@ namespace FSFormControls
         [Category("Data")]
         [RefreshProperties(RefreshProperties.Repaint)]
         [TypeConverter("System.Windows.Forms.Design.DataSourceConverter," + "System.Design")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object DataSource
         {
             get { return mDataSource; }
@@ -159,7 +148,6 @@ namespace FSFormControls
 
         [Category("Data")]
         [Editor("System.Windows.Forms.Design.DataMemberListEditor," + "System.Design", typeof(UITypeEditor))]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DataMember
         {
             get { return mDataMember; }
@@ -202,7 +190,6 @@ namespace FSFormControls
         #region '" AutoDiscover "' 
 
         [Category("Data")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AutoDiscover
         {
             get { return mAutoDiscover; }

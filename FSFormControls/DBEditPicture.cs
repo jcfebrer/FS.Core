@@ -45,20 +45,16 @@ namespace FSFormControls
 
         private int secondX, secondY;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int PointSizeX { get; set; } = 9;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int PointSizeY { get; set; } = 9;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new BorderStyle BorderStyle
         {
             get { return PictureBox1.BorderStyle; }
             set { PictureBox1.BorderStyle = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PictureBoxSizeMode SizeMode
         {
             get { return PictureBox1.SizeMode; }
@@ -71,7 +67,6 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -81,14 +76,12 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -112,7 +105,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Image Image
         {
             get { return PictureBox1.Image; }
@@ -128,7 +120,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Data
         {
             get

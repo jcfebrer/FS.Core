@@ -14,7 +14,6 @@ namespace FSFormControls
             ToolTipText = text;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ToolTipText { get; set; }
     }
 }

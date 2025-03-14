@@ -16,7 +16,6 @@ namespace FSFormControls
         public PageCollection m_Pages = new PageCollection();
         public int pos;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PageCollection Pages
         {
             get { return m_Pages; }

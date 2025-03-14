@@ -32,7 +32,6 @@ namespace FSFormControls
         private Label label;
         private long m_yOffset = 1;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Global.AccessMode Mode
         {
             get { return m_Mode; }
@@ -46,30 +45,23 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Decimals { get; set; } = 2;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public BorderStyle BorderStyleInner { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public BorderStyle BorderStyleOuter { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBAppearance Appearance { get; set; }
 
         [Description("Indicamos la forma de representarse una fecha.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DateFormat { get; set; } = "dd/MM/yyyy";
 
         [Description("Tipo de datos a introducir en el control. Texto, Numérico, Fecha, Porcentaje, ...")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTextBox.TypeData DataType { get; set; } = DBTextBox.TypeData.All;
 
         [Description(
             "Indicamos el modo en que debe presentar la cadena. May?sculas / Min?sculas o inicial en may?scula resto min?scula."
         )]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTextBox.TypeString Capitalize { get; set; } = DBTextBox.TypeString.Normal;
 
 
@@ -78,7 +70,6 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -88,14 +79,12 @@ namespace FSFormControls
 
         private string m_DBField;
         [Description("Campo de la base de datos a enlazar.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string DBField
         {
             get { return m_DBField; }
             set { m_DBField = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override bool AutoSize
         {
             get { return label.AutoSize; }
@@ -104,14 +93,12 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return label.Text; }
             set { label.Text = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ContentAlignment TextAlign
         {
             get { return m_TextAlign; }
@@ -122,7 +109,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new BorderStyle BorderStyle
         {
             get { return label.BorderStyle; }

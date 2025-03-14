@@ -145,7 +145,6 @@ namespace FSFormControls
         private int SCF_WORD = Convert.ToInt32(0X2L);
         private int updating;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color SelectionBackColor
         {
             set
@@ -222,7 +221,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PARA_FORMAT ParaFormat
         {
             get
@@ -251,7 +249,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CHAR_FORMAT CharFormat
         {
             get
@@ -280,7 +277,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public CHAR_FORMAT DefaultCharFormat
         {
             get
@@ -309,7 +305,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PARA_FORMAT DefaultParaFormat
         {
             get

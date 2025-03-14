@@ -26,10 +26,8 @@ namespace FSFormControls
         //    get { return (DBStatusBarPanelCollection)base.Panels; }
         //}
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ViewStyleEnum ViewStyle { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool WrapText { get; set; }
 
         //public string get_Text()

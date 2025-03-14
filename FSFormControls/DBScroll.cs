@@ -17,7 +17,6 @@ namespace FSFormControls
     [ToolboxItem(true)]
     public class DBScroll : DBUserControl
     {
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Value
         {
             get { return HScroll1.Value; }
@@ -46,7 +45,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Max
         {
             get
@@ -58,7 +56,6 @@ namespace FSFormControls
             set { HScroll1.Maximum = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Min
         {
             get
@@ -90,7 +87,6 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }

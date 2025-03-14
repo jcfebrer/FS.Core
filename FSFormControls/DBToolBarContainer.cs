@@ -10,14 +10,12 @@ namespace FSFormControls
 {
     public class DBToolBarContainer : ToolStripContainer
     {
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DockStyle DockedPosition
         {
             get { return this.Dock; }
             set { this.Dock = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBToolBarManager ToolbarsManager { get; set; }
     }
 }

@@ -355,7 +355,6 @@ namespace FSFormControls
 
         #region '"Public Properties"' 
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBPlannerGroupCollection Group { get; set; } = new DBPlannerGroupCollection();
 
         [Bindable(true)]
@@ -393,10 +392,8 @@ namespace FSFormControls
         [DefaultValue("#dcdcdc")]
         public string ToggleColor { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTime InitialDate { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DateTime EndDate { get; set; }
 
         #endregion

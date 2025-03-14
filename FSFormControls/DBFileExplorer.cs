@@ -48,14 +48,12 @@ namespace FSFormControls
         {
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DriveInfo SelectedDrive
         {
             get { return (DriveInfo)cmbDrives.SelectedItem; }
             set { cmbDrives.SelectedItem = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TreeNode SelectedNode
         {
             get { return dbTreeView1.SelectedNode; }

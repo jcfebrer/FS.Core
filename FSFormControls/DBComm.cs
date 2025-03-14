@@ -110,16 +110,12 @@ namespace FSFormControls
         private OVERLAPPED muOverlapped;
         private OVERLAPPED muOverlappedW;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int BaudRate { get; set; } = 9600;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int BufferSize { get; set; } = 512;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int DataBit { get; set; } = 8;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Dtr
         {
             set
@@ -161,13 +157,10 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataParity Parity { get; set; } = 0;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Port { get; set; } = 1;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Rts
         {
             set
@@ -182,10 +175,8 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataStopBit StopBit { get; set; } = 0;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public virtual int Timeout
         {
             get { return miTimeout; }
@@ -196,7 +187,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Mode WorkingMode { get; set; }
 
         public event DataReceivedEventHandler DataReceived;

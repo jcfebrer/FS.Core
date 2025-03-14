@@ -125,7 +125,6 @@ namespace FSFormControls
         #endregion
 
         #region hidden , overridden inherited properties
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Boolean AllowDrop
         {
             get
@@ -138,7 +137,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Boolean AutoSize
         {
             get
@@ -151,7 +149,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Boolean ForeColor
         {
             get
@@ -163,7 +160,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Boolean ImeMode
         {
             get
@@ -176,7 +172,6 @@ namespace FSFormControls
         }
 
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override System.Drawing.Color BackColor
         {
             get
@@ -191,7 +186,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override System.Drawing.Font Font
         {
             get
@@ -206,7 +200,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override System.Windows.Forms.ImageLayout BackgroundImageLayout
         {
             get
@@ -233,7 +226,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The value.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Single Value
         {
             get
@@ -279,7 +271,6 @@ namespace FSFormControls
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.RefreshProperties(RefreshProperties.All),
         System.ComponentModel.Description("The caption index. set this to a value of 0 up to 4 to change the corresponding caption's properties.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Byte Cap_Idx
         {
             get
@@ -319,7 +310,6 @@ namespace FSFormControls
         }
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color[] CapColors
         {
             get
@@ -335,7 +325,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The text of the caption.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public String CapText
         {
             get
@@ -355,7 +344,6 @@ namespace FSFormControls
         }
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public String[] CapsText
         {
             get
@@ -374,7 +362,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The position of the caption.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Point CapPosition
         {
             get
@@ -394,7 +381,6 @@ namespace FSFormControls
         }
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Point[] CapsPosition
         {
             get
@@ -410,7 +396,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The center of the gauge (in the control's client area).")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Point Center
         {
             get
@@ -431,7 +416,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The minimum value to show on the scale.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Single MinValue
         {
             get
@@ -453,7 +437,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The maximum value to show on the scale.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Single MaxValue
         {
             get
@@ -475,7 +458,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The color of the base arc.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color BaseArcColor
         {
             get
@@ -496,7 +478,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The radius of the base arc.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 BaseArcRadius
         {
             get
@@ -517,7 +498,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The start angle of the base arc.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 BaseArcStart
         {
             get
@@ -538,7 +518,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The sweep angle of the base arc.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 BaseArcSweep
         {
             get
@@ -559,7 +538,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The width of the base arc.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 BaseArcWidth
         {
             get
@@ -580,7 +558,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The color of the inter scale lines which are the middle scale lines for an uneven number of minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color ScaleLinesInterColor
         {
             get
@@ -601,7 +578,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The inner radius of the inter scale lines which are the middle scale lines for an uneven number of minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesInterInnerRadius
         {
             get
@@ -622,7 +598,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The outer radius of the inter scale lines which are the middle scale lines for an uneven number of minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesInterOuterRadius
         {
             get
@@ -643,7 +618,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The width of the inter scale lines which are the middle scale lines for an uneven number of minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesInterWidth
         {
             get
@@ -664,7 +638,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The number of minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesMinorNumOf
         {
             get
@@ -685,7 +658,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The color of the minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color ScaleLinesMinorColor
         {
             get
@@ -706,7 +678,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The inner radius of the minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesMinorInnerRadius
         {
             get
@@ -727,7 +698,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The outer radius of the minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesMinorOuterRadius
         {
             get
@@ -748,7 +718,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The width of the minor scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesMinorWidth
         {
             get
@@ -769,7 +738,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The step value of the major scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Single ScaleLinesMajorStepValue
         {
             get
@@ -789,7 +757,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The color of the major scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color ScaleLinesMajorColor
         {
             get
@@ -810,7 +777,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The inner radius of the major scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesMajorInnerRadius
         {
             get
@@ -831,7 +797,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The outer radius of the major scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesMajorOuterRadius
         {
             get
@@ -852,7 +817,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The width of the major scale lines.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleLinesMajorWidth
         {
             get
@@ -874,7 +838,6 @@ namespace FSFormControls
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.RefreshProperties(RefreshProperties.All),
         System.ComponentModel.Description("The range index. set this to a value of 0 up to 4 to change the corresponding range's properties.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Byte Range_Idx
         {
             get
@@ -897,7 +860,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("Enables or disables the range selected by Range_Idx.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Boolean RangeEnabled
         {
             get
@@ -918,7 +880,6 @@ namespace FSFormControls
 
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Boolean[] RangesEnabled
         {
             get
@@ -934,7 +895,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The color of the range.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color RangeColor
         {
             get
@@ -954,7 +914,6 @@ namespace FSFormControls
         }
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color[] RangesColor
         {
             get
@@ -970,7 +929,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The start value of the range, must be less than RangeEndValue.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Single RangeStartValue
         {
             get
@@ -991,7 +949,6 @@ namespace FSFormControls
         }
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Single[] RangesStartValue
         {
             get
@@ -1007,7 +964,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The end value of the range. Must be greater than RangeStartValue.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Single RangeEndValue
         {
             get
@@ -1028,7 +984,6 @@ namespace FSFormControls
         }
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Single[] RangesEndValue
         {
             get
@@ -1044,7 +999,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The inner radius of the range.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 RangeInnerRadius
         {
             get
@@ -1064,7 +1018,6 @@ namespace FSFormControls
         }
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32[] RangesInnerRadius
         {
             get
@@ -1080,7 +1033,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The inner radius of the range.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 RangeOuterRadius
         {
             get
@@ -1100,7 +1052,6 @@ namespace FSFormControls
         }
 
         [System.ComponentModel.Browsable(false)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32[] RangesOuterRadius
         {
             get
@@ -1116,7 +1067,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The radius of the scale numbers.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleNumbersRadius
         {
             get
@@ -1137,7 +1087,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The color of the scale numbers.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color ScaleNumbersColor
         {
             get
@@ -1158,7 +1107,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The format of the scale numbers.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public String ScaleNumbersFormat
         {
             get
@@ -1179,7 +1127,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The number of the scale line to start writing numbers next to.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleNumbersStartScaleLine
         {
             get
@@ -1200,7 +1147,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The number of scale line steps for writing numbers.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleNumbersStepScaleLines
         {
             get
@@ -1221,7 +1167,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The angle relative to the tangent of the base arc at a scale line that is used to rotate numbers. set to 0 for no rotation or e.g. set to 90.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 ScaleNumbersRotation
         {
             get
@@ -1242,7 +1187,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The type of the needle, currently only type 0 and 1 are supported. Type 0 looks nicers but if you experience performance problems you might consider using type 1.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 NeedleType
         {
             get
@@ -1263,7 +1207,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The radius of the needle.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 NeedleRadius
         {
             get
@@ -1284,7 +1227,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The first color of the needle.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public NeedleColorEnum NeedleColor1
         {
             get
@@ -1305,7 +1247,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The second color of the needle.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color NeedleColor2
         {
             get
@@ -1326,7 +1267,6 @@ namespace FSFormControls
         [System.ComponentModel.Browsable(true),
         System.ComponentModel.Category("AGauge"),
         System.ComponentModel.Description("The width of the needle.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Int32 NeedleWidth
         {
             get

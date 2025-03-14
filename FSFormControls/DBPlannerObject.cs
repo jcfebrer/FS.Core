@@ -34,28 +34,24 @@ namespace FSFormControls
             Resize += DBPlannerObject_Resize;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool FixedSize
         {
             get { return m_FixedSize; }
             set { m_FixedSize = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBPlannerCollectionData Blocks
         {
             get { return m_Blocks; }
             set { m_Blocks = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DrawBorder
         {
             get { return m_DrawBorder; }
             set { m_DrawBorder = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new Color BackColor
         {
             get { return m_BackColor; }

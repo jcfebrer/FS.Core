@@ -30,7 +30,6 @@ namespace FSFormControls
         private bool showAddressbar = true;
         private bool showToolbar = true;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowAddressbar
         {
             get
@@ -43,7 +42,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowToolbar
         {
             get
@@ -56,7 +54,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowMyDocuments
         {
             get
@@ -70,7 +67,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowMyFavorites
         {
             get
@@ -84,7 +80,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowMyNetwork
         {
             get
@@ -98,7 +93,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Pattern { get; set; } = "*.*";
 
 
@@ -159,7 +153,6 @@ namespace FSFormControls
         Category("Appearance"),
         Description("Selected Path files")
         ]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string SelectedPath
         {
             get
@@ -181,7 +174,6 @@ namespace FSFormControls
         Category("Appearance"),
         Description("Selected files of path")
         ]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string[] SelectedPathFiles
         {
             get
@@ -199,7 +191,6 @@ namespace FSFormControls
         Category("Appearance"),
         Description("Selected path folders")
         ]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string[] SelectedPathFolders
         {
             get

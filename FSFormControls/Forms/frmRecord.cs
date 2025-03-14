@@ -52,7 +52,6 @@ namespace FSFormControls
         //    set { DbRecord1 = value; }
         //}
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new DBControl DataControl
         {
             get { return base.DataControl; }

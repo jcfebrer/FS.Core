@@ -53,14 +53,12 @@ namespace FSFormControls
 
         [Browsable(true)]
         [EditorBrowsable(EditorBrowsableState.Always)]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return button.Text; }
             set { button.Text = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color FillColorStart
         {
             get { return m_FillColorStart; }
@@ -71,14 +69,12 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Key
         {
             get { return button.Name; }
             set { button.Name = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color FillColorEnd
         {
             get { return m_FillColorEnd; }
@@ -89,7 +85,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color FillHoverColorStart
         {
             get { return m_FillHoverColorStart; }
@@ -100,7 +95,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color FillHoverColorEnd
         {
             get { return m_FillHoverColorEnd; }
@@ -111,7 +105,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color TextColorStart
         {
             get { return m_TextColorStart; }
@@ -122,7 +115,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color TextColorEnd
         {
             get { return m_TextColorEnd; }
@@ -133,31 +125,26 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font TextFont
         {
             get { return button.Font; }
             set { button.Font = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBAppearance Appearance { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ContentAlignment TextAlign
         {
             get { return button.TextAlign; }
             set { button.TextAlign = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public FlatStyle FlatStyle
         {
             get { return button.FlatStyle; }
             set { button.FlatStyle = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ButtonStyleType ButtonStyle
         {
             get { return m_ButtonStyle; }
@@ -180,10 +167,8 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ContextMenuStrip DropDownMenu { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ToolTip
         {
             get { return m_ToolTip; }
@@ -194,21 +179,18 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Image Image
         {
             get { return button.Image; }
             set { button.Image = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ContentAlignment ImageAlign
         {
             get { return button.ImageAlign; }
             set { button.ImageAlign = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public LinearGradientMode GradientMode
         {
             get { return m_GradientMode; }
@@ -219,7 +201,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Gradient
         {
             get { return m_Gradient; }
@@ -230,7 +211,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DialogResult DialogResult
         {
             get { return button.DialogResult; }

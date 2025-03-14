@@ -101,16 +101,12 @@ namespace FSFormControls
         #endregion
 
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Level { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnableReArrange { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowLoadXML { get; set; } = false;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool AllowSaveXML { get; set; } = false;
 
 
@@ -119,35 +115,30 @@ namespace FSFormControls
             get { return TreeView1.Nodes; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool HotTracking
         {
             get { return TreeView1.HotTracking; }
             set { TreeView1.HotTracking = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool HideSelection
         {
             get { return TreeView1.HideSelection; }
             set { TreeView1.HideSelection = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override ContextMenuStrip ContextMenuStrip
         {
             get { return TreeView1.ContextMenuStrip; }
             set { TreeView1.ContextMenuStrip = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowLines
         {
             get { return TreeView1.ShowLines; }
             set { TreeView1.ShowLines = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowRootLines
         {
             get { return TreeView1.ShowRootLines; }
@@ -155,7 +146,6 @@ namespace FSFormControls
         }
 
         [Description("Imagenes del DBTreeView. 0 - Carpeta cerrada, 1 - Carpeta abierta, 2 - Elemento.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ImageList ImageList
         {
             get { return TreeView1.ImageList; }
@@ -168,7 +158,6 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }
@@ -178,14 +167,12 @@ namespace FSFormControls
 
         public DBTreeViewNode SelectedDBNode => TreeView1.SelectedNode as DBTreeViewNode;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TreeNode SelectedNode
         {
             get { return TreeView1.SelectedNode; }
             set { TreeView1.SelectedNode = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TreeNode ActiveNode {
             get { return TreeView1.SelectedNode; }
             set { TreeView1.SelectedNode = value; }

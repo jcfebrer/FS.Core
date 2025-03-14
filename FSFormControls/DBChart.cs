@@ -62,30 +62,23 @@ namespace FSFormControls
         public long Yscale_Max = 10;
         public int Yscale_units = 1;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public plotTypeEnum PlotType { get; set; } = plotTypeEnum.Chart;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Color { get; set; } = Color.Blue;
 
 
-        [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
         public DataValueCollection Values { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DisplayUnits { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DisplayBarValue { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowChartLegends
         {
             get { return m_ShowChartLegends; }
             set { m_ShowChartLegends = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataTable DataTable
         {
             get { return _dataTable; }
@@ -894,49 +887,42 @@ namespace FSFormControls
             m_Legend = legend;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Value
         {
             get { return m_Value; }
             set { m_Value = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Color
         {
             get { return m_Color; }
             set { m_Color = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Legend
         {
             get { return m_Legend; }
             set { m_Legend = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool MovePie
         {
             get { return m_MovePie; }
             set { m_MovePie = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public float Percent
         {
             get { return m_Percent; }
             set { m_Percent = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public float Span
         {
             get { return m_Span; }
             set { m_Span = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public float StartAngle
         {
             get { return m_StartAngle; }

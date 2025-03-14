@@ -239,70 +239,60 @@ namespace FSFormControls
         ///     The method used when drawing the progress bar
         /// </summary>
         [Category("Animation")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ProgressDisplayStyle AnimationStyle { get; set; }
 
         /// <summary>
         ///     Timespan between infinate progress animation changes
         /// </summary>
         [Category("Animation")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public TimeSpan AnimationTick { get; set; }
 
         /// <summary>
         ///     Ammount to move on each progress step
         /// </summary>
         [Category("Measurement")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public long StepSize { get; set; }
 
         /// <summary>
         ///     Start point of progress
         /// </summary>
         [Category("Measurement")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public long StartPoint { get; set; }
 
         /// <summary>
         ///     Point of progress completion
         /// </summary>
         [Category("Measurement")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public long EndPoint { get; set; }
 
         /// <summary>
         ///     Current Position of the Progress Indicator
         /// </summary>
         [Category("Measurement")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public long ProgressPosition { get; set; }
 
         /// <summary>
         ///     Brush style of the progress indicator
         /// </summary>
         [Category("Style")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Brush ProgressDrawStyle { get; set; }
 
         /// <summary>
         ///     Brush style of the Text when it is drawn
         /// </summary>
         [Category("Style")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Brush TextDrawStyle { get; set; }
 
         /// <summary>
         ///     Font style of the Text when it is drawn
         /// </summary>
         [Category("Style")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font TextFont { get; set; }
 
         /// <summary>
         ///     Optionally Display Text value of the Indicator
         /// </summary>
         [Category("Style")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowText { get; set; }
 
         /// <summary>
@@ -349,7 +339,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Key { get; set; }
 
         public enum SizingModeEnum
@@ -358,13 +347,10 @@ namespace FSFormControls
             Spring
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public SizingModeEnum SizingMode { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ProgressBar ProgressBarInfo { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new bool Visible { get; set; }
 
         private void InitializeAnimationThread()

@@ -542,7 +542,6 @@ namespace FSFormControls
 
         private string _username;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Hostname
         {
             get
@@ -554,26 +553,20 @@ namespace FSFormControls
             set { _hostname = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Username
         {
             get { return _username == "" ? "anonymous" : _username; }
             set { _username = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Password { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool EnableSSL { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool Passive { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool KeepAlive { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string CurrentDirectory
         {
             get

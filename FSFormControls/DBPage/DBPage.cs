@@ -14,14 +14,12 @@ namespace FSFormControls
         public int m_Index;
         public string m_Text = "";
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Index
         {
             get { return m_Index; }
             set { m_Index = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public override string Text
         {
             get { return m_Text; }

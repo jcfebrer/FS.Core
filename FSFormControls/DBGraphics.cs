@@ -57,98 +57,84 @@ namespace FSFormControls
             SplitContainer1.SplitterMoved += SplitContainer1_SplitterMoved;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int Group
         {
             get { return m_Group; }
             set { m_Group = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public t_typeGraph TypeGraph
         {
             get { return m_typeGraph; }
             set { m_typeGraph = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public PiePieceCollection ValuesPie
         {
             get { return m_ValuesPie; }
             set { m_ValuesPie = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public LinePlotCollection ValuesLine
         {
             get { return m_ValuesLine; }
             set { m_ValuesLine = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public LinePlotCollection ValuesLine2
         {
             get { return m_ValuesLine2; }
             set { m_ValuesLine2 = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public LinePlotCollection ValuesLine3
         {
             get { return m_ValuesLine3; }
             set { m_ValuesLine3 = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public BarPieceCollection ValuesBar
         {
             get { return m_ValuesBar; }
             set { m_ValuesBar = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Title
         {
             get { return m_Title; }
             set { m_Title = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string KeyTitle
         {
             get { return m_KeyTitle; }
             set { m_KeyTitle = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string PieTitle
         {
             get { return m_PieTitle; }
             set { m_PieTitle = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public BarTypes AlignmentBar
         {
             get { return m_AlignmentBar; }
             set { m_AlignmentBar = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public LineTypes AlignmentLine
         {
             get { return m_AlignmentLine; }
             set { m_AlignmentLine = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color Color
         {
             get { return m_Color; }
             set { m_Color = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool GraphBorder
         {
             get { return m_GraphBorder; }

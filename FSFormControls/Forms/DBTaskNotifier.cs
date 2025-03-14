@@ -174,7 +174,6 @@ namespace FSFormControls
 
         public TaskbarStates TaskBarState => m_eWindowState;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string TitleText
         {
             get { return m_sTitle; }
@@ -185,7 +184,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ContentText
         {
             get { return m_sText; }
@@ -196,7 +194,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color NormalTitleColor
         {
             get { return m_colTitleNormal; }
@@ -207,7 +204,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color HoverTitleColor
         {
             get { return m_colTitleHover; }
@@ -218,7 +214,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color NormalContentColor
         {
             get { return m_colTextNormal; }
@@ -229,7 +224,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color HoverContentColor
         {
             get { return m_colTextHover; }
@@ -240,7 +234,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font NormalTitleFont
         {
             get { return m_fntTitleNormal; }
@@ -251,7 +244,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font HoverTitleFont
         {
             get { return m_fntTitleHover; }
@@ -262,7 +254,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font NormalContentFont
         {
             get { return m_fntTextNormal; }
@@ -273,7 +264,6 @@ namespace FSFormControls
             }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Font HoverContentFont
         {
             get { return m_fntTextHover; }
@@ -305,14 +295,12 @@ namespace FSFormControls
             set { m_bTextClickEnabled = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Rectangle TitleRectangle
         {
             get { return m_rectTitle; }
             set { m_rectTitle = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Rectangle TextRectangle
         {
             get { return m_rectText; }
@@ -333,7 +321,6 @@ namespace FSFormControls
             set { m_eFocusRectStyle = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Color TextFocusRectColor
         {
             get { return m_colFocusRect; }

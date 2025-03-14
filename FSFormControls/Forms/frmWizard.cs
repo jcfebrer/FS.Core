@@ -35,7 +35,6 @@ namespace FSFormControls
 
         public PageIndexChangedDlgt PageIndexChangedDelegate => m_dPageIndexChanged;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public int CurrentPage { get; private set; }
 
         public event ValidatePageEventHandler ValidatePage;

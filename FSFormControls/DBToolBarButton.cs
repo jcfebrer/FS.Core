@@ -14,20 +14,16 @@ namespace FSFormControls
             Name = name;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Caption
         {
             get { return Text; }
             set { Text = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Shortcut Shortcut { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public new bool Checked { get; set; }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Key
         {
             get { return Name; }
@@ -40,7 +36,6 @@ namespace FSFormControls
             public string ToolTipText;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public SharedDef SharedProps { get; set; }
     }
 }

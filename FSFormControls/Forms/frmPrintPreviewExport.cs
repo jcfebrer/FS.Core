@@ -40,7 +40,6 @@ namespace FSFormControls
             AddedButtonsClick += TablePrintPreviewDialog_AddedButtonsClick;
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public object TableDocument
         {
             get { return Document; }

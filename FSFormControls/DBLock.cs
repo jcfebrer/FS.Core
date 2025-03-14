@@ -21,7 +21,6 @@ namespace FSFormControls
     {
         //private string m_Table;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string User { get; set; }
 
 
@@ -73,7 +72,6 @@ namespace FSFormControls
         /// Asignación del DBcontrol.
         /// </summary>
         [Description("Control de datos para la gestión de los registros asociados.")]
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBControl DataControl
         {
             get { return m_DataControl; }

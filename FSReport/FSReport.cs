@@ -82,98 +82,84 @@ namespace FSReport
         public string[] strParValPair;
         public string[] strVal;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string ReportFile
         {
             get { return m_ReportFile; }
             set { m_ReportFile = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string UserName
         {
             get { return m_UserName; }
             set { m_UserName = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Parameters
         {
             get { return m_Parameters; }
             set { m_Parameters = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Password
         {
             get { return m_Password; }
             set { m_Password = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Server
         {
             get { return m_Server; }
             set { m_Server = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Database
         {
             get { return m_Database; }
             set { m_Database = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string Selection
         {
             get { return m_Selection; }
             set { m_Selection = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public string SubReportSelection
         {
             get { return m_SubReportSelection; }
             set { m_SubReportSelection = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DataSet DataSet
         {
             get { return m_DataSet; }
             set { m_DataSet = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool DisplayToolbar
         {
             get { return CrystalReportViewer1.DisplayToolbar; }
             set { CrystalReportViewer1.DisplayToolbar = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowCloseButton
         {
             get { return CrystalReportViewer1.ShowCloseButton; }
             set { CrystalReportViewer1.ShowCloseButton = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowExportButton
         {
             get { return CrystalReportViewer1.ShowExportButton; }
             set { CrystalReportViewer1.ShowExportButton = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowGotoPageButton
         {
             get { return CrystalReportViewer1.ShowGotoPageButton; }
             set { CrystalReportViewer1.ShowGotoPageButton = value; }
         }
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public bool ShowGroupTreeButton
         {
             get { return CrystalReportViewer1.ShowGroupTreeButton; }

@@ -16,7 +16,6 @@ namespace FSFormControls
 
         public string Value => DbTextBox1.Text;
 
-        //[DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public DBTextBox DBTextbox
         {
             get { return m_DBTextbox; }
