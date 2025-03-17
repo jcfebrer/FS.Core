@@ -36,7 +36,11 @@ namespace FSParser
 
             parser.CustomCommands["convertwpf"] = args =>
             {
+#if NET5_0_OR_GREATER
                 return FSConvert.ConvertToWPF.Convert(_Q(args[0]));
+#else
+                throw new Exception("ConvertToWpf solo disponible en NETCORE.");
+#endif
             };
 
             parser.CustomCommands["help"] = args =>

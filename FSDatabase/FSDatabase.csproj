@@ -15,12 +15,14 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Condition="'$(TargetFramework)'!='net461'" Include="System.Data.OleDb" Version="9.0.1" />
+    <PackageReference Include="System.Memory" Version="4.6.0" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)'=='net461'">
     <Reference Include="System.Web" />
-  </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Text.Json">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PublicAssemblies\System.Text.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSDisk\FSDisk.csproj" />

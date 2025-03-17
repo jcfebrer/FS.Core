@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using static FSIA.NeuralNetworkActivations;
 
-namespace FSTestsCore.FSIA
+namespace FSTests.FSIA
 {
     [TestClass]
     public class NeuralNetworkTest

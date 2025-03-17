@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTestsCore.FSParser
+namespace FSTests.FSParser
 {
     [TestClass()]
     public class FSParserTests

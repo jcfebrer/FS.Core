@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using FSParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FSTestsCore.FSParser
+namespace FSTests.FSParser
 {
     [TestClass()]
     public class HtmlRenderTest
@@ -96,7 +96,7 @@ namespace FSTestsCore.FSParser
             _documento.DocumentoImpuestos.Add(documentoImpuesto2);
 
 
-            HtmlRender html = new HtmlRender(_documento, Properties.Resources.factura);
+            HtmlRender html = new HtmlRender(_documento, FSTests.Properties.Resources.factura);
             string result = html.Renderiza();
 
             if (!result.StartsWith("<!DOCTYPE"))

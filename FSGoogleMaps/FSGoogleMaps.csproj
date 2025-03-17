@@ -30,6 +30,9 @@
     <Reference Include="Google.Apis.Drive.v3">
       <HintPath>..\dll\Google.Apis.Drive.v3.dll</HintPath>
     </Reference>
+    <Reference Include="System.Text.Json">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PublicAssemblies\System.Text.Json.dll</HintPath>
+    </Reference>
     <Reference Update="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -40,6 +43,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="System.Memory" Version="4.6.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSException\FSException.csproj" />

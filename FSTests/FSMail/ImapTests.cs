@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTestsCore.FSMail
+namespace FSTests.FSMail
 {
     [TestClass()]
     public class ImapTest

@@ -6,8 +6,12 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+
+#if NET5_0_OR_GREATER
+    using System.Text.Json;
+    using System.Text.Json.Serialization;
+#endif
+
 using System.Xml.Serialization;
 
 namespace FSLibrary
@@ -641,7 +645,7 @@ namespace FSLibrary
             return new string(input.Where(c => (char.IsDigit(c) || char.IsLetter(c))).ToArray());
         }
 
-
+#if NET5_0_OR_GREATER
         /// <summary>
         /// Convert an object to a Byte Array.
         /// </summary>
@@ -674,5 +678,7 @@ namespace FSLibrary
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
             };
         }
+#endif
+
     }
 }

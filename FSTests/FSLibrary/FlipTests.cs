@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace FSLibrary.Tests
 {
     [TestClass()]
-    public class FLipTests
+    public class FlipTests
     {
         [TestMethod()]
         public void Flip()

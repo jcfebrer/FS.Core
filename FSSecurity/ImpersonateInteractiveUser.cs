@@ -22,8 +22,9 @@ namespace FSNetwork
         private IntPtr _hSaveWinSta;
         private IntPtr _hWinSta;
 
-
-        //private WindowsImpersonationContext _impersonatedUser;
+#if NETFRAMEWORK
+        private WindowsImpersonationContext _impersonatedUser;
+#endif        
 
         private IntPtr _userTokenHandle = IntPtr.Zero;
 
@@ -64,7 +65,9 @@ namespace FSNetwork
             if (_userTokenHandle != IntPtr.Zero)
                 Win32API.CloseHandle(_userTokenHandle);
             _userTokenHandle = IntPtr.Zero;
-            //_impersonatedUser = null;
+#if NETFRAMEWORK            
+            _impersonatedUser = null;
+#endif
         }
 
         #endregion
@@ -120,11 +123,14 @@ namespace FSNetwork
             _hSaveDesktop = Win32API.GetThreadDesktop(Win32API.GetCurrentThreadId());
             if (_hSaveDesktop == IntPtr.Zero)
                 return false;
-            //if (_bimpersonate)
-            //{
-            //    var newId = new WindowsIdentity(_userTokenHandle);
-            //    _impersonatedUser = newId.Impersonate();
-            //}
+                
+#if NETFRAMEWROK                
+            if (_bimpersonate)
+            {
+                var newId = new WindowsIdentity(_userTokenHandle);
+                _impersonatedUser = newId.Impersonate();
+            }
+#endif            
 
             _hWinSta = Win32API.OpenWindowStation("WinSta0", false, Win32APIEnums.MAXIMUM_ALLOWED);
             if (_hWinSta == IntPtr.Zero)
@@ -192,11 +198,13 @@ namespace FSNetwork
 
         private bool UndoDesktop()
         {
-            //if (_impersonatedUser != null)
-            //{
-            //    _impersonatedUser.Undo();
-            //    _impersonatedUser.Dispose();
-            //}
+#if NETFRAMEWORK        	
+            if (_impersonatedUser != null)
+            {
+                _impersonatedUser.Undo();
+                _impersonatedUser.Dispose();
+            }
+#endif
 
             if (_hSaveWinSta != IntPtr.Zero)
                 Win32API.SetProcessWindowStation(_hSaveWinSta);

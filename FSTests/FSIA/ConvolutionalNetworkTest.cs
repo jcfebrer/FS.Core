@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
-namespace FSTestsCore.FSIA
+namespace FSTests.FSIA
 {
     [TestClass]
     public class ConvolutionalNetworkTest

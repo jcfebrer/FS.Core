@@ -8,7 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSTestsCore.FSNetwork
+namespace FSTests.FSNetwork
 {
     [TestClass()]
     public class FSNetworkTests

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FSTestsCore.Properties {
+namespace FSTests.Properties {
     using System;
     
     

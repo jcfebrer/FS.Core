@@ -11,6 +11,7 @@ using FSGoogleFirebase.Auth;
 using System.Security.Policy;
 using System.IO;
 using FSException;
+using System.Text.Json;
 
 namespace FSGoogleFirebase
 {
@@ -113,7 +114,7 @@ namespace FSGoogleFirebase
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
-                var jsonMessage = System.Text.Json.JsonSerializer.Serialize(message);
+                var jsonMessage = JsonSerializer.Serialize(message);
                 var httpContent = new StringContent(jsonMessage, Encoding.UTF8, "application/json");
 
                 var response = await httpClient.PostAsync(fcmUrl, httpContent);

@@ -42,6 +42,16 @@ namespace FSLibrary.BD.Tests
         }
 
         [TestMethod()]
+        public void CsvArrayTest()
+        {
+            string data = "\"esto es una \"prueba\", con comillas y coma dentro de la cadena.\",\"123456\",12345";
+
+            string[] table = Csv.ConvertCSVtoArray(data);
+
+            Assert.AreEqual("3", table.Length.ToString(), "Numero de columnas incorrectas: " + table.Length);
+        }
+
+        [TestMethod()]
         public void CsvDataTableTest()
         {
             string data = "columna1,columna2,columna3";

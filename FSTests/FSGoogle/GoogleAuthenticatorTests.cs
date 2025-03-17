@@ -2,7 +2,7 @@
 using FSGoogleAuthenticator;
 using System.Drawing;
 
-namespace FSTestsCore.FSGoogle
+namespace FSTests.FSGoogle
 {
     [TestClass()]
     public class AuthenticatorTests

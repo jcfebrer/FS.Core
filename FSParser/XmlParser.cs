@@ -59,18 +59,18 @@ namespace FSParser
         /// <param name="enc">The enc.</param>
         public void LoadFromUrl(string Url, Encoding enc)
         {
-            //HttpWebRequest myRequest = null;
             var responseText = "";
 
-            //myRequest = (HttpWebRequest) WebRequest.Create(Url);
-            //var MyResponse = (HttpWebResponse) myRequest.GetResponse();
-            //var receiveStream = MyResponse.GetResponseStream();
-            //var readStream = new StreamReader(receiveStream, enc);
-            //responseText = readStream.ReadToEnd();
+#if NETFRAMEWORK
+            HttpWebRequest myRequest = (HttpWebRequest) WebRequest.Create(Url);
+            var MyResponse = (HttpWebResponse) myRequest.GetResponse();
+            var receiveStream = MyResponse.GetResponseStream();
+            var readStream = new StreamReader(receiveStream, enc);
+            responseText = readStream.ReadToEnd();
 
-            //MyResponse.Close();
-            //readStream.Close();
-
+            MyResponse.Close();
+            readStream.Close();
+#else
             using (var handler = new HttpClientHandler())
             {
                 using (HttpClient httpClient = new HttpClient(handler))
@@ -80,6 +80,7 @@ namespace FSParser
                     responseText = enc.GetString(Encoding.ASCII.GetBytes(responseText));
                 }
             }
+#endif
 
             Document.LoadXml(responseText);
         }

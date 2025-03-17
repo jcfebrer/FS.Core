@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace FSTestsCore.FSParser
+namespace FSTest.FSParser
 {
     [TestClass()]
     public class SimpleExpressionEvaluatorTest

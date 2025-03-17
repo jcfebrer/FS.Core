@@ -16,8 +16,6 @@ namespace FSLibrary
         /// </summary>
         string APP_SETTINGS = "appSettings";
 
-        Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
         private string _section;
         /// <summary>
         /// Sección a utilizar
@@ -45,6 +43,7 @@ namespace FSLibrary
             {
                 if (_settings == null)
                 {
+                    Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
                     _settings = configManager.GetSection(Section);
             
                     if (_settings == null)
@@ -78,6 +77,9 @@ namespace FSLibrary
         /// <param name="value"></param>
         public void UpdatePropertyWithRemove(string key, string value)
         {
+            if (!CheckSettings(key))
+                return;
+
             if (Settings is FSSettingsSection)
             {
                 ((FSSettingsSection)Settings).Settings.Remove(key);
@@ -100,6 +102,9 @@ namespace FSLibrary
         public FSSettingsCollection ReadProperties()
         {
             FSSettingsCollection result = new FSSettingsCollection();
+
+            if (!CheckSettings())
+                return null;
 
             object appSettings;
             if (Settings is FSSettingsSection)
@@ -143,8 +148,21 @@ namespace FSLibrary
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
+        public void AddProperty(string key, string value)
+        {
+            InsertProperty(key, value);
+        }
+
+        /// <summary>
+        /// Añadimos una propiedad.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
         public void InsertProperty(string key, string value)
         {
+            if (!CheckSettings(key))
+                return;
+
             if (Settings is FSSettingsSection)
             {
                 ((FSSettingsSection)Settings).Settings.Add(key, value);
@@ -153,8 +171,6 @@ namespace FSLibrary
             {
                 ((AppSettingsSection)Settings).Settings.Add(key, value);
             }
-
-            //SaveConfigFile();
         }
 
         /// <summary>
@@ -163,16 +179,17 @@ namespace FSLibrary
         /// <param name="key"></param>
         public void DeleteProperty(string key)
         {
+            if (!CheckSettings(key))
+                return;
+
             if (Settings is FSSettingsSection)
-        {
+            {
                 ((FSSettingsSection)Settings).Settings.Remove(key);
             }
             else
             {
                 ((AppSettingsSection)Settings).Settings.Remove(key);
             }
-
-            //SaveConfigFile();
         }
 
         /// <summary>
@@ -181,6 +198,9 @@ namespace FSLibrary
         /// <param name="key"></param>
         public string ValueProperty(string key)
         {
+            if(!CheckSettings(key))
+                return null;
+
             if (Settings is FSSettingsSection)
             {
                 return ((FSSettingsSection)Settings).Settings[key].Value;
@@ -192,12 +212,53 @@ namespace FSLibrary
         }
 
         /// <summary>
+        /// Comprueba si la key existe en Settings
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public bool CheckSettings(string key = null)
+        {
+            if (Settings == null)
+                return false;
+
+            if (Settings is FSSettingsSection)
+            {
+                if (((FSSettingsSection)Settings).Settings is null)
+                    return false;
+
+                if (key != null)
+                {
+                    if (((FSSettingsSection)Settings).Settings[key] is null)
+                        return false;
+                }
+            }
+            else
+            {
+                if (((AppSettingsSection)Settings).Settings is null)
+                    return false;
+
+                if (key != null)
+                {
+                    if (((AppSettingsSection)Settings).Settings[key] is null)
+                        return false;
+                }
+            }
+
+            return true;
+        }
+
+        /// <summary>
         /// Recuperamos el valor de una propiedad.
         /// </summary>
         /// <param name="key"></param>
         public string[] ValuePropertyArray(string key)
         {
-            return ValueProperty(key).Split(new char[] { '|', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            string value = ValueProperty(key);
+
+            if (!String.IsNullOrEmpty(value))
+                return value.Split(new char[] { '|', ';' }, StringSplitOptions.RemoveEmptyEntries);
+            else
+                return new string[] { };
         }
 
         /// <summary>
@@ -254,6 +315,9 @@ namespace FSLibrary
         /// <param name="value"></param>
         public void SetProperty(string key, string value)
         {
+            if (!CheckSettings(key))
+                return;
+
             if (Settings is FSSettingsSection)
             {
                 ((FSSettingsSection)Settings).Settings[key].Value = value;
@@ -262,8 +326,6 @@ namespace FSLibrary
             {
                 ((AppSettingsSection)Settings).Settings[key].Value = value;
             }
-
-            //SaveConfigFile();
         }
 
         /// <summary>
@@ -291,6 +353,7 @@ namespace FSLibrary
         /// </summary>
         public void SaveConfigFile()
         {
+            Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             configManager.Save(ConfigurationSaveMode.Full);
             ConfigurationManager.RefreshSection(Section);
         }
@@ -301,6 +364,7 @@ namespace FSLibrary
         /// <returns></returns>
         public List<string> GetSections()
         {
+            Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             List<string> sections = new List<string>();
             XmlDocument doc = new XmlDocument();
             doc.Load(configManager.FilePath);

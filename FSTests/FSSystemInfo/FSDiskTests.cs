@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace FSTestsCore.FSSystemInfo
+namespace FSSystemInfo.Tests
 {
     [TestClass()]
     public class FSDiskTests

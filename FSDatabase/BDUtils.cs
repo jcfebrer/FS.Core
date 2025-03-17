@@ -91,12 +91,12 @@ namespace FSDatabase
                 if (!String.IsNullOrEmpty(providerName))
                     ProviderName = providerName;
                 else
-                    throw new ExceptionUtil("No se ha definido ProviderName en FSDatabaseCore.Contants");
+                    throw new ExceptionUtil("No se ha definido ProviderName");
 
                 if (!String.IsNullOrEmpty(connectionString))
                     ConnString = connectionString;
                 else
-                    throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabaseCore.Contants");
+                    throw new ExceptionUtil("No se ha definido ConnectionString");
 
                 ConnStringEntryId = 0;
             }
@@ -141,7 +141,7 @@ namespace FSDatabase
                 SetDBMSType();
             }
             else
-                throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabaseCore.Contants");
+                throw new ExceptionUtil("No se ha definido ConnectionString");
         }
 
 
@@ -156,7 +156,7 @@ namespace FSDatabase
                 SetDBMSType();
             }
             else
-                throw new ExceptionUtil("No se ha definido ConnectionString en FSDatabaseCore.Contants");
+                throw new ExceptionUtil("No se ha definido ConnectionString");
         }
 
         public BdUtils(string connStringEntryName)
@@ -1708,7 +1708,7 @@ namespace FSDatabase
         //            }
         //            catch (System.Exception e)
         //            {
-        //                throw new FSLibraryCore.Exception(e);
+        //                throw new FSLibrary.Exception(e);
         //            }
         //        }
 

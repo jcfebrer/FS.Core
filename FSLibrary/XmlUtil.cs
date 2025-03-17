@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Soap;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
@@ -80,6 +81,7 @@ namespace FSLibrary
 
             return xml;
         }
+
         #endregion
 
         #region XML Serialization
@@ -236,10 +238,6 @@ namespace FSLibrary
             }
         }
 
-        #endregion XML Serialization
-
-        #region SOAP Serialization
-
         /// <summary>
         /// Serializes the object XML.
         /// </summary>
@@ -311,60 +309,187 @@ namespace FSLibrary
                 }
             }
         }
+
+        #endregion
+
+        #region SOAP Serialization
+#if NETFRAMEWORK
+        /// <summary>
+        ///     DeSerializes a string into a  object
+        /// </summary>
+        /// <param name="soapString">String to be deserialized</param>
+        /// <returns>Deserialized field object</returns>
+        public static object SoapTo(string soapString)
+        {
+            IFormatter formatter;
+            object objectFromSoap = null;
+            try
+            {
+                using (var memStream = new MemoryStream(Encoding.UTF8.GetBytes(soapString)))
+                {
+                    formatter = new SoapFormatter();
+                    objectFromSoap = formatter.Deserialize(memStream);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+
+            return objectFromSoap;
+        }
+
+        /// <summary>
+        ///     DeSerializes a string into a  object
+        /// </summary>
+        /// <param name="filePath">String to be deserialized</param>
+        /// <returns>Deserialized field object</returns>
+        public static object SoapToFromFile(string filePath)
+        {
+            IFormatter formatter;
+            object objectFromSoap = null;
+            try
+            {
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    formatter = new SoapFormatter();
+                    objectFromSoap = formatter.Deserialize(fileStream);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+
+            return objectFromSoap;
+        }
+
+        /// <summary>
+        ///     Serializes the field object into a string
+        /// </summary>
+        /// <param name="objToSoap">Field Object to be serialized</param>
+        /// <returns>Serialized field object</returns>
+        public static string ToSoap(object objToSoap)
+        {
+            IFormatter formatter;
+            var strObject = "";
+            try
+            {
+                using (var memStream = new MemoryStream())
+                {
+                    formatter = new SoapFormatter();
+                    formatter.Serialize(memStream, objToSoap);
+                    memStream.Flush();
+                    strObject = Encoding.UTF8.GetString(memStream.GetBuffer(), 0, (int)memStream.Position);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+
+            return strObject;
+        }
+
+        /// <summary>
+        ///     Serializes the field object into a string
+        /// </summary>
+        /// <param name="objToSoap">Field Object to be serialized</param>
+        /// <param name="filePath">File to write result</param>
+        /// <returns>Serialized field object</returns>
+        public static void ToSoap(object objToSoap, string filePath)
+        {
+            IFormatter formatter;
+            try
+            {
+                using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
+                {
+                    formatter = new SoapFormatter();
+                    formatter.Serialize(fileStream, objToSoap);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+        }
+
+        /// <summary>
+        ///     DeSerializes a string into a  object
+        /// </summary>
+        /// <param name="filePath">String to be deserialized</param>
+        /// <param name="binder">Serialization binder</param>
+        /// <returns>Deserialized field object</returns>
+        public static object SoapToFromFile(string filePath, SerializationBinder binder)
+        {
+            IFormatter formatter;
+            object objectFromSoap = null;
+            try
+            {
+                using (var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                {
+                    formatter = new SoapFormatter();
+                    formatter.Binder = binder;
+                    objectFromSoap = formatter.Deserialize(fileStream);
+                }
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
+
+            return objectFromSoap;
+        }
+#endif
+        #endregion
+
+        /// <summary>
+        ///     This class can be used to implement special affects while producing xml documents.
+        ///     At the moment it is only used for excluding the xml start line.
+        /// </summary>
+        public class SpecialXmlWriter : XmlTextWriter
+        {
+            private readonly bool m_includeStartDocument = true;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="SpecialXmlWriter"/> class.
+            /// </summary>
+            /// <param name="tw">The tw.</param>
+            /// <param name="includeStartDocument">if set to <c>true</c> [include start document].</param>
+            public SpecialXmlWriter(TextWriter tw, bool includeStartDocument) : base(tw)
+            {
+                m_includeStartDocument = includeStartDocument;
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="SpecialXmlWriter"/> class.
+            /// </summary>
+            /// <param name="sw">The sw.</param>
+            /// <param name="encoding">The encoding.</param>
+            /// <param name="includeStartDocument">if set to <c>true</c> [include start document].</param>
+            public SpecialXmlWriter(Stream sw, Encoding encoding, bool includeStartDocument) : base(sw, null)
+            {
+                m_includeStartDocument = includeStartDocument;
+            }
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="SpecialXmlWriter"/> class.
+            /// </summary>
+            /// <param name="filePath">The file path.</param>
+            /// <param name="encoding">The encoding.</param>
+            /// <param name="includeStartDocument">if set to <c>true</c> [include start document].</param>
+            public SpecialXmlWriter(string filePath, Encoding encoding, bool includeStartDocument) : base(filePath, null)
+            {
+                m_includeStartDocument = includeStartDocument;
+            }
+
+            /// <summary>
+            /// Writes the XML declaration with the version "1.0".
+            /// </summary>
+            public override void WriteStartDocument()
+            {
+                if (m_includeStartDocument) base.WriteStartDocument();
+            }
+        }
     }
-
-    #endregion XML Serialization
-
-    #region SpecialXmlWriter
-
-    /// <summary>
-    ///     This class can be used to implement special affects while producing xml documents.
-    ///     At the moment it is only used for excluding the xml start line.
-    /// </summary>
-    public class SpecialXmlWriter : XmlTextWriter
-    {
-        private readonly bool m_includeStartDocument = true;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SpecialXmlWriter"/> class.
-        /// </summary>
-        /// <param name="tw">The tw.</param>
-        /// <param name="includeStartDocument">if set to <c>true</c> [include start document].</param>
-        public SpecialXmlWriter(TextWriter tw, bool includeStartDocument) : base(tw)
-        {
-            m_includeStartDocument = includeStartDocument;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SpecialXmlWriter"/> class.
-        /// </summary>
-        /// <param name="sw">The sw.</param>
-        /// <param name="encoding">The encoding.</param>
-        /// <param name="includeStartDocument">if set to <c>true</c> [include start document].</param>
-        public SpecialXmlWriter(Stream sw, Encoding encoding, bool includeStartDocument) : base(sw, null)
-        {
-            m_includeStartDocument = includeStartDocument;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SpecialXmlWriter"/> class.
-        /// </summary>
-        /// <param name="filePath">The file path.</param>
-        /// <param name="encoding">The encoding.</param>
-        /// <param name="includeStartDocument">if set to <c>true</c> [include start document].</param>
-        public SpecialXmlWriter(string filePath, Encoding encoding, bool includeStartDocument) : base(filePath, null)
-        {
-            m_includeStartDocument = includeStartDocument;
-        }
-
-        /// <summary>
-        /// Writes the XML declaration with the version "1.0".
-        /// </summary>
-        public override void WriteStartDocument()
-        {
-            if (m_includeStartDocument) base.WriteStartDocument();
-        }
-    }
-
-    #endregion SpecialXmlWriter
 }

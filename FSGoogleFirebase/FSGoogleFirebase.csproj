@@ -12,6 +12,11 @@
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="System.Text.Json">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PublicAssemblies\System.Text.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Google.Api.Gax" Version="4.10.0" />
     <PackageReference Include="Google.Api.Gax.Rest" Version="4.10.0" />
     <PackageReference Include="Google.Apis" Version="1.69.0" />

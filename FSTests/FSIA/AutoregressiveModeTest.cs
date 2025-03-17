@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
-namespace FSTestsFSIACore
+namespace FSTestsFSIA
 {
     [TestClass]
     public class AutoregressiveModeTest

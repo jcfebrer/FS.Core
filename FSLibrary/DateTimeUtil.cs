@@ -96,7 +96,7 @@ namespace FSLibrary
         {
             var dat = date.ToShortDateString();
 
-            //if (BDType == FSLibraryCore.Enum.BDType.MySQL)
+            //if (BDType == FSLibrary.Enum.BDType.MySQL)
             //    dat = date.ToString("yyyy-MM-dd");
 
             return dat;
@@ -112,7 +112,7 @@ namespace FSLibrary
         {
             var dat = date.ToLongDateString();
 
-            //if (BDType == FSLibraryCore.Enum.BDType.MySQL)
+            //if (BDType == FSLibrary.Enum.BDType.MySQL)
             //    dat = date.ToString("yyyy-MM-dd");
 
             return dat;

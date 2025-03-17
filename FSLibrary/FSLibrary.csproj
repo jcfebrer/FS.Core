@@ -31,7 +31,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <RunCodeAnalysis>false</RunCodeAnalysis>
-    <DocumentationFile>bin\Debug\FSLibraryCore.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\FSLibrary.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
@@ -81,6 +81,11 @@
   <ItemGroup>
     <ProjectReference Include="..\FSException\FSException.csproj" />
     <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Runtime.Serialization.Formatters.Soap.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ProjectExtensions>
     <MonoDevelop>

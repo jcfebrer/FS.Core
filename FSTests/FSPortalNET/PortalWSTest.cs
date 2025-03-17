@@ -7,7 +7,7 @@ using FSNetwork;
 using FSParser;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace FSTestsCore.FSParser
+namespace FSTests.FSParser
 {
     [TestClass()]
     public class PortalWSTest
