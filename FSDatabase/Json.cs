@@ -3,21 +3,39 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
-using System.Text.Json;
+
+#if !NETFRAMEWORK
+	using System.Text.Json;
+#endif
+	
 using System.Text.RegularExpressions;
+using System.Web.Script.Serialization;
 
 namespace FSDatabase
 {
     public class Json
     {
+#if NETFRAMEWORK
+		static JavaScriptSerializer JsonSerializer = new JavaScriptSerializer();
+		
+		/// <summary>
+        /// Longitud máxima de la cadena Json generada
+        /// </summary>
+        public static int MaxJsonLength
+        {
+            get { return JsonSerializer.MaxJsonLength; }
+            set { JsonSerializer.MaxJsonLength = value; }
+        }
+#endif
+
         public static string ObjectToJson(object obj)
         {
-            return System.Text.Json.JsonSerializer.Serialize(obj);
+            return JsonSerializer.Serialize(obj);
         }
 
         public static object JsonToObject(string json, Type targetType)
         {
-            return System.Text.Json.JsonSerializer.Deserialize(json, targetType);
+            return JsonSerializer.Deserialize(json, targetType);
         }
 
         /// <summary>
@@ -38,7 +56,7 @@ namespace FSDatabase
                 }
                 rows.Add(row);
             }
-            return System.Text.Json.JsonSerializer.Serialize(rows);
+            return JsonSerializer.Serialize(rows);
         }
 
         /// <summary>
@@ -90,7 +108,7 @@ namespace FSDatabase
             using (StreamReader r = new StreamReader(fileName))
             {
                 string json = r.ReadToEnd();
-                Dictionary<string, object> json_Dictionary = System.Text.Json.JsonSerializer.Deserialize<Dictionary<string, object>>(json);
+                Dictionary<string, object> json_Dictionary = JsonSerializer.Deserialize<Dictionary<string, object>>(json);
 
                 return json_Dictionary;
             }
@@ -101,10 +119,12 @@ namespace FSDatabase
             return Regex.Replace(s, @"[^\x20-\x7F]", "");
         }
 
+#if !NETFRAMEWORK
         public static string JsonPrettify(string json)
         {
             var jDoc = JsonDocument.Parse(json);
             return JsonSerializer.Serialize(jDoc, new JsonSerializerOptions { WriteIndented = true });
         }
+#endif
     }
 }

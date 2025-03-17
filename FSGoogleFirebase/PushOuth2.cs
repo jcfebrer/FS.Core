@@ -11,7 +11,11 @@ using FSGoogleFirebase.Auth;
 using System.Security.Policy;
 using System.IO;
 using FSException;
-using System.Text.Json;
+using System.Web.Script.Serialization;
+
+#if !NETFRAMEWORK
+    using System.Text.Json;
+#endif
 
 namespace FSGoogleFirebase
 {
@@ -113,6 +117,10 @@ namespace FSGoogleFirebase
             using (var httpClient = new HttpClient())
             {
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+#if NETFRAMEWORK
+                JavaScriptSerializer JsonSerializer = new JavaScriptSerializer();
+#endif
 
                 var jsonMessage = JsonSerializer.Serialize(message);
                 var httpContent = new StringContent(jsonMessage, Encoding.UTF8, "application/json");

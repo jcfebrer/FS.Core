@@ -30,8 +30,8 @@
     <Reference Include="Google.Apis.Drive.v3">
       <HintPath>..\dll\Google.Apis.Drive.v3.dll</HintPath>
     </Reference>
-    <Reference Include="System.Text.Json">
-      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PublicAssemblies\System.Text.Json.dll</HintPath>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.Extensions.dll</HintPath>
     </Reference>
     <Reference Update="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>

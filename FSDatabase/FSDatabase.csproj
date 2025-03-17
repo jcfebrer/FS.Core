@@ -20,9 +20,6 @@
   <ItemGroup Condition="'$(TargetFramework)'=='net461'">
     <Reference Include="System.Web" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Text.Json">
-      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PublicAssemblies\System.Text.Json.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSDisk\FSDisk.csproj" />
@@ -34,5 +31,10 @@
     <ProjectReference Include="..\FSSecurity\FSSecurity.csproj" />
     <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj" />
     <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

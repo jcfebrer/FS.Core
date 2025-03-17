@@ -13,12 +13,16 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Text.Json;
+
+#if !NETFRAMEWORK
+    using System.Text.Json;
+#endif
+
 using FSNetwork;
 using FSLibrary;
-using System.Text.Json.Nodes;
 using System.Net.Http;
 using FSException;
+using System.Web.Script.Serialization;
 
 namespace FSGoogleMaps
 {
@@ -54,6 +58,10 @@ namespace FSGoogleMaps
 
         public async Task<double> GetDistanceAsync(string origin, string destination)
         {
+#if NETFRAMEWORK
+                JavaScriptSerializer JsonSerializer = new JavaScriptSerializer();
+#endif
+
             using (HttpClient client = new HttpClient())
             {
                 string url = $"https://maps.googleapis.com/maps/api/distancematrix/json?origins={origin}&destinations={destination}&key={ApiKey}";

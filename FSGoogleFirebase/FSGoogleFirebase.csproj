@@ -12,11 +12,6 @@
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Text.Json">
-      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PublicAssemblies\System.Text.Json.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Google.Api.Gax" Version="4.10.0" />
     <PackageReference Include="Google.Api.Gax.Rest" Version="4.10.0" />
     <PackageReference Include="Google.Apis" Version="1.69.0" />
@@ -33,5 +28,10 @@
   <ItemGroup>
     <ProjectReference Include="..\FSCrypto\FSCrypto.csproj" />
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Extensions">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.Extensions.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>
