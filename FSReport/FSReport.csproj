@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net45;net461;net8.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
@@ -35,9 +35,8 @@
     <Compile Update="FSReport.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="log4net" Version="3.0.3" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Condition="'$(TargetFramework)'!='net461'" Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
+    <PackageReference Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'" Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSException\FSException.csproj" />

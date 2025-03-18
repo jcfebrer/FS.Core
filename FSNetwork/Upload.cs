@@ -17,7 +17,7 @@ using System;
 using System.IO;
 using System.Web;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
     using Microsoft.AspNetCore.Http;
 #endif
 

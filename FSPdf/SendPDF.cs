@@ -20,7 +20,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.tool.xml;
 using FSException;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
 	using Microsoft.AspNetCore.Http;
 #endif
 

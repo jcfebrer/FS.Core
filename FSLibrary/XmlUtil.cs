@@ -1,8 +1,12 @@
 ﻿using FSException;
 using System;
 using System.IO;
-using System.Runtime.Serialization;
-using System.Runtime.Serialization.Formatters.Soap;
+
+#if NETFRAMEWORK
+    using System.Runtime.Serialization;
+    using System.Runtime.Serialization.Formatters.Soap;
+#endif
+
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;

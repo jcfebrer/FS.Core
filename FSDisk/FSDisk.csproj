@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net45;net461;net8.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSFile</AssemblyTitle>
@@ -13,7 +13,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Condition="'$(TargetFramework)'!='net461'" Include="System.Security.Permissions" Version="9.0.1" />
+    <PackageReference Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'" Include="System.Security.Permissions" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSCrypto\FSCrypto.csproj" />

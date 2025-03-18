@@ -2,7 +2,11 @@
 
 using System.IO;
 using System.Net;
-using System.Net.Http;
+
+#if NETCOREAPP
+    using System.Net.Http;
+#endif
+
 using System.Security.Policy;
 using System.Text;
 using System.Xml;

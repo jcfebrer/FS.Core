@@ -4,7 +4,7 @@ using System.Data;
 using System.IO;
 using System.Text;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
 	using System.Text.Json;
 #endif
 	
@@ -119,7 +119,7 @@ namespace FSDatabase
             return Regex.Replace(s, @"[^\x20-\x7F]", "");
         }
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
         public static string JsonPrettify(string json)
         {
             var jDoc = JsonDocument.Parse(json);

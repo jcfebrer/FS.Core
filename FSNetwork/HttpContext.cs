@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
 
 namespace FSNetwork
 {

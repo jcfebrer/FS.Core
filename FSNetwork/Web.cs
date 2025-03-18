@@ -2,7 +2,7 @@
 using FSCrypto;
 using FSLibrary;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
 	using Microsoft.AspNetCore.Http;
 #endif
 
@@ -184,7 +184,7 @@ namespace FSNetwork
 #endif
         }
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
 		public static void SetCacheValue(string name, string value)
         {
             if (value == null)
@@ -218,7 +218,7 @@ namespace FSNetwork
 			}
 		}
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
 		public static string ServerMapPath(string path)
         {
             string homePath = (string)AppDomain.CurrentDomain.GetData("WebRootPath");

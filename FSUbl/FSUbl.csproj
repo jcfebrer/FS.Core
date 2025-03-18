@@ -32,7 +32,7 @@
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
     <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)'=='net461'">
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <Reference Include="System.Web" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
@@ -46,7 +46,7 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net45;net461;net8.0-windows</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FS.Ubl2</AssemblyTitle>
     <Description>Oasis Ubl2 updated class Library</Description>

@@ -2,7 +2,7 @@
 using FSLibrary;
 using FSSystemInfo;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
     using Microsoft.AspNetCore.Http;
 #endif
 

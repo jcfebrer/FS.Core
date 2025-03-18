@@ -1,4 +1,6 @@
-﻿using iText.Barcodes;
+﻿#if NET451_OR_GREATER || NETCOREAPP
+
+using iText.Barcodes;
 using iText.Barcodes.Qrcode;
 using iText.Html2pdf.Attach;
 using iText.Kernel.Colors;
@@ -166,3 +168,5 @@ namespace FSBarcode
 
     }
 }
+
+#endif

@@ -31,6 +31,7 @@ namespace FSTests.FSIA
             Assert.IsNotNull(respuesta);
         }
 
+#if NETCOREAPP
         [TestMethod()]
         public async Task TestAIApiAsync()
         {
@@ -39,5 +40,6 @@ namespace FSTests.FSIA
             
             Assert.IsNotNull(response);
         }
+#endif
     }
 }

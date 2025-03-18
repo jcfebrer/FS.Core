@@ -1,14 +1,16 @@
-﻿using OpenAI.ObjectModels.RequestModels;
-using OpenAI.ObjectModels;
+﻿#if NETCOREAPP
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OpenAI.Managers;
-using OpenAI;
 using System.IO;
 using FSException;
+using OpenAI.ObjectModels.RequestModels;
+using OpenAI.ObjectModels;
+using OpenAI.Managers;
+using OpenAI;
 
 namespace FSIA
 {
@@ -58,3 +60,4 @@ namespace FSIA
         }
     }
 }
+#endif

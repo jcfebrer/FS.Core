@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.7.3" />
     <PackageReference Include="MSTest.TestFramework" Version="3.7.3" />
-    <PackageReference Condition="'$(TargetFramework)'!='net461'" Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
+    <PackageReference Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'" Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Using Condition="'$(TargetFramework)'!='net461'" Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+    <Using Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'" Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
   </ItemGroup>
 
 </Project>

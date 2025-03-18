@@ -214,7 +214,7 @@ namespace FSIA
 
                 var response = await httpClient.PostAsync(Url, content);
 
-//#if !NETFRAMEWORK
+//#if NETCOREAPP
                 //var responseBody = await response.Content.ReadAsStringAsync(token);
 //#else
                 var responseBody = await response.Content.ReadAsStringAsync();
@@ -223,7 +223,7 @@ namespace FSIA
                 switch (response.StatusCode)
                 {
                     case HttpStatusCode.Unauthorized:
-#if !NETFRAMEWORK
+#if NETCOREAPP
                     case HttpStatusCode.TooManyRequests:
 #endif
                     case HttpStatusCode.InternalServerError:

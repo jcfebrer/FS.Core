@@ -14,7 +14,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
     using System.Text.Json;
 #endif
 

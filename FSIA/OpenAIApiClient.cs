@@ -1,4 +1,6 @@
-﻿using FSException;
+﻿#if NETCOREAPP
+
+using FSException;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -50,3 +52,5 @@ namespace FSIA
         }
     }
 }
+
+#endif

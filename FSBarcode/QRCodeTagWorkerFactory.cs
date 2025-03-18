@@ -1,4 +1,6 @@
-﻿using iText.Html2pdf.Attach;
+﻿#if NET451_OR_GREATER || NETCOREAPP
+
+using iText.Html2pdf.Attach;
 using iText.Html2pdf.Attach.Impl;
 using iText.StyledXmlParser.Node;
 using System;
@@ -41,3 +43,5 @@ namespace FSBarcode
 
     }
 }
+
+#endif

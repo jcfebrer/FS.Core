@@ -166,7 +166,11 @@ namespace FSCertificate
             signedXml.KeyInfo = keyInfo;
 
             // Add the key to the SignedXml document.
+#if NETFRAMEWORK
+            signedXml.SigningKey = (RSA)cert.PrivateKey;
+#else
             signedXml.SigningKey = (RSA)cert.GetRSAPrivateKey();
+#endif
 
             // Create a reference to be signed.
             Reference reference = new Reference();
@@ -230,7 +234,11 @@ namespace FSCertificate
             signedXml.LoadXml((XmlElement)nodeList[0]);
 
             // Check the signature and return the result.
+#if NETFRAMEWORK
+            return signedXml.CheckSignature((RSA)cert.PrivateKey);
+#else
             return signedXml.CheckSignature((RSA)cert.GetRSAPrivateKey());
+#endif
         }
 
 
@@ -258,7 +266,11 @@ namespace FSCertificate
 
         public static bool CheckIfHasPrivateKey(X509Certificate2 cert)
         {
+#if NETFRAMEWORK
+            return cert.PrivateKey == null;
+#else
             return cert.GetRSAPrivateKey() == null;
+#endif
         }
     }
 }

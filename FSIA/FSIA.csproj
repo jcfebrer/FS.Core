@@ -38,6 +38,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\FSException\FSException.csproj" />
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
   </ItemGroup>

@@ -1,4 +1,6 @@
-﻿using OpenAI;
+﻿#if NETCOREAPP
+
+using OpenAI;
 using OpenAI.Interfaces;
 using OpenAI.Managers;
 using OpenAI.ObjectModels.RequestModels;
@@ -40,3 +42,5 @@ namespace FSIA
         }
     }
 }
+
+#endif

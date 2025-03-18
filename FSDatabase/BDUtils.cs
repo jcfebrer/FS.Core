@@ -32,7 +32,7 @@ using FSQueryBuilder.QueryParts.Where;
 using FSTrace;
 using FSSecurity;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
     using Microsoft.AspNetCore.Http;
 #endif
 

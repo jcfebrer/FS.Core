@@ -18,7 +18,7 @@ namespace FSSecurity
     ///     WindowsIdentity useri = WindowsIdentity.GetCurrent();
     ///     System.Console.WriteLine(useri.Name);
     /// }
-    /// #if !NETFRAMEWORK
+    /// #if NETCOREAPP
     ///     );
     /// #endif
     /// }

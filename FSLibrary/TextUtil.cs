@@ -43,8 +43,22 @@ namespace FSLibrary
             Right
         }
 
+        /// <summary>
+        /// Convierte una cadena en Stream.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static Stream GenerateStreamFromString(string str)
+        {
+            var stream = new MemoryStream();
+            var writer = new StreamWriter(stream);
+            writer.Write(str);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
 
-         /// <summary>
+        /// <summary>
         /// Devuelve el valor ASCII.
         /// </summary>
         /// <param name="value">The value.</param>

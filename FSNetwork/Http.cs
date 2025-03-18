@@ -2,7 +2,7 @@
 
 using FSException;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
     using Microsoft.AspNetCore.Http;
 #endif
 

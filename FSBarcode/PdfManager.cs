@@ -1,10 +1,11 @@
-﻿using iText.Html2pdf;
+﻿#if NET451_OR_GREATER || NETCOREAPP
+
+using iText.Html2pdf;
 using iText.IO.Font;
 using iText.IO.Image;
 using iText.Kernel.Geom;
 using iText.Kernel.Pdf;
 using iText.Layout.Element;
-using iText.Layout.Font;
 using System.IO;
 
 namespace FSBarcode
@@ -41,12 +42,10 @@ namespace FSBarcode
 
             if(fontData != null) 
             {
-
-                FontProvider fontProvider = new FontProvider();
+                iText.Layout.Font.FontProvider fontProvider = new iText.Layout.Font.FontProvider();
                 fontProvider.AddFont(fontData, PdfEncodings.IDENTITY_H);
 
                 properties.SetFontProvider(fontProvider);
-
             }
 
             byte[] result = null;
@@ -80,3 +79,5 @@ namespace FSBarcode
     
     }
 }
+
+#endif

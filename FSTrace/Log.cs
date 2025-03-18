@@ -10,7 +10,7 @@
 
 #region
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
     using Microsoft.Extensions.Configuration;
 #endif
 

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
-using PdfSharp;
-using PdfSharp.Pdf;
-using System.Web;
-using TheArtOfDev.HtmlRenderer;
+//using TheArtOfDev.HtmlRenderer;
 using TheArtOfDev.HtmlRenderer.PdfSharp;
+using System.Web;
+using PdfSharp.Pdf;
+using PdfSharp;
 
-#if !NETFRAMEWORK
+
+#if NETCOREAPP
 	using Microsoft.AspNetCore.Http;
 #endif
 
@@ -37,9 +38,11 @@ namespace FSPdf
         	pdfConfig.MarginLeft = 25;
         	pdfConfig.MarginRight = 25;
         	pdfConfig.MarginTop = 25;
-        	
-        	
-        	if(landscape)pdfConfig.PageOrientation = PageOrientation.Landscape;
+
+#if NETCOREAPP
+			if(landscape)
+				pdfConfig.PageOrientation = PageOrientation.Landscape;
+#endif
 			
 			html = Web.ReplaceUrlRes(html);
 			html = FSLibrary.TextUtil.RemoveLinks(html);

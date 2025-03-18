@@ -13,7 +13,7 @@ using System.IO;
 using FSException;
 using System.Web.Script.Serialization;
 
-#if !NETFRAMEWORK
+#if NETCOREAPP
     using System.Text.Json;
 #endif
 
