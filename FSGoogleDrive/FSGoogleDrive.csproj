@@ -9,7 +9,7 @@
     <DebugType>None</DebugType>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net461;net48;net8.0-windows</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSGoogleDrive</AssemblyTitle>
     <Product>FSGoogleDrive</Product>

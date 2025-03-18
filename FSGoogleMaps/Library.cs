@@ -22,7 +22,10 @@ using FSNetwork;
 using FSLibrary;
 using System.Net.Http;
 using FSException;
-using System.Web.Script.Serialization;
+
+#if NETFRAMEWORK
+    using System.Web.Script.Serialization;
+#endif
 
 namespace FSGoogleMaps
 {

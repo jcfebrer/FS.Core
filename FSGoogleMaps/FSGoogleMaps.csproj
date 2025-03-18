@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net461;net48;net8.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
@@ -17,7 +17,7 @@
   <ItemGroup>
     <None Remove="Library.cs~RFdd6957d.TMP" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <Reference Include="Google.Apis">
       <HintPath>..\dll\Google.Apis.dll</HintPath>
     </Reference>
@@ -30,6 +30,9 @@
     <Reference Include="Google.Apis.Drive.v3">
       <HintPath>..\dll\Google.Apis.Drive.v3.dll</HintPath>
     </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Net.Http.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Extensions">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.Extensions.dll</HintPath>
     </Reference>
@@ -40,7 +43,15 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'">
+    <PackageReference Include="Google.Api.Gax" Version="4.10.0" />
+    <PackageReference Include="Google.Api.Gax.Rest" Version="4.10.0" />
+    <PackageReference Include="Google.Apis" Version="1.69.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.69.0" />
+    <PackageReference Include="Google.Apis.Core" Version="1.69.0" />
+  </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Google.Apis.Drive.v3" Version="1.69.0.3674" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
     <PackageReference Include="System.Memory" Version="4.6.0" />

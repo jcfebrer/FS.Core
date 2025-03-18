@@ -24,7 +24,7 @@
     <DocumentationFile>bin\Release\FSFtpCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>net45;net461;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net45;net461;net48;net8.0-windows</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSFtp</AssemblyTitle>
     <Description>Cliente FTP y FTPS</Description>

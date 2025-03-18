@@ -46,7 +46,7 @@
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>net45;net461;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net45;net461;net48;net8.0-windows</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FS.Ubl2</AssemblyTitle>
     <Description>Oasis Ubl2 updated class Library</Description>
