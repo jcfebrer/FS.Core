@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
+using static FSFormControls.DBVuMeter;
 
 namespace FSFormControls
 {
@@ -19,14 +20,14 @@ namespace FSFormControls
             vuMeter11.LevelChanged += VuMeter11_LevelChanged;
         }
 
-        private void VuMeter2_LevelChanged(object sender, int e)
+        private void VuMeter2_LevelChanged(object sender, IntEventArgs e)
         {
-            lblNivel.Text = "Nivel: " + e.ToString();
+            lblNivel.Text = "Nivel: " + e.Value.ToString();
         }
 
-        private void VuMeter11_LevelChanged(object sender, int e)
+        private void VuMeter11_LevelChanged(object sender, IntEventArgs e)
         {
-            vuMeter11.VuText = "Nivel: " + e.ToString();
+            vuMeter11.VuText = "Nivel: " + e.Value.ToString();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

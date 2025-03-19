@@ -25,9 +25,11 @@ namespace FSTests.FSNetwork
             bool foundSync = upnp.Discover();
             Debug.WriteLine(foundSync ? "✅ Dispositivo encontrado." : "❌ No se encontró ningún dispositivo.");
 
+#if NET45_OR_GREATER || NETCOREAPP
             Debug.WriteLine("\n🔎 Buscando dispositivos UPnP de forma asincrónica...");
             bool foundAsync = await upnp.DiscoverAsync();
             Debug.WriteLine(foundAsync ? "✅ Dispositivo encontrado." : "❌ No se encontró ningún dispositivo.");
+#endif
         }
     }
 }

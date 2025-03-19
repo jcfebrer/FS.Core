@@ -91,10 +91,14 @@ namespace FSMail
 
         public bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string plantilla, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
 		{
-            System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#if NET40
+			System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+#else
+			System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
+#endif
 
-			//if (System.Diagnostics.Debugger.IsAttached)
-			//	return false;
+            //if (System.Diagnostics.Debugger.IsAttached)
+            //	return false;
 
             Log.TraceInfo("Inicio de envio de correo.");
 

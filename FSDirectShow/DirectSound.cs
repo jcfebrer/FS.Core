@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Tracing;
-using System.Windows.Forms;
 using FSException;
 using Microsoft.DirectX.DirectSound;
 

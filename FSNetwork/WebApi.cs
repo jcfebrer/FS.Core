@@ -77,6 +77,7 @@ namespace FSNetwork
             }
         }
 
+#if NET45_OR_GREATER || NETCOREAPP
         public async Task<string> CallApiAsync(string url, string urlParameters)
         {
             using (HttpClient client = new HttpClient())
@@ -132,5 +133,6 @@ namespace FSNetwork
         //        return responseBody;
         //    }
         //}
+#endif
     }
 }

@@ -18,8 +18,10 @@ namespace FSParser
         {
             string cleancondition = condition.Replace("<", "").Replace(">", "");
             string exprIf = "if(" + cleancondition + ")\r\nreturn true;\r\nelse\r\nreturn false;";
-            try {
-            ExpressionEvaluator evaluator = new ExpressionEvaluator();
+            try
+            {
+#if NET45_OR_GREATER || NETCOREAPP
+                ExpressionEvaluator evaluator = new ExpressionEvaluator();
 
                 //añadimos las variables
                 if (variables != null)
@@ -29,13 +31,26 @@ namespace FSParser
                         evaluator.Variables.Add(variables.Keys[f], variables[f]);
                     }
                 }
-            return Convert.ToBoolean(evaluator.ScriptEvaluate(exprIf));
+                return Convert.ToBoolean(evaluator.ScriptEvaluate(exprIf));
+#else
+                Dictionary<string, object> vars = new Dictionary<string, object>();
+                //añadimos las variables
+                if (variables != null)
+                {
+                    for (int f = 0; f < variables.Count; f++)
+                    {
+                        vars.Add(variables.Keys[f], variables[f]);
+                    }
+                }
+
+                return Convert.ToBoolean(SimpleExpressionEvaluator.Evaluate(condition, vars));
+#endif
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
-            
+
         }
     }
 }

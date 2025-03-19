@@ -527,7 +527,11 @@ namespace FSFtp
             }
         }
 
+#if NET40
+        private SslProtocols m_SslProtocols = SslProtocols.Tls;
+#else
         private SslProtocols m_SslProtocols = SslProtocols.Tls12;
+#endif
         /// <summary>
         /// Encryption protocols to use. Only valid if EncryptionMode property is not equal to FtpSslMode.None.
         /// Default value is .NET Framework defaults from SslStream class.

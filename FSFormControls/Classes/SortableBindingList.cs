@@ -1,11 +1,11 @@
-﻿    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Diagnostics;
-    using System.Linq;
-    using System.Reflection;
-    using System.Xml.Linq;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
+using System.Xml.Linq;
 
 namespace FSFormControls
 {
@@ -77,7 +77,11 @@ namespace FSFormControls
 
                 if (CanSortWithIComparable(prop.PropertyType))
                 {
+#if NET45_OR_GREATER || NETCOREAPP
                     var property = typeof(Comparer<>).MakeGenericType(new[] { prop.PropertyType }).GetTypeInfo().GetDeclaredProperty("Default");
+#else
+                    var property = typeof(Comparer<>).MakeGenericType(new[] { prop.PropertyType }).GetProperty("Default", BindingFlags.Static | BindingFlags.Public);
+#endif
                     _comparer = (IComparer)property.GetValue(null, null);
                     _useToString = false;
                 }

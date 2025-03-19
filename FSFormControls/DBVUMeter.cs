@@ -64,22 +64,32 @@ namespace FSFormControls
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBVuMeter.bmp")]
     public class DBVuMeter : DBUserControl
     {
+        public class IntEventArgs : EventArgs
+        {
+            public int Value { get; set; }
+
+            public IntEventArgs(int value)
+            {
+                Value = value;
+            }
+        }
+
         public enum MeterScaleEnum { Analog, Log10 };
 
         /// <summary>
         /// Se lanza cuando se cambia de nivel.
         /// </summary>
-        public event EventHandler<int> LevelChanged;
+        public event EventHandler<IntEventArgs> LevelChanged;
 
         /// <summary>
         /// Se lanza cuando se cambia de nivel.
         /// </summary>
         protected void OnLevelChanged(int level)
         {
-            EventHandler<int> handler = LevelChanged;
+            EventHandler<IntEventArgs> handler = LevelChanged;
             if (null != handler)
             {
-                handler(this, level);
+                handler(this, new IntEventArgs(level));
             }
         }
 
