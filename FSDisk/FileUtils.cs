@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace FSDisk
 {
@@ -56,16 +55,17 @@ namespace FSDisk
             return hash;
         }
 
+#if !NET35
         public static string CalcCrc32Async(string fileName, CancellationToken token)
         {
             string crc32 = "";
-            Task.Factory.StartNew(() =>
+            System.Threading.Tasks.Task.Factory.StartNew(() =>
             {
                 crc32 = CalcCrc32(fileName);
             }, token);
             return crc32;
         }
-
+#endif
 
         /// <summary>
         /// Obtenemos la lista de ficheros de la carpeta indicada.
@@ -448,7 +448,13 @@ namespace FSDisk
                     }
                     else
                     {
-                        if (!(sourceDirectories[j].FullName.StartsWith(".") || sourceDirectories[j].Attributes.HasFlag(FileAttributes.Hidden)))
+#if NET35
+                        bool hiddenFlag = (sourceDirectories[j].Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
+#else
+                        bool hiddenFlag = sourceDirectories[j].Attributes.HasFlag(FileAttributes.Hidden);
+#endif
+
+                        if (!(sourceDirectories[j].FullName.StartsWith(".") || hiddenFlag))
                         {
                             CopyDirectory(sourceDirectories[j].FullName, target.FullName + "\\" + sourceDirectories[j].Name, recursive, overwrite, copyHidden);
                         }
@@ -696,6 +702,7 @@ namespace FSDisk
             return imgFiles;
         }
 
+#if !NET35
         public static IEnumerable<FileInfo> GetFilesByExtensions(DirectoryInfo dir, params string[] extensions)
         {
             if (extensions == null)
@@ -708,6 +715,7 @@ namespace FSDisk
 
             return fileInfoList;
         }
+#endif
 
         public static string[] GetFiles(string sourceFolder, string filters)
         {

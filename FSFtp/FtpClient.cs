@@ -527,7 +527,7 @@ namespace FSFtp
             }
         }
 
-#if NET40
+#if NET40 || NET35
         private SslProtocols m_SslProtocols = SslProtocols.Tls;
 #else
         private SslProtocols m_SslProtocols = SslProtocols.Tls12;

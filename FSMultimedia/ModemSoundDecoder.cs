@@ -1,8 +1,10 @@
-﻿using System;
+﻿#if !NET35
+
+using System;
 using System.IO;
 using System.Linq;
-using System.Numerics;
 using System.Text;
+using System.Numerics;
 
 namespace FSMultimedia
 {
@@ -153,3 +155,5 @@ namespace FSMultimedia
     }
 
 }
+
+#endif

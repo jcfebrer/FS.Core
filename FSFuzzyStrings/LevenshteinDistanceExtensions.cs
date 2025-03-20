@@ -22,7 +22,11 @@ namespace FSFuzzyStrings
 		/// <returns></returns>
 		public static int LevenshteinDistance(this string input, string comparedTo, bool caseSensitive = false)
 		{
-			if (string.IsNullOrWhiteSpace(input) || string.IsNullOrWhiteSpace(comparedTo)) return -1;
+#if NET35
+			if (input == null || input == "" || comparedTo == null || comparedTo == "") return -1;
+#else
+            if (string.IsNullOrWhiteSpace(input) || string.IsNullOrWhiteSpace(comparedTo)) return -1;
+#endif
 			if (!caseSensitive)
 			{
 				input = input.ToLower();

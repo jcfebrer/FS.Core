@@ -59,7 +59,10 @@ namespace FSFormControls
             mnuContext.Items.Add("&Vista Preliminar", null, PrintPreview);
             mnuContext.Items.Add("&Guardar como HTML", null, SaveAsHTML);
             mnuContext.Items.Add("&Guardar como ASPX", null, SaveAsASPX);
+
+#if NET40_OR_GREATER || NETCOREAPP
             mnuContext.Items.Add("&Guardar como XAML", null, SaveAsXAML);
+#endif
             mnuContext.Items.Add("&Refrescar", null, MnuRefresh);
             mnuContext.Items.Add("-");
             mnuContext.Items.Add("&Filtro", null, MnuFilter);
@@ -720,6 +723,7 @@ namespace FSFormControls
             }
         }
 
+#if NET40_OR_GREATER || NETCOREAPP
         private void SaveAsXAML(object sender, EventArgs e)
         {
             try
@@ -740,6 +744,7 @@ namespace FSFormControls
                 throw new ExceptionUtil("Errores en la exportación.", ex);
             }
         }
+#endif
 
 
         private void PrintDocument(object sender, EventArgs e)

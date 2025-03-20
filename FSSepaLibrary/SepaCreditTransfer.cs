@@ -238,7 +238,11 @@ namespace FSSepaLibrary
             {
                 if (pmtInf.SelectSingleNode("ChrgBr") != null)
                 {
+#if NET35
+                    FSLibrary.Functions.EnumTryParse(pmtInf.SelectSingleNode("ChrgBr").InnerText, out SepaChargeBearer chargeBearer);
+#else
                     Enum.TryParse(pmtInf.SelectSingleNode("ChrgBr").InnerText, out SepaChargeBearer chargeBearer);
+#endif
                     ChargeBearer = chargeBearer;
                 }
             }
@@ -296,7 +300,12 @@ namespace FSSepaLibrary
                         {
                             if (instr.SelectSingleNode("Cd") != null)
                             {
+#if NET35
+                                FSLibrary.Functions.EnumTryParse(instr.SelectSingleNode("Cd").InnerText, out SepaInstructionForCreditorCode code);
+#else
                                 Enum.TryParse(instr.SelectSingleNode("Cd").InnerText, out SepaInstructionForCreditorCode code);
+#endif
+
                                 transfer.SepaInstructionForCreditor.Code = code;
                             }
 

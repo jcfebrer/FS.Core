@@ -1,4 +1,6 @@
-﻿/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
+﻿#if !NET35
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  * Derived from http://www.codeproject.com/KB/recipes/lcs.aspx 
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
@@ -129,3 +131,5 @@ namespace FSFuzzyStrings
 		NorthWest
 	}
 }
+
+#endif

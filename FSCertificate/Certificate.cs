@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Security;
 using System.Security.Cryptography;
-using System.Security.Cryptography.Pkcs;
+
+#if !NET35
+    using System.Security.Cryptography.Pkcs;
+#endif
+
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace FSCertificate
@@ -131,6 +134,7 @@ namespace FSCertificate
             return cert.GetSerialNumberString();
         }
 
+#if !NET35
         public static string SignMessage(string message, X509Certificate2 cert)
         {
             if (cert == null)
@@ -241,7 +245,6 @@ namespace FSCertificate
 #endif
         }
 
-
         public static Boolean VerifyXml(string fileName, X509Certificate2 cert)
         {
             // Check arguments.
@@ -258,6 +261,7 @@ namespace FSCertificate
 
             return VerifyXml(xmlDocument, cert);
         }
+#endif
 
         public static bool IsSelfSigned(X509Certificate2 cert)
         {

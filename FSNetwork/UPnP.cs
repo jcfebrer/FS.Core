@@ -4,7 +4,6 @@ using System.Net.Sockets;
 using System.Text;
 using System.Xml;
 using System.IO;
-using System.Threading.Tasks;
 using FSException;
 using System.Threading;
 using System.Diagnostics;
@@ -80,7 +79,7 @@ namespace FSNetwork
         /// <summary>
         /// Descubre dispositivos UPnP y emite un evento por cada dispositivo encontrado
         /// </summary>
-        public async Task<bool> DiscoverAsync()
+        public async System.Threading.Tasks.Task<bool> DiscoverAsync()
         {
             try
             {
@@ -110,7 +109,7 @@ namespace FSNetwork
                     {
                         var receiveTask = udpClient.ReceiveAsync();
 
-                        if (await Task.WhenAny(receiveTask, Task.Delay(timeoutInSecs * 1000)) != receiveTask)
+                        if (await System.Threading.Tasks.Task.WhenAny(receiveTask, System.Threading.Tasks.Task.Delay(timeoutInSecs * 1000)) != receiveTask)
                             break;
 
                         UdpReceiveResult response = receiveTask.Result;
@@ -246,7 +245,7 @@ ST: {st_discover}
         }
 
 #if NET45_OR_GREATER || NETCOREAPP
-        private async Task<bool> ParseGatewayAsync(string url)
+        private async System.Threading.Tasks.Task<bool> ParseGatewayAsync(string url)
         {
             return ParseGateway(url);
         }

@@ -3,7 +3,7 @@
     <OutputType>Library</OutputType>
   </PropertyGroup>
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;net461;net48;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net35;net40;net45;net461;net48;net8.0-windows</TargetFrameworks>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSDatabase</AssemblyTitle>
     <Product>FSDatabase</Product>
@@ -34,7 +34,7 @@
     <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Web.Extensions">
+    <Reference Condition="'$(TargetFramework)' != 'net35'" Include="System.Web.Extensions">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Web.Extensions.dll</HintPath>
     </Reference>
   </ItemGroup>

@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 #endregion
@@ -31,6 +32,83 @@ namespace FSLibrary
                 if (s.ToLower() == valor.ToLower())
                     return true;
             return false;
+        }
+
+        /// <summary>
+        /// Copia un String de entrada en un string de salida.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="output"></param>
+        public static void CopyTo(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[16 * 1024]; // Fairly arbitrary size
+            int bytesRead;
+
+            while ((bytesRead = input.Read(buffer, 0, buffer.Length)) > 0)
+            {
+                output.Write(buffer, 0, bytesRead);
+            }
+        }
+
+        /// <summary>
+        /// Convierte una cadena en un valor existe en el enumerador.
+        /// </summary>
+        /// <typeparam name="TEnum"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="result"></param>
+        /// <returns>Devuelve true si ha podido realizar la conversión.</returns>
+        public static bool EnumTryParse<TEnum>(string value, out TEnum result)
+            where TEnum : struct, IConvertible
+        {
+            var retValue = value == null ?
+                        false :
+                        Enum.IsDefined(typeof(TEnum), value);
+            result = retValue ?
+                        (TEnum)Enum.Parse(typeof(TEnum), value) :
+                        default(TEnum);
+            return retValue;
+        }
+
+        /// <summary>
+        /// Converts the string representation of a Guid to its Guid 
+        /// equivalent. A return value indicates whether the operation 
+        /// succeeded. 
+        /// </summary>
+        /// <param name="s">A string containing a Guid to convert.</param>
+        /// <param name="result">
+        /// When this method returns, contains the Guid value equivalent to 
+        /// the Guid contained in <paramref name="s"/>, if the conversion 
+        /// succeeded, or <see cref="Guid.Empty"/> if the conversion failed. 
+        /// The conversion fails if the <paramref name="s"/> parameter is a 
+        /// <see langword="null" /> reference (<see langword="Nothing" /> in 
+        /// Visual Basic), or is not of the correct format. 
+        /// </param>
+        /// <value>
+        /// <see langword="true" /> if <paramref name="s"/> was converted 
+        /// successfully; otherwise, <see langword="false" />.
+        /// </value>
+        /// <exception cref="ArgumentNullException">
+        ///        Thrown if <pararef name="s"/> is <see langword="null"/>.
+        /// </exception>
+        public static bool GuidTryParse(string s, out Guid result)
+        {
+            if (s == null)
+                throw new ArgumentNullException("s");
+            Regex format = new Regex(
+                "^[A-Fa-f0-9]{32}$|" +
+                "^({|\\()?[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}(}|\\))?$|" +
+                "^({)?[0xA-Fa-f0-9]{3,10}(, {0,1}[0xA-Fa-f0-9]{3,6}){2}, {0,1}({)([0xA-Fa-f0-9]{3,4}, {0,1}){7}[0xA-Fa-f0-9]{3,4}(}})$");
+            Match match = format.Match(s);
+            if (match.Success)
+            {
+                result = new Guid(s);
+                return true;
+            }
+            else
+            {
+                result = Guid.Empty;
+                return false;
+            }
         }
 
         /// <summary>

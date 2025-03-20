@@ -11,7 +11,6 @@ using System.Collections.Specialized;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -62,14 +61,14 @@ namespace FSNetwork
             myResponse.Close();
             readStream.Close();
 #else
-            using (var handler = new HttpClientHandler())
+            using (var handler = new System.Net.Http.HttpClientHandler())
             {
                 if (!String.IsNullOrEmpty(user))
                     handler.Credentials = new NetworkCredential(user, password);
 
-                using (HttpClient httpClient = new HttpClient(handler))
+                using (System.Net.Http.HttpClient httpClient = new System.Net.Http.HttpClient(handler))
                 {
-                    HttpResponseMessage response = httpClient.PostAsync(url, null).Result;
+                    System.Net.Http.HttpResponseMessage response = httpClient.PostAsync(url, null).Result;
                     responseText = response.Content.ReadAsStringAsync().Result;
                     responseText = enc.GetString(Encoding.ASCII.GetBytes(responseText));
                 }

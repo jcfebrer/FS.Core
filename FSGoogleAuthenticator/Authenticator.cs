@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FSGoogleAuthenticator
 {
@@ -128,6 +127,7 @@ namespace FSGoogleAuthenticator
             return Pin.ToString(CultureInfo.InvariantCulture).PadLeft(PinLength, '0');
         }
 
+#if !NET35
         /// <summary>
         /// Crea una clave aleatoria (habría que guardar en cada usuario para realizar la validación)
         /// </summary>
@@ -151,6 +151,7 @@ namespace FSGoogleAuthenticator
                 return salt;
             }
         }
+#endif
 
         #region Nested type: Encoder
 

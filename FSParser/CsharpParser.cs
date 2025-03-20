@@ -1,4 +1,6 @@
-﻿using FSLibrary;
+﻿#if !NET35
+
+using FSLibrary;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -594,3 +596,5 @@ namespace FSParser
         }
     }
 }
+
+#endif

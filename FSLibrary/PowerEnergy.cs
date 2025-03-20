@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
-using System.Threading.Tasks;
+
+#if !NET35
+    using System.Threading.Tasks;
+#endif
 
 namespace FSLibrary
 {
@@ -17,15 +20,19 @@ namespace FSLibrary
         /// </summary>
         public static void PreventPowerSave()
         {
+#if !NET35
             (new TaskFactory()).StartNew(() =>
             {
+#endif
                 Win32API.SetThreadExecutionState(
                     Win32APIEnums.EXECUTION_STATE.ES_CONTINUOUS
                     | Win32APIEnums.EXECUTION_STATE.ES_DISPLAY_REQUIRED
                     | Win32APIEnums.EXECUTION_STATE.ES_SYSTEM_REQUIRED);
                 _event.WaitOne();
 
+#if !NET35
             }, TaskCreationOptions.LongRunning);
+#endif
         }
 
         /// <summary>

@@ -305,7 +305,7 @@ namespace FSLibrary
         /// <param name="value"></param>
         public void SetProperty(string key, List<string> value)
         {
-            SetProperty(key, String.Join("|", value));
+            SetProperty(key, String.Join("|", value.ToArray()));
         }
 
         /// <summary>

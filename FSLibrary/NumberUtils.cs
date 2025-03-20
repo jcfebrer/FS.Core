@@ -7,7 +7,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-#if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER || NETCOREAPP
     using System.Text.Json;
     using System.Text.Json.Serialization;
 #endif
@@ -199,7 +199,11 @@ namespace FSLibrary
             {
                 using (var ms = new MemoryStream())
                 {
+#if NET35
+                    FSLibrary.Functions.CopyTo(fs, ms);
+#else
                     fs.CopyTo(ms);
+#endif
                     return ms.ToArray();
                 }
             }
@@ -645,7 +649,7 @@ namespace FSLibrary
             return new string(input.Where(c => (char.IsDigit(c) || char.IsLetter(c))).ToArray());
         }
 
-#if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER || NETCOREAPP
         /// <summary>
         /// Convert an object to a Byte Array.
         /// </summary>

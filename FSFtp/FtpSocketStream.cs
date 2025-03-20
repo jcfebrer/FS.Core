@@ -634,7 +634,7 @@ namespace FSFtp {
         /// </summary>
         /// <param name="targethost">The host to authenticate the certiciate against</param>
         public void ActivateEncryption(string targethost) {
-#if NET40
+#if NET40 || NET35
             ActivateEncryption(targethost, null, SslProtocols.Tls);
 #else
             ActivateEncryption(targethost, null, SslProtocols.Tls12);
@@ -649,7 +649,7 @@ namespace FSFtp {
         /// <param name="targethost">The host to authenticate the certiciate against</param>
         /// <param name="clientCerts">A collection of client certificates to use when authenticating the SSL stream</param>
         public void ActivateEncryption(string targethost, X509CertificateCollection clientCerts) {
-#if NET40
+#if NET40 || NET35
             ActivateEncryption(targethost, clientCerts, SslProtocols.Tls);
 #else
             ActivateEncryption(targethost, clientCerts, SslProtocols.Tls12);

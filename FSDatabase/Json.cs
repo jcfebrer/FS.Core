@@ -1,21 +1,23 @@
-﻿using System;
+﻿#if NET40_OR_GREATER || NETCOREAPP
+
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 #if NETCOREAPP
-	using System.Text.Json;
+    using System.Text.Json;
+#else
+    using System.Web.Script.Serialization;
 #endif
-	
-using System.Text.RegularExpressions;
-using System.Web.Script.Serialization;
 
 namespace FSDatabase
 {
     public class Json
     {
-#if NETFRAMEWORK
+#if NET40_OR_GREATER
 		static JavaScriptSerializer JsonSerializer = new JavaScriptSerializer();
 		
 		/// <summary>
@@ -128,3 +130,5 @@ namespace FSDatabase
 #endif
     }
 }
+
+#endif

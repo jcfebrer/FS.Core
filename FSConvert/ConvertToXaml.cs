@@ -1,4 +1,6 @@
-﻿// based on  http://robrelyea.wordpress.com/2007/02/10/winforms-xaml/
+﻿#if !NET35
+
+// based on  http://robrelyea.wordpress.com/2007/02/10/winforms-xaml/
 // converted to an Extension Method by @CADbloke
 //  a list: http://msdn.microsoft.com/en-us/library/ms750559(v=vs.110).aspx
 // here's moar code:http://wf2wpf.codeplex.com/SourceControl/latest but it converts source files, not actual controls.
@@ -64,7 +66,6 @@ namespace FSConvert
             _eventsToExclude = eventsToExclude;
             _eventsToInclude = eventsToInclude;
             _regexOfEventsToInclude = regexOfEventsToInclude;
-
 
             wpfBuilder.Clear();
 
@@ -644,3 +645,5 @@ namespace FSConvert
 
     }
 }
+
+#endif

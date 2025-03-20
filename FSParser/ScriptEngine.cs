@@ -6,7 +6,6 @@ using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace FSParser
 {
@@ -203,7 +202,12 @@ namespace FSParser
 
             Type engine;
             Guid clsid;
-            if (Guid.TryParse(language, out clsid))
+#if NET35
+            bool isGuid = FSLibrary.Functions.GuidTryParse(language, out clsid);
+#else
+            bool isGuid = Guid.TryParse(language, out clsid);
+#endif
+            if (isGuid)
             {
                 engine = Type.GetTypeFromCLSID(clsid, false);
             }
@@ -258,7 +262,14 @@ namespace FSParser
 
             Type engine;
             Guid clsid;
-            if (Guid.TryParse(language, out clsid))
+
+#if NET35
+            bool isGuid = FSLibrary.Functions.GuidTryParse(language, out clsid);
+#else
+            bool isGuid = Guid.TryParse(language, out clsid);
+#endif
+
+            if (isGuid)
             {
                 engine = Type.GetTypeFromCLSID(clsid, true);
             }

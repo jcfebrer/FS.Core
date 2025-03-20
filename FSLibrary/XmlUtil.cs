@@ -3,8 +3,10 @@ using System;
 using System.IO;
 
 #if NETFRAMEWORK
+#if !NET35
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Soap;
+#endif
 #endif
 
 using System.Text;
@@ -318,6 +320,7 @@ namespace FSLibrary
 
         #region SOAP Serialization
 #if NETFRAMEWORK
+#if !NET35
         /// <summary>
         ///     DeSerializes a string into a  object
         /// </summary>
@@ -445,7 +448,8 @@ namespace FSLibrary
             return objectFromSoap;
         }
 #endif
-        #endregion
+#endif
+#endregion
 
         /// <summary>
         ///     This class can be used to implement special affects while producing xml documents.

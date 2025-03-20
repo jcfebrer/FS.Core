@@ -3327,7 +3327,11 @@ namespace FSLibrary
         /// <returns></returns>
         public static string JoinParts(char separator, IEnumerable<String> parts)
         {
+#if NET35
+            return String.Join(separator.ToString(), parts.ToArray());
+#else
             return String.Join(separator.ToString(), parts);
+#endif
         }
 
 
@@ -3352,7 +3356,11 @@ namespace FSLibrary
                 lastExpression = expression; // Guarda la expresión antes del reemplazo
 
                 // Construir patrón para detectar variables
+#if NET35
+                string pattern = $@"\b({string.Join("|", variables.Keys.Select(Regex.Escape).ToArray())})\b";
+#else
                 string pattern = $@"\b({string.Join("|", variables.Keys.Select(Regex.Escape))})\b";
+#endif
 
                 // Usar StringBuilder para construir la nueva expresión
                 StringBuilder result = new StringBuilder();

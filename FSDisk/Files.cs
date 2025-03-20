@@ -104,6 +104,7 @@ namespace FSDisk
             return returnFiles;
         }
 
+#if !NET35
         public Files FindFuzzy(string fileName, double probability = 0.75)
         {
             Files returnFiles = new Files();
@@ -115,6 +116,7 @@ namespace FSDisk
 
             return returnFiles;
         }
+#endif
 
         public Files FindLevenshtein(string fileName, int distance = 4)
         {

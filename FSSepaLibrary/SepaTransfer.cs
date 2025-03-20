@@ -193,7 +193,11 @@ namespace FSSepaLibrary
 
             if (pstlAdr.SelectSingleNode("AdrTp") != null)
             {
+#if NET35
+                FSLibrary.Functions.EnumTryParse(pstlAdr.SelectSingleNode("AdrTp").InnerText, out PostalAddressType postalAddressType);
+#else
                 Enum.TryParse(pstlAdr.SelectSingleNode("AdrTp").InnerText, out PostalAddressType postalAddressType);
+#endif
                 address.AddressType = postalAddressType;
             }
 

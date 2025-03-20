@@ -1,7 +1,8 @@
-﻿using System;
+﻿#if NET45_OR_GREATER || NETCOREAPP
+
+using System;
 using System.Net.Http.Headers;
 using System.Net.Http;
-using System.Threading.Tasks;
 using FSException;
 
 namespace FSNetwork
@@ -42,6 +43,7 @@ namespace FSNetwork
 
             Auth = true;
         }
+
         public string CallApi(string url, string urlParameters)
         {
             using (HttpClient client = new HttpClient())
@@ -77,8 +79,7 @@ namespace FSNetwork
             }
         }
 
-#if NET45_OR_GREATER || NETCOREAPP
-        public async Task<string> CallApiAsync(string url, string urlParameters)
+        public async System.Threading.Tasks.Task<string> CallApiAsync(string url, string urlParameters)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -133,6 +134,7 @@ namespace FSNetwork
         //        return responseBody;
         //    }
         //}
-#endif
     }
 }
+
+#endif

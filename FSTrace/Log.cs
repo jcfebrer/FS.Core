@@ -183,9 +183,13 @@ namespace FSTrace
         /// </summary>
         private static string GetLogFile()
         {
-#if NETFRAMEWORK        	
-        	string logFile = ConfigurationManager.AppSettings["LogFile"];
-#else        	
+#if NETFRAMEWORK
+#if NET40_OR_GREATER
+            string logFile = ConfigurationManager.AppSettings["LogFile"];
+#else
+            string logFile = "FSLog.txt";
+#endif
+#else
             IConfiguration configurationBuilder = new ConfigurationBuilder()
                 .AddJsonFile("appsettings.json", true, true)
                 .Build();

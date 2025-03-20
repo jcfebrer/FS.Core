@@ -1,4 +1,6 @@
-﻿using FSException;
+﻿#if !NET35
+
+using FSException;
 using FSTrace;
 using System;
 using System.Collections.Generic;
@@ -338,3 +340,5 @@ namespace FSLibrary
         public string ServiceType { get; set; }
     }
 }
+
+#endif

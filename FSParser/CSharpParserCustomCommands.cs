@@ -1,9 +1,10 @@
-﻿using FSLibrary;
+﻿#if !NET35
+
+using FSLibrary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FSParser
 {
@@ -24,7 +25,7 @@ namespace FSParser
 
             parser.CustomCommands["concat"] = args =>
             {
-                return string.Join(" ", args);
+                return string.Join(" ", args.ToArray());
             };
 
             parser.CustomCommands["contains"] = args =>
@@ -36,7 +37,7 @@ namespace FSParser
 
             parser.CustomCommands["convertwpf"] = args =>
             {
-#if NET5_0_OR_GREATER
+#if NET5_0_OR_GREATER || NETCOREAPP
                 return FSConvert.ConvertToWPF.Convert(_Q(args[0]));
 #else
                 throw new Exception("ConvertToWpf solo disponible en NETCORE.");
@@ -50,7 +51,7 @@ namespace FSParser
 
             parser.CustomCommands["print"] = args =>
             {
-                Console.WriteLine(string.Join(" ", args));
+                Console.WriteLine(string.Join(" ", args.ToArray()));
                 return null;
             };
 
@@ -72,3 +73,5 @@ namespace FSParser
         }
     }
 }
+
+#endif

@@ -5,14 +5,13 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace FSNetwork
 {
     public static class WOL
     {
 #if NET45_OR_GREATER || NETCOREAPP
-        public static async Task WakeOnLanAsync(string macAddress)
+        public static async System.Threading.Tasks.Task WakeOnLanAsync(string macAddress)
         {
             byte[] magicPacket = BuildMagicPacket(macAddress);
             foreach (NetworkInterface networkInterface in NetworkInterface.GetAllNetworkInterfaces().Where((n) =>
@@ -108,7 +107,7 @@ namespace FSNetwork
         }
 
 #if NET45_OR_GREATER || NETCOREAPP
-        static async Task SendWakeOnLanAsync(IPAddress localIpAddress, IPAddress multicastIpAddress, byte[] magicPacket)
+        static async System.Threading.Tasks.Task SendWakeOnLanAsync(IPAddress localIpAddress, IPAddress multicastIpAddress, byte[] magicPacket)
         {
             using (UdpClient client = new UdpClient(new IPEndPoint(localIpAddress, 0)))
             {
