@@ -1,19 +1,21 @@
 ﻿using FSException;
 using FSLibrary;
-
-#if NETCOREAPP
-    using Microsoft.AspNetCore.Http;
-#endif
-
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Management;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
+
+#if NETCOREAPP
+    using Microsoft.AspNetCore.Http;
+#endif
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 namespace FSNetwork
 {
@@ -165,12 +167,14 @@ namespace FSNetwork
             return externalip.Replace("\n", "");
         }
 
+#if NET35_OR_GREATER || NETCOREAPP
         public static string GetPublicAddress()
         {
             string result = Http.GetFromUrl("http://checkip.dyndns.org");
             result = TextUtil.SearchIpValues(result).First();
             return result;
         }
+#endif
 
         public static bool IsUrl(string Url)
         {

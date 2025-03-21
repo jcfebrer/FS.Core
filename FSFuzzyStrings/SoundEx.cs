@@ -1,4 +1,5 @@
-﻿
+﻿#if NET35_OR_GREATER || NETCOREAPP
+
 using System;
 using System.Linq;
 using System.Text;
@@ -127,3 +128,5 @@ namespace FSFuzzyStrings
 
 	}
 }
+
+#endif

@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace FSParser
@@ -116,7 +115,7 @@ namespace FSParser
                     }
                 }
                 // Si es un operador de un solo carácter (como !, +, -, *, etc.).
-                else if ("!+-*/%^()".Contains(c))
+                else if ("!+-*/%^()".Contains(c.ToString()))
                 {
                     tokens.Add(c.ToString());
                     i++;

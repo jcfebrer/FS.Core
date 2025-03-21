@@ -15,7 +15,6 @@ using FSLibrary;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -28,11 +27,13 @@ namespace FSCrypto
     /// </summary>
     public enum CryptoProvider
     {
+#if NET35_OR_GREATER || NETCOREAPP
         AES,
+        Rijndael,
+#endif
         DES,
         TripleDES,
-        RC2,
-        Rijndael
+        RC2
     }
 
     /// <summary>
@@ -378,7 +379,9 @@ namespace FSCrypto
                         stringKey = stringKey.Substring(0, 8);
                     break;
                 case CryptoProvider.TripleDES:
+#if NET35_OR_GREATER || NETCOREAPP
                 case CryptoProvider.Rijndael:
+#endif
                     if (stringKey.Length < 16)
                         stringKey = stringKey.PadRight(16);
                     else if (stringKey.Length > 16)
@@ -408,12 +411,14 @@ namespace FSCrypto
                     else if (stringIv.Length > 8)
                         stringIv = stringIv.Substring(0, 8);
                     break;
+#if NET35_OR_GREATER || NETCOREAPP
                 case CryptoProvider.Rijndael:
                     if (stringIv.Length < 16)
                         stringIv = stringIv.PadRight(16);
                     else if (stringIv.Length > 16)
                         stringIv = stringIv.Substring(0, 16);
                     break;
+#endif
             }
 
             return Encoding.UTF8.GetBytes(stringIv);
@@ -505,6 +510,7 @@ namespace FSCrypto
 
             switch (algorithm)
             {
+#if NET35_OR_GREATER || NETCOREAPP
                 case CryptoProvider.AES:
                     var aes = Aes.Create();
 
@@ -524,6 +530,7 @@ namespace FSCrypto
 
                     aes.Clear();
                     return transform;
+#endif
                 case CryptoProvider.DES:
                     var des = DES.Create();
 
@@ -578,6 +585,7 @@ namespace FSCrypto
 
                     rc2.Clear();
                     return transform;
+#if NET35_OR_GREATER || NETCOREAPP
                 case CryptoProvider.Rijndael:
                     var rijndael = Aes.Create();
 
@@ -596,6 +604,7 @@ namespace FSCrypto
 
                     rijndael.Clear();
                     return transform;
+#endif
                 default:
                     throw new CryptographicException("Error al inicializar al proveedor de cifrado");
             }

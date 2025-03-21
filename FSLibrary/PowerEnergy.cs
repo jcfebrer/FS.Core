@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 
-#if !NET35
+#if NET40_OR_GREATER || NETCOREAPP
     using System.Threading.Tasks;
 #endif
 
@@ -20,7 +20,7 @@ namespace FSLibrary
         /// </summary>
         public static void PreventPowerSave()
         {
-#if !NET35
+#if NET40_OR_GREATER || NETCOREAPP
             (new TaskFactory()).StartNew(() =>
             {
 #endif
@@ -30,7 +30,7 @@ namespace FSLibrary
                     | Win32APIEnums.EXECUTION_STATE.ES_SYSTEM_REQUIRED);
                 _event.WaitOne();
 
-#if !NET35
+#if NET40_OR_GREATER || NETCOREAPP
             }, TaskCreationOptions.LongRunning);
 #endif
         }

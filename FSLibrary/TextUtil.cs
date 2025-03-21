@@ -6,9 +6,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 #endregion
 
@@ -333,6 +336,22 @@ namespace FSLibrary
         }
 
         /// <summary>
+        /// Función auxiliar para simular Any()
+        /// </summary>
+        /// <param name="array"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool Contains(string[] array, string value)
+        {
+            foreach (string item in array)
+            {
+                if (item == value)
+                    return true;
+            }
+            return false;
+        }
+
+        /// <summary>
         /// Devuelve true/false si la cadena1 es igual a la cadena2.
         /// </summary>
         /// <param name="cadena1">The cadena1.</param>
@@ -553,7 +572,11 @@ namespace FSLibrary
         /// <returns></returns>
         public static string SortStringAsc(string str)
         {
+#if NET35_OR_GREATER || NETCOREAPP
             char[] characters = str.ToArray();
+#else
+            char[] characters = str.ToCharArray();
+#endif
             Array.Sort(characters);
             return new string(characters);
         }
@@ -566,7 +589,11 @@ namespace FSLibrary
         /// <returns></returns>
         public static string SortStringDesc(string str)
         {
+#if NET35_OR_GREATER || NETCOREAPP
             char[] characters = str.ToArray();
+#else
+            char[] characters = str.ToCharArray();
+#endif
             Array.Sort(characters);
             Array.Reverse(characters);
             return new string(characters);
@@ -3258,6 +3285,7 @@ namespace FSLibrary
             return tot;
         }
 
+#if NET35_OR_GREATER || NETCOREAPP
         /// <summary>
         /// Busca las direcciones URL en un texto
         /// </summary>
@@ -3301,6 +3329,7 @@ namespace FSLibrary
             Regex regex = new Regex(@"(?<ip>\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})");
             return regex.Matches(text).OfType<Match>().Select(m => m.Groups["ip"].Value);
         }
+#endif
 
         /// <summary>
         /// Divide en partes de cadenas de longitud partLength.
@@ -3329,9 +3358,84 @@ namespace FSLibrary
         {
 #if NET35
             return String.Join(separator.ToString(), parts.ToArray());
+#elif NET30 || NET20
+            return JoinStringArray(parts, separator);
 #else
             return String.Join(separator.ToString(), parts);
 #endif
+        }
+
+        /// <summary>
+        /// Une un array de cadenas utilizando el separador indicado.
+        /// </summary>
+        /// <param name="separator"></param>
+        /// <param name="parts"></param>
+        /// <returns></returns>
+        public static string JoinStringArray(string[] parts, char separator)
+        {
+            return JoinStringArray(parts, separator);
+        }
+
+        /// <summary>
+        /// Une un array de cadenas utilizando el separador indicado.
+        /// </summary>
+        /// <param name="separator"></param>
+        /// <param name="parts"></param>
+        /// <returns></returns>
+        public static string JoinStringArray(IEnumerable<string> parts, char separator)
+        {
+            StringBuilder result = new StringBuilder();
+            bool first = true;
+
+            foreach (string part in parts)
+            {
+                if (first)
+                    first = false;
+                else
+                    result.Append(separator);
+                result.Append(part);
+            }
+
+            return result.ToString();
+        }
+
+        /// <summary>
+        /// Construye una cadena de claves separadas por "|".
+        /// </summary>
+        /// <param name="variables"></param>
+        /// <returns></returns>
+        public static string BuildRegexPattern(Dictionary<string, object> variables)
+        {
+            StringBuilder patternBuilder = new StringBuilder();
+            patternBuilder.Append(@"\b(");
+
+            List<string> escapedKeys = new List<string>();
+            foreach (string key in variables.Keys)
+            {
+                escapedKeys.Add(Regex.Escape(key));
+            }
+
+            patternBuilder.Append(string.Join("|", escapedKeys.ToArray()));
+            patternBuilder.Append(@")\b");
+
+            return patternBuilder.ToString();
+        }
+
+        /// <summary>
+        /// Cuenta el numero de caracteres en la cadena especificada.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="character"></param>
+        /// <returns></returns>
+        public static int CountChar(string str, char character)
+        {
+            int count = 0;
+            foreach (char c in str)
+            {
+                if (c == character)
+                    count++;
+            }
+            return count;
         }
 
 
@@ -3358,6 +3462,8 @@ namespace FSLibrary
                 // Construir patrón para detectar variables
 #if NET35
                 string pattern = $@"\b({string.Join("|", variables.Keys.Select(Regex.Escape).ToArray())})\b";
+#elif NET30 || NET20
+                string pattern = BuildRegexPattern(variables);
 #else
                 string pattern = $@"\b({string.Join("|", variables.Keys.Select(Regex.Escape))})\b";
 #endif
@@ -3370,8 +3476,14 @@ namespace FSLibrary
                 {
                     // Contar cuántas comillas hay antes de la coincidencia
                     string beforeMatch = expression.Substring(0, match.Index);
+
+#if NET35 || NETCOREAPP
                     int doubleQuotesCount = beforeMatch.Count(c => c == '"');
                     int singleQuotesCount = beforeMatch.Count(c => c == '\'');
+#else
+                    int doubleQuotesCount = CountChar(beforeMatch, '"');
+                    int singleQuotesCount = CountChar(beforeMatch, '\'');
+#endif
 
                     // Si el número de comillas es impar, significa que está dentro de una cadena y no hacemos nada.
                     bool insideDoubleQuotes = doubleQuotesCount % 2 != 0;

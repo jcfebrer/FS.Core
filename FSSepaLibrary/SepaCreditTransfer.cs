@@ -1,8 +1,11 @@
-﻿using System;
+﻿#if NET35_OR_GREATER || NETCOREAPP
+
+using System;
 using System.IO;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+
 using FSException;
 using FSSepaLibrary.Utils;
 using static FSSepaLibrary.SepaInstructionForCreditor;
@@ -238,7 +241,7 @@ namespace FSSepaLibrary
             {
                 if (pmtInf.SelectSingleNode("ChrgBr") != null)
                 {
-#if NET35
+#if NET35 || NET30 || NET20
                     FSLibrary.Functions.EnumTryParse(pmtInf.SelectSingleNode("ChrgBr").InnerText, out SepaChargeBearer chargeBearer);
 #else
                     Enum.TryParse(pmtInf.SelectSingleNode("ChrgBr").InnerText, out SepaChargeBearer chargeBearer);
@@ -300,7 +303,7 @@ namespace FSSepaLibrary
                         {
                             if (instr.SelectSingleNode("Cd") != null)
                             {
-#if NET35
+#if NET35 || NET30 || NET20
                                 FSLibrary.Functions.EnumTryParse(instr.SelectSingleNode("Cd").InnerText, out SepaInstructionForCreditorCode code);
 #else
                                 Enum.TryParse(instr.SelectSingleNode("Cd").InnerText, out SepaInstructionForCreditorCode code);
@@ -499,3 +502,5 @@ namespace FSSepaLibrary
         }
     }
 }
+
+#endif

@@ -36,7 +36,9 @@ using FSSecurity;
     using Microsoft.AspNetCore.Http;
 #endif
 
-using System.Linq;
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 namespace FSDatabase
 {

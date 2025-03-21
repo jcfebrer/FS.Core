@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 namespace FSLibrary
 {
@@ -121,7 +124,11 @@ namespace FSLibrary
             foreach (char c in inputString)
             {
                 //Remove Char if its not in the ISO Alphabet
+#if NET35_OR_GREATER || NETCOREAPP
                 if (!Alphabet.Keys.Contains(c))
+#else
+                if (!Functions.Contains<char>(Alphabet.Keys, c))
+#endif
                     resultString = resultString.Replace(c.ToString(), string.Empty); //Remove chars with the String.Replace Method
             }
 
@@ -181,7 +188,11 @@ namespace FSLibrary
                     int charNumber = 0;
 
                     //If Char exists in the Table get it´s number
+#if NET35_OR_GREATER || NETCOREAPP
                     if (Alphabet.Keys.Contains(temChar))
+#else
+                    if (Functions.Contains<char>(Alphabet.Keys, temChar))
+#endif
                         charNumber = Alphabet[temChar];
 
                     //Add the char number to the sum using the ISO Formula

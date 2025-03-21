@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
+using System.Xml.Serialization;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 #if NET5_0_OR_GREATER || NETCOREAPP
     using System.Text.Json;
     using System.Text.Json.Serialization;
 #endif
-
-using System.Xml.Serialization;
 
 namespace FSLibrary
 {
@@ -199,7 +201,7 @@ namespace FSLibrary
             {
                 using (var ms = new MemoryStream())
                 {
-#if NET35
+#if NET35 || NET30 || NET20
                     FSLibrary.Functions.CopyTo(fs, ms);
 #else
                     fs.CopyTo(ms);
@@ -298,7 +300,7 @@ namespace FSLibrary
         {
             string output = string.Empty;
 
-            foreach(byte b in bytes)
+            foreach (byte b in bytes)
             {
                 output += b.ToString("X2") + separator;
             }
@@ -318,7 +320,7 @@ namespace FSLibrary
             foreach (byte b in bytes)
             {
                 //if (b >= 20 && b <= 128)
-                    output += ((char)b).ToString();
+                output += ((char)b).ToString();
                 //else
                 //    output += "\\" + b.ToString("X2");
             }
@@ -608,6 +610,7 @@ namespace FSLibrary
             return StringBytePairToBytes(pairText, '-');
         }
 
+#if NET35_OR_GREATER || NETCOREAPP
         /// <summary>
         /// Convierte una cadena de bytes separadas por 'separator' en un array de bytes.
         /// </summary>
@@ -648,6 +651,78 @@ namespace FSLibrary
         {
             return new string(input.Where(c => (char.IsDigit(c) || char.IsLetter(c))).ToArray());
         }
+#else
+        /// <summary>
+        /// Convierte una cadena de bytes separadas por 'separator' en un array de bytes.
+        /// </summary>
+        /// <param name="pairText"></param>
+        /// <param name="separator"></param>
+        /// <returns></returns>
+        public static byte[] StringBytePairToBytes(string pairText, char separator)
+        {
+            // Si no se especifica un separador de bytes, lo añadimos
+            if (pairText.IndexOf(separator) < 0)
+            {
+                var parts = SplitInParts(pairText, 2);
+                pairText = JoinParts(separator, parts);
+            }
+
+            // Convertimos la cadena separada por parejas de bytes en array de bytes.
+            string[] byteStrings = pairText.Split(separator);
+            byte[] bytes = new byte[byteStrings.Length];
+
+            for (int i = 0; i < byteStrings.Length; i++)
+            {
+                bytes[i] = Convert.ToByte(byteStrings[i], 16);
+            }
+
+            return bytes;
+        }
+
+        /// <summary>
+        /// Suponiendo que TextUtil.SplitInParts y TextUtil.JoinParts están definidos en algún lugar:
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="partLength"></param>
+        /// <returns></returns>
+        public static string[] SplitInParts(string text, int partLength)
+        {
+            List<string> parts = new List<string>();
+            for (int i = 0; i < text.Length; i += partLength)
+            {
+                parts.Add(text.Substring(i, Math.Min(partLength, text.Length - i)));
+            }
+            return parts.ToArray();
+        }
+
+        /// <summary>
+        /// Une las partes utilizando un separador.
+        /// </summary>
+        /// <param name="separator"></param>
+        /// <param name="parts"></param>
+        /// <returns></returns>
+        public static string JoinParts(char separator, string[] parts)
+        {
+            return string.Join(separator.ToString(), parts);
+        }
+
+        /// <summary>
+        /// Devuelve una cadena unicamente con los numeros y letras.
+        /// </summary>
+        /// <param name="input"></param>
+        public static string GetNumbersAndLetters(string input)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (char c in input)
+            {
+                if (char.IsDigit(c) || char.IsLetter(c))
+                {
+                    result.Append(c);
+                }
+            }
+            return result.ToString();
+        }
+#endif
 
 #if NET5_0_OR_GREATER || NETCOREAPP
         /// <summary>

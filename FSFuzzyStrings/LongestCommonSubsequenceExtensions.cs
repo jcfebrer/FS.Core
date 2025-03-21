@@ -1,4 +1,4 @@
-﻿#if !NET35
+﻿#if NET40_OR_GREATER || NETCOREAPP
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
  * Derived from http://www.codeproject.com/KB/recipes/lcs.aspx 

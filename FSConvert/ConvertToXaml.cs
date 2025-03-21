@@ -1,4 +1,4 @@
-﻿#if !NET35
+﻿#if NET40_OR_GREATER || NETCOREAPP
 
 // based on  http://robrelyea.wordpress.com/2007/02/10/winforms-xaml/
 // converted to an Extension Method by @CADbloke

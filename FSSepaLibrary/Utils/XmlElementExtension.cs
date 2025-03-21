@@ -1,4 +1,6 @@
-﻿using System.Xml;
+﻿#if NET35_OR_GREATER || NETCOREAPP
+
+using System.Xml;
 
 namespace FSSepaLibrary.Utils
 {
@@ -35,3 +37,5 @@ namespace FSSepaLibrary.Utils
         }
     }
 }
+
+#endif

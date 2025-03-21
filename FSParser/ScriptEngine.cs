@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
+#if NET35_OR_GREATER ||NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
@@ -202,7 +206,7 @@ namespace FSParser
 
             Type engine;
             Guid clsid;
-#if NET35
+#if NET35 || NET30 || NET20
             bool isGuid = FSLibrary.Functions.GuidTryParse(language, out clsid);
 #else
             bool isGuid = Guid.TryParse(language, out clsid);
@@ -263,7 +267,7 @@ namespace FSParser
             Type engine;
             Guid clsid;
 
-#if NET35
+#if NET35 || NET30 || NET20
             bool isGuid = FSLibrary.Functions.GuidTryParse(language, out clsid);
 #else
             bool isGuid = Guid.TryParse(language, out clsid);

@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 namespace FSSepaLibrary
 {
@@ -128,6 +131,7 @@ namespace FSSepaLibrary
         {
             get
             {
+#if NET35_OR_GREATER || NETCOREAPP
                 return (String.IsNullOrEmpty(Dept) || Dept.Length <= 70) &&
                        (String.IsNullOrEmpty(SubDept) || SubDept.Length <= 70) &&
                        (String.IsNullOrEmpty(StrtNm) || StrtNm.Length <= 70) &&
@@ -137,6 +141,30 @@ namespace FSSepaLibrary
                        (String.IsNullOrEmpty(CtrySubDvsn) || CtrySubDvsn.Length <= 35) &&
                        (String.IsNullOrEmpty(Ctry) || Ctry.Length == 2) &&
                        (AdrLine == null || AdrLine.All(x => x.Length <= 70));
+#else
+                bool isValid = (string.IsNullOrEmpty(Dept) || Dept.Length <= 70) &&
+                   (string.IsNullOrEmpty(SubDept) || SubDept.Length <= 70) &&
+                   (string.IsNullOrEmpty(StrtNm) || StrtNm.Length <= 70) &&
+                   (string.IsNullOrEmpty(BldgNb) || BldgNb.Length <= 16) &&
+                   (string.IsNullOrEmpty(PstCd) || PstCd.Length <= 16) &&
+                   (string.IsNullOrEmpty(TwnNm) || TwnNm.Length <= 35) &&
+                   (string.IsNullOrEmpty(CtrySubDvsn) || CtrySubDvsn.Length <= 35) &&
+                   (string.IsNullOrEmpty(Ctry) || Ctry.Length == 2);
+
+                if (AdrLine != null)
+                {
+                    foreach (string line in AdrLine)
+                    {
+                        if (line.Length > 70)
+                        {
+                            isValid = false;
+                            break;
+                        }
+                    }
+                }
+
+                return isValid;
+#endif
             }
         }
 

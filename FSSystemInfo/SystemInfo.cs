@@ -3,7 +3,11 @@ using FSException;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Management;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -1011,8 +1015,10 @@ namespace FSSystemInfo
         /// <returns></returns>
         public List<string> GetPhysicalDisks()
         {
-            List<string> result;
-            var query = new WqlObjectQuery("SELECT * FROM Win32_DiskDrive");
+            List<string> result = new List<string>();
+            WqlObjectQuery query = new WqlObjectQuery("SELECT * FROM Win32_DiskDrive");
+
+#if NET35_OR_GREATER || NETCOREAPP
             using (var searcher = new ManagementObjectSearcher(GetScope(), query))
             {
                 result = searcher.Get()
@@ -1022,6 +1028,23 @@ namespace FSSystemInfo
             }
 
             return result;
+#else
+            using (ManagementObjectSearcher searcher = new ManagementObjectSearcher(GetScope(), query))
+            {
+                ManagementObjectCollection objectCollection = searcher.Get();
+
+                foreach (ManagementObject obj in objectCollection)
+                {
+                    if (obj.Properties["DeviceID"] != null && obj.Properties["DeviceID"].Value != null)
+                    {
+                        result.Add(obj.Properties["DeviceID"].Value.ToString());
+                    }
+                    obj.Dispose(); // Importante para liberar recursos
+                }
+            }
+
+            return result;
+#endif
         }
 
         /// <summary>
@@ -1058,8 +1081,17 @@ namespace FSSystemInfo
         {
             var queryDrive = new WqlObjectQuery("SELECT * FROM Win32_LogicalDiskToPartition");
             var queryDisk = new WqlObjectQuery("SELECT * FROM Win32_LogicalDisk");
+
+#if NET35_OR_GREATER || NETCOREAPP
             var drives = new ManagementObjectSearcher(GetScope(), queryDrive).Get().Cast<ManagementObject>();
             var disks = new ManagementObjectSearcher(GetScope(), queryDisk).Get().Cast<ManagementObject>();
+#else
+            ManagementObjectSearcher driveSearcher = new ManagementObjectSearcher(GetScope(), queryDrive);
+            ManagementObjectSearcher diskSearcher = new ManagementObjectSearcher(GetScope(), queryDisk);
+
+            var drives = driveSearcher.Get();
+            var disks = diskSearcher.Get();
+#endif
 
             StringBuilder data = new StringBuilder();
             foreach (var drive in drives)
@@ -1070,13 +1102,38 @@ namespace FSSystemInfo
                 data.AppendLine("Drive Letter: " + driveLetter);
                 data.AppendLine("Drive Number: " + driveNumber);
 
-                // TODO: Enhance this to properly handle when the LINQ returns nothing.
-                //       Likely only an edge case, but BSTS.
+#if NET35_OR_GREATER || NETCOREAPP
+                // Buscar por letra de unidad
                 var foundDisk = disks.Where((d) => d["Name"].ToString() == driveLetter).FirstOrDefault();
 
-                // In the event that Drive Letter is not available, try the disk path
+                // Si no se encontró por letra de unidad, buscar por ruta del disco
                 if (foundDisk == null)
                     foundDisk = disks.Where((d) => d.Path.ToString() == drive["Dependent"].ToString()).FirstOrDefault();
+#else
+                // Buscar por letra de unidad
+                ManagementObject foundDisk = null;
+                foreach (ManagementObject disk in disks)
+                {
+                    if (disk["Name"] != null && disk["Name"].ToString() == driveLetter)
+                    {
+                        foundDisk = disk;
+                        break;
+                    }
+                }
+
+                // Si no se encontró por letra de unidad, buscar por ruta del disco
+                if (foundDisk == null && drive != null && drive["Dependent"] != null)
+                {
+                    foreach (ManagementObject disk in disks)
+                    {
+                        if (disk.Path != null && disk.Path.ToString() == drive["Dependent"].ToString())
+                        {
+                            foundDisk = disk;
+                            break;
+                        }
+                    }
+                }
+#endif
 
                 if (foundDisk == null)
                     data.AppendLine("Drive Label: <Unknown>");

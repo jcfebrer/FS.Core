@@ -1,4 +1,4 @@
-﻿#if !NET35
+﻿#if NET40_OR_GREATER || NETCOREAPP
 
 using System;
 using System.Collections.Generic;
@@ -61,12 +61,12 @@ namespace FSFuzzyStrings
 
         private static double CompositeCoefficient(string strA, string strB)
         {
-            double dice = strA.DiceCoefficient(strB);
+            double dice = DiceCoefficientExtensions.DiceCoefficient(strA, strB);
             var lcs = strA.LongestCommonSubsequence(strB);
-            int leven = strA.LevenshteinDistance(strB);
+            int leven = LevenshteinDistanceExtensions.LevenshteinDistance(strA, strB);
             double levenCoefficient = 1.0 / (1.0 * (leven + 0.2)); //may want to tweak offset
-            string strAMp = strA.ToDoubleMetaphone();
-            string strBMp = strB.ToDoubleMetaphone();
+            string strAMp = DoubleMetaphoneExtensions.ToDoubleMetaphone(strA);
+            string strBMp = DoubleMetaphoneExtensions.ToDoubleMetaphone(strB);
             int matchCount = 0;
             if (strAMp.Length == 4 && strBMp.Length == 4)
             {

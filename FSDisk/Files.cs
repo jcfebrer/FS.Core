@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Text;
 
 namespace FSDisk
@@ -104,7 +108,7 @@ namespace FSDisk
             return returnFiles;
         }
 
-#if !NET35
+#if NET40_OR_GREATER || NETCOREAPP
         public Files FindFuzzy(string fileName, double probability = 0.75)
         {
             Files returnFiles = new Files();

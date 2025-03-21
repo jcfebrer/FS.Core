@@ -4,7 +4,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+	using System.Linq;
+#endif
+
 using System.Text;
 
 namespace FSFuzzyStrings
@@ -18,11 +22,11 @@ namespace FSFuzzyStrings
 		/// <param name="input"></param>
 		/// <param name="comparedTo"></param>
 		/// <returns></returns>
-		public static double DiceCoefficient(this string input, string comparedTo)
+		public static double DiceCoefficient(string input, string comparedTo)
 		{
-			var ngrams = input.ToBiGrams();
-			var compareToNgrams = comparedTo.ToBiGrams();
-			return ngrams.DiceCoefficient(compareToNgrams);
+			var ngrams = ToBiGrams(input);
+			var compareToNgrams = ToBiGrams(comparedTo);
+			return DiceCoefficient(ngrams, compareToNgrams);
 		}
 
 		/// <summary>
@@ -31,19 +35,25 @@ namespace FSFuzzyStrings
 		/// <param name="nGrams"></param>
 		/// <param name="compareToNGrams"></param>
 		/// <returns></returns>
-		public static double DiceCoefficient(this string[] nGrams, string[] compareToNGrams)
+		public static double DiceCoefficient(string[] nGrams, string[] compareToNGrams)
 		{
 			int matches = 0;
 			foreach (var nGram in nGrams)
 			{
-				if (compareToNGrams.Any(x => x == nGram)) matches++;
-			}
-			if (matches == 0) return 0.0d;
+#if NET35_OR_GREATER || NETCOREAPP
+				if (compareToNGrams.Any(x => x == nGram))
+					matches++;
+#else
+				if (FSLibrary.TextUtil.Contains(compareToNGrams, nGram)) // Usamos nuestra función Contains
+					matches++;
+#endif
+            }
+            if (matches == 0) return 0.0d;
 			double totalBigrams = nGrams.Length + compareToNGrams.Length;
 			return (2 * matches) / totalBigrams;
 		}
 
-		public static string[] ToBiGrams(this string input)
+		public static string[] ToBiGrams(string input)
 		{
 			// nLength == 2
 			//   from Jackson, return %j ja ac ck ks so on n#
@@ -52,7 +62,7 @@ namespace FSFuzzyStrings
 			return ToNGrams(input, 2);
 		}
 
-		public static string[] ToTriGrams(this string input)
+		public static string[] ToTriGrams(string input)
 		{
 			// nLength == 3
 			//   from Jackson, return %%j %ja jac ack cks kso son on# n##

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net35;net40;net45;net461;net48;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net30;net35;net40;net45;net461;net48;net8.0-windows</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
@@ -45,7 +45,7 @@
     <Compile Update="FSWebBrowser.cs" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <Reference Condition="'$(TargetFramework)' != 'net35'" Include="Microsoft.CSharp" />
+    <Reference Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net30'" Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSDns\FSDns.csproj" />

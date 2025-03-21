@@ -18,7 +18,7 @@ namespace FSLibrary
     /// <summary>
     /// Funciones de uso general
     /// </summary>
-    public class Functions
+    public static class Functions
     {
         /// <summary>
         ///     Devuelve 'true' si el valor existe en el array de valores, en caso contrario 'false'.
@@ -48,6 +48,28 @@ namespace FSLibrary
             {
                 output.Write(buffer, 0, bytesRead);
             }
+        }
+
+        /// <summary>
+        /// Devuelve true si el elemento existe en la colección.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
+        public static bool Contains<T>(IEnumerable<T> source, T value)
+        {
+            if (source == null)
+                throw new ArgumentNullException("source");
+
+            foreach (T item in source)
+            {
+                if (item.Equals(value))
+                    return true;
+            }
+
+            return false;
         }
 
         /// <summary>

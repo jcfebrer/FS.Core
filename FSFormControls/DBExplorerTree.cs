@@ -5,7 +5,11 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.IO;
 using System.Runtime.InteropServices;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Collections.Generic;
 using System.Security.AccessControl;
 using FSSecurity;
@@ -680,6 +684,7 @@ namespace FSFormControls
             }
         }
 
+#if NET35_OR_GREATER || NETCOREAPP
         private void GetFiles(string path)
         {
             DirectoryInfo di = new DirectoryInfo(path);
@@ -699,6 +704,47 @@ namespace FSFormControls
             else
                 selectedPathFolders = null;
         }
+#else
+        private void GetFiles(string path)
+        {
+            DirectoryInfo di = new DirectoryInfo(path);
+
+            if (di.Exists && Security.HasAccessFolder(path, FileSystemRights.ListDirectory))
+            {
+                FileInfo[] files = di.GetFiles(Pattern);
+                selectedPathFiles = new string[files.Length];
+
+                for (int i = 0; i < files.Length; i++)
+                {
+                    selectedPathFiles[i] = files[i].Name;
+                }
+            }
+            else
+            {
+                selectedPathFiles = null;
+            }
+        }
+
+        private void GetFolders(string path)
+        {
+            DirectoryInfo di = new DirectoryInfo(path);
+
+            if (di.Exists && Security.HasAccessFolder(path, FileSystemRights.ListDirectory))
+            {
+                DirectoryInfo[] folders = di.GetDirectories(Pattern);
+                selectedPathFolders = new string[folders.Length];
+
+                for (int i = 0; i < folders.Length; i++)
+                {
+                    selectedPathFolders[i] = folders[i].Name;
+                }
+            }
+            else
+            {
+                selectedPathFolders = null;
+            }
+        }
+#endif
 
         public void SetCurrentPath(string strPath)
         {

@@ -2,7 +2,6 @@
 using FSFuzzyStrings;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -72,7 +71,7 @@ namespace FSFuzzyStrings.Tests
             Console.WriteLine("Dice Coefficient for Jensn:");
             foreach (var name in surnames)
             {
-                double dice = input.DiceCoefficient(name);
+                double dice = DiceCoefficientExtensions.DiceCoefficient(input, name);
                 Console.WriteLine("\t{0} against {1}", dice.ToString("###,###.00000"), name);
             }
 
@@ -80,7 +79,7 @@ namespace FSFuzzyStrings.Tests
             Console.WriteLine("Levenshtein Edit Distance for Jensn:");
             foreach (var name in surnames)
             {
-                int leven = input.LevenshteinDistance(name);
+                int leven = LevenshteinDistanceExtensions.LevenshteinDistance(input, name);
                 Console.WriteLine("\t{0} against {1}", leven, name);
             }
 
@@ -93,11 +92,11 @@ namespace FSFuzzyStrings.Tests
             }
 
             Console.WriteLine();
-            string mp = input.ToDoubleMetaphone();
+            string mp = DoubleMetaphoneExtensions.ToDoubleMetaphone(input);
             Console.WriteLine("Double Metaphone for Jensn: {0}", mp);
             foreach (var name in surnames)
             {
-                string nameMp = name.ToDoubleMetaphone();
+                string nameMp = DoubleMetaphoneExtensions.ToDoubleMetaphone(name);
                 Console.WriteLine("\t{0} metaphone for {1}", nameMp, name);
             }
 
@@ -134,7 +133,7 @@ namespace FSFuzzyStrings.Tests
             Console.WriteLine("Dice Coefficient for 2130 South Fort Union Blvd.:");
             foreach (var name in surnames)
             {
-                double dice = input.DiceCoefficient(name);
+                double dice = DiceCoefficientExtensions.DiceCoefficient(input, name);
                 Console.WriteLine("\t{0} against {1}", dice.ToString("###,###.00000"), name);
             }
 
@@ -142,7 +141,7 @@ namespace FSFuzzyStrings.Tests
             Console.WriteLine("Levenshtein Edit Distance for 2130 South Fort Union Blvd.:");
             foreach (var name in surnames)
             {
-                int leven = input.LevenshteinDistance(name);
+                int leven = LevenshteinDistanceExtensions.LevenshteinDistance(input, name);
                 Console.WriteLine("\t{0} against {1}", leven, name);
             }
 
@@ -155,11 +154,11 @@ namespace FSFuzzyStrings.Tests
             }
 
             Console.WriteLine();
-            string mp = input.ToDoubleMetaphone();
+            string mp = DoubleMetaphoneExtensions.ToDoubleMetaphone(input);
             Console.WriteLine("Double Metaphone for 2130 South Fort Union Blvd.: {0}", mp);
             foreach (var name in surnames)
             {
-                string nameMp = name.ToDoubleMetaphone();
+                string nameMp = DoubleMetaphoneExtensions.ToDoubleMetaphone(name);
                 Console.WriteLine("\t{0} metaphone for {1}", nameMp, name);
             }
 

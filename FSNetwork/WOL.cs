@@ -1,6 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -46,6 +50,7 @@ namespace FSNetwork
         }
 #endif
 
+#if NET35_OR_GREATER || NETCOREAPP
         public static void WakeOnLan(string macAddress)
         {
             byte[] magicPacket = BuildMagicPacket(macAddress);
@@ -79,6 +84,7 @@ namespace FSNetwork
                 }
             }
         }
+#endif
 
         static byte[] BuildMagicPacket(string macAddress) // MacAddress in any standard HEX format
         {
@@ -113,6 +119,80 @@ namespace FSNetwork
             {
                 await client.SendAsync(magicPacket, magicPacket.Length, multicastIpAddress.ToString(), 9);
             }
+        }
+#endif
+
+#if NET30 || NET20
+        public static void WakeOnLan(string macAddress)
+        {
+            byte[] magicPacket = BuildMagicPacket(macAddress);
+
+            NetworkInterface[] networkInterfaces = NetworkInterface.GetAllNetworkInterfaces();
+            foreach (NetworkInterface networkInterface in networkInterfaces)
+            {
+                if (networkInterface.NetworkInterfaceType != NetworkInterfaceType.Loopback &&
+                    networkInterface.OperationalStatus == OperationalStatus.Up)
+                {
+                    IPInterfaceProperties iPInterfaceProperties = networkInterface.GetIPProperties();
+                    MulticastIPAddressInformationCollection multicastAddresses = iPInterfaceProperties.MulticastAddresses;
+
+                    foreach (MulticastIPAddressInformation multicastIPAddressInformation in multicastAddresses)
+                    {
+                        IPAddress multicastIpAddress = multicastIPAddressInformation.Address;
+                        string multicastIpAddressString = multicastIpAddress.ToString();
+
+                        if (multicastIpAddressString.StartsWith("ff02::1%", StringComparison.OrdinalIgnoreCase)) // Ipv6: All hosts on LAN (with zone index)
+                        {
+                            UnicastIPAddressInformation unicastIPAddressInformation = GetIPv6UnicastAddress(iPInterfaceProperties);
+                            if (unicastIPAddressInformation != null)
+                            {
+                                SendWakeOnLan(unicastIPAddressInformation.Address, multicastIpAddress, magicPacket);
+                                break;
+                            }
+                        }
+                        else if (multicastIpAddressString.Equals("224.0.0.1")) // Ipv4: All hosts on LAN
+                        {
+                            UnicastIPAddressInformation unicastIPAddressInformation = GetIPv4UnicastAddress(iPInterfaceProperties);
+                            if (unicastIPAddressInformation != null)
+                            {
+                                SendWakeOnLan(unicastIPAddressInformation.Address, multicastIpAddress, magicPacket);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private static UnicastIPAddressInformation GetIPv6UnicastAddress(IPInterfaceProperties iPInterfaceProperties)
+        {
+            UnicastIPAddressInformationCollection unicastAddresses = iPInterfaceProperties.UnicastAddresses;
+            foreach (UnicastIPAddressInformation unicastIPAddressInformation in unicastAddresses)
+            {
+                if (unicastIPAddressInformation.Address.AddressFamily == AddressFamily.InterNetworkV6 &&
+                    !unicastIPAddressInformation.Address.IsIPv6LinkLocal)
+                {
+                    return unicastIPAddressInformation;
+                }
+            }
+            return null;
+        }
+
+        private static UnicastIPAddressInformation GetIPv4UnicastAddress(IPInterfaceProperties iPInterfaceProperties)
+        {
+            UnicastIPAddressInformationCollection unicastAddresses = iPInterfaceProperties.UnicastAddresses;
+            IPv4InterfaceProperties ipv4Properties = iPInterfaceProperties.GetIPv4Properties();
+            if (ipv4Properties == null) return null;
+            bool isAutomaticPrivateAddressingActive = ipv4Properties.IsAutomaticPrivateAddressingActive;
+            foreach (UnicastIPAddressInformation unicastIPAddressInformation in unicastAddresses)
+            {
+                if (unicastIPAddressInformation.Address.AddressFamily == AddressFamily.InterNetwork &&
+                    !isAutomaticPrivateAddressingActive)
+                {
+                    return unicastIPAddressInformation;
+                }
+            }
+            return null;
         }
 #endif
 

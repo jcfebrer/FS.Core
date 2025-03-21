@@ -91,7 +91,7 @@ namespace FSMail
 
         public bool SendMailMessage(string sTo, string sCC, string sCCO, string sSubject, string sBody, string plantilla, bool Firmar, System.Security.Cryptography.X509Certificates.X509Certificate2 Certificado)
 		{
-#if NET40 || NET35
+#if NET40 || NET35 || NET30 || NET20
 			System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
 #else
 			System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -173,7 +173,7 @@ namespace FSMail
 
             if (Firmar)
             {
-#if NET35
+#if NET35 || NET30 || NET20
 				Mail.Body = sBody;
 #else
 				Mail.Body = Certificate.SignMessage(sBody, Certificado);

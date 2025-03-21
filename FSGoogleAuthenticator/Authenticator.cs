@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 namespace FSGoogleAuthenticator
@@ -127,7 +126,7 @@ namespace FSGoogleAuthenticator
             return Pin.ToString(CultureInfo.InvariantCulture).PadLeft(PinLength, '0');
         }
 
-#if !NET35
+#if NET40_OR_GREATER || NETCOREAPP
         /// <summary>
         /// Crea una clave aleatoria (habría que guardar en cada usuario para realizar la validación)
         /// </summary>

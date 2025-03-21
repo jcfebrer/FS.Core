@@ -1,4 +1,6 @@
-﻿/* PetaPoco v4.0.3 - A Tiny ORMish thing for your POCO's.
+﻿#if NET35_OR_GREATER || NETCOREAPP
+
+/* PetaPoco v4.0.3 - A Tiny ORMish thing for your POCO's.
  * Copyright © 2011 Topten Software.  All Rights Reserved.
  * 
  * Apache License 2.0 - http://www.toptensoftware.com/petapoco/license
@@ -2350,3 +2352,5 @@ namespace FSOrm
 	}
 
 }
+
+#endif

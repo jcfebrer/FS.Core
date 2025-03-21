@@ -3,9 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Xml.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+    using System.Xml.Linq;
+#endif
 
 namespace FSFormControls
 {
@@ -14,6 +17,11 @@ namespace FSFormControls
         private bool _isSorted;
         private ListSortDirection _sortDirection;
         private PropertyDescriptor _sortProperty;
+
+        public SortableBindingList()
+            : base()
+        {
+        }
 
         public SortableBindingList(List<T> list)
             : base(list)
@@ -123,18 +131,50 @@ namespace FSFormControls
                        (type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>));
             }
 
+#if NET35_OR_GREATER || NETCOREAPP
             private static bool CanSortWithToString(Type type)
             {
                 return type.Equals(typeof(XNode)) || type.IsSubclassOf(typeof(XNode));
             }
+#else
+            private static bool CanSortWithToString(Type type)
+            {
+                return type.Equals(typeof(string)) ||
+                       type.Equals(typeof(int)) ||
+                       type.Equals(typeof(double)) ||
+                       type.Equals(typeof(float)) ||
+                       type.Equals(typeof(decimal)) ||
+                       type.Equals(typeof(short)) ||
+                       type.Equals(typeof(long)) ||
+                       type.Equals(typeof(byte)) ||
+                       type.Equals(typeof(uint)) ||
+                       type.Equals(typeof(ulong)) ||
+                       type.Equals(typeof(ushort));
+            }
+#endif
         }
     }
 
     public static class EnumerableExtensions
     {
-        public static BindingList<T> ToSortableBindingList<T>(this IEnumerable<T> source)
+#if NET35_OR_GREATER || NETCOREAPP
+        public static BindingList<T> ToSortableBindingList<T>(IEnumerable<T> source)
         {
             return new SortableBindingList<T>(source.ToList());
         }
+#else
+        public static SortableBindingList<T> ToSortableBindingList<T>(IEnumerable<T> source)
+        {
+            SortableBindingList<T> bindingList = new SortableBindingList<T>();
+
+            if (source != null)
+            {
+                foreach (T item in source)
+                    bindingList.Add(item);
+            }
+
+            return bindingList;
+        }
+#endif
     }
 }

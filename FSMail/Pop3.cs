@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
@@ -134,7 +133,7 @@ namespace FSMail
 		{
 			List<Pop3MessagePart> emailParts = new List<Pop3MessagePart>();
 			string[] list = GetMessagesList();
-			int listCount = list.Count();
+			int listCount = list.Length;
 
 			for (int i = listCount - 1; i >= (listCount - count); i--)
 			{
@@ -157,7 +156,7 @@ namespace FSMail
 		{
 			List<Pop3Email> emails = new List<Pop3Email>();
 			string[] list = GetMessagesList();
-			int listCount = list.Count();
+			int listCount = list.Length;
 
 			for (int i = listCount - 1; i >= (listCount - count); i--)
 			{

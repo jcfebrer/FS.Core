@@ -1,18 +1,19 @@
 ﻿using FSException;
 using System;
 using System.IO;
+using System.Text;
+using System.Xml;
+using System.Xml.Serialization;
 
-#if NETFRAMEWORK
-#if !NET35
+
+#if NET40_OR_GREATER
     using System.Runtime.Serialization;
     using System.Runtime.Serialization.Formatters.Soap;
 #endif
-#endif
 
-using System.Text;
-using System.Xml;
-using System.Xml.Linq;
-using System.Xml.Serialization;
+#if NET35_OR_GREATER
+    using System.Xml.Linq;
+#endif
 
 namespace FSLibrary
 {
@@ -23,6 +24,7 @@ namespace FSLibrary
     {
         #region "PrettyXml"
 
+#if NET35_OR_GREATER
         /// <summary>
         /// Formatea un fichero xml en formato texto a xml con intentación y saltos de línea
         /// </summary>
@@ -46,6 +48,11 @@ namespace FSLibrary
 
             return stringBuilder.ToString();
         }
+#endif
+
+        #endregion
+
+        #region XML Serialization
 
         /// <summary>
         /// Clase StringWrite con codificación UTF8
@@ -87,10 +94,6 @@ namespace FSLibrary
 
             return xml;
         }
-
-        #endregion
-
-        #region XML Serialization
 
         /// <summary>
         ///     Converts an object to an xml string.
@@ -319,8 +322,7 @@ namespace FSLibrary
         #endregion
 
         #region SOAP Serialization
-#if NETFRAMEWORK
-#if !NET35
+#if NET40_OR_GREATER
         /// <summary>
         ///     DeSerializes a string into a  object
         /// </summary>
@@ -447,7 +449,6 @@ namespace FSLibrary
 
             return objectFromSoap;
         }
-#endif
 #endif
 #endregion
 

@@ -5,7 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Security.Policy;
 using System.Text;
 using System.Web;
@@ -142,7 +146,11 @@ namespace FSDatabase
             DataRow[] rows = m_dataTable.Select(filter);
             if (rows.Length == 0)
                 return null;
+#if NET35_OR_GREATER || NETCOREAPP
             return rows.CopyToDataTable();
+#else
+            return Utils.CopyRowsToDataTable(rows, m_dataTable);
+#endif
         }
 
         public DataTable Select(string filter, string sort)
@@ -153,7 +161,11 @@ namespace FSDatabase
             DataRow[] rows = m_dataTable.Select(filter, sort);
             if (rows.Length == 0)
                 return null;
+#if NET35_OR_GREATER || NETCOREAPP
             return rows.CopyToDataTable();
+#else
+            return Utils.CopyRowsToDataTable(rows, m_dataTable);
+#endif
         }
 
         public DataTable Select()
@@ -172,7 +184,11 @@ namespace FSDatabase
             DataRow[] rows = m_dataTable.Select(filter);
             if (rows.Length == 0)
                 return null;
+#if NET35_OR_GREATER || NETCOREAPP
             return rows.FirstOrDefault();
+#else
+            return Utils.GetFirstOrDefault(rows);
+#endif
         }
 
         /// <summary>
@@ -249,7 +265,11 @@ namespace FSDatabase
             dtPaginas.ReadXmlSchema(fileNameXsd);
             dtPaginas.ReadXml(fileNameXml);
 
+#if NET35_OR_GREATER || NETCOREAPP
             return dtPaginas.Select(select).CopyToDataTable();
+#else
+            return Utils.SelectAndCopy(dtPaginas, select);
+#endif
         }
 
         public static DataTable XMLDataTable(string fileNameXml, string fileNameXsd)

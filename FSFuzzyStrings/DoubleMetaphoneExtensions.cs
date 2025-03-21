@@ -42,7 +42,7 @@ namespace FSFuzzyStrings
     /// </remarks>
     public static class DoubleMetaphoneExtensions
     {
-        public static string ToDoubleMetaphone(this string input)
+        public static string ToDoubleMetaphone(string input)
         {
             MetaphoneData metaphoneData = new MetaphoneData();
             int current = 0;
@@ -61,7 +61,7 @@ namespace FSFuzzyStrings
                 || (input.IndexOf(strWITZ, StringComparison.OrdinalIgnoreCase) > -1);
 
             //skip these when at start of word
-            if (workingString.StartsWith(StringComparison.OrdinalIgnoreCase, strGN, strKN, strPN, strWR, strPS))
+            if (StartsWith(workingString, StringComparison.OrdinalIgnoreCase, strGN, strKN, strPN, strWR, strPS))
             {
                 current += 1;
             }
@@ -941,7 +941,7 @@ namespace FSFuzzyStrings
         }
 
 
-        static bool IsVowel(this char self)
+        static bool IsVowel(char self)
         {
             return (self == charA) || (self == charE) || (self == charI)
                 || (self == charO) || (self == charU) || (self == charY);
@@ -1127,7 +1127,7 @@ namespace FSFuzzyStrings
         private const string strET = "ET";
 
 
-        static bool StartsWith(this string self, StringComparison comparison, params string[] strings)
+        static bool StartsWith(string self, StringComparison comparison, params string[] strings)
         {
             foreach (string str in strings)
             {
@@ -1139,7 +1139,7 @@ namespace FSFuzzyStrings
             return false;
         }
 
-        static bool StringAt(this string self, int startIndex, params string[] strings)
+        static bool StringAt(string self, int startIndex, params string[] strings)
         {
             if (startIndex < 0)
             {

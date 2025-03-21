@@ -1,16 +1,23 @@
 ﻿using FSException;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Net.Security;
 using System.Security.Cryptography;
 
-#if !NET35
+#if NET40_OR_GREATER || NETCOREAPP
     using System.Security.Cryptography.Pkcs;
 #endif
 
 using System.Security.Cryptography.X509Certificates;
-using System.Security.Cryptography.Xml;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Security.Cryptography.Xml;
+#endif
 using System.Text;
 using System.Xml;
 
@@ -87,7 +94,23 @@ namespace FSCertificate
             X509Store Store = new X509Store(location);
             Store.Open(OpenFlags.ReadOnly);
             X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindByIssuerName, issuerName, true);
+
+            if (certs == null || certs.Count == 0)
+            {
+                return null; // O puedes lanzar una excepción si lo prefieres
+            }
+
+#if NET35_OR_GREATER || NETCOREAPP
             return certs.OfType<X509Certificate2>().FirstOrDefault();
+#else
+            foreach (X509Certificate cert in certs)
+            {
+                X509Certificate2 cert2 = cert as X509Certificate2;
+                if (cert2 != null)
+                    return cert2;
+            }
+            return null;
+#endif
         }
 
         /// <summary>
@@ -100,7 +123,23 @@ namespace FSCertificate
             X509Store Store = new X509Store(location);
             Store.Open(OpenFlags.ReadOnly);
             X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true);
+
+            if (certs == null || certs.Count == 0)
+            {
+                return null; // O puedes lanzar una excepción si lo prefieres
+            }
+
+#if NET35_OR_GREATER || NETCOREAPP
             return certs.OfType<X509Certificate2>().FirstOrDefault();
+#else
+            foreach (X509Certificate cert in certs)
+            {
+                X509Certificate2 cert2 = cert as X509Certificate2;
+                if (cert2 != null)
+                    return cert2;
+            }
+            return null;
+#endif
         }
 
         /// <summary>
@@ -113,7 +152,23 @@ namespace FSCertificate
             X509Store Store = new X509Store(location);
             Store.Open(OpenFlags.ReadOnly);
             X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindBySubjectName, name, true);
+
+            if (certs == null || certs.Count == 0)
+            {
+                return null; // O puedes lanzar una excepción si lo prefieres
+            }
+
+#if NET35_OR_GREATER || NETCOREAPP
             return certs.OfType<X509Certificate2>().FirstOrDefault();
+#else
+            foreach (X509Certificate cert in certs)
+            {
+                X509Certificate2 cert2 = cert as X509Certificate2;
+                if (cert2 != null)
+                    return cert2;
+            }
+            return null;
+#endif
         }
 
         /// <summary>
@@ -134,7 +189,7 @@ namespace FSCertificate
             return cert.GetSerialNumberString();
         }
 
-#if !NET35
+#if NET40_OR_GREATER || NETCOREAPP
         public static string SignMessage(string message, X509Certificate2 cert)
         {
             if (cert == null)
@@ -265,7 +320,26 @@ namespace FSCertificate
 
         public static bool IsSelfSigned(X509Certificate2 cert)
         {
+            if (cert == null || cert.SubjectName == null || cert.IssuerName == null || cert.SubjectName.RawData == null || cert.IssuerName.RawData == null)
+                return false;
+
+#if NET35_OR_GREATER || NETCOREAPP
             return cert.SubjectName.RawData.SequenceEqual(cert.IssuerName.RawData);
+#else
+            byte[] subjectRawData = cert.SubjectName.RawData;
+            byte[] issuerRawData = cert.IssuerName.RawData;
+
+            if (subjectRawData.Length != issuerRawData.Length)
+                return false;
+
+            for (int i = 0; i < subjectRawData.Length; i++)
+            {
+                if (subjectRawData[i] != issuerRawData[i])
+                    return false;
+            }
+
+            return true;
+#endif
         }
 
         public static bool CheckIfHasPrivateKey(X509Certificate2 cert)

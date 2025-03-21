@@ -213,6 +213,29 @@ namespace FSTrace
             return logFile;
         }
 
+#if NET30 || NET20
+        private static bool IsMessageMatch(LogMessage message, bool error, bool warning, bool info)
+        {
+            return message.IsTraceLevel(TraceLevel.Error, error) ||
+                   message.IsTraceLevel(TraceLevel.Warning, warning) ||
+                   message.IsTraceLevel(TraceLevel.Info, info);
+        }
+
+        public static List<LogMessage> GetLogData(bool error, bool warning, bool info)
+        {
+            List<LogMessage> result = new List<LogMessage>();
+
+            foreach (LogMessage message in logMessages)
+            {
+                if (IsMessageMatch(message, error, warning, info))
+                {
+                    result.Add(message);
+                }
+            }
+
+            return result;
+        }
+#else
         public static List<LogMessage> GetLogData(bool error, bool warning, bool info)
         {
             Func<LogMessage, bool> predicate1 = s => s.IsTraceLevel(TraceLevel.Error, error);
@@ -220,6 +243,7 @@ namespace FSTrace
             Func<LogMessage, bool> predicate3 = s => s.IsTraceLevel(TraceLevel.Info, info);
             return logMessages.FindAll(s => (predicate1(s) || predicate2(s) || predicate3(s)));
         }
+#endif
 
         public static List<LogMessage> GetLogData(TraceLevel level)
         {

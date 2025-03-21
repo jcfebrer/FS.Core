@@ -1,4 +1,4 @@
-﻿#if !NET35
+﻿#if NET40_OR_GREATER || NETCOREAPP
 
 using FSException;
 using FSTrace;

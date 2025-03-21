@@ -5,9 +5,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 namespace FSDisk
 {
@@ -55,7 +58,7 @@ namespace FSDisk
             return hash;
         }
 
-#if !NET35
+#if NET40_OR_GREATER || NETCOREAPP
         public static string CalcCrc32Async(string fileName, CancellationToken token)
         {
             string crc32 = "";
@@ -96,7 +99,7 @@ namespace FSDisk
                 if (calcSoundEx)
                     fil.SoundEx = FSFuzzyStrings.SoundExEsp.Do(f.Name);
 
-                if(calcCRC32)
+                if (calcCRC32)
                     fil.Crc32 = CalcCrc32(f.FullName);
 
                 if (fil.Nombre.ToLower() == fil.NombreNormalizado.ToLower())
@@ -448,7 +451,7 @@ namespace FSDisk
                     }
                     else
                     {
-#if NET35
+#if NET35 || NET30 ||NET20
                         bool hiddenFlag = (sourceDirectories[j].Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
 #else
                         bool hiddenFlag = sourceDirectories[j].Attributes.HasFlag(FileAttributes.Hidden);
@@ -670,26 +673,48 @@ namespace FSDisk
             }
 
             var dirInfo = new DirectoryInfo(dirPath);
+
+#if NET35_OR_GREATER || NETCOREAPP
             files = dirInfo.GetFiles("*" + pattern).ToList();
+#else
+
+            FileInfo[] fileInfoArray = dirInfo.GetFiles("*" + pattern);
+            files.AddRange(fileInfoArray);
+#endif
 
             return files;
         }
 
+#if NET35_OR_GREATER || NETCOREAPP
         public static List<string> GetFileExtensionsInDirectory(string dirPath)
         {
-            var files = new List<string>();
-
             if (!Directory.Exists(dirPath))
             {
                 throw new ArgumentException("Directory Path does not exist!");
             }
 
             var dirInfo = new DirectoryInfo(dirPath);
+
+            var files = new List<string>();
             files = dirInfo.GetFiles().Select(f => f.Extension).Distinct().ToList();
 
             return files;
         }
+#else
+        public static FileInfo[] GetFileExtensionsInDirectory(string dirPath)
+        {
+            if (!Directory.Exists(dirPath))
+            {
+                throw new ArgumentException("Directory Path does not exist!");
+            }
 
+            var dirInfo = new DirectoryInfo(dirPath);
+            var files = dirInfo.GetFiles();
+            return files;
+        }
+#endif
+
+#if NET35_OR_GREATER || NETCOREAPP
         public static List<FileInfo> FindImageFiles(string dirPath)
         {
             string[] extensions = { ".bmp", ".jpg", ".png" };
@@ -701,8 +726,28 @@ namespace FSDisk
 
             return imgFiles;
         }
+#else
+        public static List<FileInfo> FindImageFiles(string dirPath)
+        {
+            List<string> extensions = new List<string> { ".bmp", ".jpg", ".png" };
+            var imgFiles = new List<FileInfo>();
 
-#if !NET35
+            var dirInfo = new DirectoryInfo(dirPath);
+            FileInfo[] allFiles = dirInfo.GetFiles("*.*");
+
+            foreach (FileInfo file in allFiles)
+            {
+                if (extensions.Contains(file.Extension.ToLower())) // Usamos Contains en lugar de Where
+                {
+                    imgFiles.Add(file);
+                }
+            }
+
+            return imgFiles;
+        }
+#endif
+
+#if NET40_OR_GREATER || NETCOREAPP
         public static IEnumerable<FileInfo> GetFilesByExtensions(DirectoryInfo dir, params string[] extensions)
         {
             if (extensions == null)
@@ -717,6 +762,7 @@ namespace FSDisk
         }
 #endif
 
+#if NET35_OR_GREATER || NETCOREAPP
         public static string[] GetFiles(string sourceFolder, string filters)
         {
             return filters.Split('|').SelectMany(filter => Directory.GetFiles(sourceFolder, filter)).ToArray();
@@ -726,5 +772,34 @@ namespace FSDisk
         {
             return filters.Split('|').SelectMany(filter => Directory.GetFiles(sourceFolder, filter, searchOption)).ToArray();
         }
+#else
+        public static string[] GetFiles(string sourceFolder, string filters)
+        {
+            string[] filterArray = filters.Split('|');
+            List<string> allFiles = new List<string>();
+
+            foreach (string filter in filterArray)
+            {
+                string[] files = Directory.GetFiles(sourceFolder, filter);
+                allFiles.AddRange(files);
+            }
+
+            return allFiles.ToArray();
+        }
+
+        public static string[] GetFiles(string sourceFolder, string filters, SearchOption searchOption)
+        {
+            string[] filterArray = filters.Split('|');
+            List<string> allFiles = new List<string>();
+
+            foreach (string filter in filterArray)
+            {
+                string[] files = Directory.GetFiles(sourceFolder, filter, searchOption);
+                allFiles.AddRange(files);
+            }
+
+            return allFiles.ToArray();
+        }
+#endif
     }
 }

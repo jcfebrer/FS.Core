@@ -1,4 +1,6 @@
-﻿using FSException;
+﻿#if NET35_OR_GREATER || NETCOREAPP
+
+using FSException;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -145,3 +147,5 @@ namespace FSNetwork
         }
     }
 }
+
+#endif

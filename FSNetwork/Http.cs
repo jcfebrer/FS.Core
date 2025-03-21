@@ -9,7 +9,11 @@ using FSException;
 using System;
 using System.Collections.Specialized;
 using System.IO;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;

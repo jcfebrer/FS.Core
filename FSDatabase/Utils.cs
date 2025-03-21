@@ -12,7 +12,11 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.IO;
-using System.Linq;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
+
 using System.Text;
 using System.Web;
 
@@ -43,8 +47,28 @@ namespace FSDatabase
             Boolean
         }
 
+        private static IEnumerable<DataRow[]> ToChunks(IEnumerable<DataRow> source, int chunkSize)
+        {
+            if (source == null)
+                yield break;
+
+            List<DataRow> chunk = new List<DataRow>();
+            foreach (DataRow row in source)
+            {
+                chunk.Add(row);
+                if (chunk.Count == chunkSize)
+                {
+                    yield return chunk.ToArray();
+                    chunk.Clear();
+                }
+            }
+            if (chunk.Count > 0)
+                yield return chunk.ToArray();
+        }
+
+#if NET35_OR_GREATER || NETCOREAPP
         private static IEnumerable<IEnumerable<T>> ToChunks<T>(IEnumerable<T> enumerable,
-                                                      int chunkSize)
+                                              int chunkSize)
         {
             int itemsReturned = 0;
             var list = enumerable.ToList();
@@ -56,7 +80,9 @@ namespace FSDatabase
                 itemsReturned += currentChunkSize;
             }
         }
+#endif
 
+#if NET35_OR_GREATER || NETCOREAPP
         public static DataTable SplitDatatable(DataTable dataTable, int page, int size)
         {
             IEnumerable<DataTable> dataTables = ToChunks(dataTable.AsEnumerable(), size)
@@ -68,6 +94,35 @@ namespace FSDatabase
 
             return dtList[page];
         }
+#else
+        public static DataTable SplitDatatable(DataTable dataTable, int page, int size)
+        {
+            List<DataTable> dtList = new List<DataTable>();
+            List<DataRow> dataRows = new List<DataRow>();
+
+            foreach (DataRow row in dataTable.Rows)
+            {
+                dataRows.Add(row);
+            }
+
+            IEnumerable<DataRow[]> chunks = ToChunks(dataRows, size);
+
+            foreach (DataRow[] rows in chunks)
+            {
+                dtList.Add(CopyRowsToDataTable(rows, dataTable)); // Usamos CopyRowsToDataTable de la respuesta anterior
+            }
+
+            if (page > dtList.Count - 1) // Ajustamos el índice a dtList.Count - 1
+                page = dtList.Count - 1;
+
+            if (dtList.Count == 0)
+            {
+                return dataTable.Clone(); // Return a clone of original table if dtList is empty.
+            }
+
+            return dtList[page];
+        }
+#endif
 
         public static FieldTypeEnum GetFSTypeFromSystemType(Type type)
         {
@@ -112,6 +167,45 @@ namespace FSDatabase
             }
 
             return FieldTypeEnum.String;
+        }
+
+        public static DataTable SelectAndCopy(DataTable dtPaginas, string select)
+        {
+            DataTable newTable = dtPaginas.Clone(); // Crea una copia de la estructura de la tabla
+
+            foreach (DataRow row in dtPaginas.Select(select)) // Obtiene las filas filtradas
+            {
+                DataRow newRow = newTable.NewRow();
+                newRow.ItemArray = row.ItemArray; // Copia los valores de la fila
+                newTable.Rows.Add(newRow);
+            }
+
+            return newTable;
+        }
+
+        public static DataTable CopyRowsToDataTable(DataRow[] rows, DataTable sourceTable)
+        {
+            if (rows == null || rows.Length == 0)
+                return sourceTable.Clone(); // Devuelve una tabla vacía con la misma estructura
+
+            DataTable newTable = sourceTable.Clone(); // Crea una copia de la estructura de la tabla
+
+            foreach (DataRow row in rows)
+            {
+                DataRow newRow = newTable.NewRow();
+                newRow.ItemArray = row.ItemArray; // Copia los valores de la fila
+                newTable.Rows.Add(newRow);
+            }
+
+            return newTable;
+        }
+
+        public static DataRow GetFirstOrDefault(DataRow[] rows)
+        {
+            if (rows == null || rows.Length == 0)
+                return null; // Devuelve null si el array es nulo o vacío
+
+            return rows[0]; // Devuelve el primer elemento del array
         }
 
         public static string FormatSQL(string sql)

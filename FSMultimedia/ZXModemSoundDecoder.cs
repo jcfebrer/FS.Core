@@ -1,7 +1,10 @@
 ﻿using System;
 using System.IO;
-using System.Linq;
 using System.Text;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 namespace FSMultimedia
 {
@@ -92,9 +95,31 @@ namespace FSMultimedia
         /// </summary>
         private int DetectBit(short[] samples, int startIndex)
         {
+#if NET35_OR_GREATER || NETCOREAPP
             double avgPower = samples.Skip(startIndex).Take(BitDurationSamples).Average(s => Math.Abs(s));
+#else
+            double avgPower = CalculateAveragePower(samples, startIndex, BitDurationSamples);
+#endif
             return avgPower > 1000 ? 1 : 0; // Umbral de detección
         }
-    }
 
+        /// <summary>
+        /// Calculamos la potencia media
+        /// </summary>
+        /// <param name="samples"></param>
+        /// <param name="startIndex"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        private double CalculateAveragePower(short[] samples, int startIndex, int count)
+        {
+            if (samples == null || startIndex < 0 || count <= 0 || startIndex + count > samples.Length)
+                throw new ArgumentException("Invalid parameters.");
+
+            double sum = 0;
+            for (int i = startIndex; i < startIndex + count; i++)
+                sum += Math.Abs(samples[i]);
+            return sum / count;
+        }
+    }
 }

@@ -14,8 +14,11 @@ using FSException;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
+
+#if NET35_OR_GREATER || NETCOREAPP
+    using System.Linq;
+#endif
 
 #endregion
 
@@ -59,8 +62,13 @@ namespace FSLibrary
         /// <returns></returns>
         public static string ToRFC_822(System.DateTime date)
         {
+#if NET35_OR_GREATER || NETCOREAPP
             var offset = TimeZoneInfo.Local.GetUtcOffset(DateTime.UtcNow).Hours;
+#else
+            var offset = TimeZone.CurrentTimeZone.GetUtcOffset(DateTime.UtcNow).Hours;
+#endif
             var timeZone = "+" + offset.ToString().PadLeft(2, '0');
+
 
             if (offset < 0)
             {
@@ -475,7 +483,7 @@ namespace FSLibrary
             double businessDays = 0;
             for (var date = startD.Date; date <= endD.Date; date = date.AddDays(1))
             {
-                if (!date.IsWeekendDay())
+                if (!IsWeekendDay(date))
                 {
                     businessDays++;
                 }
@@ -513,10 +521,19 @@ namespace FSLibrary
         /// <param name="start"></param>
         /// <param name="end"></param>
         /// <returns></returns>
-        public static IEnumerable<DateTime> DaysInRangeUntil(this DateTime start, DateTime end)
+        public static IEnumerable<DateTime> DaysInRangeUntil(DateTime start, DateTime end)
         {
+#if NET35_OR_GREATER || NETCOREAPP
             return Enumerable.Range(0, 1 + (int)(end.Date - start.Date).TotalDays)
                              .Select(dt => start.Date.AddDays(dt));
+# else
+            int days = (int)(end.Date - start.Date).TotalDays + 1;
+
+            for (int i = 0; i < days; i++)
+            {
+                yield return start.Date.AddDays(i);
+            }
+#endif
         }
 
         /// <summary>
@@ -524,7 +541,7 @@ namespace FSLibrary
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        public static bool IsWeekendDay(this DateTime dt)
+        public static bool IsWeekendDay(DateTime dt)
         {
             return dt.DayOfWeek == DayOfWeek.Saturday
                 || dt.DayOfWeek == DayOfWeek.Sunday;
@@ -557,6 +574,7 @@ namespace FSLibrary
         /// <returns></returns>
         public static double MinutesBetween2Dates(DateTime a, DateTime b, bool excludeWeekend, int startHour = 0, int endHour = 24)
         {
+#if NET35_OR_GREATER || NETCOREAPP
             // Obtener todos los días en el rango [a, b]
             var days = DaysInRangeUntil(a, b);
 
@@ -581,6 +599,47 @@ namespace FSLibrary
 
             // Retornar la suma total de los minutos
             return minutes.Sum();
+#else
+            // Obtener todos los días en el rango [a, b]
+            var days = DaysInRangeUntil(a, b);
+
+            // Filtrar fines de semana si es necesario
+            List<DateTime> validDays = new List<DateTime>();
+            if (excludeWeekend)
+            {
+                foreach (var day in days)
+                {
+                    if (!IsWeekendDay(day))
+                    {
+                        validDays.Add(day);
+                    }
+                }
+            }
+            else
+            {
+                validDays.AddRange(days);
+            }
+
+            // Calcular los minutos hábiles
+            double totalMinutes = 0;
+            foreach (var day in validDays)
+            {
+                // Inicio del día hábil (07:00 AM) o el inicio del rango, lo que sea más tarde
+                var start = Max(day.Date.AddHours(startHour), a);
+
+                // Fin del día hábil (19:00 PM) o el fin del rango, lo que sea más temprano
+                var end = Min(day.Date.AddHours(endHour), b);
+
+                // Asegurar que el rango sea válido
+                if (end > start)
+                {
+                    totalMinutes += (end - start).TotalMinutes;
+                }
+            }
+
+            // Retornar la suma total de los minutos
+            return totalMinutes;
+#endif
         }
     }
 }
