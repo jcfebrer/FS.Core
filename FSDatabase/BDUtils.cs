@@ -34,6 +34,8 @@ using FSSecurity;
 
 #if NETCOREAPP
     using Microsoft.AspNetCore.Http;
+using System.Reflection;
+
 #endif
 
 #if NET35_OR_GREATER || NETCOREAPP
@@ -325,13 +327,32 @@ namespace FSDatabase
             if (String.IsNullOrEmpty(ProviderName))
                 throw new ExceptionUtil("No se ha definido el nombre del proveedor.");
 
-            //DbProviderFactories.RegisterFactory("System.Data.SqlClient", System.Data.SqlClient.SqlClientFactory.Instance);
-            //DbProviderFactories.RegisterFactory("MySql.Data.MySqlClient", MySql.Data.MySqlClient.MySqlClientFactory.Instance);
-            //DbProviderFactories.RegisterFactory("Npgsql", Npgsql.NpgsqlFactory.Instance);
-            //DbProviderFactories.RegisterFactory("Oracle.ManagedDataAccess.Client", Oracle.ManagedDataAccess.Client.OracleClientFactory.Instance);
-            //DbProviderFactories.RegisterFactory("System.Data.SQLite.EF6", System.Data.SQLite.EF6.SQLiteProviderFactory.Instance);
-            //DbProviderFactories.RegisterFactory("System.Data.SQLite", System.Data.SQLite.SQLiteFactory.Instance);
+#if NETCOREAPP
+            if(ProviderName.ToLower() == "system.data.oledb")
+                DbProviderFactories.RegisterFactory("System.Data.OleDb", "System.Data.OleDb.OleDbFactory, System.Data.OleDb");
 
+            if (ProviderName.ToLower() == "system.data.odbc")
+                DbProviderFactories.RegisterFactory("System.Data.Obdc", "System.Data.Odbc.OdbcFactory, System.Data.Odbc");
+
+            if (ProviderName.ToLower() == "system.data.sqlclient")
+                DbProviderFactories.RegisterFactory("System.Data.SqlClient", "System.Data.SqlClient.SqlClientFactory, System.Data.SqlClient");
+
+            if (ProviderName.ToLower() == "mysql.data.mysqlclient")
+                DbProviderFactories.RegisterFactory("MySql.Data.MySqlClient", "MySql.Data.MySqlClient.MySqlClientFactory, MySql.Data.MySqlClient");
+
+            if (ProviderName.ToLower() == "npgsql")
+                DbProviderFactories.RegisterFactory("Npgsql", "Npgsql.NpgsqlFactory, Npgsql");
+
+            if (ProviderName.ToLower() == "oracle.manageddataaccess.client")
+                DbProviderFactories.RegisterFactory("Oracle.ManagedDataAccess.Client", "Oracle.ManagedDataAccess.Client.OracleClientFactory, Oracle.ManagedDataAccess.Client");
+                
+            if (ProviderName.ToLower() == "system.data.sqlite.ef6")
+                DbProviderFactories.RegisterFactory("System.Data.SQLite.EF6", "System.Data.SQLite.EF6.SQLiteProviderFactory, System.Data.SQLite.EF6");
+                
+            if (ProviderName.ToLower() == "system.data.sqlite")
+                DbProviderFactories.RegisterFactory("System.Data.SQLite", "System.Data.SQLite.SQLiteFactory, System.Data.SQLite");
+#endif
+            
             m_providerFactory = DbProviderFactories.GetFactory(ProviderName);
 
             return m_providerFactory;

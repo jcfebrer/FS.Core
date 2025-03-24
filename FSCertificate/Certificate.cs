@@ -1,25 +1,20 @@
 ﻿using FSException;
 using System;
 using System.Collections.Generic;
+using System.Net.Security;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Xml;
 
 #if NET35_OR_GREATER || NETCOREAPP
     using System.Linq;
+    using System.Security.Cryptography.Xml;
 #endif
-
-using System.Net.Security;
-using System.Security.Cryptography;
 
 #if NET40_OR_GREATER || NETCOREAPP
     using System.Security.Cryptography.Pkcs;
 #endif
-
-using System.Security.Cryptography.X509Certificates;
-
-#if NET35_OR_GREATER || NETCOREAPP
-    using System.Security.Cryptography.Xml;
-#endif
-using System.Text;
-using System.Xml;
 
 namespace FSCertificate
 {

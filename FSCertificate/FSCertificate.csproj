@@ -20,7 +20,7 @@
     <ProjectReference Include="..\FSException\FSException.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <Reference Include="System.Security">
+    <Reference Condition="'$(TargetFramework)' != 'net20' and '$(TargetFramework)' != 'net30' and '$(TargetFramework)' != 'net35'" Include="System.Security">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Security.dll</HintPath>
     </Reference>
   </ItemGroup>

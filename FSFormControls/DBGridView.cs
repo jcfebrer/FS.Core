@@ -1813,10 +1813,13 @@ namespace FSFormControls
             if (m_DBControl == null)
                 return;
 
-            m_DBControl.DataTable.ColumnChanging += ColumnChangingEvt;
-            m_DBControl.DataTable.RowChanging += RowChangingEvt;
-            m_DBControl.DataTable.ColumnChanged += ColumnChangedEvt;
-            m_DBControl.DataTable.RowChanged += RowChangedEvt;
+            if (m_DBControl.DataTable != null)
+            {
+                m_DBControl.DataTable.ColumnChanging += ColumnChangingEvt;
+                m_DBControl.DataTable.RowChanging += RowChangingEvt;
+                m_DBControl.DataTable.ColumnChanged += ColumnChangedEvt;
+                m_DBControl.DataTable.RowChanged += RowChangedEvt;
+            }
 
             m_DBControl.AsociatedDBGridView = this;
             m_DBControl.OnReConnect += DataControl_OnReConnect;

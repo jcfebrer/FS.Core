@@ -9,7 +9,7 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>

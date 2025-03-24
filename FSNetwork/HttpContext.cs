@@ -19,7 +19,10 @@ namespace FSNetwork
         {
             get
             {
-                return m_httpContextAccessor.HttpContext;
+                if (m_httpContextAccessor == null) 
+                    return null;
+                else
+                    return m_httpContextAccessor.HttpContext;
             }
         }
     }

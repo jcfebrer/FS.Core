@@ -144,16 +144,16 @@ namespace FSNetwork
 #if NETFRAMEWORK
             return HttpContext.Current.Session[name];
 #else
-			return HttpContext.Current.Session.GetString(name);
+            return (HttpContext.Current == null ? null : HttpContext.Current.Session.GetString(name));
 #endif
-		}
+        }
 
 		public static object GetCacheValue(string name)
 		{
 #if NETFRAMEWORK
             return (HttpContext.Current == null ? HttpRuntime.Cache.Get(name) : HttpContext.Current.Cache.Get(name));
 #else
-			return HttpContext.Current.Session.GetString(name);
+			return (HttpContext.Current == null ? null : HttpContext.Current.Session.GetString(name));
 #endif
 		}
 
@@ -176,20 +176,26 @@ namespace FSNetwork
                     HttpContext.Current.Cache.Insert(name, value);
             }
 #else
-			if (value == null)
-				HttpContext.Current.Session.Remove(name);
-			else
-				HttpContext.Current.Session.Set(name, NumberUtils.ObjectToByteArray(value));
+			if (HttpContext.Current != null)
+			{
+				if (value == null)
+					HttpContext.Current.Session.Remove(name);
+				else
+					HttpContext.Current.Session.Set(name, NumberUtils.ObjectToByteArray(value));
+			}
 #endif
         }
 
 #if NETCOREAPP
 		public static void SetCacheValue(string name, string value)
         {
-            if (value == null)
-                HttpContext.Current.Session.Remove(name);
-            else
-                HttpContext.Current.Session.SetString(name, value);
+			if (HttpContext.Current != null)
+			{
+				if (value == null)
+					HttpContext.Current.Session.Remove(name);
+				else
+					HttpContext.Current.Session.SetString(name, value);
+			}
         }
 #endif
 

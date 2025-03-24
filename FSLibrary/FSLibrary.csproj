@@ -79,10 +79,10 @@
     <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <Reference Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net30'" Include="System.Runtime.Serialization.Formatters.Soap">
+    <Reference Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net30' and '$(TargetFramework)' != 'net20'" Include="System.Runtime.Serialization.Formatters.Soap">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Runtime.Serialization.Formatters.Soap.dll</HintPath>
     </Reference>
-    <Reference Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net30'" Include="System.ServiceProcess">
+    <Reference Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net30' and '$(TargetFramework)' != 'net20'" Include="System.ServiceProcess">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.ServiceProcess.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />

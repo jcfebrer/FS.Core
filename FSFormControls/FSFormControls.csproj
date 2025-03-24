@@ -179,6 +179,11 @@
     <Compile Update="Classes\TabOrderSchemaProvider.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="Forms\DBForm.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DBForm.resx</DependentUpon>
+    </Compile>
     <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
@@ -268,6 +273,11 @@
     <ProjectReference Include="..\FSQueryBuilder\FSQueryBuilder.csproj" />
     <ProjectReference Include="..\FSSecurity\FSSecurity.csproj" />
     <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Forms\DBForm.resx">
+      <LogicalName>FSFormControls.DBForm.resources</LogicalName>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Update="Properties\Settings.settings">
