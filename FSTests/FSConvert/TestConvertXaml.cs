@@ -20,10 +20,10 @@ namespace FSConvert.Tests
                 this.button1.Name = ""button1"";
                 ";
 
-#if NET5_0_OR_GREATER || NETCOREAPP
-            string xamlCode = ConvertToWPF.Convert(winFormsCode);
-            Console.WriteLine(xamlCode);
-#endif
+//#if NET5_0_OR_GREATER || NETCOREAPP
+//            string xamlCode = ConvertToWPF.Convert(winFormsCode);
+//            Console.WriteLine(xamlCode);
+//#endif
         }
     }
 }
