@@ -7,7 +7,6 @@ namespace FSCrypto
     /// Implementation of CRC-32C (Castagnoli).
     /// This class supports several convenient static methods returning the CRC as UInt32.
     /// </summary>
-    [CLSCompliant(false)]
     public class Crc32CAlgorithm : HashAlgorithm
 	{
 		private uint _currentCrc;

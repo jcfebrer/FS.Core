@@ -27,7 +27,7 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Xml.Linq;
 
-namespace FSLibrary.DiffMatchPatch {
+namespace FSFormLibrary.DiffMatchPatch {
   internal static class CompatibilityExtensions {
     // JScript splice function
     public static List<T> Splice<T>(this List<T> input, int start, int count,

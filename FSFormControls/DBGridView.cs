@@ -1633,7 +1633,7 @@ namespace FSFormControls
                     }
                 }
 
-                FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
+                FSFormLibrary.Clipboard.SetDataObject(sb.ToString(), true);
             }
             catch (Exception e)
             {
@@ -1663,7 +1663,7 @@ namespace FSFormControls
                 iMaxColIndex = GetMaxColumnIndex();
                 sb.Append(GetGridRow(iRow, iMaxColIndex));
 
-                FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
+                FSFormLibrary.Clipboard.SetDataObject(sb.ToString(), true);
             }
             catch (Exception e)
             {
@@ -1703,7 +1703,7 @@ namespace FSFormControls
                     }
                 }
 
-                FSLibrary.Clipboard.SetDataObject(sb.ToString(), true);
+                FSFormLibrary.Clipboard.SetDataObject(sb.ToString(), true);
             }
             catch (Exception e)
             {

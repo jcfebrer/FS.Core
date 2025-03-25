@@ -798,7 +798,7 @@ namespace FSWebBrowser
 
                     imgRange.execCommand("Copy", false, null);
 
-                    using (Bitmap bmp = (Bitmap)FSLibrary.Clipboard.GetDataObject().GetData(DataFormats.Bitmap))
+                    using (Bitmap bmp = (Bitmap)FSFormLibrary.Clipboard.GetDataObject().GetData(DataFormats.Bitmap))
                     {
 
                         if (bmp != null)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Forms;
 
-namespace FSLibrary
+namespace FSFormLibrary
 {
     /// <summary>
     /// Biblioteca de funciones para la conversión de aplicaciones VB.

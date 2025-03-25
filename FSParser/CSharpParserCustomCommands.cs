@@ -35,14 +35,14 @@ namespace FSParser
                 return _Q(args[0]).Contains(_Q(args[1]));
             };
 
-            parser.CustomCommands["convertwpf"] = args =>
-            {
-#if NET5_0_OR_GREATER || NETCOREAPP
-                return FSConvert.ConvertToWPF.Convert(_Q(args[0]));
-#else
-                throw new Exception("ConvertToWpf solo disponible en NETCORE.");
-#endif
-            };
+//            parser.CustomCommands["convertwpf"] = args =>
+//            {
+//#if NET5_0_OR_GREATER || NETCOREAPP
+//                return FSConvert.ConvertToWPF.Convert(_Q(args[0]));
+//#else
+//                throw new Exception("ConvertToWpf solo disponible en NETCORE.");
+//#endif
+//            };
 
             parser.CustomCommands["help"] = args =>
             {

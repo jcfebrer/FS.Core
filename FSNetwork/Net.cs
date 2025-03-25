@@ -2,7 +2,6 @@
 using FSLibrary;
 using System;
 using System.Collections.Generic;
-using System.Management;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
@@ -55,27 +54,6 @@ namespace FSNetwork
             return null;
         }
 
-        public static IPAddress GetAdapterWithInternetAccess()
-        {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_IP4RouteTable WHERE Destination=\"0.0.0.0\"");
-            int interfaceIndex = -1;
-
-            foreach (var item in searcher.Get())
-                interfaceIndex = Convert.ToInt32(item["InterfaceIndex"]);
-
-            searcher = new ManagementObjectSearcher("root\\CIMV2",
-                string.Format("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE InterfaceIndex={0}", interfaceIndex));
-
-            foreach (var item in searcher.Get())
-            {
-                string[] IPAddresses = (string[])item["IPAddress"];
-
-                foreach (string IP in IPAddresses)
-                    return IPAddress.Parse(IP);
-            }
-
-            return null;
-        }
 
         /// <summary>
         /// System.Net.NetworkInformation.NetworkInterface n = FSNetworkCore.Net.GetBestNetworkInterface(IPAddress.Parse("8.8.8.8"));

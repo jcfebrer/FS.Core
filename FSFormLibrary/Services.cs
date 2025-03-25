@@ -9,7 +9,7 @@ using System.Management;
 using System.ServiceProcess;
 using System.Text;
 
-namespace FSLibrary
+namespace FSFormLibrary
 {
     /// <summary>
     /// Fucniones para el uso de los servicios de windows

@@ -40,7 +40,6 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
-
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <PackageReference Include="HtmlRenderer" Version="1.4.6.1" />
     <PackageReference Include="HtmlRenderer.PdfSharp" Version="1.5.0" />

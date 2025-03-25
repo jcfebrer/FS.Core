@@ -3,10 +3,9 @@ using System.IO;
 using System.Media;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.ComTypes;
-using System.Windows.Forms;
 using static FSLibrary.Win32APIEnums;
 
-namespace FSLibrary
+namespace FSFormLibrary
 {
     /// <summary>
     /// Librería multimedia
@@ -344,7 +343,7 @@ namespace FSLibrary
             else
                 syncSound = SoundFlags.SND_ASYNC;
 
-            Win32API.PlaySound(fileName, IntPtr.Zero,
+            FSLibrary.Win32API.PlaySound(fileName, IntPtr.Zero,
                    (int)(SoundFlags.SND_FILENAME | syncSound));
     }
 }

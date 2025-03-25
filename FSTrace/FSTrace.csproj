@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net20;net30;net35;net40;net45;net461;net48;net8.0-windows</TargetFrameworks>
+    <TargetFrameworks>net20;net30;net35;net40;net45;net461;net48;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSTrace</AssemblyTitle>
@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <Reference Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net30'" Include="System.Configuration">
+    <Reference Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net30' and '$(TargetFramework)' != 'net20'" Include="System.Configuration">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Configuration.dll</HintPath>
     </Reference>
   </ItemGroup>

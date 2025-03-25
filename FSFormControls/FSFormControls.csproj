@@ -265,6 +265,7 @@
     <ProjectReference Include="..\FSDisk\FSDisk.csproj" />
     <ProjectReference Include="..\FSExcel\FSExcel.csproj" />
     <ProjectReference Include="..\FSException\FSException.csproj" />
+    <ProjectReference Include="..\FSFormLibrary\FSFormLibrary.csproj" />
     <ProjectReference Include="..\FSGraphics\FSGraphics.csproj" />
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
     <ProjectReference Include="..\FSMail\FSMail.csproj" />

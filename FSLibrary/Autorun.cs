@@ -1,5 +1,5 @@
 ﻿using Microsoft.Win32;
-using System.Windows.Forms;
+using System.Runtime.CompilerServices;
 
 namespace FSLibrary
 {
@@ -12,14 +12,8 @@ namespace FSLibrary
         static readonly RegistryKey registryKey = Registry.CurrentUser;
         static RegistryKey rkApp = registryKey.OpenSubKey(runPath, true);
 
-        /// <summary>
-        /// Instala la aplicación para ejecutarse al inicio.
-        /// </summary>
-        /// <param name="force">Desinstalamos la aplicación si esta instalada</param>
-        public static void Install(bool force = true)
-        {
-            Install(Application.ProductName, Application.ExecutablePath, force);
-        }
+        static string _app;
+        static string _appPath;
 
         /// <summary>
         /// Función para instalar la aplicación en el registro
@@ -29,6 +23,9 @@ namespace FSLibrary
         /// <param name="force">Desinstalamos la aplicación si esta instalada</param>
         public static void Install(string app, string appPath, bool force = false)
         {
+            _app = app;
+            _appPath = appPath;
+
             if (force)
                 UnInstall(app);
 
@@ -41,7 +38,7 @@ namespace FSLibrary
         /// </summary>
         public static void UnInstall()
         {
-            UnInstall(Application.ProductName);
+            UnInstall(_app);
         }
 
         /// <summary>
@@ -60,7 +57,7 @@ namespace FSLibrary
         /// <returns></returns>
         public static bool IsStartupItem()
         {
-            return IsStartupItem(Application.ProductName);
+            return IsStartupItem(_app);
         }
 
         private static bool IsStartupItem(string app)
@@ -69,7 +66,7 @@ namespace FSLibrary
                 return false;
             else
             {
-                if (rkApp.GetValue(app).ToString().ToLower() != Application.ExecutablePath.ToString().ToLower())
+                if (rkApp.GetValue(app).ToString().ToLower() != _appPath.ToLower())
                     return false;
                 else
                     return true;
