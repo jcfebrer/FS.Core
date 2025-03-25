@@ -1207,16 +1207,17 @@ namespace FSSystemInfo
             return value;
         }
 
-        public static IPAddress GetAdapterWithInternetAccess()
+        public IPAddress GetAdapterWithInternetAccess()
         {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("root\\CIMV2", "SELECT * FROM Win32_IP4RouteTable WHERE Destination=\"0.0.0.0\"");
+            WqlObjectQuery query = new WqlObjectQuery("SELECT * FROM Win32_IP4RouteTable WHERE Destination=\"0.0.0.0\"");
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher(GetScope(), query);
             int interfaceIndex = -1;
 
             foreach (var item in searcher.Get())
                 interfaceIndex = Convert.ToInt32(item["InterfaceIndex"]);
 
-            searcher = new ManagementObjectSearcher("root\\CIMV2",
-                string.Format("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE InterfaceIndex={0}", interfaceIndex));
+            WqlObjectQuery queryConf = new WqlObjectQuery(string.Format("SELECT * FROM Win32_NetworkAdapterConfiguration WHERE InterfaceIndex={0}", interfaceIndex));
+            searcher = new ManagementObjectSearcher(GetScope(), queryConf);
 
             foreach (var item in searcher.Get())
             {
