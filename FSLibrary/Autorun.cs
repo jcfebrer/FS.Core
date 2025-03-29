@@ -23,7 +23,7 @@ namespace FSLibrary
         /// <param name="force">Desinstalamos la aplicación si esta instalada</param>
         public static void Install(string app, string appPath, bool force = false)
         {
-            _app = app;
+            _app = System.IO.Path.GetFileNameWithoutExtension(app);
             _appPath = appPath;
 
             if (force)
