@@ -4,6 +4,8 @@ using FSLibrary;
 
 #if NETCOREAPP
 	using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Memory;
+
 #endif
 
 using System;
@@ -12,6 +14,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
+using System.Reflection;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.RegularExpressions;
 using System.Web;
@@ -213,9 +216,37 @@ namespace FSNetwork
                 HttpRuntime.Cache.Remove(entry.Key.ToString());
             }
         }
+#else
+        public static void ClearCacheVariables()
+        {
+			IMemoryCache cache = (IMemoryCache)HttpContext.Current.RequestServices.GetService(typeof(IMemoryCache));
+            try
+            {
+                var cacheEntries = (IDictionary)cache.GetType().GetField("_entries", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(cache);
+
+                if (cacheEntries != null)
+                {
+                    var keys = new List<object>();
+                    foreach (DictionaryEntry entry in cacheEntries)
+                    {
+                        keys.Add(entry.Key);
+                    }
+
+                    foreach (var key in keys)
+                    {
+                        cache.Remove(key);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log the exception or handle it appropriately.
+                Console.WriteLine($"Error clearing cache: {ex.Message}");
+            }
+        }
 #endif
 
-		public static void ClearSessionVariables()
+        public static void ClearSessionVariables()
         {
             foreach (string entry in HttpContext.Current.Session.Keys)
             {
