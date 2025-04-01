@@ -45,6 +45,7 @@
     <ProjectReference Include="..\FSException\FSException.csproj" />
     <ProjectReference Include="..\FSFormControls\FSFormControls.csproj" />
     <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\FSMultimedia\FSMultimedia.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">

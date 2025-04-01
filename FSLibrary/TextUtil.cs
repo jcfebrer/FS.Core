@@ -3532,5 +3532,21 @@ namespace FSLibrary
 
             return value;
         }
+
+        /// <summary>
+        /// Devuelve solo los caracterés alfa numéricos.
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string OnlyAlphaNumeric(string str)
+        {
+            const string allowedCharacters = "abcdefghijklmnñopqrstuvwxyzABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789áéíóúÁÉÍÓÚ ";
+            StringBuilder builder = new StringBuilder(str.Length);
+
+            for (int i = 0; i < str.Length; i++)
+                if (allowedCharacters.Contains(str[i].ToString()))
+                    builder.Append(str[i]);
+            return builder.ToString();
+        }
     }
 }
