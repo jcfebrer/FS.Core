@@ -56,7 +56,7 @@ namespace FSNetwork
 
 
         /// <summary>
-        /// System.Net.NetworkInformation.NetworkInterface n = FSNetworkCore.Net.GetBestNetworkInterface(IPAddress.Parse("8.8.8.8"));
+        /// System.Net.NetworkInformation.NetworkInterface n = FSNetwork.Net.GetBestNetworkInterface(IPAddress.Parse("8.8.8.8"));
         /// </summary>
         /// <param name="remoteAddress"></param>
         /// <returns></returns>

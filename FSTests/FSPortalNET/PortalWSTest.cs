@@ -15,7 +15,7 @@ namespace FSTests.FSParser
         [TestMethod()]
         public void TestWSLogin()
         {
-            //FSTestsCore.com.febrersoftware.www.PortalWS portal = new FSTestsCore.com.febrersoftware.www.PortalWS();
+            //FSTests.com.febrersoftware.www.PortalWS portal = new FSTests.com.febrersoftware.www.PortalWS();
 
             //string respuesta = portal.Login("admin", "rerbeF2009");
 
@@ -27,7 +27,7 @@ namespace FSTests.FSParser
             //if (respuesta2 == "")
             //    Assert.Fail();
 
-            //FSTestsCore.com.febrersoftware.www1.AdminWS admin = new com.febrersoftware.www1.AdminWS();
+            //FSTests.com.febrersoftware.www1.AdminWS admin = new com.febrersoftware.www1.AdminWS();
             //string respuesta3 = admin.Tablas();
 
 

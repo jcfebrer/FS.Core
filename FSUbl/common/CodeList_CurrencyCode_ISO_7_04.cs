@@ -11,7 +11,7 @@
 //
 // </auto-generated>
 //------------------------------------------------------------------------------
-namespace FSUblCore.CodeList
+namespace FSUbl.CodeList
 {
     
     

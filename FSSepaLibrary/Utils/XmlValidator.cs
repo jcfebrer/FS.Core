@@ -41,7 +41,7 @@ namespace FSSepaLibrary.Utils
         {
             foreach (SepaSchema schema in Enum.GetValues(typeof(SepaSchema)))
             {
-                validators.Add(schema, new XmlValidator("FSSepaLibraryCore.Xsd." + SepaSchemaUtils.SepaSchemaToString(schema) + ".xsd"));
+                validators.Add(schema, new XmlValidator("FSSepaLibrary.Xsd." + SepaSchemaUtils.SepaSchemaToString(schema) + ".xsd"));
             }        
         }
 
