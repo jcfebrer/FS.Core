@@ -108,25 +108,83 @@ namespace FSNetwork
 		public static string CurrentUrl()
 		{
 #if NETFRAMEWORK
-            return @"http://" + HttpContext.Current.Request.ServerVariables["SERVER_NAME"] +
-                HttpContext.Current.Request.ServerVariables["URL"];
+            return @"http://" + System.Web.HttpContext.Current.Request.ServerVariables["SERVER_NAME"] +
+                System.Web.HttpContext.Current.Request.ServerVariables["URL"];
 #else
-			return @"http://" + HttpContext.Current.GetServerVariable("SERVER_NAME") +
-				HttpContext.Current.GetServerVariable("URL");
+            return @"http://" + FSNetwork.HttpContext.Current.GetServerVariable("SERVER_NAME") +
+				FSNetwork.HttpContext.Current.GetServerVariable("URL");
 #endif
 		}
 
+        public static void Session(string name, object value)
+        {
+#if NETFRAMEWORK
+            System.Web.HttpContext.Current.Session[name] = value;
+#else
+            HttpContext.Current.Session.SetString(name, value.ToString());
+#endif
+        }
 
-		public static void SetSessionValue(string name, object value)
+        public static void SetSession(string name, object value)
 		{
 #if NETFRAMEWORK
-            HttpContext.Current.Session[name] = value;
+            System.Web.HttpContext.Current.Session[name] = value;
 #else
-			HttpContext.Current.Session.SetString(name, value.ToString());
+            HttpContext.Current.Session.SetString(name, value.ToString());
 #endif
 		}
 
-		public static string formatJSON(string data)
+        public static object GetSession(string name)
+        {
+            if(HttpContext.Current == null)
+                return null;
+
+#if NETFRAMEWORK
+            return System.Web.HttpContext.Current.Session[name];
+#else
+            return FSNetwork.HttpContext.Current.Session.GetString(name);
+#endif
+        }
+
+        public static string UrlEncode(string url)
+        {
+#if NETFRAMEWORK
+            return HttpUtility.UrlEncode(url);
+#else
+            return WebUtility.UrlEncode(url);
+#endif
+        }
+
+        public static string HtmlEncode(string url)
+        {
+#if NETFRAMEWORK
+            return HttpUtility.HtmlEncode(url);
+#else
+            return WebUtility.HtmlEncode(url);
+#endif
+        }
+
+        public static string ServerVariables(string varableName)
+        {
+#if NETFRAMEWORK
+            return System.Web.HttpContext.Current.Request.ServerVariables[varableName];
+#else
+            return FSNetwork.HttpContext.Current.GetServerVariable(varableName);
+#endif
+        }
+
+        public static string SessionId
+        {
+            get {
+#if NETFRAMEWORK
+                return System.Web.HttpContext.Current.Session.SessionID;
+#else
+                return FSNetwork.HttpContext.Current.Session.Id;
+#endif
+            }
+        }
+
+        public static string formatJSON(string data)
 		{
 			data = HttpUtility.HtmlEncode(data);
 			data = data.Replace("\r\n", "<br />");
@@ -141,15 +199,6 @@ namespace FSNetwork
 
 			return data;
 		}
-
-		public static object GetSessionValue(string name)
-		{
-#if NETFRAMEWORK
-            return HttpContext.Current.Session[name];
-#else
-            return (HttpContext.Current == null ? null : HttpContext.Current.Session.GetString(name));
-#endif
-        }
 
 		public static object GetCacheValue(string name)
 		{
@@ -483,7 +532,7 @@ namespace FSNetwork
 		}
 
 #if NETFRAMEWORK
-		public static string Cookie(HttpCookie dato)
+		public static string GetCookie(HttpCookie dato)
         {
             if (dato == null)
             {
@@ -491,36 +540,78 @@ namespace FSNetwork
             }
             return dato.Value;
         }
-#else
-		public static string Cookie(string name)
-		{
-			return HttpContext.Current.Request.Cookies[name];
-		}
 #endif
+
+        public static object GetCookie(string name)
+        {
+#if NETFRAMEWORK
+            return HttpContext.Current.Request.Cookies[name];
+#else
+            return FSNetwork.HttpContext.Current.Request.Cookies[name];
+#endif
+        }
+
+        public static void CookieDelete(string name)
+        {
+#if NETFRAMEWORK
+            HttpContext.Current.Request.Cookies.Remove(name);
+#else
+            FSNetwork.HttpContext.Current.Response.Cookies.Delete(name);
+#endif
+        }
 
 #if NETFRAMEWORK
-        public static string Cookie(HttpCookie dato, string valor)
+        public static void SetCookie(string name, string valor)
         {
-            if (dato == null)
-            {
-                return "";
-            }
-            if (dato[valor] + "" == "")
-            {
-                return "";
-            }
-            return dato[valor];
+            HttpContext.Current.Request.Cookies[name].Value = valor;
         }
+
+        public static void SetCookie(HttpCookie dato, string valor)
+        {
+            dato.Value = valor;
+        }
+
+        public static void SetCookie(string name, string valor, int durecionEnMinutos = 20)
+        {
+            HttpContext.Current.Request.Cookies[name].Value = valor;
+            HttpContext.Current.Request.Cookies[name].Expires = DateTime.Now.AddMinutes(durecionEnMinutos);
+        }
+
+        public static void SetCookie(string name, string valor, DateTime expire)
+        {
+            HttpContext.Current.Request.Cookies[name].Value = valor;
+            HttpContext.Current.Request.Cookies[name].Expires = expire;
+        }
+
+        public static void SetCookie(HttpCookie dato, string valor, int durecionEnMinutos = 20)
+        {
+            dato.Value = valor;
+            dato.Expires = DateTime.Now.AddMinutes(durecionEnMinutos);
+        }
+
+        public static void SetCookie(HttpCookie dato, string valor, DateTime expire)
+        {
+            dato.Value = valor;
+            dato.Expires = expire;
+        }
+        
 #else
-		public static void SetCookie(string name, string value)
+        public static void SetCookie(string name, string value, int duracionEnMinutos = 20)
 		{
             CookieOptions option = new CookieOptions();
-            option.Expires = DateTime.Now.AddMilliseconds(10);
-            HttpContext.Current.Response.Cookies.Append(name, value, option);
+            option.Expires = DateTime.Now.AddMinutes(duracionEnMinutos);
+            FSNetwork.HttpContext.Current.Response.Cookies.Append(name, value, option);
+        }
+
+        public static void SetCookie(string name, string value, DateTime expire)
+		{
+            CookieOptions option = new CookieOptions();
+            option.Expires = expire;
+            FSNetwork.HttpContext.Current.Response.Cookies.Append(name, value, option);
         }
 #endif
 
-		public static void WriteCookiesToFile(string file, CookieContainer cookieContainer)
+        public static void WriteCookiesToFile(string file, CookieContainer cookieContainer)
 		{
 			using (Stream stream = File.Create(file))
 			{
