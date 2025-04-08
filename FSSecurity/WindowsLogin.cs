@@ -2,7 +2,6 @@
 using System;
 using System.Security.Principal;
 
-
 namespace FSSecurity
 {
     /// <summary>
@@ -29,6 +28,10 @@ namespace FSSecurity
     {
         public WindowsIdentity Identity = null;
         private System.IntPtr m_accessToken;
+
+#if NETFRAMEWORK
+        private WindowsImpersonationContext impersonationContext = null;
+#endif
 
         // AccessToken ==> this.Identity.AccessToken
         //public Microsoft.Win32.SafeHandles.SafeAccessTokenHandle AT
@@ -61,12 +64,15 @@ namespace FSSecurity
 
         public void Login(string username, string domain, string password)
         {
+            // if domain name was blank, assume local machine
+            if (String.IsNullOrEmpty(domain))
+                domain = System.Environment.MachineName;
+
             if (this.Identity != null)
             {
                 this.Identity.Dispose();
                 this.Identity = null;
             }
-
 
             try
             {
@@ -87,14 +93,20 @@ namespace FSSecurity
                     int error = System.Runtime.InteropServices.Marshal.GetLastWin32Error();
                     throw new System.ComponentModel.Win32Exception(error);
                 }
+
+                // Create a new WindowsIdentity object using the access token
                 Identity = new WindowsIdentity(this.m_accessToken);
+
+#if NETFRAMEWORK
+                // Begin impersonating the user
+                impersonationContext = WindowsIdentity.Impersonate(this.m_accessToken);
+#endif
             }
             catch
             {
                 throw;
             }
-
-        } // End Sub Login 
+        }
 
 
         public void Logout()
@@ -110,14 +122,16 @@ namespace FSSecurity
                 this.Identity = null;
             }
 
-        } // End Sub Logout 
+#if NETFRAMEWORK
+            if (impersonationContext != null)
+                impersonationContext.Undo();
+#endif
+        }
 
 
         void System.IDisposable.Dispose()
         {
             Logout();
-        } // End Sub Dispose 
-    } // End Class WindowsLogin 
-
-
-} // End Namespace 
+        }
+    }
+}
