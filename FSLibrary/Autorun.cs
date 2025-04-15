@@ -27,10 +27,10 @@ namespace FSLibrary
             _appPath = appPath;
 
             if (force)
-                UnInstall(app);
+                UnInstall(_app);
 
-            if (!IsStartupItem(app))
-                rkApp.SetValue(app, appPath);
+            if (!IsStartupItem(_app))
+                rkApp.SetValue(_app, _appPath);
         }
 
         /// <summary>
