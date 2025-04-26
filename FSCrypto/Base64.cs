@@ -23,6 +23,17 @@ namespace FSCrypto
         /// <param name="str">The string.</param>
         /// <param name="urlSafe">if set to <c>true</c> [URL safe].</param>
         /// <returns></returns>
+        public static string Encode(string str, bool urlSafe)
+        {
+            return Encode(str, urlSafe, false);
+        }
+
+        /// <summary>
+        /// Encodes the base64.
+        /// </summary>
+        /// <param name="str">The string.</param>
+        /// <param name="urlSafe">if set to <c>true</c> [URL safe].</param>
+        /// <returns></returns>
         public static string Encode(string str, bool urlSafe, bool withOutEqualSign)
         {
             byte[] strBytes = Encoding.UTF8.GetBytes(str);
@@ -46,6 +57,17 @@ namespace FSCrypto
         public static string Decode(string input)
         {
             return Decode(input, true, true);
+        }
+
+        /// <summary>
+        /// Decodes the base64.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <param name="urlSafe">if set to <c>true</c> [URL safe].</param>
+        /// <returns></returns>
+        public static string Decode(string input, bool urlSafe)
+        {
+            return Decode(input, urlSafe, false);
         }
 
         /// <summary>
