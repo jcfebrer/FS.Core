@@ -4,7 +4,7 @@
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AssemblyTitle>FSSystemInfo</AssemblyTitle>
-    <Company>LG</Company>
+    <Company>Febrer Software</Company>
     <Product>FSSystemInfo</Product>
     <Copyright>Copyright © LG 2024</Copyright>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
