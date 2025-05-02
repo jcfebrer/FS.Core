@@ -631,14 +631,14 @@ namespace FSNetwork
             string strIp = null;
 
 #if NETFRAMEWORK
-            strIp = FSLibrary.Functions.Valor(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]);
+            strIp = FSLibrary.Functions.Value(HttpContext.Current.Request.ServerVariables["HTTP_X_FORWARDED_FOR"]);
 #else
             strIp = HttpContext.Current.Request.Headers["X-Forwarded-For"].FirstOrDefault();
 #endif
             if (strIp == "")
             {
 #if NETFRAMEWORK
-                strIp = FSLibrary.Functions.Valor(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+                strIp = FSLibrary.Functions.Value(HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
 #else
                 strIp = HttpContext.Current.Connection.RemoteIpAddress.ToString();
 #endif

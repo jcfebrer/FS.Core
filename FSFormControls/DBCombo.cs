@@ -785,7 +785,7 @@ namespace FSFormControls
             if (Items != null)
             {
                 foreach (DBComboboxItem dbcol in Items)
-                    if (Functions.Valor(dbcol.Value).ToLower() == value.ToLower())
+                    if (Functions.Value(dbcol.Value).ToLower() == value.ToLower())
                         return dbcol;
             }
             else

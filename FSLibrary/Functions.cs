@@ -23,13 +23,13 @@ namespace FSLibrary
         /// <summary>
         ///     Devuelve 'true' si el valor existe en el array de valores, en caso contrario 'false'.
         /// </summary>
-        /// <param name="valores"></param>
-        /// <param name="valor"></param>
+        /// <param name="data"></param>
+        /// <param name="value"></param>
         /// <returns></returns>
-        public static bool Existe(string[] valores, string valor)
+        public static bool Exists(string[] data, string value)
         {
-            foreach (var s in valores)
-                if (s.ToLower() == valor.ToLower())
+            foreach (var s in data)
+                if (s.ToLower() == value.ToLower())
                     return true;
             return false;
         }
@@ -208,7 +208,7 @@ namespace FSLibrary
         /// </summary>
         /// <param name="value">Valor.</param>
         /// <returns></returns>
-        public static string Valor(object value)
+        public static string Value(object value)
         {
             if (value == null) return string.Empty;
             if (value is Array) return "(Byte)";
@@ -244,11 +244,11 @@ namespace FSLibrary
         {
             if (value == null) return false;
             if (value is string)
-                if (Valor(value) == "")
+                if (Value(value) == "")
                     return false;
             if (value is DBNull) return false;
-            if (Valor(value) == "0") return false;
-            if (Valor(value) == "1") return true;
+            if (Value(value) == "0") return false;
+            if (Value(value) == "1") return true;
             if (Convert.ToBoolean(value)) return true;
             return bool.Parse(value.ToString());
         }

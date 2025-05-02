@@ -562,18 +562,18 @@ namespace FSDatabase
                         var add = true;
                         string schema;
                         if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
-                            schema = Functions.Valor(dt.Rows[i]["OWNER"]);
+                            schema = Functions.Value(dt.Rows[i]["OWNER"]);
                         else
-                            schema = Functions.Valor(r["TABLE_SCHEMA"]);
+                            schema = Functions.Value(r["TABLE_SCHEMA"]);
                         if (schema != "")
                             schema += ".";
                         var tableName = schema + r["TABLE_NAME"];
                         if (Utils.ServerType == Utils.ServerTypeEnum.MySQL)
-                            add = Functions.Valor(r["TABLE_SCHEMA"]).ToLower() == "portalnet";
+                            add = Functions.Value(r["TABLE_SCHEMA"]).ToLower() == "portalnet";
                         if (Utils.ServerType == Utils.ServerTypeEnum.Access2000 || Utils.ServerType == Utils.ServerTypeEnum.Access97)
                             add = TextUtil.Substring(r["TABLE_NAME"].ToString(), 0, 4) != "MSys";
                         if (Utils.ServerType == Utils.ServerTypeEnum.Oracle)
-                            add = Functions.Valor(r["TYPE"]).ToLower() == "user";
+                            add = Functions.Value(r["TYPE"]).ToLower() == "user";
 
                         r["TABLE_NAME"] = tableName;
 
@@ -898,7 +898,7 @@ namespace FSDatabase
 
                     foreach (DataRow r in tables.Rows)
                     {
-                        var schema = Functions.Valor(r["OWNER"]);
+                        var schema = Functions.Value(r["OWNER"]);
                         if (r["TYPE"].ToString().ToLower() == "user")
                             if (!schemas.Contains(schema))
                                 schemas.Add(schema);
@@ -942,7 +942,7 @@ namespace FSDatabase
                         for (var i = dt.Rows.Count - 1; i >= 0; i--)
                         {
                             var r = dt.Rows[i];
-                            if (!Functions.Existe(schemas, r["OWNER"].ToString()))
+                            if (!Functions.Exists(schemas, r["OWNER"].ToString()))
                                 r.Delete();
                             else
                                 r["VIEW_NAME"] = r["OWNER"] + "." + r["VIEW_NAME"];
@@ -1782,11 +1782,11 @@ namespace FSDatabase
 
                 foreach (DataRow fld in schema.Rows)
                 {
-                    var c = Functions.Valor(fld["ColumnName"]);
+                    var c = Functions.Value(fld["ColumnName"]);
                     if (c.ToLower() == fieldName.ToLower())
                     {
                         field.Campo = c;
-                        field.Tipo = Utils.GetFSTypeFromType(Functions.Valor(fld["DataType"]));
+                        field.Tipo = Utils.GetFSTypeFromType(Functions.Value(fld["DataType"]));
                         field.Tamano = NumberUtils.NumberInt(fld["ColumnSize"]);
                         return field;
                     }
@@ -1854,8 +1854,8 @@ namespace FSDatabase
                 var dtSchemaFk = GetSchemaForeignKeys();
 
                 foreach (DataRow row in dtSchemaFk.Rows)
-                    if ((Functions.Valor(row["FK_TABLE_NAME"]).ToLower() == tabla.ToLower()) &
-                        (Functions.Valor(row["FK_Column_Name"]).ToLower() == campo.ToLower()))
+                    if ((Functions.Value(row["FK_TABLE_NAME"]).ToLower() == tabla.ToLower()) &
+                        (Functions.Value(row["FK_Column_Name"]).ToLower() == campo.ToLower()))
                         return true;
                 return false;
             }
@@ -1886,8 +1886,8 @@ namespace FSDatabase
                 }
 
                 foreach (DataRow row in dtSchemaFk.Rows)
-                    if ((Functions.Valor(row["FK_TABLE_NAME"]).ToLower() == tabla.ToLower()) &
-                        (Functions.Valor(row["FK_Column_Name"]).ToLower() == campo.ToLower()))
+                    if ((Functions.Value(row["FK_TABLE_NAME"]).ToLower() == tabla.ToLower()) &
+                        (Functions.Value(row["FK_Column_Name"]).ToLower() == campo.ToLower()))
                         return schema + row["PK_TABLE_NAME"];
                 return string.Empty;
             }
@@ -2043,9 +2043,9 @@ namespace FSDatabase
                             sFields = sFields + "[" + campo + "]" + ",";
 
 #if NETFRAMEWORK
-                            var v = Functions.Valor(frm.Form.Get(f));
+                            var v = Functions.Value(frm.Form.Get(f));
 #else
-                            var v = Functions.Valor(item.Value);
+                            var v = Functions.Value(item.Value);
 #endif
                             if (c != null)
                             {
@@ -2144,9 +2144,9 @@ namespace FSDatabase
                             if (frmCampos != null) c = frmCampos.Find(campo);
 
 #if NETFRAMEWORK
-                            var v = Functions.Valor(frm.Form.Get(f));
+                            var v = Functions.Value(frm.Form.Get(f));
 #else
-                            var v = Functions.Valor(item.Value);
+                            var v = Functions.Value(item.Value);
 #endif
 
                             if (c == null) c = GetField(campo, sch);

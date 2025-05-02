@@ -104,7 +104,7 @@ namespace FSFormControls
         public DBComboboxItem FindByValue(string value)
         {
             foreach (DBComboboxItem dbcol in List)
-                if (Functions.Valor(dbcol.Value).ToLower() == value.ToLower())
+                if (Functions.Value(dbcol.Value).ToLower() == value.ToLower())
                     return dbcol;
             return null;
         }

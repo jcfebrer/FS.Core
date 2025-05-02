@@ -382,7 +382,7 @@ namespace FSNetwork
 			{
 				if (key != null)
 				{
-					if (!Functions.Existe(arrKeysToDelete, key))
+					if (!Functions.Exists(arrKeysToDelete, key))
 					{
 						foreach (string value in nvc.GetValues(key))
 						{
@@ -405,7 +405,7 @@ namespace FSNetwork
 			campos = "";
 			foreach (string name in frm.Form.Keys)
 			{
-				campos = campos + @"<input type=""hidden"" value=""" + Functions.Valor(frm.Form[name]) + @""" name=""" +
+				campos = campos + @"<input type=""hidden"" value=""" + Functions.Value(frm.Form[name]) + @""" name=""" +
 					name + @"""/>" + "\r\n";
 			}
 			return campos;
@@ -430,7 +430,7 @@ namespace FSNetwork
 #endif
             if (dato == null) return "";
 
-            dato = TextUtil.OnlyAlfaNumeric(Functions.Valor(dato));
+            dato = TextUtil.OnlyAlfaNumeric(Functions.Value(dato));
 
             //seleccionamos el último valor
             string[] datos = dato.ToString().Split(',');
