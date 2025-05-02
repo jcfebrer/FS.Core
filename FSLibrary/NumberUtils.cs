@@ -300,9 +300,33 @@ namespace FSLibrary
         {
             string output = string.Empty;
 
+            if (bytes.Length == 0)
+                return output;
+
             foreach (byte b in bytes)
             {
                 output += b.ToString("X2") + separator;
+            }
+
+            return output.Substring(0, output.Length - 1);
+        }
+
+        /// <summary>
+        /// Byteses to string hex number.
+        /// </summary>
+        /// <param name="bytes">The bytes.</param>
+        /// <param name="separator">Separator</param>
+        /// <returns></returns>
+        public static string BytesToStringDec(byte[] bytes, char separator = ' ')
+        {
+            string output = string.Empty;
+
+            if (bytes.Length == 0)
+                return output;
+
+            foreach (byte b in bytes)
+            {
+                output += b.ToString() + separator;
             }
 
             return output.Substring(0, output.Length - 1);
