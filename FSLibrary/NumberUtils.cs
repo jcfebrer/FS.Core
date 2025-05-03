@@ -341,12 +341,32 @@ namespace FSLibrary
         {
             string output = string.Empty;
 
+            if (bytes.Length == 0)
+                return output;
+
             foreach (byte b in bytes)
             {
-                //if (b >= 20 && b <= 128)
                 output += ((char)b).ToString();
-                //else
-                //    output += "\\" + b.ToString("X2");
+            }
+            return output;
+        }
+
+        /// <summary>
+        /// Byteses to string hex number.
+        /// </summary>
+        /// <param name="bytes">The bytes.</param>
+        /// <param name="separator">Separator</param>
+        /// <returns></returns>
+        public static string BytesToStringBin(byte[] bytes, char separator = ' ')
+        {
+            string output = string.Empty;
+
+            if (bytes.Length == 0)
+                return output;
+
+            foreach (byte b in bytes)
+            {
+                output += Convert.ToString(b, 2) + separator;
             }
             return output;
         }
