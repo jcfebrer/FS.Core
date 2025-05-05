@@ -494,7 +494,7 @@ namespace FSFormControls
             //    if (DBConnection.State == ConnectionState.Open)
             //        DBConnection.Close();
 
-            //DbStatusBar1.Panels[0].Text = "Usuario: " + Global.UserName;
+            //DbStatusBar1.Items[0].Text = "Usuario: " + Global.UserName;
 
             if (DataControl != null) 
                 UpdateScrollBar();
@@ -897,20 +897,20 @@ namespace FSFormControls
 
         private void UpdateScrollBar()
         {
-            //DbStatusBar1.Panels[2].Text = "SQL: " + DataControl.Selection;
-            //DbStatusBar1.Panels[3].Text = "Tabla: " + DataControl.TableName;
-            //DbStatusBar1.Panels[4].Text = DataControl.DBPosition + 1 + "/" + DataControl.RecordCount();
+            //DbStatusBar1.Items[2].Text = "SQL: " + DataControl.Selection;
+            //DbStatusBar1.Items[3].Text = "Tabla: " + DataControl.TableName;
+            //DbStatusBar1.Items[4].Text = DataControl.DBPosition + 1 + "/" + DataControl.RecordCount();
         }
 
 
         private void tmrAutoSave_Tick(object sender, EventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            //var tx = StatusBar.Panels[0].Text;
-            //StatusBar.Panels[0].Text = "Guardando datos ...";
+            //var tx = StatusBar.Items[0].Text;
+            //StatusBar.Items[0].Text = "Guardando datos ...";
             DataControl.Save();
-            //StatusBar.Panels[0].Text = "Datos guardados";
-            //StatusBar.Panels[0].Text = tx;
+            //StatusBar.Items[0].Text = "Datos guardados";
+            //StatusBar.Items[0].Text = tx;
             Cursor.Current = Cursors.Default;
         }
 

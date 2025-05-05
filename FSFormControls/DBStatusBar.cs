@@ -32,7 +32,7 @@ namespace FSFormControls
 
         //public string get_Text()
         //{
-        //    return this.Panels[2].Text;
+        //    return this.Items[2].Text;
         //}
 
         //public void set_Text(string Value)
@@ -42,9 +42,9 @@ namespace FSFormControls
 
         //public void set_Text(int Panel, string Value)
         //{
-        //    if (Panel <= this.Panels.Count)
+        //    if (Panel <= this.Items.Count)
         //    {
-        //        this.Panels[Panel].Text = Value;
+        //        this.Items[Panel].Text = Value;
         //    }
         //}
 
