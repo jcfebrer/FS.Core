@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
@@ -295,7 +296,7 @@ namespace FSFormControls
 
         public bool ShowExpand { get; set; }
 
-        public DataGridViewRowCollection Rows => datagrid.Rows;
+        public DBGridViewRowCollection Rows => (DBGridViewRowCollection)datagrid.Rows;
 
         public Color AlternatingColor
         {
@@ -2686,6 +2687,11 @@ namespace FSFormControls
                 datagrid.Height = Height;
                 datagrid.Width = Width;
             }
+        }
+
+        public void UpdateData()
+        {
+            datagrid.Update();
         }
 
         //Variables para control de expand/collapse
