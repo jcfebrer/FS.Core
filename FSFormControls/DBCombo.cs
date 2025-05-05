@@ -607,6 +607,12 @@ namespace FSFormControls
             set { combobox.SelectionLength = value; }
         }
 
+        public string SelectedText
+        {
+            get { return combobox.SelectedText; }
+            set { combobox.SelectedText = value; }
+        }
+
         public bool IsItemInList()
         {
             if (combobox.Items.Contains(combobox.SelectedText))
