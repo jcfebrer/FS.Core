@@ -79,7 +79,7 @@ namespace FSFormControls
             else if (Convert.ToInt32(tsb.Tag) == 101)
             {
                 var ibr = InputBox.ShowDialog("¿Dirección email de destino?", "", "", InputBox.Icon.Question, InputBox.Buttons.Ok, InputBox.Type.TextBox);
-                Export.SendEMail(Global.MailUserName, InputBox.ResultValue, ds);
+                Export.SendEMailDataSet(Global.MailUserName, InputBox.ResultValue, ds);
             }
         }
     }

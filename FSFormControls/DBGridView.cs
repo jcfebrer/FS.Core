@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -79,9 +80,10 @@ namespace FSFormControls
         public delegate void InitializePrintPreviewEventHandler(object sender, EventArgs e);
         public delegate void InitializePrintEventHandler(object sender, EventArgs e);
         public delegate void BeforePrintEventHandler(object sender, EventArgs e);
-        public delegate void DoubleClickRowEventHandler(object sender, EventArgs e);
+        public delegate void DoubleClickRowEventHandler(object sender, DataGridViewCellEventArgs e);
         public delegate void BeforeSortChangeEventHandler(object sender, EventArgs e);
         public delegate void BandEventHandler(object sender, EventArgs e);
+        public delegate void InitializeLayoutEventHandler(object sender, EventArgs e);
 
         #endregion
 
@@ -107,10 +109,12 @@ namespace FSFormControls
         public event EventHandler RowEnter;
         public event DataGridViewRowCancelEventHandler UserDeletingRow;
 
+        //INFRAGISTICS
         //public event InitializeRowEventHandler InitializeRow;
-        public event InitializePrintPreviewEventHandler InitializePrintPreview;
-        public event InitializePrintEventHandler InitializePrint;
-        public event BeforePrintEventHandler BeforePrint;
+        //public event InitializePrintPreviewEventHandler InitializePrintPreview;
+        //public event InitializePrintEventHandler InitializePrint;
+        //public event BeforePrintEventHandler BeforePrint;
+        public event InitializeLayoutEventHandler InitializeLayout;
         public event DoubleClickRowEventHandler DoubleClickRow;
         public event BeforeSortChangeEventHandler BeforeSortChange;
         public event BandEventHandler AfterSortChange;
@@ -413,13 +417,13 @@ namespace FSFormControls
             datagrid.Sort(comparer);
         }
 
-        public DataGridViewRow ActiveRow
+        public DBGridViewRow ActiveRow
         {
             get
             {
                 if (datagrid.SelectedRows.Count > 0)
-                    return datagrid.SelectedRows[0];
-                return datagrid.CurrentRow;
+                    return (DBGridViewRow)datagrid.SelectedRows[0];
+                return (DBGridViewRow)datagrid.CurrentRow;
             }
             set
             {
@@ -439,6 +443,7 @@ namespace FSFormControls
 
                 arrGrd.Add(this);
 
+                // Si el DataSource es un DataSet, este asu vez puede contener más DataTables.
                 if (m_childView != null)
                 {
                     arrGrd.Add(m_childView);
@@ -473,6 +478,14 @@ namespace FSFormControls
             get { return datagrid.DataSource; }
             set
             {
+                //if(DataControl == null)
+                //    DataControl = new DBControl(value);
+
+                if (DataControl == null && ColumnsGrid.Count == 0 && !AutoGenerateColumns)
+                {
+                    AutoGenerateColumns = true;
+                }
+                
                 datagrid.DataSource = value;
                 //if (value != null)
                 //{
@@ -480,6 +493,9 @@ namespace FSFormControls
                 //    datagrid.DataSource = bindingSource;
                 //    bindingSource.DataSource = value;
                 //}
+
+                if(Columns.Count == 0 && AutoGenerateColumns)
+                    Columns = FunctionsForms.GenerateColumns(ColumnsGrid);
             }
         }
 
@@ -541,9 +557,9 @@ namespace FSFormControls
             }
         }
 
-        public DataGridViewCell ActiveCell
+        public DBGridViewCell ActiveCell
         {
-            get { return datagrid.CurrentCell; }
+            get { return (DBGridViewCell)datagrid.CurrentCell; }
             set { datagrid.CurrentCell = value; }
         }
 
@@ -827,6 +843,9 @@ namespace FSFormControls
         {
             if (CellDoubleClick != null)
                 CellDoubleClick(sender, e);
+
+            if(DoubleClickRow != null)
+                DoubleClickRow(sender, e);
         }
 
         private void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
@@ -2317,12 +2336,26 @@ namespace FSFormControls
 
         private void MnuExcelExport(object sender, EventArgs e)
         {
+            ExportToExcel();
+        }
+
+        public void ExportToExcel(string fileName)
+        {
+            FSExcel.Excel excel = new FSExcel.Excel();
+            excel.Export(ExportDBGridView(), fileName);
+        }
+
+        public void ExportToExcel()
+        {
             FSExcel.Excel excel = new FSExcel.Excel();
             excel.Export(ExportDBGridView());
         }
 
         public DataTable ExportDBGridView()
         {
+            if (DataControl != null && DataControl.DataTable != null)
+                return DataControl.DataTable;
+
             string data;
             DataTable dataTable = new DataTable();
 

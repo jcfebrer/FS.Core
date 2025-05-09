@@ -208,7 +208,6 @@ namespace FSFormControls
             tabPage1.Padding = new System.Windows.Forms.Padding(3);
             tabPage1.Size = new System.Drawing.Size(1063, 470);
             tabPage1.TabIndex = 0;
-            tabPage1.TabPage = null;
             tabPage1.Text = "Controles básicos";
             tabPage1.UseVisualStyleBackColor = true;
             // 
@@ -1552,7 +1551,6 @@ namespace FSFormControls
             tabPage2.Padding = new System.Windows.Forms.Padding(3);
             tabPage2.Size = new System.Drawing.Size(1063, 470);
             tabPage2.TabIndex = 1;
-            tabPage2.TabPage = null;
             tabPage2.Text = "tabPage2      ";
             tabPage2.UseVisualStyleBackColor = true;
             // 
@@ -1756,7 +1754,6 @@ namespace FSFormControls
             tabPage3.Padding = new System.Windows.Forms.Padding(3);
             tabPage3.Size = new System.Drawing.Size(1063, 470);
             tabPage3.TabIndex = 2;
-            tabPage3.TabPage = null;
             tabPage3.Text = "tabPage3      ";
             tabPage3.UseVisualStyleBackColor = true;
             // 
@@ -1832,7 +1829,6 @@ namespace FSFormControls
             tabPage4.Name = "tabPage4";
             tabPage4.Size = new System.Drawing.Size(1063, 470);
             tabPage4.TabIndex = 3;
-            tabPage4.TabPage = null;
             tabPage4.Text = "tabPage4";
             tabPage4.UseVisualStyleBackColor = true;
             // 
@@ -1973,7 +1969,6 @@ namespace FSFormControls
             tabPage5.Name = "tabPage5";
             tabPage5.Size = new System.Drawing.Size(1063, 470);
             tabPage5.TabIndex = 4;
-            tabPage5.TabPage = null;
             tabPage5.Text = "tabPage5";
             tabPage5.UseVisualStyleBackColor = true;
             // 
@@ -2144,7 +2139,6 @@ namespace FSFormControls
             tabPage6.Name = "tabPage6";
             tabPage6.Size = new System.Drawing.Size(1063, 470);
             tabPage6.TabIndex = 5;
-            tabPage6.TabPage = null;
             tabPage6.Text = "tabPage6";
             tabPage6.UseVisualStyleBackColor = true;
             // 

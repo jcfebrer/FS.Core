@@ -40,7 +40,7 @@ namespace FSFormControls
         }
 
 
-        public static void SendEMail(string FromAddress, string ToAddress, DataSet ds)
+        public static void SendEMailDataSet(string FromAddress, string ToAddress, DataSet ds)
         {
             try
             {

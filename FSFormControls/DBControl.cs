@@ -2914,6 +2914,23 @@ namespace FSFormControls
             TabStop = false;
         }
 
+        public DBControl(object value) : this()
+        {
+            if (value is ArrayList)
+                Connect((ArrayList)value);
+            if (value is DataSet)
+                Connect((DataSet)value);
+            if (value is DataTable)
+                Connect((DataTable)value);
+            if (value is DataView)
+                Connect((DataView)value);
+            if (value is string || value is String)
+            {
+                Selection = (string)value;
+                Connect((string)value);
+            }
+        }
+
         public DBControl(string sql) : this()
         {
             Selection = sql;

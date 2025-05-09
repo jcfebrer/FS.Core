@@ -213,7 +213,7 @@ namespace FSFormControls
 
         public DBTabControlStyle Style { get; set; }
 
-        public DBTabControl SharedControlsPage { get; set; }
+        public DBTabPage SharedControlsPage { get; set; }
 
         protected override void OnSelectedIndexChanged(EventArgs e)
         {
@@ -226,6 +226,12 @@ namespace FSFormControls
         //public event CancelEventHandler CloseButtonClick;
         public class SelectedTabChangedEventArgs : EventArgs
         {
+        }
+
+        public string Key
+        {
+            get { return this.Name; }
+            set { this.Name = value; }
         }
     }
 }

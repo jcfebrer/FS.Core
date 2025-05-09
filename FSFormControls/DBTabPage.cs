@@ -49,6 +49,9 @@ namespace FSFormControls
         //    set { _Text = value; }
         //}
 
-        public DBTabPage TabPage { get; set; }
+        public DBTabPage Tab
+        {
+            get { return this; }
+        }
     }
 }

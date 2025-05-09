@@ -6,6 +6,52 @@ namespace FSFormControls
 {
     public class FunctionsForms
     {
+        public static DBColumnCollection GenerateColumns(DataGridViewColumnCollection columnsGrid)
+        {
+            DBColumnCollection columns = new DBColumnCollection();
+
+            if (columnsGrid == null)
+                throw new Exception("ColumnsGrid in null");
+
+            foreach (DataGridViewColumn col in columnsGrid)
+            {
+                var dbCol = new DBColumn();
+                dbCol.FieldDB = col.Name;
+                dbCol.HeaderCaption = col.HeaderText;
+                dbCol.ColumnType = ConvertSystemTypeToColumnType(col.ValueType);
+                dbCol.ReadColumn = col.ReadOnly;
+                dbCol.Width = col.Width;
+                dbCol.Alignment = ConvertSystemTypeToAlignment(col.ValueType);
+                columns.Add(dbCol);
+            }
+
+            return columns;
+        }
+
+        public static HorizontalAlignment ConvertSystemTypeToAlignment(Type fieldType)
+        {
+            switch (fieldType.ToString().ToLower())
+            {
+                case "system.int16":
+                case "system.int32":
+                case "system.int64":
+                case "system.double":
+                case "system.single":
+                case "system.byte":
+                case "system.decimal":
+                    return HorizontalAlignment.Right;
+                case "system.datetime":
+                    return HorizontalAlignment.Center;
+                case "system.char":
+                case "system.string":
+                    return HorizontalAlignment.Left;
+                case "system.boolean":
+                    return HorizontalAlignment.Center;
+            }
+
+            return HorizontalAlignment.Left;
+        }
+
         public static DBColumn.ColumnTypes ConvertSystemTypeToColumnType(Type fieldType)
         {
             switch (fieldType.ToString().ToLower())

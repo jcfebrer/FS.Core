@@ -85,37 +85,22 @@ namespace FSFormControls
             set
             {
                 _dataTable = value;
-                Values.Clear();
-                if (_dataTable != null)
-                {
-                    Random rnd = new Random();
-                    int maxValue = 0;
-
-                    for (int f = 0; f <= _dataTable.Rows.Count - 1; f++)
-                    {    
-                        for (int g = 0; g <= _dataTable.Columns.Count - 2; g++)
-                        {
-                            int dataValue = Convert.ToInt32(_dataTable.Rows[f][g + 1]);
-                            dataValue = dataValue / pictureMain.Height;
-
-                            if (dataValue > maxValue)
-                                maxValue = dataValue;
-
-                            Color rndColor = Color.FromArgb(rnd.Next(0,255), rnd.Next(0, 255), rnd.Next(0, 255));
-
-                            Values.Add(dataValue, rndColor, _dataTable.Columns[g + 1].ColumnName);
-                        }
-
-                    }
-
-                    Xscale_Max = maxValue;
-                    Yscale_Max = _dataTable.Columns.Count;
-                    Xscale_units = 1;
-                    Yscale_units = 1;
-
-                    DrawGraph();
-                }
+                CreateGraph(_dataTable);
             }
+        }
+
+        public DataTable DataSource {
+            get { return _dataTable; }
+            set 
+            { 
+                _dataTable = value; 
+                CreateGraph(_dataTable);
+            }
+        }
+
+        public void DataBind()
+        {
+            CreateGraph(_dataTable);
         }
 
         public void BeginInit()
@@ -129,6 +114,40 @@ namespace FSFormControls
         public void ClearValues()
         {
             Values.Clear();
+        }
+
+        private void CreateGraph(DataTable _dataTable)
+        {
+            Values.Clear();
+            if (_dataTable != null)
+            {
+                Random rnd = new Random();
+                int maxValue = 0;
+
+                for (int f = 0; f <= _dataTable.Rows.Count - 1; f++)
+                {
+                    for (int g = 0; g <= _dataTable.Columns.Count - 2; g++)
+                    {
+                        int dataValue = Convert.ToInt32(_dataTable.Rows[f][g + 1]);
+                        dataValue = dataValue / pictureMain.Height;
+
+                        if (dataValue > maxValue)
+                            maxValue = dataValue;
+
+                        Color rndColor = Color.FromArgb(rnd.Next(0, 255), rnd.Next(0, 255), rnd.Next(0, 255));
+
+                        Values.Add(dataValue, rndColor, _dataTable.Columns[g + 1].ColumnName);
+                    }
+
+                }
+
+                Xscale_Max = maxValue;
+                Yscale_Max = _dataTable.Columns.Count;
+                Xscale_units = 1;
+                Yscale_units = 1;
+
+                DrawGraph();
+            }
         }
 
 

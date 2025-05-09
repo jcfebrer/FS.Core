@@ -10,7 +10,12 @@ namespace FSFormControls
 
         public DBColumn this[int index]
         {
-            get { return (DBColumn) List[index]; }
+            get { 
+                if(List.Count > 0)
+                    return (DBColumn) List[index];
+                else
+                    return null;
+            }
             set { List[index] = value; }
         }
 

@@ -13,6 +13,12 @@ namespace FSFormControls
             Dock = DockStyle.Top;
         }
 
+        public DBToolBar(string name)
+        {
+            this.Name = name;
+            Dock = DockStyle.Top;
+        }
+
         public void BeginInit()
         {
         }

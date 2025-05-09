@@ -3,28 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
-using static FSFormControls.DBToolBar;
-using static System.Windows.Forms.ToolStrip;
 
 namespace FSFormControls
 {
     [ToolboxBitmap(typeof(resfinder), "FSFormControls.Resources.DBToolBar.bmp")]
     [ToolboxItem(true)]
-    public class DBToolBarManager
+    public class DBToolBarManager : ISupportInitialize
     {
         public DBToolBarManager()
         {
             DBToolBar toolbar = new DBToolBar();
-            toolbar.Click += Toolbar_ButtonClick;
-            
+            toolbar.ItemClicked += new ToolStripItemClickedEventHandler(Toolbar_ButtonClick);
+
             toolbars.Add(toolbar);
         }
 
-        private void Toolbar_ButtonClick(object sender, EventArgs e)
+        private void Toolbar_ButtonClick(object sender, ToolStripItemClickedEventArgs e)
         {
-            if (this.ButtonClick != null)
+            if (this.ItemClick != null)
             {
-                this.ButtonClick(sender, e);
+                this.ItemClick(sender, e);
             }
         }
 
@@ -62,12 +60,15 @@ namespace FSFormControls
             return false;
         }
 
-        public ToolStripItemCollection Tools
+        public void BeginInit()
         {
-            get { return toolbars[0].Items; }
         }
 
-        public ToolStripItemCollection Buttons
+        public void EndInit()
+        {
+        }
+
+        public ToolStripItemCollection Items
         {
             get { return toolbars[0].Items; }
         }
@@ -77,7 +78,7 @@ namespace FSFormControls
             set { toolbars[0].Visible = value; }
         }
 
-        public event ToolBarButtonClickEventHandler ButtonClick;
-        public delegate void ToolBarButtonClickEventHandler(object sender, EventArgs e);
+        public event ToolStripItemClickEventHandler ItemClick;
+        public delegate void ToolStripItemClickEventHandler(object sender, ToolStripItemClickedEventArgs e);
     }
 }

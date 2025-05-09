@@ -349,8 +349,6 @@ namespace FSFormControls
 
         public SizingModeEnum SizingMode { get; set; }
 
-        public ProgressBar ProgressBarInfo { get; set; }
-
         public new bool Visible { get; set; }
 
         private void InitializeAnimationThread()

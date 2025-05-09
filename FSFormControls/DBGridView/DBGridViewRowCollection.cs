@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Windows.Forms;
-using static FSFormControls.DBGridView;
 
 namespace FSFormControls
 {
@@ -24,6 +21,6 @@ namespace FSFormControls
             }
         }
 
-        public List<DBGridViewFilter> ColumnFilters { get; set; }
+        public DBGridViewFilterCollection ColumnFilters { get; set; }
     }
 }

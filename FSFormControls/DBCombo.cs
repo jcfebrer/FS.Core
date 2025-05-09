@@ -94,6 +94,7 @@ namespace FSFormControls
         public new event KeyPressEventHandler KeyPress;
         public event EventHandler AfterEnterEditMode;
         public event EventHandler AfterExitEditMode;
+        public event EventHandler ValueChanged;
         public event DBEditorButtonEventHandler EditorButtonClick;
         public event MouseEnterElementEventHandler MouseEnterElement;
 
@@ -834,6 +835,9 @@ namespace FSFormControls
 
                 if (null != SelectionChanged)
                     SelectionChanged(this, e);
+
+                if (null != ValueChanged)
+                    ValueChanged(this, e);
             }
         }
 
@@ -1264,8 +1268,21 @@ namespace FSFormControls
 
         public void SetDataBinding(ArrayList dataSource, string valueMember)
         {
+            if (!String.IsNullOrEmpty(valueMember))
+                combobox.ValueMember = valueMember;
+
             combobox.DataSource = dataSource;
-            combobox.ValueMember = valueMember;
+        }
+
+        public void SetDataBinding(ArrayList dataSource, string valueMember, string displayMember)
+        {
+            if (!String.IsNullOrEmpty(valueMember))
+                combobox.ValueMember = valueMember;
+
+            if (!String.IsNullOrEmpty(displayMember))
+                combobox.DisplayMember = displayMember;
+
+            combobox.DataSource = dataSource;
         }
     }
 

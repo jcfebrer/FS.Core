@@ -36,6 +36,10 @@ namespace FSFormControls
             public string ToolTipText;
         }
 
-        public SharedDef SharedProps { get; set; }
+        SharedDef sharedProps = new SharedDef();
+        public SharedDef SharedProps {
+            get { return sharedProps; }
+            set { sharedProps = value; }
+        }
     }
 }
