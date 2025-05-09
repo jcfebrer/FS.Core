@@ -108,7 +108,7 @@
     <Compile Update="DBPanel.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="DBStatusBarProgressPanel.cs">
+    <Compile Update="DBStatusBarProgress2Panel.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Update="DBTabPage.cs">
