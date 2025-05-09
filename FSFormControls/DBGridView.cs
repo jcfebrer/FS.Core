@@ -609,6 +609,29 @@ namespace FSFormControls
             set { m_Summaries = value; }
         }
 
+        //Infragistics
+        
+        public DBAppearance ActiveCellAppearance { get; set; }
+        public DBAppearance EditCellAppearance { get; set; }
+        public DBAppearance ActiveRowAppearance { get; set; }
+        public DBAppearance CardAreaAppearance { get; set; }
+        public DBAppearance CellAppearance { get; set; }
+        public DBAppearance GroupByRowAppearance { get; set; }
+        public DBAppearance HeaderAppearance { get; set; }
+        public DBAppearance RowAppearance { get; set; }
+        public DBAppearance TemplateAddRowAppearance { get; set; }
+        public BorderStyle BorderStyleCell { get; set; }
+        public BorderStyle BorderStyleRow { get; set; }
+        public DBGridViewDisplayLayout.DBCellClickAction CellClickAction { get; set; }
+        public DBGridViewDisplayLayout.DBHeaderClickAction HeaderClickAction { get; set; }
+        public bool RowSelectors { get; set; }
+        public DBGridViewDisplayLayout.DBHeaderStyle HeaderStyle { get; set; }
+        public int CellPadding { get; set; }
+        public DBGridViewDisplayLayout.DBAllowColMoving AllowColMoving { get; set; }
+        public DBGridViewDisplayLayout.DBAllowColSwapping AllowColSwapping { get; set; }
+
+        //End Infragistics
+
         public void BeginInit()
         {
         }

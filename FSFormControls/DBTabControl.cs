@@ -233,5 +233,7 @@ namespace FSFormControls
             get { return this.Name; }
             set { this.Name = value; }
         }
+
+        public DBTabPage TabPage { get; set; }
     }
 }

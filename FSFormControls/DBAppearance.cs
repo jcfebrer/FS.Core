@@ -110,9 +110,9 @@ namespace FSFormControls
         public string TextHAlignAsString;
         public DBTextTrimming? TextTrimming;
         public string TextVAlignAsString;
-
-        public HorizontalAlignment TextHAlign { get; set; }
-        public HorizontalAlignment TextVAlign { get; set; }
+        
+        public HAlign TextHAlign { get; set; }
+        public VAlign TextVAlign { get; set; }
 
         public void ResetBackColor()
         {
