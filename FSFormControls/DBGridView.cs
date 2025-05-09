@@ -629,6 +629,8 @@ namespace FSFormControls
         public int CellPadding { get; set; }
         public DBGridViewDisplayLayout.DBAllowColMoving AllowColMoving { get; set; }
         public DBGridViewDisplayLayout.DBAllowColSwapping AllowColSwapping { get; set; }
+        public DBGridViewDisplayLayout.DBRowSizing RowSizing { get; set; }
+        public DBGridViewDisplayLayout.SelectType SelectTypeRow { get; set; }
 
         //End Infragistics
 
