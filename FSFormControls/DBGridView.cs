@@ -611,7 +611,21 @@ namespace FSFormControls
         }
 
         //Infragistics
-        
+
+        public enum SummaryDisplayAreas
+        {
+            Default,
+            None,
+            Top,
+            TopFixed,
+            Bottom,
+            BottomFixed,
+            InGroupByRows,
+            GroupByRowsFooter,
+            HideDataRowFooters,
+            RootRowsFootersOnly
+        }
+
         public DBAppearance ActiveCellAppearance { get; set; }
         public DBAppearance EditCellAppearance { get; set; }
         public DBAppearance ActiveRowAppearance { get; set; }
@@ -634,6 +648,9 @@ namespace FSFormControls
         public DBGridViewDisplayLayout.SelectType SelectTypeRow { get; set; }
         public int MinRowHeight { get; set; }
         public int RowSelectorWidth { get; set; }
+        public SummaryDisplayAreas SummaryDisplayArea { get; set; }
+        public bool SummaryFooterCaptionVisible { get; set; }
+        public int SummaryFooterSpacingAfter { get; set; }
 
         //End Infragistics
 

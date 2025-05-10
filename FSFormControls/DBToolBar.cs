@@ -19,6 +19,8 @@ namespace FSFormControls
             Dock = DockStyle.Top;
         }
 
+        public object Settings { get; set; }
+
         public void BeginInit()
         {
         }

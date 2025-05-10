@@ -551,10 +551,6 @@ namespace FSFormControls
             }
         }
 
-        public DBButtonCollection ButtonsRight { get; set; } = new DBButtonCollection();
-
-        public DBButtonCollection ButtonsLeft { get; set; } = new DBButtonCollection();
-
 
         [Browsable(false)]
         [EditorBrowsable(EditorBrowsableState.Always)]
@@ -612,6 +608,16 @@ namespace FSFormControls
         {
             get { return combobox.SelectedText; }
             set { combobox.SelectedText = value; }
+        }
+
+        public DBButtonCollection ButtonsRight { get; set; } = new DBButtonCollection();
+
+        public DBButtonCollection ButtonsLeft { get; set; } = new DBButtonCollection();
+
+        public DBButtonCollection ClickedItemsLeft 
+        {
+            get { return ButtonsLeft; }
+            set { ButtonsLeft = value; } 
         }
 
         public bool IsItemInList()
