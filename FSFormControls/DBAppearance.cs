@@ -113,6 +113,8 @@ namespace FSFormControls
         
         public HAlign TextHAlign { get; set; }
         public VAlign TextVAlign { get; set; }
+        public DBAppearance AppearanceOnToolbar { get; set; }
+        public DBAppearance PressedAppearanceOnToolbar { get; set; }
 
         public void ResetBackColor()
         {

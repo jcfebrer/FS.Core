@@ -2017,9 +2017,9 @@ namespace FSFormControls
             dbGridViewDisplayLayout1.AllowDelete = false;
             dbGridViewDisplayLayout1.Appearance = null;
             dbGridViewDisplayLayout1.BandLabelAppearance = null;
-            dbGridViewDisplayLayout1.BorderStyle = DBGridViewDisplayLayout.DBElementBorderStyle.None;
-            dbGridViewDisplayLayout1.BorderStyleCell = DBGridViewDisplayLayout.DBElementBorderStyle.Default;
-            dbGridViewDisplayLayout1.BorderStyleRow = DBGridViewDisplayLayout.DBElementBorderStyle.Default;
+            dbGridViewDisplayLayout1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dbGridViewDisplayLayout1.BorderStyleCell = System.Windows.Forms.BorderStyle.None;
+            dbGridViewDisplayLayout1.BorderStyleRow = System.Windows.Forms.BorderStyle.None;
             dbGridViewDisplayLayout1.CaptionVisible = false;
             dbGridViewDisplayLayout1.CardAreaAppearance = null;
             dbGridViewDisplayLayout1.CellAppearance = null;

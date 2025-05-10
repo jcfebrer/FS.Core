@@ -206,9 +206,9 @@ namespace FSFormControls
         //    RePositionCloseButtons();
         //}
 
-        public TabPageCollection Tabs
+        public DBTabPageCollection Tabs
         {
-            get { return base.TabPages; }
+            get { return (DBTabPageCollection)base.TabPages; }
         }
 
         public DBTabControlStyle Style { get; set; }

@@ -15,6 +15,7 @@ using FSDatabase;
 using FSException;
 using FSFormControls.Properties;
 using FSLibrary;
+using FSExcel;
 
 #endregion
 
@@ -631,6 +632,8 @@ namespace FSFormControls
         public DBGridViewDisplayLayout.DBAllowColSwapping AllowColSwapping { get; set; }
         public DBGridViewDisplayLayout.DBRowSizing RowSizing { get; set; }
         public DBGridViewDisplayLayout.SelectType SelectTypeRow { get; set; }
+        public int MinRowHeight { get; set; }
+        public int RowSelectorWidth { get; set; }
 
         //End Infragistics
 

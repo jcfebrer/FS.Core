@@ -298,6 +298,7 @@ namespace FSFormControls
         public int Index { get; set; }
         
         public DBAppearance HeaderAppearance { get; set; }
+        public Size CellSizeResolved { get; set; }
 
         public event CellClickEventHandler CellClick;
 

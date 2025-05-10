@@ -25,5 +25,6 @@ namespace FSFormControls
 
         public FilterComparisionOperator ComparisionOperator { get; set; }
         public FilterLogicalOperator LogicalOperator { get; set; }
+        public DBGridViewFilterCollection DBGridViewFilters { get; set; }
     }
 }

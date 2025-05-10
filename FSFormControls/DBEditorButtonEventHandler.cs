@@ -10,6 +10,8 @@ namespace FSFormControls
         public DBButton Button;
         public Element Element;
 
+        public Item ClickedItem { get; set; }
+
         public DBEditorButtonEventArgs(DBButton button)
         {
         }
@@ -22,5 +24,10 @@ namespace FSFormControls
     public class Element
     {
         public Rectangle Rect;
+    }
+
+    public class Item
+    {
+        public string Key;
     }
 }

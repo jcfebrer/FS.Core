@@ -53,5 +53,7 @@ namespace FSFormControls
         {
             get { return this; }
         }
+
+        public DBAppearance Appearance { get; set; }
     }
 }

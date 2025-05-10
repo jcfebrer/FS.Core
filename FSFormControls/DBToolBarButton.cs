@@ -34,6 +34,8 @@ namespace FSFormControls
         {
             public Shortcut Shortcut;
             public string ToolTipText;
+
+            public DBAppearance AppearancesSmall { get; set; }
         }
 
         SharedDef sharedProps = new SharedDef();
