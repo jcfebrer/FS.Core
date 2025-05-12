@@ -600,7 +600,7 @@ namespace FSParser
             string str = "";
             foreach (var variable in Variables)
             {
-                str += "[" + variable.Key + "]: " + variable.Value;
+                str += "[" + variable.Key + "]: " + variable.Value + Environment.NewLine;
             }
             return str;
         }
