@@ -594,6 +594,16 @@ namespace FSParser
             }
             return method.Invoke(null, doubleArgs.ToArray());
         }
+
+        public string GetVariablesString()
+        {
+            string str = "";
+            foreach (var variable in Variables)
+            {
+                str += "[" + variable.Key + "]: " + variable.Value;
+            }
+            return str;
+        }
     }
 }
 

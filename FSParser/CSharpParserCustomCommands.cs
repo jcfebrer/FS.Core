@@ -1,10 +1,12 @@
 ﻿#if NET40_OR_GREATER || NETCOREAPP
 
 using FSLibrary;
+using FSTrace;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FSParser
 {
@@ -59,6 +61,16 @@ namespace FSParser
             {
                 if (args.Count != 3)
                     throw new Exception("Parámetros incorrectos. En función: replace");
+
+                // Contamos el número de veces que aparece el texto a sustituir
+                int count = (_Q(args[0]).Length - _Q(args[0]).Replace(_Q(args[1]), "").Length) / _Q(args[1]).Length;
+
+                // Guardamos el resultado en memoria temporal para mostrarlo al final del proceso
+                if(parser.Variables.ContainsKey(_Q(args[1])))
+                    parser.Variables[_Q(args[1])] = (int)parser.Variables[_Q(args[1])] + count;
+                else
+                    parser.Variables[_Q(args[1])] = count;
+
                 return _Q(args[0]).Replace(_Q(args[1]), _Q(args[2]));
             };
 
@@ -66,6 +78,16 @@ namespace FSParser
             {
                 if (args.Count != 3)
                     throw new Exception("Parámetros incorrectos. En función: replacereg");
+
+                // Contamos el número de veces que aparece el texto a sustituir
+                int count = Regex.Matches(_Q(args[0]), _Q(args[1])).Count;
+
+                // Guardamos el resultado en memoria temporal para mostrarlo al final del proceso
+                if (parser.Variables.ContainsKey(_Q(args[1])))
+                    parser.Variables[_Q(args[1])] = (int)parser.Variables[_Q(args[1])] + count;
+                else
+                    parser.Variables[_Q(args[1])] = count;
+
                 return TextUtil.ReplaceREG(_Q(args[0]), _Q(args[1]), _Q(args[2]));
             };
 
