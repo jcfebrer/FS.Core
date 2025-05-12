@@ -16,7 +16,8 @@ namespace FSNetwork
             set
             {
                 _userName = value;
-                Auth = true;
+                BasicAuth = true;
+                BearerAuth = false;
             }
         }
         private string _password;
@@ -26,14 +27,37 @@ namespace FSNetwork
             set
             {
                 _password = value;
-                Auth = true;
+                BasicAuth = true;
+                BearerAuth = false;
             }
         }
-        public bool Auth { get; set; }
+        private string _token;
+        public string Token
+        {
+            get { return _token; }
+            set
+            {
+                _token = value;
+                BasicAuth = false;
+                BearerAuth = true;
+            }
+        }
+
+        public bool BearerAuth { get; set; }
+        public bool BasicAuth { get; set; }
 
         public WebApi()
         {
-            Auth = false;
+            BasicAuth = false;
+            BearerAuth = false;
+        }
+
+        public WebApi(string token)
+        {
+            Token = token;
+
+            BasicAuth = false;
+            BearerAuth = true;
         }
 
         public WebApi(string userName, string password)
@@ -41,7 +65,8 @@ namespace FSNetwork
             UserName = userName;
             Password = password;
 
-            Auth = true;
+            BasicAuth = true;
+            BearerAuth = false;
         }
 
         public string CallApi(string url, string urlParameters)
@@ -56,13 +81,16 @@ namespace FSNetwork
                 client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-                if (Auth)
+                if (BasicAuth)
                 {
                     var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(UserName + ":" + Password);
                     string val = System.Convert.ToBase64String(plainTextBytes);
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", val);
                     //client.DefaultRequestHeaders.Add("Authorization", "Basic " + val);
                 }
+
+                if (BearerAuth)
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
 
                 HttpResponseMessage response = client.GetAsync(urlParameters).Result;
                 //response.EnsureSuccessStatusCode();
@@ -91,13 +119,16 @@ namespace FSNetwork
                 client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
-                if(Auth)
+                if (BasicAuth)
                 {
                     var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(UserName + ":" + Password);
                     string val = System.Convert.ToBase64String(plainTextBytes);
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", val);
                     //client.DefaultRequestHeaders.Add("Authorization", "Basic " + val);
                 }
+
+                if (BearerAuth)
+                    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
 
                 HttpResponseMessage response = await client.GetAsync(urlParameters);
                 //response.EnsureSuccessStatusCode();
