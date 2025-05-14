@@ -4,6 +4,10 @@ using System;
 using System.Net.Http.Headers;
 using System.Net.Http;
 using FSException;
+using System.Text;
+#if NETCOREAPP
+using System.Text.Json;
+#endif
 
 namespace FSNetwork
 {
@@ -46,6 +50,8 @@ namespace FSNetwork
         public bool BearerAuth { get; set; }
         public bool BasicAuth { get; set; }
 
+        public StringContent DataContent { get; set; }
+
         public WebApi()
         {
             BasicAuth = false;
@@ -69,6 +75,22 @@ namespace FSNetwork
             BearerAuth = false;
         }
 
+        public void AddData(string jsonStringData)
+        {
+            // Crea el contenido de la petición con el JSON y el tipo de contenido
+            DataContent = new StringContent(jsonStringData, Encoding.UTF8, "application/json");
+        }
+
+#if NETCOREAPP
+        public void AddData(object data)
+        {
+            string jsonStringData = JsonSerializer.Serialize(data);
+
+            // Crea el contenido de la petición con el JSON y el tipo de contenido
+            DataContent = new StringContent(jsonStringData, Encoding.UTF8, "application/json");
+        }
+#endif
+
         public string CallApi(string url, string urlParameters)
         {
             using (HttpClient client = new HttpClient())
@@ -78,8 +100,7 @@ namespace FSNetwork
 
                 client.BaseAddress = new Uri(url);
                 client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
                 if (BasicAuth)
                 {
@@ -92,7 +113,15 @@ namespace FSNetwork
                 if (BearerAuth)
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
 
-                HttpResponseMessage response = client.GetAsync(urlParameters).Result;
+                HttpResponseMessage response;
+                if (DataContent != null)
+                {
+                    response = client.PostAsync(urlParameters, DataContent).Result;
+                }
+                else
+                {
+                    response = client.GetAsync(urlParameters).Result;
+                }
                 //response.EnsureSuccessStatusCode();
 
                 if (response.IsSuccessStatusCode)
@@ -130,7 +159,15 @@ namespace FSNetwork
                 if (BearerAuth)
                     client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Token);
 
-                HttpResponseMessage response = await client.GetAsync(urlParameters);
+                HttpResponseMessage response;
+                if (DataContent != null)
+                {
+                    response = await client.PostAsync(urlParameters, DataContent);
+                }
+                else
+                {
+                    response = await client.GetAsync(urlParameters);
+                }
                 //response.EnsureSuccessStatusCode();
 
                 if (response.IsSuccessStatusCode)
