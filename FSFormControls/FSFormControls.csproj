@@ -251,12 +251,8 @@
     <Content Include="Resources\DBGridViewExpand.png" />
     <Content Include="Resources\DBVuMeter.bmp" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
-  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <Reference Include="System.Design" Version="4.0.0" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
@@ -285,5 +281,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+    <Reference Include="System.Configuration" />
   </ItemGroup>
 </Project>

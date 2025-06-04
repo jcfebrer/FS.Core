@@ -3,15 +3,11 @@ using FSLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Configuration;
 using System.IO;
-using System.Net;
 using System.Net.Security;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Web;
-using System.Xml;
 
 namespace FSMail
 {

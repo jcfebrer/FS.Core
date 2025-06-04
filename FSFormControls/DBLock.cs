@@ -47,7 +47,7 @@ namespace FSFormControls
 
         public void Lock(string tableName, string registerCode)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             string ssql;
 
             if ((tableName == "") | (registerCode == "")) return;
@@ -81,7 +81,7 @@ namespace FSFormControls
 
         public bool IsLock(string tableName, string registerCode)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             string ssql;
 
             if ((tableName == "") | (registerCode == "")) return false;
@@ -106,7 +106,7 @@ namespace FSFormControls
 
         public string LockUser(string tableName, string registerCode)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             string ssql;
 
             if ((tableName == "") | (registerCode == "")) return string.Empty;
@@ -128,7 +128,7 @@ namespace FSFormControls
 
         public DateTime LockDate(string tableName, string registerCode)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             string ssql;
 
             if ((tableName == "") | (registerCode == "")) return DateTime.Parse("");
@@ -150,7 +150,7 @@ namespace FSFormControls
 
         public void UnLock(string tableName, string registerCode)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             string ssql;
 
             if ((tableName == "") | (registerCode == "")) return;
@@ -171,7 +171,7 @@ namespace FSFormControls
 
         public void ClearUser(string tableName)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             string ssql;
 
             if (User == "") return;

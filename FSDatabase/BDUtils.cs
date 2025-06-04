@@ -10,9 +10,7 @@
 
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Data.OleDb;
@@ -26,11 +24,9 @@ using FSQueryBuilder.Constants;
 using FSQueryBuilder.Enums;
 using DateTime = System.DateTime;
 using FSException;
-using System.CodeDom;
 using FSQueryBuilder;
 using FSQueryBuilder.QueryParts.Where;
 using FSTrace;
-using FSSecurity;
 
 #if NETCOREAPP
     using Microsoft.AspNetCore.Http;
@@ -106,10 +102,11 @@ namespace FSDatabase
             }
             else
             {
-                ProviderName = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ProviderName;
-                ConnString = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ConnectionString;
+                throw new ExceptionUtil("Nombre de conexión incorrecta o nombre de proveedor incorrecto.");
+                //ProviderName = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ProviderName;
+                //ConnString = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ConnectionString;
 
-                ConnStringEntryId = Utils.GetConnectionId(ConnStringEntryName);
+                //ConnStringEntryId = Utils.GetConnectionId(ConnStringEntryName);
             }
 
             SetVariables();
@@ -132,21 +129,35 @@ namespace FSDatabase
             }
         }
 
-
-        public BdUtils(ConnectionStringSettings connectionString)
+        public BdUtils(string connectionString)
         {
-            if (connectionString != null)
+            if (String.IsNullOrEmpty(connectionString))
+                throw new ExceptionUtil("Nombre de conexión incorrecta o nombre de proveedor incorrecto.");
+            else
             {
-                ConnString = connectionString.ConnectionString;
-                ProviderName = connectionString.ProviderName;
+                ConnString = connectionString;
 
                 SetVariables();
                 SetBDType();
                 SetDBMSType();
             }
-            else
-                throw new ExceptionUtil("No se ha definido ConnectionString");
         }
+
+
+        //public BdUtils(ConnectionStringSettings connectionString)
+        //{
+        //    if (connectionString != null)
+        //    {
+        //        ConnString = connectionString.ConnectionString;
+        //        ProviderName = connectionString.ProviderName;
+
+        //        SetVariables();
+        //        SetBDType();
+        //        SetDBMSType();
+        //    }
+        //    else
+        //        throw new ExceptionUtil("No se ha definido ConnectionString");
+        //}
 
 
         public BdUtils(string connectionString, Utils.ServerTypeEnum typeBd)
@@ -163,45 +174,45 @@ namespace FSDatabase
                 throw new ExceptionUtil("No se ha definido ConnectionString");
         }
 
-        public BdUtils(string connStringEntryName)
-        {
-            if (String.IsNullOrEmpty(connStringEntryName))
-                throw new ExceptionUtil("Nombre de conexión incorrecta.");
-            else
-                ConnStringEntryName = connStringEntryName;
+        //public BdUtils(string connStringEntryName)
+        //{
+        //    if (String.IsNullOrEmpty(connStringEntryName))
+        //        throw new ExceptionUtil("Nombre de conexión incorrecta.");
+        //    else
+        //        ConnStringEntryName = connStringEntryName;
 
-            if (ConfigurationManager.ConnectionStrings.Count == 0)
-                throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
-            if (ConfigurationManager.ConnectionStrings[ConnStringEntryName] == null)
-                throw new ExceptionUtil("No se ha encontrado la entrada: " + ConnStringEntryName + ", en web.config.");
+        //    if (ConfigurationManager.ConnectionStrings.Count == 0)
+        //        throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
+        //    if (ConfigurationManager.ConnectionStrings[ConnStringEntryName] == null)
+        //        throw new ExceptionUtil("No se ha encontrado la entrada: " + ConnStringEntryName + ", en web.config.");
 
-            ProviderName = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ProviderName;
-            ConnString = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ConnectionString;
+        //    ProviderName = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ProviderName;
+        //    ConnString = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ConnectionString;
 
-            ConnStringEntryId = Utils.GetConnectionId(ConnStringEntryName);
+        //    ConnStringEntryId = Utils.GetConnectionId(ConnStringEntryName);
 
-            SetVariables();
-            SetBDType();
-            SetDBMSType();
-        }
+        //    SetVariables();
+        //    SetBDType();
+        //    SetDBMSType();
+        //}
 
-        public BdUtils(int connStringEntryId)
-        {
-            ConnStringEntryId = connStringEntryId;
-            ConnStringEntryName = Utils.GetConnectionName(ConnStringEntryId);
+        //public BdUtils(int connStringEntryId)
+        //{
+        //    ConnStringEntryId = connStringEntryId;
+        //    ConnStringEntryName = Utils.GetConnectionName(ConnStringEntryId);
 
-            if (ConfigurationManager.ConnectionStrings.Count == 0)
-                throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
-            if (ConfigurationManager.ConnectionStrings[ConnStringEntryName] == null)
-                throw new ExceptionUtil("No se ha encontrado la entrada: " + ConnStringEntryName + ", en web.config.");
+        //    //if (ConfigurationManager.ConnectionStrings.Count == 0)
+        //    //    throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
+        //    //if (ConfigurationManager.ConnectionStrings[ConnStringEntryName] == null)
+        //    //    throw new ExceptionUtil("No se ha encontrado la entrada: " + ConnStringEntryName + ", en web.config.");
 
-            ProviderName = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ProviderName;
-            ConnString = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ConnectionString;
+        //    ProviderName = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ProviderName;
+        //    ConnString = ConfigurationManager.ConnectionStrings[ConnStringEntryName].ConnectionString;
 
-            SetVariables();
-            SetBDType();
-            SetDBMSType();
-        }
+        //    SetVariables();
+        //    SetBDType();
+        //    SetDBMSType();
+        //}
 
         //public void Close()
         //{
@@ -223,9 +234,9 @@ namespace FSDatabase
             if (TextUtil.IndexOf(ConnString, "{root}") > 0)
                 ConnString = TextUtil.Replace(ConnString, "{root}", Web.ServerMapPath("~"));
 
-            if (TextUtil.IndexOf(ConnString, "{portal}") > 0)
-                ConnString = TextUtil.Replace(ConnString, "{portal}",
-                    ConfigurationManager.AppSettings["DefaultPortal"]);
+            //if (TextUtil.IndexOf(ConnString, "{portal}") > 0)
+            //    ConnString = TextUtil.Replace(ConnString, "{portal}",
+            //        ConfigurationManager.AppSettings["DefaultPortal"]);
 
             if (TextUtil.IndexOf(ConnString, "{app_path}") > 0)
                 ConnString = TextUtil.Replace(ConnString, "{app_path}", FileUtils.ApplicationPath());
@@ -238,10 +249,10 @@ namespace FSDatabase
         }
 
 
-        public int GetConnectionId()
-        {
-            return Utils.GetConnectionId(ConnStringEntryName);
-        }
+        //public int GetConnectionId()
+        //{
+        //    return Utils.GetConnectionId(ConnStringEntryName);
+        //}
 
         private void SetBDType()
         {
@@ -2671,24 +2682,24 @@ namespace FSDatabase
             return false;
         }
 
-        public void CheckConnection()
-        {
-            try
-            {
-                foreach (ConnectionStringSettings con in ConfigurationManager.ConnectionStrings)
-                {
-                    using (DbConnection db = new OleDbConnection())
-                    {
-                        db.ConnectionString = con.ConnectionString;
-                        db.Open();
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new ExceptionUtil(ex);
-            }
-        }
+        //public void CheckConnection()
+        //{
+        //    try
+        //    {
+        //        foreach (ConnectionStringSettings con in ConfigurationManager.ConnectionStrings)
+        //        {
+        //            using (DbConnection db = new OleDbConnection())
+        //            {
+        //                db.ConnectionString = con.ConnectionString;
+        //                db.Open();
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new ExceptionUtil(ex);
+        //    }
+        //}
 
         public void SqlBlob2File(string DestFilePath)
         {

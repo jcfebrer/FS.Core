@@ -30,7 +30,6 @@
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.69.0.3674" />
     <PackageReference Include="log4net" Version="3.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'" Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSException\FSException.csproj" />

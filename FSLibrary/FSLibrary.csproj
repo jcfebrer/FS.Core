@@ -51,6 +51,9 @@
     <ProjectReference Include="..\FSException\FSException.csproj" />
     <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
   </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
+  </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <Reference Include="System.Configuration" />
   </ItemGroup>

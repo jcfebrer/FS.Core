@@ -9,7 +9,6 @@ using FSSystemInfo;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.IO;
 
@@ -799,27 +798,6 @@ namespace FSDatabase
                 dat = date.ToString("yyyy-MM-dd");
 
             return m_simbDate + dat + m_simbDate;
-        }
-
-        public static int GetConnectionId(string entryName)
-        {
-            var f = 0;
-            foreach (ConnectionStringSettings con in ConfigurationManager.ConnectionStrings)
-            {
-                if (con.Name == entryName) return f;
-                f++;
-            }
-
-            return 0;
-        }
-
-        public static string GetConnectionName(int entryId)
-        {
-            if (ConfigurationManager.ConnectionStrings.Count == 0)
-                throw new ExceptionUtil("No ay entradas ConnectionStrings en el fichero web.config");
-            if (ConfigurationManager.ConnectionStrings[entryId] == null)
-                throw new ExceptionUtil("Entrada de ConnectionString inexistente en web.config (" + entryId + ")");
-            return ConfigurationManager.ConnectionStrings[entryId].Name;
         }
 
         public static Version GetMdacVersion()

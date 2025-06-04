@@ -18,7 +18,7 @@ namespace FSFormControls
 
                 if ((dbc.Width == 0) | force)
                 {
-                    var db = new BdUtils(Global.ConnectionStringSetting);
+                    var db = new BdUtils(Global.ConnectionString);
                     dbc.Width = db.GetField(dbc.FieldDB, datacontrol.TableName).Tamano * Global.CARACTER_SIZE;
                     if (dbc.ColumnType == DBColumn.ColumnTypes.DescriptionColumn)
                     {
@@ -156,7 +156,7 @@ namespace FSFormControls
                             dataControl.TypeDB == DBControl.DbType.OleDB ||
                             dataControl.TypeDB == DBControl.DbType.SQLServer)
                         {
-                            var db = new BdUtils(Global.ConnectionStringSetting);
+                            var db = new BdUtils(Global.ConnectionString);
                             column = new DBColumn(dataControl.FieldName(f), TextUtil.PCase(dataControl.FieldName(f)),
                                 FunctionsForms.ConvertFieldTypeToColumnType(db.GetField(dataControl.FieldName(f),
                                     dataControl.TableName).Tipo));

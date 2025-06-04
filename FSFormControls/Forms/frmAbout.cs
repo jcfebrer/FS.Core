@@ -165,13 +165,13 @@ namespace FSFormControls
             lvItem = ListView1.Items.Add("WorkingSet (memoria asignada)");
             lvItem.SubItems.Add(Environment.WorkingSet.ToString("###,###"));
 
-            if (Global.ConnectionStringSetting != null)
+            if (Global.ConnectionString != null)
             {
                 lvItem = ListView1.Items.Add("ConnectionString");
-                lvItem.SubItems.Add(Global.ConnectionStringSetting.ConnectionString);
+                lvItem.SubItems.Add(Global.ConnectionString);
 
-                lvItem = ListView1.Items.Add("ProviderName");
-                lvItem.SubItems.Add(Global.ConnectionStringSetting.ProviderName);
+                //lvItem = ListView1.Items.Add("ProviderName");
+                //lvItem.SubItems.Add(Global.ConnectionString.ProviderName);
             }
 
             lvItem = ListView1.Items.Add("MDAC Version");

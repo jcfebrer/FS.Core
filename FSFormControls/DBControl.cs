@@ -90,7 +90,7 @@ namespace FSFormControls
             {
                 if (m_tables == null)
                 {
-                    var db = new BdUtils(Global.ConnectionStringSetting);
+                    var db = new BdUtils(Global.ConnectionString);
                     m_tables = db.GetTables();
                 }
                 return m_tables;
@@ -212,7 +212,7 @@ namespace FSFormControls
             {
                 if (LOCK != null)
                 {
-                    var db = new BdUtils(Global.ConnectionStringSetting);
+                    var db = new BdUtils(Global.ConnectionString);
                     switch (value)
                     {
                         case Global.AccessMode.ReadMode:
@@ -621,7 +621,7 @@ namespace FSFormControls
                 case DbType.Odbc:
                 case DbType.OleDB:
                 case DbType.SQLServer:
-                    var db = new BdUtils(Global.ConnectionStringSetting);
+                    var db = new BdUtils(Global.ConnectionString);
 
                     string sql = ReplaceParameters(Selection);
 
@@ -768,7 +768,7 @@ namespace FSFormControls
             {
                 if (Paging)
                 {
-                    BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+                    BdUtils db = new BdUtils(Global.ConnectionString);
                     return db.Counter(TableName);
                 }
 
@@ -963,7 +963,7 @@ namespace FSFormControls
 
                     try
                     {
-                        var db = new BdUtils(Global.ConnectionStringSetting);
+                        var db = new BdUtils(Global.ConnectionString);
 
                         foreach (DataRow row in DataTable.Rows)
                             switch (row.RowState)
@@ -1142,7 +1142,7 @@ namespace FSFormControls
 
         private int SaveVersionableData(DataTable dtData, int version)
         {
-            var db = new BdUtils(Global.ConnectionStringSetting);
+            var db = new BdUtils(Global.ConnectionString);
             DataTable dt = null;
             var f = 0;
             var v = 0;
@@ -1201,7 +1201,7 @@ namespace FSFormControls
 
         private int LastVersion(string pk)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             int i;
 
             try
@@ -1561,7 +1561,7 @@ namespace FSFormControls
 
         public string Find(string field, string value, string fieldName)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             var strField = "";
             DataRow[] foundRow = null;
 
@@ -1590,7 +1590,7 @@ namespace FSFormControls
 
         public DataRow FindRow(string field, string value)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             DataRow[] foundRow = null;
 
             if (DataTable == null) return null;
@@ -1952,7 +1952,7 @@ namespace FSFormControls
 
         private void AssignMaxSize(ControlCollection frm)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             var s = 0;
             var f = 0;
 
@@ -2026,7 +2026,7 @@ namespace FSFormControls
 
         private void AssignMaxValue(ControlCollection frm)
         {
-            BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+            BdUtils db = new BdUtils(Global.ConnectionString);
             var f = 0;
 
             if (frm == null) return;
@@ -2321,7 +2321,7 @@ namespace FSFormControls
 
             try
             {
-                var db = new BdUtils(Global.ConnectionStringSetting);
+                var db = new BdUtils(Global.ConnectionString);
                 DataTable = db.Execute(Selection, m_Page, PagingSize);
             }
             catch (Exception e)
@@ -2966,7 +2966,7 @@ namespace FSFormControls
             if (disposing)
                 if (LOCK != null)
                 {
-                    BdUtils db = new BdUtils(Global.ConnectionStringSetting);
+                    BdUtils db = new BdUtils(Global.ConnectionString);
                     LOCK.UnLock(TableName, GetField(db.PrimaryKeyName(TableName)).ToString());
                 }
 

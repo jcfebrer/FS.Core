@@ -1,9 +1,6 @@
 #region
 
-using System.Configuration;
-using System.Data.Common;
 using System.Drawing;
-using System.Windows.Forms;
 
 #endregion
 
@@ -42,7 +39,7 @@ namespace FSFormControls
         public static string UserName = "";
 
         public static DBControl.DbActionTypes Action = DBControl.DbActionTypes.None;
-        public static ConnectionStringSettings ConnectionStringSetting;
+        public static string ConnectionString;
         //public static DbConnection DBconnection;
         //public static FSDatabase.Utils.TypeBd typeDb = FSDatabase.Utils.TypeBd.Oledb;
         public static bool SilentError;

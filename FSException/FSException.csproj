@@ -11,9 +11,6 @@
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'">
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.1" />
-  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
   </ItemGroup>

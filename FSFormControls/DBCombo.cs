@@ -668,7 +668,7 @@ namespace FSFormControls
                     DataControlList.TypeDB == DBControl.DbType.OleDB ||
                     DataControlList.TypeDB == DBControl.DbType.SQLServer)
                 {
-                    var db = new BdUtils(Global.ConnectionStringSetting);
+                    var db = new BdUtils(Global.ConnectionString);
 
                     if (DBFieldList == null)
                         throw new ExceptionUtil("Campo DBFieldList no especificado.");

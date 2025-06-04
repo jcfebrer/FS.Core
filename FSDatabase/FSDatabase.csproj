@@ -20,7 +20,6 @@
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <Reference Include="System.Web" />
     <Reference Condition="'$(TargetFramework)' != 'net30' and '$(TargetFramework)' != 'net20'" Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Configuration" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSDisk\FSDisk.csproj" />

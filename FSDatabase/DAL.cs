@@ -12,14 +12,11 @@
 
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.Globalization;
 using System.IO;
-using FSLibrary;
 using DateTime = System.DateTime;
-using FSException;
 using FSTrace;
 
 #endregion
@@ -42,22 +39,22 @@ namespace FSDatabase
 
         #region Construtores
 
-        /// <summary>
-        ///     Este contructor establece la cadena de conexión que se utilizará para realizar las
-        ///     operaciones contra la base de datos
-        /// </summary>
-        /// <param name="connectionStr">
-        ///     Cadena de conexión que se usará para establece las conexiones.
-        ///     Puede ser una cadena de conexión explita o el nombre de una
-        ///     cadena de conexión con nombre establecida en la sección
-        ///     connectionStrings de el archivo de configuración de la aplicación.
-        /// </param>
-        public Dal(string connectionStr)
-        {
-            _connectionString = ConfigurationManager.ConnectionStrings[connectionStr] != null
-                ? ConfigurationManager.ConnectionStrings[connectionStr].ConnectionString
-                : connectionStr;
-        }
+        ///// <summary>
+        /////     Este contructor establece la cadena de conexión que se utilizará para realizar las
+        /////     operaciones contra la base de datos
+        ///// </summary>
+        ///// <param name="connectionStr">
+        /////     Cadena de conexión que se usará para establece las conexiones.
+        /////     Puede ser una cadena de conexión explita o el nombre de una
+        /////     cadena de conexión con nombre establecida en la sección
+        /////     connectionStrings de el archivo de configuración de la aplicación.
+        ///// </param>
+        //public Dal(string connectionStr)
+        //{
+        //    _connectionString = ConfigurationManager.ConnectionStrings[connectionStr] != null
+        //        ? ConfigurationManager.ConnectionStrings[connectionStr].ConnectionString
+        //        : connectionStr;
+        //}
 
         #endregion
 
