@@ -234,10 +234,6 @@ namespace FSDatabase
             if (TextUtil.IndexOf(ConnString, "{root}") > 0)
                 ConnString = TextUtil.Replace(ConnString, "{root}", Web.ServerMapPath("~"));
 
-            //if (TextUtil.IndexOf(ConnString, "{portal}") > 0)
-            //    ConnString = TextUtil.Replace(ConnString, "{portal}",
-            //        ConfigurationManager.AppSettings["DefaultPortal"]);
-
             if (TextUtil.IndexOf(ConnString, "{app_path}") > 0)
                 ConnString = TextUtil.Replace(ConnString, "{app_path}", FileUtils.ApplicationPath());
 
@@ -256,6 +252,9 @@ namespace FSDatabase
 
         private void SetBDType()
         {
+            if(String.IsNullOrEmpty(ProviderName))
+                ProviderName = "system.data.oledb";
+
             if (TextUtil.IndexOf(ProviderName, "sqlclient") >= 0 || TextUtil.IndexOf(ConnString, "sqloledb") >= 0)
             {
                 Utils.ServerType = Utils.ServerTypeEnum.SQLServer;
