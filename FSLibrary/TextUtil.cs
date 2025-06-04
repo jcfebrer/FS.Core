@@ -2747,7 +2747,7 @@ namespace FSLibrary
         /// <returns></returns>
         public static string ReplaceREG(string str, string regex, string regreplace)
         {
-            return ReplaceREG(str, regex, regreplace, RegexOptions.Multiline);
+            return ReplaceREG(str, regex, regreplace, RegexOptions.Compiled | RegexOptions.Multiline);
         }
 
         /// <summary>
