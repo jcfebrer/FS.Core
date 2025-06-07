@@ -62,11 +62,17 @@ namespace FSParser
                 if (args.Count != 3)
                     throw new Exception("Parámetros incorrectos. En función: replace");
 
-                // Contamos el número de veces que aparece el texto a sustituir
-                int count = (_Q(args[0]).Length - _Q(args[0]).Replace(_Q(args[1]), "").Length) / _Q(args[1]).Length;
+                int count = 0;
+                if (parser.CountReplaces)
+                {
+                    // Contamos el número de veces que aparece el texto a sustituir
+                    count = (_Q(args[0]).Length - _Q(args[0]).Replace(_Q(args[1]), "").Length) / _Q(args[1]).Length;
+                }
+                else
+                    count = 1;
 
                 // Guardamos el resultado en memoria temporal para mostrarlo al final del proceso
-                if(parser.Variables.ContainsKey(_Q(args[1])))
+                if (parser.Variables.ContainsKey(_Q(args[1])))
                     parser.Variables[_Q(args[1])] = (int)parser.Variables[_Q(args[1])] + count;
                 else
                     parser.Variables[_Q(args[1])] = count;
@@ -79,8 +85,14 @@ namespace FSParser
                 if (args.Count != 3)
                     throw new Exception("Parámetros incorrectos. En función: replacereg");
 
-                // Contamos el número de veces que aparece el texto a sustituir
-                int count = Regex.Matches(_Q(args[0]), _Q(args[1])).Count;
+                int count = 0;
+                if (parser.CountReplaces)
+                {
+                    // Contamos el número de veces que aparece el texto a sustituir
+                    count = Regex.Matches(_Q(args[0]), _Q(args[1])).Count;
+                }
+                else
+                    count = 1;
 
                 // Guardamos el resultado en memoria temporal para mostrarlo al final del proceso
                 if (parser.Variables.ContainsKey(_Q(args[1])))

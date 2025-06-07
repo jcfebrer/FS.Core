@@ -296,7 +296,8 @@ namespace FSFormControls
         public DBGridViewFilterCollection DBGridViewFilters { get; set; }
 
         public int Index { get; set; }
-        
+
+        public DBAppearance CellAppearance { get; set; }
         public DBAppearance HeaderAppearance { get; set; }
         public Size CellSizeResolved { get; set; }
 

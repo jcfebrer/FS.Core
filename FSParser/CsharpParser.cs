@@ -51,6 +51,8 @@ namespace FSParser
 
         private static ManualResetEvent resetEvent = new ManualResetEvent(true);
 
+        public bool CountReplaces { get; set; }
+
         bool stop = false;
 
         public CSharpParser()

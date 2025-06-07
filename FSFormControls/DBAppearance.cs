@@ -96,6 +96,7 @@ namespace FSFormControls
             Bottom
         }
 
+        public HorizontalAlignment Alignment { get; set; }
         public Color BackColor;
         public Color BackColor2;
         public Alpha BackColorAlpha;
