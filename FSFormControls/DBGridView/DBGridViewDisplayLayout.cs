@@ -125,6 +125,12 @@ namespace FSFormControls
             NextControl,
             NextControlOnLastCell
         }
+        public enum DBLoadStyle
+        {             
+            Default,
+            LoadOnDemand,
+            LoadOnDemandWithFullExpand
+        }
 
         public DBAppearance Appearance { get; set; }
         public BorderStyle BorderStyle { get; set; }
@@ -157,6 +163,7 @@ namespace FSFormControls
         public DBCellClickAction CellClickAction { get; set; }
         public BorderStyle BorderStyleCell { get; set; }
         public BorderStyle BorderStyleRow { get; set; }
+        public DBLoadStyle LoadStyle { get; set; }
         public DBRowSizing RowSizing { get; set; }
         public SelectType SelectTypeRow { get; set; }
         public DBTabNavigation TabNavigation { get; set; }

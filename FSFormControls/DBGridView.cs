@@ -610,6 +610,16 @@ namespace FSFormControls
             set { m_Summaries = value; }
         }
 
+        public enum UpdateModeEnum
+        {
+            OnCellChange,
+            OnRowChange,
+            OnRowLeave,
+            OnRowValidated,
+            OnRowEnter,
+            OnRowStateChanged
+        }
+
         //Infragistics
 
         public enum SummaryDisplayAreas
@@ -651,6 +661,7 @@ namespace FSFormControls
         public SummaryDisplayAreas SummaryDisplayArea { get; set; }
         public bool SummaryFooterCaptionVisible { get; set; }
         public int SummaryFooterSpacingAfter { get; set; }
+        public UpdateModeEnum UpdateMode { get; set; }
 
         //End Infragistics
 
