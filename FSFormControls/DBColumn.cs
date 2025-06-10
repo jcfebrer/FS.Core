@@ -114,6 +114,11 @@ namespace FSFormControls
         public bool Multiline { get; set; } = false;
 
         /// <summary>
+        /// Columna de sólo lectura (si/no)
+        /// </summary>
+        public bool ReadOnly { get; set; }
+
+        /// <summary>
         ///     Permitir valores nulos
         /// </summary>
         public bool AllowNull { get; set; }
@@ -167,6 +172,25 @@ namespace FSFormControls
         ///     Nombre del campo para asociar al DataTable
         /// </summary>
         public string FieldDB { get; set; } = "";
+
+        /// <summary>
+        ///     Nombre alternativo del campo para asociar al DataTable
+        /// </summary>
+        public string Key
+        {
+            get { return FieldDB; }
+            set { FieldDB = value; }
+        }
+
+        /// <summary>
+        ///     Nombre alternativo del campo para asociar al DataTable
+        /// </summary>
+        public string Name
+        {
+            get { return FieldDB; }
+            set { FieldDB = value; }
+        }
+
 
         public string ColumnDBFieldData { get; set; } = "";
 

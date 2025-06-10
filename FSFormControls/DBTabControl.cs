@@ -155,14 +155,14 @@ namespace FSFormControls
         /// <summary>
         ///     Por defecto, si existe más de una pestaña, devolvemos la primera en caso de que SelectedTab sea null.
         /// </summary>
-        public new TabPage SelectedTab
+        public new DBTabPage SelectedTab
         {
             get
             {
                 if (base.SelectedTab == null)
                     if (TabPages.Count > 0)
                         base.SelectedTab = TabPages[0];
-                return base.SelectedTab;
+                return (DBTabPage)base.SelectedTab;
             }
             set { base.SelectedTab = value; }
         }

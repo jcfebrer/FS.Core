@@ -75,6 +75,7 @@ namespace FSFormControls
         public delegate void ErrorEventHandler(object sender, EventArgs e);
         public delegate void CellValueChangedEventHandler(object sender, DataGridViewCellEventArgs e);
         public delegate void RowsAddedEventHandler(object sender, DataGridViewRowsAddedEventArgs e);
+        public delegate void CellBeginEditEventHandler(object sender, DataGridViewCellCancelEventArgs e);
         public delegate void CellEndEditEventHandler(object sender, DataGridViewCellEventArgs e);
 
         //public delegate void InitializeRowEventHandler(object sender, EventArgs e);
@@ -103,12 +104,15 @@ namespace FSFormControls
         public event DataGridViewCellMouseEventHandler ColumnHeaderMouseClick;
         public event RowsAddedEventHandler RowsAdded;
         public event CellEndEditEventHandler CellEndEdit;
+        public event CellBeginEditEventHandler CellBeginEdit;
         public event DataGridViewRowEventHandler InitializeRow;
         public event EventHandler SelectionChanged;
         public event EventHandler AfterRowActivate;
         public event DataGridViewRowStateChangedEventHandler RowStateChanged;
         public event EventHandler RowEnter;
         public event DataGridViewRowCancelEventHandler UserDeletingRow;
+        public event DataGridViewRowEventHandler UserAddedRow;
+        public event DataGridViewRowEventHandler UserDeletedRow;
 
         //INFRAGISTICS
         //public event InitializeRowEventHandler InitializeRow;
@@ -162,7 +166,9 @@ namespace FSFormControls
             datagrid.RowEnter += DataGridView1_RowEnter;
             datagrid.RowStateChanged += DataGridView1_RowStateChanged;
             datagrid.MouseClick += Datagrid_MouseClick;
-            
+            datagrid.UserAddedRow += DataGridView1_UserAddedRow;
+            datagrid.UserDeletedRow += DataGridView1_UserDeletedRow;
+
             if (Columns == null)
                 Columns = new DBColumnCollection();
 
@@ -177,6 +183,18 @@ namespace FSFormControls
             datagrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             DoubleBuffered = true;
             datagrid.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+        }
+
+        private void DataGridView1_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if(UserAddedRow != null)
+                UserAddedRow(sender, e);
+        }
+
+        private void DataGridView1_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            if(UserDeletedRow != null)
+                UserDeletedRow(sender, e);
         }
 
         private void Datagrid_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -574,6 +592,18 @@ namespace FSFormControls
             set { datagrid.AllowUserToAddRows = value; }
         }
 
+        public bool AllowUserToDeleteRows
+        {
+            get { return datagrid.AllowUserToDeleteRows; }
+            set { datagrid.AllowUserToDeleteRows = value; }
+        }
+
+        public bool AllowUserToOrderColumns
+        {
+            get { return datagrid.AllowUserToOrderColumns; }
+            set { datagrid.AllowUserToOrderColumns = value; }
+        }
+
         public int FirstDisplayedScrollingRowIndex 
         { 
             get { return datagrid.FirstDisplayedScrollingRowIndex; }
@@ -662,6 +692,20 @@ namespace FSFormControls
         public bool SummaryFooterCaptionVisible { get; set; }
         public int SummaryFooterSpacingAfter { get; set; }
         public UpdateModeEnum UpdateMode { get; set; }
+
+        public object CurrentCell {
+            get { return datagrid.CurrentCell; }
+            set { datagrid.CurrentCell = (DataGridViewCell)value; }
+        }
+
+        public int SummaryFooterSpacingBefore { get; set; }
+        public object AllowRowSummaries { get; set; }
+
+        public bool Hidden
+        {
+            get { return !datagrid.Visible; }
+            set { datagrid.Visible = !value; }
+        }
 
         //End Infragistics
 
@@ -2967,6 +3011,21 @@ namespace FSFormControls
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTotal)).EndInit();
             this.ResumeLayout(false);
 
+        }
+
+        public void EndEdit()
+        {
+            datagrid.EndEdit();
+        }
+
+        public void CancelEdit()
+        {
+            datagrid.CancelEdit();
+        }
+
+        public void BeginEdit(bool v)
+        {
+            datagrid.BeginEdit(v);
         }
 
         #endregion
