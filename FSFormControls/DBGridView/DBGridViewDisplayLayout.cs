@@ -7,6 +7,10 @@ namespace FSFormControls
     /// </summary>
     public class DBGridViewDisplayLayout
     {
+        public DBGridViewDisplayLayout()
+        {
+        }
+
         public enum DBCellClickAction
         {
             Default,
