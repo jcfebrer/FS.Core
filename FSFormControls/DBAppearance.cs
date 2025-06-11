@@ -8,6 +8,10 @@ namespace FSFormControls
     /// </summary>
     public class DBAppearance
     {
+        public DBAppearance()
+        {
+        }
+
         public enum Alpha
         {
             Default,

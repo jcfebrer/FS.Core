@@ -707,6 +707,12 @@ namespace FSFormControls
             set { datagrid.Visible = !value; }
         }
 
+        public bool AllowUpdate
+        {
+            get { return !datagrid.ReadOnly; }
+            set { datagrid.ReadOnly = !value; }
+        }
+
         //End Infragistics
 
         public void BeginInit()
