@@ -22,15 +22,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FSDatabase\FSDatabase.csproj" />
-    <ProjectReference Include="..\FSGoogleAuthenticator\FSGoogleAuthenticator.csproj" />
-    <ProjectReference Include="..\FSIA\FSIA.csproj" />
-    <ProjectReference Include="..\FSMail\FSMail.csproj" />
-    <ProjectReference Include="..\FSMultimedia\FSMultimedia.csproj" />
-    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />
-    <ProjectReference Include="..\FSParser\FSParser.csproj" />
-    <ProjectReference Include="..\FSSepaLibrary\FSSepaLibrary.csproj" />
-    <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSDatabase\FSDatabase.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSGoogleAuthenticator\FSGoogleAuthenticator.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSIA\FSIA.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSMail\FSMail.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSMultimedia\FSMultimedia.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSNetwork\FSNetwork.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSParser\FSParser.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSSepaLibrary\FSSepaLibrary.csproj" />
+    <ProjectReference Include="..\..\FS.Windows\FSSystemInfo\FSSystemInfo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

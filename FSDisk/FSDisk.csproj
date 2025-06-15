@@ -16,8 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FSCrypto\FSCrypto.csproj" />
-    <ProjectReference Include="..\FSException\FSException.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSException\FSException.csproj" />
     <ProjectReference Include="..\FSFuzzyStrings\FSFuzzyStrings.csproj" />
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSLibrary\FSLibrary.csproj" />
   </ItemGroup>
 </Project>

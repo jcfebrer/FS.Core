@@ -19,16 +19,16 @@
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <Reference Include="Google.Apis">
-      <HintPath>..\dll\Google.Apis.dll</HintPath>
+      <HintPath>..\..\dll\Google.Apis.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Auth">
-      <HintPath>..\dll\Google.Apis.Auth.dll</HintPath>
+      <HintPath>..\..\dll\Google.Apis.Auth.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Core">
-      <HintPath>..\dll\Google.Apis.Core.dll</HintPath>
+      <HintPath>..\..\dll\Google.Apis.Core.dll</HintPath>
     </Reference>
     <Reference Include="Google.Apis.Drive.v3">
-      <HintPath>..\dll\Google.Apis.Drive.v3.dll</HintPath>
+      <HintPath>..\..\dll\Google.Apis.Drive.v3.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Net.Http.dll</HintPath>
@@ -57,8 +57,8 @@
     <PackageReference Include="System.Memory" Version="4.6.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSException\FSException.csproj" />
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
-    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSException\FSException.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSNetwork\FSNetwork.csproj" />
   </ItemGroup>
 </Project>

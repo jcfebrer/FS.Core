@@ -24,10 +24,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSCrypto\FSCrypto.csproj" />
-    <ProjectReference Include="..\FSDisk\FSDisk.csproj" />
-    <ProjectReference Include="..\FSException\FSException.csproj" />
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
-    <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSCrypto\FSCrypto.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSDisk\FSDisk.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSException\FSException.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSTrace\FSTrace.csproj" />
   </ItemGroup>
 </Project>

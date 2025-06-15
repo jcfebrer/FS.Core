@@ -22,15 +22,15 @@
     <Reference Condition="'$(TargetFramework)' != 'net30' and '$(TargetFramework)' != 'net20'" Include="System.Data.DataSetExtensions" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSDisk\FSDisk.csproj" />
-    <ProjectReference Include="..\FSException\FSException.csproj" />
-    <ProjectReference Include="..\FSLibrary\FSLibrary.csproj" />
-    <ProjectReference Include="..\FSNetwork\FSNetwork.csproj" />
-    <ProjectReference Include="..\FSParser\FSParser.csproj" />
-    <ProjectReference Include="..\FSQueryBuilder\FSQueryBuilder.csproj" />
-    <ProjectReference Include="..\FSSecurity\FSSecurity.csproj" />
-    <ProjectReference Include="..\FSSystemInfo\FSSystemInfo.csproj" />
-    <ProjectReference Include="..\FSTrace\FSTrace.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSDisk\FSDisk.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSException\FSException.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSNetwork\FSNetwork.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSParser\FSParser.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSQueryBuilder\FSQueryBuilder.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSSecurity\FSSecurity.csproj" />
+    <ProjectReference Include="..\..\FS.Windows\FSSystemInfo\FSSystemInfo.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSTrace\FSTrace.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Condition="'$(TargetFramework)' != 'net35' and '$(TargetFramework)' != 'net30' and '$(TargetFramework)' != 'net20'" Include="System.Web.Extensions">

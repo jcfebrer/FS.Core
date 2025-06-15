@@ -17,7 +17,7 @@
     <PackageReference Include="System.Security.Cryptography.Xml" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\FSException\FSException.csproj" />
+    <ProjectReference Include="..\..\FS.Core\FSException\FSException.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <Reference Condition="'$(TargetFramework)' != 'net20' and '$(TargetFramework)' != 'net30' and '$(TargetFramework)' != 'net35'" Include="System.Security">
