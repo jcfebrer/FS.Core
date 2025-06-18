@@ -29,7 +29,6 @@
     <ProjectReference Include="..\..\FS.Core\FSParser\FSParser.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSQueryBuilder\FSQueryBuilder.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSSecurity\FSSecurity.csproj" />
-    <ProjectReference Include="..\..\FS.Windows\FSSystemInfo\FSSystemInfo.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSTrace\FSTrace.csproj" />
   </ItemGroup>
   <ItemGroup>

@@ -1,6 +1,6 @@
 ﻿using FSException;
 using FSLibrary;
-using FSSystemInfo;
+//using FSSystemInfo;
 
 #if NETCOREAPP
     using Microsoft.AspNetCore.Http;
@@ -800,21 +800,21 @@ namespace FSDatabase
             return m_simbDate + dat + m_simbDate;
         }
 
-        public static Version GetMdacVersion()
-        {
-            try
-            {
-                var reg = new RegistryUtil(RegistryUtil.RegSource.LocalMachine);
-                var ver = reg.GetValue(@"SOFTWARE\Microsoft\DataAccess", "FullInstallVer", "0.0.0.0");
-                var verTokens = ver.Split('.');
-                return new Version(int.Parse(verTokens[0]), int.Parse(verTokens[1]), int.Parse(verTokens[2]),
-                    int.Parse(verTokens[3]));
-            }
-            catch (Exception e)
-            {
-                throw new ExceptionUtil(e);
-            }
-        }
+        //public static Version GetMdacVersion()
+        //{
+        //    try
+        //    {
+        //        var reg = new RegistryUtil(RegistryUtil.RegSource.LocalMachine);
+        //        var ver = reg.GetValue(@"SOFTWARE\Microsoft\DataAccess", "FullInstallVer", "0.0.0.0");
+        //        var verTokens = ver.Split('.');
+        //        return new Version(int.Parse(verTokens[0]), int.Parse(verTokens[1]), int.Parse(verTokens[2]),
+        //            int.Parse(verTokens[3]));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        throw new ExceptionUtil(e);
+        //    }
+        //}
 
         /// <summary>
         /// Convierte el tipo a cadena de base de datos.

@@ -30,7 +30,6 @@
     <ProjectReference Include="..\..\FS.Core\FSNetwork\FSNetwork.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSParser\FSParser.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSSepaLibrary\FSSepaLibrary.csproj" />
-    <ProjectReference Include="..\..\FS.Windows\FSSystemInfo\FSSystemInfo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

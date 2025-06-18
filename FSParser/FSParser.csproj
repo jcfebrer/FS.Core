@@ -21,7 +21,6 @@
     <PackageReference Include="System.ValueTuple" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\FS.Windows\FSConvert\FSConvert.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSException\FSException.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSLibrary\FSLibrary.csproj" />
   </ItemGroup>
