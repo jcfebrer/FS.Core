@@ -116,17 +116,19 @@ namespace FSDatabase
 
         public BdUtils(string connectionString, string providerName)
         {
-            if (String.IsNullOrEmpty(connectionString) || String.IsNullOrEmpty(providerName))
-                throw new ExceptionUtil("Nombre de conexión incorrecta o nombre de proveedor incorrecto.");
-            else
-            {
-                ConnString = connectionString;
+            if (!String.IsNullOrEmpty(providerName))
                 ProviderName = providerName;
+            else
+                throw new ExceptionUtil("No se ha definido ProviderName");
 
-                SetVariables();
-                SetBDType();
-                SetDBMSType();
-            }
+            if (!String.IsNullOrEmpty(connectionString))
+                ConnString = connectionString;
+            else
+                throw new ExceptionUtil("No se ha definido ConnectionString");
+
+            SetVariables();
+            SetBDType();
+            SetDBMSType();
         }
 
         public BdUtils(string connectionString)
@@ -160,18 +162,35 @@ namespace FSDatabase
         //}
 
 
+        public BdUtils(string connectionString, string providerName, Utils.ServerTypeEnum typeBd)
+        {
+            if (!String.IsNullOrEmpty(connectionString))
+                ConnString = connectionString;
+            else
+                throw new ExceptionUtil("No se ha definido ConnectionString");
+
+            if (!String.IsNullOrEmpty(providerName))
+                ProviderName = providerName;
+            else
+                throw new ExceptionUtil("No se ha definido ProviderName");
+
+            Utils.ServerType = typeBd;
+
+            SetVariables();
+            SetDBMSType();
+        }
+
         public BdUtils(string connectionString, Utils.ServerTypeEnum typeBd)
         {
             if (!String.IsNullOrEmpty(connectionString))
-            {
                 ConnString = connectionString;
-                Utils.ServerType = typeBd;
-
-                SetVariables();
-                SetDBMSType();
-            }
             else
                 throw new ExceptionUtil("No se ha definido ConnectionString");
+
+            Utils.ServerType = typeBd;
+
+            SetVariables();
+            SetDBMSType();
         }
 
         //public BdUtils(string connStringEntryName)
