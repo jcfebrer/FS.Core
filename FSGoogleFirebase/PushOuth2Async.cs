@@ -23,7 +23,7 @@ namespace FSGoogleFirebase
     /// Las credenciales se obtienen de:
     /// https://console.cloud.google.com/apis/credentials
     /// </summary>
-    public class PushOuth2
+    public class PushOuth2Async
     {
         public string ProjectId { get; set; }
         public string ClientId { get; set; }
@@ -31,7 +31,7 @@ namespace FSGoogleFirebase
         public string JsonKeyFilePath { get; set; }
         public string JsonSecretsKeyFilePath { get; set; }
 
-        public PushOuth2(string projectId)
+        public PushOuth2Async(string projectId)
         {
             this.ProjectId = projectId;
         }
@@ -51,12 +51,12 @@ namespace FSGoogleFirebase
             this.ClientSecret = clientSecret;
         }
 
-        public string SendMessage(string deviceToken, string message)
+        public async Task<string> SendMessage(string deviceToken, string message)
         {
-            return SendMessage(deviceToken, "", message);
+            return await SendMessage(deviceToken, "", message);
         }
 
-        public string SendMessage(string deviceToken, string title, string body)
+        public async Task<string> SendMessage(string deviceToken, string title, string body)
         {
             var fcmUrl = "https://fcm.googleapis.com/v1/projects/" + ProjectId + "/messages:send";
 
@@ -82,22 +82,22 @@ namespace FSGoogleFirebase
                     clientSecrets = googleClientSecrets.Secrets;
                 }
 
-                UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                UserCredential credential = await GoogleWebAuthorizationBroker.AuthorizeAsync(
                     clientSecrets,
                     scopes,
                     "user",
-                    CancellationToken.None).Result;
+                    CancellationToken.None);
 
-                token = credential.GetAccessTokenForRequestAsync().Result;
+                token = await credential.GetAccessTokenForRequestAsync();
             }
             else
             {
                 using (var stream = new FileStream(JsonKeyFilePath, FileMode.Open, FileAccess.Read))
                 {
-                    token = GoogleCredential.FromStream(stream)
+                    token = await GoogleCredential.FromStream(stream)
                         .CreateScoped(scopes)
                         .UnderlyingCredential
-                        .GetAccessTokenForRequestAsync().Result;
+                        .GetAccessTokenForRequestAsync();
                 }
             }
 
@@ -125,11 +125,11 @@ namespace FSGoogleFirebase
                 var jsonMessage = JsonSerializer.Serialize(message);
                 var httpContent = new StringContent(jsonMessage, Encoding.UTF8, "application/json");
 
-                var response = httpClient.PostAsync(fcmUrl, httpContent).Result;
+                var response = await httpClient.PostAsync(fcmUrl, httpContent);
 
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    var responseString = response.Content.ReadAsStringAsync().Result;
+                    var responseString = await response.Content.ReadAsStringAsync();
                     return "Error: " + responseString;
                 }
                 else
