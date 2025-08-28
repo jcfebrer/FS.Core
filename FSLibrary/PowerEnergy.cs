@@ -41,6 +41,7 @@ namespace FSLibrary
         public static void Shutdown()
         {
             _event.Set();
+            // Win32API.SetThreadExecutionState(Win32APIEnums.EXECUTION_STATE.ES_CONTINUOUS);
         }
     }
 }
