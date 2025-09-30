@@ -1,5 +1,6 @@
 ﻿#region
 
+using FSTrace;
 using Microsoft.Win32;
 using System;
 using System.Collections;
@@ -242,15 +243,23 @@ namespace FSLibrary
         /// <returns></returns>
         public static bool ValorBool(object value)
         {
-            if (value == null) return false;
-            if (value is string)
-                if (Value(value) == "")
-                    return false;
-            if (value is DBNull) return false;
-            if (Value(value) == "0") return false;
-            if (Value(value) == "1") return true;
-            if (Convert.ToBoolean(value)) return true;
-            return bool.Parse(value.ToString());
+            try
+            {
+                if (value == null) return false;
+                if (value is string)
+                    if (Value(value) == "")
+                        return false;
+
+                if (value is DBNull) return false;
+                if (Value(value) == "0") return false;
+                if (Value(value) == "1") return true;
+                if (Convert.ToBoolean(value)) return true;
+                return bool.Parse(value.ToString());
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 
