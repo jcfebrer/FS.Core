@@ -17,6 +17,11 @@ namespace FSDisk
     public class FileUtils
     {
         public static event EventHandler FileAdded;
+        public static event EventHandler OnFileCopied;
+        public static event EventHandler OnFileProcessed;
+
+        public static event EventHandler OnDirectoryCopied;
+        public static event EventHandler OnDirectoryProcessed;
 
         public static void Rename(string file, string newName)
         {
@@ -176,10 +181,10 @@ namespace FSDisk
         /// <param name="extType"></param>
         /// <param name="recursive"></param>
         /// <returns></returns>
-        public static int TotalFiles(string folder, string extType, Boolean recursive)
+        public static long TotalFiles(string folder, string extType, Boolean recursive)
         {
             DirectoryInfo directory = new DirectoryInfo(folder);
-            int total = 0;
+            long total = 0;
             string[] ext = extType.Split(';');
 
             foreach (string s in ext)
@@ -203,6 +208,64 @@ namespace FSDisk
 
             return total;
         }
+
+        /// <summary>
+        /// Cuenta el número total de archivos en la carpeta dada y todas sus subcarpetas.
+        /// </summary>
+        /// <param name="folder"></param>
+        /// <returns></returns>
+        public static long TotalFiles(string folder)
+        {
+            return TotalFiles(folder, "*.*", true);
+        }
+
+#if NET40_OR_GREATER || NETCOREAPP
+        /// <summary>
+        /// Cuenta el número total de archivos en la carpeta dada y todas sus subcarpetas.
+        /// </summary>
+        /// <param name="rutaDirectorio">La ruta de la carpeta base.</param>
+        /// <returns>El número total de archivos.</returns>
+        public static long TotalFiles2(string folder)
+        {
+            long contador = 0;
+
+            // 1. Crear una pila para almacenar los directorios a procesar (incluye el inicial)
+            var directoriosPendientes = new Stack<string>();
+            directoriosPendientes.Push(folder);
+
+            try
+            {
+                while (directoriosPendientes.Count > 0)
+                {
+                    string directorioActual = directoriosPendientes.Pop();
+
+                    try
+                    {
+                        contador += Directory.EnumerateFiles(directorioActual).LongCount();
+
+                        foreach (string subDirectorio in Directory.EnumerateDirectories(directorioActual))
+                        {
+                            directoriosPendientes.Push(subDirectorio);
+                        }
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        continue;
+                    }
+                    catch (PathTooLongException)
+                    {
+                        continue;
+                    }
+                }
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return 0;
+            }
+
+            return contador;
+        }
+#endif
 
 
         public static string DriveLabel(string dir)
@@ -416,27 +479,68 @@ namespace FSDisk
             {
                 target.Create();
             }
-            else
-            {
-                if (!overwrite)
-                {
-                    int number = 0;
+            //else
+            //{
+            //    if (!overwrite)
+            //    {
+            //        int number = 0;
 
-                    while (target.Exists)
-                    {
-                        number++;
-                        string newTarget = TargetDirectory + " (" + number + ")";
-                        target = new DirectoryInfo(newTarget);
-                    }
-                }
+            //        while (target.Exists)
+            //        {
+            //            number++;
+            //            string newTarget = TargetDirectory + " (" + number + ")";
+            //            target = new DirectoryInfo(newTarget);
+            //        }
+            //    }
 
-            }
+            //}
 
             //Copy files.
             FileInfo[] sourceFiles = source.GetFiles();
             for (int i = 0; i < sourceFiles.Length; ++i)
             {
-                System.IO.File.Copy(sourceFiles[i].FullName, target.FullName + "\\" + sourceFiles[i].Name, overwrite);
+                bool copyFile = true;
+                bool overwriteFile = overwrite;
+                if (System.IO.File.Exists(target.FullName + "\\" + sourceFiles[i].Name))
+                {
+                    if (!overwriteFile)
+                        copyFile = false;
+
+                    if (source.LastWriteTime > target.LastWriteTime)
+                    {
+                        copyFile = true;
+                        overwriteFile = true;
+                    }
+                }
+
+                if (copyFile)
+                {
+                    if (copyHidden)
+                        copyFile = true;
+                    else
+                    {
+#if NET35 || NET30 || NET20
+                        bool hiddenFlag = (sourceFiles[i].Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
+#else
+                        bool hiddenFlag = sourceFiles[i].Attributes.HasFlag(FileAttributes.Hidden);
+#endif
+                        if (sourceFiles[i].Name.StartsWith(".") || hiddenFlag)
+                        {
+                            copyFile = false;
+                        }
+                    }
+
+                    if (copyFile)
+                    {
+                        System.IO.File.Copy(sourceFiles[i].FullName, target.FullName + "\\" + sourceFiles[i].Name, overwriteFile);
+
+                        if (OnFileCopied != null)
+                            OnFileCopied(sourceFiles[i], EventArgs.Empty);
+                    }
+                }
+
+                if (OnFileProcessed != null)
+                    OnFileProcessed(sourceFiles[i], EventArgs.Empty);
             }
 
             if (recursive)
@@ -445,23 +549,35 @@ namespace FSDisk
                 DirectoryInfo[] sourceDirectories = source.GetDirectories();
                 for (int j = 0; j < sourceDirectories.Length; ++j)
                 {
+                    bool copyDirectory = true;
                     if (copyHidden)
                     {
-                        CopyDirectory(sourceDirectories[j].FullName, target.FullName + "\\" + sourceDirectories[j].Name, recursive, overwrite, copyHidden);
+                        copyDirectory = true;
                     }
                     else
                     {
-#if NET35 || NET30 ||NET20
+#if NET35 || NET30 || NET20
                         bool hiddenFlag = (sourceDirectories[j].Attributes & FileAttributes.Hidden) == FileAttributes.Hidden;
 #else
                         bool hiddenFlag = sourceDirectories[j].Attributes.HasFlag(FileAttributes.Hidden);
 #endif
 
-                        if (!(sourceDirectories[j].FullName.StartsWith(".") || hiddenFlag))
+                        if (sourceDirectories[j].Name.StartsWith(".") || hiddenFlag)
                         {
-                            CopyDirectory(sourceDirectories[j].FullName, target.FullName + "\\" + sourceDirectories[j].Name, recursive, overwrite, copyHidden);
+                            copyDirectory = false;
                         }
                     }
+
+                    if (copyDirectory)
+                    {
+                        CopyDirectory(sourceDirectories[j].FullName, target.FullName + "\\" + sourceDirectories[j].Name, recursive, overwrite, copyHidden);
+
+                        if (OnDirectoryCopied != null)
+                            OnDirectoryCopied(sourceDirectories[j], EventArgs.Empty);
+                    }
+
+                    if (OnDirectoryProcessed != null)
+                        OnDirectoryProcessed(sourceDirectories[j], EventArgs.Empty);
                 }
             }
         }
