@@ -1,9 +1,8 @@
 ﻿#if NETCOREAPP
 
-using OpenAI;
-using OpenAI.Interfaces;
-using OpenAI.Managers;
-using OpenAI.ObjectModels.RequestModels;
+using Betalgo.Ranul.OpenAI;
+using Betalgo.Ranul.OpenAI.Managers;
+using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,7 +22,7 @@ namespace FSIA
 
         async public void CreateModeration(string prompt)
         {
-            var openAiService = new OpenAIService(new OpenAiOptions()
+            var openAiService = new OpenAIService(new OpenAIOptions()
             {
                 ApiKey = key,
             });

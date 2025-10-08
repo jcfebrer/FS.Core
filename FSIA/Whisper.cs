@@ -7,10 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using FSException;
-using OpenAI.ObjectModels.RequestModels;
-using OpenAI.ObjectModels;
-using OpenAI.Managers;
-using OpenAI;
+using Betalgo.Ranul.OpenAI.Managers;
+using Betalgo.Ranul.OpenAI;
+using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
+using Betalgo.Ranul.OpenAI.ObjectModels;
 
 namespace FSIA
 {
@@ -24,7 +24,7 @@ namespace FSIA
 
         async public void CreateTranscription(string fileName)
         {
-            var openAiService = new OpenAIService(new OpenAiOptions()
+            var openAiService = new OpenAIService(new OpenAIOptions()
             {
                 ApiKey = key,
             });

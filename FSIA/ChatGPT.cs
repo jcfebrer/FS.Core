@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using OpenAI.ObjectModels.RequestModels;
-using OpenAI.ObjectModels;
-using OpenAI.Managers;
-using OpenAI;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using FSException;
+using Betalgo.Ranul.OpenAI.Managers;
+using Betalgo.Ranul.OpenAI;
+using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
+using Betalgo.Ranul.OpenAI.ObjectModels;
 
 namespace FSIA
 {
@@ -32,7 +32,7 @@ namespace FSIA
 
         async public Task<string> Question(string question, ChatQuestionType chatQuestionType)
         {
-            var openAiService = new OpenAIService(new OpenAiOptions()
+            var openAiService = new OpenAIService(new OpenAIOptions()
             {
                 ApiKey = Key,
                 Organization = Organization,

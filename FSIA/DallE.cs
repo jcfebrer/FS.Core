@@ -1,11 +1,10 @@
-﻿using OpenAI.ObjectModels.RequestModels;
-using OpenAI.ObjectModels;
-using OpenAI.Interfaces;
-using OpenAI.Managers;
-using OpenAI;
-using OpenAI.ObjectModels.ResponseModels.ImageResponseModel;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System;
+using Betalgo.Ranul.OpenAI.ObjectModels.ResponseModels.ImageResponseModel;
+using Betalgo.Ranul.OpenAI.Managers;
+using Betalgo.Ranul.OpenAI.ObjectModels.RequestModels;
+using Betalgo.Ranul.OpenAI;
+using Betalgo.Ranul.OpenAI.ObjectModels;
 
 namespace FSIA
 {
@@ -20,7 +19,7 @@ namespace FSIA
 
         async public Task<ImageCreateResponse> GenerateImage(string prompt)
         {
-            var openAiService = new OpenAIService(new OpenAiOptions()
+            var openAiService = new OpenAIService(new OpenAIOptions()
             {
                 ApiKey = key,
             });

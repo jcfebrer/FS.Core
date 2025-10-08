@@ -24,12 +24,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Google.Apis" Version="1.69.0" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.69.0" />
-    <PackageReference Include="Google.Apis.Core" Version="1.69.0" />
+    <PackageReference Include="Google.Apis" Version="1.72.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.72.0" />
+    <PackageReference Include="Google.Apis.Core" Version="1.72.0" />
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.69.0.3674" />
     <PackageReference Include="log4net" Version="3.0.3" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FS.Core\FSException\FSException.csproj" />
