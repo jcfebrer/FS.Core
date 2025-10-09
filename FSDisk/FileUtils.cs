@@ -917,5 +917,34 @@ namespace FSDisk
             return allFiles.ToArray();
         }
 #endif
+
+#if NETCOREAPP
+        public static string TrimEndingDirectorySeparator(string path)
+        {
+            return Path.TrimEndingDirectorySeparator(path);
+        }   
+#else
+        public static string TrimEndingDirectorySeparator(string path)
+        {
+            // 1. Verificar si la ruta es nula o vacía.
+            if (string.IsNullOrEmpty(path))
+                return path;
+
+            // 2. Verificar si el último carácter es un separador
+            char lastChar = path[path.Length - 1];
+            if (lastChar != Path.DirectorySeparatorChar && lastChar != Path.AltDirectorySeparatorChar)
+                return path; // No hay separador para recortar
+
+            // 3. Verificar si la ruta es la raíz del sistema de archivos (C:\, \\server\share, etc.)
+            // Si la ruta sin el último carácter es una raíz, no se recorta.
+            if (Path.IsPathRooted(path) && path.Length == Path.GetPathRoot(path).Length)
+            {
+                return path;
+            }
+
+            // 4. Recortar el último carácter
+            return path.Substring(0, path.Length - 1);
+        }
+#endif
     }
 }
