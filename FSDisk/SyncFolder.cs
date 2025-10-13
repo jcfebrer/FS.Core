@@ -10,6 +10,59 @@ namespace FSDisk
 {
     public class SyncFolder
     {
+        public static event EventHandler OnFileProcessed;
+
+        private string m_folder1;
+        private string m_folder2;
+        private ModeEnum m_mode;
+        private bool m_deleteFiles;
+        private bool m_compareSizes;
+        private bool m_force;
+        private bool m_readOnly;
+        private TimeFilterMode m_lastModify;
+        private bool m_deleteEmptyFolders;
+        private string m_filesToProcess;
+        private string m_foldersToExclude;
+
+        public string Folder1 { get { return m_folder1; } set { m_folder1 = value; } }
+        public string Folder2 { get { return m_folder2; } set { m_folder2 = value; } }
+        public ModeEnum Mode { get { return m_mode; } set { m_mode = value; } }
+        public bool DeleteFiles { get { return m_deleteFiles; } set { m_deleteFiles = value; } }
+        public bool CompareSizes { get { return m_compareSizes; } set { m_compareSizes = value; } }
+        public bool Force { get { return m_force; } set { m_force = value; } }
+        public bool ReadOnly { get { return m_readOnly; } set { m_readOnly = value; } }
+        public TimeFilterMode LastModify { get { return m_lastModify; } set { m_lastModify = value; } }
+        public bool DeleteEmptyFolders { get { return m_deleteEmptyFolders; } set { m_deleteEmptyFolders = value; } }
+        public string FilesToProcess { get { return m_filesToProcess; } set { m_filesToProcess = value; } }
+        public string FoldersToExclude { get { return m_foldersToExclude; } set { m_foldersToExclude = value; } }
+        
+        public SyncFolder(string folder1, string folder2, ModeEnum mode, bool deleteFiles, bool compareSizes, bool force, bool readOnly, TimeFilterMode lastModify, bool deleteEmptyFolders, string filesToProcess = "*", string foldersToExclude = "")
+        {
+            m_folder1 = folder1;
+            m_folder2 = folder2;
+            m_mode = mode;
+            m_deleteFiles = deleteFiles;
+            m_compareSizes = compareSizes;
+            m_force = force;
+            m_readOnly = readOnly;
+            m_lastModify = lastModify;
+            m_deleteEmptyFolders = deleteEmptyFolders;
+            m_filesToProcess = filesToProcess;
+            m_foldersToExclude = foldersToExclude;
+
+            Log.TraceInfo("SyncFolder inicializado.");
+        }
+
+        public long TotalFiles 
+        {
+            get
+            {
+                return (m_mode == ModeEnum.RIGHT_TO_LEFT) ?
+                    FileUtils.TotalFiles(m_folder2) :
+                    FileUtils.TotalFiles(m_folder1);
+            }
+        }
+
         public enum ModeEnum
         {
             LEFT_TO_RIGHT,
@@ -72,29 +125,29 @@ namespace FSDisk
         /// <param name="deleteEmptyFolders">Borra las carpetas vacias de la carpeta 2.</param>
         /// <param name="foldersToExclude">Carpetas a excluir de la sincronización. Separadas por '|'.</param>
         /// <returns></returns>
-        public string DoSync(string folder1, string folder2, ModeEnum mode, bool deleteFiles, bool compareSizes, bool force, bool readOnly, TimeFilterMode lastModify, bool deleteEmptyFolders, string filesToProcess = "*", string foldersToExclude = "")
+        public string DoSync()
         {
             // Normalizar las rutas para asegurar que terminan con el separador de directorio
-            folder1 = FSDisk.FileUtils.TrimEndingDirectorySeparator(folder1) + Path.DirectorySeparatorChar;
-            folder2 = FSDisk.FileUtils.TrimEndingDirectorySeparator(folder2) + Path.DirectorySeparatorChar;
+            m_folder1 = FSDisk.FileUtils.TrimEndingDirectorySeparator(m_folder1) + Path.DirectorySeparatorChar;
+            m_folder2 = FSDisk.FileUtils.TrimEndingDirectorySeparator(m_folder2) + Path.DirectorySeparatorChar;
 
             // Si el modo es de derecha a izquierda, intercambiamos los paths y dejamos el mode en LEFT_TO_RIGHT.
-            if (mode == ModeEnum.RIGHT_TO_LEFT)
+            if (m_mode == ModeEnum.RIGHT_TO_LEFT)
             {
-                string folderTmp = folder1;
-                folder1 = folder2;
-                folder2 = folderTmp;
-                mode = ModeEnum.LEFT_TO_RIGHT;
+                string folderTmp = m_folder1;
+                m_folder1 = m_folder2;
+                m_folder2 = folderTmp;
+                m_mode = ModeEnum.LEFT_TO_RIGHT;
                 Log.TraceInfo("Carpetas intercambiadas. Procesando como 'Left to Right'.");
             }
 
             try
             {
-                if (!Directory.Exists(folder1))
+                if (!Directory.Exists(m_folder1))
                     // Uso de excepción estándar de .NET para errores de E/S
-                    throw new DirectoryNotFoundException("Carpeta principal (Origen): " + folder1 + " no existe!");
-                if (!Directory.Exists(folder2))
-                    Directory.CreateDirectory(folder2);
+                    throw new DirectoryNotFoundException("Carpeta principal (Origen): " + m_folder1 + " no existe!");
+                if (!Directory.Exists(m_folder2))
+                    Directory.CreateDirectory(m_folder2);
             }
             catch (Exception ex)
             {
@@ -106,24 +159,24 @@ namespace FSDisk
             /////////////
             // DO WORK //
             /////////////
-            Log.TraceInfo("INICIANDO " + (((mode == ModeEnum.LEFT_TO_RIGHT) ? "SINCRONIZACIÓN UNIDIRECCIONAL" : "SINCRONIZACIÓN BIDIRECCIONAL")));
+            Log.TraceInfo("INICIANDO " + (((m_mode == ModeEnum.LEFT_TO_RIGHT) ? "SINCRONIZACIÓN UNIDIRECCIONAL" : "SINCRONIZACIÓN BIDIRECCIONAL")));
             Log.TraceInfo("ENTRE");
-            Log.TraceInfo("CARPETA 1: (REF) " + folder1);
-            Log.TraceInfo("CARPETA 2:       " + folder2);
+            Log.TraceInfo("CARPETA 1: (REF) " + m_folder1);
+            Log.TraceInfo("CARPETA 2:       " + m_folder2);
 
             Log.TraceInfo("CON OPCIONES");
 
             // Registro de opciones mejorado (if separados)
-            if (deleteFiles)
+            if (m_deleteFiles)
                 Log.TraceInfo("  BORRAR ARCHIVOS EN CARPETA 2 QUE NO EXISTEN EN CARPETA 1 (DELETE FILES)");
-            if (compareSizes)
+            if (m_compareSizes)
                 Log.TraceInfo("  SOBREESCRIBIR ARCHIVOS EN CARPETA 2 CON TAMAÑO DIFERENTE (COMPARE SIZES)");
-            if (force)
+            if (m_force)
                 Log.TraceInfo("  MODO FORZADO (OMITIR CONFIRMACIÓN)");
-            if (readOnly)
+            if (m_readOnly)
                 Log.TraceInfo("  SOLO LECTURA (PARA PRUEBAS)");
-            if (lastModify != TimeFilterMode.ALL)
-                Log.TraceInfo($"  FILTRAR POR ÚLTIMA MODIFICACIÓN: {lastModify}");
+            if (m_lastModify != TimeFilterMode.ALL)
+                Log.TraceInfo($"  FILTRAR POR ÚLTIMA MODIFICACIÓN: {m_lastModify}");
 
             // collect folder content
             Log.TraceInfo("RECOLECTANDO CONTENIDO...");
@@ -135,24 +188,24 @@ namespace FSDisk
             try
             {
                 // Calcular fecha de inicio para el filtro
-                DateTime from_date = GetFromDate(lastModify);
+                DateTime from_date = GetFromDate(m_lastModify);
 
-                Log.TraceInfo("... " + folder1);
-                _content1_folders = Directory.EnumerateDirectories(folder1, "*", SearchOption.AllDirectories)
-                    .Select(x => x.Replace(folder1, ""))
-                    .Where(x => !IsExcludeFolder(foldersToExclude, x))
+                Log.TraceInfo("... " + m_folder1);
+                _content1_folders = Directory.EnumerateDirectories(m_folder1, "*", SearchOption.AllDirectories)
+                    .Select(x => x.Replace(m_folder1, ""))
+                    .Where(x => !IsExcludeFolder(m_foldersToExclude, x))
                     .ToList();
 
-                _content1_files = GetFilteredFiles(folder1, filesToProcess, foldersToExclude, from_date);
+                _content1_files = GetFilteredFiles(m_folder1, m_filesToProcess, m_foldersToExclude, from_date);
 
 
-                Log.TraceInfo("... " + folder2);
-                _content2_folders = Directory.EnumerateDirectories(folder2, "*", SearchOption.AllDirectories)
-                    .Select(x => x.Replace(folder2, ""))
-                    .Where(x => !IsExcludeFolder(foldersToExclude, x))
+                Log.TraceInfo("... " + m_folder2);
+                _content2_folders = Directory.EnumerateDirectories(m_folder2, "*", SearchOption.AllDirectories)
+                    .Select(x => x.Replace(m_folder2, ""))
+                    .Where(x => !IsExcludeFolder(m_foldersToExclude, x))
                     .ToList();
 
-                _content2_files = GetFilteredFiles(folder2, filesToProcess, foldersToExclude, from_date);
+                _content2_files = GetFilteredFiles(m_folder2, m_filesToProcess, m_foldersToExclude, from_date);
 
             }
             catch (Exception ex)
@@ -172,7 +225,7 @@ namespace FSDisk
             // collect missing folders and files
             Log.TraceInfo("... CARPETAS PARA COPIAR");
             List<string> _missing1_folders = new List<string>(), _missing2_folders = new List<string>();
-            if (mode == ModeEnum.TWO_WAY)
+            if (m_mode == ModeEnum.TWO_WAY)
             {
                 _missing1_folders = _content2_folders.Except(_content1_folders).ToList();
             }
@@ -186,7 +239,7 @@ namespace FSDisk
 
             Log.TraceInfo("... ARCHIVOS PARA COPIAR");
             List<string> _missing1_files = new List<string>(), _missing2_files = new List<string>();
-            if (mode == ModeEnum.TWO_WAY)
+            if (m_mode == ModeEnum.TWO_WAY)
             {
                 _missing1_files = _content2_files_paths.Except(_content1_files_paths).ToList();
             }
@@ -200,7 +253,7 @@ namespace FSDisk
 
             // collect list to delete
             List<string> _delete_folders = new List<string>(), _delete_files = new List<string>();
-            if (deleteFiles && mode == ModeEnum.LEFT_TO_RIGHT) // delete one way only
+            if (m_deleteFiles && m_mode == ModeEnum.LEFT_TO_RIGHT) // delete one way only
             {
                 Log.TraceInfo("... CARPETAS PARA BORRAR");
                 _delete_folders = _content2_folders.Except(_content1_folders).ToList();
@@ -218,7 +271,7 @@ namespace FSDisk
 
             // collect list for overwrite
             List<string> _overwrite = new List<string>();
-            if (compareSizes && mode == ModeEnum.LEFT_TO_RIGHT) // overwrite one way only
+            if (m_compareSizes && m_mode == ModeEnum.LEFT_TO_RIGHT) // overwrite one way only
             {
                 Log.TraceInfo("... ARCHIVOS PARA SOBREESCRIBIR");
 
@@ -257,18 +310,18 @@ namespace FSDisk
                     long _size;
 
                     // check disk space 1 (for files from 2 to 1)
-                    if (mode == ModeEnum.TWO_WAY && _missing1_files.Count > 0)
+                    if (m_mode == ModeEnum.TWO_WAY && _missing1_files.Count > 0)
                     {
-                        _di = new DriveInfo(Path.GetPathRoot(folder1));
+                        _di = new DriveInfo(Path.GetPathRoot(m_folder1));
                         _size = _missing1_files.Sum(x => _content2_files.FirstOrDefault(f => f.RelativePath == x).Size);
                         if (_di.AvailableFreeSpace <= _size)
-                            throw new ExceptionUtil($"ERROR: NO HAY ESPACIO SUFICIENTE EN DISCO {Path.GetPathRoot(folder1)} para archivos de CARPETA 2.");
+                            throw new ExceptionUtil($"ERROR: NO HAY ESPACIO SUFICIENTE EN DISCO {Path.GetPathRoot(m_folder1)} para archivos de CARPETA 2.");
                     }
 
                     // check disk space 2 (for files from 1 to 2, and overwrites)
                     if (_missing2_files.Count > 0 || _overwrite.Count > 0)
                     {
-                        _di = new DriveInfo(Path.GetPathRoot(folder2));
+                        _di = new DriveInfo(Path.GetPathRoot(m_folder2));
 
                         // Tamaño de archivos que faltan en folder2 (serán copiados)
                         _size = _missing2_files.Sum(x => _content1_files.FirstOrDefault(f => f.RelativePath == x).Size);
@@ -281,7 +334,7 @@ namespace FSDisk
                         });
 
                         if (_di.AvailableFreeSpace <= _size)
-                            throw new ExceptionUtil($"ERROR: NO HAY ESPACIO SUFICIENTE EN DISCO {Path.GetPathRoot(folder2)} para archivos de CARPETA 1.");
+                            throw new ExceptionUtil($"ERROR: NO HAY ESPACIO SUFICIENTE EN DISCO {Path.GetPathRoot(m_folder2)} para archivos de CARPETA 1.");
                     }
                 }
                 catch (Exception ex)
@@ -302,12 +355,12 @@ namespace FSDisk
                 _missing1_folders.Sort(); // Asegurar que los padres se creen antes
                 _missing2_folders.Sort(); // Asegurar que los padres se creen antes
 
-                if (!force || readOnly)
+                if (!m_force || m_readOnly)
                 {
                     Log.TraceInfo("Carpetas a ser creadas");
                     Log.TraceInfo("=>");
-                    foreach (string s in _missing1_folders) Log.TraceInfo(folder1 + s);
-                    foreach (string s in _missing2_folders) Log.TraceInfo(folder2 + s);
+                    foreach (string s in _missing1_folders) Log.TraceInfo(m_folder1 + s);
+                    foreach (string s in _missing2_folders) Log.TraceInfo(m_folder2 + s);
                 }
 
                 Log.TraceInfo("CREANDO CARPETAS...");
@@ -316,17 +369,17 @@ namespace FSDisk
                 // Creación de carpetas a folder1 (desde folder2)
                 foreach (string relativePath in _missing1_folders)
                 {
-                    string targetPath = Path.Combine(folder1, relativePath);
+                    string targetPath = Path.Combine(m_folder1, relativePath);
                     Log.TraceInfo($" Creando carpeta en CARPETA 1: {targetPath}", true);
-                    if (!readOnly)
+                    if (!m_readOnly)
                         Directory.CreateDirectory(targetPath);
                 }
                 // Creación de carpetas a folder2 (desde folder1)
                 foreach (string relativePath in _missing2_folders)
                 {
-                    string targetPath = Path.Combine(folder2, relativePath);
+                    string targetPath = Path.Combine(m_folder2, relativePath);
                     Log.TraceInfo($" Creando carpeta en CARPETA 2: {targetPath}", true);
-                    if (!readOnly)
+                    if (!m_readOnly)
                         Directory.CreateDirectory(targetPath);
                 }
             }
@@ -334,12 +387,12 @@ namespace FSDisk
             // Copia de archivos (missing files)
             if (_missing1_files.Count + _missing2_files.Count > 0)
             {
-                if (!force || readOnly)
+                if (!m_force || m_readOnly)
                 {
                     Log.TraceInfo("Archivos a ser copiados");
                     Log.TraceInfo("=>");
-                    foreach (string s in _missing1_files) Log.TraceInfo(Path.Combine(folder2, s) + " -> " + Path.Combine(folder1, s));
-                    foreach (string s in _missing2_files) Log.TraceInfo(Path.Combine(folder1, s) + " -> " + Path.Combine(folder2, s));
+                    foreach (string s in _missing1_files) Log.TraceInfo(Path.Combine(m_folder2, s) + " -> " + Path.Combine(m_folder1, s));
+                    foreach (string s in _missing2_files) Log.TraceInfo(Path.Combine(m_folder1, s) + " -> " + Path.Combine(m_folder2, s));
                 }
 
                 Log.TraceInfo("COPIANDO ARCHIVOS NUEVOS...");
@@ -348,27 +401,33 @@ namespace FSDisk
                 // Copia de FOLDER 2 a FOLDER 1 (Missing 1 files)
                 foreach (string relativePath in _missing1_files)
                 {
-                    string sourcePath = Path.Combine(folder2, relativePath);
-                    string destPath = Path.Combine(folder1, relativePath);
+                    string sourcePath = Path.Combine(m_folder2, relativePath);
+                    string destPath = Path.Combine(m_folder1, relativePath);
 
                     Log.TraceInfo($" Copiando (2 -> 1): {relativePath}");
-                    if (!readOnly)
+                    if (!m_readOnly)
                     {
                         // Usar 'true' para permitir sobrescribir en Two-Way si existe, aunque no debería con 'Except'
                         System.IO.File.Copy(sourcePath, destPath, true);
+
+                        if(OnFileProcessed != null)
+                            OnFileProcessed(sourcePath, EventArgs.Empty);
                     }
                 }
 
                 // Copia de FOLDER 1 a FOLDER 2 (Missing 2 files)
                 foreach (string relativePath in _missing2_files)
                 {
-                    string sourcePath = Path.Combine(folder1, relativePath);
-                    string destPath = Path.Combine(folder2, relativePath);
+                    string sourcePath = Path.Combine(m_folder1, relativePath);
+                    string destPath = Path.Combine(m_folder2, relativePath);
 
                     Log.TraceInfo($" Copiando (1 -> 2): {relativePath}");
-                    if (!readOnly)
+                    if (!m_readOnly)
                     {
                         System.IO.File.Copy(sourcePath, destPath, true);
+
+                        if (OnFileProcessed != null)
+                            OnFileProcessed(sourcePath, EventArgs.Empty);
                     }
                 }
             }
@@ -377,26 +436,26 @@ namespace FSDisk
             // DELETE FILES //
             //////////////////
             bool doDelete;
-            if (deleteFiles && mode == ModeEnum.LEFT_TO_RIGHT && _delete_files.Count > 0) // delete only one way
+            if (m_deleteFiles && m_mode == ModeEnum.LEFT_TO_RIGHT && _delete_files.Count > 0) // delete only one way
             {
                 // print out list of files to be deleted
-                if (!force || readOnly)
+                if (!m_force || m_readOnly)
                 {
                     Log.TraceInfo("Archivos a ser borrados");
                     Log.TraceInfo("=>");
                     foreach (string s in _delete_files)
-                        Log.TraceInfo(folder2 + s);
+                        Log.TraceInfo(m_folder2 + s);
                 }
 
                 // delete files
                 Log.TraceInfo("BORRANDO ARCHIVOS...");
                 Log.TraceInfo("====================");
-                if (!force)
+                if (!m_force)
                     Log.TraceInfo("(Confirmación de usuario activa)");
 
                 foreach (string relativePath in _delete_files)
                 {
-                    string fullPath = Path.Combine(folder2, relativePath);
+                    string fullPath = Path.Combine(m_folder2, relativePath);
                     doDelete = false;
                     Log.TraceInfo($"  {fullPath}");
 
@@ -407,7 +466,7 @@ namespace FSDisk
                     //        doDelete = true;
                     //}
                     //else
-                    if (force)
+                    if (m_force)
                     {
                         doDelete = true;
                     }
@@ -416,7 +475,7 @@ namespace FSDisk
                     {
                         if (doDelete)
                         {
-                            if (!readOnly)
+                            if (!m_readOnly)
                             {
                                 System.IO.File.Delete(fullPath);
                                 Log.TraceInfo("¡Borrado!");
@@ -437,25 +496,25 @@ namespace FSDisk
             }
 
             // delete folders
-            if (deleteFiles && mode == ModeEnum.LEFT_TO_RIGHT && _delete_folders.Count > 0) // delete only one-way
+            if (m_deleteFiles && m_mode == ModeEnum.LEFT_TO_RIGHT && _delete_folders.Count > 0) // delete only one-way
             {
                 _delete_folders = _delete_folders.OrderByDescending(x => x).ToList(); // para asegurar que los hijos se borren antes que los padres
                 // print out all the folders to be deleted
-                if (!force || readOnly)
+                if (!m_force || m_readOnly)
                 {
                     Log.TraceInfo("Carpetas a ser borradas");
                     Log.TraceInfo("=>");
                     foreach (string s in _delete_folders)
-                        Log.TraceInfo(folder2 + s);
+                        Log.TraceInfo(m_folder2 + s);
                 }
                 Log.TraceInfo("BORRANDO CARPETAS...");
                 Log.TraceInfo("====================");
-                if (!force)
+                if (!m_force)
                     Log.TraceInfo("(Confirmación de usuario activa)");
 
                 foreach (string relativePath in _delete_folders)
                 {
-                    string fullPath = Path.Combine(folder2, relativePath);
+                    string fullPath = Path.Combine(m_folder2, relativePath);
                     doDelete = false;
                     Log.TraceInfo($"  {fullPath}");
 
@@ -466,7 +525,7 @@ namespace FSDisk
                     //        doDelete = true;
                     //}
                     //else
-                    if (force)
+                    if (m_force)
                     {
                         doDelete = true;
                     }
@@ -475,7 +534,7 @@ namespace FSDisk
                     {
                         if (doDelete)
                         {
-                            if (!readOnly)
+                            if (!m_readOnly)
                             {
                                 Directory.Delete(fullPath);
                                 Log.TraceInfo("¡Borrado!");
@@ -497,24 +556,24 @@ namespace FSDisk
 
             // overwrite files
             bool doOverwrite;
-            if (compareSizes && mode == ModeEnum.LEFT_TO_RIGHT && _overwrite.Count > 0) // overwrite only one-way
+            if (m_compareSizes && m_mode == ModeEnum.LEFT_TO_RIGHT && _overwrite.Count > 0) // overwrite only one-way
             {
-                if (!force || readOnly)
+                if (!m_force || m_readOnly)
                 {
                     Log.TraceInfo("Archivos a ser sobrescritos");
                     Log.TraceInfo("=>");
                     foreach (string s in _overwrite)
-                        Log.TraceInfo(folder2 + s);
+                        Log.TraceInfo(m_folder2 + s);
                 }
                 Log.TraceInfo("SOBREESCRIBIENDO ARCHIVOS...");
                 Log.TraceInfo("============================");
-                if (!force)
+                if (!m_force)
                     Log.TraceInfo("(Confirmación de usuario activa)");
 
                 foreach (string relativePath in _overwrite)
                 {
-                    string sourcePath = Path.Combine(folder1, relativePath);
-                    string destPath = Path.Combine(folder2, relativePath);
+                    string sourcePath = Path.Combine(m_folder1, relativePath);
+                    string destPath = Path.Combine(m_folder2, relativePath);
 
                     doOverwrite = false;
                     Log.TraceInfo($"  {destPath}");
@@ -526,7 +585,7 @@ namespace FSDisk
                     //        doOverwrite = true;
                     //}
                     //else
-                    if (force)
+                    if (m_force)
                     {
                         doOverwrite = true;
                     }
@@ -535,7 +594,7 @@ namespace FSDisk
                     {
                         if (doOverwrite)
                         {
-                            if (!readOnly)
+                            if (!m_readOnly)
                             {
                                 System.IO.File.Copy(sourcePath, destPath, true);
                                 Log.TraceInfo("¡Sobrescrito!");
@@ -554,9 +613,9 @@ namespace FSDisk
                 }
             }
 
-            if (deleteEmptyFolders)
+            if (m_deleteEmptyFolders)
             {
-                DeleteEmptyFolders(folder2);
+                DeleteEmptyFoldersFunc(m_folder2);
             }
 
             return "OK";
@@ -612,11 +671,11 @@ namespace FSDisk
         }
 
 
-        private static void DeleteEmptyFolders(string startLocation)
+        private static void DeleteEmptyFoldersFunc(string startLocation)
         {
             foreach (var directory in Directory.GetDirectories(startLocation))
             {
-                DeleteEmptyFolders(directory);
+                DeleteEmptyFoldersFunc(directory);
                 // Utilizar Enumerate... para evitar cargar la lista completa en memoria
                 if (!Directory.EnumerateFiles(directory).Any() &&
                     !Directory.EnumerateDirectories(directory).Any())

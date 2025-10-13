@@ -69,6 +69,11 @@ namespace FSDisk
             set { m_Running = value; }
         }
 
+        public long TotalFiles 
+        { 
+            get { return FileUtils.TotalFiles(m_origen); }
+        }
+
         public Backup()
         { }
 
