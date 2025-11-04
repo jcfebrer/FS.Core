@@ -7,12 +7,9 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml;
 
-#if NET35_OR_GREATER || NETCOREAPP
+#if NET40_OR_GREATER || NETCOREAPP
     using System.Linq;
     using System.Security.Cryptography.Xml;
-#endif
-
-#if NET40_OR_GREATER || NETCOREAPP
     using System.Security.Cryptography.Pkcs;
 #endif
 
@@ -95,7 +92,7 @@ namespace FSCertificate
                 return null; // O puedes lanzar una excepción si lo prefieres
             }
 
-#if NET35_OR_GREATER || NETCOREAPP
+#if NET40_OR_GREATER || NETCOREAPP
             return certs.OfType<X509Certificate2>().FirstOrDefault();
 #else
             foreach (X509Certificate cert in certs)
@@ -124,7 +121,7 @@ namespace FSCertificate
                 return null; // O puedes lanzar una excepción si lo prefieres
             }
 
-#if NET35_OR_GREATER || NETCOREAPP
+#if NET40_OR_GREATER || NETCOREAPP
             return certs.OfType<X509Certificate2>().FirstOrDefault();
 #else
             foreach (X509Certificate cert in certs)
@@ -153,7 +150,7 @@ namespace FSCertificate
                 return null; // O puedes lanzar una excepción si lo prefieres
             }
 
-#if NET35_OR_GREATER || NETCOREAPP
+#if NET40_OR_GREATER || NETCOREAPP
             return certs.OfType<X509Certificate2>().FirstOrDefault();
 #else
             foreach (X509Certificate cert in certs)
@@ -318,7 +315,7 @@ namespace FSCertificate
             if (cert == null || cert.SubjectName == null || cert.IssuerName == null || cert.SubjectName.RawData == null || cert.IssuerName.RawData == null)
                 return false;
 
-#if NET35_OR_GREATER || NETCOREAPP
+#if NET40_OR_GREATER || NETCOREAPP
             return cert.SubjectName.RawData.SequenceEqual(cert.IssuerName.RawData);
 #else
             byte[] subjectRawData = cert.SubjectName.RawData;
