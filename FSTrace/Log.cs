@@ -314,7 +314,7 @@ namespace FSTrace
         /// <summary>Escribe una traza en el archivo de log y en trace.axd</summary>
         /// <param name="traceLevel">Nivel de la traza según <see cref="FSLibrary.Log.Level" /></param>
         /// <param name="message">Mensaje que se escribira en el log.</param>
-        private static void Trace(TraceLevel traceLevel, string message)
+        public static void Trace(TraceLevel traceLevel, string message)
         {
             //Si el nivel de traza especificado no esta activo no traceamos
             if (!IsTraceLevelActive(traceLevel))
