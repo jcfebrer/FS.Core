@@ -9,8 +9,8 @@
     <Copyright>FSFtp</Copyright>
     <AssemblyVersion>16.0.16</AssemblyVersion>
     <NeutralLanguage>en</NeutralLanguage>
-    <SignAssembly>False</SignAssembly>
-    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>D:\FS\firma_FS_app.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Core">
