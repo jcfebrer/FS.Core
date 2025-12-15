@@ -2,11 +2,12 @@
   <PropertyGroup>
     <TargetFrameworks>net35;net40;net45;net461;net48;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <AssemblyTitle>FSFtp</AssemblyTitle>
     <Description>Cliente FTP y FTPS</Description>
     <Product>FSFtp</Product>
-    <Copyright>FSFtp</Copyright>
+    <Copyright>Copyright © 2025 Febrer Software</Copyright>
+    <Authors>Juan Carlos Febrer</Authors>
     <AssemblyVersion>16.0.16</AssemblyVersion>
     <NeutralLanguage>en</NeutralLanguage>
     <SignAssembly>True</SignAssembly>

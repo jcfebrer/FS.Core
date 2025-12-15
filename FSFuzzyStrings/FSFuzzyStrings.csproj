@@ -3,11 +3,12 @@
     <TargetFrameworks>net20;net30;net35;net40;net45;net461;net48;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <NoWin32Manifest>False</NoWin32Manifest>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <AssemblyTitle>FSFuzzyStrings</AssemblyTitle>
-    <Company>FebrerSoftware</Company>
+    <Company>Febrer Software</Company>
     <Product>FSFuzzyStrings</Product>
-    <Copyright>Copyright © FebrerSoftware 2017</Copyright>
+    <Copyright>Copyright © 2025 Febrer Software</Copyright>
+    <Authors>Juan Carlos Febrer</Authors>
     <AssemblyVersion>1.0.1.0</AssemblyVersion>
     <FileVersion>1.0.1.0</FileVersion>
     <SignAssembly>True</SignAssembly>

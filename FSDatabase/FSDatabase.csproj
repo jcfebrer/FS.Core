@@ -4,10 +4,11 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>net20;net30;net35;net40;net45;net461;net48;net8.0</TargetFrameworks>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <AssemblyTitle>FSDatabase</AssemblyTitle>
     <Product>FSDatabase</Product>
-    <Copyright>Copyright ©  2019</Copyright>
+    <Copyright>Copyright © 2025 Febrer Software</Copyright>
+    <Authors>Juan Carlos Febrer</Authors>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <SignAssembly>True</SignAssembly>

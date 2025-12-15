@@ -2,11 +2,12 @@
   <PropertyGroup>
     <TargetFrameworks>net20;net30;net35;net40;net45;net461;net48;net8.0</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <AssemblyTitle>FSBarcode</AssemblyTitle>
     <Product>FSBarcode</Product>
-    <Copyright>Copyright 2016</Copyright>
-    <AssemblyVersion>1.0.%2a</AssemblyVersion>
+    <Copyright>Copyright © 2025 Febrer Software</Copyright>
+    <Authors>Juan Carlos Febrer</Authors>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>D:\FS\firma_FS_app.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>

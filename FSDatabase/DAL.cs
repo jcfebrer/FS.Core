@@ -33,7 +33,7 @@ namespace FSDatabase
         /// <summary>
         ///     Almacena la cadena de conexión que usaremos para establecer las conexiones
         /// </summary>
-        private readonly string _connectionString;
+        private readonly string _connectionString = "";
 
         #endregion
 

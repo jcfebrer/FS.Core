@@ -4,10 +4,11 @@
     <OutputType>Library</OutputType>
     <RootNamespace>FSIA</RootNamespace>
     <AssemblyName>FSIA</AssemblyName>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <AssemblyTitle>FSIA</AssemblyTitle>
     <Product>FSIA</Product>
-    <Copyright>Copyright ©  2023</Copyright>
+    <Copyright>Copyright © 2025 Febrer Software</Copyright>
+    <Authors>Juan Carlos Febrer</Authors>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <SignAssembly>True</SignAssembly>

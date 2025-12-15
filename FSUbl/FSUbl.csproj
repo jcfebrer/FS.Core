@@ -47,10 +47,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <TargetFrameworks>net20;net30;net35;net40;net45;net461;net48;net8.0</TargetFrameworks>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
     <AssemblyTitle>FS.Ubl2</AssemblyTitle>
     <Description>Oasis Ubl2 updated class Library</Description>
-    <Company>IT Larsen</Company>
+    <Company>Febrer Software</Company>
     <Product>UBL Larsen</Product>
     <AssemblyVersion>2.0.0.0</AssemblyVersion>
     <FileVersion>2.0.0.0</FileVersion>

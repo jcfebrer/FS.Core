@@ -8,30 +8,41 @@ namespace FSLibrary
     /// <summary>
     ///     Información de la aplicación
     /// </summary>
-    public static class Info
+    public class Info
     {
-        private static readonly FileVersionInfo fvi;
-        private static readonly Assembly ensamblado;
-        private static readonly AssemblyName an;
+        private readonly FileVersionInfo fvi;
+        private readonly Assembly ensamblado;
+        private readonly AssemblyName an;
 
-        static Info()
+        /// <summary>
+        /// Constructor estático
+        /// </summary>
+        /// <param name="ensamblado"></param>
+        public Info(Assembly ensamblado)
         {
-            ensamblado = Assembly.GetExecutingAssembly();
-            fvi = FileVersionInfo.GetVersionInfo(ensamblado.Location);
-            an = ensamblado.GetName();
+            this.ensamblado = ensamblado;
+            this.fvi = FileVersionInfo.GetVersionInfo(ensamblado.Location);
+            this.an = ensamblado.GetName();
         }
 
         /// <summary>
         ///     La versión del ensamblado
         ///     Equivale al atributo AssemblyVersion
         /// </summary>
-        public static Version Version => an.Version;
+        public Version Version => an.Version;
 
         /// <summary>
         ///     La versión del ensamblado (FileVersion)
         ///     equivale al atributo: AssemblyFileVersion
         /// </summary>
-        public static Version FileVersion => new Version(fvi.FileVersion);
+        public Version FileVersion
+        {
+            get
+            {
+                string version = GetAssemblyAttribute<AssemblyVersionAttribute>();
+                return string.IsNullOrEmpty(version) ? new Version(fvi.FileVersion) : new Version(version);
+            }
+        }
 
         /// <summary>
         /// Gets the name of the assembly.
@@ -39,15 +50,19 @@ namespace FSLibrary
         /// <value>
         /// The name of the assembly.
         /// </value>
-        public static string AssemblyName => an.FullName;
+        public string AssemblyName => an.FullName.Trim();
 
         /// <summary>
-        /// Gets the title.
+        /// Gets the title. (Lee de AssemblyTitleAttribute si está definido)
         /// </summary>
-        /// <value>
-        /// The title.
-        /// </value>
-        public static string Title => fvi.FileDescription;
+        public string Title
+        {
+            get
+            {
+                string title = GetAssemblyAttribute<AssemblyTitleAttribute>();
+                return string.IsNullOrEmpty(title) ? fvi.FileDescription.Trim() : title;
+            }
+        }
 
         /// <summary>
         /// Gets the copyright.
@@ -55,7 +70,14 @@ namespace FSLibrary
         /// <value>
         /// The copyright.
         /// </value>
-        public static string Copyright => fvi.LegalCopyright;
+        public string Copyright
+        {
+            get
+            {
+                string copyright = GetAssemblyAttribute<AssemblyCopyrightAttribute>();
+                return string.IsNullOrEmpty(copyright) ? fvi.LegalCopyright.Trim() : copyright;
+            }
+        }
 
         /// <summary>
         /// Gets the name of the product.
@@ -63,7 +85,14 @@ namespace FSLibrary
         /// <value>
         /// The name of the product.
         /// </value>
-        public static string ProductName => fvi.ProductName;
+        public string ProductName
+        {
+            get
+            {
+                string productName = GetAssemblyAttribute<AssemblyProductAttribute>();
+                return string.IsNullOrEmpty(productName) ? fvi.ProductName.Trim() : productName;
+            }
+        }
 
         /// <summary>
         /// Gets the name of the company.
@@ -71,7 +100,14 @@ namespace FSLibrary
         /// <value>
         /// The name of the company.
         /// </value>
-        public static string CompanyName => fvi.CompanyName;
+        public string CompanyName
+        {
+            get
+            {
+                string companyName = GetAssemblyAttribute<AssemblyCompanyAttribute>();
+                return string.IsNullOrEmpty(companyName) ? fvi.CompanyName.Trim() : companyName;
+            }
+        }
 
         /// <summary>
         /// Gets the trademark.
@@ -79,23 +115,84 @@ namespace FSLibrary
         /// <value>
         /// The trademark.
         /// </value>
-        public static string Trademark => fvi.LegalTrademarks;
+        public string Trademark
+        {
+            get
+            {
+                string trademark = GetAssemblyAttribute<AssemblyTrademarkAttribute>();
+                return string.IsNullOrEmpty(trademark) ? fvi.LegalTrademarks.Trim() : trademark;
+            }
+        }
 
         /// <summary>
-        /// Gets the description.
+        /// La descripción. (Lee de AssemblyDescriptionAttribute)
         /// </summary>
-        /// <value>
-        /// The description.
-        /// </value>
-        public static string Description => fvi.Comments;
+        public string Description
+        {
+            get
+            {
+                string description = GetAssemblyAttribute<AssemblyDescriptionAttribute>();
+                return string.IsNullOrEmpty(description) ? fvi.Comments.Trim() : description;
+            }
+        }
 
+        /// <summary>
+        /// Gets the Authors. (Generalmente mapeado a AssemblyCompany o AssemblyInformationalVersion)
+        /// </summary>
+        public string Authors
+        {
+            get
+            {
+                // En .NET SDK, <Authors> a menudo se mapea a InformationalVersion o Company
+                string authors = GetAssemblyAttribute<AssemblyCompanyAttribute>();
+                if (!string.IsNullOrEmpty(authors)) return authors;
+
+                // Como alternativa, puedes intentar buscar directamente la propiedad
+                // en el .csproj, que puede estar mapeada a InformationalVersion si no se usa Company
+                string infoVersion = "";
+#if NET45_OR_GREATER || NETCOREAPP
+                infoVersion = ensamblado.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion;
+#endif
+
+                // Esto solo funciona si <InformationalVersion> se configuró con los autores
+                // o si un proceso de CI/CD inyectó el valor allí.
+                return string.IsNullOrEmpty(infoVersion) ? fvi.CompanyName.Trim() : infoVersion;
+            }
+        }
+
+        /// <summary>
+        /// Helper para obtener atributos de ensamblado de forma segura
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        private string GetAssemblyAttribute<T>() where T : Attribute
+        {
+            Attribute attribute = null;
+#if NET45_OR_GREATER || NETCOREAPP
+            // Usa GetCustomAttribute en el ensamblado que pasaste al constructor
+            attribute = ensamblado.GetCustomAttribute<T>();
+#endif
+
+            // Devuelve el valor del atributo (maneja casos especiales)
+            if (attribute is AssemblyTitleAttribute titleAttr)
+                return titleAttr.Title.Trim();
+            if (attribute is AssemblyDescriptionAttribute descAttr)
+                return descAttr.Description.Trim();
+            if (attribute is AssemblyCompanyAttribute companyAttr)
+                return companyAttr.Company.Trim();
+            if (attribute is AssemblyCopyrightAttribute copyrightAttr)
+                return copyrightAttr.Copyright.Trim();
+
+            // Para Authors, se usa AssemblyInformationalVersionAttribute o AssemblyCompanyAttribute
+            return string.Empty;
+        }
 
         /// <summary>
         /// Devuelve todos métodos, eventos, propiedades y campos de un tipo.
         /// </summary>
         /// <param name="type">The type.</param>
         /// <returns></returns>
-        public static string ClassInfo(Type type)
+        public string ClassInfo(Type type)
         {
             var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly |
                         BindingFlags.Static;
