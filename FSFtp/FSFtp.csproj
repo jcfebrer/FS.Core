@@ -12,6 +12,7 @@
     <NeutralLanguage>en</NeutralLanguage>
     <SignAssembly>True</SignAssembly>
     <AssemblyOriginatorKeyFile>D:\FS\firma_FS_app.pfx</AssemblyOriginatorKeyFile>
+    <Platforms>AnyCPU;x86;x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <Reference Update="System.Core">
