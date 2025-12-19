@@ -631,6 +631,9 @@ namespace FSDatabase
 
         public DataTable GetSchemaTable(string tableName)
         {
+            if (String.IsNullOrEmpty(tableName))
+                throw new ExceptionUtil("No se ha definido el nombre de la tabla.");
+
             try
             {
                 var dt = (DataTable) Web.GetCacheValue("SchemaColumn_" + tableName + "_ID" + ConnStringEntryId);
