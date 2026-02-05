@@ -430,7 +430,10 @@ namespace FSLibrary
         /// <returns></returns>
         public static DateTime ISO8601ToDateTime(string date)
         {
-            if (date == null)
+            if (String.IsNullOrEmpty(date))
+                return DateTime.MinValue;
+
+            if(date.Trim() == "")
                 return DateTime.MinValue;
 
             if (date.Contains("?"))
