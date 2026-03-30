@@ -19,7 +19,6 @@
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.7.3" />
     <PackageReference Include="MSTest.TestFramework" Version="3.7.3" />
-    <PackageReference Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'" Include="System.Configuration.ConfigurationManager" Version="9.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,10 +30,21 @@
     <ProjectReference Include="..\..\FS.Core\FSNetwork\FSNetwork.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSParser\FSParser.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSSepaLibrary\FSSepaLibrary.csproj" />
+    <ProjectReference Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'" Include="..\..\FS.Core\FSGoogleGemini\FSGoogleGemini.csproj" />
+    <ProjectReference Include="..\FSCertificate\FSCertificate.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'" Include="Microsoft.VisualStudio.TestTools.UnitTesting" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
