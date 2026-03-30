@@ -1,0 +1,29 @@
+﻿{
+  "EmailSettings": {
+    "Pop3": {
+      "Server": "pop.gmail.com",
+      "Port": 995,
+      "UserName": "username",
+      "Password": "password",
+      "UseSsl": true,
+      "Recent": false
+    },
+    "Imap": {
+      "Server": "imap.gmail.com",
+      "Port": 993,
+      "UserName": "username",
+      "Password": "password",
+      "UseSsl": true
+    }
+  },
+  "OpenAI": {
+    "Url": "https://api.openai.com/v1/chat/completions",
+    "ApiKey": "sk-proj-7709h3AZZ3eybp06x714T3BlbkFJKjVFisyIuLrP2pxfFIWs",
+    "Organization": "org-VQUJfleqSE6j95hcj3Mx7vLD"
+  },
+  "GoogleGemini": {
+    "ApiKey": "AIzaSyCkjrZ9BUQm-hnvjKY3QYTvg4vpzD2QDh8",
+    "ProjectName": "projects/379868103147",
+    "ProjectNumber": "379868103147"
+  }
+}
