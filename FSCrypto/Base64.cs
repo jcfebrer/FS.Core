@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Text;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -97,5 +99,20 @@ namespace FSCrypto
             byte[] strBytes = Convert.FromBase64String(input);
             return Encoding.UTF8.GetString(strBytes);
         }
+
+#if NET20_OR_GREATER
+        public static Bitmap ToBitmap(string base64String)
+        {
+            // 1. Convertir la cadena Base64 a un array de bytes
+            byte[] imageBytes = Convert.FromBase64String(base64String);
+
+            // 2. Crear un MemoryStream con esos bytes
+            using (MemoryStream ms = new MemoryStream(imageBytes))
+            {
+                // 3. Crear el Bitmap desde el stream
+                return new Bitmap(ms);
+            }
+        }
+#endif
     }
 }
