@@ -54,7 +54,7 @@ namespace FSNetwork
                 }
                 catch (Exception ex)
                 {
-                    _log?.Invoke("Error Telegram", ex.Message);
+                    _log?.Invoke("Telegram", $"Error: {ex.Message}");
                     await Task.Delay(2000, ct);
                 }
             }
