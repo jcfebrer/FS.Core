@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Reflection;
 using System.Text;
 
 namespace FSParser
@@ -49,6 +50,35 @@ namespace FSParser
                 throw ex;
             }
 
+        }
+
+        public static string DinamicVariablesReplace(string content, Type globalType)
+        {
+            // 1. Procesar Propiedades (si usas { get; set; })
+            PropertyInfo[] porperties = globalType.GetProperties(BindingFlags.Public | BindingFlags.Static);
+            foreach (var prop in porperties)
+            {
+                string mark = "{" + prop.Name + "}";
+                if (content.Contains(mark))
+                {
+                    object value = prop.GetValue(null, null);
+                    content = content.Replace(mark, value?.ToString() ?? "");
+                }
+            }
+
+            // 2. Procesar Campos (si usas variables directas como: public static string Servidor;)
+            FieldInfo[] fields = globalType.GetFields(BindingFlags.Public | BindingFlags.Static);
+            foreach (var field in fields)
+            {
+                string mark = "{" + field.Name + "}";
+                if (content.Contains(mark))
+                {
+                    object value = field.GetValue(null);
+                    content = content.Replace(mark, value?.ToString() ?? "");
+                }
+            }
+
+            return content;
         }
     }
 }

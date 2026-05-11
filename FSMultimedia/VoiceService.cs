@@ -1,17 +1,23 @@
 ﻿#if NETCOREAPP
 using System;
 using System.Speech.Recognition;
+using System.Speech.Synthesis;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FSMultimedia
 {
     public class VoiceService
     {
+        private SpeechSynthesizer _synthesizer;
         private SpeechRecognitionEngine _recognizer;
         private TaskCompletionSource<string> _tcs;
 
         public VoiceService()
         {
+            _synthesizer = new SpeechSynthesizer();
+            _synthesizer.SetOutputToDefaultAudioDevice();
+
             // Configuramos el motor de reconocimiento en español
             _recognizer = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("es-ES"));
 
@@ -45,13 +51,36 @@ namespace FSMultimedia
             return await _tcs.Task;
         }
 
-        public void PlayText(string text)
-        {             
-            using (var synthesizer = new System.Speech.Synthesis.SpeechSynthesizer())
+        /// <summary>
+        /// Detiene inmediatamente cualquier reproducción de audio en curso.
+        /// </summary>
+        public void Stop()
+        {
+            try
             {
-                synthesizer.SetOutputToDefaultAudioDevice();
-                synthesizer.Speak(text);
+                // Aborta todas las locuciones que estén en la cola o reproduciéndose
+                _synthesizer.SpeakAsyncCancelAll();
             }
+            catch (Exception ex)
+            {
+                // Loguear el error si es necesario
+                Console.WriteLine($"Error al detener el audio: {ex.Message}");
+            }
+        }
+
+        public void PlayText(string text)
+        {
+            _synthesizer.SpeakAsyncCancelAll();
+            _synthesizer.Speak(text);
+        }
+
+        public async Task PlayTextAsync(string text)
+        {
+            await Task.Run(() =>
+            {
+                _synthesizer.SpeakAsyncCancelAll();
+                _synthesizer.SpeakAsync(text);
+            });
         }
     }
 }

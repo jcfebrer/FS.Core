@@ -24,6 +24,9 @@
     <Reference Include="System.Net.Http">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Net.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Text.Json">
+      <HintPath>C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\PublicAssemblies\System.Text.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FS.Core\FSCrypto\FSCrypto.csproj" />

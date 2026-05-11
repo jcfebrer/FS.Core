@@ -21,7 +21,7 @@ namespace FSNetwork
             this.token = token;
         }
 
-        public void SendMessage(string chatId, string message)
+        public string SendMessage(string chatId, string message)
         {
 #if NET45_OR_GREATER || NETCOREAPP
             message = WebUtility.UrlEncode(message);
@@ -32,11 +32,11 @@ namespace FSNetwork
             using (WebClient webClient = new WebClient())
             {
                 string urlString = $"https://api.telegram.org/bot{token}/sendMessage?chat_id={chatId}&text={message}";
-                webClient.DownloadString(urlString);
+                return webClient.DownloadString(urlString);
             }
         }
 #if NETCOREAPP
-        public async Task SendMessageAsync(string chatId, string message)
+        public async Task<string> SendMessageAsync(string chatId, string message)
         {
             message = WebUtility.UrlEncode(message);
 
@@ -47,12 +47,17 @@ namespace FSNetwork
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine("Mensaje enviado con éxito");
+                    return "Mensaje enviado correctamente.";
+                }
+                else
+                {
+                    string error = await response.Content.ReadAsStringAsync();
+                    return $"Error al enviar: {response.StatusCode} - {error}";
                 }
             }
         }
 
-        public async Task SendMessageJson(string chatId, string message)
+        public async Task<string> SendMessageJson(string chatId, string message)
         {
             using (HttpClient client = new HttpClient())
             {
@@ -71,12 +76,12 @@ namespace FSNetwork
 
                 if (response.IsSuccessStatusCode)
                 {
-                    Console.WriteLine("¡Mensaje enviado con éxito!");
+                    return "Mensaje enviado correctamente.";
                 }
                 else
                 {
                     string error = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"Error al enviar: {response.StatusCode} - {error}");
+                    return $"Error al enviar: {response.StatusCode} - {error}";
                 }
             }
         }
