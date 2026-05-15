@@ -14,12 +14,12 @@ namespace FSNetwork
 {
     public class WhatsApp
     {
-        private readonly string _phoneNumber;
+        private readonly string _phoneNumberId;
         private readonly string _accessToken;
 
-        public WhatsApp(string phoneNumber, string accessToken)
+        public WhatsApp(string phoneNumberId, string accessToken)
         {
-            _phoneNumber = phoneNumber;
+            _phoneNumberId = phoneNumberId;
             _accessToken = accessToken;
         }
 
@@ -55,7 +55,7 @@ namespace FSNetwork
                 {
                     // Ejecutar la petición POST
                     var response = await client.PostAsync(
-                        $"https://graph.facebook.com/v17.0/{_phoneNumber}/messages",
+                        $"https://graph.facebook.com/v25.0/{_phoneNumberId}/messages",
                         content);
 
                     if (response.IsSuccessStatusCode)
@@ -92,7 +92,7 @@ namespace FSNetwork
                 };
 
                 var response = await client.PostAsJsonAsync(
-                    $"https://graph.facebook.com/v17.0/{_phoneNumber}/messages",
+                    $"https://graph.facebook.com/v25.0/{_phoneNumberId}/messages",
                     payload);
 
                 string error = await response.Content.ReadAsStringAsync();
