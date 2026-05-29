@@ -946,5 +946,53 @@ namespace FSDisk
             return path.Substring(0, path.Length - 1);
         }
 #endif
+
+#if NETCOREAPP
+        /// <summary>
+        /// Realiza una búsqueda recursiva de archivos ejecutables tolerando carpetas con acceso denegado.
+        /// </summary>
+        public static string SafeSearchExecutable(string rootDirectory, string appName)
+        {
+            try
+            {
+                // Configuración de enumeración nativa de .NET Core / .NET 8
+                var options = new System.IO.EnumerationOptions
+                {
+                    IgnoreInaccessible = true,
+                    RecurseSubdirectories = true,
+                    MatchCasing = System.IO.MatchCasing.CaseInsensitive,
+                    MatchType = System.IO.MatchType.Simple
+                };
+
+                // Buscamos archivos .exe que contengan el nombre de la app
+                var archivo = System.IO.Directory.EnumerateFiles(rootDirectory, $"*{appName}*.exe", options)
+                    .FirstOrDefault();
+
+                if (archivo != null)
+                {
+                    return archivo;
+                }
+
+                // Si no se encuentra como exe directo, probamos a buscar accesos directos (.lnk) en el menú inicio/escritorio
+                var accesoDirecto = System.IO.Directory.EnumerateFiles(rootDirectory, $"*{appName}*.lnk", options)
+                    .FirstOrDefault();
+
+                if (accesoDirecto != null)
+                {
+                    return accesoDirecto; // El ShellExecute de Windows sabrá resolver el .lnk de forma nativa
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // Captura preventiva por si la propia raíz está totalmente bloqueada
+            }
+            catch (Exception)
+            {
+                // Previene caídas por nombres de archivos demasiado largos o caracteres extraños
+            }
+
+            return null;
+        }
+#endif
     }
 }
