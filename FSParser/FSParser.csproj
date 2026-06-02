@@ -25,5 +25,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\FS.Core\FSException\FSException.csproj" />
     <ProjectReference Include="..\..\FS.Core\FSLibrary\FSLibrary.csproj" />
+    <ProjectReference Include="..\FSConvert\FSConvert.csproj" />
   </ItemGroup>
 </Project>
