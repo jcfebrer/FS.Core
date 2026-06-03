@@ -28,6 +28,7 @@ namespace FSParser
         private readonly static string ifPattern = @"^\s*if\s*\((.+)\)\s*{?$";
         private readonly static string elsePattern = @"^\s*else\s*{?$";
         private readonly static string returnPattern = @"^\s*return\s*(.*);";
+        private readonly static string exitPattern = @"^\s*exit\s*(.*);";
         private readonly static string whilePattern = @"^\s*while\s*\((.+)\)\s*{?$";
         private readonly static string functionDefPattern = @"^\s*function\s+(\w+)\s*\((.*?)\)\s*{?$";
         private readonly static string functionCallPattern = @"(\w+\s*)\(((?:""[^""]*""|[^()""]|(?<Open>\()|(?<-Open>\)))*)\)";
@@ -39,6 +40,7 @@ namespace FSParser
         private readonly Regex ifRegex = new Regex(ifPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex elseRegex = new Regex(elsePattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex returnRegex = new Regex(returnPattern, RegexOptions.Compiled | RegexOptions.Multiline);
+        private readonly Regex exitRegex = new Regex(exitPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex whileRegex = new Regex(whilePattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionDefRegex = new Regex(functionDefPattern, RegexOptions.Compiled | RegexOptions.Multiline);
         private readonly Regex functionCallRegex = new Regex(functionCallPattern, RegexOptions.Compiled | RegexOptions.Multiline);
@@ -301,7 +303,7 @@ namespace FSParser
                 return true;
 
             // Comprobar contra cada patrón de línea (var, print, comentario)
-            string[] linePatterns = { assignmentPattern, functionCallPattern, functionDefPattern, returnPattern, singleLineCommentPattern, allowedTextInLinePattern };
+            string[] linePatterns = { assignmentPattern, functionCallPattern, functionDefPattern, returnPattern, exitPattern, singleLineCommentPattern, allowedTextInLinePattern };
 
             foreach (var pattern in linePatterns)
             {
@@ -345,6 +347,8 @@ namespace FSParser
 
         public void Parse(string code)
         {
+            stop = false;
+
             //Validamos el código
             CheckSyntax(code);
 
@@ -369,11 +373,15 @@ namespace FSParser
         {
             for (int i = start; i < end; i++)
             {
+                string line = lines[i].Trim();
+
+                var exitMatch = exitRegex.Match(line);
+                if (exitMatch.Success)
+                    stop = true;
+
                 if (stop) break;
 
                 ThreadWait();
-
-                string line = lines[i].Trim();
 
                 if (string.IsNullOrEmpty(line))
                     continue;
@@ -451,7 +459,11 @@ namespace FSParser
                     int closingIndex = FindClosingBracket(lines, i);
 
                     while (Convert.ToBoolean(EvaluateExpression(condition, localVariables)))
+                    {
                         ParseBlock(lines, i + 1, closingIndex, localVariables);
+
+                        if (stop) break;
+                    }
 
                     i = closingIndex;
                     continue;

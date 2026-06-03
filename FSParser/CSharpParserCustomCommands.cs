@@ -40,7 +40,7 @@ namespace FSParser
             parser.CustomCommands["convertwpf"] = args =>
             {
 #if NET47_OR_GREATER || NETCOREAPP
-                return FSConvert.ConvertToWPF2.Convert(_Q(args[0]));
+                return TextUtil.ProtectText(FSConvert.ConvertToWPF2.Convert(_Q(args[0])));
 #else
                 throw new Exception("ConvertToWpf solo disponible en NETCORE.");
 #endif
