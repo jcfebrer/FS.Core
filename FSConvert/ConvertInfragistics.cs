@@ -10,7 +10,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace FSConvert
 {
-    public class ConvertInfragisticsToStandard
+    public class ConvertInfragistics
     {
         // LISTA AMPLIADA: Diccionario completo de equivalencias Infragistics -> .NET Estándar
         private static readonly Dictionary<string, string> TypeMapping = new Dictionary<string, string>()
@@ -50,7 +50,45 @@ namespace FSConvert
             { "UltraToolbarsManager", "ToolStrip" } // Usado en la gestión de barras de herramientas (botonesBH)
         };
 
-        public static string Convert(string sourceCode)
+        // LISTA AMPLIADA: Diccionario completo de equivalencias Infragistics -> FSFormControls
+        private static readonly Dictionary<string, string> TypeMappingFS = new Dictionary<string, string>()
+        {
+            // Editores de datos e inputs básicos
+            { "UltraNumericEditor", "DBTextBoxEx" },
+            { "UltraDateTimeEditor", "DBDate" },
+            { "UltraMaskedEdit", "DBTextBoxEx" },
+            { "UltraTextEditor", "DBTextBoxEx" },
+            { "UltraCheckEditor", "DBCheckBox" },
+            { "UltraComboEditor", "DBComboBox" },
+            { "UltraCombo", "DBComboBox" },
+
+            // Grids, Listas y elementos jerárquicos de datos
+            { "UltraGrid", "DBGridView" },
+            { "UltraGridRow", "DBGridViewRow" },
+            { "UltraGridCell", "DBGridViewCell" },
+            { "InitializeRowEventArgs", "DataGridViewRowEventArgs" },
+            { "UltraListView", "DBListView" },
+            { "UltraTree", "DBTreeView" },
+
+            // Contenedores complejos, Navegación y Layout
+            { "UltraTabControl", "DBTabControl" },
+            { "UltraTab", "DBTabPage" },
+            { "UltraWinTabControl", "DBTabControl" }, // Detectado en firmas de eventos de tu código
+            { "SelectedTabChangedEventArgs", "TabControlEventArgs" },
+            { "UltraGroupBox", "DBGroupBox" },
+            { "UltraPanel", "DBPanel" },
+            { "UltraExpandableGroupBox", "DBGroupBox" },
+
+            // Componentes de interfaz, Barras y ToolTips
+            { "UltraStatusBar", "DBStatusStrip" },
+            { "UltraLabel", "DBLabel" },
+            { "UltraButton", "DBButton" },
+            { "UltraToolTipManager", "DBToolTip" },
+            { "UltraToolTipInfo", "DBToolTip" },
+            { "UltraToolbarsManager", "DBToolStrip" } // Usado en la gestión de barras de herramientas (botonesBH)
+        };
+
+        public static string Convert(string sourceCode, bool useFSMapping)
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(sourceCode);
             CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
@@ -59,7 +97,7 @@ namespace FSConvert
             var cleanUsings = root.Usings.Where(u => !u.Name.ToString().StartsWith("Infragistics")).ToList();
 
             // 2. Ejecutar el reescritor inteligente de tipos, castings y propiedades
-            var rewriter = new WinFormsStandardRewriter(TypeMapping);
+            var rewriter = (useFSMapping) ? new WinFormsStandardRewriter(TypeMappingFS) : new WinFormsStandardRewriter(TypeMapping);
             var processedRoot = (CompilationUnitSyntax)rewriter.Visit(root);
 
             // 3. Reasignar los usings limpios
@@ -122,44 +160,44 @@ namespace FSConvert
         // Captura asignaciones específicas presentes en 'MantenimientoServicios.cs' y las normaliza a .NET estándar
         public override SyntaxNode VisitExpressionStatement(ExpressionStatementSyntax node)
         {
-            string lineText = node.ToString();
+            //string lineText = node.ToString();
 
-            // CASO 4.1: Purgar por completo infraestructuras propietarias de Infragistics que no compilarían en .NET estándar
-            if (lineText.Contains(".DisplayLayout") ||
-                lineText.Contains(".ButtonsRight") ||
-                lineText.Contains(".ButtonsLeft") ||
-                lineText.Contains(".Tabs") ||
-                lineText.Contains(".Toolbars") ||
-                lineText.Contains("IsItemInList()") ||
-                lineText.Contains("editorGrid") ||
-                lineText.Contains(".Appearance"))
-            {
-                // Devolvemos un statement vacío para eliminar de forma segura estas configuraciones estéticas o layouts especiales
-                return SyntaxFactory.EmptyStatement();
-            }
+            //// CASO 4.1: Purgar por completo infraestructuras propietarias de Infragistics que no compilarían en .NET estándar
+            //if (lineText.Contains(".DisplayLayout") ||
+            //    lineText.Contains(".ButtonsRight") ||
+            //    lineText.Contains(".ButtonsLeft") ||
+            //    lineText.Contains(".Tabs") ||
+            //    lineText.Contains(".Toolbars") ||
+            //    lineText.Contains("IsItemInList()") ||
+            //    lineText.Contains("editorGrid") ||
+            //    lineText.Contains(".Appearance"))
+            //{
+            //    // Devolvemos un statement vacío para eliminar de forma segura estas configuraciones estéticas o layouts especiales
+            //    return SyntaxFactory.EmptyStatement();
+            //}
 
-            // CASO 4.2: Traducir accesos a datos específicos de Infragistics (.ValorBool o .ValorDecimal) a nativos de .NET
-            // Tu código usa mucho ".Campo(...).ValorBool" o ".Value" directo para CheckBox
-            if (node.Expression is AssignmentExpressionSyntax assignment)
-            {
-                string leftSide = assignment.Left.ToString();
-                string rightSide = assignment.Right.ToString();
+            //// CASO 4.2: Traducir accesos a datos específicos de Infragistics (.ValorBool o .ValorDecimal) a nativos de .NET
+            //// Tu código usa mucho ".Campo(...).ValorBool" o ".Value" directo para CheckBox
+            //if (node.Expression is AssignmentExpressionSyntax assignment)
+            //{
+            //    string leftSide = assignment.Left.ToString();
+            //    string rightSide = assignment.Right.ToString();
 
-                // Traducir asignaciones de propiedades de CheckBox/DateTimePicker habituales en tu código
-                if (leftSide.Contains(".Checked") && rightSide.EndsWith(".ValorBool"))
-                {
-                    // Simplificar asignaciones complejas de tu modelo hacia booleanos nativos de .NET
-                    string cleanValue = rightSide.Replace(".ValorBool", ".Valor != null");
-                    return SyntaxFactory.ParseStatement(leftSide + " = " + cleanValue + ";");
-                }
+            //    // Traducir asignaciones de propiedades de CheckBox/DateTimePicker habituales en tu código
+            //    if (leftSide.Contains(".Checked") && rightSide.EndsWith(".ValorBool"))
+            //    {
+            //        // Simplificar asignaciones complejas de tu modelo hacia booleanos nativos de .NET
+            //        string cleanValue = rightSide.Replace(".ValorBool", ".Valor != null");
+            //        return SyntaxFactory.ParseStatement(leftSide + " = " + cleanValue + ";");
+            //    }
 
-                if (leftSide.Contains(".Value") && (rightSide.EndsWith(".Valor") || rightSide.EndsWith(".ValorDecimal")))
-                {
-                    // Convertir asignaciones de UltraNumericEditor a controles estándar
-                    string cleanValue = rightSide.Replace(".ValorDecimal", "").Replace(".Valor", "");
-                    return SyntaxFactory.ParseStatement(leftSide + " = Convert.ToDecimal(" + cleanValue + ");");
-                }
-            }
+            //    if (leftSide.Contains(".Value") && (rightSide.EndsWith(".Valor") || rightSide.EndsWith(".ValorDecimal")))
+            //    {
+            //        // Convertir asignaciones de UltraNumericEditor a controles estándar
+            //        string cleanValue = rightSide.Replace(".ValorDecimal", "").Replace(".Valor", "");
+            //        return SyntaxFactory.ParseStatement(leftSide + " = Convert.ToDecimal(" + cleanValue + ");");
+            //    }
+            //}
 
             return base.VisitExpressionStatement(node);
         }
