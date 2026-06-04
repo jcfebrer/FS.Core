@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace FSConvert
 {
-    public class _ConvertToWPF
+    public class ConvertToWPF_Regex
     {
         private static bool setPosition = true;
         private static bool setMargin = false;
