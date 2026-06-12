@@ -40,7 +40,7 @@ namespace FSParser
             parser.CustomCommands["convertwpf"] = args =>
             {
 #if NET47_OR_GREATER || NETCOREAPP
-                return TextUtil.ProtectText(FSConvert.ConvertToWPF.Convert(_Q(args[0])));
+                return TextUtil.ProtectText(FSConvert.ConvertToWPF.Convert(TextUtil.UnProtectText(_Q(args[0]))));
 #else
                 throw new Exception("ConvertToWpf solo disponible en NETCORE.");
 #endif
@@ -49,9 +49,27 @@ namespace FSParser
             parser.CustomCommands["removeinfragistics"] = args =>
             {
 #if NET47_OR_GREATER || NETCOREAPP
-                return TextUtil.ProtectText(FSConvert.ConvertInfragistics.Convert(_Q(args[0]), true));
+                return TextUtil.ProtectText(FSConvert.ConvertInfragistics.Convert(TextUtil.UnProtectText(_Q(args[0])), true));
 #else
                 throw new Exception("RemoveInfragistics solo disponible en NETCORE.");
+#endif
+            };
+
+            parser.CustomCommands["convertwinformscodetowpf"] = args =>
+            {
+#if NET47_OR_GREATER || NETCOREAPP
+                return TextUtil.ProtectText(FSConvert.ConvertWinFormsCodeToWpf.Convert(TextUtil.UnProtectText(_Q(args[0]))));
+#else
+                throw new Exception("ConvertWinFormsCodeToWpf solo disponible en NETCORE.");
+#endif
+            };
+
+            parser.CustomCommands["convertcsprojtowpf"] = args =>
+            {
+#if NET47_OR_GREATER || NETCOREAPP
+                return TextUtil.ProtectText(FSConvert.ConvertCsprojToWpf.Convert(TextUtil.UnProtectText(_Q(args[0])), "net48"));
+#else
+                throw new Exception("ConvertCsprojToWpf solo disponible en NETCORE.");
 #endif
             };
 

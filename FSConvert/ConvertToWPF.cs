@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -288,7 +287,10 @@ namespace FSConvert
             XNamespace nsWpf,
             XNamespace nsFs)
         {
-            string rawType = types.ContainsKey(name) ? types[name] : "Grid";
+            string rawType = types.ContainsKey(name) ? 
+                types[name] : 
+                "FrameworkElement";
+
             XElement element;
             string cleanType = rawType;
 

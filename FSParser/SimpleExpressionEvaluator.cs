@@ -44,10 +44,10 @@ namespace FSParser
             expression = TextUtil.ReplaceStrings(expression, "dummy");
 
             // Patrón para caracteres válidos en una expresión matemática
-            var validExpressionPattern = @"^[\d\s\+\-\*/\^<>=!()\.\,\""\w]*$";
+            var validExpressionPattern = @"^[\d\s\+\-\*/\^\|\&<>=!()\.\,\""\w]*$";
 
             // Patrón para detectar al menos un operador válido
-            var hasOperatorPattern = @"(\+|\-|\*|/|\^|!|<|>|<=|>=|==|!=)";
+            var hasOperatorPattern = @"(\+|\-|\*|/|\^|!|<|>|<=|>=|==|!=|\|\||\&\&)";
 
             // Verifica que todos los caracteres sean válidos y que haya al menos un operador
             return Regex.IsMatch(expression, validExpressionPattern) && Regex.IsMatch(expression, hasOperatorPattern);
@@ -99,11 +99,11 @@ namespace FSParser
                     tokens.Add(currentToken);
                     currentToken = "";
                 }
-                // Si se encuentra un operador de dos caracteres (==, !=, <=, >=).
-                else if (i + 1 < expression.Length && (c == '=' || c == '!' || c == '<' || c == '>'))
+                // Si se encuentra un operador de dos caracteres (==, !=, <=, >=, &&, ||).
+                else if (i + 1 < expression.Length && (c == '=' || c == '!' || c == '<' || c == '>' || c == '&' || c == '|'))
                 {
                     string doubleCharOperator = expression.Substring(i, 2);
-                    if (doubleCharOperator == "==" || doubleCharOperator == "!=" || doubleCharOperator == "<=" || doubleCharOperator == ">=")
+                    if (doubleCharOperator == "==" || doubleCharOperator == "!=" || doubleCharOperator == "<=" || doubleCharOperator == ">=" || doubleCharOperator == "&&" || doubleCharOperator == "||")
                     {
                         tokens.Add(doubleCharOperator);
                         i += 2; // Avanzamos dos caracteres

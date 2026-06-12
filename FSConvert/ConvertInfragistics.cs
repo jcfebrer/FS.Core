@@ -23,6 +23,8 @@ namespace FSConvert
             { "UltraCheckEditor", "CheckBox" },
             { "UltraComboEditor", "ComboBox" },
             { "UltraCombo", "ComboBox" },
+            { "UltraDataSource", "DataTable" },
+            { "UltraWinDataSource", "DataTable" },
 
             // Grids, Listas y elementos jerárquicos de datos
             { "UltraGrid", "DataGridView" },
@@ -35,7 +37,9 @@ namespace FSConvert
             // Contenedores complejos, Navegación y Layout
             { "UltraTabControl", "TabControl" },
             { "UltraTab", "TabPage" },
-            { "UltraWinTabControl", "TabControl" }, // Detectado en firmas de eventos de tu código
+            { "UltraTabPageControl", "TabPage" },
+            { "UltraTabSharedControlsPage", "TabPage" },
+            { "UltraWinTabControl", "TabControl" },
             { "SelectedTabChangedEventArgs", "TabControlEventArgs" },
             { "UltraGroupBox", "GroupBox" },
             { "UltraPanel", "Panel" },
@@ -47,7 +51,7 @@ namespace FSConvert
             { "UltraButton", "Button" },
             { "UltraToolTipManager", "ToolTip" },
             { "UltraToolTipInfo", "ToolTip" },
-            { "UltraToolbarsManager", "ToolStrip" } // Usado en la gestión de barras de herramientas (botonesBH)
+            { "UltraToolbarsManager", "ToolStrip" }
         };
 
         // LISTA AMPLIADA: Diccionario completo de equivalencias Infragistics -> FSFormControls
@@ -58,9 +62,11 @@ namespace FSConvert
             { "UltraDateTimeEditor", "DBDate" },
             { "UltraMaskedEdit", "DBTextBoxEx" },
             { "UltraTextEditor", "DBTextBoxEx" },
-            { "UltraCheckEditor", "DBCheckBox" },
-            { "UltraComboEditor", "DBComboBox" },
-            { "UltraCombo", "DBComboBox" },
+            { "UltraCheckEditor", "DBCheckBoxEx" },
+            { "UltraComboEditor", "DBComboEx" },
+            { "UltraCombo", "DBComboEx" },
+            { "UltraDataSource", "DBDataTable" },
+            { "UltraWinDataSource", "DBDataTable" },
 
             // Grids, Listas y elementos jerárquicos de datos
             { "UltraGrid", "DBGridView" },
@@ -73,7 +79,9 @@ namespace FSConvert
             // Contenedores complejos, Navegación y Layout
             { "UltraTabControl", "DBTabControl" },
             { "UltraTab", "DBTabPage" },
-            { "UltraWinTabControl", "DBTabControl" }, // Detectado en firmas de eventos de tu código
+            { "UltraTabPageControl", "DBTabPage" },
+            { "UltraTabSharedControlsPage", "DBTabPageShared" },
+            { "UltraWinTabControl", "DBTabControl" },
             { "SelectedTabChangedEventArgs", "TabControlEventArgs" },
             { "UltraGroupBox", "DBGroupBox" },
             { "UltraPanel", "DBPanel" },
@@ -85,7 +93,7 @@ namespace FSConvert
             { "UltraButton", "DBButton" },
             { "UltraToolTipManager", "DBToolTip" },
             { "UltraToolTipInfo", "DBToolTip" },
-            { "UltraToolbarsManager", "DBToolStrip" } // Usado en la gestión de barras de herramientas (botonesBH)
+            { "UltraToolbarsManager", "DBToolStrip" }
         };
 
         public static string Convert(string sourceCode, bool useFSMapping)
