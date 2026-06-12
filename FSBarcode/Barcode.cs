@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if NETFRAMEWORK
+
+using System;
 using System.Drawing;
 using System.IO;
 using ZXing;
@@ -30,7 +32,7 @@ namespace FSBarcode
 				Height = height,
 			};
 
-			BarcodeWriter writer = new ZXing.BarcodeWriter();
+			BarcodeWriter<Bitmap> writer = new ZXing.BarcodeWriter<Bitmap>();
 			writer.Options = options;
 
 			switch (barcodeFormat)
@@ -64,7 +66,7 @@ namespace FSBarcode
 
 		public static string ReadQRFromFile(string fileName)
 		{
-			BarcodeReader reader = new BarcodeReader();
+			BarcodeReader<Bitmap> reader = new BarcodeReader<Bitmap>(null);
 
 			reader.AutoRotate = true;
 			reader.TryInverted = true;
@@ -119,7 +121,7 @@ namespace FSBarcode
 		{
 			try
 			{
-				BarcodeReader reader = new BarcodeReader
+				BarcodeReader<Bitmap> reader = new BarcodeReader<Bitmap>
 					(null, newbitmap => new BitmapLuminanceSource(bitmap), luminance => new ZXing.Common.GlobalHistogramBinarizer(luminance));
 
 				reader.AutoRotate = true;
@@ -140,3 +142,5 @@ namespace FSBarcode
 		}
 	}
 }
+
+#endif
