@@ -1,4 +1,4 @@
-﻿#if NETFRAMEWORK
+﻿#if NET40_OR_GREATER
 
 using System;
 using System.IO;

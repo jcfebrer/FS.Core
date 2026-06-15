@@ -1,7 +1,6 @@
-﻿#if NETFRAMEWORK
-
-using System;
+﻿using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using ZXing;
 using ZXing.QrCode;
@@ -32,7 +31,7 @@ namespace FSBarcode
 				Height = height,
 			};
 
-			BarcodeWriter<Bitmap> writer = new ZXing.BarcodeWriter<Bitmap>();
+			BarcodeWriter writer = new BarcodeWriter();
 			writer.Options = options;
 
 			switch (barcodeFormat)
@@ -66,9 +65,9 @@ namespace FSBarcode
 
 		public static string ReadQRFromFile(string fileName)
 		{
-			BarcodeReader<Bitmap> reader = new BarcodeReader<Bitmap>(null);
+            BarcodeReader reader = new BarcodeReader();
 
-			reader.AutoRotate = true;
+            reader.AutoRotate = true;
 			reader.TryInverted = true;
 			reader.Options = new ZXing.Common.DecodingOptions { TryHarder = true };
 
@@ -110,7 +109,7 @@ namespace FSBarcode
 			{
 				using (MemoryStream ms = new MemoryStream())
 				{
-					bitMap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
+					bitMap.Save(ms, ImageFormat.Png);
 					byte[] byteImage = ms.ToArray();
 					return byteImage;
 				}
@@ -121,16 +120,15 @@ namespace FSBarcode
 		{
 			try
 			{
-				BarcodeReader<Bitmap> reader = new BarcodeReader<Bitmap>
-					(null, newbitmap => new BitmapLuminanceSource(bitmap), luminance => new ZXing.Common.GlobalHistogramBinarizer(luminance));
+                BarcodeReader reader = new BarcodeReader();
 
 				reader.AutoRotate = true;
 				reader.TryInverted = true;
 				reader.Options = new ZXing.Common.DecodingOptions { TryHarder = true };
 
-				Result result = reader.Decode(bitmap);
+                Result result = reader.Decode(bitmap);
 
-				if (result != null)
+                if (result != null)
 					return result.Text;
 				else
 					return "Imposible de decodificar QR.";
@@ -142,5 +140,3 @@ namespace FSBarcode
 		}
 	}
 }
-
-#endif
