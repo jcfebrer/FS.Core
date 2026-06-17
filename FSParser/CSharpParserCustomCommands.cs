@@ -64,6 +64,15 @@ namespace FSParser
 #endif
             };
 
+            parser.CustomCommands["convertrpttowpf"] = args =>
+            {
+#if NET40_OR_GREATER
+                return TextUtil.ProtectText(FSConvert.ConvertRptToWpf.Convert(TextUtil.UnProtectText(_Q(args[0]))));
+#else
+                throw new Exception("ConvertRptToWpf solo disponible en NETCORE.");
+#endif
+            };
+
             parser.CustomCommands["convertcsprojtowpf"] = args =>
             {
 #if NET47_OR_GREATER || NETCOREAPP

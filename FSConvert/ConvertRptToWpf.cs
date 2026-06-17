@@ -10,7 +10,7 @@ using CrystalDecisions.Shared;
 
 namespace FSConvert
 {
-    public class ConvertRptToXaml
+    public class ConvertRptToWpf
     {
         private const double TwipsPerPixel = 15.0;
 
