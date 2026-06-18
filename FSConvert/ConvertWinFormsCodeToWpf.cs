@@ -65,7 +65,7 @@ namespace FSConvert
             cleanUsings.Add(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Windows")));
             cleanUsings.Add(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Windows.Controls")));
 
-            // Le pasamos la raíz del árbol original (root) para poder buscar nodos limpios por posición
+            // Pasamos la raíz original para el mapeo semántico por posiciones
             var rewriter = new WpfLogicRewriter(PropertyMapping, semanticModel, root);
             var processedRoot = (CompilationUnitSyntax)rewriter.Visit(root);
 
@@ -89,25 +89,37 @@ namespace FSConvert
         }
 
         // ==================================================================
-        // 1. REESTRUCTURAR CLASE BASE (De Form a Window)
+        // 1. REESTRUCTURAR CLASE BASE CONDICIONAL (Solo si era un Form)
         // ==================================================================
         public override SyntaxNode VisitClassDeclaration(ClassDeclarationSyntax node)
         {
             string className = node.Identifier.Text;
             var updatedNode = node.WithIdentifier(SyntaxFactory.Identifier(className));
 
-            var windowType = SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName("Window"));
+            // Evaluamos si tiene herencias declaradas
+            if (updatedNode.BaseList != null)
+            {
+                // Comprobamos si hereda explícitamente de componentes visuales de WinForms
+                bool inheritsFromWinForms = updatedNode.BaseList.Types.Any(b =>
+                    b.ToString() == "Form" || b.ToString() == "FormBase"
+                );
 
-            if (updatedNode.BaseList == null)
-            {
-                //updatedNode = updatedNode.WithBaseList(SyntaxFactory.BaseList(SyntaxFactory.SeparatedList<BaseTypeSyntax>(new[] { windowType })));
+                if (inheritsFromWinForms)
+                {
+                    // Filtramos y removemos "Form" o "FormBase"
+                    var cleanBases = updatedNode.BaseList.Types.Where(b =>
+                        b.ToString() != "Form" && b.ToString() != "FormBase"
+                    ).ToList();
+
+                    // Insertamos al principio la ventana nativa de WPF
+                    var windowType = SyntaxFactory.SimpleBaseType(SyntaxFactory.ParseTypeName("Window"));
+                    cleanBases.Insert(0, windowType);
+
+                    updatedNode = updatedNode.WithBaseList(SyntaxFactory.BaseList(SyntaxFactory.SeparatedList(cleanBases)));
+                }
+                // Si tiene otra herencia (ej: ICloneable, MyBusinessBaseClass), NO la tocamos.
             }
-            else
-            {
-                var cleanBases = updatedNode.BaseList.Types.Where(b => b.ToString() != "Form" && b.ToString() != "FormBase").ToList();
-                cleanBases.Insert(0, windowType);
-                updatedNode = updatedNode.WithBaseList(SyntaxFactory.BaseList(SyntaxFactory.SeparatedList(cleanBases)));
-            }
+            // Si la clase no hereda de absolutamente nada (BaseList == null), pasa de largo sin añadir "Window"
 
             return base.VisitClassDeclaration(updatedNode);
         }
@@ -128,7 +140,11 @@ namespace FSConvert
                     invoke.Expression.ToString() == "InitializeComponent"
                 ).ToList();
 
-                updatedNode = updatedNode.WithBody(SyntaxFactory.Block(cleanStatements));
+                // Si el constructor de esta clase no usaba InitializeComponent, mantenemos sus statements originales
+                if (cleanStatements.Count > 0)
+                {
+                    updatedNode = updatedNode.WithBody(SyntaxFactory.Block(cleanStatements));
+                }
             }
 
             return base.VisitConstructorDeclaration(updatedNode);
@@ -199,22 +215,19 @@ namespace FSConvert
 
                 try
                 {
-                    // Buscamos el nodo de asignación homólogo EXACTO en el árbol original usando la posición de caracteres
                     var originalNode = _originalRoot.FindNode(node.Span) as AssignmentExpressionSyntax;
 
                     if (originalNode != null && originalNode.Left is MemberAccessExpressionSyntax originalMemberAccess)
                     {
-                        // Le pedimos el tipo al modelo semántico usando la expresión original e inalterada
                         var typeInfo = _semanticModel.GetTypeInfo(originalMemberAccess.Expression);
                         typeSymbol = typeInfo.Type;
                     }
                 }
                 catch
                 {
-                    // Contingencia silenciosa si el nodo no se puede mapear por span
+                    // Contingencia por si falla el mapeo por posición
                 }
 
-                // Dejamos que los subnodos hagan sus mutaciones normales (quitar guiones bajos, etc.)
                 var processedAssignment = (AssignmentExpressionSyntax)base.VisitAssignmentExpression(node);
 
                 if (typeSymbol != null)
@@ -223,7 +236,6 @@ namespace FSConvert
 
                     if (RequiresContentPropertyInsteadOfText(fullTypeStr))
                     {
-                        // Intercambiamos .Text por .Content sobre el miembro ya limpio
                         string currentLeftStr = processedAssignment.Left.ToString();
                         string correctedLeft = currentLeftStr.Substring(0, currentLeftStr.Length - 5) + ".Content";
 

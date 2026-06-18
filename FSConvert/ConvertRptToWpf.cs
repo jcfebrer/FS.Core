@@ -3,8 +3,9 @@
 using System;
 using System.IO;
 using System.Text;
-using System.Security; // Necesario para sanitizar strings de escape XML
-// Referencias de SAP Crystal Reports
+using System.Security;
+using System.Collections.Generic;
+using System.Globalization;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
 
@@ -15,7 +16,8 @@ namespace FSConvert
         private const double TwipsPerPixel = 15.0;
 
         /// <summary>
-        /// Procesa un archivo .rpt y retorna una cadena con el marcado XAML (UserControl) completo.
+        /// Procesa un archivo .rpt, escribe automáticamente los archivos .xaml y .cs tanto del reporte principal 
+        /// como de sus subreportes en la misma carpeta, y retorna el contenido XAML principal.
         /// </summary>
         public static string Convert(string rptFilePath)
         {
@@ -24,7 +26,11 @@ namespace FSConvert
                 throw new FileNotFoundException("El archivo de Crystal Reports especificado no existe.", rptFilePath);
             }
 
+            string targetDirectory = Path.GetDirectoryName(rptFilePath);
+            string mainReportName = Path.GetFileNameWithoutExtension(rptFilePath).Replace(" ", "_").Replace("-", "_");
+
             StringBuilder xamlBuilder = new StringBuilder();
+            Dictionary<string, string> subreportsPendingToSave = new Dictionary<string, string>();
 
             using (ReportDocument report = new ReportDocument())
             {
@@ -32,39 +38,56 @@ namespace FSConvert
                 {
                     report.Load(rptFilePath);
 
-                    // 1. Cabecera estándar del archivo raíz XAML (UserControl)
-                    xamlBuilder.AppendLine("<UserControl x:Class=\"FSConvert.GeneratedViews.ReportView\"");
+                    double pageWidthInPixels = CalcularAnchoPaginaEnPixeles(report);
+                    string sPageWidth = pageWidthInPixels.ToString("F1", CultureInfo.InvariantCulture);
+
+                    // 1. Cabecera del archivo raíz XAML con el nombre exacto del archivo físico .rpt
+                    xamlBuilder.AppendLine($"<UserControl x:Class=\"FSConvert.GeneratedViews.{mainReportName}\"");
                     xamlBuilder.AppendLine("             xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"");
                     xamlBuilder.AppendLine("             xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"");
-                    xamlBuilder.AppendLine("             Width=\"800\">");
+                    xamlBuilder.AppendLine("             xmlns:views=\"clr-namespace:FSConvert.GeneratedViews\"");
+                    xamlBuilder.AppendLine("             Background=\"White\">");
                     xamlBuilder.AppendLine("    <ScrollViewer VerticalScrollBarVisibility=\"Auto\" HorizontalScrollBarVisibility=\"Auto\">");
-                    xamlBuilder.AppendLine("        <StackPanel Orientation=\"Vertical\" Margin=\"15\">");
+                    xamlBuilder.AppendLine($"        <StackPanel Orientation=\"Vertical\" Margin=\"20\" Width=\"{sPageWidth}\">");
 
-                    xamlBuilder.AppendLine("            ");
-                    xamlBuilder.AppendLine("            ");
-                    xamlBuilder.AppendLine("            ");
+                    // 2. Procesar las secciones internas
+                    GenerarSeccionesXaml(report, xamlBuilder, sPageWidth, subreportsPendingToSave, mainReportName);
 
-                    // 2. Procesar las secciones del reporte principal
-                    GenerarSeccionesXaml(report, xamlBuilder, isSubreport: false);
-
-                    // 3. Procesar los subinformes embebidos si existen
-                    if (report.Subreports.Count > 0)
-                    {
-                        xamlBuilder.AppendLine("\n            ");
-                        xamlBuilder.AppendLine("            ");
-                        xamlBuilder.AppendLine("            ");
-
-                        foreach (ReportDocument subreport in report.Subreports)
-                        {
-                            xamlBuilder.AppendLine($"            ");
-                            GenerarSeccionesXaml(subreport, xamlBuilder, isSubreport: true);
-                        }
-                    }
-
-                    // 4. Cierre de etiquetas del UserControl
+                    // 3. Cierre del UserControl principal
                     xamlBuilder.AppendLine("        </StackPanel>");
                     xamlBuilder.AppendLine("    </ScrollViewer>");
                     xamlBuilder.AppendLine("</UserControl>");
+
+                    string mainReportXamlContent = xamlBuilder.ToString();
+
+                    // =================================================================
+                    // ESCRITURA AUTOMÁTICA DEL REPORTE PRINCIPAL (.xaml y .xaml.cs)
+                    // =================================================================
+                    string mainXamlPath = Path.Combine(targetDirectory, $"{mainReportName}.xaml");
+                    File.WriteAllText(mainXamlPath, mainReportXamlContent, Encoding.UTF8);
+
+                    string mainCsPath = Path.Combine(targetDirectory, $"{mainReportName}.xaml.cs");
+                    string mainCsContent = GenerarCodeBehind(mainReportName);
+                    File.WriteAllText(mainCsPath, mainCsContent, Encoding.UTF8);
+
+                    // =================================================================
+                    // ESCRITURA AUTOMÁTICA DE LOS SUBREPORTES (.xaml y .xaml.cs)
+                    // =================================================================
+                    foreach (KeyValuePair<string, string> subreport in subreportsPendingToSave)
+                    {
+                        string subreportClassName = $"{mainReportName}_{subreport.Key}";
+
+                        // Guardar XAML del subreporte
+                        string xamlPath = Path.Combine(targetDirectory, $"{subreportClassName}.xaml");
+                        File.WriteAllText(xamlPath, subreport.Value, Encoding.UTF8);
+
+                        // Guardar .cs del subreporte
+                        string csPath = Path.Combine(targetDirectory, $"{subreportClassName}.xaml.cs");
+                        string csContent = GenerarCodeBehind(subreportClassName);
+                        File.WriteAllText(csPath, csContent, Encoding.UTF8);
+                    }
+
+                    return mainReportXamlContent;
                 }
                 catch (Exception ex)
                 {
@@ -75,95 +98,205 @@ namespace FSConvert
                     report.Close();
                 }
             }
-
-            return xamlBuilder.ToString();
         }
 
-        /// <summary>
-        /// Recorre recursivamente o secuencialmente las secciones y traduce sus elementos internos a código XAML.
-        /// </summary>
-        private static void GenerarSeccionesXaml(ReportDocument doc, StringBuilder sb, bool isSubreport)
+        private static string GenerarCodeBehind(string className)
         {
-            string prefijoAmbiente = isSubreport ? $"[Subreport: {doc.Name}] " : "";
+            StringBuilder csSb = new StringBuilder();
+            csSb.AppendLine("using System.Windows.Controls;");
+            csSb.AppendLine();
+            csSb.AppendLine("namespace FSConvert.GeneratedViews");
+            csSb.AppendLine("{");
+            csSb.AppendLine($"    public partial class {className} : UserControl");
+            csSb.AppendLine("    {");
+            csSb.AppendLine($"        public {className}()");
+            csSb.AppendLine("        {");
+            csSb.AppendLine("            InitializeComponent();");
+            csSb.AppendLine("        }");
+            csSb.AppendLine("    }");
+            csSb.AppendLine("}");
+            return csSb.ToString();
+        }
 
-            foreach (Section section in doc.ReportDefinition.Sections)
+        private static double CalcularAnchoPaginaEnPixeles(ReportDocument doc)
+        {
+            try
             {
-                // Convertir la altura de la sección a píxeles lógicos WPF
-                double heightInPixels = section.Height / TwipsPerPixel;
-
-                // Agrupamos cada sección en un GroupBox de WPF para mantener claridad semántica y visual
-                sb.AppendLine($"\n            ");
-                sb.AppendLine($"            <GroupBox Header=\"{section.Name}\" Margin=\"0,0,0,15\" BorderBrush=\"#CBD5E1\">");
-
-                // Usamos un Canvas porque Crystal maneja posicionamiento absoluto (coordenadas X, Y fijas)
-                sb.AppendLine($"                <Canvas Height=\"{heightInPixels:F1}\" Background=\"#F8FAFC\">");
-
-                foreach (ReportObject obj in section.ReportObjects)
+                double maxRightTwips = 0;
+                foreach (Section section in doc.ReportDefinition.Sections)
                 {
-                    // Cálculo de coordenadas relativas de dibujo en el lienzo
-                    double left = obj.Left / TwipsPerPixel;
-                    double top = obj.Top / TwipsPerPixel;
-                    double width = obj.Width / TwipsPerPixel;
-                    double height = obj.Height / TwipsPerPixel;
-
-                    switch (obj.Kind)
+                    if (section.SectionFormat.EnableSuppress) continue;
+                    foreach (ReportObject obj in section.ReportObjects)
                     {
-                        case ReportObjectKind.TextObject:
-                            var textObj = (TextObject)obj;
-                            string textoSanitizado = SecurityElement.Escape(textObj.Text);
-                            string fontWeight = textObj.Font.Bold ? "Bold" : "Normal";
-                            string fontStyle = textObj.Font.Italic ? "Italic" : "Normal";
-
-                            sb.AppendLine($"                    <TextBlock Text=\"{textoSanitizado}\" " +
-                                          $"Canvas.Left=\"{left:F1}\" Canvas.Top=\"{top:F1}\" " +
-                                          $"Width=\"{width:F1}\" Height=\"{height:F1}\" " +
-                                          $"FontFamily=\"{textObj.Font.Name}\" FontSize=\"{textObj.Font.Size:F0}\" " +
-                                          $"FontWeight=\"{fontWeight}\" FontStyle=\"{fontStyle}\" TextWrapping=\"Wrap\" />");
-                            break;
-
-                        case ReportObjectKind.FieldObject:
-                            var fieldObj = (FieldObject)obj;
-                            // En WPF automatizamos usando Data Binding directo al modelo de datos (MVVM)
-                            // Reemplazamos caracteres especiales del origen para tener un binding válido en C#
-                            string bindingPath = fieldObj.DataSource.Name.Replace("{", "").Replace("}", "").Replace(".", "_");
-
-                            sb.AppendLine($"                    <TextBox Text=\"{{Binding {bindingPath}, Mode=OneWay}}\" " +
-                                          $"Canvas.Left=\"{left:F1}\" Canvas.Top=\"{top:F1}\" " +
-                                          $"Width=\"{width:F1}\" Height=\"{height:F1}\" " +
-                                          $"IsReadOnly=\"True\" BorderThickness=\"1\" BorderBrush=\"#E2E8F0\" " +
-                                          $"ToolTip=\"Campo de Origen: {fieldObj.Name}\" />");
-                            break;
-
-                        case ReportObjectKind.LineObject:
-                            var lineObj = (LineObject)obj;
-                            // En Crystal las líneas tienen coordenadas de inicio y fin propias
-                            double endLeft = lineObj.Right / TwipsPerPixel;
-                            double endTop = lineObj.Bottom / TwipsPerPixel;
-
-                            sb.AppendLine($"                    <Line X1=\"{left:F1}\" Y1=\"{top:F1}\" X2=\"{endLeft:F1}\" Y2=\"{endTop:F1}\" " +
-                                          $"Stroke=\"#64748B\" StrokeThickness=\"1\" />");
-                            break;
-
-                        case ReportObjectKind.SubreportObject:
-                            var subreportObj = (SubreportObject)obj;
-                            // Un subinforme visual es un componente inyectado dinámicamente mediante ContentControl
-                            sb.AppendLine($"                    ");
-                            sb.AppendLine($"                    <ContentControl Content=\"{{Binding SubreportView_{subreportObj.Name}}}\" " +
-                                          $"Canvas.Left=\"{left:F1}\" Canvas.Top=\"{top:F1}\" " +
-                                          $"Width=\"{width:F1}\" Height=\"{height:F1}\" " +
-                                          $"BorderThickness=\"1\" BorderBrush=\"#3B82F6\" BorderStyle=\"Dash\" />");
-                            break;
-
-                        default:
-                            // Marcador visual por si el reporte posee imágenes u objetos OLE no soportados directamente por texto
-                            sb.AppendLine($"                    ");
-                            break;
+                        if (obj.ObjectFormat.EnableSuppress) continue;
+                        double rightEdge = obj.Left + obj.Width;
+                        if (rightEdge > maxRightTwips) maxRightTwips = rightEdge;
                     }
                 }
-
-                sb.AppendLine("                </Canvas>");
-                sb.AppendLine("            </GroupBox>");
+                return maxRightTwips > 0 ? (maxRightTwips / TwipsPerPixel) + 30.0 : 820.0;
             }
+            catch { return 820.0; }
+        }
+
+        private static void GenerarSeccionesXaml(ReportDocument doc, StringBuilder sb, string sPageWidth, Dictionary<string, string> subreportsDict, string mainReportName)
+        {
+            foreach (Section section in doc.ReportDefinition.Sections)
+            {
+                if (section.SectionFormat.EnableSuppress) continue;
+
+                int objetosVisibles = 0;
+                foreach (ReportObject obj in section.ReportObjects)
+                {
+                    if (!obj.ObjectFormat.EnableSuppress) objetosVisibles++;
+                }
+
+                if (objetosVisibles == 0) continue;
+
+                double heightInPixels = section.Height / TwipsPerPixel;
+                string sSectionHeight = heightInPixels.ToString("F1", CultureInfo.InvariantCulture);
+
+                sb.AppendLine($"\n            ");
+                sb.AppendLine($"            <Canvas Height=\"{sSectionHeight}\" Width=\"{sPageWidth}\" Background=\"Transparent\" HorizontalAlignment=\"Left\">");
+
+                ProcesarObjetosDeSeccion(section.ReportObjects, sb, subreportsDict, sPageWidth, mainReportName);
+
+                sb.AppendLine("            </Canvas>");
+            }
+        }
+
+        private static void ProcesarObjetosDeSeccion(ReportObjects reportObjects, StringBuilder sb, Dictionary<string, string> subreportsDict, string sPageWidth, string mainReportName)
+        {
+            foreach (ReportObject obj in reportObjects)
+            {
+                if (obj.ObjectFormat.EnableSuppress) continue;
+
+                double left = obj.Left / TwipsPerPixel;
+                double top = obj.Top / TwipsPerPixel;
+                double width = obj.Width / TwipsPerPixel;
+                double height = obj.Height / TwipsPerPixel;
+
+                string sLeft = left.ToString("F1", CultureInfo.InvariantCulture);
+                string sTop = top.ToString("F1", CultureInfo.InvariantCulture);
+                string sWidth = width.ToString("F1", CultureInfo.InvariantCulture);
+                string sHeight = height.ToString("F1", CultureInfo.InvariantCulture);
+
+                switch (obj.Kind)
+                {
+                    case ReportObjectKind.TextObject:
+                        var textObj = (TextObject)obj;
+                        AppendTextBlock(sb, SecurityElement.Escape(textObj.Text), textObj.Font, textObj.ObjectFormat.HorizontalAlignment, left, top, width, height);
+                        break;
+
+                    case ReportObjectKind.FieldObject:
+                        var fieldObj = (FieldObject)obj;
+                        string bindingPath = fieldObj.DataSource.Name.Replace("{", "").Replace("}", "").Replace(".", "_");
+                        AppendTextBlock(sb, $"{{Binding {bindingPath}, Mode=OneWay}}", fieldObj.Font, fieldObj.ObjectFormat.HorizontalAlignment, left, top, width, height, isBinding: true);
+                        break;
+
+                    case ReportObjectKind.LineObject:
+                        var lineObj = (LineObject)obj;
+                        string slx1 = (lineObj.Left / TwipsPerPixel).ToString("F1", CultureInfo.InvariantCulture);
+                        string sly1 = (lineObj.Top / TwipsPerPixel).ToString("F1", CultureInfo.InvariantCulture);
+                        string slx2 = (lineObj.Right / TwipsPerPixel).ToString("F1", CultureInfo.InvariantCulture);
+                        string sly2 = (lineObj.Bottom / TwipsPerPixel).ToString("F1", CultureInfo.InvariantCulture);
+                        sb.AppendLine($"                    <Line X1=\"{slx1}\" Y1=\"{sly1}\" X2=\"{slx2}\" Y2=\"{sly2}\" Stroke=\"#1E293B\" StrokeThickness=\"1.0\" />");
+                        break;
+
+                    case ReportObjectKind.BoxObject:
+                        sb.AppendLine($"                    <Rectangle Canvas.Left=\"{sLeft}\" Canvas.Top=\"{sTop}\" Width=\"{sWidth}\" Height=\"{sHeight}\" Stroke=\"#64748B\" StrokeThickness=\"1\" RadiusX=\"2\" RadiusY=\"2\" />");
+                        break;
+
+                    case ReportObjectKind.SubreportObject:
+                        var subreportObj = (SubreportObject)obj;
+                        string cleanSubName = subreportObj.Name.Replace(" ", "_").Replace("-", "_");
+
+                        string subreportClassName = $"{mainReportName}_{cleanSubName}";
+                        string subreportDataBinding = $"SubreportData_{cleanSubName}";
+
+                        sb.AppendLine($"                    ");
+                        sb.AppendLine($"                    <views:{subreportClassName} DataContext=\"{{Binding {subreportDataBinding}, Mode=OneWay}}\" Canvas.Left=\"{sLeft}\" Canvas.Top=\"{sTop}\" Width=\"{sWidth}\" Height=\"{sHeight}\" />");
+
+                        if (!subreportsDict.ContainsKey(cleanSubName))
+                        {
+                            try
+                            {
+                                ReportDocument subDoc = subreportObj.OpenSubreport(subreportObj.SubreportName);
+                                string subreportXaml = GenerarUserControlSubreporte(subreportClassName, subDoc, sPageWidth, mainReportName);
+                                subreportsDict.Add(cleanSubName, subreportXaml);
+                            }
+                            catch (Exception ex)
+                            {
+                                subreportsDict.Add(cleanSubName, $"<UserControl x:Class=\"FSConvert.GeneratedViews.{subreportClassName}\" xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"><Grid><TextBlock Foreground=\"Red\" Text=\"Error: {SecurityElement.Escape(ex.Message)}\"/></Grid></UserControl>");
+                            }
+                        }
+                        break;
+
+                    case ReportObjectKind.PictureObject:
+                        string imgBinding = $"Imagen_{obj.Name}";
+                        if (obj is BlobFieldObject blobObj && blobObj.DataSource != null)
+                            imgBinding = blobObj.DataSource.Name.Replace("{", "").Replace("}", "").Replace(".", "_");
+                        else if (obj is PictureObject picObj)
+                            imgBinding = picObj.Name;
+
+                        sb.AppendLine($"                    <Image Source=\"{{Binding {imgBinding}, Mode=OneWay}}\" Canvas.Left=\"{sLeft}\" Canvas.Top=\"{sTop}\" Width=\"{sWidth}\" Height=\"{sHeight}\" Stretch=\"Uniform\" />");
+                        break;
+
+                    default:
+                        sb.AppendLine($"                    <Border Canvas.Left=\"{sLeft}\" Canvas.Top=\"{sTop}\" Width=\"{sWidth}\" Height=\"{sHeight}\" BorderBrush=\"#E2E8F0\" BorderThickness=\"1\" BorderStyle=\"Dash\"><TextBlock Text=\"[{obj.Kind}: {obj.Name}]\" FontSize=\"9\" Foreground=\"#94A3B8\" HorizontalAlignment=\"Center\" VerticalAlignment=\"Center\" /></Border>");
+                        break;
+                }
+            }
+        }
+
+        private static string GenerarUserControlSubreporte(string className, ReportDocument subDoc, string sPageWidth, string mainReportName)
+        {
+            StringBuilder subSb = new StringBuilder();
+            subSb.AppendLine($"<UserControl x:Class=\"FSConvert.GeneratedViews.{className}\"");
+            subSb.AppendLine("             xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\"");
+            subSb.AppendLine("             xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\"");
+            subSb.AppendLine("             Background=\"Transparent\">");
+            subSb.AppendLine("    <StackPanel Orientation=\"Vertical\">");
+
+            var emptyDict = new Dictionary<string, string>();
+            foreach (Section subSection in subDoc.ReportDefinition.Sections)
+            {
+                if (subSection.SectionFormat.EnableSuppress) continue;
+
+                double heightInPixels = subSection.Height / TwipsPerPixel;
+                string sSectionHeight = heightInPixels.ToString("F1", CultureInfo.InvariantCulture);
+
+                subSb.AppendLine($"        ");
+                subSb.AppendLine($"        <Canvas Height=\"{sSectionHeight}\" Width=\"{sPageWidth}\" Background=\"Transparent\" HorizontalAlignment=\"Left\">");
+
+                ProcesarObjetosDeSeccion(subSection.ReportObjects, subSb, emptyDict, sPageWidth, mainReportName);
+
+                subSb.AppendLine("        </Canvas>");
+            }
+
+            subSb.AppendLine("    </StackPanel>");
+            subSb.AppendLine("</UserControl>");
+
+            return subSb.ToString();
+        }
+
+        private static void AppendTextBlock(StringBuilder sb, string text, System.Drawing.Font font, Alignment horizontalAlign, double left, double top, double width, double height, bool isBinding = false)
+        {
+            string fontWeight = font.Bold ? "Bold" : "Normal";
+            string fontStyle = font.Italic ? "Italic" : "Normal";
+            string textDecoration = font.Underline ? "Underline" : "None";
+
+            string wpfAlign = "Left";
+            if (horizontalAlign == Alignment.HorizontalCenterAlign) wpfAlign = "Center";
+            else if (horizontalAlign == Alignment.RightAlign) wpfAlign = "Right";
+            else if (horizontalAlign == Alignment.Justified) wpfAlign = "Justify";
+
+            string sLeft = left.ToString("F1", CultureInfo.InvariantCulture);
+            string sTop = top.ToString("F1", CultureInfo.InvariantCulture);
+            string sWidth = width.ToString("F1", CultureInfo.InvariantCulture);
+            string sHeight = height.ToString("F1", CultureInfo.InvariantCulture);
+            string sFontSize = font.Size.ToString("F1", CultureInfo.InvariantCulture);
+
+            sb.AppendLine($"                    <TextBlock Text=\"{text}\" Canvas.Left=\"{sLeft}\" Canvas.Top=\"{sTop}\" Width=\"{sWidth}\" Height=\"{sHeight}\" FontFamily=\"{font.Name}\" FontSize=\"{sFontSize}\" FontWeight=\"{fontWeight}\" FontStyle=\"{fontStyle}\" TextDecorations=\"{textDecoration}\" TextAlignment=\"{wpfAlign}\" TextWrapping=\"Wrap\" VerticalAlignment=\"Center\" Foreground=\"#0F172A\" />");
         }
     }
 }

@@ -42,7 +42,7 @@ namespace FSParser
 #if NET47_OR_GREATER || NETCOREAPP
                 return TextUtil.ProtectText(FSConvert.ConvertToWPF.Convert(TextUtil.UnProtectText(_Q(args[0]))));
 #else
-                throw new Exception("ConvertToWpf solo disponible en NETCORE.");
+                throw new Exception("ConvertToWpf no esta disponible.");
 #endif
             };
 
@@ -51,7 +51,7 @@ namespace FSParser
 #if NET47_OR_GREATER || NETCOREAPP
                 return TextUtil.ProtectText(FSConvert.ConvertInfragistics.Convert(TextUtil.UnProtectText(_Q(args[0])), true));
 #else
-                throw new Exception("RemoveInfragistics solo disponible en NETCORE.");
+                throw new Exception("RemoveInfragistics no esta disponible.");
 #endif
             };
 
@@ -60,7 +60,7 @@ namespace FSParser
 #if NET47_OR_GREATER || NETCOREAPP
                 return TextUtil.ProtectText(FSConvert.ConvertWinFormsCodeToWpf.Convert(TextUtil.UnProtectText(_Q(args[0]))));
 #else
-                throw new Exception("ConvertWinFormsCodeToWpf solo disponible en NETCORE.");
+                throw new Exception("ConvertWinFormsCodeToWpf no esta disponible.");
 #endif
             };
 
@@ -69,7 +69,7 @@ namespace FSParser
 #if NET40_OR_GREATER
                 return TextUtil.ProtectText(FSConvert.ConvertRptToWpf.Convert(TextUtil.UnProtectText(_Q(args[0]))));
 #else
-                throw new Exception("ConvertRptToWpf solo disponible en NETCORE.");
+                throw new Exception("ConvertRptToWpf no esta disponible.");
 #endif
             };
 
@@ -78,7 +78,7 @@ namespace FSParser
 #if NET47_OR_GREATER || NETCOREAPP
                 return TextUtil.ProtectText(FSConvert.ConvertCsprojToWpf.Convert(TextUtil.UnProtectText(_Q(args[0])), "net48"));
 #else
-                throw new Exception("ConvertCsprojToWpf solo disponible en NETCORE.");
+                throw new Exception("ConvertCsprojToWpf no esta disponible.");
 #endif
             };
 
