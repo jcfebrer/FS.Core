@@ -13,51 +13,14 @@ namespace FSConvert
 {
     public class ConvertInfragistics
     {
-        // Diccionario de equivalencias Infragistics -> .NET Estándar
-        private static readonly Dictionary<string, string> TypeMapping = new Dictionary<string, string>()
-        {
-            { "UltraNumericEditor", "NumericUpDown" },
-            { "UltraDateTimeEditor", "DateTimePicker" },
-            { "UltraMaskedEdit", "MaskedTextBox" },
-            { "UltraTextEditor", "TextBox" },
-            { "UltraCheckEditor", "CheckBox" },
-            { "UltraComboEditor", "ComboBox" },
-            { "UltraCombo", "ComboBox" },
-            { "UltraDataSource", "DataTable" },
-            { "UltraWinDataSource", "DataTable" },
-            { "UltraGrid", "DataGridView" },
-            { "UltraGridRow", "DataGridViewRow" },
-            { "UltraGridCell", "DataGridViewCell" },
-            { "UltraGridColumn", "DataGridViewColumn" },
-            { "InitializeRowEventArgs", "DataGridViewRowEventArgs" },
-            { "UltraListView", "ListView" },
-            { "UltraTree", "TreeView" },
-            { "UltraTabControl", "TabControl" },
-            { "UltraTab", "TabPage" },
-            { "UltraTabPageControl", "TabPage" },
-            { "UltraTabSharedControlsPage", "TabPage" },
-            { "UltraWinTabControl", "TabControl" },
-            { "SelectedTabChangedEventArgs", "TabControlEventArgs" },
-            { "UltraGroupBox", "GroupBox" },
-            { "UltraPanel", "Panel" },
-            { "UltraExpandableGroupBox", "GroupBox" },
-            { "UltraStatusBar", "StatusStrip" },
-            { "UltraLabel", "Label" },
-            { "UltraButton", "Button" },
-            { "UltraToolTipManager", "ToolTip" },
-            { "UltraToolTipInfo", "ToolTip" },
-            { "UltraToolbarsManager", "ToolStrip" },
-            { "Appearance", "InfragisticsAppearanceMarkerToRemove" }
-        };
-
         // Diccionario unificado y ampliado según tu script: Infragistics -> FSFormControls
-        private static readonly Dictionary<string, string> TypeMappingFS = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> TypeMapping = new Dictionary<string, string>()
         {
             { "UltraNumericEditor", "DBTextBoxEx" },
             { "UltraDateTimeEditor", "DBDate" },
             { "UltraMaskedEdit", "DBTextBoxEx" },
             { "UltraTextEditor", "DBTextBoxEx" },
-            { "UltraCheckEditor", "DBCheckBox" }, // Actualizado de DBCheckBoxEx a DBCheckBox según .scp
+            { "UltraCheckEditor", "DBCheckBox" },
             { "UltraComboEditor", "DBComboEx" },
             { "UltraCombo", "DBComboEx" },
             { "UltraDataSource", "DBDataTable" },
@@ -65,13 +28,13 @@ namespace FSConvert
             { "UltraGrid", "DBGridView" },
             { "UltraGridRow", "DBGridViewRow" },
             { "UltraGridCell", "DBGridViewCell" },
-            { "UltraGridColumn", "DBColumn" }, // Actualizado según .scp
+            { "UltraGridColumn", "DBColumn" },
             { "InitializeRowEventArgs", "DataGridViewRowEventArgs" },
             { "UltraListView", "DBListView" },
             { "UltraTree", "DBTreeView" },
             { "UltraWinTree", "DBTreeView" },
             { "UltraTabControl", "DBTabControl" },
-            { "UltraTab", "DBTabControl" }, // Mapeado según .scp
+            { "UltraTab", "DBTabPage" },
             { "UltraTabPageControl", "DBTabPage" },
             { "UltraTabSharedControlsPage", "DBTabPageShared" },
             { "UltraWinTabControl", "DBTabControl" },
@@ -97,25 +60,11 @@ namespace FSConvert
             { "Appearance", "DBAppearance" },
             { "HAlign", "DBAppearance.HAlign" },
             { "VAlign", "DBAppearance.VAlign" },
-            { "TextTrimming", "DBAppearance.DBTextTrimming" },
-            { "GradientAlignment", "DBAppearance.GradientAlignment" },
-            { "GradientStyle", "DBAppearance.GradientStyle" },
-            { "UIElementBorderStyle", "DBGridViewDisplayLayout.DBElementBorderStyle" },
-            { "ViewStyleBand", "DBGridViewDisplayLayout.DBViewStyleBand" },
-            { "ScrollStyle", "DBGridViewDisplayLayout.DBScrollStyle" },
-            { "ScrollBounds", "DBGridViewDisplayLayout.DBScrollBounds" },
-            { "RowSizing", "DBGridViewDisplayLayout.DBRowSizing" },
-            { "CellClickAction", "DBGridViewDisplayLayout.DBCellClickAction" },
-            { "HeaderStyle", "DBGridViewDisplayLayout.DBHeaderStyle" },
-            { "HeaderClickAction", "DBGridViewDisplayLayout.DBHeaderClickAction" },
-            { "UIElementEventArgs", "DBEditorButtonEventArgs" },
-            { "EditorButtonEventArgs", "DBEditorButtonEventArgs" },
-            { "UltraToolbarsDockArea", "DBToolBarContainer" },
-            { "SummarySettings", "DBSummarie" },
-            { "DropDownStyle", "ComboBoxStyle" }
+            { "UIElementBorderStyle", "BorderStyle" },
+            { "SummarySettings", "DBSummarie" }
         };
 
-        public static string Convert(string sourceCode, bool useFSMapping)
+        public static string Convert(string sourceCode)
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(sourceCode);
             CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
@@ -131,11 +80,11 @@ namespace FSConvert
                 cleanUsings.Insert(0, SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Windows.Forms")));
 
             // 3. Ejecutar el Reescritor Inteligente de Árboles de Sintaxis
-            var rewriter = useFSMapping ? new WinFormsStandardRewriter(TypeMappingFS, true) : new WinFormsStandardRewriter(TypeMapping, false);
-            var processedRoot = (CompilationUnitSyntax)rewriter.Visit(root);
+            WinFormsStandardRewriter rewriter = new WinFormsStandardRewriter(TypeMapping, false);
+            CompilationUnitSyntax processedRoot = (CompilationUnitSyntax)rewriter.Visit(root);
 
             // 4. Inyectar FSFormControls condicionalmente si hubo cambios
-            if (useFSMapping && rewriter.HasReplacements)
+            if (rewriter.HasReplacements)
             {
                 if (!cleanUsings.Any(u => u.Name.ToString() == "FSFormControls"))
                 {
@@ -147,244 +96,291 @@ namespace FSConvert
 
             // 5. Post-procesamiento de reemplazos de texto de bajo nivel y expresiones regulares heredadas del .scp
             string finalCode = processedRoot.NormalizeWhitespace().ToFullString();
-            return ApplyScriptReplacements(finalCode, useFSMapping);
+            return ApplyScriptReplacements(finalCode);
         }
 
-        private static string ApplyScriptReplacements(string code, bool useFSMapping)
+        private static string ApplyScriptReplacements(string code)
         {
-            if (!useFSMapping) return code;
-
             // Mapeos rápidos de propiedades específicas del archivo .scp
-            code = code.Replace(".DisplayLayout;", ";")
-                       .Replace(".DisplayLayout.Bands[0]", "")
-                       .Replace(".DisplayLayout.Override", "")
-                       .Replace(".SharedPropsInternal.", ".")
-                       .Replace(".SharedProps.", ".")
-                       .Replace(".GroupByBox.", ".")
-                       .Replace(".Band.Columns", ".Columns")
-                       .Replace(".Band.Index", ".Index")
-                       .Replace(".Band.DataSource", ".DataSource")
-                       .Replace(".Panels.", ".Items.")
-                       .Replace(".Panels[", ".Items[")
-                       .Replace(".Items.ValueList.FindByDataValue", ".FindByValue")
-                       .Replace(".SelectedTab.Index", ".SelectedIndex")
-                       .Replace(".ClickCellButton", ".CellClick")
-                       .Replace(".CellChange", ".CellValueChanged")
-                       .Replace(".AfterCellUpdate", ".CellEndEdit")
-                       .Replace(".Tool.Key", ".Button.Name")
-                       .Replace(".Tools", ".Items")
-                       .Replace("ToolBase", "ToolStripItem")
-                       .Replace(".AddTool", ".Add")
-                       .Replace(".Tabs.AddRange", ".TabPages.AddRange")
-                       .Replace(".Tabs[", ".TabPages[")
-                       .Replace("DefaultableBoolean.False", "false")
-                       .Replace("DefaultableBoolean.True", "true")
-                       .Replace("DefaultableBoolean.Default", "true")
-                       .Replace(".Nullable", ".AllowNull")
-                       .Replace(".DBAppearance", ".Appearance")
-                       .Replace("Nodes.Exists", "Nodes.ContainsKey");
+            code = code.Replace("Infragistics.Win.", "")
+                .Replace(".DisplayLayout;", ";")
+                .Replace(".DisplayLayout.Bands[0]", "")
+                .Replace(".DisplayLayout.Override", "")
+                .Replace(".SharedPropsInternal.", ".")
+                .Replace(".SharedProps.", ".")
+                .Replace(".GroupByBox.", ".")
+                .Replace(".Band.Columns", ".Columns")
+                .Replace(".Band.Index", ".Index")
+                .Replace(".Band.DataSource", ".DataSource")
+                .Replace(".Panels.", ".Items.")
+                .Replace(".Panels[", ".Items[")
+                .Replace(".Items.ValueList.FindByDataValue", ".FindByValue")
+                .Replace(".SelectedTab.Index", ".SelectedIndex")
+                .Replace(".ClickCellButton", ".CellClick")
+                .Replace(".CellChange", ".CellValueChanged")
+                .Replace(".AfterCellUpdate", ".CellEndEdit")
+                .Replace(".Tool.Key", ".Button.Name")
+                .Replace(".Tools", ".Items")
+                .Replace("ToolBase", "ToolStripItem")
+                .Replace(".AddTool", ".Add")
+                .Replace(".Tabs.AddRange", ".TabPages.AddRange")
+                .Replace(".Tabs[", ".TabPages[")
+                .Replace("DefaultableBoolean.False", "false")
+                .Replace("DefaultableBoolean.True", "true")
+                .Replace("DefaultableBoolean.Default", "true")
+                .Replace(".Nullable", ".AllowNull")
+                .Replace(".DBAppearance", ".Appearance")
+                .Replace("Nodes.Exists", "Nodes.ContainsKey")
+                .Replace("EditorWithCombo", "DBComboEx")
+                .Replace("UltraWinProgressBar.UltraProgressBar", "DBProgressBar")
+                .Replace("UltraWinChart.UltraChart", "DBChart")
+                .Replace("Infragistics.UltraChart", "DBChart")
+                .Replace("UltraWinGrid.FilterCondition", "DBGridViewFilter")
+                .Replace("UltraWinEditors.EditorButtonEventArgs", "DBEditorButtonEventArgs")
+                .Replace("UltraWinGrid.UltraGridRow", "DBGridViewRow")
+                .Replace("UltraWinDataSource.UltraDataSource", "DataTable")
+                .Replace("UltraWinDataSource", "DataTable")
+                .Replace("UltraWinStatusBar.UltraStatusBar", "DBStatusBar")
+                .Replace("UltraWinStatusBar.UltraStatusPanel", "DBStatusBarPanel")
+                .Replace("UltraWinGrid.UltraGridColumn", "DBColumn")
+                .Replace("UltraWinGrid.UltraGridCell", "DBGridViewCell")
+                .Replace("UltraWinGrid.UltraGrid", "DBGridView")
+                .Replace("UltraWinDataSource.UltraDataRow", "DataRow")
+                .Replace("Misc.UltraGroupBox", "DBGroupBox")
+                .Replace("UltraWinEditors.UltraButton", "DBButton")
+                .Replace("Misc.UltraButton", "DBButton")
+                .Replace("UltraWinEditors.EditorButton", "DBButton")
+                .Replace("UltraWinEditors.UltraDateTimeEditor", "DBDate")
+                .Replace("UltraWinEditors.UltraNumericEditor", "DBTextBoxEx")
+                .Replace("Misc.UltraLabel", "DBLabel")
+                .Replace("UltraWinMaskedEdit.UltraMaskedEdit", "DBTextBoxEx")
+                .Replace("UltraWinEditors.UltraTextEditor", "DBTextBoxEx")
+                .Replace("UltraWinToolTip.UltraToolTipInfo", "DBTooltip")
+                .Replace("UltraWinToolTip.UltraToolTipManager", "DBTooltipManager")
+                .Replace("UltraWinToolbars.ButtonTool", "DBToolBarButton")
+                .Replace("UltraWinToolbars.UltraToolbarsManager", "DBToolBarManager")
+                .Replace("UltraWinTabControl.UltraTabControl", "DBTabControl")
+                .Replace("UltraWinTabControl.UltraTabSharedControlsPage", "DBTabPageShared")
+                .Replace("UltraWinTabControl.UltraTabPageControl", "DBTabPage")
+                .Replace("UltraWinTabControl.UltraTab", "DBTabPage")
+                .Replace("UltraWinTabControl", "DBTabControl")
+                .Replace("UltraWinEditors.UltraComboEditor", "DBComboEx")
+                .Replace("UltraWinEditors.UltraCheckEditor", "DBCheckBox")
+                .Replace("UltraWinEditors.NumericType", "DBTextBoxEx.NumericTypeEnum")
+                .Replace("UltraWinMaskedEdit.MaskedEditTabNavigation", "DBTextBoxEx.TabNavigationEnum")
+                .Replace("UIElementBorderStyle", "DBGridViewDisplayLayout.DBElementBorderStyle")
+                .Replace("UltraWinMaskedEdit.MaskChangedEventArgs", "EventArgs")
+                .Replace("UltraWinGrid.ViewStyleBand", "DBGridViewDisplayLayout.DBViewStyleBand")
+                .Replace("UltraWinGrid.ScrollStyle", "DBGridViewDisplayLayout.DBScrollStyle")
+                .Replace("UltraWinGrid.ScrollBounds", "DBGridViewDisplayLayout.DBScrollBounds")
+                .Replace("UltraWinGrid.RowSizing", "DBGridViewDisplayLayout.DBRowSizing")
+                .Replace("UltraWinGrid.CellClickAction", "DBGridViewDisplayLayout.DBCellClickAction")
+                .Replace("= HeaderStyle", "= DBGridViewDisplayLayout.DBHeaderStyle")
+                .Replace("UltraWinGrid.HeaderClickAction", "DBGridViewDisplayLayout.DBHeaderClickAction")
+                .Replace("UIElementEventArgs", "DBEditorButtonEventArgs")
+                .Replace("DefaultableBoolean.False", "false")
+                .Replace("DefaultableBoolean.True", "true")
+                .Replace("DefaultableBoolean.Default", "true")
+                .Replace("UltraWinGrid.CellClickAction", "DBGridViewDisplayLayout.DBCellClickAction")
+                .Replace("UltraWinToolbars.UltraToolbarsDockArea", "DBToolBarContainer")
+                .Replace("UltraWinTree.UltraTreeNode", "TreeNode")
+                .Replace("UltraWinTree.UltraTree", "DBTreeView")
+                .Replace("UltraWinTree", "DBTreeView")
+                .Replace("UltraWinGrid.ErrorEventArgs", "EventArgs")
+                .Replace("UltraWinEditors.UltraOptionSet", "DBOptionSet")
+                .Replace("ValueListItem", "DBRadioButton")
+                .Replace("DefaultableBoolean.False", "false")
+                .Replace("DefaultableBoolean.True", "true")
+                .Replace("DefaultableBoolean.Default", "true")
+                .Replace(".DisplayLayout;", ";")
+                .Replace(".DisplayLayout.Bands[0]", "")
+                .Replace(".DisplayLayout.Override", "")
+                .Replace(".BackColorAlpha = ", ".BackColorAlpha = DBAppearance.")
+                .Replace(".DBButtonClick +=", ".Click +=")
+                .Replace(".DBButtonClick -=", ".Click -=")
+                .Replace(".Scrollbars = System.Windows.Forms.ScrollBars", ".ScrollBars = System.Windows.Forms.ScrollBars")
+                .Replace(".Scrollbars = System.Windows.Forms.ScrollBars", ".ScrollBars = System.Windows.Forms.ScrollBars")
+                .Replace(".GroupByBox.", ".")
+                .Replace(".Items.ValueList.FindByDataValue", ".FindByValue")
+                .Replace(".ValorOriginal).DisplayText;", ".ValorOriginal.ToString());")
+                .Replace(".Valor).DisplayText;", ".Valor.ToString());")
+                .Replace(".SelectedTab.Index", ".SelectedIndex")
+                .Replace(".Band.Columns", ".Columns")
+                .Replace(".Band.Index", ".Index")
+                .Replace(".HeaderStyle = HeaderStyle.", ".HeaderStyle = DBHeaderStyle.")
+                .Replace(".RowSelectorStyle = HeaderStyle.", ".RowSelectorStyle = DBHeaderStyle.")
+                .Replace(".RowSelectorNumberStyle = RowSelectorNumberStyle.", ".RowSelectorNumberStyle = DBRowSelectorNumberStyle.")
+                .Replace(".RowSelectorHeaderStyle = RowSelectorHeaderStyle.", ".RowSelectorHeaderStyle = DBRowSelectorHeaderStyle.")
+                .Replace(".CellClickAction = CellClickAction.", ".CellClickAction = DBCellClickAction.")
+                .Replace(".HeaderClickAction = HeaderClickAction.", ".HeaderClickAction = DBHeaderClickAction.")
+                .Replace(".AllowColMoving = UltraWinGrid.AllowColMoving.", ".AllowColMoving = DBGridViewDisplayLayout.DBAllowColMoving.")
+                .Replace(".AllowColSwapping = UltraWinGrid.AllowColSwapping.", ".AllowColSwapping = DBGridViewDisplayLayout.DBAllowColSwapping.")
+                .Replace(".SelectTypeRow = UltraWinGrid.SelectType.", ".SelectTypeRow = DBGridViewDisplayLayout.SelectType.")
+                .Replace(".TabNavigation = UltraWinGrid.TabNavigation.", ".TabNavigation = DBGridViewDisplayLayout.DBTabNavigation.")
+                .Replace(".RuntimeCustomizationOptions = UltraWinToolbars.RuntimeCustomizationOptions.", ".RuntimeCustomizationOptions = DBToolBarManager.DBRuntimeCustomizationOptions.")
+                .Replace(".RowSizing = RowSizing.", ".RowSizing = DBRowSizing.")
+                .Replace(".Scrollbars = ScrollBars.", ".ScrollBars = ScrollBars.")
+                .Replace(".DockedPosition = UltraWinToolbars.DockedPosition.", ".Dock = DockStyle.")
+                .Replace("_ClickCellButton(object sender, CellEventArgs e)", "_ClickCellButton(object sender, DataGridViewCellEventArgs e)")
+                .Replace(".ClickCellButton += new UltraWinGrid.CellEventHandler", ".CellClick += new DBGridView.CellClickEventHandler")
+                .Replace(".Error += new UltraWinGrid.ErrorEventHandler", ".Error += new DBGridView.ErrorEventHandler")
+                .Replace(".InitializeRow += new UltraWinGrid.InitializeRowEventHandler", ".InitializeRow += new DataGridViewRowEventHandler")
+                .Replace("UltraWinGrid.InitializeRowEventArgs", "DataGridViewRowEventArgs")
+                .Replace("InitializeRowEventArgs", "DataGridViewRowEventArgs")
+                .Replace(".Tools.AddRange(new UltraWinToolbars.ToolBase[]", ".Items.AddRange(new DBToolBarButton[]")
+                .Replace(".SharedPropsInternal.", ".")
+                .Replace(".SharedProps.", ".")
+                .Replace(".ClickCellButton", ".CellClick")
+                .Replace(".SizingMode = UltraWinStatusBar.PanelSizingMode.", ".SizingMode = DBStatusBarPanel.SizingModeEnum.")
+                .Replace(".ViewStyle = UltraWinStatusBar.ViewStyle.", ".ViewStyle = DBStatusBar.ViewStyleEnum.")
+                .Replace(".ToolClick += new UltraWinToolbars.ToolClickEventHandler", ".ItemClick += new DBToolBarManager.ToolStripItemClickEventHandler")
+                .Replace("UltraWinToolbars.ToolClickEventArgs", "ToolStripItemClickedEventArgs")
+                .Replace(".Tool.Key", ".Button.Name")
+                .Replace(".InsetSoft;", ".Raised;")
+                .Replace(".ToolClick", ".ItemClick")
+                .Replace(".CellChange", ".CellValueChanged")
+                .Replace(".AfterCellUpdate", ".CellEndEdit")
+                .Replace(".Band.DataSource", ".DataSource")
+                .Replace(@".Key == """, @".Name == """)
+                .Replace(".Tools", ".Items")
+                .Replace(".Style = ColumnStyle.", ".ColumnType = DBColumn.ColumnTypes.")
+                .Replace(".TextHAlign = HAlign.", ".Alignment = HorizontalAlignment.")
+                .Replace(".TextHAlign = DBAppearance.HAlign.", ".Alignment = HorizontalAlignment.")
+                .Replace("= HAlign.", "= DBAppearance.HAlign.")
+                .Replace("= VAlign.", "= DBAppearance.VAlign.")
+                .Replace(", SummaryType.", ", DBSummarie.SummarieType.")
+                .Replace("UltraWinMaskedEdit.EditAsType.", "DBTextBoxEx.EditAsType.")
+                .Replace("UltraToolbarsDockArea", "DBToolBarContainer")
+                .Replace("UltraButton", "DBButton")
+                .Replace("UltraToolbarsManager", "DBToolBarManager")
+                .Replace("UltraWinDataSource", "DBDataTable")
+                .Replace("UltraDataSource", "DBDataTable")
+                .Replace("UltraStatusBar", "DBStatusBar")
+                .Replace("UltraStatusPanel", "DBStatusBarPanel")
+                .Replace("ButtonTool", "DBToolBarButton")
+                .Replace("UltraGridRow", "DBGridViewRow")
+                .Replace("UltraGridCell", "DBGridViewCell")
+                .Replace("UltraGridColumn", "DBColumn")
+                .Replace("UltraGrid", "DBGridView")
+                .Replace("UltraDataRowsCollection", "DataRowCollection")
+                .Replace("UltraDataRow", "DataRow")
+                .Replace("UltraGroupBox", "DBGroupBox")
+                .Replace("UltraDateTimeEditor", "DBDate")
+                .Replace("UltraNumericEditor", "DBTextBoxEx")
+                .Replace("UltraLabel", "DBLabel")
+                .Replace("UltraListView", "DBListView")
+                .Replace("UltraMaskedEdit", "DBTextBoxEx")
+                .Replace("UltraTextEditor", "DBTextBoxEx")
+                .Replace("UltraToolTipInfo", "DBTooltip")
+                .Replace("UltraTabPageControl", "DBTabPage")
+                .Replace("UltraTabControl", "DBTabControl")
+                .Replace("UltraTabSharedControlsPage", "DBTabPageShared")
+                .Replace("UltraWinTabControl", "DBTabControl")
+                .Replace("UltraTab", "DBTabPage")
+                .Replace("UltraComboEditor", "DBComboEx")
+                .Replace("UltraCheckEditor", "DBCheckBox")
+                .Replace("UIElementEventArgs", "DBEditorButtonEventArgs")
+                .Replace("UltraToolbar", "DBToolBar")
+                .Replace("UltraWinTree", "DBTreeView")
+                .Replace("UltraTree", "DBTreeView")
+                .Replace("UltraToolTipManager", "DBTooltipManager")
+                .Replace("UltraWinGrid", "DBGridView")
+                .Replace("UltraOptionSet", "DBOptionSet")
+                .Replace("FilterCondition", "DBGridViewFilter")
+                .Replace("= DBTabControlStyle.", "= DBTabControl.DBTabControlStyle.")
+                .Replace("= DBGridViewDisplayLayout.DBElementBorderStyle.", "= StatusBarPanelBorderStyle.")
+                .Replace("= TextTrimming.", "= DBAppearance.DBTextTrimming.")
+                .Replace("= GradientAlignment", "= DBAppearance.GradientAlignment")
+                .Replace("= GradientStyle", "= DBAppearance.GradientStyle")
+                .Replace("DBGridView.CellEventArgs", "System.Windows.Forms.DataGridViewCellEventArgs")
+                .Replace("DBGridView.CellClickEventArgs", "System.Windows.Forms.DataGridViewCellEventArgs")
+                .Replace("DBDataTable.DataRow", "DataRow")
+                .Replace("DataTable.DataRow", "DataRow")
+                .Replace("AutoCompleteMode.SuggestAppend;", "AutoCompleteMode.SuggestAppend;")
+                .Replace("UltraWinMaskedEdit.MaskSelectAllBehavior.", "DBTextBoxEx.SelectAllBehaviorEnum.")
+                .Replace(".Style = DBGridView.ColumnStyle.", ".ColumnType = DBColumn.ColumnTypes.")
+                .Replace(".ListIndex", ".Index")
+                .Replace(".CellMultiline", ".Multiline")
+                .Replace(".AfterActivate", ".AfterSelect")
+                .Replace("DBTreeView.AfterNodeChangedEventHandler", "DBTreeView.AfterSelectEventHandler")
+                .Replace("DoubleClickRowEventArgs", "DataGridViewCellEventArgs")
+                .Replace("SummarySettings", "DBSummarie")
+                .Replace("DropDownStyle.", "ComboBoxStyle.")
+                .Replace("barraEstado.Items[1]", @"barraEstado.Items[""progreso""]")
+                .Replace(@"barraEstado.Items[""progreso""]", @"((DBStatusBarProgressPanel)barraEstado.Items[""progreso""])")
+                .Replace(".ProgressBarInfo", "")
+                .Replace(".BorderStyle = StatusBarPanelBorderStyle.", ".BorderStyle = BorderStyle.")
+                .Replace(".Nullable", ".AllowNull")
+                .Replace(".Alignment = HorizontalAlignment.", ".Alignment = System.Windows.Forms.HorizontalAlignment.")
+                .Replace(".Header.Caption", ".HeaderCaption")
+                .Replace("Nodes.Exists", "Nodes.ContainsKey")
+                .Replace("== SortIndicator.", "== DBColumn.SortIndicatorEnum.")
+                .Replace("ValueListSortStyle.", "DBComboEx.SortStyleEnum.")
+                .Replace("DBGridView.SortIndicator.", "DBColumn.SortIndicatorEnum.")
+                .Replace("StateDBToolBarButton", "DBToolBarButton")
+                .Replace("DataTable.UltraDataColumnsCollection", "DataColumnCollection")
+                .Replace("DBGridView.ExcelExport.DBGridViewExcelExporter", "Excel")
+                .Replace(".RowAdding", ".TableNewRow")
+                .Replace("e.Button", "e.ClickedItem")
+                .Replace("Header.Appearance", "HeaderAppearance")
+                .Replace("Border3DStyle.Solid", "BorderStyle.FixedSingle")
+                .Replace("StatusBarPanelBorderStyle.Dotted", "BorderStyle.FixedSingle")
+                .Replace("ultraStatusPanel1.BorderStyle = BorderStyle.FixedSingle", "ultraStatusPanel1.BorderStyle = Border3DStyle.Raised")
+                .Replace("DBStatusBarPanel1.BorderStyle = BorderStyle.FixedSingle", "DBStatusBarPanel1.BorderStyle = Border3DStyle.Raised")
+                .Replace("BorderStyle.Solid", "BorderStyle.FixedSingle")
+                .Replace("BorderStyle.Dotted", "BorderStyle.FixedSingle")
+                .Replace("BorderStyle.Raised", "Border3DStyle.Raised")
+                .Replace("DBGridView.Filter", "DBGridViewFilter.Filter")
+                .Replace(".Tabs.AddRange", ".TabPages.AddRange")
+                .Replace(".Tabs[", ".TabPages[")
+                .Replace("DBGridView.CancelablePrintEventArgs", "EventArgs")
+                .Replace("DBGridView.DoubleClickRowEventArgs", "DataGridViewCellEventArgs")
+                .Replace("DBGridView.BeforeSortChangeEventArgs", "EventArgs")
+                .Replace("DBGridView.BandEventArgs", "EventArgs")
+                .Replace("DBGridView.CancelablePrintEventArgs", "EventArgs")
+                .Replace("DBGridView.CancelablePrintPreviewEventArgs", "EventArgs")
+                .Replace("DBTreeView.NodeEventArgs", "EventArgs")
+                .Replace("DBGridView.CancelableCellEventArgs", "EventArgs")
+                .Replace("DBGridView.BeforeCellUpdateEventArgs", "EventArgs")
+                .Replace("DBGridView.RowEventArgs", "EventArgs")
+                .Replace("DBGridView.EventArgs", "EventArgs")
+                .Replace("DBGridView.DataGridViewCellEventArgs", "DataGridViewCellEventArgs")
+                .Replace("DBDataTable.CellDataUpdatingEventArgs", "EventArgs")
+                .Replace("DBDataTable.CellDataRequestedEventArgs", "EventArgs")
+                .Replace("DBDataTable.RowAddingEventArgs", "EventArgs")
+                .Replace("DBDataTable.RowDeletingEventArgs", "EventArgs")
+                .Replace("DBDataTable.DataTableNewRowEventArgs", "DataTableNewRowEventArgs")
+                .Replace("DBColumn.ColumnTypes.DateTime", "DBColumn.ColumnTypes.TimeColumn")
+                .Replace("DBColumn.ColumnTypes.Date", "DBColumn.ColumnTypes.DateColumn")
+                .Replace("DBColumn.ColumnTypes.Integer", "DBColumn.ColumnTypes.NumberColumn")
+                .Replace("DBColumn.ColumnTypes.Default", "DBColumn.ColumnTypes.TextColumn")
+                .Replace("DBColumn.ColumnTypes.CheckBox", "DBColumn.ColumnTypes.CheckColumn")
+                .Replace("DBColumn.ColumnTypes.Double", "DBColumn.ColumnTypes.MoneyColumn")
+                .Replace("DBColumn.ColumnTypes.Button", "DBColumn.ColumnTypes.ButtonColumn")
+                .Replace("DBColumn.ColumnTypes.Edit", "DBColumn.ColumnTypes.TextColumn")
+                .Replace("DBColumn.ColumnTypes.DropDownValidate", "DBColumn.ColumnTypes.ComboColumn")
+                .Replace(".DataSource.Rows.", ".Rows.")
+                .Replace(".Panels.", ".Items.")
+                .Replace(".Panels[", ".Items[")
+                .Replace("(var row ", "(DBGridViewRow row ")
+                .Replace(".CellMultiLine =", ".Multiline =")
+                .Replace("ToolBase", "ToolStripItem")
+                .Replace(".AddTool", ".Add")
+                .Replace(".EditorButtonClick += new DBButtonEventHandler", ".EditorButtonClick += new DBEditorButtonEventHandler")
+                .Replace("withBlock.Addbar", "new DBToolBar");
 
             // Reemplazos Regex del script .scp
-            code = System.Text.RegularExpressions.Regex.Replace(code, @"\.Cells\[(.*?)\]\.Text", ".Cells[$1].Value");
-            code = System.Text.RegularExpressions.Regex.Replace(code, @"new DBToolBar\(.*\)\;", "new DBToolBar();");
-            code = System.Text.RegularExpressions.Regex.Replace(code, @"new DBToolBarManager\(.*\)\;", "new DBToolBarManager();");
+            code = TextUtil.ReplaceREG(code, @"\.Cells\[(.*?)\]\.Text", ".Cells[$1].Value");
+            code = TextUtil.ReplaceREG(code, @"new DBToolBar\(.*\)\;", "new DBToolBar();");
+            code = TextUtil.ReplaceREG(code, @"new DBToolBarManager\(.*\)\;", "new DBToolBarManager();");
 
             // Regla del script: cambiar exportación de objeto Excel a método de extensión del control
-            code = System.Text.RegularExpressions.Regex.Replace(code, @"excel\.Export\((.*?), (.*?)\)\;", "$1.ExportToExcel($2);");
-
+            code = TextUtil.ReplaceREG(code, @"excel\.Export\((.*?), (.*?)\)\;", "$1.ExportToExcel($2);");
 
             string result = code;
-            // Eliminamos los usings de Infragistics.
-            result = TextUtil.ReplaceREG(result, "(.*)using Infragistics.Win.UltraWinDataSource;((\n|\r)*)", "");
-            result = TextUtil.ReplaceREG(result, "(.*)using Infragistics.Win.UltraWinGrid;((\n|\r)*)", "");
-            result = TextUtil.ReplaceREG(result, "(.*)using Infragistics.Win;((\n|\r)*)", "");
-            result = TextUtil.ReplaceREG(result, "(.*)using Infragistics.Win.UltraWinToolbars;((\n|\r)*)", "");
-            result = TextUtil.ReplaceREG(result, "(.*)using Infragistics.Win.UltraWinEditors;((\n|\r)*)", "");
-
-            result = result.Replace(".EditorButtonClick += new Infragistics.Win.UltraWinEditors.EditorButtonEventHandler", ".EditorButtonClick += new DBEditorButtonEventHandler");
-
-            result = TextUtil.ReplaceREG(result, @"(.*cbo.*)\.MouseEnterElement \+\= new Infragistics.Win.UIElementEventHandler", "$1.MouseEnterElement += new DBComboEx.MouseEnterElementEventHandler");
-            result = TextUtil.ReplaceREG(result, @"(.*txt.*)\.MouseEnterElement \+\= new Infragistics.Win.UIElementEventHandler", "$1.MouseEnterElement += new DBTextBoxEx.MouseEnterElementEventHandler");
-
-            result = result.Replace("Infragistics.Win.EditorWithCombo", "DBComboEx");
-            result = result.Replace("Infragistics.Win.UltraWinProgressBar.UltraProgressBar", "DBProgressBar");
-            result = result.Replace("Infragistics.Win.UltraWinChart.UltraChart", "DBChart");
-            result = result.Replace("Infragistics.UltraChart", "DBChart");
-
-            result = result.Replace("Infragistics.Win.UltraWinGrid.FilterCondition", "DBGridViewFilter");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.EditorButtonEventArgs", "DBEditorButtonEventArgs");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.UltraGridRow", "DBGridViewRow");
-            result = result.Replace("Infragistics.Win.UltraWinDataSource.UltraDataSource", "DataTable");
-            result = result.Replace("Infragistics.Win.UltraWinDataSource", "DataTable");
-            result = result.Replace("Infragistics.Win.UltraWinStatusBar.UltraStatusBar", "DBStatusBar");
-            result = result.Replace("Infragistics.Win.UltraWinStatusBar.UltraStatusPanel", "DBStatusBarPanel");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.UltraGridColumn", "DBColumn");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.UltraGridCell", "DBGridViewCell");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.UltraGrid", "DBGridView");
-            result = result.Replace("Infragistics.Win.UltraWinDataSource.UltraDataRow", "DataRow");
-            result = result.Replace("Infragistics.Win.Misc.UltraGroupBox", "DBGroupBox");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.UltraButton", "DBButton");
-            result = result.Replace("Infragistics.Win.Misc.UltraButton", "DBButton");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.EditorButton", "DBButton");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.UltraDateTimeEditor", "DBDate");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.UltraNumericEditor", "DBTextBoxEx");
-            result = result.Replace("Infragistics.Win.Misc.UltraLabel", "DBLabel");
-            result = result.Replace("Infragistics.Win.UltraWinMaskedEdit.UltraMaskedEdit", "DBTextBoxEx");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.UltraTextEditor", "DBTextBoxEx");
-            result = result.Replace("Infragistics.Win.UltraWinToolTip.UltraToolTipInfo", "DBTooltip");
-            result = result.Replace("Infragistics.Win.UltraWinToolTip.UltraToolTipManager", "DBTooltipManager");
-            result = result.Replace("Infragistics.Win.UltraWinToolbars.ButtonTool", "DBToolBarButton");
-            result = result.Replace("Infragistics.Win.UltraWinToolbars.UltraToolbarsManager", "DBToolBarManager");
-            result = result.Replace("Infragistics.Win.UltraWinTabControl.UltraTabControl", "DBTabControl");
-            result = result.Replace("Infragistics.Win.UltraWinTabControl.UltraTabSharedControlsPage", "DBTabPageShared");
-            result = result.Replace("Infragistics.Win.UltraWinTabControl.UltraTabPageControl", "DBTabPage");
-            result = result.Replace("Infragistics.Win.UltraWinTabControl.UltraTab", "DBTabControl");
-            result = result.Replace("Infragistics.Win.UltraWinTabControl", "DBTabControl");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.UltraComboEditor", "DBComboEx");
-            result = result.Replace("Infragistics.Win.HAlign", "DBAppearance.HAlign");
-            result = result.Replace("Infragistics.Win.VAlign", "DBAppearance.VAlign");
-            result = result.Replace("Infragistics.Win.Appearance", "DBAppearance");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.UltraCheckEditor", "DBCheckBox");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.NumericType", "DBTextBoxEx.NumericTypeEnum");
-            result = result.Replace("Infragistics.Win.UltraWinMaskedEdit.MaskedEditTabNavigation", "DBTextBoxEx.TabNavigationEnum");
-            result = result.Replace("Infragistics.Win.UIElementBorderStyle", "DBGridViewDisplayLayout.DBElementBorderStyle");
-            result = result.Replace("Infragistics.Win.DropDownStyle", "ComboBoxStyle");
-            result = result.Replace("Infragistics.Win.UltraWinMaskedEdit.MaskChangedEventArgs", "EventArgs");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.ViewStyleBand", "DBGridViewDisplayLayout.DBViewStyleBand");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.ScrollStyle", "DBGridViewDisplayLayout.DBScrollStyle");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.ScrollBounds", "DBGridViewDisplayLayout.DBScrollBounds");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.RowSizing", "DBGridViewDisplayLayout.DBRowSizing");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.CellClickAction", "DBGridViewDisplayLayout.DBCellClickAction");
-            result = result.Replace("Infragistics.Win.HeaderStyle", "DBGridViewDisplayLayout.DBHeaderStyle");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.HeaderClickAction", "DBGridViewDisplayLayout.DBHeaderClickAction");
-            result = result.Replace("Infragistics.Win.UIElementEventArgs", "DBEditorButtonEventArgs");
-            result = result.Replace("Infragistics.Win.TextTrimming", "DBAppearance.DBTextTrimming");
-            result = result.Replace("Infragistics.Win.GradientAlignment", "DBAppearance.GradientAlignment");
-            result = result.Replace("Infragistics.Win.GradientStyle", "DBAppearance.GradientStyle");
-            result = result.Replace("Infragistics.Win.DefaultableBoolean.False", "false");
-            result = result.Replace("Infragistics.Win.DefaultableBoolean.True", "true");
-            result = result.Replace("Infragistics.Win.DefaultableBoolean.Default", "true");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.CellClickAction", "DBGridViewDisplayLayout.DBCellClickAction");
-            result = result.Replace("Infragistics.Win.UltraWinToolbars.UltraToolbarsDockArea", "DBToolBarContainer");
-            result = result.Replace("Infragistics.Win.UltraWinTree.UltraTreeNode", "TreeNode");
-            result = result.Replace("Infragistics.Win.UltraWinTree.UltraTree", "DBTreeView");
-            result = result.Replace("Infragistics.Win.UltraWinTree", "DBTreeView");
-            result = result.Replace("Infragistics.Win.UltraWinGrid.ErrorEventArgs", "EventArgs");
-            result = result.Replace("Infragistics.Win.UltraWinEditors.UltraOptionSet", "DBOptionSet");
-            result = result.Replace("Infragistics.Win.ValueListItem", "DBRadioButton");
-
-
-
-            result = result.Replace("DefaultableBoolean.False", "false");
-            result = result.Replace("DefaultableBoolean.True", "true");
-            result = result.Replace("DefaultableBoolean.Default", "true");
-
-            // Propiedades
-            result = result.Replace(".DisplayLayout;", ";");
-            result = result.Replace(".DisplayLayout.Bands[0]", "");
-            result = result.Replace(".DisplayLayout.Override", "");
-            result = result.Replace(".BackColorAlpha = Infragistics.Win.", ".BackColorAlpha = DBAppearance.");
-            result = result.Replace(".DBButtonClick +=", ".Click +=");
-            result = result.Replace(".DBButtonClick -=", ".Click -=");
-            result = result.Replace(".Scrollbars = System.Windows.Forms.ScrollBars", ".ScrollBars = System.Windows.Forms.ScrollBars");
-            result = result.Replace(".Scrollbars = System.Windows.Forms.ScrollBars", ".ScrollBars = System.Windows.Forms.ScrollBars");
-            result = result.Replace(".GroupByBox.", ".");
-
-
-
-            result = result.Replace(".Items.ValueList.FindByDataValue", ".FindByValue");
-            result = result.Replace(".ValorOriginal).DisplayText;", ".ValorOriginal.ToString()).Text;");
-            result = result.Replace(".Valor).DisplayText;", ".Valor.ToString()).Text;");
-            result = result.Replace(".SelectedTab.Index", ".SelectedIndex");
-            result = result.Replace(".Band.Columns", ".Columns");
-            result = result.Replace(".Band.Index", ".Index");
-            result = result.Replace(".HeaderStyle = HeaderStyle.", ".HeaderStyle = DBHeaderStyle.");
-            result = result.Replace(".RowSelectorStyle = HeaderStyle.", ".RowSelectorStyle = DBHeaderStyle.");
-            result = result.Replace(".RowSelectorNumberStyle = RowSelectorNumberStyle.", ".RowSelectorNumberStyle = DBRowSelectorNumberStyle.");
-            result = result.Replace(".RowSelectorHeaderStyle = RowSelectorHeaderStyle.", ".RowSelectorHeaderStyle = DBRowSelectorHeaderStyle.");
-            result = result.Replace(".CellClickAction = CellClickAction.", ".CellClickAction = DBCellClickAction.");
-            result = result.Replace(".HeaderClickAction = HeaderClickAction.", ".HeaderClickAction = DBHeaderClickAction.");
-            result = result.Replace(".AllowColMoving = Infragistics.Win.UltraWinGrid.AllowColMoving.", ".AllowColMoving = DBGridViewDisplayLayout.DBAllowColMoving.");
-            result = result.Replace(".AllowColSwapping = Infragistics.Win.UltraWinGrid.AllowColSwapping.", ".AllowColSwapping = DBGridViewDisplayLayout.DBAllowColSwapping.");
-            result = result.Replace(".SelectTypeRow = Infragistics.Win.UltraWinGrid.SelectType.", ".SelectTypeRow = DBGridViewDisplayLayout.SelectType.");
-            result = result.Replace(".TabNavigation = Infragistics.Win.UltraWinGrid.TabNavigation.", ".TabNavigation = DBGridViewDisplayLayout.DBTabNavigation.");
-            result = result.Replace(".RuntimeCustomizationOptions = Infragistics.Win.UltraWinToolbars.RuntimeCustomizationOptions.", ".RuntimeCustomizationOptions = DBToolBarManager.DBRuntimeCustomizationOptions.");
-            result = result.Replace(".RowSizing = RowSizing.", ".RowSizing = DBRowSizing.");
-            result = result.Replace(".Scrollbars = ScrollBars.", ".ScrollBars = ScrollBars.");
-            result = result.Replace(".DockedPosition = Infragistics.Win.UltraWinToolbars.DockedPosition.", ".Dock = DockStyle.");
-            result = result.Replace("_ClickCellButton(object sender, CellEventArgs e)", "_ClickCellButton(object sender, DataGridViewCellEventArgs e)");
-            result = result.Replace(".ClickCellButton += new Infragistics.Win.UltraWinGrid.CellEventHandler", ".CellClick += new DBGridView.CellClickEventHandler");
-            result = result.Replace(".Error += new Infragistics.Win.UltraWinGrid.ErrorEventHandler", ".Error += new DBGridView.ErrorEventHandler");
-            result = result.Replace(".InitializeRow += new Infragistics.Win.UltraWinGrid.InitializeRowEventHandler", ".InitializeRow += new DataGridViewRowEventHandler");
-
-            result = result.Replace("Infragistics.Win.UltraWinGrid.InitializeRowEventArgs", "DataGridViewRowEventArgs");
-            result = result.Replace("InitializeRowEventArgs", "DataGridViewRowEventArgs");
-            result = result.Replace(".Tools.AddRange(new Infragistics.Win.UltraWinToolbars.ToolBase[]", ".Items.AddRange(new DBToolBarButton[]");
-            result = result.Replace(".SharedPropsInternal.", ".");
-            result = result.Replace(".SharedProps.", ".");
-            result = result.Replace(".ClickCellButton", ".CellClick");
-            result = result.Replace(".SizingMode = Infragistics.Win.UltraWinStatusBar.PanelSizingMode.", ".SizingMode = DBStatusBarPanel.SizingModeEnum.");
-            result = result.Replace(".ViewStyle = Infragistics.Win.UltraWinStatusBar.ViewStyle.", ".ViewStyle = DBStatusBar.ViewStyleEnum.");
-            result = result.Replace(".ToolClick += new Infragistics.Win.UltraWinToolbars.ToolClickEventHandler", ".ItemClick += new DBToolBarManager.ToolStripItemClickEventHandler");
-            result = result.Replace("Infragistics.Win.UltraWinToolbars.ToolClickEventArgs", "ToolStripItemClickedEventArgs");
-            result = result.Replace(".Tool.Key", ".Button.Name");
-            result = result.Replace(".InsetSoft;", ".Raised;");
-            result = result.Replace(".ToolClick", ".ItemClick");
-            result = result.Replace(".CellChange", ".CellValueChanged");
-            result = result.Replace(".AfterCellUpdate", ".CellEndEdit");
-            result = result.Replace(".Band.DataSource", ".DataSource");
-            result = result.Replace(@".Key == """, @".Name == """);
-            result = result.Replace(".Tools", ".Items");
-            result = result.Replace(".Style = ColumnStyle.", ".ColumnType = DBColumn.ColumnTypes.");
-            result = result.Replace(".TextHAlign = HAlign.", ".Alignment = HorizontalAlignment.");
-            result = result.Replace(".TextHAlign = DBAppearance.HAlign.", ".Alignment = HorizontalAlignment.");
-            result = result.Replace("= HAlign.", "= DBAppearance.HAlign.");
-            result = result.Replace("= VAlign.", "= DBAppearance.VAlign.");
-
-            result = result.Replace(", SummaryType.", ", DBSummarie.SummarieType.");
-            result = result.Replace("Infragistics.Win.UltraWinMaskedEdit.EditAsType.", "DBTextBoxEx.EditAsType.");
-
-            // Palabras clave
-            result = result.Replace("UltraToolbarsDockArea", "DBToolBarContainer");
-            result = result.Replace("UltraButton", "DBButton");
-            result = result.Replace("UltraToolbarsManager", "DBToolBarManager");
-            result = result.Replace("UltraWinDataSource", "DBDataTable");
-            result = result.Replace("UltraDataSource", "DBDataTable");
-            result = result.Replace("UltraStatusBar", "DBStatusBar");
-            result = result.Replace("UltraStatusPanel", "DBStatusBarPanel");
-            result = result.Replace("ButtonTool", "DBToolBarButton");
-            result = result.Replace("UltraGridRow", "DBGridViewRow");
-            result = result.Replace("UltraGridCell", "DBGridViewCell");
-            result = result.Replace("UltraGridColumn", "DBColumn");
-            result = result.Replace("UltraGrid", "DBGridView");
-            result = result.Replace("UltraDataRowsCollection", "DataRowCollection");
-            result = result.Replace("UltraDataRow", "DataRow");
-            result = result.Replace("UltraGroupBox", "DBGroupBox");
-            result = result.Replace("UltraDateTimeEditor", "DBDate");
-            result = result.Replace("UltraNumericEditor", "DBTextBoxEx");
-            result = result.Replace("UltraLabel", "DBLabel");
-            result = result.Replace("UltraListView", "DBListView");
-            result = result.Replace("UltraMaskedEdit", "DBTextBoxEx");
-            result = result.Replace("UltraTextEditor", "DBTextBoxEx");
-            result = result.Replace("UltraToolTipInfo", "DBTooltip");
-            result = result.Replace("UltraTabPageControl", "DBTabPage");
-
-            result = result.Replace("UltraTabControl", "DBTabControl");
-            result = result.Replace("UltraTabSharedControlsPage", "DBTabPageShared");
-            result = result.Replace("UltraWinTabControl", "DBTabControl");
-            result = result.Replace("UltraTab", "DBTabControl");
-            result = result.Replace("UltraComboEditor", "DBComboEx");
-            result = result.Replace("UltraCheckEditor", "DBCheckBox");
-            result = result.Replace("UIElementEventArgs", "DBEditorButtonEventArgs");
-            result = result.Replace("UltraToolbar", "DBToolBar");
-            result = result.Replace("UltraWinTree", "DBTreeView");
-            result = result.Replace("UltraTree", "DBTreeView");
-            result = result.Replace("UltraToolTipManager", "DBTooltipManager");
-            result = result.Replace("Infragistics.Win.UltraWinGrid", "DBGridView");
-            result = result.Replace("UltraOptionSet", "DBOptionSet");
-            result = result.Replace("FilterCondition", "DBGridViewFilter");
-
-
+            
+            result = TextUtil.ReplaceREG(result, @"(.*cbo.*)\.MouseEnterElement \+\= new UIElementEventHandler", "$1.MouseEnterElement += new DBComboEx.MouseEnterElementEventHandler");
+            result = TextUtil.ReplaceREG(result, @"(.*txt.*)\.MouseEnterElement \+\= new UIElementEventHandler", "$1.MouseEnterElement += new DBTextBoxEx.MouseEnterElementEventHandler");
 
             // Expresiones regulares
             result = TextUtil.ReplaceREG(result, @"\.Campo\(""Fecha(.*?)""\)\.Valor\;", ".Campo(\"Fecha$1\").ValorDateTime;");
@@ -408,6 +404,7 @@ namespace FSConvert
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.Style = Infragistics.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.PerformAction.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.ActiveColScrollRegion.*", "// *** BORRAR $&");
+            result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.ActiveRowScrollRegion.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?e.ProcessMode.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.DatosGrid.ReadOnly.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.BeforeRowFilterChanged\;.*", "// *** BORRAR $&");
@@ -422,93 +419,7 @@ namespace FSConvert
             //result = TextUtil.ReplaceREG(result, "^(?!\s*//).*?\.BeforeRowFilterChanged.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.BoldAsString.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"(.*)new Excel(.*)", "// *** BORRAR $&");
-
-            // Ajustes
-            result = result.Replace("= DBTabControlStyle.", "= DBTabControl.DBTabControlStyle.");
-            result = result.Replace("= DBGridViewDisplayLayout.DBElementBorderStyle.", "= StatusBarPanelBorderStyle.");
-            result = result.Replace("DBGridView.CellEventArgs", "System.Windows.Forms.DataGridViewCellEventArgs");
-            result = result.Replace("DBGridView.CellClickEventArgs", "System.Windows.Forms.DataGridViewCellEventArgs");
-            result = result.Replace("DataTable.DataRow", "DataRow");
-            result = result.Replace("Infragistics.Win.AutoCompleteMode.SuggestAppend;", "AutoCompleteMode.SuggestAppend;");
-            result = result.Replace("Infragistics.Win.UltraWinMaskedEdit.MaskSelectAllBehavior.", "DBTextBoxEx.SelectAllBehaviorEnum.");
-            result = result.Replace(".Style = DBGridView.ColumnStyle.", ".ColumnType = DBColumn.ColumnTypes.");
-            result = result.Replace(".ListIndex", ".Index");
-            result = result.Replace(".CellMultiline", ".Multiline");
-            result = result.Replace(".AfterActivate", ".AfterSelect");
-            result = result.Replace("DBTreeView.AfterNodeChangedEventHandler", "DBTreeView.AfterSelectEventHandler");
-            result = result.Replace("DoubleClickRowEventArgs", "DataGridViewCellEventArgs");
-            result = result.Replace("SummarySettings", "DBSummarie");
-            result = result.Replace("DropDownStyle.", "ComboBoxStyle.");
-            // GT
-            result = result.Replace("barraEstado.Items[1]", @"barraEstado.Items[""progreso""]");
-            result = result.Replace(@"barraEstado.Items[""progreso""]", @"((DBStatusBarProgressPanel)barraEstado.Items[""progreso""])");
-            result = result.Replace(".ProgressBarInfo", "");
-            result = result.Replace(".BorderStyle = StatusBarPanelBorderStyle.", ".BorderStyle = BorderStyle.");
-
-            result = result.Replace(".Nullable", ".AllowNull");
-            result = result.Replace(".Alignment = HorizontalAlignment.", ".Alignment = System.Windows.Forms.HorizontalAlignment.");
-            result = result.Replace(".Header.Caption", ".HeaderCaption");
-            result = result.Replace("Nodes.Exists", "Nodes.ContainsKey");
-            result = result.Replace("== SortIndicator.", "== DBColumn.SortIndicatorEnum.");
-            result = result.Replace("Infragistics.Win.ValueListSortStyle.", "DBComboEx.SortStyleEnum.");
-            result = result.Replace("DBGridView.SortIndicator.", "DBColumn.SortIndicatorEnum.");
-            result = result.Replace("StateDBToolBarButton", "DBToolBarButton");
-            result = result.Replace("DataTable.UltraDataColumnsCollection", "DataColumnCollection");
-            result = result.Replace("DBGridView.ExcelExport.DBGridViewExcelExporter", "Excel");
-            result = result.Replace(".RowAdding", ".TableNewRow");
-            result = result.Replace("e.Button", "e.ClickedItem");
-            result = result.Replace("Header.Appearance", "HeaderAppearance");
-            result = result.Replace("Border3DStyle.Solid", "BorderStyle.FixedSingle");
-            result = result.Replace("StatusBarPanelBorderStyle.Dotted", "BorderStyle.FixedSingle");
-            result = result.Replace("ultraStatusPanel1.BorderStyle = BorderStyle.FixedSingle", "ultraStatusPanel1.BorderStyle = Border3DStyle.Raised");
-            result = result.Replace("DBStatusBarPanel1.BorderStyle = BorderStyle.FixedSingle", "DBStatusBarPanel1.BorderStyle = Border3DStyle.Raised");
-            result = result.Replace("BorderStyle.Solid", "BorderStyle.FixedSingle");
-            result = result.Replace("BorderStyle.Raised", "Border3DStyle.Raised");
-            result = result.Replace("DBGridView.Filter", "DBGridViewFilter.Filter");
-            result = result.Replace(".Tabs.AddRange", ".TabPages.AddRange");
-            result = result.Replace(".Tabs[", ".TabPages[");
-
-
-
-            result = result.Replace("DBGridView.CancelablePrintEventArgs", "EventArgs");
-            result = result.Replace("DBGridView.DoubleClickRowEventArgs", "DataGridViewCellEventArgs");
-            result = result.Replace("DBGridView.BeforeSortChangeEventArgs", "EventArgs");
-            result = result.Replace("DBGridView.BandEventArgs", "EventArgs");
-            result = result.Replace("DBGridView.CancelablePrintEventArgs", "EventArgs");
-            result = result.Replace("DBGridView.CancelablePrintPreviewEventArgs", "EventArgs");
-            result = result.Replace("DBTreeView.NodeEventArgs", "EventArgs");
-            result = result.Replace("DBGridView.CancelableCellEventArgs", "EventArgs");
-            result = result.Replace("DBGridView.BeforeCellUpdateEventArgs", "EventArgs");
-            result = result.Replace("DBGridView.RowEventArgs", "EventArgs");
-            result = result.Replace("DBGridView.EventArgs", "EventArgs");
-            result = result.Replace("DBGridView.DataGridViewCellEventArgs", "DataGridViewCellEventArgs");
-
-            result = result.Replace("DBDataTable.CellDataUpdatingEventArgs", "EventArgs");
-            result = result.Replace("DBDataTable.CellDataRequestedEventArgs", "EventArgs");
-            result = result.Replace("DBDataTable.RowAddingEventArgs", "EventArgs");
-            result = result.Replace("DBDataTable.RowDeletingEventArgs", "EventArgs");
-            result = result.Replace("DBDataTable.DataTableNewRowEventArgs", "DataTableNewRowEventArgs");
-
-
-            result = result.Replace("DBColumn.ColumnTypes.DateTime", "DBColumn.ColumnTypes.TimeColumn");
-            result = result.Replace("DBColumn.ColumnTypes.Date", "DBColumn.ColumnTypes.DateColumn");
-            result = result.Replace("DBColumn.ColumnTypes.Integer", "DBColumn.ColumnTypes.NumberColumn");
-            result = result.Replace("DBColumn.ColumnTypes.Default", "DBColumn.ColumnTypes.TextColumn");
-            result = result.Replace("DBColumn.ColumnTypes.CheckBox", "DBColumn.ColumnTypes.CheckColumn");
-            result = result.Replace("DBColumn.ColumnTypes.Double", "DBColumn.ColumnTypes.MoneyColumn");
-            result = result.Replace("DBColumn.ColumnTypes.Button", "DBColumn.ColumnTypes.ButtonColumn");
-            result = result.Replace("DBColumn.ColumnTypes.Edit", "DBColumn.ColumnTypes.TextColumn");
-            result = result.Replace("DBColumn.ColumnTypes.DropDownValidate", "DBColumn.ColumnTypes.ComboColumn");
-
-            result = result.Replace(".DataSource.Rows.", ".Rows.");
-            result = result.Replace(".Panels.", ".Items.");
-            result = result.Replace(".Panels[", ".Items[");
-            result = result.Replace("(var row ", "(DBGridViewRow row ");
-            result = result.Replace(".CellMultiLine =", ".Multiline =");
-            result = result.Replace("ToolBase", "ToolStripItem");
-            result = result.Replace(".AddTool", ".Add");
-            result = result.Replace("withBlock.Addbar", "new DBToolBar");
-
+            
             // Cambio de funciones obsoletas (de momento no lo aplico).
             //result = ReplaceReg(result, "FuncionesInterface.IsDifferent\((.*),(.*)\)", "$1 != $2");
             //result = ReplaceReg(result, "FuncionesInterface.IsEqual\((.*),(.*)\)", "$1 == $2");
@@ -545,10 +456,6 @@ namespace FSConvert
                 string leafType = fullNamespace.Split('.').Last();
                 if (_typeMapping.ContainsKey(leafType))
                 {
-                    if (leafType == "Appearance" && !_useFSMapping)
-                    {
-                        return SyntaxFactory.ParseTypeName(string.Empty);
-                    }
                     HasReplacements = true;
                     return SyntaxFactory.ParseTypeName(_typeMapping[leafType]);
                 }
@@ -561,10 +468,6 @@ namespace FSConvert
             string typeName = node.Identifier.Text;
             if (_typeMapping.ContainsKey(typeName))
             {
-                if (typeName == "Appearance" && !_useFSMapping)
-                {
-                    return base.VisitIdentifierName(node);
-                }
                 HasReplacements = true;
                 return SyntaxFactory.IdentifierName(_typeMapping[typeName]);
             }
@@ -576,10 +479,6 @@ namespace FSConvert
             string pureTypeStr = node.Type.ToString().Split('.').Last();
             if (_typeMapping.ContainsKey(pureTypeStr))
             {
-                if (pureTypeStr == "Appearance" && !_useFSMapping)
-                {
-                    return (ExpressionSyntax)Visit(node.Expression);
-                }
                 HasReplacements = true;
                 var standardType = SyntaxFactory.ParseTypeName(_typeMapping[pureTypeStr]);
                 return node.WithType(standardType).WithExpression((ExpressionSyntax)Visit(node.Expression));
@@ -589,32 +488,6 @@ namespace FSConvert
 
         public override SyntaxNode VisitExpressionStatement(ExpressionStatementSyntax node)
         {
-            string lineText = node.ToString();
-
-            // Regla del script: Comentar o eliminar líneas conflictivas si no es conversión FS
-            if (!_useFSMapping)
-            {
-                if (lineText.Contains(".Appearance") ||
-                    lineText.Contains(".DisplayLayout") ||
-                    lineText.Contains(".ButtonsRight") ||
-                    lineText.Contains(".ButtonsLeft") ||
-                    lineText.Contains(".Tabs") ||
-                    lineText.Contains(".Toolbars"))
-                {
-                    return SyntaxFactory.EmptyStatement();
-                }
-            }
-            else
-            {
-                // Regla 9 y 10: Comentar líneas estéticas críticas en eventos o elementos específicos
-                if (lineText.Contains("e.Row.Appearance") || lineText.Contains("DBChart") || lineText.Contains(".FillAppearance"))
-                {
-                    // Añadimos comentario de cancelación antes de omitir la línea o mutarla
-                    var leadingTrivia = node.GetLeadingTrivia().Add(SyntaxFactory.Comment("// *** BORRAR DEBIDO A COMPATIBILIDAD FS: " + lineText));
-                    return SyntaxFactory.EmptyStatement().WithLeadingTrivia(leadingTrivia);
-                }
-            }
-
             return base.VisitExpressionStatement(node);
         }
     }

@@ -49,7 +49,7 @@ namespace FSParser
             parser.CustomCommands["removeinfragistics"] = args =>
             {
 #if NET47_OR_GREATER || NETCOREAPP
-                return TextUtil.ProtectText(FSConvert.ConvertInfragistics.Convert(TextUtil.UnProtectText(_Q(args[0])), true));
+                return TextUtil.ProtectText(FSConvert.ConvertInfragistics.Convert(TextUtil.UnProtectText(_Q(args[0]))));
 #else
                 throw new Exception("RemoveInfragistics no esta disponible.");
 #endif
