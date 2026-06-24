@@ -32,6 +32,7 @@ namespace FSConvert
             { "InitializeRowEventArgs", "DataGridViewRowEventArgs" },
             { "UltraListView", "DBListView" },
             { "UltraTree", "DBTreeView" },
+            { "UltraTreeNode", "TreeNode" },
             { "UltraWinTree", "DBTreeView" },
             { "UltraTabControl", "DBTabControl" },
             { "UltraTab", "DBTabPage" },
@@ -64,37 +65,57 @@ namespace FSConvert
             { "SummarySettings", "DBSummarie" }
         };
 
+        // Cache estática O(1) de funciones candidatas a ser eliminadas
+        private static readonly HashSet<string> MethodsToRemove = new HashSet<string>(StringComparer.Ordinal)
+        {
+            "RowFilter"
+        };
+
+        // Nodos de directivas reutilizables para evitar recreación de objetos en memoria
+        private static readonly UsingDirectiveSyntax UsingData = SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Data"));
+        private static readonly UsingDirectiveSyntax UsingForms = SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Windows.Forms"));
+        private static readonly UsingDirectiveSyntax UsingFSControls = SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("FSFormControls"));
+
         public static string Convert(string sourceCode)
         {
             SyntaxTree tree = CSharpSyntaxTree.ParseText(sourceCode);
             CompilationUnitSyntax root = tree.GetCompilationUnitRoot();
 
-            // 1. Limpiar directivas usando filtro por Namespace de Infragistics
-            var cleanUsings = root.Usings.Where(u => !u.Name.ToString().StartsWith("Infragistics")).ToList();
+            // 1. Filtrado eficiente de Usings evitando conversiones redundantes a String
+            var cleanUsings = new List<UsingDirectiveSyntax>(root.Usings.Count + 3);
+            bool hasData = false;
+            bool hasForms = false;
+            bool hasFS = false;
 
-            // 2. Inyectar System.Data y System.Windows.Forms si no existen (Requisito del .scp)
-            if (!cleanUsings.Any(u => u.Name.ToString() == "System.Data"))
-                cleanUsings.Insert(0, SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Data")));
-
-            if (!cleanUsings.Any(u => u.Name.ToString() == "System.Windows.Forms"))
-                cleanUsings.Insert(0, SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Windows.Forms")));
-
-            // 3. Ejecutar el Reescritor Inteligente de Árboles de Sintaxis
-            WinFormsStandardRewriter rewriter = new WinFormsStandardRewriter(TypeMapping, false);
-            CompilationUnitSyntax processedRoot = (CompilationUnitSyntax)rewriter.Visit(root);
-
-            // 4. Inyectar FSFormControls condicionalmente si hubo cambios
-            if (rewriter.HasReplacements)
+            foreach (var u in root.Usings)
             {
-                if (!cleanUsings.Any(u => u.Name.ToString() == "FSFormControls"))
-                {
-                    cleanUsings.Add(SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("FSFormControls")));
-                }
+                string uName = u.Name.ToString();
+                if (uName.StartsWith("Infragistics")) continue;
+
+                if (uName == "System.Data") hasData = true;
+                if (uName == "System.Windows.Forms") hasForms = true;
+                if (uName == "FSFormControls") hasFS = true;
+
+                cleanUsings.Add(u);
+            }
+
+            // 2. Inyección controlada mediante inserción directa al inicio
+            if (!hasForms) cleanUsings.Insert(0, UsingForms);
+            if (!hasData) cleanUsings.Insert(0, UsingData);
+
+            // 3. Ejecutar el Reescritor de Sintaxis optimizado
+            var rewriter = new WinFormsStandardRewriter(TypeMapping, MethodsToRemove);
+            var processedRoot = (CompilationUnitSyntax)rewriter.Visit(root);
+
+            // 4. Inyectar FSFormControls si hubo mutaciones sintácticas
+            if (rewriter.HasReplacements && !hasFS)
+            {
+                cleanUsings.Add(UsingFSControls);
             }
 
             processedRoot = processedRoot.WithUsings(SyntaxFactory.List(cleanUsings));
 
-            // 5. Post-procesamiento de reemplazos de texto de bajo nivel y expresiones regulares heredadas del .scp
+            // 5. Post-procesamiento secuencial optimizado de cadenas de bajo nivel
             string finalCode = processedRoot.NormalizeWhitespace().ToFullString();
             return ApplyScriptReplacements(finalCode);
         }
@@ -183,6 +204,7 @@ namespace FSConvert
                 .Replace("DefaultableBoolean.Default", "true")
                 .Replace("UltraWinGrid.CellClickAction", "DBGridViewDisplayLayout.DBCellClickAction")
                 .Replace("UltraWinToolbars.UltraToolbarsDockArea", "DBToolBarContainer")
+                .Replace("UltraWinToolbars.ToolBase", "DBToolBarButton")
                 .Replace("UltraWinTree.UltraTreeNode", "TreeNode")
                 .Replace("UltraWinTree.UltraTree", "DBTreeView")
                 .Replace("UltraWinTree", "DBTreeView")
@@ -406,6 +428,7 @@ namespace FSConvert
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.ActiveColScrollRegion.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.ActiveRowScrollRegion.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?e.ProcessMode.*", "// *** BORRAR $&");
+            result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?e.AllowRowFiltering.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.DatosGrid.ReadOnly.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.BeforeRowFilterChanged\;.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.BeforeRowFilterDropDownPopulate\;.*", "// *** BORRAR $&");
@@ -418,8 +441,9 @@ namespace FSConvert
             //result = TextUtil.ReplaceREG(result, "^(?!\s*//).*?\.BeforeRowFilterDropDownPopulate.*", "// *** BORRAR $&");
             //result = TextUtil.ReplaceREG(result, "^(?!\s*//).*?\.BeforeRowFilterChanged.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.BoldAsString.*", "// *** BORRAR $&");
+            //result = TextUtil.ReplaceREG(result, @"^(?!\s*//).*?\.BeforeRowFilter.*", "// *** BORRAR $&");
             result = TextUtil.ReplaceREG(result, @"(.*)new Excel(.*)", "// *** BORRAR $&");
-            
+
             // Cambio de funciones obsoletas (de momento no lo aplico).
             //result = ReplaceReg(result, "FuncionesInterface.IsDifferent\((.*),(.*)\)", "$1 != $2");
             //result = ReplaceReg(result, "FuncionesInterface.IsEqual\((.*),(.*)\)", "$1 == $2");
@@ -439,13 +463,30 @@ namespace FSConvert
     internal class WinFormsStandardRewriter : CSharpSyntaxRewriter
     {
         private readonly Dictionary<string, string> _typeMapping;
+        private readonly HashSet<string> _methodsToRemove;
         private readonly bool _useFSMapping;
         public bool HasReplacements { get; private set; } = false;
 
-        public WinFormsStandardRewriter(Dictionary<string, string> typeMapping, bool useFSMapping)
+        public WinFormsStandardRewriter(Dictionary<string, string> typeMapping, HashSet<string> methodsToRemove)
         {
             _typeMapping = typeMapping;
-            _useFSMapping = useFSMapping;
+            _methodsToRemove = methodsToRemove;
+        }
+
+        // ==================================================================
+        // FILTRADO DE MÉTODOS MEJORADO POR LISTA DE EXCLUSIÓN
+        // ==================================================================
+        public override SyntaxNode VisitMethodDeclaration(MethodDeclarationSyntax node)
+        {
+            string methodName = node.Identifier.Text;
+
+            // Si el método actual está en la lista negra, Roslyn devuelve null y lo remueve del archivo final
+            if (_methodsToRemove != null && _methodsToRemove.Contains(methodName))
+            {
+                return null;
+            }
+
+            return base.VisitMethodDeclaration(node);
         }
 
         public override SyntaxNode VisitQualifiedName(QualifiedNameSyntax node)
