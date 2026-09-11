@@ -85,60 +85,10 @@ namespace FSCrypto
         /// <summary>
         ///     Constructor
         /// </summary>
-        public Crypto()
-        {
-            cryptoProvider = CryptoProvider.TripleDES;
-        }
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        /// <param name="cryptoProvider"></param>
-        public Crypto(CryptoProvider cryptoProvider)
-        {
-            this.cryptoProvider = cryptoProvider;
-        }
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        /// <param name="cryptoProvider"></param>
-        public Crypto(CryptoProvider cryptoProvider, CipherMode cipherMode)
-        {
-            this.cryptoProvider = cryptoProvider;
-            this.cipherMode = cipherMode;
-        }
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        /// <param name="cryptoProvider"></param>
-        public Crypto(CryptoProvider cryptoProvider, CipherMode cipherMode, PaddingMode paddingMode)
-        {
-            this.cryptoProvider = cryptoProvider;
-            this.cipherMode = cipherMode;
-            this.paddingMode = paddingMode;
-        }
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
-        /// <param name="cryptoProvider"></param>
-        public Crypto(CryptoProvider cryptoProvider, CipherMode cipherMode, PaddingMode paddingMode, TransportMode transportMode)
-        {
-            this.cryptoProvider = cryptoProvider;
-            this.cipherMode = cipherMode;
-            this.paddingMode = paddingMode;
-            this.transportMode = transportMode;
-        }
-
-
-        /// <summary>
-        ///     Constructor
-        /// </summary>
         public Crypto(string key)
         {
             Key = key;
+            this.cryptoProvider = CryptoProvider.TripleDES;
         }
 
         /// <summary>
@@ -149,7 +99,6 @@ namespace FSCrypto
             Iv = keyIv;
             Key = key;
         }
-
 
         /// <summary>
         ///     Constructor
@@ -207,7 +156,7 @@ namespace FSCrypto
         /// <summary>
         ///     Clave
         /// </summary>
-        public string Key { get; set; } = "16055459x";
+        public string Key { get; set; } = null;
 
 
         /// <summary>
@@ -250,7 +199,7 @@ namespace FSCrypto
         {
             try
             {
-                if (Key != null)
+                if (!String.IsNullOrEmpty(Key))
                 {
                     var key = MakeKeyByteArray(Key);
                     var iv = MakeIvByteArray(Iv);
@@ -311,7 +260,7 @@ namespace FSCrypto
         {
             try
             {
-                if (Key != null)
+                if (!String.IsNullOrEmpty(Key))
                 {
                     var key = MakeKeyByteArray(Key);
                     var iv = MakeIvByteArray(Iv);
@@ -437,7 +386,7 @@ namespace FSCrypto
 
             try
             {
-                if (Key != null)
+                if (!String.IsNullOrEmpty(Key))
                 {
                     var fsIn = new FileStream(inFileName, FileMode.Open, FileAccess.Read);
                     var fsOut = new FileStream(outFileName, FileMode.OpenOrCreate, FileAccess.Write);

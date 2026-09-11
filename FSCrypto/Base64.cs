@@ -50,6 +50,14 @@ namespace FSCrypto
             return output;
         }
 
+        public static string EncodeBytes(byte[] bytes)
+        {
+            return Convert.ToBase64String(bytes)
+                .Replace("+", "-")
+                .Replace("/", "_")
+                .TrimEnd('=');
+        }
+
 
         /// <summary>
         /// Decodes the base64.
@@ -98,6 +106,17 @@ namespace FSCrypto
 
             byte[] strBytes = Convert.FromBase64String(input);
             return Encoding.UTF8.GetString(strBytes);
+        }
+
+        public static byte[] DecodeBytes(string base64Url)
+        {
+            string padded = base64Url.Replace("-", "+").Replace("_", "/");
+            switch (padded.Length % 4)
+            {
+                case 2: padded += "=="; break;
+                case 3: padded += "="; break;
+            }
+            return Convert.FromBase64String(padded);
         }
 
 #if NET20_OR_GREATER
