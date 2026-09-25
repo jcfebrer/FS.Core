@@ -1,11 +1,10 @@
-﻿#if NET461_OR_GREATER || NETCOREAPP
+﻿#if NET45_OR_GREATER || NETCOREAPP
 
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Reflection;
-using System.Runtime.Versioning;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -88,7 +87,7 @@ namespace FSMultimedia
                     // 3. Mapear Fecha de Toma (PhotoTakenTime)
                     if (long.TryParse(metadata.PhotoTakenTime?.Timestamp, out long unixTimestamp))
                     {
-                        DateTime dt = DateTimeOffset.FromUnixTimeSeconds(unixTimestamp).LocalDateTime;
+                        DateTime dt = FSLibrary.DateTimeUtil.FromUnixTimeSeconds(unixTimestamp).LocalDateTime;
                         string formattedDate = dt.ToString("yyyy:MM:dd HH:mm:ss\0"); // Formato EXIF ASCII
                         byte[] dateBytes = Encoding.ASCII.GetBytes(formattedDate);
 

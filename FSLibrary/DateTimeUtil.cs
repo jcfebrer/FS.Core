@@ -507,6 +507,8 @@ namespace FSLibrary
             return businessDays * 60 * 24;
         }
 
+        private static readonly DateTime UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
         /// <summary>
         /// Convierte del formato Date de Android a c#
         /// </summary>
@@ -514,8 +516,27 @@ namespace FSLibrary
         /// <returns></returns>
         public static DateTime FromUnixTime(long unixTimeMillis)
         {
-            DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            return epoch.AddMilliseconds(unixTimeMillis);
+            return UnixEpoch.AddMilliseconds(unixTimeMillis);
+        }
+
+        /// <summary>
+        /// De Unix a DateTimeOffset
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <returns></returns>
+        public static DateTimeOffset FromUnixTimeSeconds(long seconds)
+        {
+            return new DateTimeOffset(UnixEpoch.AddSeconds(seconds));
+        }
+
+        /// <summary>
+        /// De Unix a DateTime
+        /// </summary>
+        /// <param name="seconds"></param>
+        /// <returns></returns>
+        public static DateTime FromUnixTimeSecondsToDateTime(long seconds)
+        {
+            return UnixEpoch.AddSeconds(seconds);
         }
 
         /// <summary>
