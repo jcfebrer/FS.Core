@@ -58,6 +58,9 @@ namespace FSCertificate
         /// <returns></returns>
         public static X509Certificate2 GetCertificateBySerialNumber(string serialNumber)
         {
+            // Limpiamos espacios o caracteres invisibles del número de serie
+            serialNumber = serialNumber.Replace(" ", "").Replace("\u200e", "").Replace("\u200f", "");
+
             X509Certificate2 certificate = null;
             X509Store Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
             Store.Open(OpenFlags.ReadOnly);
@@ -112,6 +115,9 @@ namespace FSCertificate
         /// <returns></returns>
         public static X509Certificate2 GetCertificateBySerialNumber(StoreLocation location, string serialNumber)
         {
+            // Limpiamos espacios o caracteres invisibles del número de serie
+            serialNumber = serialNumber.Replace(" ", "").Replace("\u200e", "").Replace("\u200f", "");
+
             X509Store Store = new X509Store(location);
             Store.Open(OpenFlags.ReadOnly);
             X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true);
