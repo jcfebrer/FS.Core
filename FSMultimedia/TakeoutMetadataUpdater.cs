@@ -1,11 +1,8 @@
-﻿#if NET45_OR_GREATER || NETCOREAPP
+﻿#if NET48_OR_GREATER || NETCOREAPP
 
 using System;
-using System.Drawing;
-using System.Drawing.Imaging;
+using System.Globalization;
 using System.IO;
-using System.Reflection;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -38,37 +35,38 @@ namespace FSMultimedia
         [JsonPropertyName("photoTakenTime")]
         public TakeoutTime PhotoTakenTime { get; set; }
 
+        [JsonPropertyName("creationTime")]
+        public TakeoutTime CreationTime { get; set; }
+
         [JsonPropertyName("geoData")]
         public TakeoutGeoData GeoData { get; set; }
     }
 
     public class TakeoutMetadataUpdater
     {
-        public string ImagePath { get; }
+        public string FilePath { get; }
         public string JsonPath { get; }
 
-        // IDs estándar de propiedades EXIF
-        private const int EXIF_IMAGE_DESCRIPTION = 0x010E;
-        private const int EXIF_DATE_TIME_ORIGINAL = 0x9003;
-        private const int EXIF_GPS_LATITUDE_REF = 0x0001;
-        private const int EXIF_GPS_LATITUDE = 0x0002;
-        private const int EXIF_GPS_LONGITUDE_REF = 0x0003;
-        private const int EXIF_GPS_LONGITUDE = 0x0004;
-
-        public TakeoutMetadataUpdater(string imagePath, string jsonPath = null)
+        public TakeoutMetadataUpdater(string filePath, string jsonPath = null)
         {
-            ImagePath = imagePath;
-            JsonPath = jsonPath ?? $"{imagePath}.supplemental-metadata.json";
+            FilePath = filePath;
+            JsonPath = jsonPath ?? $"{filePath}.json";
+
+            // Si no existe con .json, probar el sufijo de Takeout de Google Photos (.supplemental-metadata.json)
+            if (!File.Exists(JsonPath) && File.Exists($"{filePath}.supplemental-metadata.json"))
+            {
+                JsonPath = $"{filePath}.supplemental-metadata.json";
+            }
         }
 
         public bool UpdateMetadata()
         {
-            if (!File.Exists(ImagePath) || !File.Exists(JsonPath))
+            if (!File.Exists(FilePath) || !File.Exists(JsonPath))
                 return false;
 
             try
             {
-                // 1. Leer y deserializar el JSON usando System.Text.Json
+                // 1. Leer y deserializar el JSON de Google Takeout
                 string jsonContent = File.ReadAllText(JsonPath);
                 var options = new JsonSerializerOptions
                 {
@@ -76,124 +74,124 @@ namespace FSMultimedia
                 };
 
                 var metadata = JsonSerializer.Deserialize<TakeoutJsonModel>(jsonContent, options);
-
                 if (metadata == null) return false;
 
-                // 2. Cargar la imagen
-                byte[] imageBytes = File.ReadAllBytes(ImagePath);
-                using (var ms = new MemoryStream(imageBytes))
-                using (var image = Image.FromStream(ms))
+                // 2. Obtener fecha
+                DateTimeOffset? takenDate = GetDateFromTakeout(metadata);
+
+                // 3. Escribir metadatos internos (Fotos y Vídeos)
+                try
                 {
-                    // 3. Mapear Fecha de Toma (PhotoTakenTime)
-                    if (long.TryParse(metadata.PhotoTakenTime?.Timestamp, out long unixTimestamp))
+                    using (var tagFile = TagLib.File.Create(FilePath))
                     {
-                        DateTime dt = FSLibrary.DateTimeUtil.FromUnixTimeSeconds(unixTimestamp).LocalDateTime;
-                        string formattedDate = dt.ToString("yyyy:MM:dd HH:mm:ss\0"); // Formato EXIF ASCII
-                        byte[] dateBytes = Encoding.ASCII.GetBytes(formattedDate);
+                        // Mapear Descripción
+                        if (!string.IsNullOrEmpty(metadata.Description))
+                        {
+                            tagFile.Tag.Comment = metadata.Description;
+                            tagFile.Tag.Description = metadata.Description;
+                        }
 
-                        SetPropertyItem(image, EXIF_DATE_TIME_ORIGINAL, 2, dateBytes); // Type 2 = ASCII String
+                        // Mapear Fecha y Hora completas
+                        if (takenDate.HasValue)
+                        {
+                            ApplyDateTime(tagFile, takenDate.Value);
+                        }
+
+                        // Mapear Coordenadas GPS
+                        if (metadata.GeoData != null && (metadata.GeoData.Latitude != 0.0 || metadata.GeoData.Longitude != 0.0))
+                        {
+                            ApplyGpsCoordinates(tagFile, metadata.GeoData);
+                        }
+
+                        // Guardar cambios en el archivo
+                        tagFile.Save();
                     }
-
-                    // 4. Mapear Descripción
-                    if (!string.IsNullOrWhiteSpace(metadata.Description))
-                    {
-                        byte[] descBytes = Encoding.UTF8.GetBytes(metadata.Description + "\0");
-                        SetPropertyItem(image, EXIF_IMAGE_DESCRIPTION, 2, descBytes);
-                    }
-
-                    // 5. Mapear GPS (geoData)
-                    if (metadata.GeoData != null && (metadata.GeoData.Latitude != 0.0 || metadata.GeoData.Longitude != 0.0))
-                    {
-                        // Latitud
-                        string latRef = metadata.GeoData.Latitude >= 0 ? "N\0" : "S\0";
-                        SetPropertyItem(image, EXIF_GPS_LATITUDE_REF, 2, Encoding.ASCII.GetBytes(latRef));
-                        SetPropertyItem(image, EXIF_GPS_LATITUDE, 5, DegreesToExifRational(metadata.GeoData.Latitude)); // Type 5 = Rational
-
-                        // Longitud
-                        string lonRef = metadata.GeoData.Longitude >= 0 ? "E\0" : "W\0";
-                        SetPropertyItem(image, EXIF_GPS_LONGITUDE_REF, 2, Encoding.ASCII.GetBytes(lonRef));
-                        SetPropertyItem(image, EXIF_GPS_LONGITUDE, 5, DegreesToExifRational(metadata.GeoData.Longitude));
-                    }
-
-                    // 6. Guardar la imagen de forma segura reemplazando el original
-                    string tempPath = ImagePath + ".tmp";
-                    image.Save(tempPath, ImageFormat.Jpeg);
-
-                    image.Dispose();
-                    ms.Dispose();
-
-                    File.Delete(ImagePath);
-                    File.Move(tempPath, ImagePath);
+                }
+                catch (TagLib.UnsupportedFormatException)
+                {
+                    Console.WriteLine($"Formato no soportado directamente por TagLibSharp: {FilePath}");
                 }
 
-                Console.WriteLine($"Metadatos incrustados con éxito en {ImagePath}");
+                // 4. Actualizar fechas del sistema de archivos
+                if (takenDate.HasValue)
+                {
+                    DateTime utcTime = takenDate.Value.UtcDateTime;
+                    File.SetCreationTimeUtc(FilePath, utcTime);
+                    File.SetLastWriteTimeUtc(FilePath, utcTime);
+                }
+
+                Console.WriteLine($"Metadatos y GPS procesados con éxito en {FilePath}");
                 return true;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error procesando {ImagePath}: {ex.Message}");
+                Console.WriteLine($"Error procesando {FilePath}: {ex.Message}");
                 return false;
             }
         }
 
         /// <summary>
-        /// Crea o reemplaza un PropertyItem mediante Reflection.
+        /// Aplica la fecha y hora completas (año, mes, día, hora, minuto, segundo) 
+        /// según el tipo de archivo multimedia.
         /// </summary>
-        private void SetPropertyItem(Image image, int propId, short type, byte[] value)
+        private void ApplyDateTime(TagLib.File tagFile, DateTimeOffset takenDate)
         {
-            PropertyItem prop = null;
-            try
-            {
-                prop = image.GetPropertyItem(propId);
-            }
-            catch
-            {
-                ConstructorInfo ctor = typeof(PropertyItem).GetConstructor(
-                    BindingFlags.NonPublic | BindingFlags.Instance, null, Type.EmptyTypes, null);
+            // 1. Tag genérico (asigna al menos el año)
+            tagFile.Tag.Year = (uint)takenDate.Year;
 
-                if (ctor != null)
-                {
-                    prop = (PropertyItem)ctor.Invoke(null);
-                    prop.Id = propId;
-                }
+            // 2. Para Imágenes (JPG, PNG, TIFF, etc.): Escribe EXIF DateTimeOriginal completo
+            if (tagFile is TagLib.Image.File imageFile)
+            {
+                imageFile.ImageTag.DateTime = takenDate.LocalDateTime;
             }
 
-            if (prop != null)
+            // 3. Para Vídeos MP4 / MOV / QuickTime
+            if (tagFile.GetTag(TagLib.TagTypes.Apple) is TagLib.Mpeg4.AppleTag appleTag)
             {
-                prop.Type = type;
-                prop.Len = value.Length;
-                prop.Value = value;
-
-                image.SetPropertyItem(prop);
+                // MP4/QuickTime guarda las fechas de captura/creación en UTC
+                appleTag.SetDashBox("com.apple.quicktime.creationdate", "mdta", takenDate.ToString("yyyy-MM-ddTHH:mm:ssK"));
             }
         }
 
         /// <summary>
-        /// Convierte coordenadas decimales en 3 pares de Racionales EXIF (Grados, Minutos, Segundos).
+        /// Aplica las coordenadas GPS tanto para imágenes (EXIF/XMP) como para vídeos (Atómos de QuickTime/MP4).
         /// </summary>
-        private byte[] DegreesToExifRational(double degrees)
+        private void ApplyGpsCoordinates(TagLib.File tagFile, TakeoutGeoData geo)
         {
-            degrees = Math.Abs(degrees);
-            uint d = (uint)Math.Floor(degrees);
-            double mDouble = (degrees - d) * 60.0;
-            uint m = (uint)Math.Floor(mDouble);
-            uint s = (uint)Math.Round((mDouble - m) * 60.0 * 100.0);
+            // 1. Para imágenes (JPEG, PNG, TIFF, etc.)
+            if (tagFile is TagLib.Image.File imageFile)
+            {
+                imageFile.ImageTag.Latitude = geo.Latitude;
+                imageFile.ImageTag.Longitude = geo.Longitude;
+                imageFile.ImageTag.Altitude = geo.Altitude;
+            }
 
-            byte[] result = new byte[24];
+            // 2. Para contenedores MP4 / MOV (Apple QuickTime Meta / ISO 6709)
+            if (tagFile.GetTag(TagLib.TagTypes.Apple) is TagLib.Mpeg4.AppleTag appleTag)
+            {
+                // Formato ISO 6709 estándar para MP4: "+37.3860-122.0839/"
+                string iso6709Location = string.Format(
+                    CultureInfo.InvariantCulture,
+                    "{0:+00.0000;-00.0000}{1:+000.0000;-000.0000}/",
+                    geo.Latitude,
+                    geo.Longitude
+                );
 
-            // Grados (d/1)
-            Array.Copy(BitConverter.GetBytes(d), 0, result, 0, 4);
-            Array.Copy(BitConverter.GetBytes((uint)1), 0, result, 4, 4);
+                // Escribir en la etiqueta de localización de MP4/QuickTime
+                appleTag.SetDashBox("com.apple.quicktime.location.ISO6709", "mdta", iso6709Location);
+            }
+        }
 
-            // Minutos (m/1)
-            Array.Copy(BitConverter.GetBytes(m), 0, result, 8, 4);
-            Array.Copy(BitConverter.GetBytes((uint)1), 0, result, 12, 4);
+        private DateTimeOffset? GetDateFromTakeout(TakeoutJsonModel metadata)
+        {
+            string rawTimestamp = metadata.PhotoTakenTime?.Timestamp ?? metadata.CreationTime?.Timestamp;
 
-            // Segundos (s/100)
-            Array.Copy(BitConverter.GetBytes(s), 0, result, 16, 4);
-            Array.Copy(BitConverter.GetBytes((uint)100), 0, result, 20, 4);
+            if (long.TryParse(rawTimestamp, out long unixTimestamp))
+            {
+                return DateTimeOffset.FromUnixTimeSeconds(unixTimestamp);
+            }
 
-            return result;
+            return null;
         }
     }
 }
