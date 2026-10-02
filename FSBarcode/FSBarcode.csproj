@@ -18,15 +18,28 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
-    <Reference Include="System.Drawing" Version="4.0.0" />
+  
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' == '.NETFramework'">
+    <Reference Include="System.Drawing" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework)' != 'net45'">
-    <PackageReference Include="itext7" Version="9.0.0" />
-    <PackageReference Include="itext7.pdfhtml" Version="6.0.0" />
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461' or '$(TargetFramework)' == 'net48'">
+    <PackageReference Include="itext7" Version="9.7.0" />
+    <PackageReference Include="itext7.pdfhtml" Version="6.3.3" />
+    <PackageReference Include="itext.commons" Version="9.7.0" />
+    <PackageReference Include="itext.bouncy-castle-adapter" Version="9.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="5.0.0" />
   </ItemGroup>
-  <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' != 'net'">
+
+  <ItemGroup Condition="'$(TargetFrameworkIdentifier)' != '.NETFramework'">
     <PackageReference Include="System.Drawing.Common" Version="9.0.1" />
+    <PackageReference Include="itext7" Version="9.7.0" />
+    <PackageReference Include="itext7.pdfhtml" Version="6.3.3" />
+    <PackageReference Include="itext.commons" Version="9.7.0" />
+    <PackageReference Include="itext.bouncy-castle-adapter" Version="9.7.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FS.Core\FSLibrary\FSLibrary.csproj" />

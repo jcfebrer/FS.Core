@@ -16,6 +16,20 @@ namespace FSLibrary
         /// </summary>
         string APP_SETTINGS = "appSettings";
 
+        private Configuration _configManager;
+
+        private Configuration ConfigManager
+        {
+            get
+            {
+                if (_configManager == null)
+                {
+                    _configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                }
+                return _configManager;
+            }
+        }
+
         private string _section;
         /// <summary>
         /// Sección a utilizar
@@ -43,8 +57,7 @@ namespace FSLibrary
             {
                 if (_settings == null)
                 {
-                    Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                    _settings = configManager.GetSection(Section);
+                    _settings = ConfigManager.GetSection(Section);
             
                     if (_settings == null)
                         throw new Exception("Sección no encontrada. Sección: " + Section);
@@ -353,8 +366,14 @@ namespace FSLibrary
         /// </summary>
         public void SaveConfigFile()
         {
-            Configuration configManager = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            configManager.Save(ConfigurationSaveMode.Full);
+            if (Settings is ConfigurationSection section)
+            {
+                // Marcamos la sección como modificada para asegurar que el Engine de Configuration persista los cambios
+                section.SectionInformation.ForceSave = true;
+            }
+
+            // Guardamos usando la misma instancia de ConfigurationManager que contiene los cambios en memoria
+            ConfigManager.Save(ConfigurationSaveMode.Modified);
             ConfigurationManager.RefreshSection(Section);
         }
 

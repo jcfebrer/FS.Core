@@ -59,10 +59,10 @@ namespace FSMultimedia
             }
         }
 
-        public bool UpdateMetadata()
+        public string UpdateMetadata()
         {
             if (!File.Exists(FilePath) || !File.Exists(JsonPath))
-                return false;
+                return "Archivo o JSON no encontrado.";
 
             try
             {
@@ -74,7 +74,7 @@ namespace FSMultimedia
                 };
 
                 var metadata = JsonSerializer.Deserialize<TakeoutJsonModel>(jsonContent, options);
-                if (metadata == null) return false;
+                if (metadata == null) return "No existen metadatos en el fichero JSON.";
 
                 // 2. Obtener fecha
                 DateTimeOffset? takenDate = GetDateFromTakeout(metadata);
@@ -109,7 +109,7 @@ namespace FSMultimedia
                 }
                 catch (TagLib.UnsupportedFormatException)
                 {
-                    Console.WriteLine($"Formato no soportado directamente por TagLibSharp: {FilePath}");
+                    return $"Formato no soportado directamente por TagLibSharp: {FilePath}";
                 }
 
                 // 4. Actualizar fechas del sistema de archivos
@@ -120,13 +120,11 @@ namespace FSMultimedia
                     File.SetLastWriteTimeUtc(FilePath, utcTime);
                 }
 
-                Console.WriteLine($"Metadatos y GPS procesados con éxito en {FilePath}");
-                return true;
+                return $"Metadatos y GPS procesados con éxito en {FilePath}";
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error procesando {FilePath}: {ex.Message}");
-                return false;
+                return $"Error procesando {FilePath}: {ex.Message}";
             }
         }
 

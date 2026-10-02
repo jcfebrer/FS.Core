@@ -82,6 +82,16 @@ namespace FSParser
 #endif
             };
 
+            parser.CustomCommands["applygoogletakeout"] = args =>
+            {
+#if NET48_OR_GREATER || NETCOREAPP
+                var updater = new FSMultimedia.TakeoutMetadataUpdater(TextUtil.UnProtectText(_Q(args[0])));
+                return TextUtil.ProtectText(updater.UpdateMetadata());
+#else
+                throw new Exception("ApplyGoogleTakeout no esta disponible.");
+#endif
+            };
+
             parser.CustomCommands["help"] = args =>
             {
                 return string.Join(" | ", parser.CustomCommands.Keys.ToArray());
