@@ -70,26 +70,19 @@ namespace FSBarcode
             }
         }
 
-        public static void SignPdfCades(string pdfOrigen, string pdfDestino, string rutaPfx, string passwordPfx)
+        public static void SignPdfCades(string pdfOrigen, string pdfDestino, X509Certificate2 certificate)
         {
-            // 1. Cargar el certificado con .NET nativo
-            X509Certificate2 cert2 = new X509Certificate2(
-                rutaPfx,
-                passwordPfx,
-                X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet
-            );
+            // 1. Instanciar la firma nativa (IExternalSignature)
+            IExternalSignature pks = new DotNetPrivateKeySignature(certificate, DigestAlgorithms.SHA256);
 
-            // 2. Instanciar la firma nativa (IExternalSignature)
-            IExternalSignature pks = new DotNetPrivateKeySignature(cert2, DigestAlgorithms.SHA256);
-
-            // 3. Convertir el certificado nativo de .NET a la interfaz iText
+            // 2. Convertir el certificado nativo de .NET a la interfaz iText
             IX509Certificate iTextCert = BouncyCastleFactoryCreator
                 .GetFactory()
-                .CreateX509Certificate(cert2.RawData);
+                .CreateX509Certificate(certificate.RawData);
 
             IX509Certificate[] chain = new IX509Certificate[] { iTextCert };
 
-            // 4. Firmar el PDF
+            // 3. Firmar el PDF
             using (PdfReader reader = new PdfReader(pdfOrigen))
             using (FileStream os = new FileStream(pdfDestino, FileMode.Create))
             {
@@ -107,6 +100,18 @@ namespace FSBarcode
                     PdfSigner.CryptoStandard.CADES // Configura la estructura CAdES/PAdES
                 );
             }
+        }
+
+        public static void SignPdfCades(string pdfOrigen, string pdfDestino, string rutaPfx, string passwordPfx)
+        {
+            // 1. Cargar el certificado con .NET nativo
+            X509Certificate2 certificate = new X509Certificate2(
+                rutaPfx,
+                passwordPfx,
+                X509KeyStorageFlags.Exportable | X509KeyStorageFlags.PersistKeySet
+            );
+
+            SignPdfCades(pdfOrigen, pdfDestino, certificate);
         }
     }
 }
