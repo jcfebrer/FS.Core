@@ -4,6 +4,7 @@ using FSLibrary;
 using FSTrace;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -90,6 +91,31 @@ namespace FSParser
 #else
                 throw new Exception("ApplyGoogleTakeout no esta disponible.");
 #endif
+            };
+
+            parser.CustomCommands["readfile"] = args =>
+            {
+                return TextUtil.ProtectText(File.ReadAllText(TextUtil.UnProtectText(_Q(args[0]))));
+            };
+
+            parser.CustomCommands["savefile"] = args =>
+            {
+                try
+                {
+                    string fileName = TextUtil.UnProtectText(_Q(args[0]));
+                    string contents = TextUtil.UnProtectText(_Q(args[1]));
+                    File.WriteAllText(fileName, contents);
+                    return null;
+                }
+                catch(Exception ex)
+                {
+                    throw new Exception(ex.ToString());
+                }
+            };
+
+            parser.CustomCommands["getextension"] = args =>
+            {
+                return TextUtil.ProtectText(Path.GetExtension(TextUtil.UnProtectText(_Q(args[0]))));
             };
 
             parser.CustomCommands["help"] = args =>
