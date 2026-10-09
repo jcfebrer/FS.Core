@@ -27,6 +27,23 @@ namespace FSCertificate
         }
 
         /// <summary>
+        /// Obtiene los certificados del almacen
+        /// </summary>
+        /// <returns></returns>
+        public static X509Certificate2Collection GetCertificates()
+        {
+            X509Certificate2Collection certificates = null;
+            X509Store Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
+            Store.Open(OpenFlags.ReadOnly);
+            
+            certificates = Store.Certificates;
+
+            Store.Close();
+
+            return certificates;
+        }
+
+        /// <summary>
         /// Obtiene el certificado del almacen indicando su nombre.
         /// </summary>
         /// <param name="name"></param>
@@ -173,11 +190,11 @@ namespace FSCertificate
         /// Obtiene el certificado indicando el path al fichero .p12 o .pfx y password.
         /// </summary>
         /// <param name="certPath"></param>
-        /// <param name="certPass"></param>
+        /// <param name="password"></param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificate(string certPath, string certPass)
+        public static X509Certificate2 GetCertificate(string certPath, string password)
         {
-            var cert = new X509Certificate2(certPath, certPass, X509KeyStorageFlags.Exportable);
+            var cert = new X509Certificate2(certPath, password, X509KeyStorageFlags.Exportable);
 
             return cert;
         }
