@@ -6,9 +6,11 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Xml;
+using System.IO;
+
 
 #if NET40_OR_GREATER || NETCOREAPP
-    using System.Linq;
+using System.Linq;
     using System.Security.Cryptography.Xml;
     using System.Security.Cryptography.Pkcs;
 #endif
@@ -44,7 +46,7 @@ namespace FSCertificate
         }
 
         /// <summary>
-        /// Obtiene el certificado del almacen indicando su nombre.
+        /// Obtiene el certificate del almacen indicando su nombre.
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -69,7 +71,7 @@ namespace FSCertificate
         }
 
         /// <summary>
-        /// Obtiene el certificado del almacen indicando su número de serie.
+        /// Obtiene el certificate del almacen indicando su número de serie.
         /// </summary>
         /// <param name="serialNumber"></param>
         /// <returns></returns>
@@ -97,7 +99,7 @@ namespace FSCertificate
         }
 
         /// <summary>
-        /// Obtiene el certificado del almacen indicando su editor.
+        /// Obtiene el certificate del almacen indicando su editor.
         /// </summary>
         /// <param issuerName="editor"></param>
         /// <returns></returns>
@@ -126,7 +128,7 @@ namespace FSCertificate
         }
 
         /// <summary>
-        /// Obtiene el certificado del almacen indicando su número de serie.
+        /// Obtiene el certificate del almacen indicando su número de serie.
         /// </summary>
         /// <param serialNumber="número de serie"></param>
         /// <returns></returns>
@@ -158,7 +160,7 @@ namespace FSCertificate
         }
 
         /// <summary>
-        /// Obtiene el certificado del almacen indicando su nombre.
+        /// Obtiene el certificate del almacen indicando su nombre.
         /// </summary>
         /// <param name="nombre"></param>
         /// <returns></returns>
@@ -187,7 +189,7 @@ namespace FSCertificate
         }
 
         /// <summary>
-        /// Obtiene el certificado indicando el path al fichero .p12 o .pfx y password.
+        /// Obtiene el certificate indicando el path al fichero .p12 o .pfx y password.
         /// </summary>
         /// <param name="certPath"></param>
         /// <param name="password"></param>
@@ -365,5 +367,66 @@ namespace FSCertificate
             return cert.GetRSAPrivateKey() == null;
 #endif
         }
+
+#if NET40_OR_GREATER || NETCOREAPP
+        public static void GenerateP7s(string fileName)
+        {
+            ContentInfo contentInfo = new ContentInfo(File.ReadAllBytes(fileName));
+            SignedCms signedCms = new SignedCms(contentInfo, detached: true);
+            signedCms.ComputeSignature();
+            File.WriteAllBytes(fileName + ".p7s", signedCms.Encode());
+        }
+
+        public static void ExtractP7m(string p7mFileName)
+        {
+            // Extraer archivo de un sobre .p7m
+            byte[] bytesP7M = File.ReadAllBytes(p7mFileName);
+            SignedCms signedCms = new SignedCms();
+            signedCms.Decode(bytesP7M);
+
+            // Verificar la firma criptográfica
+            signedCms.CheckSignature(true);
+
+            // Obtener los bytes originales y guardarlos en disco
+            byte[] bytesOriginales = signedCms.ContentInfo.Content;
+            File.WriteAllBytes(p7mFileName.Replace(".p7m", ""), bytesOriginales);
+        }
+
+        /// <summary>
+        /// Genera un sobre digital .p7m incrustando el archivo original y la firma digital CAdES.
+        /// </summary>
+        /// <param name="inFileName">Ruta al archivo original (PDF, TXT, PNG, JSON, etc.)</param>
+        /// <param name="certificate">Certificado X509Certificate2 con clave privada</param>
+        public static void CreateP7m(string inFileName, X509Certificate2 certificate)
+        {
+            if (!File.Exists(inFileName))
+                throw new FileNotFoundException("El archivo de entrada no existe.", inFileName);
+
+            if (certificate == null || !certificate.HasPrivateKey)
+                throw new ArgumentException("El certificate es nulo o no contiene una clave privada válida.");
+
+            // 1. Leer la totalidad de los bytes del archivo original
+            byte[] bytesOriginales = File.ReadAllBytes(inFileName);
+
+            // 2. Crear la estructura de datos CAdES / PKCS#7
+            ContentInfo contentInfo = new ContentInfo(bytesOriginales);
+
+            // CLAVE: detached: false -> Empaqueta los bytes originales DENTRO del archivo resultante (.p7m)
+            SignedCms signedCms = new SignedCms(contentInfo, detached: false);
+
+            // 3. Configurar el firmante con el algoritmo de resumen SHA-256 (Oid: 2.16.840.1.101.3.4.2.1)
+            CmsSigner signer = new CmsSigner(certificate)
+            {
+                DigestAlgorithm = new Oid("2.16.840.1.101.3.4.2.1") // SHA-256
+            };
+
+            // 4. Calcular la firma criptográfica con la API nativa de Windows / .NET
+            signedCms.ComputeSignature(signer, silent: false);
+
+            // 5. Codificar la estructura ASN.1 en un array de bytes y guardarlo como .p7m
+            byte[] datosP7M = signedCms.Encode();
+            File.WriteAllBytes(inFileName + ".p7m", datosP7M);
+        }
+#endif
     }
 }
