@@ -28,6 +28,24 @@ namespace FSCertificate
             return true;
         }
 
+        public static X509Certificate2 Load(string serialNumber, bool clone)
+        {
+            if (string.IsNullOrEmpty(serialNumber))
+                throw new ArgumentException("El número de serie no puede estar vacío.", nameof(serialNumber));
+
+            // Limpiar espacios o caracteres no visibles del número de serie
+            string cleanSerial = System.Text.RegularExpressions.Regex.Replace(serialNumber, @"[^\da-fA-F]", "");
+
+            // Buscar en LocalMachine (Recomendado para IIS) o CurrentUser
+            X509Certificate2 cert = GetCertificateBySerialNumber(StoreLocation.LocalMachine, cleanSerial, clone)
+                                 ?? GetCertificateBySerialNumber(StoreLocation.CurrentUser, cleanSerial, clone);
+
+            if (cert == null)
+                throw new Exception($"No se encontró el certificado con número de serie: {serialNumber}");
+
+            return cert;
+        }
+
         /// <summary>
         /// Obtiene los certificados del almacen
         /// </summary>
@@ -36,7 +54,7 @@ namespace FSCertificate
         {
             X509Certificate2Collection certificates = null;
             X509Store Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
-            Store.Open(OpenFlags.ReadOnly);
+            Store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
             
             certificates = Store.Certificates;
 
@@ -50,13 +68,13 @@ namespace FSCertificate
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateByName(string name)
+        public static X509Certificate2 GetCertificateByName(string name, bool clone)
         {
             X509Certificate2 certificate = null;
             X509Store Store = new X509Store(StoreName.AddressBook, StoreLocation.LocalMachine);
-            Store.Open(OpenFlags.ReadOnly);
+            Store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
             foreach (var cert in Store.Certificates)
-                if (cert.FriendlyName == name)
+                if (cert.FriendlyName.ToLower() == name.ToLower())
                 {
                     certificate = cert;
                     break;
@@ -67,7 +85,16 @@ namespace FSCertificate
             if (certificate == null)
                 throw new ExceptionUtil("Certificado: " + name + ", no encontrado en el almacen.");
             else
-                return certificate;
+            {
+                if (clone)
+                {
+                    return GetCertificateClone(certificate);
+                }
+                else
+                {
+                    return certificate;
+                }
+            }
         }
 
         /// <summary>
@@ -75,14 +102,14 @@ namespace FSCertificate
         /// </summary>
         /// <param name="serialNumber"></param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateBySerialNumber(string serialNumber)
+        public static X509Certificate2 GetCertificateBySerialNumber(string serialNumber, bool clone)
         {
             // Limpiamos espacios o caracteres invisibles del número de serie
             serialNumber = serialNumber.Replace(" ", "").Replace("\u200e", "").Replace("\u200f", "");
 
             X509Certificate2 certificate = null;
             X509Store Store = new X509Store(StoreName.My, StoreLocation.CurrentUser);
-            Store.Open(OpenFlags.ReadOnly);
+            Store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
             foreach (var cert in Store.Certificates)
                 if (cert.SerialNumber.ToLower() == serialNumber.ToLower())
                 {
@@ -95,7 +122,16 @@ namespace FSCertificate
             if (certificate == null)
                 throw new ExceptionUtil("Certificado: " + serialNumber + ", no encontrado en el almacen.");
             else
-                return certificate;
+            {
+                if (clone)
+                {
+                    return GetCertificateClone(certificate);
+                }
+                else
+                {
+                    return certificate;
+                }
+            }
         }
 
         /// <summary>
@@ -103,28 +139,25 @@ namespace FSCertificate
         /// </summary>
         /// <param issuerName="editor"></param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateByIssuer(StoreLocation location, string issuerName)
+        public static X509Certificate2 GetCertificateByIssuer(StoreLocation location, string issuerName, bool clone)
         {
             X509Store Store = new X509Store(location);
-            Store.Open(OpenFlags.ReadOnly);
+            Store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
             X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindByIssuerName, issuerName, true);
 
-            if (certs == null || certs.Count == 0)
+            if (certs.Count > 0)
             {
-                return null; // O puedes lanzar una excepción si lo prefieres
+                if (clone)
+                {
+                    return GetCertificateClone(certs[0]);
+                }
+                else
+                {
+                    return certs[0];
+                }
             }
 
-#if NET40_OR_GREATER || NETCOREAPP
-            return certs.OfType<X509Certificate2>().FirstOrDefault();
-#else
-            foreach (X509Certificate cert in certs)
-            {
-                X509Certificate2 cert2 = cert as X509Certificate2;
-                if (cert2 != null)
-                    return cert2;
-            }
             return null;
-#endif
         }
 
         /// <summary>
@@ -132,31 +165,28 @@ namespace FSCertificate
         /// </summary>
         /// <param serialNumber="número de serie"></param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateBySerialNumber(StoreLocation location, string serialNumber)
+        public static X509Certificate2 GetCertificateBySerialNumber(StoreLocation location, string serialNumber, bool clone)
         {
             // Limpiamos espacios o caracteres invisibles del número de serie
             serialNumber = serialNumber.Replace(" ", "").Replace("\u200e", "").Replace("\u200f", "");
 
             X509Store Store = new X509Store(location);
-            Store.Open(OpenFlags.ReadOnly);
+            Store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
             X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindBySerialNumber, serialNumber, true);
 
-            if (certs == null || certs.Count == 0)
+            if (certs.Count > 0)
             {
-                return null; // O puedes lanzar una excepción si lo prefieres
+                if (clone)
+                {
+                    return GetCertificateClone(certs[0]);
+                }
+                else
+                {
+                    return certs[0];
+                }
             }
 
-#if NET40_OR_GREATER || NETCOREAPP
-            return certs.OfType<X509Certificate2>().FirstOrDefault();
-#else
-            foreach (X509Certificate cert in certs)
-            {
-                X509Certificate2 cert2 = cert as X509Certificate2;
-                if (cert2 != null)
-                    return cert2;
-            }
             return null;
-#endif
         }
 
         /// <summary>
@@ -164,28 +194,25 @@ namespace FSCertificate
         /// </summary>
         /// <param name="nombre"></param>
         /// <returns></returns>
-        public static X509Certificate2 GetCertificateByName(StoreLocation location, string name)
+        public static X509Certificate2 GetCertificateByName(StoreLocation location, string name, bool clone)
         {
             X509Store Store = new X509Store(location);
-            Store.Open(OpenFlags.ReadOnly);
+            Store.Open(OpenFlags.ReadOnly | OpenFlags.OpenExistingOnly);
             X509Certificate2Collection certs = Store.Certificates.Find(X509FindType.FindBySubjectName, name, true);
 
-            if (certs == null || certs.Count == 0)
+            if (certs.Count > 0)
             {
-                return null; // O puedes lanzar una excepción si lo prefieres
+                if (clone)
+                {
+                    return GetCertificateClone(certs[0]);
+                }
+                else
+                {
+                    return certs[0];
+                }
             }
 
-#if NET40_OR_GREATER || NETCOREAPP
-            return certs.OfType<X509Certificate2>().FirstOrDefault();
-#else
-            foreach (X509Certificate cert in certs)
-            {
-                X509Certificate2 cert2 = cert as X509Certificate2;
-                if (cert2 != null)
-                    return cert2;
-            }
             return null;
-#endif
         }
 
         /// <summary>
@@ -193,12 +220,31 @@ namespace FSCertificate
         /// </summary>
         /// <param name="certPath"></param>
         /// <param name="password"></param>
+        /// <param name="clone"></param>
         /// <returns></returns>
         public static X509Certificate2 GetCertificate(string certPath, string password)
         {
-            var cert = new X509Certificate2(certPath, password, X509KeyStorageFlags.Exportable);
+            var certificate = new X509Certificate2(certPath, password, X509KeyStorageFlags.Exportable);
 
-            return cert;
+            return certificate;
+        }
+
+        /// <summary>
+        /// Devuelve un duplicado del certificado indicado
+        /// </summary>
+        /// <param name="certificate"></param>
+        /// <returns></returns>
+        public static X509Certificate2 GetCertificateClone(X509Certificate2 certificate)
+        {
+            byte[] certBytes = certificate.Export(X509ContentType.Pkcs12, "tempPassword");
+
+            return new X509Certificate2(
+                certBytes,
+                "tempPassword",
+                X509KeyStorageFlags.MachineKeySet |
+                X509KeyStorageFlags.PersistKeySet |
+                X509KeyStorageFlags.Exportable
+            );
         }
 
         public static string GetSerialNumber(X509Certificate2 cert)
@@ -369,12 +415,31 @@ namespace FSCertificate
         }
 
 #if NET40_OR_GREATER || NETCOREAPP
-        public static void GenerateP7s(string fileName)
+        public static void GenerateP7s(string fileName, string fileP7s, X509Certificate2 certificate)
         {
-            ContentInfo contentInfo = new ContentInfo(File.ReadAllBytes(fileName));
+            byte[] data = File.ReadAllBytes(fileName);
+            ContentInfo contentInfo = new ContentInfo(data);
+
+            // Instanciar el objeto SignedCms con el contenido
             SignedCms signedCms = new SignedCms(contentInfo, detached: true);
-            signedCms.ComputeSignature();
-            File.WriteAllBytes(fileName + ".p7s", signedCms.Encode());
+
+            // Configurar el firmante
+            CmsSigner signer = new CmsSigner(certificate)
+            {
+                // Incluir solo el certificado final (evita buscar raíces no instaladas en Windows)
+                IncludeOption = X509IncludeOption.EndCertOnly
+            };
+
+#if NET40_OR_GREATER
+            // Si estás en .NET Framework / .NET 6+ y necesitas especificar SHA-256:
+            signer.DigestAlgorithm = new System.Security.Cryptography.Oid("2.16.840.1.101.3.4.2.1");
+#endif
+
+            // ComputeSignature realiza la firma en silencio
+            signedCms.ComputeSignature(signer, silent: true);
+
+            // Guardar el resultado en el archivo .p7s
+            File.WriteAllBytes(fileP7s, signedCms.Encode());
         }
 
         public static void ExtractP7m(string p7mFileName)
@@ -396,8 +461,9 @@ namespace FSCertificate
         /// Genera un sobre digital .p7m incrustando el archivo original y la firma digital CAdES.
         /// </summary>
         /// <param name="inFileName">Ruta al archivo original (PDF, TXT, PNG, JSON, etc.)</param>
+        /// <param name="outFileName">Ruta al archivo de salida .p7m</param>
         /// <param name="certificate">Certificado X509Certificate2 con clave privada</param>
-        public static void CreateP7m(string inFileName, X509Certificate2 certificate)
+        public static void CreateP7m(string inFileName, string outFileName, X509Certificate2 certificate)
         {
             if (!File.Exists(inFileName))
                 throw new FileNotFoundException("El archivo de entrada no existe.", inFileName);
@@ -417,15 +483,20 @@ namespace FSCertificate
             // 3. Configurar el firmante con el algoritmo de resumen SHA-256 (Oid: 2.16.840.1.101.3.4.2.1)
             CmsSigner signer = new CmsSigner(certificate)
             {
-                DigestAlgorithm = new Oid("2.16.840.1.101.3.4.2.1") // SHA-256
+                IncludeOption = X509IncludeOption.EndCertOnly,
             };
+
+#if NET40_OR_GREATER
+            // Si estás en .NET Framework / .NET 6+ y necesitas especificar SHA-256:
+            signer.DigestAlgorithm = new System.Security.Cryptography.Oid("2.16.840.1.101.3.4.2.1");
+#endif
 
             // 4. Calcular la firma criptográfica con la API nativa de Windows / .NET
             signedCms.ComputeSignature(signer, silent: false);
 
             // 5. Codificar la estructura ASN.1 en un array de bytes y guardarlo como .p7m
             byte[] datosP7M = signedCms.Encode();
-            File.WriteAllBytes(inFileName + ".p7m", datosP7M);
+            File.WriteAllBytes(outFileName, datosP7M);
         }
 #endif
     }
