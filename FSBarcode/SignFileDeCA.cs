@@ -72,33 +72,65 @@ namespace FSBarcode
 
         public static void SignPdfCades(string pdfOrigen, string pdfDestino, X509Certificate2 certificate)
         {
-            // 1. Instanciar la firma nativa (IExternalSignature)
-            IExternalSignature pks = new DotNetPrivateKeySignature(certificate, DigestAlgorithms.SHA256);
+            if (!File.Exists(pdfOrigen))
+                throw new Exception("Fichero pdf de origen, no existe.");
+            if (certificate == null)
+                throw new Exception("Certificado no especificado.");
+            if (!certificate.HasPrivateKey)
+                throw new Exception("Certificado sin clave privada");
 
-            // 2. Convertir el certificado nativo de .NET a la interfaz iText
-            IX509Certificate iTextCert = BouncyCastleFactoryCreator
-                .GetFactory()
-                .CreateX509Certificate(certificate.RawData);
+            // Verificar si el origen y destino son la misma ruta
+            bool isSameFile = string.Equals(Path.GetFullPath(pdfOrigen), Path.GetFullPath(pdfDestino), StringComparison.OrdinalIgnoreCase);
+            string tempPdfPath = isSameFile ? Path.GetTempFileName() : null;
+            string actualOutputPath = isSameFile ? tempPdfPath : pdfDestino;
 
-            IX509Certificate[] chain = new IX509Certificate[] { iTextCert };
-
-            // 3. Firmar el PDF
-            using (PdfReader reader = new PdfReader(pdfOrigen))
-            using (FileStream os = new FileStream(pdfDestino, FileMode.Create))
+            try
             {
-                PdfSigner signer = new PdfSigner(reader, os, new StampingProperties());
+                // 1. Instanciar la firma nativa (IExternalSignature)
+                IExternalSignature pks = new DotNetPrivateKeySignature(certificate, DigestAlgorithms.SHA256);
 
-                // Firma PAdES/CAdES invisible
-                signer.SignDetached(
-                    new BouncyCastleDigest(),
-                    pks,
-                    chain,
-                    null, // crlList
-                    null, // ocspClient
-                    null, // tsaClient (Sello de tiempo)
-                    0,    // estimatedSize
-                    PdfSigner.CryptoStandard.CADES // Configura la estructura CAdES/PAdES
-                );
+                // 2. Convertir el certificado nativo de .NET a la interfaz iText
+                IX509Certificate iTextCert = BouncyCastleFactoryCreator
+                    .GetFactory()
+                    .CreateX509Certificate(certificate.RawData);
+
+                IX509Certificate[] chain = new IX509Certificate[] { iTextCert };
+
+                // 3. Firmar el PDF
+                using (PdfReader reader = new PdfReader(pdfOrigen))
+                using (FileStream os = new FileStream(actualOutputPath, FileMode.Create))
+                {
+                    PdfSigner signer = new PdfSigner(reader, os, new StampingProperties());
+
+                    // Firma PAdES/CAdES invisible
+                    signer.SignDetached(
+                        new BouncyCastleDigest(),
+                        pks,
+                        chain,
+                        null, // crlList
+                        null, // ocspClient
+                        null, // tsaClient (Sello de tiempo)
+                        0,    // estimatedSize
+                        PdfSigner.CryptoStandard.CADES // Configura la estructura CAdES/PAdES
+                    );
+                }
+
+                // Si origen y destino son el mismo archivo, sobrescribimos el original con el temporal
+                if (isSameFile)
+                {
+                    File.Copy(tempPdfPath, pdfDestino, true);
+                    File.Delete(tempPdfPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Limpieza del archivo temporal en caso de fallo
+                if (isSameFile && File.Exists(tempPdfPath))
+                {
+                    try { File.Delete(tempPdfPath); } catch { }
+                }
+
+                throw new Exception("Error al firmar el documento: " + ex.ToString());
             }
         }
 
